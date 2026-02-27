@@ -2,40 +2,60 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MONOLITH — Rethinking L.A.</title>
-<meta name="description" content="A new architecture for Los Angeles. Permanent homes crafted in museum-grade concrete by an international team of specialists.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MY VILLA — Italian Soul, Californian Body</title>
+<meta name="description" content="My Villa. Italian-designed, fire-resilient luxury villas in Los Angeles. Reinforced concrete. Crafted details. Homes designed to endure.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════
-   RESET & BASE
+   RESET & BASE — MY VILLA BRAND
    ══════════════════════════════════════════ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --dark: #1A1A1A;
-  --offblack: #111111;
-  --charcoal: #2A2A2A;
-  --grey: #888888;
-  --light-grey: #BBBBBB;
-  --cream: #F5F0EB;
-  --sand: #E7E2DB;
-  --terracotta: #B85042;
+  /* Italian Soul */
+  --terracotta: #C2714F;
+  --olive: #5C6B4F;
+  --tuscan-gold: #C4A265;
+  --warm-sand: #D4B896;
+  --espresso: #3E2F2B;
+  /* Californian Body */
+  --coastal-sage: #A8B5A8;
+  --dusk-blue: #8A9B9E;
+  --pacific-blue: #6B8F9E;
+  --sky-mist: #9BB8C4;
+  --sand-white: #F0EBE3;
+  --golden-hour: #E8C87A;
+  --palm-shadow: #8B9B7A;
+  /* Neutrals */
+  --charcoal: #2C2C2C;
+  --stone-grey: #A09890;
+  --light-linen: #EDE6DC;
+  --cream: #FAF8F5;
+  --dark: #2C2C2C;
+  --offblack: #1a1816;
   --white: #FFFFFF;
-  --warm-grey: #C8C2BA;
+  /* Typography */
   --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --sans: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  /* Layout */
   --section-pad: clamp(80px, 12vh, 140px);
   --side-pad: clamp(24px, 5vw, 120px);
 }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;  /* Prevent font scaling on orientation change */
+}
 body {
   font-family: var(--sans);
-  background: var(--dark);
+  background: var(--espresso);
   color: var(--cream);
   overflow-x: hidden;
   line-height: 1.6;
+  -webkit-tap-highlight-color: transparent; /* Clean taps on mobile */
+  overscroll-behavior-y: none; /* Prevent pull-to-refresh on Android */
 }
 img, video { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
@@ -47,42 +67,54 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nav {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 20px var(--side-pad);
+  padding: 22px var(--side-pad);
+  padding-top: max(22px, env(safe-area-inset-top));
+  padding-left: max(var(--side-pad), env(safe-area-inset-left));
+  padding-right: max(var(--side-pad), env(safe-area-inset-right));
   transition: background 0.4s, padding 0.4s;
 }
 .nav.scrolled {
-  background: rgba(26,26,26,0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(62,47,43,0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   padding: 14px var(--side-pad);
 }
+.nav-logo-wrap { display: flex; flex-direction: column; }
 .nav-logo {
   font-family: var(--serif);
   font-size: clamp(18px, 2vw, 24px);
-  font-weight: 700;
-  letter-spacing: 0.15em;
+  font-weight: 400;
+  letter-spacing: 0.22em;
   color: var(--white);
 }
-.nav-logo span { color: var(--terracotta); font-weight: 400; }
+.nav-payoff {
+  font-family: var(--sans);
+  font-size: 8px; font-weight: 400;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-top: 1px;
+}
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a {
-  font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--warm-grey);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--warm-sand);
   transition: color 0.3s; position: relative;
+  opacity: 0.7;
 }
 .nav-links a::after {
   content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
-  background: var(--terracotta); transition: width 0.3s;
+  background: var(--pacific-blue); transition: width 0.3s;
 }
-.nav-links a:hover { color: var(--white); }
+.nav-links a:hover { color: var(--white); opacity: 1; }
 .nav-links a:hover::after { width: 100%; }
 .nav-cta {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--white);
-  border: 1px solid var(--terracotta); padding: 10px 24px;
-  transition: all 0.3s;
+  font-size: 10px !important; font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  color: var(--white) !important; opacity: 1 !important;
+  border: 1px solid var(--terracotta) !important; padding: 10px 24px;
+  transition: all 0.3s !important;
 }
-.nav-cta:hover { background: var(--terracotta); }
+.nav-cta:hover { background: var(--pacific-blue) !important; border-color: var(--pacific-blue) !important; }
+.nav-cta::after { display: none !important; }
 .nav-burger {
   display: none; flex-direction: column; gap: 5px; cursor: pointer;
   width: 28px; padding: 4px 0;
@@ -93,13 +125,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 /* Mobile nav */
 .mobile-menu {
-  position: fixed; inset: 0; background: rgba(17,17,17,0.98);
+  position: fixed; inset: 0; background: rgba(62,47,43,0.98);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
   z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.4s;
 }
 .mobile-menu.open { opacity: 1; pointer-events: all; }
 .mobile-menu a {
-  font-family: var(--serif); font-size: 28px; color: var(--cream);
+  font-family: var(--serif); font-size: 28px; color: var(--warm-sand);
   transition: color 0.3s;
 }
 .mobile-menu a:hover { color: var(--terracotta); }
@@ -128,45 +160,63 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ══════════════════════════════════════════ */
 .section-label {
   font-family: var(--sans);
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.25em; text-transform: uppercase;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.28em; text-transform: uppercase;
   color: var(--terracotta);
   margin-bottom: 16px;
 }
 .section-title {
   font-family: var(--serif);
   font-size: clamp(32px, 5vw, 56px);
-  font-weight: 700; line-height: 1.15;
+  font-weight: 400; line-height: 1.15;
   color: var(--white);
 }
-.section-title.dark { color: var(--dark); }
+.section-title em { font-style: italic; font-weight: 300; }
+.section-title.dark { color: var(--espresso); }
 .section-subtitle {
   font-family: var(--serif);
   font-size: clamp(18px, 2.5vw, 24px);
-  font-weight: 400; font-style: italic;
-  color: var(--grey);
+  font-weight: 300; font-style: italic;
+  color: var(--stone-grey);
   margin-top: 12px;
 }
 .divider {
-  width: 60px; height: 2px;
-  background: var(--terracotta);
+  width: 60px; height: 1px;
+  background: var(--tuscan-gold);
   margin: 24px 0;
 }
 .body-text {
-  font-size: clamp(15px, 1.6vw, 17px);
-  line-height: 1.75;
-  color: var(--warm-grey);
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 1.8;
+  color: var(--warm-sand);
   max-width: 680px;
+  opacity: 0.7;
 }
-.body-text.dark { color: var(--charcoal); }
+.body-text.dark { color: var(--charcoal); opacity: 0.7; }
+
+/* ══════════════════════════════════════════
+   TEXT-ON-VIDEO READABILITY
+   ══════════════════════════════════════════ */
+.text-on-media {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);
+}
+.text-panel {
+  background: rgba(62,47,43,0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 4px;
+  padding: 32px 36px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
 
 /* ══════════════════════════════════════════
    1. HERO
    ══════════════════════════════════════════ */
 .hero {
   position: relative;
-  height: 100vh; min-height: 600px;
-  display: flex; align-items: flex-end;
+  height: 100vh; height: 100dvh; min-height: 600px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
   overflow: hidden;
 }
 .hero-video {
@@ -181,46 +231,49 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: absolute; inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0,0,0,0.15) 0%,
-    rgba(0,0,0,0.3) 50%,
-    rgba(0,0,0,0.7) 100%
+    rgba(107,143,158,0.12) 0%,
+    rgba(62,47,43,0.45) 50%,
+    rgba(62,47,43,0.85) 100%
   );
 }
 .hero-content {
   position: relative; z-index: 2;
-  padding: 0 var(--side-pad) clamp(60px, 10vh, 120px);
-  width: 100%; max-width: 900px;
+  padding: 0 var(--side-pad);
+  max-width: 860px;
 }
 .hero-title {
   font-family: var(--serif);
-  font-size: clamp(48px, 8vw, 96px);
-  font-weight: 700; letter-spacing: 0.08em;
+  font-size: clamp(48px, 8vw, 88px);
+  font-weight: 400; letter-spacing: 0.22em;
   line-height: 1; color: var(--white);
-  margin-bottom: 12px;
-}
-.hero-tagline {
-  font-family: var(--serif);
-  font-size: clamp(20px, 3vw, 32px);
-  font-weight: 400; font-style: italic;
-  color: var(--sand);
   margin-bottom: 16px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.2);
 }
-.hero-line { width: 80px; height: 2px; background: var(--terracotta); margin-bottom: 20px; }
+.hero-payoff {
+  font-family: var(--sans);
+  font-size: clamp(10px, 1.2vw, 13px);
+  font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 32px;
+}
+.hero-line { width: 60px; height: 1px; background: var(--tuscan-gold); margin: 0 auto 24px; }
 .hero-sub {
-  font-size: clamp(14px, 1.5vw, 16px);
-  color: var(--warm-grey);
-  letter-spacing: 0.02em;
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.5vw, 28px);
+  font-weight: 300; font-style: italic;
+  color: var(--warm-sand);
+  opacity: 0.8;
 }
 .hero-scroll {
   position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
   z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
 }
 .hero-scroll span {
-  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--warm-grey);
+  font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: rgba(212,184,150,0.35); font-family: var(--sans);
 }
 .hero-scroll-line {
-  width: 1px; height: 32px; background: var(--terracotta);
+  width: 1px; height: 32px; background: var(--pacific-blue);
   animation: scrollPulse 2s ease-in-out infinite;
 }
 @keyframes scrollPulse {
@@ -233,30 +286,45 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ══════════════════════════════════════════ */
 .thesis {
   padding: var(--section-pad) var(--side-pad);
-  border-left: 3px solid var(--terracotta);
+  border-left: 2px solid var(--pacific-blue);
   margin-left: var(--side-pad);
   max-width: 900px;
   position: relative;
 }
-.thesis-quote {
+.thesis-headline {
   font-family: var(--serif);
-  font-size: clamp(24px, 3.5vw, 40px);
-  font-weight: 400; font-style: italic;
-  line-height: 1.4; color: var(--cream);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 12px;
 }
-.thesis-quote .muted { color: var(--grey); }
-.thesis-proposition {
+.thesis-tagline {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.8vw, 30px);
+  font-weight: 300; font-style: italic;
+  line-height: 1.4;
+  color: var(--warm-sand);
+}
+.cal-accent { color: var(--sky-mist); }
+.thesis-body {
   margin-top: 40px;
   font-size: clamp(15px, 1.6vw, 17px);
-  line-height: 1.75; color: var(--sand);
+  line-height: 1.85;
+  color: var(--warm-sand);
+  opacity: 0.7;
 }
-.thesis-proposition strong { color: var(--cream); font-weight: 600; }
-.thesis-bridge {
-  margin-top: 32px;
+.thesis-value {
+  margin-top: 48px;
   font-family: var(--serif);
-  font-size: clamp(18px, 2vw, 22px);
-  font-style: italic;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 300; font-style: italic;
+  line-height: 1.35;
   color: var(--cream);
+}
+.thesis-value strong {
+  font-weight: 500;
+  color: var(--white);
 }
 
 /* ══════════════════════════════════════════
@@ -268,8 +336,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .ethical-inner { max-width: 1200px; margin: 0 auto; }
 .ethical-body {
-  font-size: clamp(15px, 1.6vw, 17px);
-  line-height: 1.8; color: var(--charcoal);
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 1.85; color: var(--charcoal); opacity: 0.65;
   max-width: 800px;
   margin-bottom: 60px;
 }
@@ -277,20 +345,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .pillar { position: relative; }
 .pillar-num {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 32px; height: 32px; border-radius: 4px;
+  width: 32px; height: 32px; border-radius: 2px;
   background: var(--terracotta); color: var(--white);
-  font-size: 12px; font-weight: 700;
+  font-size: 11px; font-weight: 700;
   margin-bottom: 14px;
 }
 .pillar-title {
   font-family: var(--serif);
   font-size: clamp(18px, 2vw, 22px);
-  font-weight: 700; color: var(--dark);
+  font-weight: 500; color: var(--espresso);
   margin-bottom: 12px; line-height: 1.3;
 }
 .pillar-desc {
-  font-size: 14px; line-height: 1.7;
-  color: var(--grey);
+  font-size: 13px; line-height: 1.75;
+  color: var(--stone-grey);
 }
 
 @media (max-width: 700px) {
@@ -302,7 +370,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ══════════════════════════════════════════ */
 .team {
   padding: var(--section-pad) var(--side-pad);
-  background: var(--offblack);
+  background: var(--charcoal);
 }
 .team-inner { max-width: 1200px; margin: 0 auto; }
 .team-grid {
@@ -312,35 +380,39 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-top: 48px;
 }
 .team-card {
-  background: var(--dark);
-  border-top: 3px solid var(--terracotta);
+  background: var(--espresso);
+  border-top: 2px solid var(--tuscan-gold);
   padding: 28px 20px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
+.team-card:nth-child(2) { border-top-color: var(--pacific-blue); }
+.team-card:nth-child(3) { border-top-color: var(--coastal-sage); }
+.team-card:nth-child(4) { border-top-color: var(--sky-mist); }
+.team-card:nth-child(5) { border-top-color: var(--pacific-blue); }
 .team-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
 }
 .team-role {
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.05em;
-  color: var(--grey); text-transform: uppercase;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--stone-grey); text-transform: uppercase;
   margin-bottom: 10px; line-height: 1.5;
 }
 .team-firm {
   font-family: var(--serif);
   font-size: clamp(16px, 1.5vw, 20px);
-  font-weight: 700; color: var(--white);
+  font-weight: 500; color: var(--warm-sand);
   margin-bottom: 4px;
 }
 .team-loc {
-  font-size: 12px; font-style: italic;
-  color: var(--grey); margin-bottom: 16px;
+  font-size: 11px; font-style: italic;
+  color: var(--stone-grey); margin-bottom: 16px; opacity: 0.6;
 }
-.team-divider { width: 100%; height: 1px; background: var(--charcoal); margin-bottom: 16px; }
+.team-divider { width: 100%; height: 1px; background: rgba(196,162,101,0.12); margin-bottom: 16px; }
 .team-highlight {
-  font-size: 13px; line-height: 1.65;
-  color: var(--warm-grey);
+  font-size: 12px; line-height: 1.7;
+  color: var(--warm-sand); opacity: 0.5;
 }
 
 @media (max-width: 1000px) {
@@ -365,7 +437,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .vision-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+  background: linear-gradient(90deg, rgba(62,47,43,0.7) 0%, rgba(107,143,158,0.15) 50%, transparent 100%);
 }
 .vision-content {
   position: relative; z-index: 2;
@@ -375,20 +447,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .vision-headline {
   font-family: var(--serif);
   font-size: clamp(36px, 5vw, 56px);
-  font-weight: 700; color: var(--white);
+  font-weight: 400; color: var(--white);
   line-height: 1.15; margin-bottom: 24px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5), 0 6px 24px rgba(0,0,0,0.25);
 }
 .vision-body {
   font-size: clamp(14px, 1.4vw, 16px);
-  line-height: 1.8; color: var(--sand);
+  line-height: 1.8; color: var(--warm-sand); opacity: 0.8;
   margin-bottom: 32px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 .vision-statement {
   font-family: var(--serif);
   font-size: clamp(22px, 3vw, 30px);
-  font-weight: 600; font-style: italic;
+  font-weight: 400; font-style: italic;
   color: var(--cream);
   line-height: 1.35;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* ══════════════════════════════════════════
@@ -403,7 +478,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 48px; margin-top: 48px;
 }
-.force-item {}
 .force-dot {
   width: 10px; height: 10px; border-radius: 50%;
   margin-bottom: 16px;
@@ -411,12 +485,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .force-title {
   font-family: var(--serif);
   font-size: clamp(20px, 2.2vw, 26px);
-  font-weight: 700; color: var(--dark);
+  font-weight: 500; color: var(--espresso);
   line-height: 1.25; margin-bottom: 16px;
 }
 .force-desc {
-  font-size: 15px; line-height: 1.7;
-  color: var(--grey);
+  font-size: 14px; line-height: 1.75;
+  color: var(--stone-grey);
 }
 .force-img {
   margin-top: 24px; width: 100%; height: 160px;
@@ -437,22 +511,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .material-text {
   padding: var(--section-pad) var(--side-pad);
   display: flex; flex-direction: column; justify-content: center;
+  background: var(--espresso);
 }
 .material-text .section-title { margin-bottom: 8px; }
 .material-works { margin-top: 32px; }
 .material-work {
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--charcoal);
+  border-bottom: 1px solid rgba(196,162,101,0.1);
 }
 .material-work:last-child { border-bottom: none; }
 .material-work-name {
   font-family: var(--serif);
   font-size: clamp(16px, 1.8vw, 20px);
-  font-style: italic; color: var(--cream);
+  font-style: italic; color: var(--warm-sand);
 }
 .material-work-arch {
-  font-size: 13px; color: var(--grey);
+  font-size: 12px; color: var(--stone-grey); opacity: 0.5;
   margin-top: 2px;
 }
 .material-media {
@@ -482,12 +557,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .biophilic-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 50%);
+  background: linear-gradient(0deg, rgba(62,47,43,0.7) 0%, rgba(92,107,79,0.3) 40%, rgba(107,143,158,0.15) 65%, transparent 100%);
 }
 .biophilic-content {
   position: relative; z-index: 2;
   padding: 60px var(--side-pad);
   max-width: 700px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);
 }
 
 /* ══════════════════════════════════════════
@@ -499,7 +575,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .collection-inner { max-width: 1200px; margin: 0 auto; }
 .collection-desc {
-  font-size: 15px; color: var(--grey); max-width: 680px;
+  font-size: 14px; color: var(--stone-grey); max-width: 680px;
   margin-top: 8px; margin-bottom: 48px;
 }
 .collection-grid {
@@ -512,17 +588,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overflow: hidden;
   transition: box-shadow 0.3s;
 }
-.type-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+.type-card:hover { box-shadow: 0 8px 32px rgba(62,47,43,0.1); }
 .type-img { width: 100%; height: 100%; min-height: 200px; object-fit: cover; }
 .type-text { padding: 28px 24px; display: flex; flex-direction: column; justify-content: center; }
 .type-name {
   font-family: var(--serif);
   font-size: clamp(18px, 2vw, 22px);
-  font-weight: 700; color: var(--dark);
+  font-weight: 500; color: var(--espresso);
   margin-bottom: 8px;
 }
-.type-line { width: 40px; height: 2px; background: var(--terracotta); margin-bottom: 12px; }
-.type-desc { font-size: 14px; line-height: 1.65; color: var(--grey); }
+.type-line { width: 40px; height: 1px; background: var(--terracotta); margin-bottom: 12px; }
+.type-card:nth-child(2) .type-line { background: var(--pacific-blue); }
+.type-card:nth-child(3) .type-line { background: var(--coastal-sage); }
+.type-card:nth-child(4) .type-line { background: var(--pacific-blue); }
+.type-desc { font-size: 13px; line-height: 1.7; color: var(--stone-grey); }
 
 @media (max-width: 900px) {
   .collection-grid { grid-template-columns: 1fr; }
@@ -547,20 +626,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .gallery-overlay-left {
   position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, transparent 60%);
+  background: linear-gradient(90deg, rgba(62,47,43,0.72) 0%, rgba(107,143,158,0.12) 45%, transparent 65%);
 }
 .gallery-overlay-right {
   position: absolute; inset: 0;
-  background: linear-gradient(270deg, rgba(0,0,0,0.55) 0%, transparent 60%);
+  background: linear-gradient(270deg, rgba(62,47,43,0.68) 0%, rgba(107,143,158,0.12) 45%, transparent 65%);
 }
 .gallery-overlay-bottom {
   position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%);
+  background: linear-gradient(0deg, rgba(62,47,43,0.75) 0%, rgba(107,143,158,0.1) 40%, transparent 55%);
 }
 .gallery-text {
   position: relative; z-index: 2;
   padding: 60px var(--side-pad);
   max-width: 550px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);
 }
 .gallery-text.right { margin-left: auto; text-align: right; }
 .gallery-text.bottom { align-self: flex-end; margin-bottom: 0; padding-bottom: 60px; }
@@ -568,7 +648,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ══════════════════════════════════════════
    INTERIORS — dual image
    ══════════════════════════════════════════ */
-.interiors { background: var(--dark); }
+.interiors { background: var(--espresso); }
 .interiors-images {
   display: grid; grid-template-columns: 1fr 1fr;
 }
@@ -600,12 +680,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .resilience-item { margin-bottom: 28px; }
 .resilience-item-title {
   font-family: var(--sans);
-  font-size: 14px; font-weight: 600;
-  color: var(--dark); margin-bottom: 6px;
+  font-size: 13px; font-weight: 600;
+  color: var(--espresso); margin-bottom: 6px;
 }
 .resilience-item-desc {
-  font-size: 14px; line-height: 1.65;
-  color: var(--grey);
+  font-size: 13px; line-height: 1.7;
+  color: var(--stone-grey);
 }
 
 @media (max-width: 800px) {
@@ -617,12 +697,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ══════════════════════════════════════════ */
 .process {
   padding: var(--section-pad) var(--side-pad);
-  background: var(--dark);
+  background: var(--espresso);
 }
 .process-inner { max-width: 1100px; margin: 0 auto; }
 .process-desc {
-  font-size: 15px; color: var(--grey); max-width: 700px;
-  margin-bottom: 60px;
+  font-size: 14px; color: var(--stone-grey); max-width: 700px;
+  margin-bottom: 60px; opacity: 0.6;
 }
 .process-steps {
   display: grid; grid-template-columns: repeat(5, 1fr);
@@ -631,23 +711,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .process-steps::before {
   content: ''; position: absolute;
   top: 22px; left: 22px; right: 22px; height: 1px;
-  background: var(--charcoal);
+  background: linear-gradient(90deg, var(--terracotta), var(--pacific-blue), var(--coastal-sage), var(--pacific-blue), var(--terracotta));
+  opacity: 0.3;
 }
 .step { text-align: center; position: relative; }
 .step-num {
   width: 44px; height: 44px; border-radius: 50%;
   background: var(--terracotta);
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 700; color: var(--white);
+  font-size: 13px; font-weight: 700; color: var(--white);
   margin-bottom: 16px; position: relative; z-index: 2;
 }
+.step:nth-child(2) .step-num { background: var(--pacific-blue); }
+.step:nth-child(3) .step-num { background: var(--olive); }
+.step:nth-child(4) .step-num { background: var(--sky-mist); }
+.step:nth-child(5) .step-num { background: var(--pacific-blue); }
 .step-title {
   font-family: var(--serif);
   font-size: clamp(14px, 1.4vw, 17px);
-  font-weight: 700; color: var(--cream);
+  font-weight: 500; color: var(--warm-sand);
   margin-bottom: 8px;
 }
-.step-desc { font-size: 13px; line-height: 1.55; color: var(--grey); }
+.step-desc { font-size: 12px; line-height: 1.6; color: var(--stone-grey); opacity: 0.5; }
 
 @media (max-width: 700px) {
   .process-steps {
@@ -667,7 +752,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ══════════════════════════════════════════ */
 .cta {
   position: relative;
-  min-height: 100vh;
+  min-height: 100vh; min-height: 100dvh;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
@@ -677,7 +762,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .cta-overlay {
   position: absolute; inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: linear-gradient(180deg, rgba(107,143,158,0.12) 0%, rgba(62,47,43,0.7) 40%);
 }
 .cta-content {
   position: relative; z-index: 2;
@@ -687,25 +772,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .cta-title {
   font-family: var(--serif);
   font-size: clamp(40px, 6vw, 72px);
-  font-weight: 700; letter-spacing: 0.08em;
+  font-weight: 400; letter-spacing: 0.22em;
   color: var(--white);
 }
 .cta-tagline {
-  font-family: var(--serif);
-  font-size: clamp(18px, 2.5vw, 24px);
-  font-style: italic; color: var(--sand);
-  margin-top: 8px; margin-bottom: 24px;
+  font-family: var(--sans);
+  font-size: clamp(9px, 1.2vw, 12px);
+  font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-top: 10px; margin-bottom: 24px;
 }
-.cta-line { width: 60px; height: 2px; background: var(--terracotta); margin: 0 auto 32px; }
+.cta-line { width: 60px; height: 1px; background: var(--tuscan-gold); margin: 0 auto 32px; }
 .cta-heading {
   font-family: var(--serif);
   font-size: clamp(22px, 3vw, 28px);
-  font-weight: 600; color: var(--cream);
+  font-weight: 400; color: var(--cream);
   margin-bottom: 12px;
 }
 .cta-sub {
-  font-size: 15px; color: var(--warm-grey);
-  line-height: 1.7; margin-bottom: 40px;
+  font-size: 14px; color: var(--warm-sand); opacity: 0.55;
+  line-height: 1.8; margin-bottom: 40px;
 }
 .cta-form {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -714,27 +800,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .cta-form .full { grid-column: 1 / -1; }
 .cta-input {
   width: 100%; padding: 14px 16px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(138,155,158,0.2);
   color: var(--white);
-  font-family: var(--sans); font-size: 14px;
+  font-family: var(--sans); font-size: 13px;
   transition: border-color 0.3s;
   outline: none;
 }
-.cta-input::placeholder { color: var(--grey); }
-.cta-input:focus { border-color: var(--terracotta); }
+.cta-input::placeholder { color: var(--stone-grey); opacity: 0.4; }
+.cta-input:focus { border-color: var(--pacific-blue); }
 textarea.cta-input { min-height: 100px; resize: vertical; }
 .cta-submit {
   grid-column: 1 / -1;
   padding: 16px 32px;
   background: var(--terracotta);
   color: var(--white);
-  font-size: 13px; font-weight: 600;
+  font-size: 12px; font-weight: 600;
   letter-spacing: 0.15em; text-transform: uppercase;
   transition: background 0.3s, transform 0.2s;
   cursor: pointer; border: none;
 }
-.cta-submit:hover { background: #9E4339; transform: translateY(-1px); }
+.cta-submit:hover { background: var(--pacific-blue); color: var(--white); transform: translateY(-1px); }
 
 @media (max-width: 550px) {
   .cta-form { grid-template-columns: 1fr; }
@@ -747,23 +833,255 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 .footer {
   background: var(--offblack);
   padding: 40px var(--side-pad);
+  padding-bottom: max(40px, env(safe-area-inset-bottom));
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 16px;
 }
+.footer-brand-wrap { display: flex; flex-direction: column; }
 .footer-brand {
   font-family: var(--serif);
-  font-size: 16px; font-weight: 700;
-  letter-spacing: 0.12em; color: var(--warm-grey);
+  font-size: 16px; font-weight: 400;
+  letter-spacing: 0.2em; color: rgba(212,184,150,0.4);
+}
+.footer-brand-payoff {
+  font-family: var(--sans);
+  font-size: 7px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(212,184,150,0.15); margin-top: 2px;
 }
 .footer-links { display: flex; gap: 24px; }
 .footer-links a {
-  font-size: 12px; color: var(--grey);
-  letter-spacing: 0.05em; transition: color 0.3s;
+  font-size: 11px; color: var(--stone-grey); opacity: 0.4;
+  letter-spacing: 0.05em; transition: color 0.3s, opacity 0.3s;
 }
-.footer-links a:hover { color: var(--cream); }
+.footer-links a:hover { color: var(--pacific-blue); opacity: 1; }
 .footer-copy {
-  font-size: 11px; color: var(--charcoal);
+  font-size: 10px; color: rgba(212,184,150,0.12);
   width: 100%; text-align: center; margin-top: 16px;
+}
+
+/* ══════════════════════════════════════════
+   TEXT BACKDROP — tight behind text blocks
+   ══════════════════════════════════════════ */
+.text-backdrop {
+  background: rgba(62,47,43,0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 6px 12px;
+  border-radius: 3px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* ══════════════════════════════════════════
+   MOBILE — TABLET (≤768px)
+   iPhone SE/Mini/Standard, Samsung Galaxy S
+   ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Hero — use dvh, safe-area bottom for scroll hint */
+  .hero { min-height: 520px; }
+  .hero-scroll { bottom: max(28px, env(safe-area-inset-bottom)); }
+  .hero-content { padding: 0 20px; }
+
+  /* Stronger overlays on smaller screens */
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(62,47,43,0.3) 0%,
+      rgba(62,47,43,0.55) 40%,
+      rgba(62,47,43,0.9) 100%
+    );
+  }
+  .gallery-overlay-left {
+    background: linear-gradient(90deg, rgba(62,47,43,0.75) 0%, rgba(62,47,43,0.3) 55%, transparent 100%);
+  }
+  .gallery-overlay-right {
+    background: linear-gradient(270deg, rgba(62,47,43,0.75) 0%, rgba(62,47,43,0.3) 55%, transparent 100%);
+  }
+  .gallery-overlay-bottom {
+    background: linear-gradient(0deg, rgba(62,47,43,0.8) 0%, rgba(62,47,43,0.3) 45%, transparent 100%);
+  }
+  .vision-overlay {
+    background: linear-gradient(90deg, rgba(62,47,43,0.75) 0%, rgba(62,47,43,0.35) 60%, transparent 100%);
+  }
+  .biophilic-overlay {
+    background: linear-gradient(0deg, rgba(62,47,43,0.8) 0%, rgba(62,47,43,0.35) 45%, transparent 100%);
+  }
+  .cta-overlay {
+    background: linear-gradient(180deg, rgba(62,47,43,0.4) 0%, rgba(62,47,43,0.85) 40%);
+  }
+
+  /* Tight blur ONLY behind each text element */
+  .gallery-text .section-title,
+  .gallery-text .section-label,
+  .gallery-text .body-text,
+  .vision-headline,
+  .vision-body,
+  .vision-statement,
+  .biophilic-content .section-title,
+  .biophilic-content .section-label,
+  .biophilic-content .body-text {
+    background: rgba(62,47,43,0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 6px 14px;
+    border-radius: 3px;
+    width: fit-content;
+    max-width: 100%;
+  }
+  .gallery-text.right .section-title {
+    margin-left: auto;
+  }
+
+  /* Text shadows on mobile */
+  .hero-title {
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 8px 40px rgba(0,0,0,0.4);
+  }
+  .gallery-text,
+  .vision-content,
+  .biophilic-content {
+    text-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .gallery-section { min-height: 60vh; min-height: 60dvh; }
+  .vision { min-height: 70vh; min-height: 70dvh; }
+
+  /* Thesis — reduce margin for smaller screens */
+  .thesis {
+    margin-left: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Touch targets — minimum 44px for Apple/Google guidelines */
+  .nav-burger {
+    width: 44px; min-height: 44px;
+    padding: 10px 8px;
+    display: flex; justify-content: center;
+  }
+  .nav-cta {
+    padding: 12px 20px !important;
+    min-height: 44px !important;
+  }
+  .cta-submit {
+    min-height: 48px;
+    padding: 14px 32px;
+    font-size: 13px;
+  }
+
+  /* Form inputs — 16px prevents iOS auto-zoom on focus */
+  .cta-input {
+    font-size: 16px;
+    padding: 16px;
+    min-height: 48px;
+    border-radius: 0; /* Remove iOS default rounded corners */
+    -webkit-appearance: none; /* Remove iOS styling */
+  }
+  textarea.cta-input { min-height: 110px; }
+
+  /* Mobile menu — safe area + proper tap targets */
+  .mobile-menu {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    gap: 28px;
+  }
+  .mobile-menu a {
+    font-size: 26px;
+    padding: 8px 20px; /* Larger tap area */
+    min-height: 44px;
+    display: flex; align-items: center;
+  }
+
+  /* CTA section — adapt for mobile form */
+  .cta { min-height: auto; min-height: auto; padding: 80px 0; }
+  .cta-content { padding: 40px 20px 40px; padding-bottom: max(40px, env(safe-area-inset-bottom)); }
+
+  /* Footer — safe area */
+  .footer {
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+    flex-direction: column; text-align: center;
+    gap: 12px;
+  }
+  .footer-links { justify-content: center; }
+}
+
+/* ══════════════════════════════════════════
+   SMALL PHONES (≤480px)
+   iPhone SE (375px), Galaxy S (360px)
+   ══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .gallery-text .section-title,
+  .gallery-text .section-label,
+  .gallery-text .body-text,
+  .vision-headline,
+  .vision-body,
+  .vision-statement,
+  .biophilic-content .section-title,
+  .biophilic-content .section-label,
+  .biophilic-content .body-text {
+    background: rgba(62,47,43,0.42);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 7px 14px;
+  }
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(62,47,43,0.35) 0%,
+      rgba(62,47,43,0.65) 40%,
+      rgba(62,47,43,0.92) 100%
+    );
+  }
+  /* Tighter spacing on small phones */
+  .hero-title { letter-spacing: 0.12em; }
+  .hero-content { padding: 0 16px; }
+  .thesis {
+    margin-left: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .thesis-value { margin-top: 32px; }
+
+  /* Team cards — full width */
+  .team-card { padding: 22px 16px; }
+
+  /* CTA form — single column with generous touch spacing */
+  .cta-form { gap: 12px; }
+  .cta-title { letter-spacing: 0.12em; }
+  .cta-content { padding: 30px 16px 30px; }
+
+  /* Pillars, forces — more compact */
+  .pillar-desc, .force-desc { font-size: 13px; }
+  .resilience-text { padding: 32px 20px; }
+  .resilience-diagram { padding: 24px 16px; }
+}
+
+/* ══════════════════════════════════════════
+   VERY SMALL (≤360px)
+   Older iPhones, small Samsung Galaxy
+   ══════════════════════════════════════════ */
+@media (max-width: 360px) {
+  :root {
+    --side-pad: 16px;
+  }
+  .hero-title { font-size: clamp(36px, 10vw, 48px); }
+  .thesis-headline { font-size: clamp(28px, 8vw, 36px); }
+  .thesis-tagline { font-size: clamp(17px, 5vw, 22px); }
+  .nav-logo { font-size: 16px; letter-spacing: 0.15em; }
+  .cta-title { font-size: clamp(32px, 9vw, 48px); }
+  .collection-grid { gap: 16px; }
+  .type-text { padding: 20px 16px; }
+}
+
+/* ══════════════════════════════════════════
+   LANDSCAPE MOBILE — prevent content cutoff
+   ══════════════════════════════════════════ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { min-height: 100vh; min-height: 100dvh; }
+  .hero-title { font-size: clamp(28px, 6vw, 48px); }
+  .hero-sub { display: none; }
+  .gallery-section { min-height: 80vh; min-height: 80dvh; }
+  .vision { min-height: 80vh; min-height: 80dvh; }
+  .biophilic { min-height: 80vh; min-height: 80dvh; }
+  .mobile-menu { gap: 16px; }
+  .mobile-menu a { font-size: 20px; padding: 4px 16px; }
 }
 </style>
 </head>
@@ -771,7 +1089,10 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ NAVIGATION ══════════════ -->
 <nav class="nav" id="nav">
-  <a href="#hero" class="nav-logo">MONOLITH<span>.</span></a>
+  <a href="#hero" class="nav-logo-wrap">
+    <span class="nav-logo">MY VILLA</span>
+    <span class="nav-payoff">Italian Soul &middot; Californian Body</span>
+  </a>
   <div class="nav-links">
     <a href="#thesis">Vision</a>
     <a href="#team">Team</a>
@@ -798,57 +1119,54 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <video class="hero-video" autoplay muted loop playsinline poster="img/hero.png">
     <source src="vid/backyard.mp4" type="video/mp4">
   </video>
-  <img class="hero-fallback" src="img/hero.png" alt="MONOLITH Garden" style="display:none;">
+  <img class="hero-fallback" src="img/hero.png" alt="My Villa Garden" style="display:none;">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-title reveal">MONOLITH</div>
-    <div class="hero-tagline reveal reveal-delay-1">Rethinking L.A.</div>
+    <div class="hero-title reveal">MY VILLA</div>
+    <div class="hero-payoff reveal reveal-delay-1">Italian Soul &middot; <span style="color:var(--sky-mist)">Californian Body</span></div>
     <div class="hero-line reveal reveal-delay-2"></div>
-    <div class="hero-sub reveal reveal-delay-3">A New Architecture for Los Angeles</div>
   </div>
   <div class="hero-scroll">
-    <span>Scroll</span>
+    <span>Discover</span>
     <div class="hero-scroll-line"></div>
   </div>
 </section>
 
 <!-- ══════════════ 2. THESIS ══════════════ -->
 <section class="thesis" id="thesis">
-  <div class="thesis-quote reveal">
-    Los Angeles is one of the most desired addresses in the world.
-    <br><br>
-    <span class="muted">Yet most of its residential architecture is built to the same standard as a tract home.</span>
+  <div class="thesis-headline reveal">My Villa.</div>
+  <div class="thesis-tagline reveal reveal-delay-1">Where Italian warmth meets <span class="cal-accent">Californian ease</span>.</div>
+  <div class="divider reveal reveal-delay-1"></div>
+  <div class="thesis-body reveal reveal-delay-2">
+    Every detail is curated to make you feel at home — from the handmade ceramics to the ocean breeze, from the courtyard that frames the sky to the concrete walls that will stand for centuries. My Villa is not just a house. It is a home designed as a permanent structure.
   </div>
-  <div class="thesis-proposition reveal reveal-delay-1">
-    MONOLITH proposes a radical alternative: homes designed as permanent structures — where architecture is <strong>not an expense that depreciates, but an asset that appreciates with time</strong>.
+  <div class="thesis-value reveal reveal-delay-3">
+    Architecture that is <strong>not an expense that depreciates, but an asset that appreciates with time</strong>.
   </div>
-  <div class="divider reveal reveal-delay-2"></div>
-  <div class="thesis-bridge reveal reveal-delay-2">This requires a new definition of luxury.</div>
 </section>
 
 <!-- ══════════════ 3. ETHICAL LUXURY ══════════════ -->
 <section class="ethical" id="ethical">
   <div class="ethical-inner">
-    <div class="section-label reveal">The Vision</div>
-    <div class="section-title dark reveal">Ethical Luxury.</div>
-    <div class="section-subtitle reveal reveal-delay-1">Architecture that earns its value.</div>
+    <div class="section-label reveal">The Approach</div>
+    <div class="section-title dark reveal">A New Standard<br>for Los Angeles</div>
     <div class="divider reveal reveal-delay-1" style="background:var(--terracotta)"></div>
     <div class="ethical-body reveal reveal-delay-2">
-      Excelling in Los Angeles — home to the most celebrated residences in the world — is an ambitious goal. MONOLITH makes it possible through a unique model: an international collaboration of specialized partners, each a leader in their discipline, united with local experts who bring deep knowledge of California's construction landscape and permitting process.
+      My Villa brings together an international collaboration of specialized partners — each a leader in their discipline — united with local experts who bring deep knowledge of California's construction landscape. European design intelligence meets L.A.'s most experienced builders. The result is a home that feels both timeless and entirely yours.
     </div>
     <div class="pillars">
       <div class="pillar reveal">
-        <div class="pillar-num">01</div>
+        <div class="pillar-num" style="background:var(--terracotta)">01</div>
         <div class="pillar-title">Enduring Value</div>
         <div class="pillar-desc">Architecture built to last centuries, not decades. A home that does not depreciate — it matures, like the finest buildings in history.</div>
       </div>
       <div class="pillar reveal reveal-delay-1">
-        <div class="pillar-num">02</div>
+        <div class="pillar-num" style="background:var(--pacific-blue)">02</div>
         <div class="pillar-title">Global Excellence,<br>Local Expertise</div>
         <div class="pillar-desc">European design intelligence and climate engineering paired with L.A.'s most experienced builders. The best of both worlds, on your site.</div>
       </div>
       <div class="pillar reveal reveal-delay-2">
-        <div class="pillar-num">03</div>
+        <div class="pillar-num" style="background:var(--olive)">03</div>
         <div class="pillar-title">Responsible<br>Craftsmanship</div>
         <div class="pillar-desc">Museum-grade concrete. Bioclimatic design. Structures that resist fire, seismic forces, and the passage of time — without excess.</div>
       </div>
@@ -862,7 +1180,6 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <div class="section-label reveal">The Team</div>
     <div class="section-title reveal">Five Partners. Three Continents.<br>One System.</div>
     <div class="team-grid">
-      <!-- IT'S Architecture -->
       <div class="team-card reveal">
         <div class="team-role">Architecture<br>& Design</div>
         <div class="team-firm">IT'S Architecture</div>
@@ -870,7 +1187,6 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="team-divider"></div>
         <div class="team-highlight">Award: Young Talent of Italian Architecture. FOROF art center for Giovanna Caruso Fendi. Recognized by French Ministry of Culture.</div>
       </div>
-      <!-- Transsolar -->
       <div class="team-card reveal reveal-delay-1">
         <div class="team-role">Climate<br>Engineering</div>
         <div class="team-firm">Transsolar</div>
@@ -878,7 +1194,6 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="team-divider"></div>
         <div class="team-highlight">Founder teaches at Harvard. Partnered with Renzo Piano, SANAA, Foster + Partners. Manitoba Hydro Place: most efficient tower in North America.</div>
       </div>
-      <!-- BUROMILAN -->
       <div class="team-card reveal reveal-delay-2">
         <div class="team-role">Structural<br>Engineering</div>
         <div class="team-firm">BUROMILAN</div>
@@ -886,7 +1201,6 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="team-divider"></div>
         <div class="team-highlight">40+ years. Structures for Renzo Piano (Politecnico Milano) and Mario Cucinella. 40+ concrete projects. BIM-certified.</div>
       </div>
-      <!-- DGU -->
       <div class="team-card reveal reveal-delay-3">
         <div class="team-role">Architectural<br>Concrete</div>
         <div class="team-firm">DGU</div>
@@ -894,7 +1208,6 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="team-divider"></div>
         <div class="team-highlight">Built the concrete for Tadao Ando (Punta della Dogana, Palazzo Grassi) and Renzo Piano (Kimbell Art Museum). Producing locally in L.A.</div>
       </div>
-      <!-- The Cooperative -->
       <div class="team-card reveal reveal-delay-4">
         <div class="team-role">Construction<br>& Delivery</div>
         <div class="team-firm">The Cooperative</div>
@@ -936,13 +1249,13 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <img class="force-img" src="img/courtyard.png" alt="Courtyard" loading="lazy">
       </div>
       <div class="force-item reveal reveal-delay-1">
-        <div class="force-dot" style="background:var(--charcoal)"></div>
+        <div class="force-dot" style="background:var(--pacific-blue)"></div>
         <div class="force-title">Material<br>Permanence</div>
         <div class="force-desc">Reinforced concrete: the same material used in the world's most enduring cultural buildings. Structures that do not burn, do not rot, do not depreciate.</div>
         <img class="force-img" src="img/structural.png" alt="Structural" loading="lazy">
       </div>
       <div class="force-item reveal reveal-delay-2">
-        <div class="force-dot" style="background:#6B8F71"></div>
+        <div class="force-dot" style="background:var(--coastal-sage)"></div>
         <div class="force-title">Biophilic<br>Design</div>
         <div class="force-desc">Architecture that breathes. Natural light, cross-ventilation, living walls, interior courtyards. Nature is not outside the window — it is woven into the architecture.</div>
         <img class="force-img" src="img/biophilic.png" alt="Biophilic" loading="lazy">
@@ -957,7 +1270,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <div class="section-label reveal">The Material</div>
     <div class="section-title reveal">Museum-Grade<br>Concrete</div>
     <div class="divider reveal reveal-delay-1"></div>
-    <div class="body-text reveal reveal-delay-1">Every MONOLITH home is crafted in architectural concrete by DGU — the same team that executed:</div>
+    <div class="body-text reveal reveal-delay-1">Every My Villa home is crafted in architectural concrete by DGU — the same team that executed:</div>
     <div class="material-works reveal reveal-delay-2">
       <div class="material-work">
         <div class="material-work-name">Punta della Dogana, Venice</div>
@@ -999,8 +1312,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <section class="collection" id="collection">
   <div class="collection-inner">
     <div class="section-label reveal">The Collection</div>
-    <div class="section-title dark reveal">Four Typologies, One System</div>
-    <div class="collection-desc reveal reveal-delay-1">Each a system of proportions, spatial relationships, and material logic that can be personalized without losing coherence.</div>
+    <div class="section-title dark reveal">Your Starting Point, Not Your Limit</div>
+    <div class="collection-desc reveal reveal-delay-1">Four foundational typologies designed as inspiration — each one a proven starting point that can be fully customized to match your vision, your site, and the way you live. From layout to materials, every element adapts to become uniquely yours.</div>
     <div class="collection-grid">
       <div class="type-card reveal">
         <img class="type-img" src="img/courtyard.png" alt="Courtyard House" loading="lazy">
@@ -1072,7 +1385,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </video>
   <div class="gallery-overlay-right"></div>
   <div class="gallery-text right">
-    <div class="section-title reveal" style="font-size:clamp(20px,2.5vw,28px); font-style:italic; font-weight:400;">
+    <div class="section-title reveal" style="font-size:clamp(20px,2.5vw,28px); font-style:italic; font-weight:300;">
       Spaces designed for living, not displaying.<br>Where natural light traces time across concrete surfaces.
     </div>
   </div>
@@ -1096,10 +1409,10 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <img src="img/resilient.png" alt="Resilience Diagram" loading="lazy" class="reveal">
   </div>
   <div class="resilience-text">
-    <div class="section-title dark reveal" style="font-size:clamp(22px,3vw,32px); color:var(--dark); margin-bottom:24px;">
+    <div class="section-title dark reveal" style="font-size:clamp(22px,3vw,32px); color:var(--espresso); margin-bottom:24px;">
       Engineered for<br>the California Climate
     </div>
-    <div class="divider reveal" style="background:var(--terracotta)"></div>
+    <div class="divider reveal" style="background:var(--pacific-blue)"></div>
     <div class="resilience-item reveal reveal-delay-1">
       <div class="resilience-item-title">Reinforced concrete structure</div>
       <div class="resilience-item-desc">Monolithic frames that absorb seismic forces and resist extreme weather events.</div>
@@ -1181,19 +1494,19 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <img class="cta-bg" src="img/pool.png" alt="" loading="lazy">
   <div class="cta-overlay"></div>
   <div class="cta-content">
-    <div class="cta-title reveal">MONOLITH</div>
-    <div class="cta-tagline reveal reveal-delay-1">Rethinking L.A.</div>
+    <div class="cta-title reveal">MY VILLA</div>
+    <div class="cta-tagline reveal reveal-delay-1">Italian Soul &middot; <span style="color:var(--sky-mist)">Californian Body</span></div>
     <div class="cta-line reveal reveal-delay-1"></div>
     <div class="cta-heading reveal reveal-delay-2">Request a Private Briefing</div>
     <div class="cta-sub reveal reveal-delay-2">
-      We'd love to show you the system. A tailored conversation about your site, your vision, your MONOLITH.
+      We'd love to show you the system. A tailored conversation about your site, your vision, your My Villa.
     </div>
     <form class="cta-form reveal reveal-delay-3" onsubmit="handleSubmit(event)">
       <input type="text" class="cta-input" placeholder="First Name" required>
       <input type="text" class="cta-input" placeholder="Last Name" required>
       <input type="email" class="cta-input" placeholder="Email" required>
       <input type="tel" class="cta-input" placeholder="Phone (optional)">
-      <textarea class="cta-input full" placeholder="Tell us about your project, your site, or what drew you to MONOLITH..."></textarea>
+      <textarea class="cta-input full" placeholder="Tell us about your project, your site, or what drew you to My Villa..."></textarea>
       <button type="submit" class="cta-submit">Request Private Briefing</button>
     </form>
   </div>
@@ -1201,12 +1514,15 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer class="footer">
-  <div class="footer-brand">MONOLITH</div>
-  <div class="footer-links">
-    <a href="mailto:info@monolith.la">info@monolith.la</a>
-    <a href="#hero">monolith.la</a>
+  <div class="footer-brand-wrap">
+    <div class="footer-brand">MY VILLA</div>
+    <div class="footer-brand-payoff">Italian Soul &middot; Californian Body</div>
   </div>
-  <div class="footer-copy">Private & Confidential · © 2026 MONOLITH</div>
+  <div class="footer-links">
+    <a href="mailto:info@myvilla.la">info@myvilla.la</a>
+    <a href="#hero">myvilla.la</a>
+  </div>
+  <div class="footer-copy">Private & Confidential · © 2026 My Villa</div>
 </footer>
 
 <!-- ══════════════ JAVASCRIPT ══════════════ -->
@@ -1261,12 +1577,12 @@ document.querySelectorAll('video').forEach(v => {
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('.cta-submit');
-  btn.textContent = 'Thank you. We\'ll be in touch.';
-  btn.style.background = '#6B8F71';
+  btn.textContent = 'Grazie. We\'ll be in touch.';
+  btn.style.background = '#5C6B4F';
   btn.disabled = true;
 }
 
-// Smooth anchor scrolling for Safari
+// Smooth anchor scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
