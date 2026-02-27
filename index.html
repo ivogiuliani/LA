@@ -910,7 +910,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     background: linear-gradient(180deg, rgba(62,47,43,0.4) 0%, rgba(62,47,43,0.85) 40%);
   }
 
-  /* Tight blur ONLY behind each text element */
+  /* Tight blur ONLY behind each text element — video AND image sections */
   .gallery-text .section-title,
   .gallery-text .section-label,
   .gallery-text .body-text,
@@ -919,7 +919,14 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   .vision-statement,
   .biophilic-content .section-title,
   .biophilic-content .section-label,
-  .biophilic-content .body-text {
+  .biophilic-content .body-text,
+  .cta-title,
+  .cta-tagline,
+  .cta-heading,
+  .cta-sub,
+  .hero-title,
+  .hero-payoff,
+  .hero-sub {
     background: rgba(62,47,43,0.35);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -927,6 +934,17 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     border-radius: 3px;
     width: fit-content;
     max-width: 100%;
+  }
+  /* Centered text — keep blocks centered */
+  .cta-title,
+  .cta-tagline,
+  .cta-heading,
+  .cta-sub,
+  .hero-title,
+  .hero-payoff,
+  .hero-sub {
+    margin-left: auto;
+    margin-right: auto;
   }
   .gallery-text.right .section-title {
     margin-left: auto;
@@ -938,7 +956,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   }
   .gallery-text,
   .vision-content,
-  .biophilic-content {
+  .biophilic-content,
+  .cta-content {
     text-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.3);
   }
   .gallery-section { min-height: 60vh; min-height: 60dvh; }
@@ -1015,7 +1034,14 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   .vision-statement,
   .biophilic-content .section-title,
   .biophilic-content .section-label,
-  .biophilic-content .body-text {
+  .biophilic-content .body-text,
+  .cta-title,
+  .cta-tagline,
+  .cta-heading,
+  .cta-sub,
+  .hero-title,
+  .hero-payoff,
+  .hero-sub {
     background: rgba(62,47,43,0.42);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
