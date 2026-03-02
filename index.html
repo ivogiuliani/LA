@@ -231,8 +231,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: absolute; inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(107,143,158,0.12) 0%,
-    rgba(62,47,43,0.45) 50%,
+    rgba(107,143,158,0.08) 0%,
+    rgba(62,47,43,0.25) 50%,
     rgba(62,47,43,0.85) 100%
   );
 }
@@ -912,32 +912,49 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   .hero-scroll { bottom: max(28px, env(safe-area-inset-bottom)); }
   .hero-content { padding: 0 20px; }
 
-  /* Mobile overlays — LIGHT, only where text sits, preserve image visibility */
+  /* Mobile overlays — MINIMAL, let images breathe */
   .hero-overlay {
     background: linear-gradient(
       180deg,
-      rgba(62,47,43,0.15) 0%,
-      rgba(62,47,43,0.4) 50%,
-      rgba(62,47,43,0.75) 100%
+      rgba(62,47,43,0.05) 0%,
+      rgba(62,47,43,0.15) 40%,
+      rgba(62,47,43,0.5) 100%
     );
   }
   .gallery-overlay-left {
-    background: linear-gradient(90deg, rgba(62,47,43,0.55) 0%, rgba(62,47,43,0.15) 50%, transparent 70%);
+    background: linear-gradient(90deg, rgba(62,47,43,0.35) 0%, rgba(62,47,43,0.08) 45%, transparent 65%);
   }
   .gallery-overlay-right {
-    background: linear-gradient(270deg, rgba(62,47,43,0.55) 0%, rgba(62,47,43,0.15) 50%, transparent 70%);
+    background: linear-gradient(270deg, rgba(62,47,43,0.35) 0%, rgba(62,47,43,0.08) 45%, transparent 65%);
   }
   .gallery-overlay-bottom {
-    background: linear-gradient(0deg, rgba(62,47,43,0.6) 0%, rgba(62,47,43,0.15) 40%, transparent 55%);
+    background: linear-gradient(0deg, rgba(62,47,43,0.4) 0%, rgba(62,47,43,0.08) 35%, transparent 50%);
   }
   .vision-overlay {
-    background: linear-gradient(90deg, rgba(62,47,43,0.55) 0%, rgba(62,47,43,0.15) 55%, transparent 75%);
+    background: linear-gradient(90deg, rgba(62,47,43,0.35) 0%, rgba(62,47,43,0.08) 50%, transparent 70%);
   }
   .biophilic-overlay {
-    background: linear-gradient(0deg, rgba(62,47,43,0.6) 0%, rgba(62,47,43,0.15) 40%, transparent 55%);
+    background: linear-gradient(0deg, rgba(62,47,43,0.4) 0%, rgba(62,47,43,0.08) 35%, transparent 50%);
   }
   .cta-overlay {
-    background: linear-gradient(180deg, rgba(62,47,43,0.2) 0%, rgba(62,47,43,0.65) 45%);
+    background: linear-gradient(180deg, rgba(62,47,43,0.08) 0%, rgba(62,47,43,0.45) 50%);
+  }
+
+  /* Gallery/vision/biophilic — text at BOTTOM, hide long paragraphs */
+  .gallery-section,
+  .vision,
+  .biophilic {
+    align-items: flex-end;
+  }
+  .gallery-text,
+  .vision-content,
+  .biophilic-content {
+    padding-bottom: 32px;
+  }
+  .gallery-text .body-text,
+  .biophilic-content .body-text,
+  .vision-body {
+    display: none;
   }
 
   /* NO background panels — only strong text-shadow for readability */
@@ -1059,9 +1076,9 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   .hero-overlay {
     background: linear-gradient(
       180deg,
-      rgba(62,47,43,0.15) 0%,
-      rgba(62,47,43,0.45) 50%,
-      rgba(62,47,43,0.8) 100%
+      rgba(62,47,43,0.05) 0%,
+      rgba(62,47,43,0.2) 45%,
+      rgba(62,47,43,0.55) 100%
     );
   }
   /* Tighter spacing on small phones */
