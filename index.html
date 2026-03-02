@@ -780,8 +780,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* — DGU → MY VILLA transition banner — */
 .dgu-to-myvilla {
-  background: var(--offblack);
-  padding: clamp(48px, 7vw, 80px) var(--side-pad);
+  background: var(--espresso);
+  padding: clamp(56px, 8vw, 100px) var(--side-pad);
+  border-top: 1px solid rgba(196,164,105,0.15);
+  border-bottom: 1px solid rgba(196,164,105,0.15);
 }
 .dgu-to-myvilla-inner {
   text-align: center;
@@ -789,39 +791,31 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin: 0 auto;
 }
 .dgu-to-myvilla-line {
-  width: 60px;
+  width: 80px;
   height: 1px;
   background: var(--tuscan-gold);
-  margin: 0 auto 20px;
-  opacity: 0.5;
+  margin: 0 auto 24px;
+  opacity: 0.4;
 }
 .dgu-to-myvilla-inner .dgu-to-myvilla-line:last-child {
-  margin: 20px auto 0;
+  margin: 24px auto 0;
 }
-.dgu-to-myvilla-label {
+.dgu-to-myvilla-brand {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.dgu-to-myvilla-sub {
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: clamp(11px, 1.1vw, 13px);
+  font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--warm-sand);
   opacity: 0.6;
-  margin-bottom: 12px;
-}
-.dgu-to-myvilla-brand {
-  font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 42px);
-  font-weight: 300;
-  letter-spacing: 0.15em;
-  color: var(--cream);
-  margin-bottom: 8px;
-}
-.dgu-to-myvilla-sub {
-  font-family: var(--serif);
-  font-size: clamp(14px, 1.3vw, 17px);
-  font-style: italic;
-  font-weight: 300;
-  color: var(--stone-grey);
-  opacity: 0.7;
 }
 
 /* — Amanvari: current project — */
@@ -1711,10 +1705,6 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="material-current-desc">
           DGU is now bringing its concrete mastery to <strong style="color:var(--white)">Aman's</strong> newest landmark — a luxury resort and private residences on Baja California's East Cape. White concrete, natural stone, and tropical hardwoods rise as elevated pavilions at the meeting point of desert, estuary, and the Sea of Cortez.
         </div>
-        <a href="https://www.aman.com/resorts/amanvari" target="_blank" rel="noopener" class="amv-link">
-          Discover Amanvari
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </a>
       </div>
       <!-- Media mosaic: video left tall, 2 images stacked right -->
       <div class="amv-mosaic reveal reveal-delay-1">
@@ -1738,9 +1728,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <section class="dgu-to-myvilla">
   <div class="dgu-to-myvilla-inner reveal">
     <div class="dgu-to-myvilla-line"></div>
-    <div class="dgu-to-myvilla-label">Now building for</div>
     <div class="dgu-to-myvilla-brand">MY VILLA</div>
-    <div class="dgu-to-myvilla-sub">The same hands. Your home.</div>
+    <div class="dgu-to-myvilla-sub">The Design Collection</div>
     <div class="dgu-to-myvilla-line"></div>
   </div>
 </section>
