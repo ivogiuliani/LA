@@ -9,7 +9,7 @@
 <meta name="description" content="My Villa builds Italian-designed, fire-resilient luxury villas in Los Angeles. Reinforced concrete construction, biophilic design, and museum-grade finishes. Request a private briefing today.">
 <meta name="keywords" content="luxury villas Los Angeles, Italian design villa LA, fire-resilient homes California, reinforced concrete villa, custom luxury homes Los Angeles, biophilic architecture, museum-grade concrete, precast concrete homes, My Villa LA, ville di lusso Los Angeles">
 <meta name="author" content="My Villa">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://myvilla.la/">
 
 <!-- Open Graph / Facebook -->
@@ -1541,9 +1541,125 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   .mobile-menu { gap: 16px; }
   .mobile-menu a { font-size: 20px; padding: 4px 16px; }
 }
+
+/* ══════════════════════════════════════════
+   PASSWORD GATE
+   ══════════════════════════════════════════ */
+.pw-gate {
+  position: fixed; inset: 0; z-index: 99999;
+  background: var(--espresso);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.pw-gate.pw-hidden {
+  opacity: 0; visibility: hidden; pointer-events: none;
+}
+.pw-inner {
+  text-align: center;
+  padding: 40px;
+  max-width: 420px;
+  width: 90%;
+}
+.pw-brand {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.pw-sub {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--warm-sand);
+  opacity: 0.5;
+  margin-bottom: 48px;
+}
+.pw-label {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--stone-grey);
+  margin-bottom: 16px;
+}
+.pw-input {
+  width: 100%;
+  padding: 14px 20px;
+  font-family: var(--sans);
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  color: var(--cream);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(196,164,105,0.2);
+  border-radius: 4px;
+  outline: none;
+  text-align: center;
+  transition: border-color 0.3s;
+  -webkit-appearance: none;
+}
+.pw-input:focus {
+  border-color: var(--tuscan-gold);
+}
+.pw-input::placeholder {
+  color: rgba(232,225,214,0.25);
+}
+.pw-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--espresso);
+  background: var(--tuscan-gold);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+.pw-btn:hover { opacity: 0.85; }
+.pw-error {
+  margin-top: 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--terracotta);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.pw-error.pw-show { opacity: 1; }
+.pw-note {
+  margin-top: 40px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--stone-grey);
+  opacity: 0.35;
+  line-height: 1.6;
+}
 </style>
 </head>
 <body>
+
+<!-- ══════════════ PASSWORD GATE ══════════════ -->
+<div class="pw-gate" id="pwGate">
+  <div class="pw-inner">
+    <div class="pw-brand">MY VILLA</div>
+    <div class="pw-sub">Partner Preview</div>
+    <div class="pw-label">Enter access code</div>
+    <form id="pwForm" onsubmit="return false;">
+      <input class="pw-input" type="password" id="pwInput" placeholder="&bull;&bull;&bull;&bull;&bull;" autocomplete="off" autofocus>
+      <button class="pw-btn" type="submit">Enter</button>
+    </form>
+    <div class="pw-error" id="pwError">Incorrect code. Please try again.</div>
+    <div class="pw-note">Private preview — for project partners only.</div>
+  </div>
+</div>
 
 <!-- ══════════════ NAVIGATION ══════════════ -->
 <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
@@ -2179,6 +2295,38 @@ function closeCookieBanner() {
   const b = document.getElementById('cookieBanner');
   if (b) { b.classList.remove('visible'); setTimeout(() => b.remove(), 400); }
 }
+
+// ── Password Gate ──
+(function() {
+  const gate = document.getElementById('pwGate');
+  const form = document.getElementById('pwForm');
+  const input = document.getElementById('pwInput');
+  const error = document.getElementById('pwError');
+  const KEY = 'myvilla_access';
+
+  // Check if already authenticated
+  if (sessionStorage.getItem(KEY) === 'granted') {
+    gate.classList.add('pw-hidden');
+    document.body.style.overflow = '';
+    return;
+  }
+
+  // Lock scroll while gate is visible
+  document.body.style.overflow = 'hidden';
+
+  form.addEventListener('submit', function() {
+    if (input.value === 'Paolo') {
+      sessionStorage.setItem(KEY, 'granted');
+      gate.classList.add('pw-hidden');
+      document.body.style.overflow = '';
+    } else {
+      error.classList.add('pw-show');
+      input.value = '';
+      input.focus();
+      setTimeout(function() { error.classList.remove('pw-show'); }, 2500);
+    }
+  });
+})();
 </script>
 
 <!-- GDPR Banner Styles -->
