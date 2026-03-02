@@ -678,6 +678,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .forces-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 48px; margin-top: 48px;
+  align-items: stretch;
+}
+.force-item {
+  display: flex;
+  flex-direction: column;
 }
 .force-dot {
   display: none;
@@ -702,7 +707,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   object-fit: contain;
 }
 .force-img--wide {
-  height: auto !important;
+  margin-top: auto;
+  height: 200px !important;
   object-fit: contain !important;
   aspect-ratio: auto !important;
   max-height: none !important;
@@ -712,7 +718,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .forces-grid { grid-template-columns: 1fr; gap: 40px; }
   .force-img { height: 280px; }
   .force-img--tall { height: 320px; }
-  .force-img--wide { height: auto !important; }
+  .force-img--wide { height: auto !important; max-width: 100%; }
 }
 
 /* ══════════════════════════════════════════
@@ -1090,7 +1096,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .resilience-diagram img {
   max-width: 100%;
   height: auto;
-  filter: invert(1) brightness(0.85);
+  /* filter removed — image now has transparent bg */
   object-fit: contain;
   display: inline-block;
 }
