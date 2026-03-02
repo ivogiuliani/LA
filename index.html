@@ -1071,19 +1071,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    RESILIENCE — split
    ══════════════════════════════════════════ */
 .resilience {
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: 1fr;
   background: var(--white);
 }
 .resilience-diagram {
-  padding: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 24px 40px;
+  display: block;
   overflow: visible;
 }
 .resilience-diagram img {
   width: 100%;
+  max-width: 900px;
   height: auto;
+  margin: 0 auto;
   filter: invert(1) brightness(0.85);
   object-fit: contain;
   display: block;
@@ -1091,6 +1091,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .resilience-text {
   padding: var(--section-pad) var(--side-pad);
   display: flex; flex-direction: column; justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 .resilience-item { margin-bottom: 28px; }
 .resilience-item-title {
@@ -1104,18 +1106,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 @media (max-width: 800px) {
-  .resilience { grid-template-columns: 1fr; }
-  .resilience-diagram {
-    padding: 16px 0;
-    display: block;
-    overflow: visible;
-  }
-  .resilience-diagram img {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    height: auto;
-  }
+  .resilience-diagram { padding: 16px 8px; }
+  .resilience-diagram img { max-width: 100%; }
+  .resilience-text { padding: 24px 20px; }
 }
 
 /* ══════════════════════════════════════════
