@@ -2315,7 +2315,7 @@ function closeCookieBanner() {
   document.body.style.overflow = 'hidden';
 
   form.addEventListener('submit', function() {
-    if (input.value === 'Paolo') {
+    if (input.value.toLowerCase() === 'paolo') {
       sessionStorage.setItem(KEY, 'granted');
       gate.classList.add('pw-hidden');
       document.body.style.overflow = '';
