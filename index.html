@@ -701,11 +701,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-top: auto; width: 100%; height: 200px;
   object-fit: contain;
 }
+.force-img--wide {
+  height: auto !important;
+  object-fit: contain !important;
+  aspect-ratio: auto !important;
+  max-height: none !important;
+}
 
 @media (max-width: 700px) {
   .forces-grid { grid-template-columns: 1fr; gap: 40px; }
   .force-img { height: 280px; }
   .force-img--tall { height: 320px; }
+  .force-img--wide { height: auto !important; }
 }
 
 /* ══════════════════════════════════════════
@@ -1792,7 +1799,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="force-dot" style="background:var(--coastal-sage)"></div>
         <div class="force-title">Biophilic<br>Design</div>
         <div class="force-desc">Architecture that breathes. Natural light, cross-ventilation, living walls, interior courtyards. Nature is not outside the window — it is woven into the architecture.</div>
-        <img class="force-img" src="img/biophilic.png" alt="Biophilic" loading="lazy" style="object-fit:contain;height:auto;aspect-ratio:auto;">
+        <img class="force-img force-img--wide" src="img/biophilic.png" alt="Biophilic" loading="lazy">
       </div>
     </div>
   </div>
