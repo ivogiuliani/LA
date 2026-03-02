@@ -226,9 +226,11 @@
   --side-pad: clamp(24px, 5vw, 120px);
 }
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;  /* Prevent font scaling on orientation change */
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 body {
   font-family: var(--sans);
@@ -240,6 +242,7 @@ body {
   overscroll-behavior-y: none; /* Prevent pull-to-refresh on Android */
 }
 img, video { display: block; max-width: 100%; }
+img { content-visibility: auto; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
@@ -327,11 +330,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    REVEAL ANIMATIONS
    ══════════════════════════════════════════ */
 .reveal {
-  opacity: 0; transform: translateY(40px);
+  opacity: 0; transform: translate3d(0, 20px, 0);
   transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal.visible { opacity: 1; transform: translate3d(0, 0, 0); }
 .reveal-delay-1 { transition-delay: 0.15s; }
 .reveal-delay-2 { transition-delay: 0.3s; }
 .reveal-delay-3 { transition-delay: 0.45s; }
@@ -691,7 +695,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .force-img {
   margin-top: auto; width: 100%; height: 200px;
-  object-fit: cover; border-radius: 4px;
+  object-fit: cover; border-radius: 4px; aspect-ratio: 3/2;
 }
 .force-img--tall {
   margin-top: auto; width: 100%; height: 200px;
@@ -922,7 +926,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: box-shadow 0.3s;
 }
 .type-card:hover { box-shadow: 0 8px 32px rgba(62,47,43,0.1); }
-.type-img { width: 100%; height: 100%; min-height: 200px; object-fit: cover; }
+.type-img { width: 100%; height: 100%; min-height: 200px; object-fit: cover; aspect-ratio: 4/3; }
 .type-text { padding: 28px 24px; display: flex; flex-direction: column; justify-content: center; }
 .type-name {
   font-family: var(--serif);
@@ -1036,7 +1040,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .resilience-diagram {
   padding: 40px; display: flex; align-items: center; justify-content: center;
 }
-.resilience-diagram img { max-width: 100%; max-height: 500px; filter: invert(1) brightness(0.85); }
+.resilience-diagram img { max-width: 100%; max-height: 500px; filter: invert(1) brightness(0.85); aspect-ratio: 16/9; }
 .resilience-text {
   padding: var(--section-pad) var(--side-pad);
   display: flex; flex-direction: column; justify-content: center;
@@ -1631,21 +1635,21 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <div class="material-works-row">
       <div class="material-work reveal">
         <div class="material-work-thumb">
-          <img src="img/punta-dogana.jpg" alt="Punta della Dogana" loading="lazy">
+          <img src="img/punta-dogana.jpg" alt="Punta della Dogana" loading="lazy" width="600" height="400">
         </div>
         <div class="material-work-name">Punta della Dogana, Venice</div>
         <div class="material-work-arch">for Tadao Ando</div>
       </div>
       <div class="material-work reveal reveal-delay-1">
         <div class="material-work-thumb">
-          <img src="img/kimbell.jpg" alt="Kimbell Art Museum" loading="lazy">
+          <img src="img/kimbell.jpg" alt="Kimbell Art Museum" loading="lazy" width="600" height="400">
         </div>
         <div class="material-work-name">Kimbell Art Museum, Fort Worth</div>
         <div class="material-work-arch">for Renzo Piano</div>
       </div>
       <div class="material-work reveal reveal-delay-2">
         <div class="material-work-thumb">
-          <img src="img/palazzo-grassi.jpg" alt="Palazzo Grassi" loading="lazy">
+          <img src="img/palazzo-grassi.jpg" alt="Palazzo Grassi" loading="lazy" width="600" height="400">
         </div>
         <div class="material-work-name">Palazzo Grassi, Venice</div>
         <div class="material-work-arch">for Tadao Ando / François Pinault</div>
@@ -1673,10 +1677,10 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
           </video>
         </div>
         <div class="amv-cell">
-          <img src="img/amanvari-01.jpg" alt="Amanvari — elevated pavilion" loading="lazy">
+          <img src="img/amanvari-01.jpg" alt="Amanvari — elevated pavilion" loading="lazy" width="600" height="400">
         </div>
         <div class="amv-cell">
-          <img src="img/amanvari-02.jpg" alt="Amanvari — resort at dusk" loading="lazy">
+          <img src="img/amanvari-02.jpg" alt="Amanvari — resort at dusk" loading="lazy" width="600" height="400">
         </div>
       </div>
     </div>
@@ -1789,7 +1793,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <!-- ══════════════ 14. RESILIENCE ══════════════ -->
 <section class="resilience" style="background:var(--offblack);">
   <div class="resilience-diagram">
-    <img src="img/resilient.png" alt="Resilience Diagram — bioclimatic orientation and cross-ventilation" loading="lazy" class="reveal">
+    <img src="img/resilient.png" alt="Resilience Diagram — bioclimatic orientation and cross-ventilation" loading="lazy" class="reveal" width="800" height="450">
   </div>
   <div class="resilience-text">
     <h2 class="section-title dark reveal" style="font-size:clamp(22px,3vw,32px); color:var(--cream); margin-bottom:24px;">
@@ -1829,8 +1833,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <!-- ══════════════ 11. INTERIORS ══════════════ -->
 <section class="interiors">
   <div class="interiors-images">
-    <img src="img/bedroom.png" alt="Bedroom" loading="lazy">
-    <img src="img/library.png" alt="Library" loading="lazy">
+    <img src="img/bedroom.png" alt="Bedroom" loading="lazy" width="800" height="500">
+    <img src="img/library.png" alt="Library" loading="lazy" width="800" height="500">
   </div>
   <div class="interiors-text">
     <div class="section-label reveal" style="color:var(--terracotta)">Interiors</div>
@@ -1927,7 +1931,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 17. CTA / CONTACT ══════════════ -->
 <section class="cta" id="contact">
-  <img class="cta-bg" src="img/pool.png" alt="" loading="lazy">
+  <img class="cta-bg" src="img/pool.png" alt="" loading="lazy" width="1600" height="900">
   <div class="cta-overlay"></div>
   <div class="cta-content">
     <div class="cta-title reveal">MY VILLA</div>
@@ -1985,14 +1989,17 @@ function closeMobile() {
   document.body.style.overflow = '';
 }
 
-// Reveal on scroll
+// Reveal on scroll — throttled to prevent layout-shift jumps on iOS
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
+  requestAnimationFrame(() => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
