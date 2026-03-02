@@ -1034,7 +1034,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .resilience-diagram {
   padding: 40px; display: flex; align-items: center; justify-content: center;
 }
-.resilience-diagram img { max-width: 100%; max-height: 500px; }
+.resilience-diagram img { max-width: 100%; max-height: 500px; filter: invert(1) brightness(0.85); }
 .resilience-text {
   padding: var(--section-pad) var(--side-pad);
   display: flex; flex-direction: column; justify-content: center;
@@ -1205,21 +1205,21 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 .footer-brand {
   font-family: var(--serif);
   font-size: 16px; font-weight: 400;
-  letter-spacing: 0.2em; color: rgba(212,184,150,0.4);
+  letter-spacing: 0.2em; color: rgba(212,184,150,0.85);
 }
 .footer-brand-payoff {
   font-family: var(--sans);
-  font-size: 7px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(212,184,150,0.15); margin-top: 2px;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(212,184,150,0.5); margin-top: 2px;
 }
 .footer-links { display: flex; gap: 24px; }
 .footer-links a {
-  font-size: 11px; color: var(--stone-grey); opacity: 0.4;
+  font-size: 13px; color: var(--warm-sand); opacity: 0.75;
   letter-spacing: 0.05em; transition: color 0.3s, opacity 0.3s;
 }
 .footer-links a:hover { color: var(--pacific-blue); opacity: 1; }
 .footer-copy {
-  font-size: 10px; color: rgba(212,184,150,0.12);
+  font-size: 12px; color: rgba(212,184,150,0.45);
   width: 100%; text-align: center; margin-top: 16px;
 }
 
@@ -1785,6 +1785,31 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </div>
 </section>
 
+<!-- ══════════════ 14. RESILIENCE ══════════════ -->
+<section class="resilience" style="background:var(--offblack);">
+  <div class="resilience-diagram">
+    <img src="img/resilient.png" alt="Resilience Diagram — bioclimatic orientation and cross-ventilation" loading="lazy" class="reveal">
+  </div>
+  <div class="resilience-text">
+    <h2 class="section-title dark reveal" style="font-size:clamp(22px,3vw,32px); color:var(--cream); margin-bottom:24px;">
+      Engineered for the California Climate
+    </h2>
+    <div class="divider reveal" style="background:var(--pacific-blue)"></div>
+    <div class="resilience-item reveal reveal-delay-1">
+      <div class="resilience-item-title" style="color:var(--warm-sand);">Reinforced concrete structure</div>
+      <div class="resilience-item-desc" style="color:var(--stone-grey);">Monolithic frames that absorb seismic forces and resist extreme weather events.</div>
+    </div>
+    <div class="resilience-item reveal reveal-delay-2">
+      <div class="resilience-item-title" style="color:var(--warm-sand);">Cross-ventilation by Transsolar</div>
+      <div class="resilience-item-desc" style="color:var(--stone-grey);">Climate-calibrated airflow that reduces energy consumption and maximizes comfort.</div>
+    </div>
+    <div class="resilience-item reveal reveal-delay-3">
+      <div class="resilience-item-title" style="color:var(--warm-sand);">Bioclimatic orientation</div>
+      <div class="resilience-item-desc" style="color:var(--stone-grey);">Every opening, every wall, every volume is positioned to optimize light, shade, and airflow for the specific site.</div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════ 10. COURTYARD — cinematic ══════════════ -->
 <section class="gallery-section">
   <video autoplay muted loop playsinline poster="img/courtyard.png">
@@ -1837,30 +1862,6 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </div>
 </section>
 
-<!-- ══════════════ 14. RESILIENCE ══════════════ -->
-<section class="resilience">
-  <div class="resilience-diagram">
-    <img src="img/resilient.png" alt="Resilience Diagram" loading="lazy" class="reveal">
-  </div>
-  <div class="resilience-text">
-    <h2 class="section-title dark reveal" style="font-size:clamp(22px,3vw,32px); color:var(--espresso); margin-bottom:24px;">
-      Engineered for the California Climate
-    </h2>
-    <div class="divider reveal" style="background:var(--pacific-blue)"></div>
-    <div class="resilience-item reveal reveal-delay-1">
-      <div class="resilience-item-title">Reinforced concrete structure</div>
-      <div class="resilience-item-desc">Monolithic frames that absorb seismic forces and resist extreme weather events.</div>
-    </div>
-    <div class="resilience-item reveal reveal-delay-2">
-      <div class="resilience-item-title">Cross-ventilation by Transsolar</div>
-      <div class="resilience-item-desc">Climate-calibrated airflow that reduces energy consumption and maximizes comfort.</div>
-    </div>
-    <div class="resilience-item reveal reveal-delay-3">
-      <div class="resilience-item-title">Bioclimatic orientation</div>
-      <div class="resilience-item-desc">Every opening, every wall, every volume is positioned to optimize light, shade, and airflow for the specific site.</div>
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════ 16. CLOSING IMAGE ══════════════ -->
 <section class="gallery-section" style="min-height:60vh;">
