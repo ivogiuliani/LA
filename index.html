@@ -1075,14 +1075,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: var(--white);
 }
 .resilience-diagram {
-  padding: 40px; display: flex; align-items: center; justify-content: center;
-  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
 }
-.resilience-diagram img { width: 100%; height: auto; filter: invert(1) brightness(0.85); object-fit: contain; }
-
-@media (max-width: 800px) {
-  .resilience-diagram { padding: 24px 16px; }
-  .resilience-diagram img { min-width: 0; }
+.resilience-diagram img {
+  width: 100%;
+  height: auto;
+  filter: invert(1) brightness(0.85);
+  object-fit: contain;
+  display: block;
 }
 .resilience-text {
   padding: var(--section-pad) var(--side-pad);
@@ -1101,6 +1105,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 @media (max-width: 800px) {
   .resilience { grid-template-columns: 1fr; }
+  .resilience-diagram { padding: 16px 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .resilience-diagram img { min-width: 600px; }
 }
 
 /* ══════════════════════════════════════════
@@ -1494,7 +1500,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   /* Pillars, forces — readable on mobile */
   .pillar-desc, .force-desc { font-size: 15px; }
   .resilience-text { padding: 32px 20px; }
-  .resilience-diagram { padding: 24px 16px; }
+  .resilience-diagram { padding: 12px 0; }
 }
 
 /* ══════════════════════════════════════════
@@ -1721,7 +1727,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
       <!-- Media mosaic: video left tall, 2 images stacked right -->
       <div class="amv-mosaic reveal reveal-delay-1">
         <div class="amv-cell amv-cell--video">
-          <video autoplay muted loop playsinline poster="img/amanvari-01.jpg">
+          <video muted loop playsinline poster="img/amanvari-01.jpg" preload="none">
             <source src="vid/amanvari.mp4" type="video/mp4">
           </video>
         </div>
@@ -1748,7 +1754,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 5. VISION — full bleed ══════════════ -->
 <section class="vision">
-  <video class="vision-bg" autoplay muted loop playsinline poster="img/living-room.png">
+  <video class="vision-bg" muted loop playsinline poster="img/living-room.png" preload="none">
     <source src="vid/living-room.mp4" type="video/mp4">
   </video>
   <div class="vision-overlay"></div>
@@ -1793,7 +1799,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 8. BIOPHILIC ══════════════ -->
 <section class="biophilic">
-  <video autoplay muted loop playsinline poster="img/biophilic.png">
+  <video muted loop playsinline poster="img/biophilic.png" preload="none">
     <source src="vid/biophilic.mp4" type="video/mp4">
   </video>
   <div class="biophilic-overlay"></div>
@@ -1876,7 +1882,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 10. COURTYARD — cinematic ══════════════ -->
 <section class="gallery-section">
-  <video autoplay muted loop playsinline poster="img/courtyard.png">
+  <video muted loop playsinline poster="img/courtyard.png" preload="none">
     <source src="vid/courtyard.mp4" type="video/mp4">
   </video>
   <div class="gallery-overlay-left"></div>
@@ -1903,7 +1909,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 12. DINING — cinematic ══════════════ -->
 <section class="gallery-section">
-  <video autoplay muted loop playsinline poster="img/dining.png">
+  <video muted loop playsinline poster="img/dining.png" preload="none">
     <source src="vid/dining-room.mp4" type="video/mp4">
   </video>
   <div class="gallery-overlay-right"></div>
@@ -1916,7 +1922,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 13. WELLNESS ══════════════ -->
 <section class="gallery-section" style="min-height:70vh;">
-  <video autoplay muted loop playsinline poster="img/bathtub.png">
+  <video muted loop playsinline poster="img/bathtub.png" preload="none">
     <source src="vid/bathroom.mp4" type="video/mp4">
   </video>
   <div class="gallery-overlay-left"></div>
@@ -1929,7 +1935,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 16. CLOSING IMAGE ══════════════ -->
 <section class="gallery-section" style="min-height:60vh;">
-  <video autoplay muted loop playsinline poster="img/external.png">
+  <video muted loop playsinline poster="img/external.png" preload="none">
     <source src="vid/external.mp4" type="video/mp4">
   </video>
   <div class="gallery-overlay-bottom"></div>
