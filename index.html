@@ -485,11 +485,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .forces {
   background: var(--cream);
   padding: var(--section-pad) var(--side-pad);
+  overflow: hidden;
 }
 .forces-inner { max-width: 1200px; margin: 0 auto; }
 .forces-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 48px; margin-top: 48px;
+}
+.force-item {
+  overflow: hidden;
 }
 .force-dot {
   display: none;
