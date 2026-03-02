@@ -1105,8 +1105,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 @media (max-width: 800px) {
   .resilience { grid-template-columns: 1fr; }
-  .resilience-diagram { padding: 16px 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .resilience-diagram img { min-width: 600px; }
+  .resilience-diagram {
+    padding: 16px 0;
+    display: block;
+    overflow: visible;
+  }
+  .resilience-diagram img {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+  }
 }
 
 /* ══════════════════════════════════════════
