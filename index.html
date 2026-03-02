@@ -778,28 +778,50 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   line-height: 1.3;
 }
 
-/* — Transition divider between past works and current project — */
-.material-transition {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin: clamp(36px, 5vw, 60px) 0;
+/* — DGU → MY VILLA transition banner — */
+.dgu-to-myvilla {
+  background: var(--offblack);
+  padding: clamp(48px, 7vw, 80px) var(--side-pad);
 }
-.material-transition-line {
-  flex: 1;
+.dgu-to-myvilla-inner {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.dgu-to-myvilla-line {
+  width: 60px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--warm-sand), transparent);
-  opacity: 0.3;
+  background: var(--tuscan-gold);
+  margin: 0 auto 20px;
+  opacity: 0.5;
 }
-.material-transition-text {
+.dgu-to-myvilla-inner .dgu-to-myvilla-line:last-child {
+  margin: 20px auto 0;
+}
+.dgu-to-myvilla-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--warm-sand);
+  opacity: 0.6;
+  margin-bottom: 12px;
+}
+.dgu-to-myvilla-brand {
   font-family: var(--serif);
-  font-size: clamp(14px, 1.4vw, 18px);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.dgu-to-myvilla-sub {
+  font-family: var(--serif);
+  font-size: clamp(14px, 1.3vw, 17px);
   font-style: italic;
   font-weight: 300;
-  color: var(--cream);
+  color: var(--stone-grey);
   opacity: 0.7;
-  white-space: nowrap;
-  letter-spacing: 0.03em;
 }
 
 /* — Amanvari: current project — */
@@ -1681,13 +1703,6 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
       </div>
     </div>
 
-    <!-- Transition: from past works to current project -->
-    <div class="material-transition reveal">
-      <div class="material-transition-line"></div>
-      <div class="material-transition-text">Now bringing that legacy to life</div>
-      <div class="material-transition-line"></div>
-    </div>
-
     <!-- Amanvari: current project -->
     <div class="material-current-label reveal">Currently Under Construction</div>
     <div class="material-current-top">
@@ -1717,6 +1732,17 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
       </div>
     </div>
   </div><!-- /material-inner -->
+</section>
+
+<!-- ══════════════ TRANSITION: DGU → MY VILLA ══════════════ -->
+<section class="dgu-to-myvilla">
+  <div class="dgu-to-myvilla-inner reveal">
+    <div class="dgu-to-myvilla-line"></div>
+    <div class="dgu-to-myvilla-label">Now building for</div>
+    <div class="dgu-to-myvilla-brand">MY VILLA</div>
+    <div class="dgu-to-myvilla-sub">The same hands. Your home.</div>
+    <div class="dgu-to-myvilla-line"></div>
+  </div>
 </section>
 
 <!-- ══════════════ 5. VISION — full bleed ══════════════ -->
