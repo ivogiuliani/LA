@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-220 30 1100 370" fill="none">
+  <style>
+    .lbl { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 32px; fill: #3E2F2B; font-weight: 700; letter-spacing: 0.3px; }
+    .accent { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 32px; fill: #B8704A; font-weight: 700; }
+    .dim { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 20px; fill: #8A9B9E; font-weight: 600; }
+    .lead { stroke: #6B8F9E; stroke-width: 1.2; }
+    .lead-d { stroke: #6B8F9E; stroke-width: 1; stroke-dasharray: 5,4; }
+  </style>
+
+  <!-- ===== WALL CROSS-SECTION ===== -->
+
+  <!-- Outer fair-faced concrete -->
+  <rect x="310" y="40" width="50" height="280" rx="2" fill="#C8BFB0" stroke="#3E2F2B" stroke-width="1.5"/>
+  <line x1="316" y1="55" x2="316" y2="300" stroke="#B8AFA2" stroke-width="0.8" opacity="0.5"/>
+  <line x1="330" y1="48" x2="330" y2="310" stroke="#B8AFA2" stroke-width="0.8" opacity="0.35"/>
+  <line x1="346" y1="45" x2="346" y2="315" stroke="#B8AFA2" stroke-width="0.8" opacity="0.25"/>
+
+  <!-- Insulation -->
+  <rect x="360" y="40" width="56" height="280" rx="0" fill="#E8DFD0" stroke="#3E2F2B" stroke-width="1"/>
+  <g opacity="0.25" stroke="#8A9B9E" stroke-width="0.7">
+    <line x1="360" y1="40" x2="416" y2="96"/>
+    <line x1="360" y1="86" x2="416" y2="142"/>
+    <line x1="360" y1="132" x2="416" y2="188"/>
+    <line x1="360" y1="178" x2="416" y2="234"/>
+    <line x1="360" y1="224" x2="416" y2="280"/>
+    <line x1="360" y1="270" x2="416" y2="320"/>
+  </g>
+
+  <!-- Inner structural concrete -->
+  <rect x="416" y="40" width="60" height="280" rx="2" fill="#D4CEC4" stroke="#3E2F2B" stroke-width="1.5"/>
+
+  <!-- Reinforcement bars -->
+  <line x1="432" y1="52" x2="432" y2="308" stroke="#6B8F9E" stroke-width="3" stroke-linecap="round"/>
+  <line x1="460" y1="52" x2="460" y2="308" stroke="#6B8F9E" stroke-width="3" stroke-linecap="round"/>
+  <line x1="432" y1="90" x2="460" y2="90" stroke="#6B8F9E" stroke-width="1.5"/>
+  <line x1="432" y1="155" x2="460" y2="155" stroke="#6B8F9E" stroke-width="1.5"/>
+  <line x1="432" y1="220" x2="460" y2="220" stroke="#6B8F9E" stroke-width="1.5"/>
+  <line x1="432" y1="285" x2="460" y2="285" stroke="#6B8F9E" stroke-width="1.5"/>
+
+  <!-- Ground line -->
+  <line x1="280" y1="320" x2="506" y2="320" stroke="#3E2F2B" stroke-width="2"/>
+  <g stroke="#3E2F2B" stroke-width="0.8" opacity="0.35">
+    <line x1="285" y1="326" x2="298" y2="339"/>
+    <line x1="310" y1="326" x2="323" y2="339"/>
+    <line x1="335" y1="326" x2="348" y2="339"/>
+    <line x1="360" y1="326" x2="373" y2="339"/>
+    <line x1="385" y1="326" x2="398" y2="339"/>
+    <line x1="410" y1="326" x2="423" y2="339"/>
+    <line x1="435" y1="326" x2="448" y2="339"/>
+    <line x1="460" y1="326" x2="473" y2="339"/>
+    <line x1="485" y1="326" x2="498" y2="339"/>
+  </g>
+
+
+  <!-- ===== LEFT ANNOTATIONS ===== -->
+
+  <!-- Fair-Faced Concrete -->
+  <line class="lead" x1="310" y1="80" x2="140" y2="80"/>
+  <circle cx="310" cy="80" r="4" fill="#6B8F9E"/>
+  <text class="lbl" x="130" y="72" text-anchor="end">Fair-Faced</text>
+  <text class="lbl" x="130" y="106" text-anchor="end">Concrete</text>
+
+  <!-- Thermal Insulation -->
+  <line class="lead" x1="388" y1="195" x2="140" y2="195"/>
+  <circle cx="388" cy="195" r="4" fill="#6B8F9E"/>
+  <text class="lbl" x="130" y="187" text-anchor="end">Thermal</text>
+  <text class="lbl" x="130" y="221" text-anchor="end">Insulation</text>
+
+  <!-- Double-Skin Precast -->
+  <line class="lead" x1="335" y1="290" x2="140" y2="290"/>
+  <circle cx="335" cy="290" r="4" fill="#B8704A"/>
+  <text class="accent" x="130" y="282" text-anchor="end">Double-Skin</text>
+  <text class="accent" x="130" y="316" text-anchor="end">Precast</text>
+
+
+  <!-- ===== RIGHT ANNOTATIONS ===== -->
+
+  <!-- Steel Reinforcement -->
+  <line class="lead" x1="476" y1="110" x2="580" y2="110"/>
+  <circle cx="476" cy="110" r="4" fill="#6B8F9E"/>
+  <text class="lbl" x="592" y="102">Steel</text>
+  <text class="lbl" x="592" y="136">Reinforcement</text>
+
+  <!-- Structural Core -->
+  <line class="lead" x1="476" y1="240" x2="580" y2="240"/>
+  <circle cx="476" cy="240" r="4" fill="#6B8F9E"/>
+  <text class="lbl" x="592" y="232">Structural</text>
+  <text class="lbl" x="592" y="266">Core</text>
+
+
+  <!-- ===== DIMENSION ===== -->
+  <line class="lead-d" x1="310" y1="348" x2="310" y2="362"/>
+  <line class="lead-d" x1="476" y1="348" x2="476" y2="362"/>
+  <line x1="310" y1="358" x2="476" y2="358" stroke="#3E2F2B" stroke-width="1"/>
+  <polygon points="310,358 320,354 320,362" fill="#3E2F2B"/>
+  <polygon points="476,358 466,354 466,362" fill="#3E2F2B"/>
+  <text class="dim" x="393" y="385" text-anchor="middle">≈ 250 mm total</text>
+
+</svg>
