@@ -1,0 +1,44 @@
+# robots.txt for myvilla.la
+# My Villa — Italian-Designed Luxury Villas in Los Angeles
+
+# Allow all search engine crawlers
+User-agent: *
+Allow: /
+Disallow: /old/
+
+# Explicitly allow AI crawlers for AI search visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Sitemap location
+Sitemap: https://myvilla.la/sitemap.xml
