@@ -222,6 +222,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-video {
   position: absolute; inset: 0;
   object-fit: cover; width: 100%; height: 100%;
+  transform: scale(1.08);
 }
 .hero-fallback {
   position: absolute; inset: 0;
@@ -402,9 +403,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 100%; width: auto; max-width: 100%;
   object-fit: contain; filter: brightness(0) invert(0.88);
 }
-.team-card:nth-child(3) .team-logo img,
-.team-card:nth-child(4) .team-logo img {
-  filter: none;
+.team-card:nth-child(3) .team-logo img {
+  filter: none; /* Buro Milan keeps its green color */
 }
 .team-role {
   font-size: 10px; font-weight: 500;
@@ -486,15 +486,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .forces {
   background: var(--cream);
   padding: var(--section-pad) var(--side-pad);
-  overflow: hidden;
 }
 .forces-inner { max-width: 1200px; margin: 0 auto; }
 .forces-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 48px; margin-top: 48px;
-}
-.force-item {
-  overflow: hidden;
 }
 .force-dot {
   display: none;
@@ -524,44 +520,173 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ══════════════════════════════════════════
-   7. MATERIAL / CONCRETE
+   7. MATERIAL / CONCRETE — unified section
    ══════════════════════════════════════════ */
 .material {
-  display: grid; grid-template-columns: 1fr 1fr;
-  min-height: 80vh;
-}
-.material-text {
-  padding: var(--section-pad) var(--side-pad);
-  display: flex; flex-direction: column; justify-content: center;
   background: var(--espresso);
+  padding: clamp(40px, 5vw, 72px) var(--side-pad);
 }
-.material-text .section-title { margin-bottom: 8px; }
-.material-works { margin-top: 32px; }
-.material-work {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(196,162,101,0.1);
-}
-.material-work:last-child { border-bottom: none; }
-.material-work-name {
-  font-family: var(--serif);
-  font-size: clamp(16px, 1.8vw, 20px);
-  font-style: italic; color: var(--warm-sand);
-}
-.material-work-arch {
-  font-size: 12px; color: var(--stone-grey); opacity: 0.5;
-  margin-top: 2px;
-}
-.material-media {
-  position: relative; overflow: hidden;
-}
-.material-media video, .material-media img {
-  width: 100%; height: 100%; object-fit: cover;
+.material-inner {
+  max-width: 1200px; margin: 0 auto;
 }
 
-@media (max-width: 800px) {
-  .material { grid-template-columns: 1fr; }
-  .material-media { min-height: 50vh; }
+/* — Header: title + intro — */
+.material-header {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(24px, 3vw, 48px);
+  align-items: end;
+  margin-bottom: clamp(28px, 3vw, 40px);
+}
+.material-header .section-title { margin-bottom: 0; }
+.material-intro {
+  font-size: clamp(14px, 1.1vw, 15px);
+  line-height: 1.75; color: var(--cream); opacity: 0.65;
+}
+
+/* — Past works: 3 cards in a row — */
+.material-legacy-label {
+  font-family: var(--sans);
+  font-size: 10px; letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--warm-sand); opacity: 0.45;
+  margin-bottom: 14px;
+}
+.material-works-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: clamp(28px, 3vw, 40px);
+}
+.material-work {
+  position: relative;
+}
+.material-work-thumb {
+  width: 100%; aspect-ratio: 3 / 2;
+  border-radius: 2px; overflow: hidden;
+  background: rgba(255,255,255,0.05);
+  margin-bottom: 8px;
+}
+.material-work-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+  filter: saturate(0.65);
+  transition: filter 0.4s;
+}
+.material-work:hover .material-work-thumb img { filter: saturate(1); }
+.material-work-name {
+  font-family: var(--serif);
+  font-size: clamp(13px, 1.2vw, 15px);
+  font-style: italic; color: var(--cream); opacity: 0.55;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.material-work-arch {
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.6vw, 20px);
+  color: var(--warm-sand);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* — Amanvari: current project — */
+.material-current-label {
+  font-family: var(--sans);
+  font-size: 10px; letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--pacific-blue);
+  margin-bottom: 14px;
+}
+.material-current-top {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(24px, 3vw, 40px);
+  align-items: start;
+}
+.material-current-title {
+  font-family: var(--serif);
+  font-size: clamp(26px, 2.8vw, 38px);
+  font-weight: 300; color: var(--white);
+  line-height: 1.15; margin-bottom: 12px;
+}
+.material-current-desc {
+  font-size: clamp(13px, 1.05vw, 14px);
+  line-height: 1.75; color: var(--cream); opacity: 0.6;
+}
+.amv-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 16px;
+  font-family: var(--sans);
+  font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--pacific-blue);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.amv-link:hover { opacity: 0.7; }
+.amv-link svg { width: 14px; height: 14px; }
+
+/* Amanvari media: video left, 2 images stacked right */
+.amv-mosaic {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+}
+.amv-cell {
+  position: relative; overflow: hidden;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.04);
+}
+.amv-cell img, .amv-cell video {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+  transform: scale(1.08);
+}
+.amv-cell:hover img, .amv-cell:hover video { transform: scale(1.11); }
+.amv-cell--video {
+  grid-row: 1 / 3;
+}
+
+/* — Material responsive — */
+@media (max-width: 900px) {
+  .material-header {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .material-works-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .material-current-top {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .amv-mosaic {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  .amv-cell--video {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+@media (max-width: 550px) {
+  .material-works-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .material-work-thumb { aspect-ratio: 16 / 9; }
+  .amv-mosaic {
+    grid-template-columns: 1fr;
+  }
+  .amv-cell--wide { aspect-ratio: 16 / 9; }
+  .amv-cell--sq { aspect-ratio: 16 / 10; }
+  .amv-details {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* ══════════════════════════════════════════
@@ -576,6 +701,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .biophilic video, .biophilic img {
   position: absolute; inset: 0;
   width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.08);
 }
 .biophilic-overlay {
   position: absolute; inset: 0;
@@ -675,6 +801,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .gallery-section video, .gallery-section > img {
   position: absolute; inset: 0;
   width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.08);
 }
 .gallery-overlay-left {
   position: absolute; inset: 0;
@@ -813,13 +940,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   object-fit: cover; width: 100%; height: 100%;
 }
 .cta-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(107,143,158,0.12) 0%, rgba(62,47,43,0.7) 40%);
+  display: none;
 }
 .cta-content {
   position: relative; z-index: 2;
   text-align: center; padding: 60px var(--side-pad);
   max-width: 700px;
+  background: rgba(62,47,43,0.72);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-radius: 6px;
 }
 .cta-title {
   font-family: var(--serif);
@@ -958,7 +1087,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   .biophilic-overlay {
     background: linear-gradient(0deg, rgba(62,47,43,0.4) 0%, rgba(62,47,43,0.08) 35%, transparent 50%);
   }
-  .cta-overlay {
+  .cta-overlay-disabled {
     background: linear-gradient(180deg, rgba(62,47,43,0.08) 0%, rgba(62,47,43,0.45) 50%);
   }
 
@@ -1263,7 +1392,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="team-highlight">Award: Young Talent of Italian Architecture. FOROF art center for Giovanna Caruso Fendi. Recognized by French Ministry of Culture.</div>
       </div>
       <div class="team-card reveal reveal-delay-1">
-        <div class="team-logo"><img src="img/logos/transsolar.svg" alt="Transsolar"></div>
+        <div class="team-logo"><img src="img/logos/transsolar.svg" alt="Transsolar KlimaEngineering"></div>
         <div class="team-role">Climate<br>Engineering</div>
         <div class="team-firm">Transsolar</div>
         <div class="team-loc">Stuttgart · New York</div>
@@ -1271,7 +1400,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="team-highlight">Founder teaches at Harvard. Partnered with Renzo Piano, SANAA, Foster + Partners. Manitoba Hydro Place: most efficient tower in North America.</div>
       </div>
       <div class="team-card reveal reveal-delay-2">
-        <div class="team-logo"><img src="img/logos/buromilan.svg" alt="Buro Milan"></div>
+        <div class="team-logo"><img src="img/logos/buromilan.svg" alt="BURO MILAN"></div>
         <div class="team-role">Structural<br>Engineering</div>
         <div class="team-firm">BUROMILAN</div>
         <div class="team-loc">Milan · Venice</div>
@@ -1279,7 +1408,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="team-highlight">40+ years. Structures for Renzo Piano (Politecnico Milano) and Mario Cucinella. 40+ concrete projects. BIM-certified.</div>
       </div>
       <div class="team-card reveal reveal-delay-3">
-        <div class="team-logo"><img src="img/logos/DGU.svg" alt="DGU"></div>
+        <div class="team-logo"><img src="img/logos/dgu.svg" alt="DGU"></div>
         <div class="team-role">Architectural<br>Concrete</div>
         <div class="team-firm">DGU</div>
         <div class="team-loc">Treviso · L.A.</div>
@@ -1296,6 +1425,77 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
       </div>
     </div>
   </div>
+</section>
+
+<!-- ══════════════ 7. MATERIAL / CONCRETE ══════════════ -->
+<section class="material" id="material">
+  <div class="material-inner">
+
+    <!-- Header -->
+    <div class="material-header">
+      <div class="section-label reveal">The Material</div>
+      <div class="section-title reveal">Museum-Grade Concrete</div>
+      <div class="divider reveal reveal-delay-1"></div>
+      <div class="material-intro reveal reveal-delay-1">
+        Every My Villa home is crafted in architectural concrete by <strong style="color:var(--warm-sand)">DGU</strong> — a world-class construction firm whose portfolio spans some of the most celebrated cultural buildings of our time, and is now shaping one of the most anticipated luxury resorts in the world.
+      </div>
+    </div>
+
+    <!-- Past works: 3 cards in a horizontal row -->
+    <div class="material-legacy-label reveal">Completed Works</div>
+    <div class="material-works-row">
+      <div class="material-work reveal">
+        <div class="material-work-thumb">
+          <img src="img/punta-dogana.jpg" alt="Punta della Dogana" loading="lazy">
+        </div>
+        <div class="material-work-name">Punta della Dogana, Venice</div>
+        <div class="material-work-arch">for Tadao Ando</div>
+      </div>
+      <div class="material-work reveal reveal-delay-1">
+        <div class="material-work-thumb">
+          <img src="img/kimbell.jpg" alt="Kimbell Art Museum" loading="lazy">
+        </div>
+        <div class="material-work-name">Kimbell Art Museum, Fort Worth</div>
+        <div class="material-work-arch">for Renzo Piano</div>
+      </div>
+      <div class="material-work reveal reveal-delay-2">
+        <div class="material-work-thumb">
+          <img src="img/palazzo-grassi.jpg" alt="Palazzo Grassi" loading="lazy">
+        </div>
+        <div class="material-work-name">Palazzo Grassi, Venice</div>
+        <div class="material-work-arch">for Tadao Ando / François Pinault</div>
+      </div>
+    </div>
+
+    <!-- Amanvari: current project -->
+    <div class="material-current-label reveal">Currently Under Construction</div>
+    <div class="material-current-top">
+      <div class="reveal">
+        <div class="material-current-title">Amanvari</div>
+        <div class="material-current-desc">
+          DGU is now bringing its concrete mastery to <strong style="color:var(--white)">Aman's</strong> newest landmark — a luxury resort and private residences on Baja California's East Cape. White concrete, natural stone, and tropical hardwoods rise as elevated pavilions at the meeting point of desert, estuary, and the Sea of Cortez.
+        </div>
+        <a href="https://www.aman.com/resorts/amanvari" target="_blank" rel="noopener" class="amv-link">
+          Discover Amanvari
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+      <!-- Media mosaic: video left tall, 2 images stacked right -->
+      <div class="amv-mosaic reveal reveal-delay-1">
+        <div class="amv-cell amv-cell--video">
+          <video autoplay muted loop playsinline>
+            <source src="vid/amanvari.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="amv-cell">
+          <img src="img/amanvari-01.jpg" alt="Amanvari — elevated pavilion" loading="lazy">
+        </div>
+        <div class="amv-cell">
+          <img src="img/amanvari-02.jpg" alt="Amanvari — resort at dusk" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div><!-- /material-inner -->
 </section>
 
 <!-- ══════════════ 5. VISION — full bleed ══════════════ -->
@@ -1343,39 +1543,10 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </div>
 </section>
 
-<!-- ══════════════ 7. MATERIAL / CONCRETE ══════════════ -->
-<section class="material">
-  <div class="material-text">
-    <div class="section-label reveal">The Material</div>
-    <div class="section-title reveal">Museum-Grade<br>Concrete</div>
-    <div class="divider reveal reveal-delay-1"></div>
-    <div class="body-text reveal reveal-delay-1">Every My Villa home is crafted in architectural concrete by DGU — the same team that executed:</div>
-    <div class="material-works reveal reveal-delay-2">
-      <div class="material-work">
-        <div class="material-work-name">Punta della Dogana, Venice</div>
-        <div class="material-work-arch">for Tadao Ando</div>
-      </div>
-      <div class="material-work">
-        <div class="material-work-name">Kimbell Art Museum, Fort Worth</div>
-        <div class="material-work-arch">for Renzo Piano</div>
-      </div>
-      <div class="material-work">
-        <div class="material-work-name">Palazzo Grassi, Venice</div>
-        <div class="material-work-arch">for Tadao Ando / François Pinault</div>
-      </div>
-    </div>
-  </div>
-  <div class="material-media">
-    <video autoplay muted loop playsinline poster="img/kitchen.png">
-      <source src="vid/construction.mp4" type="video/mp4">
-    </video>
-  </div>
-</section>
-
 <!-- ══════════════ 8. BIOPHILIC ══════════════ -->
 <section class="biophilic">
-  <video autoplay muted loop playsinline poster="img/pool.png">
-    <source src="vid/backyard.mp4" type="video/mp4">
+  <video autoplay muted loop playsinline poster="img/biophilic.png">
+    <source src="vid/biophilic.mp4" type="video/mp4">
   </video>
   <div class="biophilic-overlay"></div>
   <div class="biophilic-content">
@@ -1507,13 +1678,26 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </div>
 </section>
 
+<!-- ══════════════ 16. CLOSING IMAGE ══════════════ -->
+<section class="gallery-section" style="min-height:60vh;">
+  <video autoplay muted loop playsinline poster="img/external.png">
+    <source src="vid/external.mp4" type="video/mp4">
+  </video>
+  <div class="gallery-overlay-bottom"></div>
+  <div class="gallery-text bottom">
+    <div class="section-title reveal" style="font-size:clamp(24px,3.5vw,36px);">
+      Designed to belong.<br>Built to remain.
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════ 15. PROCESS ══════════════ -->
 <section class="process" id="process">
   <div class="process-inner">
     <div class="section-label reveal">The Process</div>
-    <div class="section-title reveal">Bespoke Without Chaos</div>
+    <div class="section-title reveal">Designed for You, Engineered to Deliver</div>
     <div class="process-desc reveal reveal-delay-1">
-      Curated personalization within a proven framework. Not "custom from scratch" — a system that eliminates delays, cost overruns, and compromised design.
+      A refined journey from first conversation to move-in day. Every villa is personal, yet built on a proven system — no delays, no cost surprises, no compromise on design.
     </div>
     <div class="process-steps">
       <div class="step reveal">
@@ -1551,19 +1735,6 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
           <div class="step-desc">Permitted, budgeted, built by The Cooperative in L.A.</div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 16. CLOSING IMAGE ══════════════ -->
-<section class="gallery-section" style="min-height:60vh;">
-  <video autoplay muted loop playsinline poster="img/external.png">
-    <source src="vid/external.mp4" type="video/mp4">
-  </video>
-  <div class="gallery-overlay-bottom"></div>
-  <div class="gallery-text bottom">
-    <div class="section-title reveal" style="font-size:clamp(24px,3.5vw,36px);">
-      Designed to belong.<br>Built to remain.
     </div>
   </div>
 </section>
