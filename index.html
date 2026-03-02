@@ -342,7 +342,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ══════════════════════════════════════════ */
 .section-label {
   font-family: var(--sans);
-  font-size: 10px; font-weight: 600;
+  font-size: 12px; font-weight: 600;
   letter-spacing: 0.28em; text-transform: uppercase;
   color: var(--terracotta);
   margin-bottom: 16px;
@@ -368,7 +368,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin: 24px 0;
 }
 .body-text {
-  font-size: clamp(14px, 1.5vw, 16px);
+  font-size: clamp(15px, 1.5vw, 17px);
   line-height: 1.8;
   color: var(--warm-sand);
   max-width: 680px;
@@ -540,7 +540,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 12px; line-height: 1.3;
 }
 .pillar-desc {
-  font-size: 13px; line-height: 1.75;
+  font-size: 15px; line-height: 1.75;
   color: var(--espresso);
   opacity: 0.65;
 }
@@ -590,7 +590,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   filter: none;
 }
 .team-role {
-  font-size: 10px; font-weight: 500;
+  font-size: 13px; font-weight: 500;
   letter-spacing: 0.06em;
   color: var(--stone-grey); text-transform: uppercase;
   margin-bottom: 10px; line-height: 1.5;
@@ -602,12 +602,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 4px;
 }
 .team-loc {
-  font-size: 11px; font-style: italic;
+  font-size: 14px; font-style: italic;
   color: var(--stone-grey); margin-bottom: 16px; opacity: 0.6;
 }
 .team-divider { width: 100%; height: 1px; background: rgba(196,162,101,0.12); margin-bottom: 16px; }
 .team-highlight {
-  font-size: 12px; line-height: 1.7;
+  font-size: 15px; line-height: 1.7;
   color: var(--warm-sand); opacity: 0.5;
 }
 
@@ -685,7 +685,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   line-height: 1.25; margin-bottom: 16px;
 }
 .force-desc {
-  font-size: 14px; line-height: 1.75;
+  font-size: 15px; line-height: 1.75;
   color: var(--espresso);
   opacity: 0.65;
 }
@@ -932,7 +932,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .type-card:nth-child(2) .type-line { background: var(--pacific-blue); }
 .type-card:nth-child(3) .type-line { background: var(--coastal-sage); }
 .type-card:nth-child(4) .type-line { background: var(--pacific-blue); }
-.type-desc { font-size: 13px; line-height: 1.7; color: var(--stone-grey); }
+.type-desc { font-size: 15px; line-height: 1.7; color: var(--stone-grey); }
 
 @media (max-width: 900px) {
   .collection-grid { grid-template-columns: 1fr; }
@@ -1042,11 +1042,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .resilience-item { margin-bottom: 28px; }
 .resilience-item-title {
   font-family: var(--sans);
-  font-size: 13px; font-weight: 600;
+  font-size: 15px; font-weight: 600;
   color: var(--espresso); margin-bottom: 6px;
 }
 .resilience-item-desc {
-  font-size: 13px; line-height: 1.7;
+  font-size: 15px; line-height: 1.7;
   color: var(--stone-grey);
 }
 
@@ -1094,7 +1094,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 500; color: #FFFFFF;
   margin-bottom: 8px;
 }
-.step-desc { font-size: 13px; line-height: 1.6; color: #FFFFFF; opacity: 0.85; }
+.step-desc { font-size: 15px; line-height: 1.6; color: #FFFFFF; opacity: 0.85; }
 
 @media (max-width: 700px) {
   .process-steps {
@@ -1433,8 +1433,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   .cta-title { letter-spacing: 0.12em; }
   .cta-content { padding: 30px 16px 30px; }
 
-  /* Pillars, forces — more compact */
-  .pillar-desc, .force-desc { font-size: 13px; }
+  /* Pillars, forces — readable on mobile */
+  .pillar-desc, .force-desc { font-size: 15px; }
   .resilience-text { padding: 32px 20px; }
   .resilience-diagram { padding: 24px 16px; }
 }
