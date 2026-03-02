@@ -1166,14 +1166,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .cta-form .full { grid-column: 1 / -1; }
 .cta-input {
   width: 100%; padding: 14px 16px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(138,155,158,0.3);
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
   color: var(--white);
   font-family: var(--sans); font-size: 15px;
   transition: border-color 0.3s;
   outline: none;
 }
-.cta-input::placeholder { color: #FFFFFF; opacity: 0.7; }
+.cta-input::placeholder { color: #FFFFFF; opacity: 0.9; }
 .cta-input:focus { border-color: var(--pacific-blue); }
 textarea.cta-input { min-height: 100px; resize: vertical; }
 .cta-submit {
@@ -1198,12 +1198,12 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
    ══════════════════════════════════════════ */
 .footer {
   background: var(--offblack);
-  padding: 40px var(--side-pad);
-  padding-bottom: max(40px, env(safe-area-inset-bottom));
+  padding: 30px var(--side-pad);
+  padding-bottom: max(30px, env(safe-area-inset-bottom));
   display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 16px;
+  gap: 24px;
 }
-.footer-brand-wrap { display: flex; flex-direction: column; }
+.footer-brand-wrap { display: flex; align-items: baseline; gap: 12px; flex-shrink: 0; }
 .footer-brand {
   font-family: var(--serif);
   font-size: 16px; font-weight: 400;
@@ -1211,19 +1211,18 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 }
 .footer-brand-payoff {
   font-family: var(--sans);
-  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(255,255,255,0.6); margin-top: 2px;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
 }
-.footer-links { display: flex; gap: 24px; }
+.footer-copy {
+  font-size: 12px; color: rgba(255,255,255,0.5);
+}
+.footer-links { display: flex; gap: 24px; flex-shrink: 0; }
 .footer-links a {
   font-size: 13px; color: #FFFFFF; opacity: 0.8;
   letter-spacing: 0.05em; transition: color 0.3s, opacity 0.3s;
 }
 .footer-links a:hover { color: var(--pacific-blue); opacity: 1; }
-.footer-copy {
-  font-size: 12px; color: rgba(255,255,255,0.5);
-  width: 100%; text-align: center; margin-top: 16px;
-}
 
 /* ══════════════════════════════════════════
    TEXT BACKDROP — tight behind text blocks
@@ -1958,12 +1957,12 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <div class="footer-brand">MY VILLA</div>
     <div class="footer-brand-payoff">Italian Soul &middot; Californian Body</div>
   </div>
+  <div class="footer-copy">© 2026 My Villa</div>
   <div class="footer-links">
     <a href="mailto:info@myvilla.la">info@myvilla.la</a>
     <a href="#hero">myvilla.la</a>
     <a href="privacy.html">Privacy Policy</a>
   </div>
-  <div class="footer-copy">© 2026 My Villa</div>
 </footer>
 
 <!-- ══════════════ JAVASCRIPT ══════════════ -->
