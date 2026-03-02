@@ -1935,12 +1935,14 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <div class="cta-sub reveal reveal-delay-2">
       We'd love to show you the system. A tailored conversation about your site, your vision, your My Villa.
     </div>
-    <form class="cta-form reveal reveal-delay-3" onsubmit="handleSubmit(event)" aria-label="Request a private briefing">
+    <form class="cta-form reveal reveal-delay-3" id="contactForm" onsubmit="handleSubmit(event)" aria-label="Request a private briefing">
       <input type="text" class="cta-input" placeholder="First Name" required aria-label="First Name" name="first_name" autocomplete="given-name">
       <input type="text" class="cta-input" placeholder="Last Name" required aria-label="Last Name" name="last_name" autocomplete="family-name">
       <input type="email" class="cta-input" placeholder="Email" required aria-label="Email address" name="email" autocomplete="email">
       <input type="tel" class="cta-input" placeholder="Phone (optional)" aria-label="Phone number" name="phone" autocomplete="tel">
       <textarea class="cta-input full" placeholder="Tell us about your project, your site, or what drew you to My Villa..." aria-label="Project description" name="message"></textarea>
+      <!-- Honeypot anti-spam (hidden from humans) -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
       <button type="submit" class="cta-submit">Request Private Briefing</button>
     </form>
   </div>
@@ -2008,13 +2010,45 @@ document.querySelectorAll('video').forEach(v => {
   videoObserver.observe(v);
 });
 
-// Form
-function handleSubmit(e) {
+// Form — sends data via Formspree
+const FORMSPREE_ID = 'mgoljyjl';
+
+async function handleSubmit(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.cta-submit');
-  btn.textContent = 'Grazie. We\'ll be in touch.';
-  btn.style.background = '#5C6B4F';
+  const form = e.target;
+  const btn = form.querySelector('.cta-submit');
+  const originalText = btn.textContent;
+
+  // Show loading state
+  btn.textContent = 'Sending...';
   btn.disabled = true;
+  btn.style.opacity = '0.7';
+
+  try {
+    const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      btn.textContent = 'Grazie. We\'ll be in touch.';
+      btn.style.background = '#5C6B4F';
+      btn.style.opacity = '1';
+      form.reset();
+    } else {
+      throw new Error('Form submission failed');
+    }
+  } catch (error) {
+    btn.textContent = 'Something went wrong. Try again.';
+    btn.style.background = '#C2714F';
+    btn.style.opacity = '1';
+    btn.disabled = false;
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.background = '';
+    }, 3000);
+  }
 }
 
 // Smooth anchor scrolling
