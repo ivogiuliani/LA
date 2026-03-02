@@ -1077,16 +1077,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .resilience-diagram {
   padding: 24px 40px;
   display: block;
-  overflow: visible;
+  overflow: hidden;
+  text-align: center;
 }
 .resilience-diagram img {
-  width: 100%;
-  max-width: 900px;
+  max-width: 100%;
   height: auto;
-  margin: 0 auto;
   filter: invert(1) brightness(0.85);
   object-fit: contain;
-  display: block;
+  display: inline-block;
 }
 .resilience-text {
   padding: var(--section-pad) var(--side-pad);
@@ -1106,8 +1105,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 @media (max-width: 800px) {
-  .resilience-diagram { padding: 16px 8px; }
-  .resilience-diagram img { max-width: 100%; }
+  .resilience-diagram { padding: 12px 4px; }
+  .resilience-diagram img { max-width: 100%; max-height: 45vw; width: auto; }
   .resilience-text { padding: 24px 20px; }
 }
 
@@ -1502,7 +1501,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   /* Pillars, forces — readable on mobile */
   .pillar-desc, .force-desc { font-size: 15px; }
   .resilience-text { padding: 32px 20px; }
-  .resilience-diagram { padding: 12px 0; }
+  .resilience-diagram { padding: 12px 4px; }
 }
 
 /* ══════════════════════════════════════════
