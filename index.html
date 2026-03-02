@@ -1959,6 +1959,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="footer-links">
     <a href="mailto:info@myvilla.la">info@myvilla.la</a>
     <a href="#hero">myvilla.la</a>
+    <a href="privacy.html">Privacy Policy</a>
   </div>
   <div class="footer-copy">Private & Confidential · © 2026 My Villa</div>
 </footer>
@@ -2060,6 +2061,87 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+
+// ══════════════ GDPR COOKIE BANNER ══════════════
+(function() {
+  if (localStorage.getItem('myvilla_cookie_consent')) return;
+
+  const banner = document.createElement('div');
+  banner.id = 'cookieBanner';
+  banner.innerHTML = `
+    <div class="cookie-text">
+      We use cookies to improve your experience on our site. By continuing to browse, you accept our use of cookies in accordance with our
+      <a href="privacy.html">Privacy Policy</a>.
+    </div>
+    <div class="cookie-buttons">
+      <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
+      <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+    </div>
+  `;
+  document.body.appendChild(banner);
+
+  // Animate in after a short delay
+  setTimeout(() => { banner.classList.add('visible'); }, 800);
+})();
+
+function acceptCookies() {
+  localStorage.setItem('myvilla_cookie_consent', 'accepted');
+  closeCookieBanner();
+}
+function declineCookies() {
+  localStorage.setItem('myvilla_cookie_consent', 'declined');
+  closeCookieBanner();
+}
+function closeCookieBanner() {
+  const b = document.getElementById('cookieBanner');
+  if (b) { b.classList.remove('visible'); setTimeout(() => b.remove(), 400); }
+}
 </script>
+
+<!-- GDPR Banner Styles -->
+<style>
+#cookieBanner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 10000;
+  background: var(--offblack, #1a1816);
+  border-top: 1px solid rgba(196,162,101,0.2);
+  padding: 20px var(--side-pad, 24px);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+#cookieBanner.visible { transform: translateY(0); }
+.cookie-text {
+  font-family: var(--sans, 'Montserrat', sans-serif);
+  font-size: 14px; line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+  flex: 1; min-width: 260px;
+}
+.cookie-text a {
+  color: var(--terracotta, #C2714F);
+  text-decoration: underline;
+}
+.cookie-buttons { display: flex; gap: 12px; flex-shrink: 0; }
+.cookie-btn {
+  font-family: var(--sans, 'Montserrat', sans-serif);
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 10px 24px; border: none; border-radius: 2px;
+  cursor: pointer; transition: background 0.3s, color 0.3s;
+}
+.cookie-accept {
+  background: var(--terracotta, #C2714F); color: #fff;
+}
+.cookie-accept:hover { background: #a8593e; }
+.cookie-decline {
+  background: transparent; color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.cookie-decline:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+@media (max-width: 600px) {
+  #cookieBanner { flex-direction: column; text-align: center; padding: 20px 16px; }
+  .cookie-buttons { width: 100%; justify-content: center; }
+}
+</style>
 </body>
 </html>
