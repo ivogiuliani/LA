@@ -16,7 +16,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://myvilla.la/">
 <meta property="og:title" content="MY VILLA — Italian-Designed Luxury Villas in Los Angeles">
-<meta property="og:description" content="Fire-resilient reinforced concrete villas with Italian soul and Californian spirit. Museum-grade finishes, biophilic design, delivered in 14 months.">
+<meta property="og:description" content="Fire-resilient reinforced concrete villas with Italian soul and Californian spirit. Museum-grade finishes, biophilic design, delivered in 18 months.">
 <meta property="og:image" content="https://myvilla.la/img/hero.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -27,7 +27,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MY VILLA — Italian-Designed Luxury Villas in Los Angeles">
-<meta name="twitter:description" content="Fire-resilient reinforced concrete villas with Italian soul and Californian spirit. Museum-grade finishes, biophilic design, delivered in 14 months.">
+<meta name="twitter:description" content="Fire-resilient reinforced concrete villas with Italian soul and Californian spirit. Museum-grade finishes, biophilic design, delivered in 18 months.">
 <meta name="twitter:image" content="https://myvilla.la/img/hero.png">
 
 <!-- Geo & Language -->
@@ -138,7 +138,7 @@
           "name": "How long does it take to build a My Villa home?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The complete process from initial briefing to move-in takes approximately 14 months. This includes design, permitting, off-site prefabrication, and on-site assembly with a fixed-price guarantee."
+            "text": "The complete process from initial briefing to move-in takes approximately 18 months. This includes design, permitting, off-site prefabrication, and on-site assembly with a fixed-price guarantee."
           }
         },
         {
@@ -513,6 +513,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .thesis-value strong {
   font-weight: 500;
   color: var(--white);
+}
+.scarcity-line {
+  margin-top: 32px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--tuscan-gold);
+  opacity: 0.7;
 }
 
 /* ══════════════════════════════════════════
@@ -1164,6 +1174,57 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 8px;
 }
 .step-desc { font-size: 15px; line-height: 1.6; color: #FFFFFF; opacity: 0.85; }
+.step-duration {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--tuscan-gold);
+  opacity: 0.6;
+  margin-left: 8px;
+}
+.process-timeline-bar {
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+.timeline-track {
+  height: 3px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.timeline-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--terracotta), var(--pacific-blue), var(--coastal-sage));
+  border-radius: 2px;
+}
+.timeline-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--stone-grey);
+  opacity: 0.4;
+}
+.process-guarantee {
+  margin-top: 48px;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--tuscan-gold);
+  opacity: 0.6;
+}
+.guarantee-icon {
+  margin-right: 8px;
+  font-size: 10px;
+}
 
 @media (max-width: 700px) {
   .process-steps {
@@ -1253,11 +1314,32 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   cursor: pointer; border: none;
 }
 .cta-submit:hover { background: var(--pacific-blue); color: var(--white); transform: translateY(-1px); }
+.cta-micro {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--cream);
+  opacity: 0.5;
+  margin-top: 4px;
+}
+.cta-scarcity {
+  margin-top: 36px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--tuscan-gold);
+  opacity: 0.6;
+}
 
 @media (max-width: 550px) {
   .cta-form { grid-template-columns: 1fr; }
   .cta-form .full { grid-column: auto; }
 }
+
 
 /* ══════════════════════════════════════════
    FOOTER
@@ -1697,15 +1779,16 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <main>
 <!-- ══════════════ 1. HERO ══════════════ -->
 <section class="hero" id="hero" aria-label="Hero">
-  <video class="hero-video" autoplay muted loop playsinline poster="img/hero.png">
+  <video class="hero-video" autoplay muted loop playsinline poster="img/hero.webp">
     <source src="vid/backyard.mp4" type="video/mp4">
   </video>
-  <img class="hero-fallback" src="img/hero.png" alt="My Villa Garden" style="display:none;">
+  <img class="hero-fallback" src="img/hero.webp" alt="My Villa Garden" style="display:none;">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1 class="hero-title reveal">MY VILLA</h1>
     <div class="hero-payoff reveal reveal-delay-1">Italian Soul &middot; <span style="color:var(--sky-mist)">Californian Body</span></div>
     <div class="hero-line reveal reveal-delay-2"></div>
+    <div class="hero-sub reveal reveal-delay-3">Luxury villas built to last centuries, not decades.</div>
   </div>
   <div class="hero-scroll">
     <span>Discover</span>
@@ -1724,6 +1807,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="thesis-value reveal reveal-delay-3">
     Architecture that is <strong>not an expense that depreciates, but an asset that appreciates with time</strong>.
   </div>
+  <div class="scarcity-line reveal reveal-delay-4">Currently accepting four commissions for 2026–2027.</div>
 </section>
 
 <!-- ══════════════ 3. ETHICAL LUXURY ══════════════ -->
@@ -1824,21 +1908,21 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <div class="material-works-row">
       <div class="material-work reveal">
         <div class="material-work-thumb">
-          <img src="img/punta-dogana.jpg" alt="Punta della Dogana" loading="lazy" width="600" height="400">
+          <img src="img/punta-dogana.webp" alt="Punta della Dogana" loading="lazy" width="600" height="400">
         </div>
         <div class="material-work-name">Punta della Dogana, Venice</div>
         <div class="material-work-arch">for Tadao Ando</div>
       </div>
       <div class="material-work reveal reveal-delay-1">
         <div class="material-work-thumb">
-          <img src="img/kimbell.jpg" alt="Kimbell Art Museum" loading="lazy" width="600" height="400">
+          <img src="img/kimbell.webp" alt="Kimbell Art Museum" loading="lazy" width="600" height="400">
         </div>
         <div class="material-work-name">Kimbell Art Museum, Fort Worth</div>
         <div class="material-work-arch">for Renzo Piano</div>
       </div>
       <div class="material-work reveal reveal-delay-2">
         <div class="material-work-thumb">
-          <img src="img/palazzo-grassi.jpg" alt="Palazzo Grassi" loading="lazy" width="600" height="400">
+          <img src="img/palazzo-grassi.webp" alt="Palazzo Grassi" loading="lazy" width="600" height="400">
         </div>
         <div class="material-work-name">Palazzo Grassi, Venice</div>
         <div class="material-work-arch">for Tadao Ando / François Pinault</div>
@@ -1857,15 +1941,15 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
       <!-- Media mosaic: video left tall, 2 images stacked right -->
       <div class="amv-mosaic reveal reveal-delay-1">
         <div class="amv-cell amv-cell--video">
-          <video muted loop playsinline poster="img/amanvari-01.jpg" preload="none">
+          <video muted loop playsinline poster="img/amanvari-01.webp" preload="none">
             <source src="vid/amanvari.mp4" type="video/mp4">
           </video>
         </div>
         <div class="amv-cell">
-          <img src="img/amanvari-01.jpg" alt="Amanvari — elevated pavilion" loading="lazy" width="600" height="400">
+          <img src="img/amanvari-01.webp" alt="Amanvari — elevated pavilion" loading="lazy" width="600" height="400">
         </div>
         <div class="amv-cell">
-          <img src="img/amanvari-02.jpg" alt="Amanvari — resort at dusk" loading="lazy" width="600" height="400">
+          <img src="img/amanvari-02.webp" alt="Amanvari — resort at dusk" loading="lazy" width="600" height="400">
         </div>
       </div>
     </div>
@@ -1884,7 +1968,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 5. VISION — full bleed ══════════════ -->
 <section class="vision">
-  <video class="vision-bg" muted loop playsinline poster="img/living-room.png" preload="none">
+  <video class="vision-bg" muted loop playsinline poster="img/living-room.webp" preload="none">
     <source src="vid/living-room.mp4" type="video/mp4">
   </video>
   <div class="vision-overlay"></div>
@@ -1909,7 +1993,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="force-dot" style="background:var(--terracotta)"></div>
         <div class="force-title">Architectural<br>Intelligence</div>
         <div class="force-desc">2,000 years of Mediterranean spatial knowledge reinterpreted for Southern California. The courtyard, the portico, the pergola — accumulated wisdom, not nostalgia.</div>
-        <img class="force-img" src="img/courtyard.png" alt="Courtyard" loading="lazy">
+        <img class="force-img" src="img/courtyard.webp" alt="Courtyard" loading="lazy">
       </div>
       <div class="force-item reveal reveal-delay-1">
         <div class="force-dot" style="background:var(--pacific-blue)"></div>
@@ -1921,7 +2005,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="force-dot" style="background:var(--coastal-sage)"></div>
         <div class="force-title">Biophilic<br>Design</div>
         <div class="force-desc">Architecture that breathes. Natural light, cross-ventilation, living walls, interior courtyards. Nature is not outside the window — it is woven into the architecture.</div>
-        <img class="force-img force-img--wide" src="img/biophilic.png" alt="Biophilic" loading="lazy">
+        <img class="force-img force-img--wide" src="img/biophilic.webp" alt="Biophilic" loading="lazy">
       </div>
     </div>
   </div>
@@ -1929,7 +2013,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 8. BIOPHILIC ══════════════ -->
 <section class="biophilic">
-  <video muted loop playsinline poster="img/biophilic.png" preload="none">
+  <video muted loop playsinline poster="img/biophilic.webp" preload="none">
     <source src="vid/biophilic.mp4" type="video/mp4">
   </video>
   <div class="biophilic-overlay"></div>
@@ -1950,7 +2034,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <div class="collection-desc reveal reveal-delay-1">Four foundational typologies designed as inspiration — each one a proven starting point that can be fully customized to match your vision, your site, and the way you live. From layout to materials, every element adapts to become uniquely yours.</div>
     <div class="collection-grid">
       <div class="type-card reveal">
-        <img class="type-img" src="img/courtyard.png" alt="Courtyard House" loading="lazy">
+        <img class="type-img" src="img/courtyard.webp" alt="Courtyard House" loading="lazy">
         <div class="type-text">
           <div class="type-name">Courtyard House</div>
           <div class="type-line"></div>
@@ -1958,7 +2042,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         </div>
       </div>
       <div class="type-card reveal reveal-delay-1">
-        <img class="type-img" src="img/external.png" alt="L House" loading="lazy">
+        <img class="type-img" src="img/external.webp" alt="L House" loading="lazy">
         <div class="type-text">
           <div class="type-name">L House</div>
           <div class="type-line"></div>
@@ -1966,7 +2050,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         </div>
       </div>
       <div class="type-card reveal">
-        <img class="type-img" src="img/dining.png" alt="Deconstructed House" loading="lazy">
+        <img class="type-img" src="img/dining.webp" alt="Deconstructed House" loading="lazy">
         <div class="type-text">
           <div class="type-name">Deconstructed House</div>
           <div class="type-line"></div>
@@ -1974,7 +2058,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         </div>
       </div>
       <div class="type-card reveal reveal-delay-1">
-        <img class="type-img" src="img/hero.png" alt="Hill House" loading="lazy">
+        <img class="type-img" src="img/hero.webp" alt="Hill House" loading="lazy">
         <div class="type-text">
           <div class="type-name">Hill House</div>
           <div class="type-line"></div>
@@ -2006,13 +2090,13 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     </div>
   </div>
   <div class="resilience-diagram">
-    <img src="img/resilient.png" alt="Resilience Diagram — bioclimatic orientation and cross-ventilation" loading="lazy" class="reveal">
+    <img src="img/resilient.webp" alt="Resilience Diagram — bioclimatic orientation and cross-ventilation" loading="lazy" class="reveal">
   </div>
 </section>
 
 <!-- ══════════════ 10. COURTYARD — cinematic ══════════════ -->
 <section class="gallery-section">
-  <video muted loop playsinline poster="img/courtyard.png" preload="none">
+  <video muted loop playsinline poster="img/courtyard.webp" preload="none">
     <source src="vid/courtyard.mp4" type="video/mp4">
   </video>
   <div class="gallery-overlay-left"></div>
@@ -2028,8 +2112,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <!-- ══════════════ 11. INTERIORS ══════════════ -->
 <section class="interiors">
   <div class="interiors-images">
-    <img src="img/bedroom.png" alt="Bedroom" loading="lazy" width="800" height="500">
-    <img src="img/library.png" alt="Library" loading="lazy" width="800" height="500">
+    <img src="img/bedroom.webp" alt="Bedroom" loading="lazy" width="800" height="500">
+    <img src="img/library.webp" alt="Library" loading="lazy" width="800" height="500">
   </div>
   <div class="interiors-text">
     <div class="section-label reveal" style="color:var(--terracotta)">Interiors</div>
@@ -2039,7 +2123,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 12. DINING — cinematic ══════════════ -->
 <section class="gallery-section">
-  <video muted loop playsinline poster="img/dining.png" preload="none">
+  <video muted loop playsinline poster="img/dining.webp" preload="none">
     <source src="vid/dining-room.mp4" type="video/mp4">
   </video>
   <div class="gallery-overlay-right"></div>
@@ -2052,7 +2136,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 13. WELLNESS ══════════════ -->
 <section class="gallery-section" style="min-height:70vh;">
-  <video muted loop playsinline poster="img/bathtub.png" preload="none">
+  <video muted loop playsinline poster="img/bathtub.webp" preload="none">
     <source src="vid/bathroom.mp4" type="video/mp4">
   </video>
   <div class="gallery-overlay-left"></div>
@@ -2065,7 +2149,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 16. CLOSING IMAGE ══════════════ -->
 <section class="gallery-section" style="min-height:60vh;">
-  <video muted loop playsinline poster="img/external.png" preload="none">
+  <video muted loop playsinline poster="img/external.webp" preload="none">
     <source src="vid/external.mp4" type="video/mp4">
   </video>
   <div class="gallery-overlay-bottom"></div>
@@ -2080,53 +2164,65 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <section class="process" id="process">
   <div class="process-inner">
     <div class="section-label reveal">The Process</div>
-    <h2 class="section-title reveal">Designed for You, Engineered to Deliver</h2>
+    <h2 class="section-title reveal">From Conversation to Keys in 18 Months</h2>
     <div class="process-desc reveal reveal-delay-1">
-      A refined journey from first conversation to move-in day. Every villa is personal, yet built on a proven system — no delays, no cost surprises, no compromise on design.
+      Every My Villa follows a proven path — a system refined over decades of Italian construction practice, adapted for California. Fixed timelines, transparent budgets, zero compromise on design.
+    </div>
+    <div class="process-timeline-bar reveal reveal-delay-2">
+      <div class="timeline-track">
+        <div class="timeline-fill"></div>
+      </div>
+      <div class="timeline-labels">
+        <span>Month 0</span>
+        <span>Month 18</span>
+      </div>
     </div>
     <div class="process-steps">
       <div class="step reveal">
         <div class="step-num">01</div>
         <div>
-          <div class="step-title">Discovery</div>
-          <div class="step-desc">Site analysis, client vision, climate and orientation study</div>
+          <div class="step-title">Discovery <span class="step-duration">Month 1</span></div>
+          <div class="step-desc">A private conversation about your vision, your site, and how you live. Our team visits the land, studies orientation, sunlight, prevailing winds, and neighborhood context.</div>
         </div>
       </div>
       <div class="step reveal reveal-delay-1">
         <div class="step-num">02</div>
         <div>
-          <div class="step-title">Typology Selection</div>
-          <div class="step-desc">Choose from four archetypes, calibrated to your site</div>
+          <div class="step-title">Typology Selection <span class="step-duration">Month 2</span></div>
+          <div class="step-desc">Choose from four foundational archetypes — Courtyard, Deconstructed, Hill, or Linear — each calibrated for your site's specific geometry and your lifestyle.</div>
         </div>
       </div>
       <div class="step reveal reveal-delay-2">
         <div class="step-num">03</div>
         <div>
-          <div class="step-title">Personalization</div>
-          <div class="step-desc">Materials, finishes, spatial adjustments within the system</div>
+          <div class="step-title">Personalization <span class="step-duration">Months 2–4</span></div>
+          <div class="step-desc">Materials, finishes, spatial adjustments. You shape every detail within a system engineered for beauty and buildability. Fair-faced concrete, Venetian plaster, Italian ceramics — your palette.</div>
         </div>
       </div>
       <div class="step reveal reveal-delay-3">
         <div class="step-num">04</div>
         <div>
-          <div class="step-title">Engineering</div>
-          <div class="step-desc">Structural, climate, and concrete detailing</div>
+          <div class="step-title">Engineering &amp; Permits <span class="step-duration">Months 4–6</span></div>
+          <div class="step-desc">Structural engineering by our Italian team in collaboration with L.A. specialists. Transsolar models the climate performance. Permits filed with a pre-validated system that accelerates approval.</div>
         </div>
       </div>
       <div class="step reveal reveal-delay-4">
         <div class="step-num">05</div>
         <div>
-          <div class="step-title">Delivery</div>
-          <div class="step-desc">Permitted, budgeted, built by The Cooperative in L.A.</div>
+          <div class="step-title">Construction &amp; Delivery <span class="step-duration">Months 6–18</span></div>
+          <div class="step-desc">Built by The Cooperative — L.A.'s finest concrete specialists. Weekly progress updates, fixed budget, and a dedicated project manager. You receive your keys to a home built for generations.</div>
         </div>
       </div>
+    </div>
+    <div class="process-guarantee reveal">
+      <span class="guarantee-icon">◆</span> Fixed price. Fixed timeline. No surprises.
     </div>
   </div>
 </section>
 
 <!-- ══════════════ 17. CTA / CONTACT ══════════════ -->
 <section class="cta" id="contact">
-  <img class="cta-bg" src="img/pool.png" alt="" loading="lazy" width="1600" height="900">
+  <img class="cta-bg" src="img/pool.webp" alt="" loading="lazy" width="1600" height="900">
   <div class="cta-overlay"></div>
   <div class="cta-content">
     <div class="cta-title reveal">MY VILLA</div>
@@ -2145,7 +2241,9 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
       <!-- Honeypot anti-spam (hidden from humans) -->
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
       <button type="submit" class="cta-submit">Request Private Briefing</button>
+      <div class="cta-micro"><strong>Our founding partner will personally respond within 48 hours.</strong></div>
     </form>
+    <div class="cta-scarcity"><strong>Limited commissions per year — two remaining for 2026.</strong></div>
   </div>
 </section>
 
