@@ -471,7 +471,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
 }
 .hero-scroll span {
-  font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
   color: rgba(212,184,150,0.35); font-family: var(--sans);
 }
 .hero-scroll-line {
@@ -1193,6 +1193,221 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .moodboard-panel { display: none; }
 .moodboard-panel.active { display: grid; }
 
+/* — Investment Case — */
+.invest {
+  background: var(--offblack); padding: clamp(60px,8vw,120px) var(--side-pad);
+}
+.invest-inner { max-width: 1100px; margin: 0 auto; }
+.invest-intro {
+  font-size: 16px; line-height: 1.8; color: var(--white); opacity: 0.7;
+  max-width: 680px; margin-bottom: 56px;
+}
+
+/* 3 stat cards */
+.invest-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-bottom: 64px;
+}
+.invest-stat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px; padding: 32px 28px;
+}
+.invest-stat-label {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px;
+}
+.invest-stat-num {
+  font-family: var(--serif); font-size: clamp(32px,4vw,48px);
+  font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 8px;
+}
+.invest-stat-sub {
+  font-size: 14px; color: var(--white); opacity: 0.6; line-height: 1.5;
+}
+.invest-stat-detail {
+  font-size: 13px; color: var(--white); opacity: 0.45; line-height: 1.6;
+  margin-top: 12px; padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.invest-stat-source {
+  font-size: 11px; color: var(--white); opacity: 0.3;
+  margin-top: 8px; font-style: italic;
+}
+
+/* Simulator */
+.invest-sim {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px; padding: clamp(32px,4vw,48px);
+}
+.invest-sim-title {
+  font-family: var(--serif); font-size: clamp(18px,2.2vw,24px);
+  font-weight: 400; color: var(--cream); margin-bottom: 8px;
+}
+.invest-sim-sub {
+  font-size: 14px; color: var(--white); opacity: 0.5; margin-bottom: 32px;
+}
+
+/* Property value selector */
+.invest-selector {
+  display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap;
+}
+.invest-btn {
+  font-family: var(--sans); font-size: 14px; font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 12px 28px; border-radius: 4px; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent; color: var(--white); opacity: 0.6;
+  transition: all 0.3s ease;
+}
+.invest-btn:hover { opacity: 1; border-color: rgba(255,255,255,0.3); }
+.invest-btn.active {
+  background: var(--terracotta); border-color: var(--terracotta);
+  color: #fff; opacity: 1;
+}
+
+/* Results grid */
+.invest-results {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  margin-bottom: 40px;
+}
+.invest-col-title {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.invest-col-title.wood { color: var(--stone-grey); }
+.invest-col-title.concrete { color: var(--terracotta); }
+
+.invest-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.invest-row-label {
+  font-size: 13px; color: var(--white); opacity: 0.5;
+}
+.invest-row-val {
+  font-family: var(--serif); font-size: 18px; font-weight: 400;
+  color: var(--cream);
+}
+.invest-row-val.accent { color: var(--terracotta); }
+.invest-row-val small {
+  font-size: 12px; opacity: 0.5; font-family: var(--sans); font-weight: 400;
+}
+
+/* Equity bars */
+.invest-bars { margin-top: 40px; }
+.invest-bars-title {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--cream); opacity: 0.5;
+  margin-bottom: 24px;
+}
+.invest-bar-row {
+  display: grid; grid-template-columns: 80px 1fr; gap: 16px;
+  align-items: center; margin-bottom: 16px;
+}
+.invest-bar-year {
+  font-family: var(--serif); font-size: 16px; color: var(--cream);
+  text-align: right;
+}
+.invest-bar-track {
+  position: relative; height: 36px; border-radius: 4px;
+  background: rgba(255,255,255,0.03);
+  overflow: visible;
+}
+.invest-bar-fill {
+  position: absolute; top: 0; left: 0; height: 100%;
+  border-radius: 4px; transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+  display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 12px; min-width: 60px;
+}
+.invest-bar-fill.wood {
+  background: var(--stone-grey); opacity: 0.4; top: 0; height: 16px;
+  border-radius: 3px;
+}
+.invest-bar-fill.concrete {
+  background: var(--terracotta); top: 20px; height: 16px;
+  border-radius: 3px;
+}
+.invest-bar-val {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  color: #fff; white-space: nowrap;
+  position: absolute; right: -8px; transform: translateX(100%);
+}
+.invest-bar-fill.wood .invest-bar-val { color: var(--stone-grey); }
+.invest-bar-fill.concrete .invest-bar-val { color: var(--terracotta); }
+
+/* Gap callout */
+.invest-gap {
+  display: flex; align-items: center; gap: 16px;
+  margin-top: 32px; padding: 20px 24px;
+  background: rgba(194,113,79,0.08);
+  border: 1px solid rgba(194,113,79,0.2);
+  border-radius: 6px;
+}
+.invest-gap-num {
+  font-family: var(--serif); font-size: clamp(28px,3.5vw,40px);
+  font-weight: 300; color: var(--terracotta); white-space: nowrap;
+}
+.invest-gap-text {
+  font-size: 14px; color: var(--white); opacity: 0.7; line-height: 1.5;
+}
+
+/* Legend */
+.invest-legend {
+  display: flex; gap: 24px; margin-top: 24px;
+}
+.invest-legend-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--white); opacity: 0.5;
+}
+.invest-legend-dot {
+  width: 12px; height: 12px; border-radius: 2px;
+}
+.invest-legend-dot.wood { background: var(--stone-grey); opacity: 0.4; }
+.invest-legend-dot.concrete { background: var(--terracotta); }
+
+/* Assumptions */
+.invest-assumptions {
+  font-size: 11px; color: var(--white); opacity: 0.25;
+  margin-top: 32px; line-height: 1.6; font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .invest-stats { grid-template-columns: 1fr; gap: 16px; }
+  .invest-results { grid-template-columns: 1fr; gap: 24px; }
+  .invest-bar-row { grid-template-columns: 60px 1fr; }
+  .invest-gap { flex-direction: column; text-align: center; }
+}
+@media (max-width: 550px) {
+  .invest-selector { gap: 8px; }
+  .invest-btn { padding: 12px 0; font-size: 13px; flex: 1; min-width: 70px; text-align: center; }
+  .invest-stat { padding: 24px 20px; }
+  .invest-stat-num { font-size: clamp(28px, 8vw, 40px); }
+  .invest-sim { padding: 24px 16px; }
+  .invest-bar-row { grid-template-columns: 50px 1fr; gap: 10px; }
+  .invest-bar-year { font-size: 13px; }
+  .invest-bar-track { overflow: hidden; }
+  .invest-bar-val {
+    font-size: 10px;
+    position: static; transform: none;
+    margin-left: auto; padding-right: 4px;
+  }
+  .invest-bar-fill { min-width: 50px; justify-content: flex-end; padding-right: 0; }
+  .invest-gap-num { font-size: clamp(24px, 7vw, 36px); }
+  .invest-row-val { font-size: 15px; }
+  .invest-row-label { font-size: 12px; }
+  .invest-legend { gap: 16px; flex-wrap: wrap; }
+  .invest-assumptions { font-size: 10px; }
+}
+@media (max-width: 375px) {
+  .invest-btn { padding: 10px 0; font-size: 12px; }
+  .invest-bar-row { grid-template-columns: 44px 1fr; gap: 8px; }
+  .invest-bar-year { font-size: 12px; }
+  .invest-bar-val { font-size: 10px; }
+}
+
 /* — Bespoke details — */
 .bespoke-strip {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -1223,7 +1438,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .color-swatch { width: 40px; height: 40px; }
   .mood-viewer { max-width: 100%; }
   .moodboard-grid { grid-template-columns: repeat(2, 1fr); }
-  .moodboard-tabs { gap: 16px; overflow-x: auto; }
+  .moodboard-tabs { gap: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .moodboard-tab { min-height: 44px; display: flex; align-items: center; padding: 8px 4px 12px; }
+  .color-swatch { margin-bottom: 22px; } /* Space for swatch labels when wrapped */
   .bespoke-strip { grid-template-columns: 1fr; gap: 0; }
   .bespoke-item { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 }
@@ -1366,7 +1583,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .step-desc { font-size: 15px; line-height: 1.6; color: #FFFFFF; opacity: 0.85; }
 .step-duration {
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1413,7 +1630,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .guarantee-icon {
   margin-right: 8px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 @media (max-width: 700px) {
@@ -1460,7 +1677,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .cta-tagline {
   font-family: var(--sans);
-  font-size: clamp(9px, 1.2vw, 12px);
+  font-size: clamp(11px, 1.2vw, 12px);
   font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase;
   color: rgba(255,255,255,0.4);
   margin-top: 10px; margin-bottom: 24px;
@@ -1549,7 +1766,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 }
 .footer-brand-payoff {
   font-family: var(--sans);
-  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
   color: rgba(255,255,255,0.5);
 }
 .footer-copy {
@@ -1787,6 +2004,22 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   .pillar-desc, .force-desc { font-size: 15px; }
   .resilience-text { padding: 32px 20px; }
   .resilience-diagram { padding: 12px 4px; }
+
+  /* Labels & meta text — bump 11px to 12px for readability */
+  .section-label { font-size: 12px; letter-spacing: 2.5px; }
+  .pillar-num { font-size: 12px; }
+  .material-legacy-label,
+  .material-current-label,
+  .amv-link { font-size: 12px; }
+  .invest-stat-label,
+  .invest-col-title,
+  .invest-bars-title { font-size: 12px; }
+  .moodboard-tab { font-size: 12px; }
+  .timeline-labels { font-size: 12px; }
+  .bespoke-label { font-size: 12px; }
+  .cta-scarcity { font-size: 12px; }
+  .hero-payoff { font-size: 13px; }
+  .scarcity-line { font-size: 13px; }
 }
 
 /* ══════════════════════════════════════════
@@ -1947,8 +2180,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </a>
   <div class="nav-links">
     <a href="#thesis">Vision</a>
-    <a href="#team">Team</a>
     <a href="#collection">Collection</a>
+    <a href="#team">Team</a>
     <a href="#process">Process</a>
     <a href="#contact" class="nav-cta">Request Briefing</a>
   </div>
@@ -1960,8 +2193,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#thesis" onclick="closeMobile()">Vision</a>
-  <a href="#team" onclick="closeMobile()">Team</a>
   <a href="#collection" onclick="closeMobile()">Collection</a>
+  <a href="#team" onclick="closeMobile()">Team</a>
   <a href="#process" onclick="closeMobile()">Process</a>
   <a href="#contact" onclick="closeMobile()">Request Briefing</a>
 </div>
@@ -2000,219 +2233,56 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="scarcity-line reveal reveal-delay-4">Currently accepting four commissions for 2026–2027.</div>
 </section>
 
-<!-- ══════════════ 3. ETHICAL LUXURY ══════════════ -->
-<section class="ethical" id="ethical">
-  <div class="ethical-inner">
-    <div class="section-label reveal">The Approach</div>
-    <h2 class="section-title dark reveal">A New Standard for Los Angeles</h2>
-    <div class="divider reveal reveal-delay-1" style="background:var(--terracotta)"></div>
-    <div class="ethical-body reveal reveal-delay-2">
-      My Villa brings together an international collaboration of specialized partners — each a leader in their discipline — united with local experts who bring deep knowledge of California's construction landscape. European design intelligence meets L.A.'s most experienced builders. The result is a home that feels both timeless and entirely yours.
-    </div>
-    <div class="pillars">
-      <div class="pillar reveal">
-        <div class="pillar-num" style="background:var(--terracotta)">01</div>
-        <div class="pillar-title">Enduring Value</div>
-        <div class="pillar-desc">Architecture built to last centuries, not decades. A home that does not depreciate — it matures, like the finest buildings in history.</div>
-      </div>
-      <div class="pillar reveal reveal-delay-1">
-        <div class="pillar-num" style="background:var(--pacific-blue)">02</div>
-        <div class="pillar-title">Global Excellence,<br>Local Expertise</div>
-        <div class="pillar-desc">European design intelligence and climate engineering paired with L.A.'s most experienced builders. The best of both worlds, on your site.</div>
-      </div>
-      <div class="pillar reveal reveal-delay-2">
-        <div class="pillar-num" style="background:var(--olive)">03</div>
-        <div class="pillar-title">Responsible<br>Craftsmanship</div>
-        <div class="pillar-desc">Museum-grade concrete. Bioclimatic design. Structures that resist fire, seismic forces, and the passage of time — without excess.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 4. THE TEAM ══════════════ -->
-<section class="team" id="team">
-  <div class="team-inner">
-    <div class="section-label reveal">The Team</div>
-    <h2 class="section-title reveal">Five Partners. Three Continents. One System.</h2>
-    <div class="team-grid">
-      <div class="team-card reveal">
-        <div class="team-logo"><img src="img/logos/its-architecture.png" alt="IT'S Architecture"></div>
-        <div class="team-role">Architecture<br>& Design</div>
-        <div class="team-firm">IT'S Architecture</div>
-        <div class="team-loc">Rome · Paris</div>
-        <div class="team-divider"></div>
-        <div class="team-highlight">IT'S is a research and innovation-oriented architecture firm founded in 2016 by Alessandro Cambi, Francesco Marinelli and Paolo Mezzalama with offices in Rome and Paris.</div>
-      </div>
-      <div class="team-card reveal reveal-delay-1">
-        <div class="team-logo"><img src="img/logos/dgu.png" alt="DGU — DottorGroup"></div>
-        <div class="team-role">Architectural<br>Concrete</div>
-        <div class="team-firm">DGU</div>
-        <div class="team-loc">Treviso · L.A.</div>
-        <div class="team-divider"></div>
-        <div class="team-highlight">DottorGroup SpA is an Italian construction company renowned for its excellence in restoration, redevelopment, and the creation of complex and prestigious architectural works.</div>
-      </div>
-      <div class="team-card reveal reveal-delay-2">
-        <div class="team-logo"><img src="img/logos/transsolar.png" alt="Transsolar KlimaEngineering"></div>
-        <div class="team-role">Climate<br>Engineering</div>
-        <div class="team-firm">Transsolar</div>
-        <div class="team-loc">Stuttgart · New York</div>
-        <div class="team-divider"></div>
-        <div class="team-highlight">Transsolar is a diverse team of engineers and architects focused on creating climate-responsive built environments, enhancing the human experience while minimizing resource use: High Comfort, Low Impact.</div>
-      </div>
-      <div class="team-card reveal reveal-delay-3">
-        <div class="team-logo"><img src="img/logos/buromilan.svg" alt="BURO MILAN"></div>
-        <div class="team-role">Structural<br>Engineering</div>
-        <div class="team-firm">BUROMILAN</div>
-        <div class="team-loc">Milan · Venice</div>
-        <div class="team-divider"></div>
-        <div class="team-highlight">BUROMILAN is an engineering company with over 40 years of experience in the design of civil, commercial, industrial and infrastructural works, public and private.</div>
-      </div>
-      <div class="team-card reveal reveal-delay-4">
-        <div class="team-logo"><img src="img/logos/cooperative-la.png" alt="Cooperative LA"></div>
-        <div class="team-role">Construction<br>& Delivery</div>
-        <div class="team-firm">Cooperative LA</div>
-        <div class="team-loc">Los Angeles</div>
-        <div class="team-divider"></div>
-        <div class="team-highlight">Cooperative LA is a new kind of owner's representation and construction management company. Led by former general contractors, architects, and developers, we bring strategic precision and practical insight to every project.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 7. MATERIAL / CONCRETE ══════════════ -->
-<section class="material" id="material">
-  <div class="material-inner">
-
-    <!-- Header -->
-    <div class="material-header">
-      <div class="section-label reveal">The Material</div>
-      <h2 class="section-title reveal">Museum-Grade Concrete</h2>
-      <div class="divider reveal reveal-delay-1"></div>
-      <div class="material-intro reveal reveal-delay-1">
-        Every My Villa home is crafted in architectural concrete by <strong style="color:var(--warm-sand)">DGU</strong> — a world-class construction firm whose portfolio spans some of the most celebrated cultural buildings of our time, and is now shaping one of the most anticipated luxury resorts in the world.
-      </div>
-    </div>
-
-    <!-- Past works: 3 cards in a horizontal row -->
-    <div class="material-legacy-label reveal">Completed Works</div>
-    <div class="material-works-row">
-      <div class="material-work reveal">
-        <div class="material-work-thumb">
-          <img src="img/punta-dogana.webp" alt="Punta della Dogana" loading="lazy" width="600" height="400">
-        </div>
-        <div class="material-work-name">Punta della Dogana, Venice</div>
-        <div class="material-work-arch">for Tadao Ando</div>
-      </div>
-      <div class="material-work reveal reveal-delay-1">
-        <div class="material-work-thumb">
-          <img src="img/kimbell.webp" alt="Kimbell Art Museum" loading="lazy" width="600" height="400">
-        </div>
-        <div class="material-work-name">Kimbell Art Museum, Fort Worth</div>
-        <div class="material-work-arch">for Renzo Piano</div>
-      </div>
-      <div class="material-work reveal reveal-delay-2">
-        <div class="material-work-thumb">
-          <img src="img/palazzo-grassi.webp" alt="Palazzo Grassi" loading="lazy" width="600" height="400">
-        </div>
-        <div class="material-work-name">Palazzo Grassi, Venice</div>
-        <div class="material-work-arch">for Tadao Ando / François Pinault</div>
-      </div>
-    </div>
-
-    <!-- Amanvari: current project -->
-    <div class="material-current-label reveal">Currently Under Construction</div>
-    <div class="material-current-top">
-      <div class="reveal">
-        <div class="material-current-title">Amanvari</div>
-        <div class="material-current-desc">
-          DGU is now bringing its concrete mastery to <strong style="color:var(--white)">Aman's</strong> newest landmark — a luxury resort and private residences on Baja California's East Cape. White concrete, natural stone, and tropical hardwoods rise as elevated pavilions at the meeting point of desert, estuary, and the Sea of Cortez.
-        </div>
-      </div>
-      <!-- Media mosaic: video left tall, 2 images stacked right -->
-      <div class="amv-mosaic reveal reveal-delay-1">
-        <div class="amv-cell amv-cell--video">
-          <video muted loop playsinline poster="img/amanvari-01.webp" preload="none">
-            <source src="vid/amanvari.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="amv-cell">
-          <img src="img/amanvari-01.webp" alt="Amanvari — elevated pavilion" loading="lazy" width="600" height="400">
-        </div>
-        <div class="amv-cell">
-          <img src="img/amanvari-02.webp" alt="Amanvari — resort at dusk" loading="lazy" width="600" height="400">
-        </div>
-      </div>
-    </div>
-  </div><!-- /material-inner -->
-</section>
-
-<!-- ══════════════ TRANSITION: DGU → MY VILLA ══════════════ -->
-<section class="dgu-to-myvilla">
-  <div class="dgu-to-myvilla-inner reveal">
-    <div class="dgu-to-myvilla-line"></div>
-    <div class="dgu-to-myvilla-brand">MY VILLA</div>
-    <div class="dgu-to-myvilla-sub">The Design Collection</div>
-    <div class="dgu-to-myvilla-line"></div>
-  </div>
-</section>
-
-<!-- ══════════════ 5. VISION — full bleed ══════════════ -->
-<section class="vision">
-  <img class="vision-bg" src="img/pool.webp" alt="Pool terrace with fireplace and colonnade" loading="lazy">
-  <div class="vision-overlay"></div>
-  <div class="vision-content">
-    <div class="vision-headline reveal">A home<br>that endures.</div>
-    <div class="vision-body reveal reveal-delay-1">
-      Reinforced concrete structures engineered for centuries, not decades. Designed for the California climate.
-    </div>
-    <div class="divider reveal reveal-delay-2"></div>
-    <div class="vision-statement reveal reveal-delay-2">
-      Crafted with<br>museum-grade precision.
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 6. THREE FORCES ══════════════ -->
-<section class="forces">
-  <div class="forces-inner">
-    <h2 class="section-title dark reveal">Three Forces, One System</h2>
-    <div class="forces-grid">
-      <div class="force-item reveal">
-        <div class="force-dot" style="background:var(--terracotta)"></div>
-        <div class="force-title">Architectural<br>Intelligence</div>
-        <div class="force-desc">2,000 years of Mediterranean spatial knowledge reinterpreted for Southern California. The courtyard, the portico, the pergola — accumulated wisdom, not nostalgia.</div>
-        <img class="force-img" src="img/courtyard.webp" alt="Courtyard" loading="lazy">
-      </div>
-      <div class="force-item reveal reveal-delay-1">
-        <div class="force-dot" style="background:var(--pacific-blue)"></div>
-        <div class="force-title">Material<br>Permanence</div>
-        <div class="force-desc">Reinforced concrete: the same material used in the world's most enduring cultural buildings. Structures that do not burn, do not rot, do not depreciate.</div>
-        <img class="force-img force-img--tall" src="img/structural-diagram.svg" alt="Structural diagram — double-skin precast wall" loading="lazy">
-      </div>
-      <div class="force-item reveal reveal-delay-2">
-        <div class="force-dot" style="background:var(--coastal-sage)"></div>
-        <div class="force-title">Biophilic<br>Design</div>
-        <div class="force-desc">Architecture that breathes. Natural light, cross-ventilation, living walls, interior courtyards. Nature is not outside the window — it is woven into the architecture.</div>
-        <img class="force-img force-img--wide" src="img/biophilic.webp" alt="Biophilic" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 8. BIOPHILIC ══════════════ -->
-<section class="biophilic">
-  <video muted loop playsinline poster="img/biophilic.webp" preload="none">
-    <source src="vid/biophilic.mp4" type="video/mp4">
+<!-- ══════════════ 10. COURTYARD — cinematic ══════════════ -->
+<section class="gallery-section">
+  <video muted loop playsinline poster="img/courtyard.webp" preload="none">
+    <source src="vid/courtyard.mp4" type="video/mp4">
   </video>
-  <div class="biophilic-overlay"></div>
-  <div class="biophilic-content">
-    <div class="section-label reveal" style="color:var(--terracotta)">Biophilic By Design</div>
-    <h2 class="section-title reveal" style="font-size:clamp(24px,3.5vw,36px);">Architecture that doesn't fight its environment but amplifies it.</h2>
-    <div class="body-text reveal reveal-delay-1" style="margin-top:16px;">
-      More light, more air, more connection to the landscape of Southern California.
+  <div class="gallery-overlay-left"></div>
+  <div class="gallery-text">
+    <div class="section-label reveal" style="color:var(--terracotta)">Courtyard House</div>
+    <h2 class="section-title reveal" style="font-size:clamp(28px,4vw,44px);">Built around<br>a courtyard.</h2>
+    <div class="body-text reveal reveal-delay-1" style="margin-top:20px;">
+      Architecture organized around an interior void — an open sky framed by concrete walls. Cross-ventilation calibrated by Transsolar's climate engineers ensures comfort without mechanical cooling.
     </div>
   </div>
 </section>
+
+<!-- ══════════════ 11. INTERIORS ══════════════ -->
+<section class="interiors">
+  <div class="interiors-images">
+    <img src="img/bedroom.webp" alt="Bedroom" loading="lazy" width="800" height="500">
+    <img src="img/library.webp" alt="Library" loading="lazy" width="800" height="500">
+  </div>
+  <div class="interiors-text">
+    <div class="section-label reveal" style="color:var(--terracotta)">Interiors</div>
+    <div class="body-text reveal reveal-delay-1">Every room is a composition of light, proportion, and material. Concrete, wood, and glass in a dialogue that rewards attention.</div>
+  </div>
+</section>
+
+<!-- ══════════════ 12. DINING — cinematic ══════════════ -->
+<section class="gallery-section">
+  <img src="img/dining.webp" alt="Dining room with woven ceiling and pendant lights" loading="lazy">
+  <div class="gallery-overlay-right"></div>
+  <div class="gallery-text right">
+    <h2 class="section-title reveal" style="font-size:clamp(20px,2.5vw,28px); font-style:italic; font-weight:300;">
+      Spaces designed for living, not displaying. Where natural light traces time across concrete surfaces.
+    </h2>
+  </div>
+</section>
+
+<!-- ══════════════ 13. WELLNESS ══════════════ -->
+<section class="gallery-section" style="min-height:70vh;">
+  <video muted loop playsinline poster="img/bathtub.webp" preload="none" style="transform: scale(1.12);">
+    <source src="vid/bathroom.mp4" type="video/mp4">
+  </video>
+  <div class="gallery-overlay-left"></div>
+  <div class="gallery-text">
+    <div class="section-label reveal" style="color:var(--terracotta)">Wellness</div>
+    <h2 class="section-title reveal" style="font-size:clamp(24px,3.5vw,40px);">Where architecture<br>becomes sanctuary.</h2>
+  </div>
+</section>
+
 
 <!-- ══════════════ 9. COLLECTION ══════════════ -->
 <section class="collection" id="collection">
@@ -2449,7 +2519,40 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </div>
 </section>
 
-<!-- ══════════════ 14. RESILIENCE ══════════════ -->
+
+<!-- ══════════════ THE APPROACH (fused Ethical + Three Forces) ══════════════ -->
+<section class="ethical" id="ethical">
+  <div class="ethical-inner">
+    <div class="section-label reveal">The Approach</div>
+    <h2 class="section-title dark reveal">A New Standard for Los Angeles</h2>
+    <div class="divider reveal reveal-delay-1" style="background:var(--terracotta)"></div>
+    <div class="ethical-body reveal reveal-delay-2">
+      My Villa brings together an international collaboration of specialized partners — each a leader in their discipline — united with local experts who bring deep knowledge of California's construction landscape. European design intelligence meets L.A.'s most experienced builders.
+    </div>
+    <div class="forces-grid" style="margin-top:56px;">
+      <div class="force-item reveal">
+        <div class="force-dot" style="background:var(--terracotta)"></div>
+        <div class="force-title">Architectural<br>Intelligence</div>
+        <div class="force-desc">2,000 years of Mediterranean spatial knowledge reinterpreted for Southern California. The courtyard, the portico, the pergola — accumulated wisdom, not nostalgia.</div>
+        <img class="force-img" src="img/courtyard.webp" alt="Courtyard" loading="lazy">
+      </div>
+      <div class="force-item reveal reveal-delay-1">
+        <div class="force-dot" style="background:var(--pacific-blue)"></div>
+        <div class="force-title">Material<br>Permanence</div>
+        <div class="force-desc">Reinforced concrete: the same material used in the world's most enduring cultural buildings. Structures that do not burn, do not rot, do not depreciate.</div>
+        <img class="force-img force-img--tall" src="img/structural-diagram.svg" alt="Structural diagram — double-skin precast wall" loading="lazy">
+      </div>
+      <div class="force-item reveal reveal-delay-2">
+        <div class="force-dot" style="background:var(--coastal-sage)"></div>
+        <div class="force-title">Biophilic<br>Design</div>
+        <div class="force-desc">Architecture that breathes. Natural light, cross-ventilation, living walls, interior courtyards. Nature is not outside the window — it is woven into the architecture.</div>
+        <img class="force-img force-img--wide" src="img/biophilic.webp" alt="Biophilic" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ RESILIENCE ══════════════ -->
 <section class="resilience" style="background:var(--offblack);">
   <div class="resilience-text">
     <h2 class="section-title dark reveal" style="font-size:clamp(22px,3vw,32px); color:var(--cream); margin-bottom:24px;">
@@ -2474,56 +2577,272 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </div>
 </section>
 
-<!-- ══════════════ 10. COURTYARD — cinematic ══════════════ -->
-<section class="gallery-section">
-  <video muted loop playsinline poster="img/courtyard.webp" preload="none">
-    <source src="vid/courtyard.mp4" type="video/mp4">
-  </video>
-  <div class="gallery-overlay-left"></div>
-  <div class="gallery-text">
-    <div class="section-label reveal" style="color:var(--terracotta)">Courtyard House</div>
-    <h2 class="section-title reveal" style="font-size:clamp(28px,4vw,44px);">Built around<br>a courtyard.</h2>
-    <div class="body-text reveal reveal-delay-1" style="margin-top:20px;">
-      Architecture organized around an interior void — an open sky framed by concrete walls. Cross-ventilation calibrated by Transsolar's climate engineers ensures comfort without mechanical cooling.
+<!-- ══════════════ 4. THE TEAM ══════════════ -->
+<section class="team" id="team">
+  <div class="team-inner">
+    <div class="section-label reveal">The Team</div>
+    <h2 class="section-title reveal">Five Partners. Three Continents. One System.</h2>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-logo"><img src="img/logos/its-architecture.png" alt="IT'S Architecture"></div>
+        <div class="team-role">Architecture<br>& Design</div>
+        <div class="team-firm">IT'S Architecture</div>
+        <div class="team-loc">Rome · Paris</div>
+        <div class="team-divider"></div>
+        <div class="team-highlight">IT'S is a research and innovation-oriented architecture firm founded in 2016 by Alessandro Cambi, Francesco Marinelli and Paolo Mezzalama with offices in Rome and Paris.</div>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-logo"><img src="img/logos/dgu.png" alt="DGU — DottorGroup"></div>
+        <div class="team-role">Architectural<br>Concrete</div>
+        <div class="team-firm">DGU</div>
+        <div class="team-loc">Treviso · L.A.</div>
+        <div class="team-divider"></div>
+        <div class="team-highlight">DottorGroup SpA is an Italian construction company renowned for its excellence in restoration, redevelopment, and the creation of complex and prestigious architectural works.</div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-logo"><img src="img/logos/transsolar.png" alt="Transsolar KlimaEngineering"></div>
+        <div class="team-role">Climate<br>Engineering</div>
+        <div class="team-firm">Transsolar</div>
+        <div class="team-loc">Stuttgart · New York</div>
+        <div class="team-divider"></div>
+        <div class="team-highlight">Transsolar is a diverse team of engineers and architects focused on creating climate-responsive built environments, enhancing the human experience while minimizing resource use: High Comfort, Low Impact.</div>
+      </div>
+      <div class="team-card reveal reveal-delay-3">
+        <div class="team-logo"><img src="img/logos/buromilan.svg" alt="BURO MILAN"></div>
+        <div class="team-role">Structural<br>Engineering</div>
+        <div class="team-firm">BUROMILAN</div>
+        <div class="team-loc">Milan · Venice</div>
+        <div class="team-divider"></div>
+        <div class="team-highlight">BUROMILAN is an engineering company with over 40 years of experience in the design of civil, commercial, industrial and infrastructural works, public and private.</div>
+      </div>
+      <div class="team-card reveal reveal-delay-4">
+        <div class="team-logo"><img src="img/logos/cooperative-la.png" alt="Cooperative LA"></div>
+        <div class="team-role">Construction<br>& Delivery</div>
+        <div class="team-firm">Cooperative LA</div>
+        <div class="team-loc">Los Angeles</div>
+        <div class="team-divider"></div>
+        <div class="team-highlight">Cooperative LA is a new kind of owner's representation and construction management company. Led by former general contractors, architects, and developers, we bring strategic precision and practical insight to every project.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ 11. INTERIORS ══════════════ -->
-<section class="interiors">
-  <div class="interiors-images">
-    <img src="img/bedroom.webp" alt="Bedroom" loading="lazy" width="800" height="500">
-    <img src="img/library.webp" alt="Library" loading="lazy" width="800" height="500">
-  </div>
-  <div class="interiors-text">
-    <div class="section-label reveal" style="color:var(--terracotta)">Interiors</div>
-    <div class="body-text reveal reveal-delay-1">Every room is a composition of light, proportion, and material. Concrete, wood, and glass in a dialogue that rewards attention.</div>
-  </div>
+
+<!-- ══════════════ MATERIAL / CONCRETE + RESILIENCE ══════════════ -->
+<section class="material" id="material">
+  <div class="material-inner">
+
+    <!-- Header -->
+    <div class="material-header">
+      <div class="section-label reveal">The Material</div>
+      <h2 class="section-title reveal">Museum-Grade Concrete</h2>
+      <div class="divider reveal reveal-delay-1"></div>
+      <div class="material-intro reveal reveal-delay-1">
+        Every My Villa home is crafted in architectural concrete by <strong style="color:var(--warm-sand)">DGU</strong> — a world-class construction firm whose portfolio spans some of the most celebrated cultural buildings of our time, and is now shaping one of the most anticipated luxury resorts in the world.
+      </div>
+    </div>
+
+    <!-- Past works: 3 cards in a horizontal row -->
+    <div class="material-legacy-label reveal">Completed Works</div>
+    <div class="material-works-row">
+      <div class="material-work reveal">
+        <div class="material-work-thumb">
+          <img src="img/punta-dogana.webp" alt="Punta della Dogana" loading="lazy" width="600" height="400">
+        </div>
+        <div class="material-work-name">Punta della Dogana, Venice</div>
+        <div class="material-work-arch">for Tadao Ando</div>
+      </div>
+      <div class="material-work reveal reveal-delay-1">
+        <div class="material-work-thumb">
+          <img src="img/kimbell.webp" alt="Kimbell Art Museum" loading="lazy" width="600" height="400">
+        </div>
+        <div class="material-work-name">Kimbell Art Museum, Fort Worth</div>
+        <div class="material-work-arch">for Renzo Piano</div>
+      </div>
+      <div class="material-work reveal reveal-delay-2">
+        <div class="material-work-thumb">
+          <img src="img/palazzo-grassi.webp" alt="Palazzo Grassi" loading="lazy" width="600" height="400">
+        </div>
+        <div class="material-work-name">Palazzo Grassi, Venice</div>
+        <div class="material-work-arch">for Tadao Ando / François Pinault</div>
+      </div>
+    </div>
+
+    <!-- Amanvari: current project -->
+    <div class="material-current-label reveal">Currently Under Construction</div>
+    <div class="material-current-top">
+      <div class="reveal">
+        <div class="material-current-title">Amanvari</div>
+        <div class="material-current-desc">
+          DGU is now bringing its concrete mastery to <strong style="color:var(--white)">Aman's</strong> newest landmark — a luxury resort and private residences on Baja California's East Cape. White concrete, natural stone, and tropical hardwoods rise as elevated pavilions at the meeting point of desert, estuary, and the Sea of Cortez.
+        </div>
+      </div>
+      <!-- Media mosaic: video left tall, 2 images stacked right -->
+      <div class="amv-mosaic reveal reveal-delay-1">
+        <div class="amv-cell amv-cell--video">
+          <video muted loop playsinline poster="img/amanvari-01.webp" preload="none">
+            <source src="vid/amanvari.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="amv-cell">
+          <img src="img/amanvari-01.webp" alt="Amanvari — elevated pavilion" loading="lazy" width="600" height="400">
+        </div>
+        <div class="amv-cell">
+          <img src="img/amanvari-02.webp" alt="Amanvari — resort at dusk" loading="lazy" width="600" height="400">
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /material-inner -->
 </section>
 
-<!-- ══════════════ 12. DINING — cinematic ══════════════ -->
-<section class="gallery-section">
-  <img src="img/dining.webp" alt="Dining room with woven ceiling and pendant lights" loading="lazy">
-  <div class="gallery-overlay-right"></div>
-  <div class="gallery-text right">
-    <h2 class="section-title reveal" style="font-size:clamp(20px,2.5vw,28px); font-style:italic; font-weight:300;">
-      Spaces designed for living, not displaying. Where natural light traces time across concrete surfaces.
-    </h2>
+<!-- ══════════════ THE INVESTMENT CASE ══════════════ -->
+<section class="invest" id="investment">
+  <div class="invest-inner">
+    <div class="section-label reveal" style="color:var(--tuscan-gold)">The Investment</div>
+    <h2 class="section-title reveal" style="color:var(--cream);">Concrete vs. Wood:<br>Total Cost of Ownership</h2>
+    <div class="divider reveal reveal-delay-1" style="background:var(--tuscan-gold)"></div>
+    <div class="invest-intro reveal reveal-delay-2">
+      A concrete home costs more to build — but less to own. Lower insurance, near-zero maintenance, faster appreciation, and total fire resilience create a compounding financial advantage that widens every year.
+    </div>
+
+    <!-- 3 stat cards -->
+    <div class="invest-stats">
+      <div class="invest-stat reveal">
+        <div class="invest-stat-label">Day-1 Premium</div>
+        <div class="invest-stat-num">+6%</div>
+        <div class="invest-stat-sub">instant appraisal uplift</div>
+        <div class="invest-stat-detail">On day one, a concrete home appraises 6% higher than an identical wood-frame property. A static premium that exists in any market — not just fire zones.</div>
+        <div class="invest-stat-source">Source: NAR Cost vs Value Report</div>
+      </div>
+      <div class="invest-stat reveal reveal-delay-1">
+        <div class="invest-stat-label">Annual Growth Spread</div>
+        <div class="invest-stat-num">+1.5%<span style="font-size:0.5em; opacity:0.5">/yr</span></div>
+        <div class="invest-stat-sub">faster year-over-year appreciation</div>
+        <div class="invest-stat-detail">In CA fire zones, concrete grows 1.5 points faster every year (5.5% vs 4.0%). Unlike the day-1 premium, this advantage compounds — the gap widens each year you hold.</div>
+        <div class="invest-stat-source">Source: JRER, CA Assessor data</div>
+      </div>
+      <div class="invest-stat reveal reveal-delay-2">
+        <div class="invest-stat-label">Insurance Savings</div>
+        <div class="invest-stat-num">50-72%</div>
+        <div class="invest-stat-sub">lower annual premiums</div>
+        <div class="invest-stat-detail">Fire-hardened homes qualify for up to 50-72% lower premiums in CA fire zones. Over 10 years on a $20M property, savings exceed $600K vs wood-frame.</div>
+        <div class="invest-stat-source">Source: CA Dept of Insurance, IBHS</div>
+      </div>
+    </div>
+
+    <!-- Interactive Simulator -->
+    <div class="invest-sim reveal">
+      <div class="invest-sim-title">Investment Simulator</div>
+      <div class="invest-sim-sub">Select a property value to compare wood-frame vs. reinforced concrete over time.</div>
+
+      <div class="invest-selector" id="investSelector">
+        <button class="invest-btn" data-value="10">$10M</button>
+        <button class="invest-btn active" data-value="15">$15M</button>
+        <button class="invest-btn" data-value="20">$20M</button>
+        <button class="invest-btn" data-value="25">$25M</button>
+      </div>
+
+      <!-- Comparison table -->
+      <div class="invest-results" id="investResults">
+        <div>
+          <div class="invest-col-title wood">Wood Frame</div>
+          <div class="invest-row">
+            <span class="invest-row-label">Construction cost</span>
+            <span class="invest-row-val" id="wCost">$6.4M</span>
+          </div>
+          <div class="invest-row">
+            <span class="invest-row-label">Insurance <small>/yr</small></span>
+            <span class="invest-row-val" id="wIns">$90K</span>
+          </div>
+          <div class="invest-row">
+            <span class="invest-row-label">Maintenance <small>/yr</small></span>
+            <span class="invest-row-val" id="wMaint">$64K</span>
+          </div>
+          <div class="invest-row">
+            <span class="invest-row-label">Appreciation</span>
+            <span class="invest-row-val">4.0%<small>/yr</small></span>
+          </div>
+        </div>
+        <div>
+          <div class="invest-col-title concrete">Reinforced Concrete</div>
+          <div class="invest-row">
+            <span class="invest-row-label">Construction cost</span>
+            <span class="invest-row-val accent" id="cCost">$8.0M</span>
+          </div>
+          <div class="invest-row">
+            <span class="invest-row-label">Insurance <small>/yr</small></span>
+            <span class="invest-row-val accent" id="cIns">$45K</span>
+          </div>
+          <div class="invest-row">
+            <span class="invest-row-label">Maintenance <small>/yr</small></span>
+            <span class="invest-row-val accent" id="cMaint">$32K</span>
+          </div>
+          <div class="invest-row">
+            <span class="invest-row-label">Appreciation</span>
+            <span class="invest-row-val accent">5.5%<small>/yr</small></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Equity bars -->
+      <div class="invest-bars" id="investBars">
+        <div class="invest-bars-title">Net Equity Over Time</div>
+
+        <div class="invest-bar-row" data-year="10">
+          <div class="invest-bar-year">Year 10</div>
+          <div class="invest-bar-track">
+            <div class="invest-bar-fill wood" id="bar10w" style="width:40%">
+              <span class="invest-bar-val" id="val10w">$14.3M</span>
+            </div>
+            <div class="invest-bar-fill concrete" id="bar10c" style="width:50%">
+              <span class="invest-bar-val" id="val10c">$16.9M</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="invest-bar-row" data-year="20">
+          <div class="invest-bar-year">Year 20</div>
+          <div class="invest-bar-track">
+            <div class="invest-bar-fill wood" id="bar20w" style="width:50%">
+              <span class="invest-bar-val" id="val20w">$23.4M</span>
+            </div>
+            <div class="invest-bar-fill concrete" id="bar20c" style="width:65%">
+              <span class="invest-bar-val" id="val20c">$34.3M</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="invest-bar-row" data-year="30">
+          <div class="invest-bar-year">Year 30</div>
+          <div class="invest-bar-track">
+            <div class="invest-bar-fill wood" id="bar30w" style="width:55%">
+              <span class="invest-bar-val" id="val30w">$37.7M</span>
+            </div>
+            <div class="invest-bar-fill concrete" id="bar30c" style="width:90%">
+              <span class="invest-bar-val" id="val30c">$64.5M</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="invest-legend">
+          <div class="invest-legend-item"><div class="invest-legend-dot wood"></div> Wood Frame</div>
+          <div class="invest-legend-item"><div class="invest-legend-dot concrete"></div> Reinforced Concrete</div>
+        </div>
+      </div>
+
+      <!-- Gap callout -->
+      <div class="invest-gap" id="investGap">
+        <div class="invest-gap-num" id="gapNum">+$10.9M</div>
+        <div class="invest-gap-text">additional equity after 20 years by choosing reinforced concrete — and the gap accelerates with every passing decade.</div>
+      </div>
+
+      <div class="invest-assumptions">
+        Assumptions: Property value includes land (~35%) + construction. Insurance at 0.6% (wood) vs 0.3% (concrete) per CA DOI. Maintenance at 0.425% (wood) vs 0.21% (concrete) of property value. Appreciation: 4.0% (wood) vs 5.5% (concrete) in fire zones. Sources: HUD, Fox Blocks, NAR, JRER, CA Assessor data.
+      </div>
+    </div>
   </div>
 </section>
-
-<!-- ══════════════ 13. WELLNESS ══════════════ -->
-<section class="gallery-section" style="min-height:70vh;">
-  <video muted loop playsinline poster="img/bathtub.webp" preload="none" style="transform: scale(1.12);">
-    <source src="vid/bathroom.mp4" type="video/mp4">
-  </video>
-  <div class="gallery-overlay-left"></div>
-  <div class="gallery-text">
-    <div class="section-label reveal" style="color:var(--terracotta)">Wellness</div>
-    <h2 class="section-title reveal" style="font-size:clamp(24px,3.5vw,40px);">Where architecture<br>becomes sanctuary.</h2>
-  </div>
-</section>
-
 
 <!-- ══════════════ 16. CLOSING IMAGE ══════════════ -->
 <section class="gallery-section" style="min-height:60vh;">
@@ -2729,6 +3048,83 @@ document.querySelectorAll('video').forEach(v => {
       });
     });
   });
+})();
+
+// ═══ Investment Simulator ═══
+(function() {
+  const btns = document.querySelectorAll('#investSelector .invest-btn');
+  if (!btns.length) return;
+
+  // Model ratios (from slides, validated)
+  const R = {
+    constW: 0.425,    // wood construction as fraction of V
+    constC: 0.53,     // concrete construction
+    insW:   0.006,    // wood insurance per year
+    insC:   0.003,    // concrete insurance per year
+    maintW: 0.00425,  // wood maintenance per year
+    maintC: 0.0021,   // concrete maintenance per year
+    apprW:  1.04,     // wood appreciation rate
+    apprC:  1.055     // concrete appreciation rate
+  };
+
+  function fmt(v) {
+    // Format millions: $12.3M or for thousands: $120K
+    if (Math.abs(v) >= 1) return '$' + v.toFixed(1) + 'M';
+    return '$' + Math.round(v * 1000) + 'K';
+  }
+
+  function equity(V, isC, years) {
+    const rate = isC ? R.apprC : R.apprW;
+    const constr = V * (isC ? R.constC : R.constW);
+    const insYr = V * (isC ? R.insC : R.insW);
+    const maintYr = V * (isC ? R.maintC : R.maintW);
+    return V * Math.pow(rate, years) - constr - years * insYr - years * maintYr;
+  }
+
+  function update(V) {
+    // Table values
+    document.getElementById('wCost').textContent = fmt(V * R.constW);
+    document.getElementById('cCost').textContent = fmt(V * R.constC);
+    document.getElementById('wIns').textContent = fmt(V * R.insW);
+    document.getElementById('cIns').textContent = fmt(V * R.insC);
+    document.getElementById('wMaint').textContent = fmt(V * R.maintW);
+    document.getElementById('cMaint').textContent = fmt(V * R.maintC);
+
+    // Calculate equities
+    const eqs = {};
+    [10, 20, 30].forEach(y => {
+      eqs['w' + y] = equity(V, false, y);
+      eqs['c' + y] = equity(V, true, y);
+    });
+
+    // Max equity for bar scaling
+    const maxEq = eqs.c30;
+
+    // Update bars and values
+    [10, 20, 30].forEach(y => {
+      const w = eqs['w' + y];
+      const c = eqs['c' + y];
+      document.getElementById('bar' + y + 'w').style.width = Math.max(5, (w / maxEq) * 85) + '%';
+      document.getElementById('bar' + y + 'c').style.width = Math.max(5, (c / maxEq) * 85) + '%';
+      document.getElementById('val' + y + 'w').textContent = fmt(w);
+      document.getElementById('val' + y + 'c').textContent = fmt(c);
+    });
+
+    // Gap callout (20-year)
+    const gap20 = eqs.c20 - eqs.w20;
+    document.getElementById('gapNum').textContent = '+' + fmt(gap20);
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      btns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      update(parseFloat(this.dataset.value));
+    });
+  });
+
+  // Init with default ($15M)
+  update(15);
 })();
 
 // Form — sends data via Formspree
