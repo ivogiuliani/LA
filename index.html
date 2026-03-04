@@ -1057,6 +1057,178 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ══════════════════════════════════════════
+   9b. PERSONALIZATION — customize your villa
+   ══════════════════════════════════════════ */
+.personalization {
+  background: var(--espresso);
+  padding: var(--section-pad) var(--side-pad);
+  color: var(--cream);
+}
+.personalization-inner { max-width: 1200px; margin: 0 auto; }
+.personalization .section-label { color: var(--terracotta); }
+.personalization .section-title { color: var(--cream); }
+.personalization-intro {
+  font-size: 15px; line-height: 1.8; color: var(--white); opacity: 0.75;
+  max-width: 640px; margin-top: 8px; margin-bottom: 64px;
+}
+
+/* — Facade color picker — */
+.facade-block {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: stretch; margin-bottom: 80px;
+}
+.facade-viewer {
+  position: relative; border-radius: 4px; overflow: hidden;
+  aspect-ratio: 1157/1194;
+}
+.facade-viewer img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: opacity 0.7s ease;
+}
+.facade-viewer img.active {
+  opacity: 1;
+}
+.facade-right {
+  display: flex; flex-direction: column; gap: 24px;
+}
+.facade-text h3 {
+  font-family: var(--serif); font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 400; color: var(--cream); margin-bottom: 10px;
+}
+.facade-text p {
+  font-size: 14px; line-height: 1.7; color: var(--white); opacity: 0.7;
+  margin-bottom: 20px;
+}
+.color-swatches {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.color-swatch {
+  width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+  border: 3px solid transparent; transition: all 0.3s ease;
+  position: relative;
+}
+.color-swatch:hover { transform: scale(1.1); }
+.color-swatch.active {
+  border-color: var(--tuscan-gold);
+  box-shadow: 0 0 0 2px var(--espresso), 0 0 0 4px var(--tuscan-gold);
+}
+.swatch-label {
+  position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+  font-size: 10px; letter-spacing: 0.5px; color: var(--white);
+  white-space: nowrap; pointer-events: none;
+  opacity: 0; transition: opacity 0.3s;
+}
+.color-swatch:hover .swatch-label,
+.color-swatch.active .swatch-label { opacity: 1; }
+
+/* — Material mood viewer (inside right column) — */
+.mood-viewer-wrap {
+  flex: 1; display: flex; flex-direction: column;
+}
+.mood-viewer-wrap h4 {
+  font-family: var(--serif); font-size: clamp(14px, 1.6vw, 18px);
+  font-weight: 400; color: var(--cream); margin-bottom: 8px;
+}
+.mood-viewer {
+  position: relative; border-radius: 4px; overflow: hidden;
+  flex: 1; min-height: 0;
+}
+.mood-viewer img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: contain;
+  object-position: left top;
+  opacity: 0; transition: opacity 0.7s ease;
+}
+.mood-viewer img.active {
+  opacity: 1;
+}
+
+/* — Mood board — */
+.moodboard-block { margin-bottom: 60px; }
+.moodboard-block h3 {
+  font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 400; color: var(--cream); margin-bottom: 8px;
+}
+.moodboard-block > p {
+  font-size: 15px; line-height: 1.8; color: var(--white); opacity: 0.7;
+  max-width: 640px; margin-bottom: 32px;
+}
+.moodboard-tabs {
+  display: flex; gap: 24px; margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 12px;
+}
+.moodboard-tab {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--white); opacity: 0.4; cursor: pointer;
+  padding-bottom: 12px; border-bottom: 2px solid transparent;
+  transition: all 0.3s; background: none; border-top: none;
+  border-left: none; border-right: none; font-family: var(--sans);
+}
+.moodboard-tab:hover { opacity: 0.7; }
+.moodboard-tab.active {
+  opacity: 1; border-bottom-color: var(--terracotta);
+  color: var(--cream);
+}
+.moodboard-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.moodboard-item {
+  position: relative; aspect-ratio: 1; overflow: hidden;
+  border-radius: 4px; cursor: pointer;
+}
+.moodboard-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.moodboard-item:hover img { transform: scale(1.08); }
+.moodboard-item .mb-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 24px 12px 12px;
+  background: linear-gradient(0deg, rgba(62,47,43,0.85) 0%, transparent 100%);
+  font-size: 12px; letter-spacing: 1px; color: var(--cream);
+}
+.moodboard-panel { display: none; }
+.moodboard-panel.active { display: grid; }
+
+/* — Bespoke details — */
+.bespoke-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px; padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.bespoke-item {
+  text-align: center; padding: 24px 0;
+}
+.bespoke-number {
+  font-family: var(--serif); font-size: clamp(36px, 4vw, 52px);
+  font-weight: 300; color: var(--tuscan-gold);
+  line-height: 1; margin-bottom: 8px;
+}
+.bespoke-label {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--white); opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+  .facade-block { grid-template-columns: 1fr; gap: 32px; }
+  .facade-right { gap: 20px; }
+  .mood-viewer { flex: none; aspect-ratio: 1948/1282; max-width: 420px; }
+  .moodboard-grid { grid-template-columns: repeat(3, 1fr); }
+  .bespoke-strip { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
+@media (max-width: 550px) {
+  .color-swatch { width: 40px; height: 40px; }
+  .mood-viewer { max-width: 100%; }
+  .moodboard-grid { grid-template-columns: repeat(2, 1fr); }
+  .moodboard-tabs { gap: 16px; overflow-x: auto; }
+  .bespoke-strip { grid-template-columns: 1fr; gap: 0; }
+  .bespoke-item { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+}
+
+/* ══════════════════════════════════════════
    10. GALLERY — cinematic scroll
    ══════════════════════════════════════════ */
 .gallery-section {
@@ -2085,6 +2257,198 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </div>
 </section>
 
+<!-- ══════════════ 9b. PERSONALIZATION ══════════════ -->
+<section class="personalization" id="personalize">
+  <div class="personalization-inner">
+    <div class="section-label reveal">Make It Yours</div>
+    <h2 class="section-title reveal" style="color:var(--cream);">Every Detail,<br>Your Decision.</h2>
+    <div class="personalization-intro reveal reveal-delay-1">
+      Each villa is a canvas. Choose your facade tone, select your interior palette, and personalize every finish — from flooring to fixtures. No two homes are alike.
+    </div>
+
+    <!-- ── Facade Color ── -->
+    <div class="facade-block">
+      <div class="facade-viewer" id="facadeViewer">
+        <img src="img/facade-terracotta.webp" alt="Terracotta facade" class="active" data-color="terracotta">
+        <img src="img/facade-rose.webp" alt="Rose facade" data-color="rose">
+        <img src="img/facade-sage.webp" alt="Sage facade" data-color="sage">
+        <img src="img/facade-sand.webp" alt="Sand facade" data-color="sand">
+        <img src="img/facade-cream.webp" alt="Cream facade" data-color="cream">
+      </div>
+      <div class="facade-right reveal">
+        <div class="facade-text">
+          <h3>Choose Your Concrete Tone</h3>
+          <p>Five signature facade tones — each one a real render of the villa. The same architectural form, transformed by color into an entirely different presence.</p>
+          <div class="color-swatches" id="colorSwatches">
+            <div class="color-swatch active" data-target="terracotta" style="background:#7A4A3A;">
+              <span class="swatch-label">Terracotta</span>
+            </div>
+            <div class="color-swatch" data-target="rose" style="background:#C4978A;">
+              <span class="swatch-label">Rose</span>
+            </div>
+            <div class="color-swatch" data-target="sage" style="background:#B5B88E;">
+              <span class="swatch-label">Sage</span>
+            </div>
+            <div class="color-swatch" data-target="sand" style="background:#A69060;">
+              <span class="swatch-label">Sand</span>
+            </div>
+            <div class="color-swatch" data-target="cream" style="background:#E8DCCA;">
+              <span class="swatch-label">Cream</span>
+            </div>
+          </div>
+        </div>
+        <div class="mood-viewer-wrap">
+          <h4>Material Palette</h4>
+          <div class="mood-viewer" id="moodViewer">
+            <img src="img/mood-terracotta.webp" alt="Terracotta materials" class="active" data-color="terracotta">
+            <img src="img/mood-rose.webp" alt="Rose materials" data-color="rose">
+            <img src="img/mood-sage.webp" alt="Sage materials" data-color="sage">
+            <img src="img/mood-sand.webp" alt="Sand materials" data-color="sand">
+            <img src="img/mood-cream.webp" alt="Cream materials" data-color="cream">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Interior Mood Board ── -->
+    <div class="moodboard-block reveal">
+      <h3>Interior Material Palettes</h3>
+      <p>Italian craftsmanship meets Californian living. Every material is chosen for durability, beauty, and a sense of timelessness.</p>
+
+      <div class="moodboard-tabs">
+        <button class="moodboard-tab active" data-panel="atmosphere">Atmosphere & Texture</button>
+        <button class="moodboard-tab" data-panel="materials">Materials & Craftsmanship</button>
+        <button class="moodboard-tab" data-panel="luxury">Italian Luxury</button>
+      </div>
+
+      <!-- Atmosphere & Texture (Slide 85) -->
+      <div class="moodboard-grid moodboard-panel active" data-panel="atmosphere">
+        <div class="moodboard-item">
+          <img src="img/int-reeded-glass.webp" alt="Reeded glass" loading="lazy">
+          <div class="mb-label">Reeded Glass</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-sheer-curtains.webp" alt="Sheer curtains" loading="lazy">
+          <div class="mb-label">Sheer Linens</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-warm-workspace.webp" alt="Warm workspace" loading="lazy">
+          <div class="mb-label">Warm Interiors</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-green-lounge.webp" alt="Green lounge" loading="lazy">
+          <div class="mb-label">The Outside In</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-green-marble.webp" alt="Green marble" loading="lazy">
+          <div class="mb-label">Green Marble</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-herringbone-fabric.webp" alt="Herringbone fabric" loading="lazy">
+          <div class="mb-label">Herringbone Weave</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-walnut-wood.webp" alt="Walnut wood" loading="lazy">
+          <div class="mb-label">Walnut Grain</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-woven-texture.webp" alt="Woven texture" loading="lazy">
+          <div class="mb-label">Woven Texture</div>
+        </div>
+      </div>
+
+      <!-- Materials & Craftsmanship (Slide 86) -->
+      <div class="moodboard-grid moodboard-panel" data-panel="materials">
+        <div class="moodboard-item">
+          <img src="img/int-olive-marble.webp" alt="Olive and marble" loading="lazy">
+          <div class="mb-label">Natural Stone</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-window-detail.webp" alt="Window detail" loading="lazy">
+          <div class="mb-label">Window Profiles</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-green-terrazzo.webp" alt="Green terrazzo" loading="lazy">
+          <div class="mb-label">Green Terrazzo</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-stone-blocks.webp" alt="Stone blocks" loading="lazy">
+          <div class="mb-label">Artisan Tiles</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-palazzo-interior.webp" alt="Palazzo interior" loading="lazy">
+          <div class="mb-label">Timeless Italian Design</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-terrazzo-floor.webp" alt="Terrazzo floor" loading="lazy">
+          <div class="mb-label">Terrazzo Flooring</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-bespoke-layout.webp" alt="Bespoke layout" loading="lazy">
+          <div class="mb-label">Bespoke Layouts</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-terracotta-surface.webp" alt="Terracotta surface" loading="lazy">
+          <div class="mb-label">Crafted Surfaces</div>
+        </div>
+      </div>
+
+      <!-- Italian Luxury (Slide 87) -->
+      <div class="moodboard-grid moodboard-panel" data-panel="luxury">
+        <div class="moodboard-item">
+          <img src="img/int-bronze-faucet.webp" alt="Bronze faucet" loading="lazy">
+          <div class="mb-label">Bronze Fixtures</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-luxury-living.webp" alt="Luxury living" loading="lazy">
+          <div class="mb-label">Curated Living</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-table-detail.webp" alt="Table detail" loading="lazy">
+          <div class="mb-label">Furniture Details</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-rattan-lamp.webp" alt="Rattan lamp" loading="lazy">
+          <div class="mb-label">Artisan Lighting</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-designer-chair.webp" alt="Designer chair" loading="lazy">
+          <div class="mb-label">Signature Seating</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-designer-lamp.webp" alt="Designer lamp" loading="lazy">
+          <div class="mb-label">Sculptural Lighting</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-sculptural-poolside.webp" alt="Sculptural poolside" loading="lazy">
+          <div class="mb-label">Poolside Design</div>
+        </div>
+        <div class="moodboard-item">
+          <img src="img/int-stone-basin.webp" alt="Stone basin" loading="lazy">
+          <div class="mb-label">Tailored Elements</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Bespoke numbers ── -->
+    <div class="bespoke-strip reveal">
+      <div class="bespoke-item">
+        <div class="bespoke-number">5</div>
+        <div class="bespoke-label">Facade Tones</div>
+      </div>
+      <div class="bespoke-item">
+        <div class="bespoke-number">40+</div>
+        <div class="bespoke-label">Interior Finishes</div>
+      </div>
+      <div class="bespoke-item">
+        <div class="bespoke-number">∞</div>
+        <div class="bespoke-label">Possibilities</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ══════════════ 14. RESILIENCE ══════════════ -->
 <section class="resilience" style="background:var(--offblack);">
   <div class="resilience-text">
@@ -2326,6 +2690,46 @@ document.querySelectorAll('video').forEach(v => {
   v.setAttribute('preload', 'none');
   videoObserver.observe(v);
 });
+
+// ═══ Personalization: facade color picker + mood board sync ═══
+(function() {
+  const swatches = document.querySelectorAll('#colorSwatches .color-swatch');
+  const facadeImgs = document.querySelectorAll('#facadeViewer img');
+  const moodImgs = document.querySelectorAll('#moodViewer img');
+  if (!facadeImgs.length || !swatches.length) return;
+
+  swatches.forEach(sw => {
+    sw.addEventListener('click', function() {
+      swatches.forEach(s => s.classList.remove('active'));
+      this.classList.add('active');
+      const target = this.dataset.target;
+      facadeImgs.forEach(img => {
+        img.classList.toggle('active', img.dataset.color === target);
+      });
+      moodImgs.forEach(img => {
+        img.classList.toggle('active', img.dataset.color === target);
+      });
+    });
+  });
+})();
+
+// ═══ Personalization: mood board tabs ═══
+(function() {
+  const tabs = document.querySelectorAll('.moodboard-tab');
+  const panels = document.querySelectorAll('.moodboard-panel');
+  if (!tabs.length) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const target = this.dataset.panel;
+      tabs.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      panels.forEach(p => {
+        p.classList.toggle('active', p.dataset.panel === target);
+      });
+    });
+  });
+})();
 
 // Form — sends data via Formspree
 const FORMSPREE_ID = 'mgoljyjl';
