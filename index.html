@@ -295,14 +295,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-family: var(--sans);
   font-size: 10px; font-weight: 400;
   letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--warm-sand); opacity: 0.7; margin-top: 2px;
+  color: var(--white); opacity: 0.6; margin-top: 2px;
 }
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a {
   font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--warm-sand);
+  text-transform: uppercase; color: var(--white);
   transition: color 0.3s; position: relative;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 .nav-links a::after {
   content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
@@ -335,7 +335,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .mobile-menu.open { opacity: 1; pointer-events: all; }
 .mobile-menu a {
-  font-family: var(--serif); font-size: 28px; color: var(--warm-sand);
+  font-family: var(--serif); font-size: 28px; color: var(--white);
   transition: color 0.3s;
 }
 .mobile-menu a:hover { color: var(--terracotta); }
@@ -380,7 +380,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-family: var(--serif);
   font-size: clamp(18px, 2.5vw, 24px);
   font-weight: 300; font-style: italic;
-  color: var(--stone-grey);
+  color: var(--white); opacity: 0.6;
   margin-top: 12px;
 }
 .divider {
@@ -391,9 +391,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .body-text {
   font-size: clamp(15px, 1.5vw, 17px);
   line-height: 1.8;
-  color: var(--warm-sand);
+  color: var(--white);
   max-width: 680px;
-  opacity: 0.7;
+  opacity: 0.65;
 }
 .body-text.dark { color: var(--charcoal); opacity: 0.7; }
 
@@ -421,8 +421,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overflow: hidden;
 }
 .hero-video {
-  position: absolute; inset: -4% -4%;
-  object-fit: cover; width: 108%; height: 108%;
+  position: absolute; inset: 0;
+  object-fit: cover; width: 100%; height: 100%;
+  transform: scale(1.08);
 }
 .hero-fallback {
   position: absolute; inset: 0;
@@ -462,8 +463,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-family: var(--serif);
   font-size: clamp(18px, 2.5vw, 28px);
   font-weight: 300; font-style: italic;
-  color: var(--warm-sand);
-  opacity: 0.8;
+  color: var(--white);
+  opacity: 0.7;
 }
 .hero-scroll {
   position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
@@ -505,15 +506,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: clamp(20px, 2.8vw, 30px);
   font-weight: 300; font-style: italic;
   line-height: 1.4;
-  color: var(--warm-sand);
+  color: var(--white); opacity: 0.7;
 }
 .cal-accent { color: var(--sky-mist); }
 .thesis-body {
   margin-top: 40px;
   font-size: clamp(15px, 1.6vw, 17px);
   line-height: 1.85;
-  color: var(--warm-sand);
-  opacity: 0.7;
+  color: var(--white);
+  opacity: 0.65;
 }
 .thesis-value {
   margin-top: 48px;
@@ -535,7 +536,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--tuscan-gold);
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* ══════════════════════════════════════════
@@ -613,30 +614,32 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 100%; width: auto; max-width: 100%;
   object-fit: contain; filter: brightness(0) invert(0.88);
 }
-.team-card:nth-child(3) .team-logo img,
+.team-card:nth-child(3) .team-logo img {
+  height: 65%;
+}
 .team-card:nth-child(4) .team-logo img {
   filter: none;
 }
 .team-role {
   font-size: 13px; font-weight: 500;
   letter-spacing: 0.06em;
-  color: var(--stone-grey); text-transform: uppercase;
+  color: var(--white); opacity: 0.5; text-transform: uppercase;
   margin-bottom: 10px; line-height: 1.5;
 }
 .team-firm {
   font-family: var(--serif);
   font-size: clamp(16px, 1.5vw, 20px);
-  font-weight: 500; color: var(--warm-sand);
+  font-weight: 500; color: var(--white);
   margin-bottom: 4px;
 }
 .team-loc {
   font-size: 14px; font-style: italic;
-  color: var(--stone-grey); margin-bottom: 16px; opacity: 0.6;
+  color: var(--white); margin-bottom: 16px; opacity: 0.45;
 }
 .team-divider { width: 100%; height: 1px; background: rgba(196,162,101,0.12); margin-bottom: 16px; }
 .team-highlight {
   font-size: 15px; line-height: 1.7;
-  color: var(--warm-sand); opacity: 0.5;
+  color: var(--white); opacity: 0.45;
 }
 
 @media (max-width: 1000px) {
@@ -656,8 +659,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overflow: hidden;
 }
 .vision-bg {
-  position: absolute; inset: -5% -5%;
-  object-fit: cover; width: 110%; height: 110%;
+  position: absolute; inset: 0;
+  object-fit: cover; width: 100%; height: 100%;
+  transform: scale(1.10);
 }
 .vision-overlay {
   position: absolute; inset: 0;
@@ -677,7 +681,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .vision-body {
   font-size: clamp(14px, 1.4vw, 16px);
-  line-height: 1.8; color: var(--warm-sand); opacity: 0.8;
+  line-height: 1.8; color: var(--white); opacity: 0.75;
   margin-bottom: 32px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
@@ -766,7 +770,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .material-header .section-title { margin-bottom: 0; }
 .material-intro {
   font-size: clamp(14px, 1.1vw, 15px);
-  line-height: 1.75; color: var(--cream); opacity: 0.65;
+  line-height: 1.75; color: var(--white); opacity: 0.65;
 }
 
 /* — Past works: 3 cards in a row — */
@@ -774,7 +778,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-family: var(--sans);
   font-size: 11px; letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--warm-sand); opacity: 0.55;
+  color: var(--white); opacity: 0.45;
   margin-bottom: 14px;
 }
 .material-works-row {
@@ -802,14 +806,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .material-work-name {
   font-family: var(--serif);
   font-size: clamp(13px, 1.2vw, 15px);
-  font-style: italic; color: var(--cream); opacity: 0.55;
+  font-style: italic; color: var(--white); opacity: 0.5;
   line-height: 1.3;
   margin-bottom: 4px;
 }
 .material-work-arch {
   font-family: var(--serif);
   font-size: clamp(16px, 1.6vw, 20px);
-  color: var(--warm-sand);
+  color: var(--white);
   font-weight: 400;
   line-height: 1.3;
 }
@@ -850,8 +854,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--warm-sand);
-  opacity: 0.6;
+  color: var(--white);
+  opacity: 0.5;
 }
 
 /* — Amanvari: current project — */
@@ -877,7 +881,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .material-current-desc {
   font-size: clamp(13px, 1.05vw, 14px);
-  line-height: 1.75; color: var(--cream); opacity: 0.6;
+  line-height: 1.75; color: var(--white); opacity: 0.6;
 }
 .amv-link {
   display: inline-flex; align-items: center; gap: 8px;
@@ -1062,8 +1066,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overflow: hidden;
 }
 .gallery-section video, .gallery-section > img {
-  position: absolute; inset: -4% -4%;
-  width: 108%; height: 108%; object-fit: cover;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.08);
 }
 .gallery-overlay-left {
   position: absolute; inset: 0;
@@ -1155,8 +1160,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .process-inner { max-width: 1100px; margin: 0 auto; }
 .process-desc {
-  font-size: 14px; color: var(--stone-grey); max-width: 700px;
-  margin-bottom: 60px; opacity: 0.6;
+  font-size: 14px; color: var(--white); max-width: 700px;
+  margin-bottom: 60px; opacity: 0.5;
 }
 .process-steps {
   display: grid; grid-template-columns: repeat(5, 1fr);
@@ -1194,7 +1199,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--tuscan-gold);
-  opacity: 0.6;
+  opacity: 0.75;
   margin-left: 8px;
 }
 .process-timeline-bar {
@@ -1220,8 +1225,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-family: var(--sans);
   font-size: 11px;
   letter-spacing: 1px;
-  color: var(--stone-grey);
-  opacity: 0.4;
+  color: var(--white);
+  opacity: 0.35;
 }
 .process-guarantee {
   margin-top: 48px;
@@ -1232,7 +1237,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--tuscan-gold);
-  opacity: 0.6;
+  opacity: 0.75;
 }
 .guarantee-icon {
   margin-right: 8px;
@@ -1296,7 +1301,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 12px;
 }
 .cta-sub {
-  font-size: 14px; color: var(--warm-sand); opacity: 0.55;
+  font-size: 14px; color: var(--white); opacity: 0.55;
   line-height: 1.8; margin-bottom: 40px;
 }
 .cta-form {
@@ -1345,7 +1350,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   text-transform: uppercase;
   text-align: center;
   color: var(--tuscan-gold);
-  opacity: 0.6;
+  opacity: 0.75;
 }
 
 @media (max-width: 550px) {
@@ -1859,44 +1864,44 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <h2 class="section-title reveal">Five Partners. Three Continents. One System.</h2>
     <div class="team-grid">
       <div class="team-card reveal">
-        <div class="team-logo"><img src="img/logos/its-architecture.svg" alt="IT'S Architecture"></div>
+        <div class="team-logo"><img src="img/logos/its-architecture.png" alt="IT'S Architecture"></div>
         <div class="team-role">Architecture<br>& Design</div>
         <div class="team-firm">IT'S Architecture</div>
         <div class="team-loc">Rome · Paris</div>
         <div class="team-divider"></div>
-        <div class="team-highlight">Award: Young Talent of Italian Architecture. FOROF art center for Giovanna Caruso Fendi. Recognized by French Ministry of Culture.</div>
+        <div class="team-highlight">IT'S is a research and innovation-oriented architecture firm founded in 2016 by Alessandro Cambi, Francesco Marinelli and Paolo Mezzalama with offices in Rome and Paris.</div>
       </div>
       <div class="team-card reveal reveal-delay-1">
-        <div class="team-logo"><img src="img/logos/transsolar.svg" alt="Transsolar KlimaEngineering"></div>
+        <div class="team-logo"><img src="img/logos/dgu.png" alt="DGU — DottorGroup"></div>
+        <div class="team-role">Architectural<br>Concrete</div>
+        <div class="team-firm">DGU</div>
+        <div class="team-loc">Treviso · L.A.</div>
+        <div class="team-divider"></div>
+        <div class="team-highlight">DottorGroup SpA is an Italian construction company renowned for its excellence in restoration, redevelopment, and the creation of complex and prestigious architectural works.</div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-logo"><img src="img/logos/transsolar.png" alt="Transsolar KlimaEngineering"></div>
         <div class="team-role">Climate<br>Engineering</div>
         <div class="team-firm">Transsolar</div>
         <div class="team-loc">Stuttgart · New York</div>
         <div class="team-divider"></div>
-        <div class="team-highlight">Founder teaches at Harvard. Partnered with Renzo Piano, SANAA, Foster + Partners. Manitoba Hydro Place: most efficient tower in North America.</div>
+        <div class="team-highlight">Transsolar is a diverse team of engineers and architects focused on creating climate-responsive built environments, enhancing the human experience while minimizing resource use: High Comfort, Low Impact.</div>
       </div>
-      <div class="team-card reveal reveal-delay-2">
+      <div class="team-card reveal reveal-delay-3">
         <div class="team-logo"><img src="img/logos/buromilan.svg" alt="BURO MILAN"></div>
         <div class="team-role">Structural<br>Engineering</div>
         <div class="team-firm">BUROMILAN</div>
         <div class="team-loc">Milan · Venice</div>
         <div class="team-divider"></div>
-        <div class="team-highlight">40+ years. Structures for Renzo Piano (Politecnico Milano) and Mario Cucinella. 40+ concrete projects. BIM-certified.</div>
-      </div>
-      <div class="team-card reveal reveal-delay-3">
-        <div class="team-logo"><img src="img/logos/DGU.svg" alt="DGU"></div>
-        <div class="team-role">Architectural<br>Concrete</div>
-        <div class="team-firm">DGU</div>
-        <div class="team-loc">Treviso · L.A.</div>
-        <div class="team-divider"></div>
-        <div class="team-highlight">Built the concrete for Tadao Ando (Punta della Dogana, Palazzo Grassi) and Renzo Piano (Kimbell Art Museum). Producing locally in L.A.</div>
+        <div class="team-highlight">BUROMILAN is an engineering company with over 40 years of experience in the design of civil, commercial, industrial and infrastructural works, public and private.</div>
       </div>
       <div class="team-card reveal reveal-delay-4">
-        <div class="team-logo"><img src="img/logos/the-cooperative.svg" alt="The Cooperative"></div>
+        <div class="team-logo"><img src="img/logos/cooperative-la.png" alt="Cooperative LA"></div>
         <div class="team-role">Construction<br>& Delivery</div>
-        <div class="team-firm">The Cooperative</div>
+        <div class="team-firm">Cooperative LA</div>
         <div class="team-loc">Los Angeles</div>
         <div class="team-divider"></div>
-        <div class="team-highlight">80+ yrs combined experience in California. Built: Academy Museum, Waldorf Astoria Beverly Hills. Currently managing 7 projects in L.A.</div>
+        <div class="team-highlight">Cooperative LA is a new kind of owner's representation and construction management company. Led by former general contractors, architects, and developers, we bring strategic precision and practical insight to every project.</div>
       </div>
     </div>
   </div>
@@ -1981,9 +1986,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 5. VISION — full bleed ══════════════ -->
 <section class="vision">
-  <video class="vision-bg" muted loop playsinline poster="img/living-room.webp" preload="none">
-    <source src="vid/living-room.mp4" type="video/mp4">
-  </video>
+  <img class="vision-bg" src="img/pool.webp" alt="Pool terrace with fireplace and colonnade" loading="lazy">
   <div class="vision-overlay"></div>
   <div class="vision-content">
     <div class="vision-headline reveal">A home<br>that endures.</div>
@@ -2094,7 +2097,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
       <div class="resilience-item-desc" style="color:var(--stone-grey);">Monolithic frames that absorb seismic forces and resist extreme weather events.</div>
     </div>
     <div class="resilience-item reveal reveal-delay-2">
-      <div class="resilience-item-title" style="color:var(--warm-sand);">Cross-ventilation by Transsolar</div>
+      <div class="resilience-item-title" style="color:var(--warm-sand);">Cross-ventilation</div>
       <div class="resilience-item-desc" style="color:var(--stone-grey);">Climate-calibrated airflow that reduces energy consumption and maximizes comfort.</div>
     </div>
     <div class="resilience-item reveal reveal-delay-3">
@@ -2115,7 +2118,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="gallery-overlay-left"></div>
   <div class="gallery-text">
     <div class="section-label reveal" style="color:var(--terracotta)">Courtyard House</div>
-    <h2 class="section-title reveal" style="font-size:clamp(28px,4vw,44px);">The sky as ceiling.<br>The courtyard as heart.</h2>
+    <h2 class="section-title reveal" style="font-size:clamp(28px,4vw,44px);">Built around<br>a courtyard.</h2>
     <div class="body-text reveal reveal-delay-1" style="margin-top:20px;">
       Architecture organized around an interior void — an open sky framed by concrete walls. Cross-ventilation calibrated by Transsolar's climate engineers ensures comfort without mechanical cooling.
     </div>
@@ -2136,9 +2139,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 12. DINING — cinematic ══════════════ -->
 <section class="gallery-section">
-  <video muted loop playsinline poster="img/dining.webp" preload="none">
-    <source src="vid/dining-room.mp4" type="video/mp4">
-  </video>
+  <img src="img/dining.webp" alt="Dining room with woven ceiling and pendant lights" loading="lazy">
   <div class="gallery-overlay-right"></div>
   <div class="gallery-text right">
     <h2 class="section-title reveal" style="font-size:clamp(20px,2.5vw,28px); font-style:italic; font-weight:300;">
@@ -2149,7 +2150,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 13. WELLNESS ══════════════ -->
 <section class="gallery-section" style="min-height:70vh;">
-  <video muted loop playsinline poster="img/bathtub.webp" preload="none">
+  <video muted loop playsinline poster="img/bathtub.webp" preload="none" style="transform: scale(1.12);">
     <source src="vid/bathroom.mp4" type="video/mp4">
   </video>
   <div class="gallery-overlay-left"></div>
@@ -2162,9 +2163,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
 <!-- ══════════════ 16. CLOSING IMAGE ══════════════ -->
 <section class="gallery-section" style="min-height:60vh;">
-  <video muted loop playsinline poster="img/external.webp" preload="none">
-    <source src="vid/external.mp4" type="video/mp4">
-  </video>
+  <img src="img/external.webp" alt="Villa facade with faceted garage and jacaranda trees" loading="lazy">
   <div class="gallery-overlay-bottom"></div>
   <div class="gallery-text bottom">
     <h2 class="section-title reveal" style="font-size:clamp(24px,3.5vw,36px);">
@@ -2223,7 +2222,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
         <div class="step-num">05</div>
         <div>
           <div class="step-title">Construction &amp; Delivery <span class="step-duration">Months 6–18</span></div>
-          <div class="step-desc">Built by The Cooperative — L.A.'s finest concrete specialists. Weekly progress updates, fixed budget, and a dedicated project manager. You receive your keys to a home built for generations.</div>
+          <div class="step-desc">Built by DGU concrete specialists. Weekly progress updates, fixed budget, and a dedicated project manager. You receive your keys to a home built for generations.</div>
         </div>
       </div>
     </div>
