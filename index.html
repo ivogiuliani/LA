@@ -1122,6 +1122,66 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .color-swatch:hover .swatch-label,
 .color-swatch.active .swatch-label { opacity: 1; }
 
+/* — Column detail picker — */
+.column-block {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: stretch; margin-bottom: 80px;
+}
+.column-viewer {
+  position: relative; border-radius: 4px; overflow: hidden;
+  aspect-ratio: 1691/1031;
+}
+.column-viewer img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: opacity 0.7s ease;
+}
+.column-viewer img.active { opacity: 1; }
+.column-right {
+  display: flex; flex-direction: column; justify-content: center; gap: 16px;
+}
+.column-right h3 {
+  font-family: var(--serif); font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 400; color: var(--cream); margin-bottom: 4px;
+}
+.column-right p {
+  font-size: 14px; line-height: 1.7; color: var(--white); opacity: 0.7;
+  margin-bottom: 20px;
+}
+.column-selectors {
+  display: flex; gap: 20px; flex-wrap: wrap;
+}
+.column-selector {
+  width: 72px; display: flex; flex-direction: column; align-items: center;
+  gap: 10px; cursor: pointer; padding: 12px 8px;
+  border: 2px solid transparent; border-radius: 6px;
+  transition: all 0.3s ease; background: rgba(255,255,255,0.04);
+}
+.column-selector:hover {
+  border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.08);
+}
+.column-selector.active {
+  border-color: var(--tuscan-gold);
+  background: rgba(196,162,101,0.1);
+}
+.column-selector svg {
+  width: 28px; height: 60px; stroke: var(--cream); fill: none;
+  stroke-width: 1.5; opacity: 0.6; transition: opacity 0.3s;
+}
+.column-selector.active svg,
+.column-selector:hover svg { opacity: 1; stroke: var(--tuscan-gold); }
+.column-selector-label {
+  font-family: var(--sans); font-size: 10px; letter-spacing: 0.5px;
+  text-transform: uppercase; color: var(--white); opacity: 0.5;
+  text-align: center; transition: opacity 0.3s;
+}
+.column-selector.active .column-selector-label,
+.column-selector:hover .column-selector-label { opacity: 1; color: var(--tuscan-gold); }
+.column-desc-text {
+  font-size: 13px; line-height: 1.7; color: var(--white); opacity: 0.55;
+  min-height: 44px; transition: opacity 0.3s;
+}
+
 /* — Material mood viewer (inside right column) — */
 .mood-viewer-wrap {
   flex: 1; display: flex; flex-direction: column;
@@ -1430,17 +1490,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 900px) {
   .facade-block { grid-template-columns: 1fr; gap: 32px; }
   .facade-right { gap: 20px; }
+  .column-block { grid-template-columns: 1fr; gap: 32px; }
   .mood-viewer { flex: none; aspect-ratio: 1948/1282; max-width: 420px; }
   .moodboard-grid { grid-template-columns: repeat(3, 1fr); }
   .bespoke-strip { grid-template-columns: repeat(3, 1fr); gap: 20px; }
 }
 @media (max-width: 550px) {
-  .color-swatch { width: 40px; height: 40px; }
+  .color-swatch { width: 44px; height: 44px; }
   .mood-viewer { max-width: 100%; }
   .moodboard-grid { grid-template-columns: repeat(2, 1fr); }
   .moodboard-tabs { gap: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .moodboard-tab { min-height: 44px; display: flex; align-items: center; padding: 8px 4px 12px; }
   .color-swatch { margin-bottom: 22px; } /* Space for swatch labels when wrapped */
+  .invest-btn { min-height: 44px; display: flex; align-items: center; justify-content: center; }
   .bespoke-strip { grid-template-columns: 1fr; gap: 0; }
   .bespoke-item { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 }
@@ -1772,7 +1834,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 .footer-copy {
   font-size: 12px; color: rgba(255,255,255,0.5);
 }
-.footer-links { display: flex; gap: 24px; flex-shrink: 0; }
+.footer-links { display: flex; gap: 24px; flex-shrink: 0; flex-wrap: wrap; }
 .footer-links a {
   font-size: 13px; color: #FFFFFF; opacity: 0.8;
   letter-spacing: 0.05em; transition: color 0.3s, opacity 0.3s;
@@ -2380,6 +2442,34 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
             <img src="img/mood-cream.webp" alt="Cream materials" data-color="cream">
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- ── Column Detail Picker ── -->
+    <div class="column-block">
+      <div class="column-viewer" id="columnViewer">
+        <img src="img/col-rounded.webp" alt="Rounded column detail" class="active" data-col="rounded">
+        <img src="img/col-square.webp" alt="Square column detail" data-col="square">
+        <img src="img/col-fluted.webp" alt="Fluted column detail" data-col="fluted">
+      </div>
+      <div class="column-right reveal">
+        <h3>Structural Details</h3>
+        <p>Every column is a design statement. Choose the profile that defines your villa's character — from sculptural to minimal, each option is engineered in reinforced concrete.</p>
+        <div class="column-selectors" id="columnSelectors">
+          <div class="column-selector active" data-col="rounded">
+            <svg viewBox="0 0 28 60"><path d="M10 2 Q6 2 6 8 L4 22 Q3 30 4 38 L6 52 Q6 58 10 58 L18 58 Q22 58 22 52 L24 38 Q25 30 24 22 L22 8 Q22 2 18 2 Z" /></svg>
+            <span class="column-selector-label">Rounded</span>
+          </div>
+          <div class="column-selector" data-col="square">
+            <svg viewBox="0 0 28 60"><rect x="7" y="2" width="14" height="56" rx="1" /></svg>
+            <span class="column-selector-label">Square</span>
+          </div>
+          <div class="column-selector" data-col="fluted">
+            <svg viewBox="0 0 28 60"><ellipse cx="14" cy="4" rx="10" ry="2" /><ellipse cx="14" cy="56" rx="10" ry="2" /><line x1="4" y1="4" x2="4" y2="56" /><line x1="9" y1="3" x2="9" y2="57" /><line x1="14" y1="2" x2="14" y2="58" /><line x1="19" y1="3" x2="19" y2="57" /><line x1="24" y1="4" x2="24" y2="56" /></svg>
+            <span class="column-selector-label">Fluted</span>
+          </div>
+        </div>
+        <div class="column-desc-text" id="columnDesc">Soft, sculptural form with rounded edges — a contemporary reinterpretation of the classical column.</div>
       </div>
     </div>
 
@@ -3031,6 +3121,38 @@ document.querySelectorAll('video').forEach(v => {
       moodImgs.forEach(img => {
         img.classList.toggle('active', img.dataset.color === target);
       });
+    });
+  });
+})();
+
+// ═══ Personalization: column detail picker ═══
+(function() {
+  const selectors = document.querySelectorAll('#columnSelectors .column-selector');
+  const colImgs = document.querySelectorAll('#columnViewer img');
+  const descEl = document.getElementById('columnDesc');
+  if (!selectors.length || !colImgs.length) return;
+
+  const descriptions = {
+    rounded: 'Soft, sculptural form with rounded edges — a contemporary reinterpretation of the classical column.',
+    square: 'Clean geometry, sharp lines. A minimal expression of structural strength — pure and unadorned.',
+    fluted: 'Vertical channels catch light and shadow throughout the day — a tribute to Mediterranean tradition, cast in modern concrete.'
+  };
+
+  selectors.forEach(sel => {
+    sel.addEventListener('click', function() {
+      selectors.forEach(s => s.classList.remove('active'));
+      this.classList.add('active');
+      const target = this.dataset.col;
+      colImgs.forEach(img => {
+        img.classList.toggle('active', img.dataset.col === target);
+      });
+      if (descEl) {
+        descEl.style.opacity = '0';
+        setTimeout(() => {
+          descEl.textContent = descriptions[target] || '';
+          descEl.style.opacity = '';
+        }, 200);
+      }
     });
   });
 })();
