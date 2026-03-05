@@ -297,7 +297,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--white); opacity: 0.6; margin-top: 2px;
 }
-.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links { display: flex; gap: 24px; align-items: center; }
 .nav-links a {
   font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--white);
@@ -2181,7 +2181,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="nav-links">
     <a href="#thesis">Vision</a>
     <a href="#collection">Collection</a>
-    <a href="#team">Team</a>
+    <a href="#ethical">Approach</a>
+    <a href="#investment">Investment</a>
     <a href="#process">Process</a>
     <a href="#contact" class="nav-cta">Request Briefing</a>
   </div>
@@ -2194,7 +2195,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <div class="mobile-menu" id="mobileMenu">
   <a href="#thesis" onclick="closeMobile()">Vision</a>
   <a href="#collection" onclick="closeMobile()">Collection</a>
-  <a href="#team" onclick="closeMobile()">Team</a>
+  <a href="#ethical" onclick="closeMobile()">Approach</a>
+  <a href="#investment" onclick="closeMobile()">Investment</a>
   <a href="#process" onclick="closeMobile()">Process</a>
   <a href="#contact" onclick="closeMobile()">Request Briefing</a>
 </div>
@@ -2240,8 +2242,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </video>
   <div class="gallery-overlay-left"></div>
   <div class="gallery-text">
-    <div class="section-label reveal" style="color:var(--terracotta)">Courtyard House</div>
-    <h2 class="section-title reveal" style="font-size:clamp(28px,4vw,44px);">Built around<br>a courtyard.</h2>
+    <div class="section-label reveal">The Courtyard</div>
+    <h2 class="section-title reveal">Built around<br>a courtyard.</h2>
     <div class="body-text reveal reveal-delay-1" style="margin-top:20px;">
       Architecture organized around an interior void — an open sky framed by concrete walls. Cross-ventilation calibrated by Transsolar's climate engineers ensures comfort without mechanical cooling.
     </div>
@@ -2255,7 +2257,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <img src="img/library.webp" alt="Library" loading="lazy" width="800" height="500">
   </div>
   <div class="interiors-text">
-    <div class="section-label reveal" style="color:var(--terracotta)">Interiors</div>
+    <div class="section-label reveal">Interiors</div>
+    <h2 class="section-title reveal">Light, Proportion, Material.</h2>
     <div class="body-text reveal reveal-delay-1">Every room is a composition of light, proportion, and material. Concrete, wood, and glass in a dialogue that rewards attention.</div>
   </div>
 </section>
@@ -2265,9 +2268,9 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <img src="img/dining.webp" alt="Dining room with woven ceiling and pendant lights" loading="lazy">
   <div class="gallery-overlay-right"></div>
   <div class="gallery-text right">
-    <h2 class="section-title reveal" style="font-size:clamp(20px,2.5vw,28px); font-style:italic; font-weight:300;">
-      Spaces designed for living, not displaying. Where natural light traces time across concrete surfaces.
-    </h2>
+    <div class="section-label reveal">The Dining</div>
+    <h2 class="section-title reveal">Spaces designed for living,<br>not displaying.</h2>
+    <div class="body-text reveal reveal-delay-1" style="margin-top:20px; margin-left:auto;">Where natural light traces time across concrete surfaces.</div>
   </div>
 </section>
 
@@ -2278,8 +2281,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </video>
   <div class="gallery-overlay-left"></div>
   <div class="gallery-text">
-    <div class="section-label reveal" style="color:var(--terracotta)">Wellness</div>
-    <h2 class="section-title reveal" style="font-size:clamp(24px,3.5vw,40px);">Where architecture<br>becomes sanctuary.</h2>
+    <div class="section-label reveal">Wellness</div>
+    <h2 class="section-title reveal">Where architecture<br>becomes sanctuary.</h2>
   </div>
 </section>
 
@@ -2331,7 +2334,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <section class="personalization" id="personalize">
   <div class="personalization-inner">
     <div class="section-label reveal">Make It Yours</div>
-    <h2 class="section-title reveal" style="color:var(--cream);">Every Detail,<br>Your Decision.</h2>
+    <h2 class="section-title reveal">Every Detail,<br>Your Decision.</h2>
     <div class="personalization-intro reveal reveal-delay-1">
       Each villa is a canvas. Choose your facade tone, select your interior palette, and personalize every finish — from flooring to fixtures. No two homes are alike.
     </div>
@@ -2555,7 +2558,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <!-- ══════════════ RESILIENCE ══════════════ -->
 <section class="resilience" style="background:var(--offblack);">
   <div class="resilience-text">
-    <h2 class="section-title dark reveal" style="font-size:clamp(22px,3vw,32px); color:var(--cream); margin-bottom:24px;">
+    <div class="section-label reveal">Resilience</div>
+    <h2 class="section-title reveal" style="margin-bottom:24px;">
       Engineered for the California Climate
     </h2>
     <div class="divider reveal" style="background:var(--pacific-blue)"></div>
@@ -2699,8 +2703,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 <!-- ══════════════ THE INVESTMENT CASE ══════════════ -->
 <section class="invest" id="investment">
   <div class="invest-inner">
-    <div class="section-label reveal" style="color:var(--tuscan-gold)">The Investment</div>
-    <h2 class="section-title reveal" style="color:var(--cream);">Concrete vs. Wood:<br>Total Cost of Ownership</h2>
+    <div class="section-label reveal">The Investment</div>
+    <h2 class="section-title reveal">Concrete vs. Wood:<br>Total Cost of Ownership</h2>
     <div class="divider reveal reveal-delay-1" style="background:var(--tuscan-gold)"></div>
     <div class="invest-intro reveal reveal-delay-2">
       A concrete home costs more to build — but less to own. Lower insurance, near-zero maintenance, faster appreciation, and total fire resilience create a compounding financial advantage that widens every year.
@@ -2849,9 +2853,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <img src="img/external.webp" alt="Villa facade with faceted garage and jacaranda trees" loading="lazy">
   <div class="gallery-overlay-bottom"></div>
   <div class="gallery-text bottom">
-    <h2 class="section-title reveal" style="font-size:clamp(24px,3.5vw,36px);">
-      Designed to belong. Built to remain.
-    </h2>
+    <div class="section-label reveal">The Vision</div>
+    <h2 class="section-title reveal">Designed to belong.<br>Built to remain.</h2>
   </div>
 </section>
 
