@@ -538,6 +538,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--tuscan-gold);
   opacity: 0.8;
 }
+.credibility-strip {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 4px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--stone-grey);
+  opacity: 0.6;
+}
+.credibility-dot {
+  margin: 0 8px;
+  opacity: 0.4;
+}
 
 /* ══════════════════════════════════════════
    3. ETHICAL LUXURY
@@ -1292,7 +1311,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px;
 }
 .invest-stat-num {
-  font-family: var(--serif); font-size: clamp(32px,4vw,48px);
+  font-family: var(--serif); font-size: clamp(28px,3.5vw,42px);
   font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 8px;
 }
 .invest-stat-sub {
@@ -1445,6 +1464,60 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .invest-assumptions {
   font-size: 11px; color: var(--white); opacity: 0.25;
   margin-top: 32px; line-height: 1.6; font-style: italic;
+}
+
+/* How we assess economics */
+.invest-assess {
+  margin-top: 56px;
+  padding: 40px 36px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+}
+.invest-assess-title {
+  font-family: var(--serif);
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+.invest-assess-body {
+  font-size: 14px;
+  color: var(--white);
+  opacity: 0.6;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.invest-assess-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.invest-assess-item {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--white);
+  opacity: 0.7;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+.invest-assess-item::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  color: var(--terracotta);
+  font-size: 8px;
+  top: 3px;
+}
+.invest-assess-footer {
+  font-size: 13px;
+  color: var(--white);
+  opacity: 0.5;
+  line-height: 1.6;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
 /* Responsive */
@@ -2303,7 +2376,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="thesis-tagline reveal reveal-delay-1">Where Italian warmth meets <span class="cal-accent">Californian ease</span>.</div>
   <div class="divider reveal reveal-delay-1"></div>
   <div class="thesis-body reveal reveal-delay-2">
-    We design and build luxury villas in Los Angeles — homes of reinforced concrete, handmade ceramics, and bioclimatic intelligence. Every detail is curated to make you feel at home, from the courtyard that frames the sky to the walls that will stand for centuries. My Villa is not just a house. It is architecture designed as a permanent asset.
+    We design and build luxury villas in Los Angeles — homes of reinforced concrete, handmade ceramics, and bioclimatic intelligence. Every detail is curated to make you feel at home, from the courtyard that frames the sky to the walls built to stand the test of time. My Villa is not just a house. It is architecture designed as a permanent asset.
   </div>
   <div class="thesis-value reveal reveal-delay-3">
     Architecture that is <strong>not an expense that depreciates, but an asset that appreciates with time</strong>.
@@ -2646,7 +2719,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
       <div class="force-item reveal reveal-delay-1">
         <div class="force-dot" style="background:var(--pacific-blue)"></div>
         <div class="force-title">Material<br>Permanence</div>
-        <div class="force-desc">Reinforced concrete: the same material used in the world's most enduring cultural buildings. Structures that do not burn, do not rot, do not depreciate.</div>
+        <div class="force-desc">Reinforced concrete: the same material used in the world's most enduring cultural buildings. Structures engineered to resist fire, to require less maintenance, and to retain value over time.</div>
         <img class="force-img force-img--tall" src="img/structural-diagram.svg" alt="Structural diagram — double-skin precast wall" loading="lazy">
       </div>
       <div class="force-item reveal reveal-delay-2">
@@ -2821,37 +2894,37 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <h2 class="section-title reveal">Concrete vs. Wood:<br>Total Cost of Ownership</h2>
     <div class="divider reveal reveal-delay-1" style="background:var(--tuscan-gold)"></div>
     <div class="invest-intro reveal reveal-delay-2">
-      A concrete home costs more to build — but less to own. Lower insurance, near-zero maintenance, faster appreciation, and total fire resilience create a compounding financial advantage that widens every year.
+      A reinforced concrete villa costs more to build — but is designed to cost less to own. In the right conditions, resilient construction can support stronger insurability, lower maintenance exposure, and better long-term value retention than conventional luxury homes.
     </div>
 
-    <!-- 3 stat cards -->
+    <!-- 3 advantage cards -->
     <div class="invest-stats">
       <div class="invest-stat reveal">
-        <div class="invest-stat-label">Day-1 Premium</div>
-        <div class="invest-stat-num">+6%</div>
-        <div class="invest-stat-sub">instant appraisal uplift</div>
-        <div class="invest-stat-detail">On day one, a concrete home appraises 6% higher than an identical wood-frame property. A static premium that exists in any market — not just fire zones.</div>
+        <div class="invest-stat-label">Value Positioning</div>
+        <div class="invest-stat-num">Up to +6%</div>
+        <div class="invest-stat-sub">potential appraisal premium</div>
+        <div class="invest-stat-detail">In comparable markets, resilient concrete construction has been associated with appraisal premiums of up to 6% over conventional wood-frame. Actual outcomes are project- and market-specific.</div>
         <div class="invest-stat-source">Source: NAR Cost vs Value Report</div>
       </div>
       <div class="invest-stat reveal reveal-delay-1">
-        <div class="invest-stat-label">Annual Growth Spread</div>
-        <div class="invest-stat-num">+1.5%<span style="font-size:0.5em; opacity:0.5">/yr</span></div>
-        <div class="invest-stat-sub">faster year-over-year appreciation</div>
-        <div class="invest-stat-detail">In CA fire zones, concrete grows 1.5 points faster every year (5.5% vs 4.0%). Unlike the day-1 premium, this advantage compounds — the gap widens each year you hold.</div>
+        <div class="invest-stat-label">Long-Term Resilience</div>
+        <div class="invest-stat-num">+1–2%<span style="font-size:0.5em; opacity:0.5">/yr</span></div>
+        <div class="invest-stat-sub">indicative annual spread</div>
+        <div class="invest-stat-detail">Historical data in fire-exposed California markets suggests a potential appreciation spread of 1–2 percentage points per year for resilient construction. This is directional, not guaranteed.</div>
         <div class="invest-stat-source">Source: JRER, CA Assessor data</div>
       </div>
       <div class="invest-stat reveal reveal-delay-2">
-        <div class="invest-stat-label">Insurance Savings</div>
-        <div class="invest-stat-num">50-72%</div>
-        <div class="invest-stat-sub">lower annual premiums</div>
-        <div class="invest-stat-detail">Fire-hardened homes qualify for up to 50-72% lower premiums in CA fire zones. Over 10 years on a $20M property, savings exceed $600K vs wood-frame.</div>
+        <div class="invest-stat-label">Insurance &amp; Insurability</div>
+        <div class="invest-stat-num">Up to 50%</div>
+        <div class="invest-stat-sub">potential premium reduction</div>
+        <div class="invest-stat-detail">Wildfire-hardened homes may qualify for materially lower premiums in California. Observed reductions range widely depending on insurer, location, and mitigation measures.</div>
         <div class="invest-stat-source">Source: CA Dept of Insurance, IBHS</div>
       </div>
     </div>
 
     <!-- Interactive Simulator -->
     <div class="invest-sim reveal">
-      <div class="invest-sim-title">Investment Simulator</div>
+      <div class="invest-sim-title">Illustrative Investment Scenario</div>
       <div class="invest-sim-sub">Select a property value to compare wood-frame vs. reinforced concrete over time.</div>
 
       <div class="invest-selector" id="investSelector">
@@ -2952,13 +3025,32 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
       <!-- Gap callout -->
       <div class="invest-gap" id="investGap">
         <div class="invest-gap-num" id="gapNum">+$10.9M</div>
-        <div class="invest-gap-text">additional equity after 20 years by choosing reinforced concrete — and the gap accelerates with every passing decade.</div>
+        <div class="invest-gap-text">illustrative difference after 20 years — driven by potential advantages in value retention, insurance, and maintenance exposure.</div>
       </div>
 
       <div class="invest-assumptions">
-        Assumptions: Property value includes land (~35%) + construction. Insurance at 0.6% (wood) vs 0.3% (concrete) per CA DOI. Maintenance at 0.425% (wood) vs 0.21% (concrete) of property value. Appreciation: 4.0% (wood) vs 5.5% (concrete) in fire zones. Sources: HUD, Fox Blocks, NAR, JRER, CA Assessor data.
+        This model uses illustrative assumptions and is intended to compare alternative construction approaches directionally. It is not an appraisal, insurance quote, financial projection, or investment guarantee. Actual outcomes vary based on location, market conditions, insurer, project execution, and regulatory environment.
       </div>
     </div>
+
+    <!-- How we assess economics -->
+    <div class="invest-assess reveal">
+      <div class="invest-assess-title">How we assess project economics</div>
+      <div class="invest-assess-body">
+        Every My Villa project includes a site-specific analysis covering:
+      </div>
+      <div class="invest-assess-list">
+        <div class="invest-assess-item">Insurance positioning review</div>
+        <div class="invest-assess-item">Market-based resale and value retention analysis</div>
+        <div class="invest-assess-item">Design and resilience specification assessment</div>
+        <div class="invest-assess-item">Lifecycle maintenance comparison</div>
+        <div class="invest-assess-item">Sensitivity scenarios — not guarantees</div>
+      </div>
+      <div class="invest-assess-footer">
+        Our approach is advisory, project-specific, and transparent. We present scenarios with clear assumptions — never promises without context.
+      </div>
+    </div>
+
   </div>
 </section>
 
