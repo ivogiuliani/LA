@@ -1643,46 +1643,211 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ══════════════════════════════════════════
-   RESILIENCE — split
+   RESILIENCE — expanded full section
    ══════════════════════════════════════════ */
 .resilience {
-  display: grid; grid-template-columns: 1fr;
-  background: var(--white);
-}
-.resilience-diagram {
-  padding: 24px 40px;
-  display: block;
-  overflow: hidden;
-  text-align: center;
-}
-.resilience-diagram img {
-  max-width: 100%;
-  height: auto;
-  /* filter removed — image now has transparent bg */
-  object-fit: contain;
-  display: inline-block;
-}
-.resilience-text {
+  background: var(--offblack);
   padding: var(--section-pad) var(--side-pad);
-  display: flex; flex-direction: column; justify-content: center;
-  max-width: 900px;
+}
+.resilience-inner {
+  max-width: 1200px;
   margin: 0 auto;
 }
-.resilience-item { margin-bottom: 28px; }
-.resilience-item-title {
-  font-family: var(--sans);
-  font-size: 15px; font-weight: 600;
-  color: var(--espresso); margin-bottom: 6px;
+.resilience-intro {
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.85;
+  color: var(--white);
+  opacity: 0.65;
+  max-width: 800px;
+  margin-bottom: 56px;
 }
-.resilience-item-desc {
-  font-size: 15px; line-height: 1.7;
+
+/* ── Stats bar ── */
+.resilience-stats {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 64px;
+  border: 1px solid rgba(196,162,101,0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.res-stat {
+  flex: 1;
+  text-align: center;
+  padding: 28px 16px;
+  border-right: 1px solid rgba(196,162,101,0.1);
+}
+.res-stat:last-child { border-right: none; }
+.res-stat-num {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 400;
+  color: var(--pacific-blue);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.res-stat-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--stone-grey);
+  line-height: 1.4;
+}
+
+/* ── 5-pillar grid ── */
+.resilience-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
+}
+.res-pillar {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(196,162,101,0.08);
+  padding: 32px 24px;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.res-pillar:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  border-color: rgba(196,162,101,0.2);
+}
+.res-pillar-icon {
+  width: 48px; height: 48px;
+  margin-bottom: 20px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(107,143,158,0.12);
+}
+.res-pillar-icon svg {
+  width: 24px; height: 24px;
+  stroke: var(--pacific-blue);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.res-pillar-title {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.res-pillar-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--stone-grey);
+}
+.res-pillar-highlight {
+  margin-top: 16px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tuscan-gold);
+  opacity: 0.8;
+}
+
+/* ── Diagram area ── */
+.resilience-diagram-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 16px;
+}
+.res-diagram-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--white);
+  border: 1px solid rgba(196,162,101,0.12);
+}
+.res-diagram-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  padding: 8px;
+}
+.res-diagram-caption {
+  padding: 16px 24px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pacific-blue);
+  border-top: 1px solid rgba(107,143,158,0.15);
+}
+
+/* ── Fire safety categories ── */
+.resilience-fire {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(196,162,101,0.1);
+}
+.resilience-fire-title {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.resilience-fire-sub {
+  font-family: var(--serif);
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white);
+  opacity: 0.5;
+  margin-bottom: 40px;
+}
+.fire-cats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+.fire-cat {
+  padding: 24px 20px;
+  background: rgba(194,113,79,0.06);
+  border-left: 2px solid var(--terracotta);
+}
+.fire-cat-title {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--warm-sand);
+  margin-bottom: 8px;
+}
+.fire-cat-desc {
+  font-size: 14px;
+  line-height: 1.7;
   color: var(--stone-grey);
 }
 
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .resilience-grid { grid-template-columns: repeat(3, 1fr); }
+  .fire-cats { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 800px) {
-  .resilience-diagram { padding: 12px 4px; }
-  .resilience-diagram img { max-width: 100%; max-height: 45vw; width: auto; }
-  .resilience-text { padding: 24px 20px; }
+  .resilience-stats { flex-direction: column; }
+  .res-stat { border-right: none; border-bottom: 1px solid rgba(196,162,101,0.1); padding: 20px 16px; }
+  .res-stat:last-child { border-bottom: none; }
+  .resilience-grid { grid-template-columns: 1fr; gap: 16px; }
+  .resilience-diagram-area { grid-template-columns: 1fr; }
+  .fire-cats { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) {
+  .res-pillar { padding: 24px 16px; }
 }
 
 /* ══════════════════════════════════════════
@@ -2147,8 +2312,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
 
   /* Pillars, forces — readable on mobile */
   .pillar-desc, .force-desc { font-size: 15px; }
-  .resilience-text { padding: 32px 20px; }
-  .resilience-diagram { padding: 12px 4px; }
+  /* resilience now handled in its own media queries */
 
   /* Labels & meta text — bump 11px to 12px for readability */
   .section-label { font-size: 12px; letter-spacing: 2.5px; }
@@ -2327,6 +2491,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <a href="#thesis">Vision</a>
     <a href="#collection">Collection</a>
     <a href="#ethical">Approach</a>
+    <a href="#resilience">Resilience</a>
     <a href="#investment">Investment</a>
     <a href="#process">Process</a>
     <a href="#contact" class="nav-cta">Request Briefing</a>
@@ -2341,6 +2506,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <a href="#thesis" onclick="closeMobile()">Vision</a>
   <a href="#collection" onclick="closeMobile()">Collection</a>
   <a href="#ethical" onclick="closeMobile()">Approach</a>
+  <a href="#resilience" onclick="closeMobile()">Resilience</a>
   <a href="#investment" onclick="closeMobile()">Investment</a>
   <a href="#process" onclick="closeMobile()">Process</a>
   <a href="#contact" onclick="closeMobile()">Request Briefing</a>
@@ -2728,29 +2894,134 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </div>
 </section>
 
-<!-- ══════════════ RESILIENCE ══════════════ -->
-<section class="resilience" style="background:var(--offblack);">
-  <div class="resilience-text">
+<!-- ══════════════ RESILIENCE — EXPANDED ══════════════ -->
+<section class="resilience" id="resilience">
+  <div class="resilience-inner">
     <div class="section-label reveal">Resilience</div>
     <h2 class="section-title reveal" style="margin-bottom:24px;">
-      Engineered for the California Climate
+      Engineered to Endure
     </h2>
-    <div class="divider reveal" style="background:var(--pacific-blue)"></div>
-    <div class="resilience-item reveal reveal-delay-1">
-      <div class="resilience-item-title" style="color:var(--warm-sand);">Reinforced concrete structure</div>
-      <div class="resilience-item-desc" style="color:var(--stone-grey);">Monolithic frames that absorb seismic forces and resist extreme weather events.</div>
+    <div class="section-subtitle reveal reveal-delay-1">Homes designed for the California climate — naturally cool, energy-independent, and fire-resilient.</div>
+    <div class="divider reveal reveal-delay-1" style="background:var(--pacific-blue)"></div>
+    <div class="resilience-intro reveal reveal-delay-2">
+      Every My Villa is engineered to perform in extreme conditions. Our integrated system — developed with Transsolar KlimaEngineering and BUROMILAN — combines passive design, renewable energy, and fire-resistant construction into a home that protects you, reduces your footprint, and works even when the grid doesn't.
     </div>
-    <div class="resilience-item reveal reveal-delay-2">
-      <div class="resilience-item-title" style="color:var(--warm-sand);">Cross-ventilation</div>
-      <div class="resilience-item-desc" style="color:var(--stone-grey);">Climate-calibrated airflow that reduces energy consumption and maximizes comfort.</div>
+
+    <!-- ── Stats bar ── -->
+    <div class="resilience-stats reveal">
+      <div class="res-stat">
+        <div class="res-stat-num">100%</div>
+        <div class="res-stat-label">Electric<br>Zero Gas</div>
+      </div>
+      <div class="res-stat">
+        <div class="res-stat-num">2–3</div>
+        <div class="res-stat-label">Days Off-Grid<br>Autonomy</div>
+      </div>
+      <div class="res-stat">
+        <div class="res-stat-num">80%</div>
+        <div class="res-stat-label">Solar-Powered<br>Electricity</div>
+      </div>
+      <div class="res-stat">
+        <div class="res-stat-num">250mm</div>
+        <div class="res-stat-label">Reinforced<br>Concrete Walls</div>
+      </div>
     </div>
-    <div class="resilience-item reveal reveal-delay-3">
-      <div class="resilience-item-title" style="color:var(--warm-sand);">Bioclimatic orientation</div>
-      <div class="resilience-item-desc" style="color:var(--stone-grey);">Every opening, every wall, every volume is positioned to optimize light, shade, and airflow for the specific site.</div>
+
+    <!-- ── 5 Pillars ── -->
+    <div class="resilience-grid">
+
+      <!-- 1. Fire Protection -->
+      <div class="res-pillar reveal">
+        <div class="res-pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2c-1 4-4 6-4 10a4 4 0 008 0c0-4-3-6-4-10z"/><path d="M12 18a2 2 0 01-2-2c0-2 2-3 2-5 0 2 2 3 2 5a2 2 0 01-2 2z"/></svg>
+        </div>
+        <div class="res-pillar-title">Fire-Resistant Structure</div>
+        <div class="res-pillar-desc">Double-skin precast walls in fire-resistant reinforced concrete — 250mm thick with continuous insulation. No wood frames. No combustible cladding. Architecture built with the same material used in the world's most enduring cultural buildings.</div>
+        <div class="res-pillar-highlight">Monolithic concrete shell</div>
+      </div>
+
+      <!-- 2. Energy Independence -->
+      <div class="res-pillar reveal reveal-delay-1">
+        <div class="res-pillar-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </div>
+        <div class="res-pillar-title">Energy Independence</div>
+        <div class="res-pillar-desc">Integrated PV panels supply 80% of electricity and 20% of hot water. Paired with battery storage, your villa provides its own energy — even during blackouts. A 100% electrical system that uses no gas refrigerants.</div>
+        <div class="res-pillar-highlight">Own energy, even off-grid</div>
+      </div>
+
+      <!-- 3. Off-Grid Autonomy -->
+      <div class="res-pillar reveal reveal-delay-2">
+        <div class="res-pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 3v12"/><path d="M18 9a6 6 0 01-12 0"/><path d="M6 21l6-6 6 6"/></svg>
+        </div>
+        <div class="res-pillar-title">2–3 Day Off-Grid Autonomy</div>
+        <div class="res-pillar-desc">Water collection provides supply during droughts. Solar + battery storage ensures power during blackouts. Independent electrical systems and backup power for emergencies. Your home becomes a self-sufficient refuge when you need it most.</div>
+        <div class="res-pillar-highlight">Water + energy reserves</div>
+      </div>
+
+      <!-- 4. Natural Ventilation -->
+      <div class="res-pillar reveal reveal-delay-3">
+        <div class="res-pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg>
+        </div>
+        <div class="res-pillar-title">Natural Ventilation &amp; Microclimate</div>
+        <div class="res-pillar-desc">Cross-ventilation calibrated for L.A.'s west-to-east winds. Taller volumes to the south for optimal shading. Exposed concrete maximizes thermal mass. South-facing windows with overhangs. Naturally cool environments — even without electricity.</div>
+        <div class="res-pillar-highlight">Cool without AC</div>
+      </div>
+
+      <!-- 5. Reduced Consumption -->
+      <div class="res-pillar reveal reveal-delay-4">
+        <div class="res-pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 22l1-1h3l9-9M3 21v-3l9-9"/><path d="M14 6l2.12-2.12a2.83 2.83 0 014 4L18 10"/><circle cx="18" cy="4" r="1" fill="var(--pacific-blue)" stroke="none"/></svg>
+        </div>
+        <div class="res-pillar-title">Reduced Energy Consumption</div>
+        <div class="res-pillar-desc">The bioclimatic approach integrates thermal mass, passive shading, green roofs as natural insulation, and cross-ventilation to dramatically reduce energy needs. Less reliance on mechanical systems means lower bills, smaller footprint, greater comfort.</div>
+        <div class="res-pillar-highlight">Bioclimatic design</div>
+      </div>
+
     </div>
-  </div>
-  <div class="resilience-diagram">
-    <img src="img/resilient.webp" alt="Resilience Diagram — bioclimatic orientation and cross-ventilation" loading="lazy" class="reveal">
+
+    <!-- ── Diagram area ── -->
+    <div class="resilience-diagram-area">
+      <div class="res-diagram-card reveal">
+        <img src="img/resilience-climate.webp" alt="Climate Control Diagram — cross-ventilation, thermal mass, passive shading, bioclimatic orientation" loading="lazy">
+        <div class="res-diagram-caption">Climate Control Design</div>
+      </div>
+      <div class="res-diagram-card reveal reveal-delay-1">
+        <img src="img/resilience-energy.webp" alt="Energy &amp; Water Systems — PV panels 80/20, water collection, off-grid autonomy" loading="lazy">
+        <div class="res-diagram-caption">Energy &amp; Water Independence</div>
+      </div>
+    </div>
+
+    <!-- ── Fire Safety ── -->
+    <div class="resilience-fire reveal">
+      <div class="resilience-fire-title">Homes Designed to Last</div>
+      <div class="resilience-fire-sub">Five integrated layers of fire protection</div>
+      <div class="fire-cats">
+        <div class="fire-cat reveal">
+          <div class="fire-cat-title">Design &amp; Material</div>
+          <div class="fire-cat-desc">Fire-resistant building materials and preventative construction measures throughout every component.</div>
+        </div>
+        <div class="fire-cat reveal reveal-delay-1">
+          <div class="fire-cat-title">Technology</div>
+          <div class="fire-cat-desc">Water storage for fire protection. Independent electrical systems. Backup power for emergencies.</div>
+        </div>
+        <div class="fire-cat reveal reveal-delay-2">
+          <div class="fire-cat-title">Architectural Design</div>
+          <div class="fire-cat-desc">Layouts engineered to minimize ember accumulation and reduce exposure to radiant heat.</div>
+        </div>
+        <div class="fire-cat reveal reveal-delay-3">
+          <div class="fire-cat-title">Intelligent Landscaping</div>
+          <div class="fire-cat-desc">Strategic landscaping practices designed to reduce fire risk and create defensible space.</div>
+        </div>
+        <div class="fire-cat reveal reveal-delay-4">
+          <div class="fire-cat-title">Collective Planning</div>
+          <div class="fire-cat-desc">Villas designed as a cohesive system — building fire-resilient communities, not just homes.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
