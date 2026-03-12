@@ -633,7 +633,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   object-fit: contain; filter: brightness(0) invert(0.88);
 }
 .team-card:nth-child(3) .team-logo img {
-  height: 65%;
+  height: 80%;
 }
 .team-role {
   font-size: 13px; font-weight: 500;
@@ -2472,7 +2472,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <div class="pw-brand">MY VILLA</div>
     <div class="pw-sub">Partner Preview</div>
     <div class="pw-label">Enter access code</div>
-    <form id="pwForm" onsubmit="return false;">
+    <form id="pwForm">
       <input class="pw-input" type="password" id="pwInput" placeholder="&bull;&bull;&bull;&bull;&bull;" autocomplete="off" autofocus>
       <button class="pw-btn" type="submit">Enter</button>
     </form>
@@ -3534,8 +3534,10 @@ function closeCookieBanner() {
   const error = document.getElementById('pwError');
   const KEY = 'myvilla_access';
 
-  // Check if already authenticated
-  if (sessionStorage.getItem(KEY) === 'granted') {
+  if (!gate || !form || !input) return; // safety check
+
+  // Check if already authenticated (localStorage persists across tabs)
+  if (localStorage.getItem(KEY) === 'granted') {
     gate.classList.add('pw-hidden');
     document.body.style.overflow = '';
     return;
@@ -3544,9 +3546,10 @@ function closeCookieBanner() {
   // Lock scroll while gate is visible
   document.body.style.overflow = 'hidden';
 
-  form.addEventListener('submit', function() {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
     if (input.value.toLowerCase() === 'paolo') {
-      sessionStorage.setItem(KEY, 'granted');
+      localStorage.setItem(KEY, 'granted');
       gate.classList.add('pw-hidden');
       document.body.style.overflow = '';
     } else {
