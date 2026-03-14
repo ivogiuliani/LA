@@ -25,10 +25,10 @@ My Villa is a luxury residential construction company based in Los Angeles, Cali
 
 - Italian design intelligence meets California's best builders
 - Reinforced concrete construction (not wood-frame) for fire and seismic resilience
-- Fixed-price, 14-month delivery from briefing to move-in
+- Fixed-price, 20-month delivery from briefing to move-in
 - Museum-grade concrete finishes inspired by Palazzo Grassi and Kimbell Art Museum
 - Bioclimatic engineering by Transsolar for passive cooling and ventilation
-- International team of five specialized partners across three continents
+- International team of four specialized partners across three continents
 
 ## Our Partners
 
@@ -36,7 +36,6 @@ My Villa is a luxury residential construction company based in Los Angeles, Cali
 - Transsolar KlimaEngineering — climate engineering (Stuttgart)
 - BURO MILAN — structural engineering
 - DGU — concrete construction and prefabrication
-- The Cooperative — LA-based construction management
 
 ## Construction Technology
 
