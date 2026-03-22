@@ -208,6 +208,7 @@
    RESET & BASE — MY VILLA BRAND
    ══════════════════════════════════════════ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 :root {
   /* Italian Soul */
   --terracotta: #C2714F;
@@ -383,6 +384,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--white); opacity: 0.6;
   margin-top: 12px;
 }
+.seo-kw {
+  font-family: var(--sans);
+  font-size: clamp(11px, 1.2vw, 13px);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  margin-top: 10px;
+}
+.seo-kw.light { color: var(--white); }
+.seo-kw.dark { color: var(--espresso); }
 .divider {
   width: 60px; height: 1px;
   background: var(--tuscan-gold);
@@ -2406,7 +2418,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <img class="hero-fallback" src="img/hero.webp" alt="My Villa Garden" style="display:none;">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1 class="hero-title reveal">MY VILLA</h1>
+    <h1 class="hero-title reveal"><span aria-hidden="true">MY VILLA</span><span class="sr-only">Italian-Designed Luxury Villas in Los Angeles</span></h1>
+    <p class="seo-kw light reveal" style="margin-top:0; margin-bottom:8px;">Italian-Designed Luxury Villas in Los Angeles</p>
     <div class="hero-payoff reveal reveal-delay-1">Italian Soul &middot; <span style="color:var(--sky-mist)">Californian Body</span></div>
     <div class="hero-line reveal reveal-delay-2"></div>
     <div class="hero-sub reveal reveal-delay-3">Luxury villas built to last centuries, not decades.</div>
@@ -2440,6 +2453,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="gallery-text">
     <div class="section-label reveal">The Courtyard</div>
     <h2 class="section-title reveal">Built around<br>a courtyard.</h2>
+    <p class="seo-kw light reveal">Courtyard Villas — Italian Indoor-Outdoor Architecture</p>
     <div class="body-text reveal reveal-delay-1" style="margin-top:20px;">
       Architecture organized around an interior void — an open sky framed by concrete walls. Cross-ventilation calibrated by Transsolar's climate engineers ensures comfort without mechanical cooling.
     </div>
@@ -2455,6 +2469,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="interiors-text">
     <div class="section-label reveal">Interiors</div>
     <h2 class="section-title reveal">Light, Proportion, Material.</h2>
+    <p class="seo-kw light reveal">Italian Interior Design for Luxury Homes</p>
     <div class="body-text reveal reveal-delay-1">Every room is a composition of light, proportion, and material. Concrete, wood, and glass in a dialogue that rewards attention.</div>
   </div>
 </section>
@@ -2466,6 +2481,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="gallery-text right">
     <div class="section-label reveal">The Dining</div>
     <h2 class="section-title reveal">Spaces designed for living,<br>not displaying.</h2>
+    <p class="seo-kw light reveal">Open-Plan Living Rooms with Italian Craftsmanship</p>
     <div class="body-text reveal reveal-delay-1" style="margin-top:20px; margin-left:auto;">Where natural light traces time across concrete surfaces.</div>
   </div>
 </section>
@@ -2479,6 +2495,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="gallery-text">
     <div class="section-label reveal">Wellness</div>
     <h2 class="section-title reveal">Where architecture<br>becomes sanctuary.</h2>
+    <p class="seo-kw light reveal">Biophilic Design & Wellness Architecture</p>
   </div>
 </section>
 
@@ -2488,6 +2505,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="collection-inner">
     <div class="section-label reveal">The Collection</div>
     <h2 class="section-title dark reveal">Your Starting Point, Not Your Limit</h2>
+    <p class="seo-kw dark reveal">Fully Customizable Luxury Villa Floor Plans</p>
     <div class="collection-desc reveal reveal-delay-1">Four foundational typologies designed as inspiration — each one a proven starting point that can be fully customized to match your vision, your site, and the way you live. From layout to materials, every element adapts to become uniquely yours.</div>
     <div class="collection-grid">
       <div class="type-card reveal">
@@ -2531,6 +2549,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="personalization-inner">
     <div class="section-label reveal">Make It Yours</div>
     <h2 class="section-title reveal">Every Detail,<br>Your Decision.</h2>
+    <p class="seo-kw light reveal">Bespoke Finishes — Terrazzo, Timber, Italian Stone</p>
     <div class="personalization-intro reveal reveal-delay-1">
       Each villa is a canvas. Choose your facade tone, select your interior palette, and personalize every finish — from flooring to fixtures. No two homes are alike.
     </div>
@@ -2752,6 +2771,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="ethical-inner">
     <div class="section-label reveal">The Approach</div>
     <h2 class="section-title dark reveal">A New Standard for Los Angeles</h2>
+    <p class="seo-kw dark reveal">Fire-Resilient Concrete Homes for LA</p>
     <div class="divider reveal reveal-delay-1" style="background:var(--terracotta)"></div>
     <div class="ethical-body reveal reveal-delay-2">
       My Villa brings together an international collaboration of specialized partners — each a leader in their discipline — united with local experts who bring deep knowledge of California's construction landscape. European design intelligence meets L.A.'s most experienced builders.
@@ -2786,6 +2806,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <h2 class="section-title reveal" style="margin-bottom:24px;">
       Engineered to Endure
     </h2>
+    <p class="seo-kw light reveal" style="margin-bottom:16px;">Fire-Resilient & Energy-Independent Homes in California</p>
     <div class="section-subtitle reveal reveal-delay-1">Homes designed for the California climate — naturally cool, energy-independent, and fire-resilient.</div>
     <div class="divider reveal reveal-delay-1" style="background:var(--pacific-blue)"></div>
     <div class="resilience-intro reveal reveal-delay-2">
@@ -2915,6 +2936,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="team-inner">
     <div class="section-label reveal">The Team</div>
     <h2 class="section-title reveal">Four Partners. Three Continents. One System.</h2>
+    <p class="seo-kw light reveal" style="margin-bottom:20px;">Italian-American Architecture & Construction Team</p>
     <div class="team-grid">
       <div class="team-card reveal">
         <div class="team-logo"><img src="img/logos/its-architecture.png" alt="IT'S Architecture"></div>
@@ -2969,6 +2991,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <div class="material-header">
       <div class="section-label reveal">The Material</div>
       <h2 class="section-title reveal">Museum-Grade Concrete</h2>
+      <p class="seo-kw light reveal">Precast Reinforced Concrete Villa Construction</p>
       <div class="divider reveal reveal-delay-1"></div>
       <div class="material-intro reveal reveal-delay-1">
         Every My Villa home is crafted in architectural concrete by <strong style="color:var(--warm-sand)">DGU</strong> — a world-class construction firm whose portfolio spans some of the most celebrated cultural buildings of our time, and is now shaping one of the most anticipated luxury resorts in the world.
@@ -3034,6 +3057,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="invest-inner">
     <div class="section-label reveal">The Investment</div>
     <h2 class="section-title reveal">Concrete vs. Wood:<br>Total Cost of Ownership</h2>
+    <p class="seo-kw light reveal">Why Concrete Homes Cost Less Over 30 Years</p>
     <div class="divider reveal reveal-delay-1" style="background:var(--tuscan-gold)"></div>
     <div class="invest-intro reveal reveal-delay-2">
       A reinforced concrete villa costs more to build — but is designed to cost less to own. In the right conditions, resilient construction can support stronger insurability, lower maintenance exposure, and better long-term value retention than conventional luxury homes.
@@ -3094,6 +3118,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="gallery-text bottom">
     <div class="section-label reveal">The Vision</div>
     <h2 class="section-title reveal">Designed to belong.<br>Built to remain.</h2>
+    <p class="seo-kw light reveal">Luxury Homes for Pacific Palisades & Malibu</p>
   </div>
 </section>
 
@@ -3102,6 +3127,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <div class="process-inner">
     <div class="section-label reveal">The Process</div>
     <h2 class="section-title reveal">From Conversation to Keys in 20 Months</h2>
+    <p class="seo-kw light reveal">Custom Villa Build Timeline — 20-Month Delivery</p>
     <div class="process-desc reveal reveal-delay-1">
       Every My Villa follows a proven path — a system refined over decades of Italian construction practice, adapted for California. Fixed timelines, transparent budgets, zero compromise on design.
     </div>
