@@ -1845,21 +1845,49 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--stone-grey);
 }
 
-/* ── Responsive ── */
-@media (max-width: 1100px) {
-  .resilience-grid { grid-template-columns: repeat(3, 1fr); }
-  .fire-cats { grid-template-columns: repeat(3, 1fr); }
+/* ── Engineered to Endure separator ── */
+.resilience-endure-intro {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(196,162,101,0.1);
 }
 @media (max-width: 800px) {
-  .resilience-stats { flex-direction: column; }
-  .res-stat { border-right: none; border-bottom: 1px solid rgba(196,162,101,0.1); padding: 20px 16px; }
-  .res-stat:last-child { border-bottom: none; }
-  .resilience-grid { grid-template-columns: 1fr; gap: 16px; }
+  .resilience-endure-intro { margin-top: 40px; padding-top: 32px; }
+}
+@media (max-width: 500px) {
+  .resilience-endure-intro { margin-top: 32px; padding-top: 24px; }
+}
+
+/* ── Grid variants ── */
+.resilience-grid.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.resilience-grid.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.fire-cats.grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .resilience-grid, .resilience-grid.grid-3, .resilience-grid.grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .fire-cats, .fire-cats.grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 800px) {
+  .resilience-stats { flex-wrap: wrap; }
+  .res-stat { flex: 1 1 45%; border-right: none; border-bottom: 1px solid rgba(196,162,101,0.1); padding: 20px 16px; }
+  .res-stat:nth-child(odd) { border-right: 1px solid rgba(196,162,101,0.1); }
+  .res-stat:nth-last-child(-n+2) { border-bottom: none; }
+  .resilience-grid, .resilience-grid.grid-3, .resilience-grid.grid-4 { grid-template-columns: 1fr; gap: 16px; }
   .resilience-diagram-area { grid-template-columns: 1fr; }
-  .fire-cats { grid-template-columns: 1fr; }
+  .fire-cats, .fire-cats.grid-3 { grid-template-columns: 1fr; }
+  .resilience-fire-title { font-size: clamp(20px, 5vw, 36px); }
+  .resilience-fire-sub { font-size: clamp(14px, 3.5vw, 20px); }
+  .resilience-intro { font-size: clamp(14px, 3.5vw, 17px); }
 }
 @media (max-width: 500px) {
   .res-pillar { padding: 24px 16px; }
+  .resilience-stats { flex-direction: column; }
+  .res-stat { flex: 1 1 100%; border-right: none !important; }
+  .res-stat:last-child { border-bottom: none; }
+  .fire-cat { padding: 20px 16px; }
+  .fire-cat-title { font-size: 12px; }
+  .fire-cat-desc { font-size: 13px; }
 }
 
 /* ══════════════════════════════════════════
@@ -2834,7 +2862,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     </div>
 
     <!-- ── 3 Compliance Frameworks ── -->
-    <div class="resilience-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="resilience-grid grid-3">
 
       <div class="res-pillar reveal">
         <div class="res-pillar-icon">
@@ -2869,7 +2897,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <div class="resilience-fire reveal">
       <div class="resilience-fire-title">How We Build It</div>
       <div class="resilience-fire-sub">Six integrated layers of fire protection — from structure to landscape</div>
-      <div class="fire-cats" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="fire-cats grid-3">
         <div class="fire-cat reveal">
           <div class="fire-cat-title">ICF Concrete Shell</div>
           <div class="fire-cat-desc">250mm reinforced concrete walls — non-combustible envelope with 4+ hour fire rating. No wood frames, no combustible cladding. The structure itself is the fire barrier.</div>
@@ -2898,7 +2926,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     </div>
 
     <!-- ── Engineered to Endure intro ── -->
-    <div style="margin-top:64px; padding-top:48px; border-top:1px solid rgba(196,162,101,0.1);">
+    <div class="resilience-endure-intro">
       <h3 class="resilience-fire-title reveal">Engineered to Endure</h3>
       <div class="resilience-fire-sub reveal reveal-delay-1">Energy-independent, naturally cool, and off-grid ready.</div>
       <div class="resilience-intro reveal reveal-delay-2">
@@ -2907,7 +2935,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     </div>
 
     <!-- ── 4 Pillars: Energy, Off-Grid, Ventilation, Consumption ── -->
-    <div class="resilience-grid" style="margin-top:40px; grid-template-columns: repeat(4, 1fr);">
+    <div class="resilience-grid grid-4" style="margin-top:40px;">
 
       <div class="res-pillar reveal">
         <div class="res-pillar-icon">
