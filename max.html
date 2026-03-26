@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Massimo Scognamiglio Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:oklch(0.18 0.02 60);--bg-warm:oklch(0.24 0.025 55);--cream:oklch(0.92 0.02 90);--cream-light:oklch(0.95 0.015 85);--red:oklch(0.55 0.18 25);--gold:oklch(0.7 0.12 80);--text-primary:oklch(0.92 0.02 90);--text-secondary:oklch(0.75 0.03 80);--text-muted:oklch(0.55 0.02 70);--display:"DM Serif Display",Georgia,serif;--body:"Source Serif 4",Georgia,serif;--ease-out:cubic-bezier(0.22,1,0.36,1);--ease-in-out:cubic-bezier(0.65,0,0.35,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg-deep);-webkit-font-smoothing:antialiased}
+body{font-family:var(--body);color:var(--text-primary);background:var(--bg-deep);overflow-x:hidden;line-height:1.7}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:0}
+.reveal{opacity:1;transform:none;transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}.reveal-animate{opacity:0;transform:translateY(40px)}
+.reveal-animate.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.15s}
+.reveal-delay-2{transition-delay:.3s}
+.reveal-delay-3{transition-delay:.45s}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.reveal.visible{transition:none}}
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:clamp(16px,2vw,28px) clamp(20px,4vw,60px);display:flex;align-items:center;justify-content:space-between;transition:background .5s var(--ease-out),backdrop-filter .5s var(--ease-out),padding .4s var(--ease-out)}
+header.scrolled{background:oklch(0.18 0.02 60/.88);backdrop-filter:blur(20px);padding-block:12px}
+.header-logo{height:clamp(40px,5vw,64px);max-width:clamp(140px,18vw,220px);width:auto;filter:brightness(1.2);transition:filter .3s}
+header.scrolled .header-logo{filter:brightness(1.5);height:clamp(34px,4vw,52px);max-width:clamp(120px,15vw,190px)}
+.nav-desktop{display:flex;gap:clamp(18px,2.5vw,36px);align-items:center}
+.nav-desktop a{font-family:var(--body);font-size:clamp(12px,1vw,14px);letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary);transition:color .3s var(--ease-out);font-weight:400}
+.nav-desktop a:hover{color:var(--cream)}
+.nav-cta{background:var(--red);color:var(--cream-light)!important;padding:10px 22px;font-weight:600;letter-spacing:.06em;transition:background .3s var(--ease-out),transform .2s var(--ease-out)!important}
+.nav-cta:hover{background:oklch(0.5 0.2 25);transform:scale(1.03)}
+.nav-social{display:flex;gap:12px;align-items:center}
+.nav-social a{display:flex}
+.nav-social svg{width:18px;height:18px;fill:var(--text-muted);transition:fill .3s var(--ease-out)}
+.nav-social a:hover svg{fill:var(--cream)}
+.hamburger{display:none;flex-direction:column;gap:6px;z-index:1002;width:32px}
+.hamburger span{display:block;height:2px;background:var(--cream);transition:transform .4s var(--ease-out),opacity .3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,6px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-6px)}
+.mobile-menu{position:fixed;top:0;right:-100%;width:min(380px,85vw);height:100vh;background:var(--bg-warm);z-index:1001;padding:100px 40px 40px;display:flex;flex-direction:column;gap:24px;transition:right .5s var(--ease-out);overflow-y:auto}
+.mobile-menu.open{right:0}
+.mobile-menu a{font-family:var(--display);font-size:clamp(22px,4vw,32px);color:var(--text-secondary);transition:color .3s;display:block;padding:8px 0;border-bottom:1px solid oklch(0.35 0.02 60)}
+.mobile-menu a:hover{color:var(--cream)}
+.mobile-overlay{position:fixed;inset:0;background:oklch(0 0 0/.6);z-index:1000;opacity:0;pointer-events:none;transition:opacity .4s var(--ease-out)}
+.mobile-overlay.open{opacity:1;pointer-events:all}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 20%;transform:scale(1.08);transition:transform 8s var(--ease-out)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,oklch(0.1 0.02 60/.95) 0%,oklch(0.1 0.02 60/.5) 40%,oklch(0.1 0.02 60/.2) 70%,oklch(0.1 0.02 60/.3) 100%)}
+.hero-content{position:relative;z-index:2;padding:clamp(30px,5vw,80px);padding-bottom:clamp(50px,8vh,120px);max-width:900px}
+.hero-tagline{font-family:var(--body);font-size:clamp(11px,1.2vw,14px);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:clamp(12px,2vh,24px);font-weight:600}
+.hero h1{font-family:var(--display);font-size:clamp(36px,6vw,80px);line-height:1.05;margin-bottom:clamp(16px,2vh,28px);color:var(--cream-light)}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-subtitle{font-size:clamp(13px,1.3vw,17px);color:var(--text-secondary);max-width:600px;margin-bottom:clamp(10px,1.5vh,16px);line-height:1.6}
+.hero-proof{display:flex;flex-wrap:wrap;gap:clamp(12px,2vw,28px);align-items:center;margin-bottom:clamp(24px,4vh,40px);font-size:clamp(11px,1vw,13px);letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.hero-proof span{display:flex;align-items:center;gap:8px}
+.hero-proof .dot{width:4px;height:4px;background:var(--red);border-radius:50%;flex-shrink:0}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:16px}
+.btn-primary{background:var(--red);color:var(--cream-light);padding:clamp(14px,1.5vw,18px) clamp(28px,3vw,42px);font-family:var(--body);font-size:clamp(13px,1.1vw,15px);font-weight:600;letter-spacing:.06em;transition:background .3s var(--ease-out),transform .2s var(--ease-out);display:inline-flex;align-items:center;gap:10px}
+.btn-primary:hover{background:oklch(0.5 0.2 25);transform:translateY(-2px)}
+.btn-ghost{border:1px solid oklch(0.5 0.03 70);color:var(--text-secondary);padding:clamp(14px,1.5vw,18px) clamp(28px,3vw,42px);font-family:var(--body);font-size:clamp(13px,1.1vw,15px);font-weight:400;letter-spacing:.06em;transition:border-color .3s var(--ease-out),color .3s var(--ease-out),transform .2s var(--ease-out)}
+.btn-ghost:hover{border-color:var(--cream);color:var(--cream);transform:translateY(-2px)}
+.section-padding{padding:clamp(60px,10vh,140px) clamp(20px,5vw,80px)}
+.section-header{margin-bottom:clamp(40px,6vh,80px)}
+.section-label{font-family:var(--body);font-size:clamp(11px,1vw,13px);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:600}
+.section-title{font-family:var(--display);font-size:clamp(28px,4vw,56px);line-height:1.15;color:var(--cream-light)}
+.trust-bar{background:oklch(0.15 0.015 60);padding:clamp(20px,3vh,36px) clamp(20px,5vw,80px);display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(20px,4vw,50px);align-items:center}
+.trust-item{font-size:clamp(10px,0.9vw,12px);letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);font-weight:600;white-space:nowrap}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);max-width:1400px;margin:0 auto}
+.project-card{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:4/5}
+.project-card:first-child{grid-column:1/3;grid-row:1/3;aspect-ratio:auto}
+.project-card-inner{position:relative;width:100%;height:100%;overflow:hidden}
+.project-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease-out),filter .6s var(--ease-out)}
+.project-card:hover img{transform:scale(1.06);filter:brightness(.7)}
+.project-card .card-placeholder{width:100%;height:100%;background:var(--bg-warm);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:clamp(24px,3vw,48px);color:var(--text-muted);text-align:center;padding:20px;transition:background .6s var(--ease-out)}
+.project-card:hover .card-placeholder{background:oklch(0.28 0.03 55)}
+.project-card-overlay{position:absolute;inset:0;background:linear-gradient(0deg,oklch(0.08 0.02 60/.9) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(16px,2vw,32px);opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out)}
+.project-card:hover .project-card-overlay{opacity:1;transform:none}
+.project-card-cat{font-size:clamp(9px,0.8vw,11px);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.project-card-title{font-family:var(--display);font-size:clamp(16px,1.8vw,26px);color:var(--cream-light);margin-bottom:4px}
+.project-card-meta{font-size:clamp(11px,0.9vw,13px);color:var(--text-muted)}
+.torn-edge{-webkit-clip-path:polygon(0 2%,3% 0,8% 3%,15% 0,22% 2%,30% 0,38% 3%,45% 1%,52% 3%,60% 0,68% 2%,75% 0,82% 3%,90% 0,95% 2%,100% 0,100% 97%,97% 100%,92% 97%,85% 100%,78% 98%,70% 100%,63% 97%,55% 100%,48% 98%,40% 100%,32% 97%,25% 100%,18% 98%,10% 100%,5% 97%,0 100%);clip-path:polygon(0 2%,3% 0,8% 3%,15% 0,22% 2%,30% 0,38% 3%,45% 1%,52% 3%,60% 0,68% 2%,75% 0,82% 3%,90% 0,95% 2%,100% 0,100% 97%,97% 100%,92% 97%,85% 100%,78% 98%,70% 100%,63% 97%,55% 100%,48% 98%,40% 100%,32% 97%,25% 100%,18% 98%,10% 100%,5% 97%,0 100%)}
+.about-section{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);max-width:1400px;margin:0 auto;align-items:start}
+.about-portrait{position:sticky;top:120px}
+.about-portrait img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 20%}
+.about-text{padding-top:clamp(20px,4vh,60px)}
+.about-text p{font-size:clamp(15px,1.2vw,18px);color:var(--text-secondary);margin-bottom:clamp(16px,2vh,24px);line-height:1.8}
+.about-text strong{color:var(--cream-light);font-weight:600}
+.about-highlights{display:flex;flex-wrap:wrap;gap:8px;margin:clamp(20px,3vh,40px) 0}
+.about-highlights span{font-size:clamp(10px,0.85vw,12px);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);border:1px solid oklch(0.35 0.02 60);padding:6px 14px;font-weight:400}
+.exhibitions-section{background:oklch(0.15 0.015 60)}
+.exhibitions-list{max-width:1000px;margin:0 auto;columns:1}
+.exhibition-item{padding:clamp(12px,1.5vh,18px) 0;border-bottom:1px solid oklch(0.25 0.02 60);display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,2vw,32px);align-items:baseline}
+.exhibition-year{font-family:var(--display);font-size:clamp(14px,1.1vw,17px);color:var(--gold);white-space:nowrap;min-width:50px}
+.exhibition-desc{font-size:clamp(13px,1vw,15px);color:var(--text-secondary)}
+.exhibition-desc strong{color:var(--cream-light);font-weight:600}
+.news-section{max-width:1200px;margin:0 auto}
+.news-grid{display:grid;gap:clamp(24px,3vw,40px)}
+.news-featured{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,40px);margin-bottom:clamp(32px,4vh,60px)}
+.news-card{cursor:pointer;transition:transform .4s var(--ease-out)}
+.news-card:hover{transform:translateY(-4px)}
+.news-card-img{aspect-ratio:16/10;overflow:hidden;margin-bottom:clamp(12px,1.5vh,20px);background:var(--bg-warm)}
+.news-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease-out)}
+.news-card:hover .news-card-img img{transform:scale(1.04)}
+.news-card-date{font-size:clamp(10px,0.85vw,12px);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;font-weight:600}
+.news-card-title{font-family:var(--display);font-size:clamp(16px,1.5vw,24px);color:var(--cream-light);margin-bottom:8px;line-height:1.3}
+.news-card-excerpt{font-size:clamp(13px,1vw,15px);color:var(--text-muted);line-height:1.6}
+.news-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:clamp(20px,2vw,32px)}
+.news-list .news-card-title{font-size:clamp(14px,1.2vw,18px)}
+.portraits-section{background:var(--bg-warm)}
+.portraits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,2vw,32px);max-width:1200px;margin:0 auto}
+.portrait-card{cursor:pointer;overflow:hidden}
+.portrait-card img{aspect-ratio:3/4;object-fit:cover;width:100%;transition:transform .6s var(--ease-out),filter .5s var(--ease-out)}
+.portrait-card:hover img{transform:scale(1.04);filter:brightness(.85)}
+.portrait-card-text{padding:clamp(12px,1.5vh,20px) 0}
+.portrait-card-title{font-family:var(--display);font-size:clamp(16px,1.3vw,20px);color:var(--cream-light);margin-bottom:4px}
+.portrait-card-desc{font-size:clamp(12px,1vw,14px);color:var(--text-muted)}
+.fashion-section{max-width:1400px;margin:0 auto}
+.fashion-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2vw,28px)}
+.fashion-card{position:relative;overflow:hidden;cursor:pointer}
+.fashion-card img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .7s var(--ease-out)}
+.fashion-card:hover img{transform:scale(1.05)}
+.fashion-card-overlay{position:absolute;bottom:0;left:0;right:0;padding:clamp(16px,2vw,32px);background:linear-gradient(0deg,oklch(0.08 0.02 60/.85),transparent);transform:translateY(20px);opacity:0;transition:all .5s var(--ease-out)}
+.fashion-card:hover .fashion-card-overlay{opacity:1;transform:none}
+.fashion-card-title{font-family:var(--display);font-size:clamp(16px,1.5vw,22px);color:var(--cream-light)}
+.services-section{background:oklch(0.15 0.015 60)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(24px,3vw,40px);max-width:1200px;margin:0 auto}
+.service-card{padding:clamp(24px,3vw,40px);border:1px solid oklch(0.3 0.02 60);transition:border-color .4s var(--ease-out),transform .4s var(--ease-out);cursor:pointer}
+.service-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.service-card-icon{width:40px;height:40px;margin-bottom:20px}
+.service-card-icon svg{width:100%;height:100%;stroke:var(--gold);fill:none;stroke-width:1.5}
+.service-card-title{font-family:var(--display);font-size:clamp(18px,1.6vw,24px);color:var(--cream-light);margin-bottom:12px}
+.service-card-desc{font-size:clamp(13px,1vw,15px);color:var(--text-muted);line-height:1.7}
+.detail-section{max-width:1000px;margin:0 auto}
+.detail-block{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,60px);align-items:center;margin-bottom:clamp(60px,8vh,100px)}
+.detail-block:nth-child(even){direction:rtl}
+.detail-block:nth-child(even)>*{direction:ltr}
+.detail-img img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.detail-text-title{font-family:var(--display);font-size:clamp(22px,2.5vw,36px);color:var(--cream-light);margin-bottom:12px}
+.detail-text-sub{font-size:clamp(11px,0.9vw,13px);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:600}
+.detail-text p{font-size:clamp(14px,1.1vw,16px);color:var(--text-secondary);line-height:1.7}
+.steps-section{background:var(--bg-warm);text-align:center}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);max-width:1000px;margin:0 auto}
+.step-card{padding:clamp(20px,2vw,36px)}
+.step-num{font-family:var(--display);font-size:clamp(48px,5vw,72px);color:oklch(0.3 0.04 60);line-height:1;margin-bottom:16px}
+.step-text{font-size:clamp(14px,1.1vw,16px);color:var(--text-secondary);line-height:1.7}
+.press-section{text-align:center;max-width:900px;margin:0 auto}
+.press-quote{margin-bottom:clamp(40px,5vh,70px)}
+.press-quote blockquote{font-family:var(--display);font-size:clamp(22px,3vw,40px);color:var(--cream-light);line-height:1.35;font-style:italic;position:relative;padding:0 clamp(16px,3vw,40px)}
+.press-quote blockquote::before{content:"\201C";position:absolute;left:-10px;top:-20px;font-size:clamp(60px,8vw,120px);color:oklch(0.3 0.06 25);line-height:1;font-style:normal}
+.press-quote cite{display:block;margin-top:16px;font-size:clamp(12px,1vw,14px);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-style:normal;font-weight:600}
+.cta-section{background:linear-gradient(135deg,oklch(0.22 0.04 40),oklch(0.16 0.03 60));text-align:center;padding:clamp(80px,12vh,160px) clamp(20px,5vw,80px)}
+.cta-section h2{font-family:var(--display);font-size:clamp(30px,4.5vw,64px);color:var(--cream-light);margin-bottom:clamp(16px,2vh,24px);line-height:1.15}
+.cta-section p{font-size:clamp(15px,1.2vw,18px);color:var(--text-secondary);max-width:600px;margin:0 auto clamp(28px,4vh,44px);line-height:1.7}
+.cta-section .hero-ctas{justify-content:center}
+.additional-nav{max-width:800px;margin:0 auto}
+.additional-nav-list{list-style:none;display:grid;gap:8px}
+.additional-nav-list li{padding:clamp(10px,1.2vh,16px) clamp(16px,2vw,24px);border:1px solid oklch(0.3 0.02 60);font-size:clamp(13px,1.1vw,15px);color:var(--text-secondary);transition:border-color .3s var(--ease-out),color .3s var(--ease-out)}
+.additional-nav-list li:hover{border-color:var(--gold);color:var(--cream)}
+.contact-section{background:var(--bg-warm)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);max-width:1000px;margin:0 auto;align-items:start}
+.contact-title{font-family:var(--display);font-size:clamp(36px,5vw,64px);color:var(--cream-light);margin-bottom:clamp(20px,3vh,36px)}
+.contact-email{display:block;font-family:var(--display);font-size:clamp(18px,1.8vw,26px);color:var(--gold);margin-bottom:12px;transition:color .3s var(--ease-out)}
+.contact-email:hover{color:var(--cream)}
+.contact-studio{font-size:clamp(14px,1.1vw,16px);color:var(--text-muted);margin-top:clamp(20px,3vh,36px);line-height:1.7}
+.contact-social{display:flex;gap:20px;margin-top:clamp(24px,3vh,40px)}
+.contact-social a{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border:1px solid oklch(0.35 0.02 60);transition:border-color .3s var(--ease-out),transform .2s var(--ease-out)}
+.contact-social a:hover{border-color:var(--gold);transform:translateY(-2px)}
+.contact-social svg{width:20px;height:20px;fill:var(--text-secondary)}
+.contact-right{padding-top:clamp(20px,4vh,60px)}
+.contact-right p{font-size:clamp(15px,1.2vw,18px);color:var(--text-secondary);line-height:1.8;margin-bottom:clamp(24px,3vh,36px)}
+footer{padding:clamp(30px,4vh,50px) clamp(20px,5vw,80px);border-top:1px solid oklch(0.25 0.02 60);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
+.footer-copy{font-size:clamp(11px,0.9vw,13px);color:var(--text-muted)}
+.footer-social{display:flex;gap:16px}
+.footer-social a{display:flex}
+.footer-social svg{width:16px;height:16px;fill:var(--text-muted);transition:fill .3s var(--ease-out)}
+.footer-social a:hover svg{fill:var(--cream)}
+.modal-overlay{position:fixed;inset:0;background:oklch(0.06 0.01 60/.92);z-index:2000;opacity:0;pointer-events:none;transition:opacity .4s var(--ease-out);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-content{max-width:800px;margin:80px auto;padding:clamp(24px,4vw,60px);background:var(--bg-warm);position:relative}
+.modal-close{position:fixed;top:20px;right:24px;z-index:2001;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:oklch(0.2 0.02 60/.8);backdrop-filter:blur(10px);border:1px solid oklch(0.35 0.02 60);cursor:pointer;transition:background .3s var(--ease-out)}
+.modal-close svg{width:20px;height:20px;stroke:var(--cream);stroke-width:2}
+.modal-close:hover{background:var(--red)}
+.modal-title{font-family:var(--display);font-size:clamp(24px,3.5vw,42px);color:var(--cream-light);margin-bottom:8px;line-height:1.2}
+.modal-meta{font-size:clamp(11px,0.9vw,13px);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:clamp(24px,3vh,40px);font-weight:600}
+.modal-img{margin-bottom:clamp(20px,3vh,36px)}
+.modal-img img{width:100%;max-height:60vh;object-fit:contain;background:oklch(0.12 0.01 60)}
+.modal-body{font-size:clamp(15px,1.1vw,17px);color:var(--text-secondary);line-height:1.85;white-space:pre-line}
+.modal-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:clamp(20px,3vh,36px)}
+.modal-gallery img{width:100%;aspect-ratio:1;object-fit:cover;cursor:pointer;transition:transform .3s var(--ease-out)}
+.modal-gallery img:hover{transform:scale(1.03)}
+@media(max-width:1024px){
+.nav-desktop,.nav-social{display:none}
+.hamburger{display:flex}
+.projects-grid{grid-template-columns:1fr 1fr}
+.project-card:first-child{grid-column:1/3;grid-row:auto}
+.about-section{grid-template-columns:1fr}
+.about-portrait{position:static}
+.detail-block{grid-template-columns:1fr}
+.detail-block:nth-child(even){direction:ltr}
+.steps-grid{grid-template-columns:1fr}
+.contact-grid{grid-template-columns:1fr}
+.news-featured{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+.projects-grid{grid-template-columns:1fr}
+.project-card:first-child{grid-column:auto}
+.project-card-overlay{opacity:1;transform:none}
+.fashion-grid{grid-template-columns:1fr}
+.fashion-card-overlay{opacity:1;transform:none}
+.hero-proof{flex-direction:column;gap:8px}
+}
+
+/* Safety: .reveal.visible always wins */
+.reveal.visible{opacity:1!important;transform:none!important;}
+</style>
+</head>
+<body>
+
+<header id="header">
+<img src="https://images.squarespace-cdn.com/content/v1/508d30b1e4b0b3e60f004110/1555268553995-OT0NWI9T77TPPYTGC88Y/logo+macro.jpg" alt="Massimo Scognamiglio Studio" class="header-logo" onerror="this.style.display='none'">
+<nav class="nav-desktop">
+<a href="#works">Works</a>
+<a href="#about">Bio</a>
+<a href="#exhibitions">Exhibitions</a>
+<a href="#journal">Journal</a>
+<a href="#portraits">Portraits</a>
+<a href="#services">Practice</a>
+<a href="#contact">Contact</a>
+<div class="nav-social">
+<a href="http://instagram.com/scognamiglio" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+<a href="http://vimeo.com/user7854064" target="_blank" rel="noopener" aria-label="Vimeo"><svg viewBox="0 0 24 24"><path d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609C15.906 19.988 13.118 22 10.779 22c-1.451 0-2.676-1.338-3.674-4.017L5.478 11.57c-.555-2.679-1.15-4.017-1.788-4.017-.139 0-.624.292-1.456.876L1 7.006c.915-.806 1.818-1.612 2.71-2.42C5.068 3.388 6.253 2.76 7.044 2.7c1.855-.178 2.998 1.09 3.428 3.805.464 2.93.786 4.751.967 5.467.537 2.44 1.128 3.66 1.773 3.66.501 0 1.254-.793 2.259-2.38.999-1.587 1.534-2.796 1.604-3.627.143-1.375-.396-2.062-1.617-2.062-.576 0-1.167.132-1.773.393 1.178-3.86 3.429-5.736 6.757-5.627 2.467.073 3.628 1.672 3.535 4.087z"/></svg></a>
+<a href="http://www.magcloud.com/user/scognamiglio" target="_blank" rel="noopener" aria-label="MagCloud"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l4.59-4.58L18 11l-6 6z"/></svg></a>
+</div>
+</nav>
+<a href="https://massimoscognamiglio.com/s/Portfolio_March_2024_Massimo-Scognamiglio_compressed.pdf" target="_blank" rel="noopener" class="nav-cta nav-desktop-cta">Download Portfolio</a>
+<button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<nav class="mobile-menu" id="mobileMenu">
+<a href="#works" class="mobile-nav-link">Works</a>
+<a href="#about" class="mobile-nav-link">Bio</a>
+<a href="#exhibitions" class="mobile-nav-link">Exhibitions</a>
+<a href="#journal" class="mobile-nav-link">Journal</a>
+<a href="#portraits" class="mobile-nav-link">Portraits</a>
+<a href="#services" class="mobile-nav-link">Practice</a>
+<a href="#contact" class="mobile-nav-link">Contact</a>
+<a href="https://massimoscognamiglio.com/s/Portfolio_March_2024_Massimo-Scognamiglio_compressed.pdf" target="_blank" rel="noopener" class="mobile-nav-link" style="color:var(--gold)">Download Portfolio</a>
+<div style="display:flex;gap:20px;margin-top:20px">
+<a href="http://instagram.com/scognamiglio" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+<a href="http://vimeo.com/user7854064" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609C15.906 19.988 13.118 22 10.779 22c-1.451 0-2.676-1.338-3.674-4.017L5.478 11.57c-.555-2.679-1.15-4.017-1.788-4.017-.139 0-.624.292-1.456.876L1 7.006c.915-.806 1.818-1.612 2.71-2.42C5.068 3.388 6.253 2.76 7.044 2.7c1.855-.178 2.998 1.09 3.428 3.805.464 2.93.786 4.751.967 5.467.537 2.44 1.128 3.66 1.773 3.66.501 0 1.254-.793 2.259-2.38.999-1.587 1.534-2.796 1.604-3.627.143-1.375-.396-2.062-1.617-2.062-.576 0-1.167.132-1.773.393 1.178-3.86 3.429-5.736 6.757-5.627 2.467.073 3.628 1.672 3.535 4.087z"/></svg></a>
+<a href="http://www.magcloud.com/user/scognamiglio" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l4.59-4.58L18 11l-6 6z"/></svg></a>
+</div>
+</nav>
+
+<section class="hero" id="hero">
+<div class="hero-bg">
+<img src="assets/massimoscognamiglio.com/Scogna_Artist.jpg" alt="Massimo Scognamiglio — Artist" id="heroBgImg" loading="eager" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/508d30b1e4b0b3e60f004110/1676109326533-M0OTZNPQYNF75AEHNCC7/Scogna_Artist.jpg?format=2500w'">
+</div>
+<div class="hero-content">
+<p class="hero-tagline">Multidisciplinary Artist · Rome, since 1995</p>
+<h1>My world.<br>Painting, photography,<br><em>performance</em> &amp; publications.</h1>
+<p class="hero-subtitle">My world, my life, paintings, photographs &amp; more — a multidisciplinary journey through art, image &amp; identity.</p>
+<div class="hero-proof">
+<span><span class="dot"></span>MACRO Museum</span>
+<span><span class="dot"></span>Palazzo delle Esposizioni</span>
+<span><span class="dot"></span>LIMEN Collection</span>
+<span><span class="dot"></span>Exibart Prize Finalist</span>
+<span><span class="dot"></span>Supermarket Gallery</span>
+</div>
+<div class="hero-ctas">
+<a href="https://massimoscognamiglio.com/s/Portfolio_March_2024_Massimo-Scognamiglio_compressed.pdf" target="_blank" rel="noopener" class="btn-primary">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+Download Portfolio
+</a>
+<a href="#contact" class="btn-ghost">Contact Me</a>
+</div>
+</div>
+</section>
+
+<div class="trust-bar">
+<span class="trust-item">MACRO Museo Arte Contemporanea</span>
+<span class="trust-item">Palazzo delle Esposizioni</span>
+<span class="trust-item">LIMEN Museum</span>
+<span class="trust-item">Dorothy Circus Gallery</span>
+<span class="trust-item">Exibart Prize 2022 & 2023</span>
+<span class="trust-item">222 Emerging Artists 2026</span>
+</div>
+
+<section class="section-padding" id="works">
+<div class="section-header reveal">
+<p class="section-label">Selected Works</p>
+<h2 class="section-title">Selected Works</h2>
+</div>
+<div class="projects-grid">
+<div class="project-card torn-edge reveal" data-project="0">
+<div class="project-card-inner">
+<img src="assets/massimoscognamiglio.com/Incorniciati10.jpg" alt="Strappi" loading="lazy">
+<div class="project-card-overlay">
+<span class="project-card-cat">Art / Painting</span>
+<h3 class="project-card-title">Strappi</h3>
+<p class="project-card-meta">Rome, 2021 · Finalist Exibart Prize 2022</p>
+</div>
+</div>
+</div>
+<div class="project-card torn-edge reveal reveal-delay-1" data-project="1">
+<div class="project-card-inner">
+<div class="card-placeholder">Pensiero<br>Stupendo #1</div>
+<div class="project-card-overlay">
+<span class="project-card-cat">Art / Photography / Exhibition</span>
+<h3 class="project-card-title">Pensiero Stupendo #1</h3>
+<p class="project-card-meta">Howtan Space, Rome, 2018</p>
+</div>
+</div>
+</div>
+<div class="project-card torn-edge reveal reveal-delay-2" data-project="2">
+<div class="project-card-inner">
+<img src="assets/massimoscognamiglio.com/Dossier2.jpg" alt="Imago Projects" loading="lazy">
+<div class="project-card-overlay">
+<span class="project-card-cat">Art / Photography</span>
+<h3 class="project-card-title">Imago Projects</h3>
+<p class="project-card-meta">Imago PhotoFestival, 2018</p>
+</div>
+</div>
+</div>
+<div class="project-card torn-edge reveal" data-project="3">
+<div class="project-card-inner">
+<img src="assets/massimoscognamiglio.com/punk_aristocracy4_0841.jpg" alt="Punk Aristocracy" loading="lazy">
+<div class="project-card-overlay">
+<span class="project-card-cat">Art / Photography / Exhibition</span>
+<h3 class="project-card-title">Punk Aristocracy</h3>
+<p class="project-card-meta">Takeawaygallery, Rome, 2016</p>
+</div>
+</div>
+</div>
+<div class="project-card torn-edge reveal reveal-delay-1" data-project="4">
+<div class="project-card-inner">
+<div class="card-placeholder">A Hole<br>in my head</div>
+<div class="project-card-overlay">
+<span class="project-card-cat">Art</span>
+<h3 class="project-card-title">A Hole in my head</h3>
+<p class="project-card-meta"></p>
+</div>
+</div>
+</div>
+<div class="project-card torn-edge reveal reveal-delay-2" data-project="5">
+<div class="project-card-inner">
+<img src="assets/massimoscognamiglio.com/Liquid_Sky_Selezione_carolina.jpg" alt="Liquid Sky" loading="lazy">
+<div class="project-card-overlay">
+<span class="project-card-cat">Fashion / Photography</span>
+<h3 class="project-card-title">Liquid Sky</h3>
+<p class="project-card-meta"></p>
+</div>
+</div>
+</div>
+<div class="project-card torn-edge reveal" data-project="6">
+<div class="project-card-inner">
+<div class="card-placeholder">FLÉTRI</div>
+<div class="project-card-overlay">
+<span class="project-card-cat">Fashion / Photography</span>
+<h3 class="project-card-title">FLÉTRI</h3>
+<p class="project-card-meta">Say Goodbye to the Age of Innocence</p>
+</div>
+</div>
+</div>
+<div class="project-card torn-edge reveal reveal-delay-1" data-project="7">
+<div class="project-card-inner">
+<div class="card-placeholder">Journey at the<br>end of the night</div>
+<div class="project-card-overlay">
+<span class="project-card-cat">Fashion / Photography</span>
+<h3 class="project-card-title">Journey at the end of the night</h3>
+<p class="project-card-meta"></p>
+</div>
+</div>
+</div>
+<div class="project-card torn-edge reveal reveal-delay-2" data-project="8">
+<div class="project-card-inner">
+<img src="assets/massimoscognamiglio.com/decouture.jpg" alt="De Couture" loading="lazy">
+<div class="project-card-overlay">
+<span class="project-card-cat">Fashion / Photography</span>
+<h3 class="project-card-title">De Couture</h3>
+<p class="project-card-meta"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="modal-overlay" id="mainModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal-content">
+<button class="modal-close" id="modalClose" aria-label="Chiudi">&times;</button>
+<div class="modal-body">
+<div class="modal-media">
+<img src="" alt="" id="modalImage" class="modal-image">
+<div class="modal-placeholder" id="modalPlaceholder"></div>
+</div>
+<div class="modal-text">
+<span class="modal-cat" id="modalCat"></span>
+<h2 class="modal-title" id="modalTitle"></h2>
+<p class="modal-meta" id="modalMeta"></p>
+<div class="modal-description" id="modalDescription"></div>
+</div>
+</div>
+</div>
+</div>
+
+<style>
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(26, 23, 20, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-out);
+}
+.modal-overlay.open {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem 4rem;
+}
+.modal-overlay.open.visible {
+  opacity: 1;
+}
+.modal-content {
+  position: relative;
+  background: var(--bg-warm);
+  border: 1px solid rgba(212, 197, 169, 0.12);
+  max-width: 900px;
+  width: 100%;
+  margin: auto;
+  transform: translateY(28px);
+  transition: transform 0.4s var(--ease-out);
+}
+.modal-overlay.open.visible .modal-content {
+  transform: translateY(0);
+}
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s ease, transform 0.2s ease;
+  font-family: var(--body);
+}
+.modal-close:hover {
+  color: var(--cream-light);
+  transform: scale(1.15) rotate(90deg);
+}
+.modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+}
+@media (max-width: 680px) {
+  .modal-body {
+    grid-template-columns: 1fr;
+  }
+}
+.modal-media {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+  background: var(--bg-deep);
+}
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.modal-image[src=""] {
+  display: none;
+}
+.modal-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 2rem;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+.modal-text {
+  padding: 2.5rem 2rem 2.5rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.modal-cat {
+  font-family: var(--body);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.modal-title {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--cream-light);
+  line-height: 1.15;
+  margin: 0;
+}
+.modal-meta {
+  font-family: var(--body);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-style: italic;
+}
+.modal-description {
+  font-family: var(--body);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-top: 0.5rem;
+  white-space: pre-line;
+}
+</style>
+
+<script>
+(function () {
+  var projectData = [
+    {
+      id: 0,
+      title: 'Strappi',
+      cat: 'Art / Painting',
+      meta: 'Rome, 2021 · Finalist Exibart Prize 2022 & 2023',
+      image: 'assets/massimoscognamiglio.com/Incorniciati10.jpg',
+      placeholder: '',
+      description: 'La serie degli Strappi è il cuore pulsante della ricerca di Massimo Scognamiglio. Iniziata nel 1998, questa pratica consiste nello strappare pagine di giornale e riviste e intervenirvi con pastelli a olio e matita, creando opere che fondono il gesto fisico con l\'immagine mediata. Ogni strappo è un atto di violenza e di cura insieme — la pagina strappata diventa un campo dove la pittura irrompe, dialoga, contradice.\n\nLa serie è stata esposta a Casa 94 Gallery (Roma, 2021) nella mostra "Strappi e Profezie" — un padiglione psichiatrico visionario e ironico — e ha portato Scognamiglio tra i cinque finalisti dell\'Exibart Prize nel 2022 e nel 2023.'
+    },
+    {
+      id: 1,
+      title: 'Pensiero Stupendo #1',
+      cat: 'Art / Photography / Exhibition',
+      meta: 'Howtan Space, Rome, 2018',
+      image: '',
+      placeholder: 'Pensiero\nStupendo #1',
+      description: 'Prima esposizione personale presso lo Howtan Space di Roma nel 2018. Un titolo rubato da una canzone di Patty Pravo e restituito come manifesto: il pensiero stupendo è quello che non si spiega, quello che eccede la logica e si dà come pura presenza.\n\nLa mostra raccoglieva pittura, fotografia e installazione in un dialogo serrato tra supporti e tempi diversi. Il corpo — sempre il corpo — come territorio di indagine e come palcoscenico.'
+    },
+    {
+      id: 2,
+      title: 'Imago Projects',
+      cat: 'Art / Photography',
+      meta: 'Imago PhotoFestival, 2018',
+      image: 'assets/massimoscognamiglio.com/Dossier2.jpg',
+      placeholder: '',
+      description: 'Partecipazione all\'Imago PhotoFestival 2018 con un progetto fotografico che esplora il confine tra documento e finzione, tra ritratto e autoritratto mediato.\n\nImago Projects è un contenitore di lavori fotografici che attraversano anni e soggetti diversi, tenuti insieme da un\'attenzione quasi ossessiva alla luce, al dettaglio, alla presenza fisica dei corpi nello spazio.'
+    },
+    {
+      id: 3,
+      title: 'Punk Aristocracy',
+      cat: 'Art / Photography / Exhibition',
+      meta: 'Takeawaygallery, Rome, 2016',
+      image: 'assets/massimoscognamiglio.com/punk_aristocracy4_0841.jpg',
+      placeholder: '',
+      description: 'Punk Aristocracy è il titolo di una mostra e di un atteggiamento. Esposta alla Takeawaygallery di Roma nel 2016, la serie fotografica esplora la tensione tra il gesto grezzo e la raffinatezza formale — tra il punk come sistema di valori e l\'aristocrazia come postura.\n\nCorpi, abiti, sguardi che rifiutano di scegliere tra eleganza e ribellione. Una dialettica che attraversa tutta la pratica di Scognamiglio: la collisione tra espressione bruta e lucidatura istituzionale.'
+    },
+    {
+      id: 4,
+      title: 'A Hole in my head',
+      cat: 'Art',
+      meta: '',
+      image: '',
+      placeholder: 'A Hole\nin my head',
+      description: 'Un progetto che indaga lo spazio interno — le lacune, le assenze, i vuoti che strutturano l\'identità quanto le presenze.\n\nIl titolo è insieme anatomico e metaforico: il buco nella testa come ferita e come apertura, come punto cieco e come fonte di luce. Opere su carta, pittura e installazione.'
+    },
+    {
+      id: 5,
+      title: 'Liquid Sky',
+      cat: 'Fashion / Photography',
+      meta: '',
+      image: 'assets/massimoscognamiglio.com/Liquid_Sky_Selezione_carolina.jpg',
+      placeholder: '',
+      description: 'Un editorial fotografico di moda che porta il segno pittorico di Scognamiglio dentro il territorio del fashion. Liquid Sky è acqua e aria, movimento e dissoluzione — corpi che non obbediscono alla gravità della convenzione.\n\nLa serie rappresenta l\'approccio radicale e artistico alla fotografia di moda che caratterizza il lavoro di RADICAL Fashion: nessuna concessione al decorativo, ogni scatto è un gesto.'
+    },
+    {
+      id: 6,
+      title: 'FLÉTRI',
+      cat: 'Fashion / Photography',
+      meta: 'Say Goodbye to the Age of Innocence',
+      image: '',
+      placeholder: 'FLÉTRI',
+      description: 'FLÉTRI — dal francese: appassito, avvizzito, eppure ancora in piedi.\n\n"Say Goodbye to the Age of Innocence" è il sottotitolo e il programma: un addio alla freschezza ingenua, un benvenuto alla bellezza che porta i segni del tempo. Una serie fotografica di moda che celebra ciò che rimane dopo che l\'innocenza è andata — più interessante, più onesta, più vera.'
+    },
+    {
+      id: 7,
+      title: 'Journey at the end of the night',
+      cat: 'Fashion / Photography',
+      meta: '',
+      image: '',
+      placeholder: 'Journey at the\nend of the night',
+      description: 'Un titolo rubato a Céline e restituito come visione fotografica. Il viaggio alla fine della notte — quello di Bardamu come quello di chiunque abbia attraversato Roma alle 4 di mattina con la testa piena di immagini.\n\nUna serie fashion che usa la notte come ambiente e come stato d\'animo: la luce artificiale, i riflessi sul bagnato, i corpi che si muovono tra ombra e rivelazione.'
+    },
+    {
+      id: 8,
+      title: 'De Couture',
+      cat: 'Fashion / Photography',
+      meta: '',
+      image: 'assets/massimoscognamiglio.com/decouture.jpg',
+      placeholder: '',
+      description: 'De Couture è un progetto fotografico che smonta il sistema della moda dall\'interno. Non anti-moda ma de-couture: la cucitura disfatta, la struttura rivelata, il gesto artigianale reso visibile invece di nascosto.\n\nUna riflessione sull\'artificio e sull\'autenticità, sul corpo come tela e sulla moda come linguaggio che può essere letto a ritroso, dalla costola alla superficie.'
+    }
+  ];
+
+  var newsData = [
+    {
+      id: 0,
+      title: '222 artisti emergenti su cui investire 2026',
+      cat: 'Riconoscimento',
+      date: '2026',
+      image: 'https://images.squarespace-cdn.com/content/v1/508d30b1e4b0b3e60f004110/0261fedb-ff19-4d93-98dd-e9e8dc4b8779/IMG_0050.JPG',
+      description: 'Sono lieto di condividere che sono stato incluso nel volume "222 Emerging Artists to Invest In 2026" pubblicato da Exibart.\n\nUn riconoscimento che riflette anni di ricerca continua, sperimentazione e dedizione all\'esplorazione dei confini tra arte, tecnologia ed emozione umana.\n\nSono grato di far parte di questa selezione, che mette in luce gli artisti che stanno plasmando il panorama contemporaneo, e non vedo l\'ora di continuare il mio percorso attraverso nuovi progetti.'
+    },
+    {
+      id: 1,
+      title: '2023 Rome International Art Fair — Supermarket Gallery',
+      cat: 'Fiera d\'Arte',
+      date: '2023',
+      image: 'https://images.squarespace-cdn.com/content/v1/508d30b1e4b0b3e60f004110/2e09e882-1c21-40c5-8984-bebbd502ae34/slider-home-1536x880.jpg',
+      description: 'Partecipazione alla Rome International Art Fair 2023 con Supermarket Gallery.\n\nUna delle fiere d\'arte più dinamiche della capitale, occasione per presentare il lavoro a un pubblico internazionale di collezionisti, curatori e appassionati.'
+    },
+    {
+      id: 2,
+      title: '2023 Bologna International Art Fair — Supermarket Gallery',
+      cat: 'Fiera d\'Arte',
+      date: '2023',
+      image: 'https://images.squarespace-cdn.com/content/v1/508d30b1e4b0b3e60f004110/e19d3b9a-1502-4201-ba96-b400c092762a/Screenshot+2024-05-10+alle+09.49.44.png',
+      description: 'Partecipazione alla Bologna International Art Fair 2023 con Supermarket Gallery.\n\nOpera esposta: "It feels like it\'s just the universe looking out my mouth #2"\nPastelli a olio e matita su carta di giornale\n20×30 cm, 2021'
+    },
+    {
+      id: 3,
+      title: 'Strappi e Profezie — Casa 94 Gallery, Roma',
+      cat: 'Mostra Personale',
+      date: 'Dicembre 2021',
+      image: 'https://images.squarespace-cdn.com/content/v1/508d30b1e4b0b3e60f004110/c7c1c5f4-55a3-490a-a5e5-09be74ffff9b/Immagini_1_Strappi_e_profezie.jpeg',
+      description: 'Un\'installazione site-specific, 30 opere su carta e cinque tele: Massimo Scognamiglio trasforma gli spazi della Casa 94 Gallery in un padiglione psichiatrico visionario e ironico.\n\nGlamorous con un tocco classico, una moda dal carattere pittorico: visioni che uniscono le atmosfere del fashion all\'espressione dell\'arte. Da questa miscela si innesca una sorta di loop, un effetto Larsen tra scena, fotografia e pittura.'
+    },
+    {
+      id: 4,
+      title: 'BECAUSE Group Show — Dorothy Circus Gallery Roma & Londra',
+      cat: 'Mostra Collettiva',
+      date: '2023',
+      image: '',
+      description: 'ROMA & LONDRA\nBECAUSE GROUP SHOW\nDorothy Circus Gallery Rome\n\nBECAUSE REPRISE\nDorothy Circus Gallery London\n\nCon la mostra BECAUSE — "Perché Sì", la DCG cambia rotta rispetto alla sua tradizionale linea curatoriale, allestendo una mostra collettiva con l\'obiettivo di lanciare un grido in forma d\'arte per rispondere all\'assurdità del mondo in cui viviamo. Per questa esposizione, la Dorothy Circus Gallery ha selezionato un gruppo di artisti con alcuni dei linguaggi più innovativi e indipendenti del panorama artistico contemporaneo.'
+    },
+    {
+      id: 5,
+      title: 'Where is the future? — MACRO Museum, Roma',
+      cat: 'Museo',
+      date: '2019',
+      image: 'https://images.squarespace-cdn.com/content/v1/508d30b1e4b0b3e60f004110/1555268553995-OT0NWI9T77TPPYTGC88Y/logo+macro.jpg',
+      description: 'Nel 2019 il MACRO, Museo d\'Arte Contemporanea di Roma, presenta il progetto "Where is the Future?" — un film e una serie di immagini che ritraggono gli occupanti delle case di Cosenza.\n\nUna riflessione sul futuro come spazio mentale e geografico, sulla periferia come luogo di resistenza e di attesa.'
+    },
+    {
+      id: 6,
+      title: 'Rebirth — Place de la République, Parigi',
+      cat: 'Performance',
+      date: '2016',
+      image: '',
+      description: 'Rebirth è la performance più celebre di Massimo Scognamiglio. Realizzata nel 2016 a Place de la République, Parigi — luogo simbolico carico di storia recente — la performance ha esplorato il tema della rinascita individuale e collettiva in uno spazio pubblico ferito.\n\nIl corpo come strumento politico e poetico. La piazza come palcoscenico senza regia. La presenza come atto di resistenza.'
+    },
+    {
+      id: 7,
+      title: 'The Shining Consciousness — Palazzo delle Esposizioni, Roma',
+      cat: 'Mostra',
+      date: '',
+      image: '',
+      description: 'Partecipazione alla mostra "The Shining Consciousness" presso il Palazzo delle Esposizioni di Roma — una delle sedi espositive più prestigiose della capitale.\n\nUn\'occasione per portare la ricerca di Scognamiglio in un contesto istituzionale di alto profilo, confrontandosi con un pubblico vasto e con le istanze del contemporaneo.'
+    },
+    {
+      id: 8,
+      title: 'MACRO Museum — Where is the Future? (Permanent Collection LIMEN)',
+      cat: 'Collezione Permanente',
+      date: '',
+      image: '',
+      description: 'Le opere di Massimo Scognamiglio sono entrate nella collezione permanente del Museo d\'Arte Moderna di Vibo Valentia LIMEN.\n\nUn riconoscimento istituzionale che consolida la presenza del suo lavoro nel sistema museale italiano.'
+    },
+    {
+      id: 9,
+      title: 'Tokyo / Snapshots — Street Photography Magazine',
+      cat: 'Pubblicazione',
+      date: 'Settembre 2018',
+      image: '',
+      description: 'Focus su "Tokyo / Snapshots" pubblicato da Street Photography Magazine (settembre 2018).\n\nUna serie di fotografie di strada scattate a Tokyo — la città come labirinto visivo, come sistema di segni sovrapposti, come macchina per produrre immagini. Lo sguardo di Scognamiglio nella megalopoli: veloce, curioso, senza pietà per il bello facile.'
+    }
+  ];
+
+  function getModalEl() {
+    return document.getElementById('mainModal');
+  }
+
+  function openModal(data) {
+    var overlay = getModalEl();
+    var imgEl = document.getElementById('modalImage');
+    var placeholderEl = document.getElementById('modalPlaceholder');
+    var catEl = document.getElementById('modalCat');
+    var titleEl = document.getElementById('modalTitle');
+    var metaEl = document.getElementById('modalMeta');
+    var descEl = document.getElementById('modalDescription');
+
+    catEl.textContent = data.cat || '';
+    titleEl.textContent = data.title || '';
+    metaEl.textContent = data.meta || data.date || '';
+    descEl.textContent = data.description || '';
+
+    if (data.image) {
+      imgEl.src = data.image;
+      imgEl.alt = data.title;
+      imgEl.style.display = 'block';
+      placeholderEl.style.display = 'none';
+      placeholderEl.textContent = '';
+    } else {
+      imgEl.src = '';
+      imgEl.style.display = 'none';
+      placeholderEl.style.display = 'flex';
+      placeholderEl.textContent = data.placeholder || data.title || '';
+    }
+
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        overlay.classList.add('open');
+        requestAnimationFrame(function () {
+          overlay.classList.add('visible');
+        });
+      });
+    });
+  }
+
+  function closeModal() {
+    var overlay = getModalEl();
+    overlay.classList.remove('visible');
+    setTimeout(function () {
+      overlay.classList.remove('open');
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }, 380);
+  }
+
+  function init() {
+    var overlay = getModalEl();
+    if (!overlay) return;
+
+    document.addEventListener('click', function (e) {
+      var projectCard = e.target.closest('.project-card[data-project]');
+      if (projectCard) {
+        var idx = parseInt(projectCard.getAttribute('data-project'), 10);
+        var data = projectData[idx];
+        if (data) openModal(data);
+        return;
+      }
+
+      var newsCard = e.target.closest('.news-card[data-news]');
+      if (newsCard) {
+        var nIdx = parseInt(newsCard.getAttribute('data-news'), 10);
+        var nData = newsData[nIdx];
+        if (nData) openModal(nData);
+        return;
+      }
+    });
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+<section class="section-padding" id="about" style="background:var(--bg-deep)">
+<div class="about-section">
+<div class="about-portrait reveal">
+<img src="assets/massimoscognamiglio.com/Scogna_Artist_2.jpg" alt="Massimo Scognamiglio" class="torn-edge" loading="lazy">
+<div class="about-highlights reveal reveal-delay-1">
+<span>Artist</span><span>Photographer</span><span>Digital Evangelist</span><span>Publisher</span><span>Creative Director</span>
+</div>
+</div>
+<div class="about-text">
+<div class="section-header reveal">
+<p class="section-label">Biography</p>
+<h2 class="section-title">Massimo Scognamiglio</h2>
+</div>
+<p class="reveal"><strong>Massimo Scognamiglio stands as a poignant figure in the landscape of contemporary art</strong>, his works a testament to the profound layers of human introspection. Without resorting to hyperbole, it is evident that his art delves into the crevices of mental unease while simultaneously radiating a palpable life force. Scognamiglio's oeuvre is a journey through the psyche, with series like <strong>'Gli Strappi' (1998-2004)</strong> which laid bare the raw edges of human emotion, and <strong>'Ciclo delle Stanze' (2008-today)</strong>, where each room becomes a chapter of an introspective narrative.</p>
+<p class="reveal">Born in Rome, he lives and works in Rome.</p>
+<p class="reveal">Artist, photographer, and digital evangelist, he paints, photographs, and has been exhibiting since the mid-'90s. From 2006 he lived for two years in <strong>California</strong>, then for a brief period he moved to <strong>Paris</strong> where he paints, photographs, designs performances, his most famous <strong>Rebirth</strong>, which took place in 2016 at Place de la République. Today, he lives and works in Rome, in his studio-house-gallery known as <strong>Le Petit Atelier</strong>.</p>
+<p class="reveal">He has exhibited at the <strong>MACRO Museum Asylum</strong> in Rome, with the project 'Where is the future?', at the <strong>Palazzo delle Esposizioni</strong>, also in Rome, with the exhibition 'The Shining Consciousness', moreover he has entered the <strong>permanent collection of the Museum of Modern Art of Vibo Valentia LIMEN</strong>; in addition to other galleries in Italy and abroad.</p>
+<p class="reveal">In 2023 and 2022 he enters the five finalists of the prestigious <strong>Exibart Prize</strong>, and in 2026 he was selected by Exibart among the <strong>'222 artisti emergenti su cui investire' (222 Emerging Artists to Invest In)</strong>.</p>
+<p class="reveal">He is also the Creative Director and publisher of <strong>The Magazine of Everything</strong> and <strong>Stump Magazine</strong>.</p>
+<p class="reveal">Represented worldwide by <strong>Supermarket Gallery</strong>.</p>
+<p class="reveal">Exhibitions in private &amp; public galleries &amp; museums.</p>
+<p class="reveal">For any questions or inquiries related to purchases, please feel free to reach out.</p>
+<p class="reveal"><a href="https://massimoscognamiglio.com/s/Portfolio_March_2024_Massimo-Scognamiglio_compressed.pdf" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex;margin-top:12px">Download the updated portfolio (March 2024)</a></p>
+</div>
+</div>
+</section>
+
+<section class="section-padding exhibitions-section" id="exhibitions">
+<div class="section-header reveal" style="max-width:1000px;margin:0 auto clamp(40px,6vh,80px)">
+<p class="section-label">Exhibition History</p>
+<h2 class="section-title">Mostre selezionate</h2>
+</div>
+<div class="exhibitions-list">
+<div class="exhibition-item reveal"><span class="exhibition-year">2025</span><span class="exhibition-desc"><strong>Supermartek & Fondazione Solares per le arti</strong> — 'The Space Between Us' Solo Exhibition 30 years of works</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2024</span><span class="exhibition-desc"><strong>Studio11 Gallery</strong> — Echoes Rome Group Show</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2024</span><span class="exhibition-desc"><strong>Atelier Marloes Mandaat</strong> — Big Big Mouth Solo Show</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2023</span><span class="exhibition-desc"><strong>Arte in Nuvola, Galleria Supermarket, Rome</strong> — Rome International Art Fair</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2023</span><span class="exhibition-desc"><strong>Solo Exhibition Artwork Gallery, Rome</strong></span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2023</span><span class="exhibition-desc"><strong>BECAUSE Group Show Reprise Dorothy Circus Gallery, London</strong></span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2023</span><span class="exhibition-desc"><strong>BECAUSE Group Show Dorothy Circus Gallery, Rome</strong></span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2023</span><span class="exhibition-desc"><strong>Blooming Contemporary Art Fair, Bologna</strong></span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2022</span><span class="exhibition-desc"><strong>Arte in Nuvola, Galleria Supermartek, Rome</strong></span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2021</span><span class="exhibition-desc"><strong>Strappi e Profezie, Casa 94 Gallery, Rome</strong></span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2021</span><span class="exhibition-desc"><strong>I 12 Apostoli, Takeawaygallery, Rome</strong></span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2019</span><span class="exhibition-desc"><strong>MACRO Museo di Arte Contemporanea, Roma</strong> — Short film 'Where is the future?'</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2018</span><span class="exhibition-desc"><strong>Hawton Space, Rome</strong> — 'Pensiero Stupendo' (part of the project Tales of humans in a landscape)</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2018</span><span class="exhibition-desc"><strong>Imago Projects Photo Festival, Orbetello</strong> — 'Tales of humans in a landscape'</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2018</span><span class="exhibition-desc"><strong>Palazzo Velli Expo, Rome</strong> — 'Atto Secondo', la collettiva di fotografia a cura della Takeawaygallery</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2017</span><span class="exhibition-desc"><strong>Chiesa di Santa Maria di Costantinopoli</strong> — Solo Exhibition Punk Aristocracy by Carlotta Monteverde</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2016</span><span class="exhibition-desc"><strong>Palazzo BUSCO Velli Solo Exhibition</strong> — Curated by Katy Spurrell & Nicolas Ballario</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2016</span><span class="exhibition-desc"><strong>Ex-Dogana Performance &amp; photographs REBIRTH</strong></span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2016</span><span class="exhibition-desc"><strong>Paris, Place de la République</strong> — Performance &amp; photographs REBIRTH</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2016</span><span class="exhibition-desc"><strong>Takeawaygallery Solo Exhibition</strong> — Punk Aristocracy curated by Carlotta Monteverde</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2012</span><span class="exhibition-desc"><strong>VARCO Pigneto Solo Exhibition</strong> — AIDS NOT DEAD</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">2005</span><span class="exhibition-desc"><strong>Museo Pecci di Prato</strong> — Video Minuto. Special event Solo Exhibition - 'Visual thoughts on fashion magazine'</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">1999</span><span class="exhibition-desc"><strong>Explorer Coffee Gallery</strong> — Collective Exhibition curated by Gianluca Marziani</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">1998</span><span class="exhibition-desc"><strong>Palazzo delle Esposizioni, Roma</strong> — Collective Exhibition curated by Mariangela Shoether — La Coscienza Luccicante</span></div>
+<div class="exhibition-item reveal"><span class="exhibition-year">1998</span><span class="exhibition-desc"><strong>Extra Gallery</strong> — Solo Exhibition</span></div>
+</div>
+</section>
+
+<section class="section-padding" id="journal">
+<div class="news-section">
+<div class="section-header reveal">
+<p class="section-label">Journal</p>
+<h2 class="section-title">News &amp; Diary</h2>
+</div>
+<div class="news-featured">
+<div class="news-card reveal" data-news="0">
+<div class="news-card-img"><img src="assets/massimoscognamiglio.com/IMG_0050.JPG" alt="222 artisti emergenti su cui investire 2026" loading="lazy"></div>
+<p class="news-card-date">2026</p>
+<h3 class="news-card-title">222 artisti emergenti su cui investire 2026</h3>
+<p class="news-card-excerpt">I'm pleased to share that I've been included in the volume '222 Emerging Artists to Invest In 2026' published by Exibart.</p>
+</div>
+<div class="news-card reveal reveal-delay-1" data-news="9">
+<div class="news-card-img" style="display:flex;align-items:center;justify-content:center;background:var(--bg-warm)"><p style="font-family:var(--display);font-size:clamp(20px,2.5vw,32px);color:var(--text-muted);text-align:center;padding:20px">Solo Exhibition<br>2025</p></div>
+<p class="news-card-date">2025</p>
+<h3 class="news-card-title">Working on my next solo exhibition — End of May 2025: the big canvases</h3>
+<p class="news-card-excerpt">Working on my next solo exhibition End of may 2025: the big canvases.</p>
+</div>
+</div>
+<div class="news-list">
+<div class="news-card reveal" data-news="1">
+<div class="news-card-img"><img src="assets/massimoscognamiglio.com/slider-home-1536x880.jpg" alt="2023 Rome International Art Fair" loading="lazy"></div>
+<p class="news-card-date">2023</p>
+<h3 class="news-card-title">2023 Rome International Art Fair — Supermarket Gallery</h3>
+<p class="news-card-excerpt">Participation in the 2023 Rome International Art Fair with Supermarket Gallery.</p>
+</div>
+<div class="news-card reveal reveal-delay-1" data-news="2">
+<div class="news-card-img"><img src="assets/massimoscognamiglio.com/Screenshot_2024-05-10_alle_09.49.44.png" alt="2023 Bologna International Art Fair" loading="lazy"></div>
+<p class="news-card-date">2023</p>
+<h3 class="news-card-title">2023 Bologna International Art Fair — Supermarket Gallery</h3>
+<p class="news-card-excerpt">Participation in the 2023 Bologna International Art Fair with Supermarket Gallery.</p>
+</div>
+<div class="news-card reveal reveal-delay-2" data-news="3">
+<div class="news-card-img"><img src="assets/massimoscognamiglio.com/Immagini_1_Strappi_e_profezie.jpeg" alt="Strappi e Profezie" loading="lazy"></div>
+<p class="news-card-date">December 2021</p>
+<h3 class="news-card-title">Strappi e Profezie — Casa 94 Gallery, Rome</h3>
+<p class="news-card-excerpt">A site-specific installation, 30 works on paper and five canvases: Massimo Scognamiglio transforms the spaces of Casa 94 Gallery into a visionary and ironic psychiatric pavilion.</p>
+</div>
+<div class="news-card reveal" data-news="4">
+<div class="news-card-img" style="display:flex;align-items:center;justify-content:center;background:var(--bg-warm)"><p style="font-family:var(--display);font-size:clamp(16px,2vw,24px);color:var(--text-muted);text-align:center;padding:20px">BECAUSE</p></div>
+<p class="news-card-date">2023</p>
+<h3 class="news-card-title">BECAUSE Group Show — Dorothy Circus Gallery Rome &amp; London</h3>
+<p class="news-card-excerpt">With the exhibition BECAUSE - 'Perchè Sì', the DCG changes course from its traditional curatorial line, staging a collective exhibition with the aim of raising a cry in the form of art.</p>
+</div>
+<div class="news-card reveal reveal-delay-1" data-news="5">
+<div class="news-card-img"><img src="assets/massimoscognamiglio.com/logo_macro.jpg" alt="MACRO Museum" loading="lazy"></div>
+<p class="news-card-date">2019</p>
+<h3 class="news-card-title">Where is the future? — MACRO Museum, Rome</h3>
+<p class="news-card-excerpt">In 2019, the MACRO, Museum of Contemporary Art in Rome, presents my project 'Where is the Future?' consisting of a film and a series of images.</p>
+</div>
+<div class="news-card reveal reveal-delay-2" data-news="6">
+<div class="news-card-img"><img src="assets/massimoscognamiglio.com/PdE.png" alt="Videominuto" loading="lazy"></div>
+<p class="news-card-date">2005</p>
+<h3 class="news-card-title">Videominuto — Museo Pecci di Prato</h3>
+<p class="news-card-excerpt">Nel 2005 Videominuto explored the potential of new technology in short films shot with webcams and 'next generation' cell phones.</p>
+</div>
+<div class="news-card reveal" data-news="7">
+<div class="news-card-img"><img src="assets/massimoscognamiglio.com/logo-limen.jpg" alt="LIMEN Museum" loading="lazy"></div>
+<p class="news-card-date">2016</p>
+<h3 class="news-card-title">LIMEN Museum Acquisition — Vibo Valentia</h3>
+<p class="news-card-excerpt">The latest acquisition by a Museum is that of the Limen Museum in Vibo Valentia, which has acquired a work from 2016.</p>
+</div>
+<div class="news-card reveal reveal-delay-1" data-news="8">
+<div class="news-card-img"><img src="assets/massimoscognamiglio.com/749573381_640.jpg" alt="Terra!" loading="lazy"></div>
+<p class="news-card-date"></p>
+<h3 class="news-card-title">Terra! — Solo Exhibition on immigration</h3>
+<p class="news-card-excerpt">Hosted by the central editorial office of Quotidiano del Sud, a solo exhibition on the drama of immigration, experienced firsthand after spending a period on the SOS Mediterranée ship.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section-padding portraits-section" id="portraits">
+<div class="section-header reveal" style="max-width:1200px;margin:0 auto clamp(40px,6vh,80px)">
+<p class="section-label">Ritratti Editoriali</p>
+<h2 class="section-title">Portrait Commissions</h2>
+</div>
+<div class="portraits-grid">
+<div class="portrait-card reveal">
+<img src="assets/massimoscognamiglio.com/IMG_8827.jpg" alt="Portrait of Riccardo Ruini" loading="lazy">
+<div class="portrait-card-text">
+<h3 class="portrait-card-title">Impression — Portrait of Riccardo Ruini</h3>
+<p class="portrait-card-desc">Portrait of Riccardo Ruini - the most important 250 creatives in the fashion industry</p>
+</div>
+</div>
+<div class="portrait-card reveal reveal-delay-1">
+<img src="assets/massimoscognamiglio.com/22b0459fdaec7f8c38765f9baa316b8a.jpg" alt="The Observer / The Guardian" loading="lazy">
+<div class="portrait-card-text">
+<h3 class="portrait-card-title">The Observer / The Guardian</h3>
+<p class="portrait-card-desc">Editorial portrait published in The Observer / The Guardian</p>
+</div>
+</div>
+<div class="portrait-card reveal reveal-delay-2">
+<img src="assets/massimoscognamiglio.com/ED5A5974_BW.jpg" alt="AGI Agenzia Giornalistica Italia" loading="lazy">
+<div class="portrait-card-text">
+<h3 class="portrait-card-title">AGI Agenzia Giornalistica Italia</h3>
+<p class="portrait-card-desc">Ritratto dell'Amministratore Delegato</p>
+</div>
+</div>
+<div class="portrait-card reveal reveal-delay-3">
+<img src="assets/massimoscognamiglio.com/aldo-cazzullo-cover-metti-via-quel-cellulare-slider.jpg" alt="Mondadori — Aldo Cazzullo" loading="lazy">
+<div class="portrait-card-text">
+<h3 class="portrait-card-title">Mondadori — Aldo Cazzullo</h3>
+<p class="portrait-card-desc">Cover per l'ultimo libro 'Metti giù quel cellulare' di Aldo Cazzullo e foto editoriali per IO Donna, Oggi, Corriere della Sera, Sette.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section-padding" id="fashion">
+<div class="fashion-section">
+<div class="section-header reveal">
+<p class="section-label">RADICAL Fashion</p>
+<h2 class="section-title">Fashion Portfolio</h2>
+</div>
+<div class="fashion-grid">
+<div class="fashion-card reveal">
+<img src="assets/massimoscognamiglio.com/Impaginatox-3_4-3_BW_small.jpg" alt="Radical Fashion editorial" loading="lazy">
+<div class="fashion-card-overlay"><h3 class="fashion-card-title">Radical Fashion editorial</h3></div>
+</div>
+<div class="fashion-card reveal reveal-delay-1">
+<img src="assets/massimoscognamiglio.com/war_impaginato.jpg" alt="War editorial" loading="lazy">
+<div class="fashion-card-overlay"><h3 class="fashion-card-title">War editorial</h3></div>
+</div>
+<div class="fashion-card reveal reveal-delay-2">
+<img src="assets/massimoscognamiglio.com/139A2718.jpg" alt="Fashion editorial" loading="lazy">
+<div class="fashion-card-overlay"><h3 class="fashion-card-title">Fashion editorial</h3></div>
+</div>
+<div class="fashion-card reveal reveal-delay-3">
+<img src="assets/massimoscognamiglio.com/The_Warriors.jpg" alt="The Warriors" loading="lazy">
+<div class="fashion-card-overlay"><h3 class="fashion-card-title">The Warriors</h3></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section-padding services-section" id="services">
+<div class="section-header reveal" style="max-width:1200px;margin:0 auto clamp(40px,6vh,80px)">
+<p class="section-label">Pratica</p>
+<h2 class="section-title">Collaborazioni</h2>
+</div>
+<div class="services-grid">
+<div class="service-card reveal" data-service="0">
+<div class="service-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+<h3 class="service-card-title">RADICAL Fashion</h3>
+<p class="service-card-desc">A radical and artistic approach to the world of fashion. For advertising and editorial assignments write me a pvt msg.</p>
+</div>
+<div class="service-card reveal reveal-delay-1" data-service="1">
+<div class="service-card-icon"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+<h3 class="service-card-title">Mindful Portrait</h3>
+<p class="service-card-desc">A portrait is forever™. Mindful Portrait commissions / Workshops &amp; More. Ultime pubblicazioni ritratti editoriali.</p>
+</div>
+<div class="service-card reveal reveal-delay-2" data-service="2">
+<div class="service-card-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+<h3 class="service-card-title">Fashion Film</h3>
+<p class="service-card-desc">UNDER - The short film. A film by Massimo Scognamiglio Studio &amp; Irida Production. Directed by Massimo Scognamiglio &amp; Fabrizio Boni. With Miriam Consoni &amp; Sarah Jane. © 2017 Massimo Scognamiglio.</p>
+</div>
+<div class="service-card reveal" data-service="3" style="border-color:var(--gold)">
+<div class="service-card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+<h3 class="service-card-title">MSS — La petite maison d'édition</h3>
+<p class="service-card-desc">Massimo Scognamiglio is the Publisher of The Magazine of Everything — undiscovered and unclassifiable contents &amp; STUMP Magazine. 'The Magazine of Everything' originates as an artistic work even before being a traditional magazine because it aims to negate editorial intervention; it deals directly with artists — photographers, sculptors, and other representatives of the arts — but with one rule: once the author hands over their works, they lose the right to veto.</p>
+<a href="http://www.magcloud.com/user/scognamiglio" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex;margin-top:16px;font-size:13px;padding:10px 20px">Buy on MagCloud</a>
+</div>
+<div class="service-card reveal reveal-delay-1" data-service="4">
+<div class="service-card-icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+<h3 class="service-card-title">Tokyo / Snapshots</h3>
+<p class="service-card-desc">Focus on 'Tokyo / Snapshots' published by Street Photography Magazine (September 2018).</p>
+</div>
+</div>
+</section>
+
+<section class="section-padding" id="detail-sections">
+<div class="detail-section">
+<div class="detail-block reveal">
+<div class="detail-img"><img src="assets/massimoscognamiglio.com/matteo.jpg" alt="Pensiero Stupendo — Hawton Space" loading="lazy"></div>
+<div>
+<p class="detail-text-sub">Exhibition — June 2018</p>
+<h3 class="detail-text-title">Pensiero Stupendo — Hawton Space 2018</h3>
+<p>In an intricate world like the one shaped in our century, identity and sexuality also confirm this heterogeneity and the right to exist and manifest without the necessity to fall into predefined categorizations, which are becoming increasingly sterile, discriminatory, and regressive.</p>
+</div>
+</div>
+<div class="detail-block reveal">
+<div class="detail-img"><img src="assets/massimoscognamiglio.com/republique1.jpg" alt="Rebirth — Place de la République, Paris" loading="lazy"></div>
+<div>
+<p class="detail-text-sub">Performance — September 2016</p>
+<h3 class="detail-text-title">Rebirth — Paris, Place de la République</h3>
+<p>In September 2016, Massimo Scognamiglio brought his photographic performance 'Rebirth' to France, at the symbolic site of Paris and all of France, Place de la République.</p>
+</div>
+</div>
+<div class="detail-block reveal">
+<div class="detail-img"><img src="assets/massimoscognamiglio.com/_39A2738.jpg" alt="UNDER — Fashion Film" loading="lazy"></div>
+<div>
+<p class="detail-text-sub">Fashion Film — 2017</p>
+<h3 class="detail-text-title">UNDER — The short film</h3>
+<p>A film by Massimo Scognamiglio Studio &amp; Irida Production. Directed by Massimo Scognamiglio &amp; Fabrizio Boni. With Miriam Consoni &amp; Sarah Jane. © 2017 Massimo Scognamiglio.</p>
+</div>
+</div>
+<div class="detail-block reveal">
+<div class="detail-img"><img src="assets/massimoscognamiglio.com/Schermata_2018-05-08_alle_18.32.38.png" alt="Tokyo / Snapshots" loading="lazy"></div>
+<div>
+<p class="detail-text-sub">Street Photography — September 2018</p>
+<h3 class="detail-text-title">Tokyo / Snapshots</h3>
+<p>Focus on 'Tokyo / Snapshots' published by Street Photography Magazine (September 2018).</p>
+</div>
+</div>
+<div class="detail-block reveal">
+<div class="detail-img"><img src="assets/massimoscognamiglio.com/IMG_8860.JPG" alt="STUMP Magazine" loading="lazy"></div>
+<div>
+<p class="detail-text-sub">Publishing</p>
+<h3 class="detail-text-title">STUMP Magazine</h3>
+<p>Soon on the newstands near you.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section-padding" id="corpo-fluido">
+<div class="detail-section">
+<div class="section-header reveal" style="text-align:center;margin-bottom:clamp(30px,4vh,50px)">
+<p class="section-label">Music / Art Crossover</p>
+<h2 class="section-title">Il corpo fluido / Quitapina+</h2>
+</div>
+<p class="reveal" style="text-align:center;font-size:clamp(15px,1.2vw,18px);color:var(--text-secondary);max-width:600px;margin:0 auto">Quitapina+ the first Album by Le Stelle di S. On Soundcloud.</p>
+</div>
+</section>
+
+<section class="section-padding steps-section">
+<div class="section-header reveal" style="text-align:center;max-width:700px;margin:0 auto clamp(40px,6vh,80px)">
+<p class="section-label">Come funziona</p>
+<h2 class="section-title">Tre passi</h2>
+</div>
+<div class="steps-grid">
+<div class="step-card reveal">
+<div class="step-num">01</div>
+<p class="step-text">Explore the work — browse paintings, photography, performances, and publications across three decades</p>
+</div>
+<div class="step-card reveal reveal-delay-1">
+<div class="step-num">02</div>
+<p class="step-text">Download the portfolio or reach out directly to discuss a specific work, commission, or exhibition opportunity</p>
+</div>
+<div class="step-card reveal reveal-delay-2">
+<div class="step-num">03</div>
+<p class="step-text">Visit Le Petit Atelier in Rome or connect for a studio visit to experience the work in person</p>
+</div>
+</div>
+</section>
+
+<section class="section-padding" id="press" style="background:var(--bg-deep)">
+<div class="press-section">
+<div class="section-header reveal" style="margin-bottom:clamp(50px,8vh,80px)">
+<p class="section-label">Press</p>
+<h2 class="section-title">Dicono di me</h2>
+</div>
+<div class="press-quote reveal">
+<blockquote>Painful but never gloomy, always ironic and with a special light.</blockquote>
+<cite>Exibart</cite>
+</div>
+<div class="press-quote reveal">
+<blockquote>And so, tired of all this, weary of the gentrification that came with millions of pounds and/or dollars, tired of rock music traveling to exorbitantly expensive recording studios, to millionaire tours, to producers, managers, press offices of every kind, utterly sick of the gigantic and unstoppable machine that the music business had become... well, tired of all this and of a rock that had even become 'symphonic,' punk was born... and thankfully so.</blockquote>
+<cite>Michael Pergolani — The Magnificent Seven / Punk Aristocracy</cite>
+</div>
+</div>
+</section>
+
+<section class="section-padding" id="additional-pages" style="background:oklch(0.15 0.015 60)">
+<div class="additional-nav">
+<div class="section-header reveal">
+<p class="section-label">Archivio</p>
+<h2 class="section-title">Pagine aggiuntive</h2>
+</div>
+<ul class="additional-nav-list" style="opacity:0.7">
+<li class="reveal">Combustione Umana Spontanea meets Rebirth Project | Ex dogana</li>
+<li class="reveal">diary</li>
+<li class="reveal">Portraits</li>
+<li class="reveal">2Nights1Day</li>
+<li class="reveal">Kruder</li>
+<li class="reveal">Somewhere in Croatia</li>
+<li class="reveal">Mila in the Box</li>
+<li class="reveal">2015 Aids is not dead world wide campaign</li>
+<li class="reveal">contacts</li>
+</ul>
+</div>
+</section>
+
+<section class="cta-section reveal">
+<h2>Art should move you<br>before it impresses you.</h2>
+<p>If you feel something raw when you look at this work, trust that instinct. Three decades of institutional exhibitions, from Palazzo delle Esposizioni to MACRO.</p>
+<div class="hero-ctas">
+<a href="https://massimoscognamiglio.com/s/Portfolio_March_2024_Massimo-Scognamiglio_compressed.pdf" target="_blank" rel="noopener" class="btn-primary">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+Download Portfolio
+</a>
+<a href="#contact" class="btn-ghost">Contact Me</a>
+</div>
+</section>
+
+<section class="section-padding contact-section" id="contact">
+  <div class="contact-grid">
+    <div class="reveal">
+      <h2 class="contact-title">Scrivimi</h2>
+      <a href="mailto:me@massimoscognamiglio.co" class="contact-email">me@massimoscognamiglio.co</a>
+      <a href="mailto:me@massimoscognamiglio.com" class="contact-email">me@massimoscognamiglio.com</a>
+      <p class="contact-studio">Le Petit Atelier, Roma<br>Studio-house-gallery.<br>Visite su appuntamento.</p>
+      <div class="contact-social">
+        <a href="http://instagram.com/scognamiglio" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="http://vimeo.com/user7854064" target="_blank" rel="noopener" aria-label="Vimeo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609C15.906 19.988 13.118 22 10.779 22c-1.451 0-2.676-1.338-3.674-4.017L5.478 11.57c-.555-2.679-1.15-4.017-1.788-4.017-.139 0-.624.292-1.456.876L1 7.006c.915-.806 1.818-1.612 2.71-2.42C5.068 3.388 6.253 2.76 7.044 2.7c1.855-.178 2.998 1.09 3.428 3.805.464 2.93.786 4.751.967 5.467.537 2.44 1.128 3.66 1.773 3.66.501 0 1.254-.793 2.259-2.38.999-1.587 1.534-2.796 1.604-3.627.143-1.375-.396-2.062-1.617-2.062-.576 0-1.167.132-1.773.393 1.178-3.86 3.429-5.736 6.757-5.627 2.467.073 3.628 1.672 3.535 4.087z"/></svg>
+        </a>
+        <a href="http://www.magcloud.com/user/scognamiglio" target="_blank" rel="noopener" aria-label="MagCloud">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 10H8v-2h6v2zm2-4H8V7h8v2z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="contact-right reveal reveal-delay-1">
+      <p>Il Petit Atelier è aperto — a collezionisti, curatori, direttori artistici e a chiunque abbia sentito qualcosa davanti a un'opera. Se sei curioso di un lavoro, di una commissione, di una mostra, o vuoi semplicemente passare a vedere cosa bolle in pentola nello studio: scrivimi. Niente moduli, niente assistenti. Solo una mail e una risposta vera.</p>
+      <a href="https://massimoscognamiglio.com/s/Portfolio_March_2024_Massimo-Scognamiglio_compressed.pdf" target="_blank" rel="noopener" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Scarica il Portfolio
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-copy">© 2025 Massimo Scognamiglio Studio. Tutti i diritti riservati.</p>
+    <div class="footer-social">
+      <a href="http://instagram.com/scognamiglio" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="http://vimeo.com/user7854064" target="_blank" rel="noopener" aria-label="Vimeo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609C15.906 19.988 13.118 22 10.779 22c-1.451 0-2.676-1.338-3.674-4.017L5.478 11.57c-.555-2.679-1.15-4.017-1.788-4.017-.139 0-.624.292-1.456.876L1 7.006c.915-.806 1.818-1.612 2.71-2.42C5.068 3.388 6.253 2.76 7.044 2.7c1.855-.178 2.998 1.09 3.428 3.805.464 2.93.786 4.751.967 5.467.537 2.44 1.128 3.66 1.773 3.66.501 0 1.254-.793 2.259-2.38.999-1.587 1.534-2.796 1.604-3.627.143-1.375-.396-2.062-1.617-2.062-.576 0-1.167.132-1.773.393 1.178-3.86 3.429-5.736 6.757-5.627 2.467.073 3.628 1.672 3.535 4.087z"/></svg>
+      </a>
+      <a href="http://www.magcloud.com/user/scognamiglio" target="_blank" rel="noopener" aria-label="MagCloud">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 10H8v-2h6v2zm2-4H8V7h8v2z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<footer>
+<p class="footer-copy">© Massimo Scognamiglio Studio · Roma · Artist, Photographer, Digital Evangelist, Publisher, Creative Director</p>
+<div class="footer-social" id="footer-social">
+<a href="http://instagram.com/scognamiglio" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+<a href="http://vimeo.com/user7854064" target="_blank" rel="noopener" aria-label="Vimeo"><svg viewBox="0 0 24 24"><path d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609C15.906 19.988 13.118 22 10.779 22c-1.451 0-2.676-1.338-3.674-4.017L5.478 11.57c-.555-2.679-1.15-4.017-1.788-4.017-.139 0-.624.292-1.456.876L1 7.006c.915-.806 1.818-1.612 2.71-2.42C5.068 3.388 6.253 2.76 7.044 2.7c1.855-.178 2.998 1.09 3.428 3.805.464 2.93.786 4.751.967 5.467.537 2.44 1.128 3.66 1.773 3.66.501 0 1.254-.793 2.259-2.38.999-1.587 1.534-2.796 1.604-3.627.143-1.375-.396-2.062-1.617-2.062-.576 0-1.167.132-1.773.393 1.178-3.86 3.429-5.736 6.757-5.627 2.467.073 3.628 1.672 3.535 4.087z"/></svg></a>
+<a href="http://www.magcloud.com/user/scognamiglio" target="_blank" rel="noopener" aria-label="MagCloud"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l4.59-4.58L18 11l-6 6z"/></svg></a>
+</div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay">
+<button class="modal-close" id="modalClose"><svg viewBox="0 0 24 24" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+<div class="modal-content" id="modalContent"></div>
+</div>
+
+<script>
+const projects=[{"title":"Strappi","location":"Rome","year":"2021","description":"Series of works on paper: oil pastels and pencil on newspaper. Finalist Exibart Prize 2022.","fullDescription":"Finalista Exibart Prize 2022\n\nSeries of works titled 'It feels like it's just the universe looking out my mouth', numbered #1 through #10. Each work is made with Pastelli a olio e matita su carta di giornale (oil pastels and pencil on newspaper), 20x30 cm, 2021.\n\nScognamiglio works with acrylic paint, pencil and oil pastels, painting on ripped pieces of fashion magazines. He carefully selects close-ups of models, frontal cuts, simple and clean. He carelessly tears the pages from the magazines and 're-paints' them, with an expressionist intent, distant from pop, to delve beyond the surface of his characters. From this clash between the polished and the unconscious, between a prescient past - the canvases that talk about prophecies - and today's ragged edges full of rage, the vital energy of the subjects of Scognamiglio's painting and photography is born.","category":"Art / Painting","images":["assets/massimoscognamiglio.com/Incorniciati10.jpg","assets/massimoscognamiglio.com/Incorniciati6.jpg","assets/massimoscognamiglio.com/Incorniciati3.jpg","assets/massimoscognamiglio.com/Incorniciati9.jpg","assets/massimoscognamiglio.com/Incorniciati7.jpg","assets/massimoscognamiglio.com/Incorniciati4.jpg","assets/massimoscognamiglio.com/Incorniciati1.jpg","assets/massimoscognamiglio.com/Incorniciati8.jpg","assets/massimoscognamiglio.com/Incorniciati5.jpg","assets/massimoscognamiglio.com/Incorniciati2.jpg"],"link":"https://massimoscognamiglio.com/strappi"},{"title":"Pensiero Stupendo #1","location":"Howtan Space, Rome","year":"2018","description":"Mostra fotografica collettiva sulla sessualità e sensualità, curata da Barbara Martusciello. Howtan Space, 14 Giugno - 12 Luglio 2018.","fullDescription":"Pensiero Stupendo # 1\nA cura di barbara Martusciello\nHowtan Space\n14 Giugno - 12 Luglio 2018\n\nIn un mondo articolato come quello configurato nel nostro secolo, anche l'identità e la sessualità confermano tale eterogeneità e il diritto di essere e palesarsi senza dover necessariamente finire in incasellamenti predefiniti e diventare materia di polemiche oggi sempre più sterili, discriminanti e regressive. Come spesso avviene, l'assetto collettivo evolve mentre le istituzioni – tutte: politiche, religiose, sociali – restano indietro, incapaci di registrare i cambiamenti e la realtà di fatto nonché il diritto di ognuno di essere ed esprimere se stesso quando ciò non lede – come non lede! – la libertà e l'integrità altrui.\n\nDa questi input nasce la mostra fotografica Pensiero stupendo: volutamente ammiccante, nel titolo, a una nota canzone pop italiana, firmata da Oscar Prudente e Ivano Fossati, incisa nell'autunno del 1977 e uscita nel 1978 come dirompente inno al desiderio non omologato, trasgressivo e dichiarato, seppure condotto tramite un poetico registro allusivo; il fatto che fosse cantato da una donna – Patty Pravo – considerata una portabandiera della gioventù moderna, cosmopolita e libera italiana connessa ai tanti movimenti generazionali anche internazionali, non è secondario.\n\nEbbene: questa collettiva fotografica, spiega la curatrice Barbara Martusciello, \"attraverso autori noti accanto a nomi più giovani, vuole presentare un tema ampio e difforme come quello della sessualità e sensualità in ogni suo aspetto, prediligendo una visione che ne analizza le pieghe meno conformi, solitamente non molto esibite pubblicamente, dal carattere più liquido e sfuggente.\".\n\nAntonio Barrella, Massimiliano Capo & Lorenza Fruci, Ferdinando Gatta, Francesco Impellizzeri, Guido Laudani, Angelo Marinelli, Claudio Orlandi, Massimo Scognamiglio, i primi autori coinvolti in questa mostra – da intendersi come una iniziale esplorazione sulla tematica, che vedrà successivi approfondimenti e altri artisti confrontarsi con essa – esprimono tale argomento \"attraverso corpi, nudità e ironia ma anche da punti di vista che privilegiano l'ambiguità; realismo e lirismo si affiancano, nelle loro immagini, e talvolta si sovrappongono dando vita, in ogni caso, a un affresco corale che mostra la meravigliosa varietà del desiderio e dell'amore senza preconcetti.\".\n\nIn tempi oscuri come quelli che stiamo tutti vivendo, Pensiero stupendo dimostra \"la normalità e la bellezza dell'intimità e dell'erotismo in cui tutti possiamo in qualche modo riconoscere parte di noi e, soprattutto, manifesta quanto l'oggetto del desiderio non si debba e non si possa più necessariamente considerare oscuro bensì luminoso\". Cosa di meglio della fotografia – strettamente connessa alla luce – per ammetterlo?\n\nLa mostra nasce all'interno delle attività espositive di Howtan Space, spazio dinamico capitolino che privilegia la fotografia come perlustrazione di realtà meno prevedibili e ratificate.","category":"Art / Photography / Exhibition","images":[],"link":"https://massimoscognamiglio.com/pensiero-stupendo-1"},{"title":"Imago Projects - Tales of humans in a landscape","location":"Imago PhotoFestival","year":"2018","description":"Serie di dittici fotografici che indagano il confine tra paesaggio ed essere umano.","fullDescription":"Tales of humans in a landscape\nA cura di barbara Martusciello\nImago PhotoFestival\n14 Giugno - 12 Luglio 2018\n\nDove finisce il paesaggio inizia l'uomo e viceversa. In una ricerca spasmodica della figura umana Massimo Scognamiglio indaga il confine tra ciò che possiamo definire paesaggio (sia esso l'angolo di un salotto, un Geyser islandese o una tranquilla provincia americana) e gli esseri umani che – per motivi del tutto analogici – sono associati a questi \"luoghi\" e affiancati in grandi dittici enigmatici.\n\n\"La provincia americana è il punto di partenza... ma in realtà c'entra poco.\nIo amo solo due cose al mondo:\ngli esseri umani e tutto il resto.\nE la mia fotografia racconta questo. Non so quale sia il nesso, sempre che ci sia, tra paesaggi ed esseri umani che rappresento.\nPer me paesaggio è tutto:\ndalla collina al pacchetto di sigarette posato sul tavolo.\nIl paesaggio è ciò in cui l'uomo è immerso.\n'Tales of humans in a landscape' è il titolo di questa serie e, in fondo, è un titolo truffa: non ci sono storie, e gli esseri umani non sono 'nel' paesaggio ma sono affiancati ad esso. Le storie le potete trovare voi nei nessi che come osservatori potete creare.\nPerché chi guarda è parte - come me, gli umani e i paesaggi - di questo racconto (insensato) che è l'esistenza. Siete anche voi parte di questa truffa.\" – Massimo Scognamiglio\n\nMassimo Scognamiglio is represented worldwide by Supermarket.\n\nLess is More / Love is better","category":"Art / Photography","images":["assets/massimoscognamiglio.com/Dossier2.jpg"],"link":"https://massimoscognamiglio.com/pensiero-stupendo-1-1"},{"title":"Punk Aristocracy","location":"Takeawaygallery, Rome","year":"2016","description":"Mostra fotografica che esplora l'appropriazione dello stile punk da parte dell'establishment.","fullDescription":"Punk Aristocracy\nA cura di Carlotta Monteverde & Stefano Esposito\nTakeawaygallery\nTesto Michael Pergolani\n\nTrenta scatti più uno tirato a 99 copie; tre nuclei iconografici; bianco e nero e colore che si alternano di immagine in immagine; bambini quasi adulti e adulti perennemente bambini; un groviglio di segni e stili appartenenti a epoche e generazioni diverse mixati e sovrapposti; il racconto di come anche i movimenti più eversivi del passato vengano lentamente assimilati e riadattati dall'establishment, poi venduti come prodotto di lusso. E la sessualità, il corpo, teatro di una rivoluzione silenziosa, quella contemporanea.\n\nÈ il 1976; la recessione impazza. Mentre la precedente ondata rock viene gradualmente assorbita dal sistema, un nuova ventata proveniente dalle periferie proletarie spazza via qualsiasi orpello, riferimento alla sperimentazione musicale colta. Nasce il punk, che grida rabbia e ribellione. È la cultura del no future, del DIY; la moda fatta di spilloni, maglie strappate, scritte e slogan; che si esaurisce in pochi anni ma i cui codici, svuotati di ogni forza incisiva, sono presto saccheggiati e inseriti in quel circuito di impresa che tutt'oggi ne continua a sfruttare gli aspetti più impensati.\n\nThirty shots plus one printed in 99 copies; three iconographic clusters; black and white and color alternating from image to image; children who are almost adults and adults who are perpetually children; a tangle of signs and styles belonging to different eras and generations mixed and overlaid; the story of how even the most subversive movements of the past are slowly assimilated and readjusted by the establishment, then sold as luxury products.\n\n\"And so, tired of all this, weary of the gentrification that came with millions of pounds and/or dollars, tired of rock music traveling to exorbitantly expensive recording studios, to millionaire tours, to producers, managers, press offices of every kind, utterly sick of the gigantic and unstoppable machine that the music business had become... well, tired of all this and of a rock that had even become 'symphonic,' punk was born... and thankfully so.\" — Michael Pergolani","category":"Art / Photography / Exhibition","images":["assets/massimoscognamiglio.com/punk_aristocracy4_0841.jpg"],"link":"https://massimoscognamiglio.com/imago-projects-tales-of-humans-in-a-landscape"},{"title":"A Hole in my head","location":"","year":"","description":"Section referenced in site navigation.","fullDescription":"A Hole in my head — referenced in site navigation at /shiny-magazine-work-in-progress. No additional scraped content available for this page.","category":"Art","images":[],"link":"https://massimoscognamiglio.com/shiny-magazine-work-in-progress"},{"title":"Liquid Sky","location":"","year":"","description":"Fashion photography project — Liquid Sky.","fullDescription":"Liquid Sky — Fashion photography project. Referenced in site navigation at /liquid-sky.","category":"Fashion / Photography","images":["assets/massimoscognamiglio.com/Liquid_Sky_Selezione_carolina.jpg"],"link":"https://massimoscognamiglio.com/liquid-sky"},{"title":"FLÉTRI","location":"","year":"","description":"Fashion photography project — FLÉTRI: Say Goodbye to the Age of Innocence.","fullDescription":"FLÉTRI — Say Goodbye to the Age of Innocence.","category":"Fashion / Photography","images":[],"link":"https://massimoscognamiglio.com/fltri-say-goodbye-to-the-age-of-innocence"},{"title":"Journey at the end of the night","location":"","year":"","description":"Fashion photography project.","fullDescription":"Journey at the end of the night.","category":"Fashion / Photography","images":[],"link":"https://massimoscognamiglio.com/somewhere-in-croatia"},{"title":"De Couture","location":"","year":"","description":"Fashion photography project featuring DeCouture bags.","fullDescription":"De Couture — Fashion photography project featuring DeCouture bags.","category":"Fashion / Photography","images":["assets/massimoscognamiglio.com/decouture.jpg"],"link":"https://massimoscognamiglio.com/de-couture"}];
+
+const news=[{"title":"222 artisti emergenti su cui investire 2026","date":"2026","fullText":"222 artisti emergenti su cui investire 2026\n\nI'm pleased to share that I've been included in the volume '222 Emerging Artists to Invest In 2026' published by Exibart.\n\nA recognition that reflects years of continuous research, experimentation, and dedication to exploring the boundaries between art, technology, and human emotion.","image":"assets/massimoscognamiglio.com/IMG_0050.JPG","link":"https://www.exibart.com/libri-ed-editoria/222-artisti-emergenti-su-cui-investire-edizione-2026-la-nuova-mappa-del-contemporaneo-in-italia/"},{"title":"2023 Rome International Art Fair — Supermarket Gallery","date":"2023","fullText":"2023 Rome International Art Fair\nSupermarket Gallery","image":"assets/massimoscognamiglio.com/slider-home-1536x880.jpg","link":"https://massimoscognamiglio.com"},{"title":"2023 Bologna International Art Fair — Supermarket Gallery","date":"2023","fullText":"2023 Bologna International Art Fair\nSupermarket Gallery\n\n'It feels like it's just the universe looking out my mouth # 2'\nPastelli a olio e matita su carta di giornale\n20x30\n2021","image":"assets/massimoscognamiglio.com/Screenshot_2024-05-10_alle_09.49.44.png","link":"https://massimoscognamiglio.com"},{"title":"Strappi e Profezie — Casa 94 Gallery, Rome","date":"December 2021","fullText":"Strappi e Profezie\nCasa 94 Gallery\nDecember 2021\n\n'A site-specific installation, 30 works on paper and five canvases: Massimo Scognamiglio transforms the spaces of Casa 94 Gallery into a visionary and ironic psychiatric pavilion.\n\nGlamorous with a classic touch, a fashion with a pictorial character,","image":"assets/massimoscognamiglio.com/Immagini_1_Strappi_e_profezie.jpeg","link":"https://www.exibart.com/mostre/punk-e-cassandre-di-massimo-scognamiglio-negli-spazi-di-casa-94-a-roma/"},{"title":"BECAUSE Group Show — Dorothy Circus Gallery Rome & London","date":"2023","fullText":"ROME & LONDON\nBECAUSE GROUP SHOW\nDorothy Circus Gallery Rome\n\nBECAUSE REPRISE\nDorothy Circus Gallery London\n\n'With the exhibition BECAUSE - \"Perchè Sì\", the DCG changes course from its traditional curatorial line, staging a collective exhibition with the aim of raising a cry in the form of art to respond to the absurdity of the world we live in.","image":"","link":"https://www.dorothycircusgallery.com/exhibitions/140/works/"},{"title":"Where is the future? — MACRO Museum, Rome","date":"2019","fullText":"Where is the
+<script>document.addEventListener('DOMContentLoaded',function(){const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));const hdr=document.getElementById('header');window.addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',window.scrollY>60)});const ham=document.getElementById('hamburger'),menu=document.getElementById('mobileMenu'),overlay=document.getElementById('mobileOverlay');function toggleMenu(){ham.classList.toggle('active');menu.classList.toggle('open');overlay.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':''}ham.addEventListener('click',toggleMenu);overlay.addEventListener('click',toggleMenu);document.querySelectorAll('.mobile-nav-link').forEach(a=>a.addEventListener('click',toggleMenu));const heroImg=document.getElementById('heroBgImg');if(heroImg)setTimeout(()=>{heroImg.style.transform='scale(1)'},100)});</script></body>
+</html>
