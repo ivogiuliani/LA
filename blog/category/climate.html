@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D6HJX7BNZN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D6HJX7BNZN');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Climate &amp; Resilience — My Villa Journal</title>
+<meta name="description" content="Climate &amp; Resilience articles from the My Villa Journal. Perspectives on building reinforced concrete villas in Los Angeles.">
+<link rel="canonical" href="https://myvilla.la/blog/category/climate.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --terracotta: #C2714F;
+  --olive: #5C6B4F;
+  --tuscan-gold: #C4A265;
+  --warm-sand: #D4B896;
+  --espresso: #3E2F2B;
+  --coastal-sage: #A8B5A8;
+  --dusk-blue: #8A9B9E;
+  --pacific-blue: #6B8F9E;
+  --sky-mist: #9BB8C4;
+  --sand-white: #F0EBE3;
+  --charcoal: #2C2C2C;
+  --stone-grey: #A09890;
+  --light-linen: #EDE6DC;
+  --cream: #FAF8F5;
+  --offblack: #1a1816;
+  --white: #FFFFFF;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --section-pad: clamp(80px, 12vh, 140px);
+  --side-pad: clamp(24px, 5vw, 120px);
+}
+html { -webkit-font-smoothing: antialiased; }
+@media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+  html { scroll-behavior: smooth; }
+}
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ══════════════ NAV ══════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px var(--side-pad);
+  padding-top: max(22px, env(safe-area-inset-top));
+  background: rgba(62,47,43,0.97);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: padding 0.3s;
+}
+.nav.scrolled { padding: 14px var(--side-pad); }
+.nav-logo-wrap { display: flex; flex-direction: column; text-decoration: none; }
+.nav-logo {
+  font-family: var(--serif); font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400; letter-spacing: 0.22em; color: var(--white);
+}
+.nav-payoff {
+  font-family: var(--sans); font-size: 10px; font-weight: 400; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--white); opacity: 0.6; margin-top: 2px;
+}
+.nav-links { display: flex; gap: 24px; align-items: center; }
+.nav-links a {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--white); opacity: 0.6;
+  transition: color 0.3s, opacity 0.3s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+  background: var(--pacific-blue); transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--white); opacity: 1; }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { opacity: 1; }
+.nav-links a.active::after { width: 100%; }
+.nav-cta {
+  font-size: 10px !important; font-weight: 600 !important;
+  letter-spacing: 0.12em !important; opacity: 1 !important;
+  border: 1px solid var(--terracotta) !important; padding: 10px 24px;
+  transition: all 0.3s !important;
+}
+.nav-cta:hover { background: var(--pacific-blue) !important; border-color: var(--pacific-blue) !important; }
+.nav-cta::after { display: none !important; }
+.nav-burger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  width: 28px; padding: 4px 0;
+}
+.nav-burger span {
+  display: block; height: 1.5px; background: var(--white); transition: all 0.3s;
+}
+.mobile-menu {
+  position: fixed; inset: 0; background: rgba(62,47,43,0.98);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+  z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.4s;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a { font-family: var(--serif); font-size: 28px; color: var(--white); transition: color 0.3s; }
+.mobile-menu a:hover { color: var(--terracotta); }
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+}
+
+/* ══════════════ HERO ══════════════ */
+.hero {
+  background: var(--espresso);
+  padding: 160px var(--side-pad) 80px;
+  text-align: center;
+  min-height: 50vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.hero-label {
+  font-family: var(--sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 24px;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 400; line-height: 1.15;
+  color: var(--white); margin-bottom: 24px;
+}
+.hero-title em { font-style: italic; font-weight: 300; }
+.hero-divider {
+  width: 60px; height: 1px;
+  background: var(--tuscan-gold);
+  margin: 0 auto 24px;
+}
+.hero-subtitle {
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.7; color: var(--white);
+  opacity: 0.6; max-width: 620px;
+}
+.hero-subscribe {
+  display: inline-block; margin-top: 28px;
+  font-family: var(--sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--tuscan-gold); opacity: 0.8;
+  border-bottom: 1px solid rgba(196,162,101,0.3);
+  padding-bottom: 4px;
+  transition: opacity 0.3s, border-color 0.3s;
+}
+.hero-subscribe:hover { opacity: 1; border-color: var(--tuscan-gold); }
+
+/* ══════════════ CATEGORY NAV ══════════════ */
+.cat-nav {
+  background: var(--espresso);
+  padding: 0 var(--side-pad) 40px;
+  display: flex; justify-content: center;
+  gap: 8px; flex-wrap: wrap;
+}
+.cat-pill {
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 10px 22px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5);
+  cursor: pointer; transition: all 0.3s;
+  background: transparent;
+}
+.cat-pill:hover,
+.cat-pill.active {
+  border-color: var(--tuscan-gold);
+  color: var(--white);
+  background: rgba(196,162,101,0.1);
+}
+
+/* ══════════════ FEATURED ARTICLE ══════════════ */
+.featured-section {
+  background: var(--cream);
+  padding: var(--section-pad) var(--side-pad) 60px;
+}
+.featured-wrapper {
+  max-width: 1100px; margin: 0 auto;
+}
+.featured-label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 32px;
+}
+.featured-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--light-linen);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+}
+.featured-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+}
+.featured-img {
+  width: 100%; height: 100%;
+  min-height: 360px;
+  background: linear-gradient(135deg, #C2714F22 0%, #6B8F9E22 100%);
+  position: relative; overflow: hidden;
+}
+.featured-img-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, var(--espresso) 0%, #5a4440 50%, var(--pacific-blue) 100%);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 360px;
+}
+.featured-img-placeholder span {
+  font-family: var(--serif); font-size: 14px;
+  color: rgba(255,255,255,0.3); font-style: italic;
+}
+.featured-body { padding: 48px 48px 48px 0; }
+.featured-tag {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.featured-tag::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--light-linen);
+}
+.featured-title {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 400; line-height: 1.2;
+  color: var(--espresso); margin-bottom: 16px;
+}
+.featured-excerpt {
+  font-size: 15px; line-height: 1.75;
+  color: var(--charcoal); opacity: 0.7;
+  margin-bottom: 24px;
+}
+.featured-meta {
+  font-size: 12px; color: var(--stone-grey);
+  letter-spacing: 0.05em;
+}
+.read-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--pacific-blue);
+  margin-top: 20px; transition: gap 0.3s;
+}
+.read-link:hover { gap: 14px; }
+.read-link svg { transition: transform 0.3s; }
+
+@media (max-width: 768px) {
+  .featured-card { grid-template-columns: 1fr; }
+  .featured-body { padding: 32px 24px; }
+  .featured-img-placeholder { min-height: 220px; }
+}
+
+/* ══════════════ SECTION BLOCK ══════════════ */
+.section-block {
+  padding: 0 var(--side-pad) 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-header {
+  display: flex; align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--light-linen);
+}
+.section-name {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 400; color: var(--espresso);
+}
+.section-count {
+  font-size: 12px; color: var(--stone-grey);
+  letter-spacing: 0.08em;
+}
+.section-accent {
+  width: 40px; height: 2px; margin-bottom: 12px;
+}
+
+/* ══════════════ ARTICLE GRID ══════════════ */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+@media (max-width: 900px) {
+  .article-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .article-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid #e8e3da;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+.card-accent {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px;
+}
+.card-img {
+  width: 100%; height: 200px;
+  overflow: hidden;
+}
+.card-img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.card-img-placeholder span {
+  font-family: var(--serif); font-size: 12px;
+  color: rgba(255,255,255,0.25); font-style: italic;
+}
+.card-body { padding: 24px; }
+.card-tag {
+  font-family: var(--sans); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 10px; display: block;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 400; line-height: 1.3;
+  color: var(--espresso); margin-bottom: 10px;
+}
+.card-excerpt {
+  font-size: 14px; line-height: 1.65;
+  color: var(--charcoal); opacity: 0.65;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-meta {
+  font-size: 11px; color: var(--stone-grey);
+  letter-spacing: 0.05em;
+}
+.card-source {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 12px; padding-top: 12px;
+  border-top: 1px solid var(--light-linen);
+}
+.card-source-icon {
+  width: 18px; height: 18px;
+  border-radius: 3px; background: var(--light-linen);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.card-source-icon svg { width: 11px; height: 11px; }
+.card-source-icon.src-x { background: #1a1816; }
+.card-source-icon.src-x svg { fill: #fff; }
+.card-source-icon.src-reddit { background: #FF4500; }
+.card-source-icon.src-reddit svg { fill: #fff; }
+.card-source-icon.src-article { background: var(--espresso); }
+.card-source-icon.src-article svg { stroke: var(--cream); }
+.card-source-icon.src-gov { background: var(--pacific-blue); }
+.card-source-icon.src-gov svg { stroke: #fff; }
+.card-source-icon.src-study { background: var(--olive); }
+.card-source-icon.src-study svg { stroke: #fff; }
+.card-source-text {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--stone-grey);
+  line-height: 1.3;
+}
+.card-source-text strong {
+  color: var(--charcoal); font-weight: 600;
+}
+
+/* Featured source */
+.featured-sources {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 20px;
+}
+.source-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 100px;
+  background: var(--light-linen);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.06em; color: var(--charcoal);
+  transition: background 0.3s;
+}
+.source-badge:hover { background: #e0d8cc; }
+.source-badge svg { width: 12px; height: 12px; opacity: 0.6; }
+.source-badge.sb-article { background: rgba(62,47,43,0.3); color: var(--cream); }
+.source-badge.sb-study { background: rgba(92,107,79,0.3); color: var(--cream); }
+.source-badge.sb-x { background: rgba(26,24,22,0.4); color: var(--cream); }
+.source-badge.sb-reddit { background: rgba(255,69,0,0.2); color: #FF4500; }
+.source-badge.sb-gov { background: rgba(107,143,158,0.3); color: var(--cream); }
+
+/* Color coding by section */
+.accent-insurance { background: var(--terracotta); }
+.tag-insurance { color: var(--terracotta); }
+
+.accent-construction { background: var(--pacific-blue); }
+.tag-construction { color: var(--pacific-blue); }
+
+.accent-permits { background: var(--olive); }
+.tag-permits { color: var(--olive); }
+
+.accent-market { background: var(--tuscan-gold); }
+.tag-market { color: var(--tuscan-gold); }
+
+.accent-climate { background: var(--coastal-sage); }
+.tag-climate { color: var(--coastal-sage); }
+
+/* ══════════════ JOURNAL CTA ══════════════ */
+.journal-cta {
+  background: var(--espresso);
+  padding: var(--section-pad) var(--side-pad);
+  text-align: center;
+}
+.journal-cta-inner {
+  max-width: 620px; margin: 0 auto;
+}
+.journal-cta-label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 20px;
+}
+.journal-cta-divider {
+  width: 60px; height: 1px;
+  background: var(--tuscan-gold);
+  margin: 0 auto 28px;
+}
+.journal-cta-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 400; line-height: 1.2;
+  color: var(--white); margin-bottom: 20px;
+}
+.journal-cta-title em {
+  font-style: italic; font-weight: 300;
+}
+.journal-cta-text {
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.8;
+  color: var(--white); opacity: 0.6;
+  margin-bottom: 40px;
+}
+.journal-cta-buttons {
+  display: flex; gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-btn {
+  display: inline-block;
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 14px 32px; border-radius: 2px;
+  transition: all 0.3s; cursor: pointer;
+  text-decoration: none;
+}
+.cta-btn-primary {
+  background: var(--terracotta); color: var(--white);
+  border: 1px solid var(--terracotta);
+}
+.cta-btn-primary:hover {
+  background: var(--pacific-blue); border-color: var(--pacific-blue);
+}
+.cta-btn-secondary {
+  background: transparent; color: var(--white);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.cta-btn-secondary:hover {
+  border-color: var(--white);
+}
+@media (max-width: 500px) {
+  .journal-cta-buttons { flex-direction: column; align-items: center; }
+  .cta-btn { width: 100%; max-width: 280px; text-align: center; }
+}
+
+/* ══════════════ FOOTER ══════════════ */
+.footer {
+  background: var(--offblack);
+  padding: 30px var(--side-pad);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.footer-brand-wrap { display: flex; align-items: baseline; gap: 12px; }
+.footer-brand {
+  font-family: var(--serif); font-size: 16px;
+  letter-spacing: 0.2em; color: var(--white);
+}
+.footer-brand-payoff {
+  font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+}
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.5); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-size: 13px; color: var(--white); opacity: 0.8;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--pacific-blue); }
+@media (max-width: 600px) {
+  .footer { flex-direction: column; text-align: center; gap: 16px; }
+  .footer-brand-wrap { justify-content: center; }
+  .footer-links { justify-content: center; gap: 16px; }
+}
+
+/* ══════════════ REVEAL ══════════════ */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+
+/* ── Category page extras ─────────────────────────────────── */
+.category-hero { padding: 100px 40px 60px; text-align: center; max-width: 900px; margin: 0 auto; }
+.category-breadcrumb { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--stone-grey); margin-bottom: 20px; }
+.category-breadcrumb a { color: var(--stone-grey); text-decoration: none; transition: color 0.2s ease; }
+.category-breadcrumb a:hover { color: var(--terracotta); }
+.category-title { font-family: var(--serif); font-size: clamp(44px, 6vw, 68px); font-weight: 300; color: var(--offblack); margin-bottom: 16px; letter-spacing: -0.01em; }
+.category-sub { font-family: var(--sans); font-size: 14px; color: var(--stone-grey); letter-spacing: 0.04em; }
+.category-accent-bar { width: 60px; height: 3px; background: #A8B5A8; margin: 28px auto; }
+.month-group { max-width: 1280px; margin: 0 auto 60px; padding: 0 40px; }
+.month-header { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid rgba(192, 180, 165, 0.3); margin-bottom: 28px; }
+.month-label { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--espresso); letter-spacing: 0.02em; }
+.month-count { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--stone-grey); }
+.back-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--sans); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terracotta); text-decoration: none; padding: 40px; }
+.back-link:hover { color: var(--espresso); }
+@media (max-width: 768px) { .category-hero { padding: 60px 20px 40px; } .month-group { padding: 0 20px; } }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <a href="https://myvilla.la" class="nav-logo-wrap">
+    <span class="nav-logo">MY VILLA</span>
+    <span class="nav-payoff">Italian Soul &middot; Californian Body</span>
+  </a>
+  <div class="nav-links">
+    <a href="https://myvilla.la/#thesis">Vision</a>
+    <a href="https://myvilla.la/#collection">Collection</a>
+    <a href="https://myvilla.la/#ethical">Approach</a>
+    <a href="https://myvilla.la/#resilience">Resilience</a>
+    <a href="../index.html" class="active">Journal</a>
+    <a href="https://myvilla.la/#contact" class="nav-cta">Request Briefing</a>
+  </div>
+  <div class="nav-burger" id="burger" aria-label="Menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://myvilla.la/#thesis" onclick="closeMobile()">Vision</a>
+  <a href="https://myvilla.la/#collection" onclick="closeMobile()">Collection</a>
+  <a href="https://myvilla.la/#ethical" onclick="closeMobile()">Approach</a>
+  <a href="https://myvilla.la/#resilience" onclick="closeMobile()">Resilience</a>
+  <a href="../index.html" onclick="closeMobile()">Journal</a>
+  <a href="https://myvilla.la/#contact" onclick="closeMobile()">Request Briefing</a>
+</div>
+
+<section class="category-hero">
+  <div class="category-breadcrumb">
+    <a href="https://myvilla.la">Home</a> &rsaquo; <a href="../index.html">Journal</a> &rsaquo; Climate &amp; Resilience
+  </div>
+  <h1 class="category-title">Climate &amp; Resilience</h1>
+  <div class="category-accent-bar"></div>
+  <div class="category-sub">2 articles &middot; Updated perspectives on this topic</div>
+</section>
+
+
+<div class="month-group">
+  <div class="month-header reveal">
+    <h3 class="month-label">April 2026</h3>
+    <span class="month-count">2 articles</span>
+  </div>
+  <div class="article-grid">
+    
+    <article class="card reveal reveal-d1" data-year="2026" data-section="climate">
+      <a href="villa-medici-tuscany-to-malibu-climate-analog-2026.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-climate"></div>
+      <div class="card-img">
+        <img src="assets/img/villa-medici-tuscany-to-malibu-climate-analog-2026-hero.jpg" alt="From the Medici Villas to the Malibu Rebuild" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-climate">Climate</span>
+        <h3 class="card-title">From the Medici Villas to the Malibu Rebuild</h3>
+        <p class="card-excerpt">The 12 Medici villas inscribed by UNESCO in 2013 were built for the same Csa Mediterranean climate that now defines coastal Los Angeles. After the January 2025 Palisades fire, that climate logic is the rebuild brief.</p>
+        <div class="card-meta">April 20, 2026 &middot; 7 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Ministero della Cultura / UNESCO Italy</strong>, <strong>Ville e Giardini Medicei</strong>, <strong>Ville e Giardini Medicei</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal reveal-d2" data-year="2026" data-section="climate">
+      <a href="italian-villa-architectural-logic-la-climate-analog-2026.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-climate"></div>
+      <div class="card-img">
+        <img src="assets/img/italian-villa-architectural-logic-la-climate-analog-2026-hero.jpg" alt="The Italian Villa Is a Los Angeles Building Type" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-climate">Climate</span>
+        <h3 class="card-title">The Italian Villa Is a Los Angeles Building Type</h3>
+        <p class="card-excerpt">Central Italy and coastal Southern California are both Köppen-Geiger Csa. The Italian villa is a 2,000-year climate instrument — and it is site-correct in Los Angeles for the same reason it was in Tivoli.</p>
+        <div class="card-meta">April 20, 2026 &middot; 7 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Hydrology and Earth System Sciences (Copernicus)</strong>, <strong>Princeton University Press</strong>, <strong>Internet Archive / Getty Research Institute</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+  </div>
+</div>
+
+<a href="../index.html" class="back-link">
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  Back to Journal
+</a>
+
+<section class="journal-cta">
+  <div class="journal-cta-inner">
+    <div class="journal-cta-label">Curated by My Villa</div>
+    <div class="journal-cta-divider"></div>
+    <h2 class="journal-cta-title">Building <em>Permanence</em> in<br>Los Angeles</h2>
+    <p class="journal-cta-text">We design and coordinate luxury reinforced concrete villas for the Los Angeles market. European engineering. Californian lifestyle.</p>
+    <div class="journal-cta-buttons">
+      <a href="https://myvilla.la" class="cta-btn cta-btn-primary">Explore My Villa</a>
+      <a href="https://myvilla.la/#contact" class="cta-btn cta-btn-secondary">Request a Briefing</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand-wrap">
+    <span class="footer-brand">MY VILLA</span>
+    <span class="footer-brand-payoff">Italian Soul &middot; Californian Body</span>
+  </div>
+  <span class="footer-copy">&copy; 2026 My Villa. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="https://myvilla.la/team.html">Studio</a>
+    <a href="https://myvilla.la/privacy.html">Privacy</a>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
