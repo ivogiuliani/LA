@@ -1,0 +1,74 @@
+{
+  "slug": "concrete-masonry-altadena-rebuild-resilience-case-study",
+  "title": "Concrete Masonry Rebuild in Altadena: A Resilient Construction Case Study",
+  "subtitle": "A single completed home shows how non-combustible assemblies move from spec sheet to lived reality.",
+  "section": "materials",
+  "tag_label": "Materials & Construction",
+  "meta_description": "How does concrete masonry perform as a rebuild material? An Altadena resilient construction case study shows non-combustible walls, concrete roof, steel studs.",
+  "meta_keywords": "concrete masonry home, non-combustible construction, Altadena rebuild, fire-resistant home California, steel stud interior walls, resilient construction",
+  "sources": [
+    {
+      "name": "X / @cncacement",
+      "title": "Altadena rebuild with non-combustible concrete masonry, concrete roof, and steel studs",
+      "url": "https://x.com/cncacement/status/2048861095797067953",
+      "type": "x",
+      "excerpt": "Concrete industry account documenting a completed Altadena home rebuilt with concrete masonry walls, a concrete roof, and steel-stud interior partitions."
+    },
+    {
+      "name": "National Concrete Masonry Association",
+      "title": "Fire Resistance Ratings of Concrete Masonry Assemblies (TEK 07-01D)",
+      "url": "https://ncma.org/resource/fire-resistance-ratings-of-concrete-masonry-assemblies/",
+      "type": "study",
+      "excerpt": "Technical reference establishing fire-resistance ratings for concrete masonry walls based on equivalent thickness."
+    }
+  ],
+  "key_data": [
+    {
+      "number": "0",
+      "label": "Combustible elements\nin the primary structure"
+    },
+    {
+      "number": "4+ hr",
+      "label": "Typical fire rating\nfor concrete masonry walls"
+    },
+    {
+      "number": "1",
+      "label": "Completed Altadena rebuild\ndocumented in this case"
+    }
+  ],
+  "our_perspective": "We pay close attention to single-house case studies like this one because they answer a question spec sheets cannot: does the assembly actually get built, on a real lot, on a real budget? A concrete masonry shell with a concrete roof and steel-stud interiors is a coherent system — it removes combustible material from the load path entirely, rather than wrapping a wood frame in better cladding. That is the same logic we apply at My Villa, scaled up to reinforced concrete in the tradition of the Kimbell Art Museum and Palazzo Grassi: when the structure itself is non-combustible, fire resistance stops being an upgrade and starts being a property of the building.",
+  "body_html": "<p class=\"reveal\">A short video circulated on April 27 by the concrete-industry account <a href=\"https://x.com/cncacement/status/2048861095797067953\">@cncacement on X</a> documents a completed home rebuild in Altadena, one of the neighborhoods most heavily affected by the January 2025 fires. The post describes the house as built with non-combustible concrete masonry walls, a concrete roof, and steel studs for interior partitions, framing it as an example of \"rebuilding with resilience.\" The clip is brief and modest in reach, but it is one of the few publicly visible records of a finished Altadena home delivered with a fully non-combustible structural system.</p>\n\n<p class=\"reveal\">For a market still negotiating what \"fire-resilient\" actually means at the scale of a single house, this kind of completed, documented project is more useful than another technical bulletin.</p>\n\n<h2 class=\"reveal\">What the assembly actually contains</h2>\n\n<p class=\"reveal\">The system described in the post is straightforward and well-understood within the structural engineering literature. Concrete masonry units (CMU) used as load-bearing or infill walls carry recognized fire-resistance ratings based on equivalent thickness; standard assemblies achieve multi-hour ratings without additional fireproofing, per the National Concrete Masonry Association's <a href=\"https://ncma.org/resource/fire-resistance-ratings-of-concrete-masonry-assemblies/\">TEK 07-01D reference</a>. A concrete roof deck removes the most vulnerable surface in a wildfire — the combustible roof — from the equation entirely.</p>\n\n<p class=\"reveal\">Steel studs at the interior eliminate dimensional lumber from the partition walls, which matters less for exterior fire exposure and more for the post-event condition of the structure. FEMA's wildfire construction guide (P-737) emphasizes that ember intrusion through vents and openings — not direct flame contact on walls — is the dominant ignition pathway in WUI fires, which means the perimeter assemblies and roof are doing the heaviest defensive work.</p>\n\n<div class=\"key-data\">\n<p class=\"reveal\">A house built this way is not relying on retardants, coatings, or sprayed barriers. The fire-resistance is a property of the materials themselves, which is the underwriting distinction that matters when carriers evaluate the structure.</p>\n</div>\n\n<h2 class=\"reveal\">Why a single Altadena house matters more than it sounds</h2>\n\n<p class=\"reveal\">The Altadena rebuild conversation in 2026 is dominated by aggregate numbers — permit applications filed, foundations poured, neighborhoods cleared. What aggregate data does not show is which assemblies homeowners and their builders are actually choosing when they get past the entitlements and into the framing decision. The default for almost every Southern California single-family rebuild remains wood-frame construction with code-compliant ignition-resistant detailing — Class A roof, ember-resistant vents, non-combustible cladding within five feet — layered onto a combustible structure.</p>\n\n<p class=\"reveal\">A concrete masonry build inverts that logic. Instead of hardening a flammable structure, the structure itself is non-flammable, and the detailing handles the secondary ember-intrusion vectors. The cost trade-off is real — masonry construction generally carries a higher hard-cost per square foot than light-frame — but the post notes the home was built \"affordably and quickly,\" which suggests the assembly is competitive when the contractor and supply chain are organized around it. That economic question is the one most relevant to whether this approach scales beyond a single Altadena lot.</p>\n\n<h2 class=\"reveal\">The signal for the LA rebuild market</h2>\n\n<p class=\"reveal\">For owners and architects evaluating the rebuild path in Altadena, the Pacific Palisades, or any other LA fire-zone parcel, the existence of a documented, completed concrete masonry house in the neighborhood reframes the conversation. It moves the discussion from \"what could we theoretically build\" to \"what has been built nearby, and at what spec.\" That shift is also relevant to insurance review, because underwriters evaluating a rebuild submission can now point to a constructed precedent rather than a manufacturer datasheet. Whether concrete masonry is the right answer for a given lot is a separate question — site geometry, architectural ambition, and budget all weigh in. But the assembly is no longer hypothetical in Altadena.</p>\n\n<p class=\"reveal\">As more rebuilds reach completion through 2026 and 2027, the most informative data will not be permit volume but the share of finished homes built on non-combustible structural systems. That ratio, more than any policy headline, will tell us how seriously LA is rebuilding for the next cycle.</p>",
+  "excerpt": "A documented Altadena rebuild — concrete masonry walls, concrete roof, steel-stud interiors — offers a rare completed reference for what non-combustible residential construction actually looks like in LA's fire zones.",
+  "image_prompt": "Architectural photography of a finished single-family home with exposed concrete masonry walls and a flat concrete roof, set in a foothill neighborhood with sparse Mediterranean landscaping; muted warm tones, late afternoon light, no people, calm and grounded composition.",
+  "topic_tags": [
+    "concrete-masonry",
+    "altadena-case-study"
+  ],
+  "data_points_cited": [
+    "Altadena rebuild documented April 27, 2026 by @cncacement on X",
+    "Concrete masonry walls carry multi-hour fire-resistance ratings (NCMA TEK 07-01D)",
+    "FEMA P-737 identifies ember intrusion as dominant WUI ignition pathway"
+  ],
+  "read_time_min": 5,
+  "hero_image": {
+    "local_path": "/Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/blog/assets/img/concrete-masonry-altadena-rebuild-resilience-case-study-hero.jpg",
+    "web_path": "assets/img/concrete-masonry-altadena-rebuild-resilience-case-study-hero.jpg",
+    "photo_id": "src-0",
+    "author_name": "Concrete Masonry and Hardscapes Association",
+    "author_url": "https://ncma.org/resource/fire-resistance-ratings-of-concrete-masonry-assemblies/",
+    "unsplash_url": "https://ncma.org/resource/fire-resistance-ratings-of-concrete-masonry-assemblies/",
+    "alt_description": "Home",
+    "color": "#3e2f2b",
+    "source": "cited_source",
+    "origin": "source"
+  },
+  "_date": "2026-04-29",
+  "_section_id": "materials",
+  "_section_name": "Materials & Construction",
+  "_source_item": {
+    "title": "@cncacement: Author: @cncacement | Text: This video celebrates the successful rebuilding of a...",
+    "url": "https://x.com/cncacement/status/2048861095797067953",
+    "publication": "X/Twitter",
+    "cluster": "twitter"
+  }
+}
