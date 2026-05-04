@@ -1,0 +1,315 @@
+# MyVilla — Radar Keyword Clusters
+# Source: radar_pipeline.py
+# Used by: scripts/radar.py
+#
+# ──────────────────────────────────────────────────────────────────────
+# STRATEGIC FOCUS (updated 2026-04-19 — see content_strategy.md)
+# ──────────────────────────────────────────────────────────────────────
+# Target buyer: ultra-wealthy Californians commissioning or rebuilding
+# luxury homes who want the home to stay INSURABLE and RESILIENT through
+# the next wildfire cycle — not just recover from the last one.
+#
+# Priority geographies (ordered):
+#   1. Malibu, Beverly Hills
+#   2. Bel Air, Holmby Hills, Brentwood, Hidden Hills, Calabasas
+#   3. Mandeville Canyon, Topanga, Pacific Palisades (still relevant,
+#      reduced weight vs. prior config)
+#   4. Montecito, Newport Coast, Santa Barbara Foothills (secondary CA luxury)
+#
+# Primary content angles:
+#   - "Building new" luxury + insurable (not only post-fire rebuild)
+#   - California home-insurance crisis statewide (FAIR Plan, non-renewals,
+#     IBHS discounts, Mercury / AAA / USAA policy shifts)
+#   - Reinforced concrete / ICF residential construction
+#   - Italian / Mediterranean villa typology in California
+#   - 2026 WUI Code + Safer from Wildfires + IBHS Wildfire Prepared Home Plus
+#
+# SECONDARY (do not lead with): Palisades/Altadena rebuild news.
+# These remain in scope but are no longer the top commercial target.
+
+
+clusters:
+  # ── Cluster A: Luxury New-Build & Insurability (PRIMARY) ──
+  luxury_insurable_newbuild:
+    id: "A"
+    label: "Luxury Insurable New-Build"
+    priority: 1
+    keywords:
+      - "luxury home builder Malibu"
+      - "custom home Beverly Hills"
+      - "fire-resistant luxury home California"
+      - "insurable luxury home California"
+      - "Bel Air custom home builder"
+      - "Brentwood new construction luxury"
+      - "Hidden Hills custom home"
+      - "Calabasas luxury villa"
+      - "Mandeville Canyon custom home"
+      - "luxury spec home Westside Los Angeles"
+      - "new construction insurance California"
+      - "ultra high net worth homebuilder California"
+
+  # ── Cluster B: Materials & Fire-Resilient Construction ──
+  materials_construction:
+    id: "B"
+    label: "Materials & Construction"
+    priority: 1
+    keywords:
+      - "reinforced concrete home California"
+      - "concrete home Malibu"
+      - "ICF home California luxury"
+      - "fire-resistant home design California"
+      - "Class A roof home California"
+      - "non-combustible home California"
+      - "fireproof luxury house California"
+      - "concrete vs wood frame fire insurance"
+      - "IBHS Wildfire Prepared Home Plus"
+      - "defensible space luxury home California"
+
+  # ── Cluster C: Insurance & Regulation (Statewide) ──
+  insurance_regulation:
+    id: "C"
+    label: "Insurance & Regulation"
+    priority: 1
+    keywords:
+      - "California home insurance crisis 2026"
+      - "California FAIR Plan luxury home"
+      - "fire insurance non-renewal California"
+      - "Mercury wildfire discount IBHS"
+      - "AAA California homeowners insurance rebuild"
+      - "USAA California fire insurance"
+      - "WUI Code California 2026"
+      - "Safer from Wildfires 12 measures"
+      - "California insurance commissioner wildfire"
+      - "private insurance HNW California wildfire"
+      - "Prop 103 California insurance 2026"
+
+  # ── Cluster D: Italian & Mediterranean Villa Typology ──
+  italian_mediterranean_villa:
+    id: "D"
+    label: "Italian & Mediterranean Villa"
+    priority: 1
+    keywords:
+      - "Italian villa Los Angeles"
+      - "Mediterranean villa California"
+      - "Tuscan style home California"
+      - "Italian architect Los Angeles"
+      - "European architect custom home LA"
+      - "modern Italian house California"
+      - "palazzo style California home"
+      - "Italian design luxury home LA"
+
+  # ── Cluster E: Luxury Real Estate Market (Westside + coastal) ──
+  luxury_real_estate:
+    id: "E"
+    label: "Luxury Real Estate LA"
+    priority: 2
+    keywords:
+      - "Malibu luxury home market 2026"
+      - "Beverly Hills real estate luxury 2026"
+      - "Bel Air new construction market"
+      - "Westside LA luxury real estate"
+      - "ultra luxury home sale Los Angeles"
+      - "high end home sale Malibu"
+      - "Montecito luxury real estate"
+      - "Newport Coast luxury home"
+
+  # ── Cluster F: Concrete / Museum-Grade Architecture ──
+  concrete_architecture:
+    id: "F"
+    label: "Concrete Architecture"
+    priority: 2
+    keywords:
+      - "reinforced concrete villa design"
+      - "Tadao Ando residential concrete"
+      - "museum quality concrete house"
+      - "exposed concrete luxury home"
+      - "brutalist luxury home California"
+      - "Renzo Piano residential concrete"
+      - "Palazzo Grassi restoration concrete"
+      - "Kimbell Art Museum concrete"
+
+  # ── Cluster G: Rebuild (SECONDARY — news value only) ──
+  #   Palisades/Altadena rebuild coverage kept in scope for PR / news hooks.
+  #   Radar score should NOT boost this cluster over A-D.
+  rebuild_secondary:
+    id: "G"
+    label: "LA Rebuild (secondary)"
+    priority: 3
+    keywords:
+      - "Pacific Palisades rebuild"
+      - "Altadena reconstruction"
+      - "LA wildfire rebuild 2026"
+      - "Topanga Canyon rebuild"
+      - "Malibu rebuild home 2026"
+      - "Eaton Fire rebuild progress"
+
+
+# ── Priority geographies (used for scoring boost, if radar.py supports it) ──
+priority_geographies:
+  tier_1:
+    - "Malibu"
+    - "Beverly Hills"
+  tier_2:
+    - "Bel Air"
+    - "Holmby Hills"
+    - "Brentwood"
+    - "Hidden Hills"
+    - "Calabasas"
+  tier_3:
+    - "Mandeville Canyon"
+    - "Topanga"
+    - "Pacific Palisades"
+    - "Palisades"
+    - "Altadena"
+  tier_4_secondary_ca:
+    - "Montecito"
+    - "Newport Coast"
+    - "Santa Barbara Foothills"
+
+
+# ── Buyer-intent search queries (commercial, not news) ──
+# These are what our TARGET prospect types into Google. Use for SEO
+# gap-analysis against published journal titles.
+buyer_intent_queries:
+  - "luxury home builder Malibu"
+  - "custom home Beverly Hills"
+  - "fire resistant home California"
+  - "insurable home California"
+  - "concrete home builder Los Angeles"
+  - "ICF home builder California"
+  - "Italian villa California builder"
+  - "Mediterranean villa California"
+  - "architect luxury home Malibu"
+  - "custom home Bel Air builder"
+  - "fireproof home California"
+  - "how to build fire-resistant luxury home California"
+  - "California fire insurance solution custom home"
+  - "FAIR Plan alternative luxury home"
+  - "concrete home cost California"
+
+
+# ── Target Domains (Google CSE) ──
+# Ordered by strategic value. Luxury + business outlets up top.
+target_domains:
+  # Luxury & architecture (highest value for our audience)
+  - "architecturaldigest.com"
+  - "mansionglobal.com"
+  - "robbreport.com"
+  - "wallpaper.com"
+  - "dwell.com"
+  - "archdaily.com"
+  - "dezeen.com"
+  - "designboom.com"
+  - "dirt.com"
+  # Business / financial (HNW audience)
+  - "wsj.com"
+  - "bloomberg.com"
+  - "ft.com"
+  - "barrons.com"
+  - "fastcompany.com"
+  - "foxbusiness.com"
+  # LA / California news
+  - "latimes.com"
+  - "therealdeal.com"
+  - "bisnow.com"
+  - "curbed.com"
+  - "calmatters.org"
+  - "smobserved.com"
+  - "mercurynews.com"
+  # National
+  - "nytimes.com"
+  - "theatlantic.com"
+
+
+# ── Reddit Sources ──
+reddit:
+  subreddits:
+    - "fatFIRE"
+    - "RichPeoplePF"
+    - "LuxuryRealEstate"
+    - "RealEstate"
+    - "homebuilding"
+    - "architecture"
+    - "ModernistArchitecture"
+    - "brutalism"
+    - "LosAngeles"
+    - "Insurance"
+    - "AskEngineers"
+    - "HomeImprovement"
+  search_keywords:
+    - "luxury home California fire"
+    - "fire resistant luxury home"
+    - "insurable home California"
+    - "reinforced concrete house"
+    - "ICF home build"
+    - "California insurance crisis luxury"
+    - "Italian villa California"
+    - "Mediterranean home California"
+    - "custom home builder Malibu"
+    - "custom home Beverly Hills"
+    - "concrete architecture home"
+    - "brutalist house design"
+
+
+# ── X/Twitter Sources ──
+twitter:
+  accounts_to_monitor:
+    - "@ArchDigest"
+    - "@Dezeen"
+    - "@dwell"
+    - "@RobbReport"
+    - "@MansionGlobal"
+    - "@TheRealDeal"
+    - "@CurbedLA"
+    - "@TheDirtLA"
+    - "@LATimesRE"
+    - "@CityMalibu"
+    - "@BeverlyHillsCA"
+    - "@CityofLA"
+    - "@LACoFDPIO"
+    - "@CalFireNews"
+    - "@CDinsurance"
+  hashtags:
+    - "#LuxuryRealEstateLA"
+    - "#CustomHomeLA"
+    - "#MalibuRealEstate"
+    - "#BeverlyHillsRealEstate"
+    - "#BelAirRealEstate"
+    - "#FireResistantHome"
+    - "#ConcreteLuxury"
+    - "#ConcreteArchitecture"
+    - "#ModernVilla"
+    - "#ItalianVilla"
+    - "#MediterraneanHome"
+    - "#LAarchitecture"
+  search_queries:
+    - "luxury home builder Malibu"
+    - "custom home Beverly Hills"
+    - "fire resistant luxury home California"
+    - "insurable home California"
+    - "concrete home California"
+    - "ICF construction California"
+    - "Italian villa California builder"
+    - "Mediterranean home California"
+    - "California fire insurance crisis home"
+
+
+# ── Scoring ──
+scoring:
+  dimensions:
+    relevance: { weight: 5, max: 5 }
+    recency: { weight: 5, max: 5 }
+    engagement: { weight: 5, max: 5 }
+    audience_fit: { weight: 5, max: 5 }
+    dialogue_openness: { weight: 5, max: 5 }
+  thresholds:
+    qualified: 15        # Score >= 15 → draft outreach / candidate
+    immediate_action: 20 # Score >= 20 → act today
+    watchlist: 12        # Score 12-14 → monitor
+  # Cluster priority boost (if radar.py supports): priority 1 > 2 > 3.
+  # Intent: keep luxury/insurability/materials/Italian-villa ahead of
+  # news-style rebuild coverage in the scoring stack.
+  cluster_priority_boost:
+    priority_1: 3
+    priority_2: 1
+    priority_3: 0

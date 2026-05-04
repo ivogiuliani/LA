@@ -1,0 +1,152 @@
+# MyVilla — Brand Voice Configuration
+# Extracted from: MyVilla_Knowledge_Base.md (March 2026)
+# Used by: generate_journal.py, generate_social.py, validate.py
+
+identity:
+  name: "My Villa"
+  tagline: "Italian Soul, Californian Body"
+  website: "myvilla.la"
+  press_contact: "info@myvilla.la"
+  positioning: >
+    Prima società a proporre ville di lusso in calcestruzzo armato precompresso
+    nel mercato residenziale ultra-luxury di Los Angeles.
+  what_we_are: "design-led luxury villa orchestration"
+  what_we_are_not:
+    - "contractor edilizio tradizionale"
+    - "developer immobiliare"
+    - "agenzia di architettura standard"
+
+thought_leader:
+  name: "Paolo Mezzalama"
+  role: "Founder & Architect"
+  credentials:
+    - "NAJAP 2008 (Ministero della Cultura francese)"
+    - "Young Talent of Italian Architecture 2014"
+    - "C40 Reinventing Cities 2023"
+    - "Co-fondatore IT'S Architecture"
+
+# ══════════ TERMINOLOGY ══════════
+
+preferred_terms:
+  construction:
+    - "reinforced concrete"           # EN
+    - "calcestruzzo armato precompresso" # IT
+    - "prestressed reinforced concrete"
+  fire:
+    - "fire-resilient"
+    - "fire-resistant"
+    - "non-combustible"
+  values:
+    - "permanence"
+    - "durability"
+    - "resilience"
+    - "precision"
+    - "comfort"
+
+forbidden_terms:
+  - "bunker"
+  - "fortress"
+  - "fortezza"
+  - "bunker anti-incendio"
+  - "anti-fire"
+  - "anti-incendio"
+  - "dream home"
+  - "protect your family"        # fear-driven
+  - "survive the next fire"      # fear-driven
+  - "sopravvivi al prossimo incendio"
+  - "proteggi la tua famiglia"
+
+# ══════════ VOICE RULES ══════════
+
+voice_rules:
+  - rule: "Value before product"
+    detail: >
+      Always lead with a useful data point or insight before mentioning My Villa.
+      The reader should get value even if they never visit the site.
+  - rule: "Cite DGU + Kimbell Museum"
+    detail: >
+      When mentioning construction credentials, always reference DGU's portfolio:
+      Palazzo Grassi (Pinault Collection) and Kimbell Art Museum (Renzo Piano).
+  - rule: "No fear-driven language"
+    detail: >
+      Never use language based on fear. Frame fire-resistance as a design
+      advantage and engineering choice, not as survival necessity.
+  - rule: "No sales claims"
+    detail: >
+      My Villa has NOT built any homes yet. Never claim otherwise.
+      Never mention specific delivery timelines (e.g. '18 months') in public content.
+  - rule: "No financial data"
+    detail: >
+      Never disclose fee percentages, internal financial data, investment
+      figures, valuations, or financial plans.
+  - rule: "Paolo is the public voice"
+    detail: >
+      The thought leader is Paolo Mezzalama, not Ivo Giuliani.
+      All quotes and attributions go to Paolo.
+  - rule: "All content in English"
+    detail: >
+      All published content (Journal, social, radar emails) must be in English.
+      Internal notes may be in Italian.
+
+# ══════════ TONE BY CHANNEL ══════════
+
+tone:
+  journal:
+    style: "editorial, authoritative, data-driven"
+    length: "600-900 words"
+    perspective: >
+      Informed market observer. My Villa appears ONLY in the 'Our Perspective'
+      block — the article itself is about the topic, not about us.
+  x_twitter:
+    style: "clean, editorial, no hashtags"
+    length: "max 280 chars"
+    perspective: "Sharp data point or insight. Link to Journal article."
+  instagram:
+    style: "visual-first, aspirational but grounded"
+    # Hashtag count by pipeline:
+    #   - Editorial pipeline (generate brand-foundation posts): 5-6 hashtags
+    #     per editorial-calendar.yml → hashtags.per_post (this is canonical)
+    #   - Reactive radar pipeline (generate_social.py): 2-3 hashtags inline
+    length: "125 chars before fold; editorial: 5-6 hashtags; reactive: 2-3"
+    perspective: "Architecture + lifestyle. Never salesy."
+  email_outreach:
+    style: "professional, concise, value-first"
+    perspective: >
+      Always offer a data point or insight before any mention of My Villa.
+      Journalist should feel they're getting useful intel, not a pitch.
+  reddit:
+    style: "conversational, community-native, helpful"
+    perspective: >
+      Contribute genuinely to the conversation. Share knowledge.
+      Mention My Villa only if directly relevant and add [disclosure].
+
+# ══════════ CREDENTIAL ANCHORS ══════════
+
+credential_anchors:
+  design:
+    firm: "IT'S Architecture"
+    locations: "Roma · Ginevra · Parigi"
+    key_fact: "Premio Nazionale di Architettura Italiana, NAJAP France"
+  climate:
+    firm: "Transsolar KlimaEngineering"
+    locations: "Stoccarda · New York"
+    key_fact: "Founded by Matthias Schuler (Harvard GSD), 30+ years"
+    collaborations: "Renzo Piano, SANAA, Foster + Partners"
+  structural:
+    firm: "BUROMILAN"
+    locations: "Milano · Venezia · New York"
+    key_fact: "90+ projects with Renzo Piano, Fondazione Rovati (Compasso d'Oro)"
+  construction:
+    firm: "DGU"
+    locations: "Treviso · Los Angeles · Baja California"
+    key_fact: "Palazzo Grassi & Punta della Dogana (Pinault), Aman Venice, Kimbell Art Museum (Piano)"
+    local_production: "All My Villa concrete produced locally in California by DGU"
+
+# ══════════ STORY ANGLES ══════════
+
+approved_story_angles:
+  - "The post-wildfire future of luxury housing in Los Angeles"
+  - "European concrete culture meets the American wood-frame norm"
+  - "Italian design enters California luxury residential"
+  - "The insurance dimension of fire-resistant design"
+  - "A new model for ultra-luxury custom villas"

@@ -1,0 +1,35 @@
+# Secrets — never commit
+.env
+.env.*
+*.env
+secrets/
+
+# Drafts and generated artifacts
+_drafts/
+_archive/
+_system/history/
+_system/radar/reports/*.json
+_system/radar/reports/*.html
+_system/social/posts/
+_system/content_system.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Claude Code local config (not part of the site)
+.claude/
+
+# macOS drag-source artifacts (no purpose on a web server)
+*.textClipping

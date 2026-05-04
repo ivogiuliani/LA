@@ -1,0 +1,105 @@
+/Users/ivogiuliani/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+============================================================
+  My Villa Engagement Radar — 2026-04-19
+  Lookback: 365 days | Model: claude-sonnet-4-7
+============================================================
+
+Dedup index: 18 URLs, 105 titles
+
+1. Google Custom Search...
+  [CSE] Error 'luxury home builder Malibu': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=luxury+home+builder+Malibu&dateRestrict=d365&num=5
+  [CSE] Error 'custom home Beverly Hills': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=custom+home+Beverly+Hills&dateRestrict=d365&num=5
+  [CSE] Error 'fire-resistant luxury home California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=fire-resistant+luxury+home+California&dateRestrict=d365&num=5
+  [CSE] Error 'insurable luxury home California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=insurable+luxury+home+California&dateRestrict=d365&num=5
+  [CSE] Error 'Bel Air custom home builder': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Bel+Air+custom+home+builder&dateRestrict=d365&num=5
+  [CSE] Error 'Brentwood new construction luxury': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Brentwood+new+construction+luxury&dateRestrict=d365&num=5
+  [CSE] Error 'Hidden Hills custom home': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Hidden+Hills+custom+home&dateRestrict=d365&num=5
+  [CSE] Error 'Calabasas luxury villa': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Calabasas+luxury+villa&dateRestrict=d365&num=5
+  [CSE] Error 'Mandeville Canyon custom home': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Mandeville+Canyon+custom+home&dateRestrict=d365&num=5
+  [CSE] Error 'luxury spec home Westside Los Angeles': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=luxury+spec+home+Westside+Los+Angeles&dateRestrict=d365&num=5
+  [CSE] Error 'new construction insurance California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=new+construction+insurance+California&dateRestrict=d365&num=5
+  [CSE] Error 'ultra high net worth homebuilder California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=ultra+high+net+worth+homebuilder+California&dateRestrict=d365&num=5
+  [CSE] Error 'reinforced concrete home California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=reinforced+concrete+home+California&dateRestrict=d365&num=5
+  [CSE] Error 'concrete home Malibu': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=concrete+home+Malibu&dateRestrict=d365&num=5
+  [CSE] Error 'ICF home California luxury': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=ICF+home+California+luxury&dateRestrict=d365&num=5
+  [CSE] Error 'fire-resistant home design California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=fire-resistant+home+design+California&dateRestrict=d365&num=5
+  [CSE] Error 'Class A roof home California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Class+A+roof+home+California&dateRestrict=d365&num=5
+  [CSE] Error 'non-combustible home California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=non-combustible+home+California&dateRestrict=d365&num=5
+  [CSE] Error 'fireproof luxury house California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=fireproof+luxury+house+California&dateRestrict=d365&num=5
+  [CSE] Error 'concrete vs wood frame fire insurance': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=concrete+vs+wood+frame+fire+insurance&dateRestrict=d365&num=5
+  [CSE] Error 'IBHS Wildfire Prepared Home Plus': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=IBHS+Wildfire+Prepared+Home+Plus&dateRestrict=d365&num=5
+  [CSE] Error 'defensible space luxury home California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=defensible+space+luxury+home+California&dateRestrict=d365&num=5
+  [CSE] Error 'California home insurance crisis 2026': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=California+home+insurance+crisis+2026&dateRestrict=d365&num=5
+  [CSE] Error 'California FAIR Plan luxury home': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=California+FAIR+Plan+luxury+home&dateRestrict=d365&num=5
+  [CSE] Error 'fire insurance non-renewal California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=fire+insurance+non-renewal+California&dateRestrict=d365&num=5
+  [CSE] Error 'Mercury wildfire discount IBHS': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Mercury+wildfire+discount+IBHS&dateRestrict=d365&num=5
+  [CSE] Error 'AAA California homeowners insurance rebuild': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=AAA+California+homeowners+insurance+rebuild&dateRestrict=d365&num=5
+  [CSE] Error 'USAA California fire insurance': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=USAA+California+fire+insurance&dateRestrict=d365&num=5
+  [CSE] Error 'WUI Code California 2026': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=WUI+Code+California+2026&dateRestrict=d365&num=5
+  [CSE] Error 'Safer from Wildfires 12 measures': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Safer+from+Wildfires+12+measures&dateRestrict=d365&num=5
+  [CSE] Error 'California insurance commissioner wildfire': 400 Client Error: Bad Request for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=California+insurance+commissioner+wildfire&dateRestrict=d365&num=5
+  [CSE] Error 'private insurance HNW California wildfire': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=private+insurance+HNW+California+wildfire&dateRestrict=d365&num=5
+  [CSE] Error 'Prop 103 California insurance 2026': 400 Client Error: Bad Request for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Prop+103+California+insurance+2026&dateRestrict=d365&num=5
+  [CSE] Error 'Italian villa Los Angeles': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Italian+villa+Los+Angeles&dateRestrict=d365&num=5
+  [CSE] Error 'Mediterranean villa California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Mediterranean+villa+California&dateRestrict=d365&num=5
+  [CSE] Error 'Tuscan style home California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Tuscan+style+home+California&dateRestrict=d365&num=5
+  [CSE] Error 'Italian architect Los Angeles': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Italian+architect+Los+Angeles&dateRestrict=d365&num=5
+  [CSE] Error 'European architect custom home LA': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=European+architect+custom+home+LA&dateRestrict=d365&num=5
+  [CSE] Error 'modern Italian house California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=modern+Italian+house+California&dateRestrict=d365&num=5
+  [CSE] Error 'palazzo style California home': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=palazzo+style+California+home&dateRestrict=d365&num=5
+  [CSE] Error 'Italian design luxury home LA': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Italian+design+luxury+home+LA&dateRestrict=d365&num=5
+  [CSE] Error 'Malibu luxury home market 2026': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Malibu+luxury+home+market+2026&dateRestrict=d365&num=5
+  [CSE] Error 'Beverly Hills real estate luxury 2026': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Beverly+Hills+real+estate+luxury+2026&dateRestrict=d365&num=5
+  [CSE] Error 'Bel Air new construction market': 400 Client Error: Bad Request for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Bel+Air+new+construction+market&dateRestrict=d365&num=5
+  [CSE] Error 'Westside LA luxury real estate': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Westside+LA+luxury+real+estate&dateRestrict=d365&num=5
+  [CSE] Error 'ultra luxury home sale Los Angeles': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=ultra+luxury+home+sale+Los+Angeles&dateRestrict=d365&num=5
+  [CSE] Error 'high end home sale Malibu': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=high+end+home+sale+Malibu&dateRestrict=d365&num=5
+  [CSE] Error 'Montecito luxury real estate': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Montecito+luxury+real+estate&dateRestrict=d365&num=5
+  [CSE] Error 'Newport Coast luxury home': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Newport+Coast+luxury+home&dateRestrict=d365&num=5
+  [CSE] Error 'reinforced concrete villa design': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=reinforced+concrete+villa+design&dateRestrict=d365&num=5
+  [CSE] Error 'Tadao Ando residential concrete': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Tadao+Ando+residential+concrete&dateRestrict=d365&num=5
+  [CSE] Error 'museum quality concrete house': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=museum+quality+concrete+house&dateRestrict=d365&num=5
+  [CSE] Error 'exposed concrete luxury home': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=exposed+concrete+luxury+home&dateRestrict=d365&num=5
+  [CSE] Error 'brutalist luxury home California': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=brutalist+luxury+home+California&dateRestrict=d365&num=5
+  [CSE] Error 'Renzo Piano residential concrete': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Renzo+Piano+residential+concrete&dateRestrict=d365&num=5
+  [CSE] Error 'Palazzo Grassi restoration concrete': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Palazzo+Grassi+restoration+concrete&dateRestrict=d365&num=5
+  [CSE] Error 'Kimbell Art Museum concrete': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Kimbell+Art+Museum+concrete&dateRestrict=d365&num=5
+  [CSE] Error 'Pacific Palisades rebuild': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Pacific+Palisades+rebuild&dateRestrict=d365&num=5
+  [CSE] Error 'Altadena reconstruction': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Altadena+reconstruction&dateRestrict=d365&num=5
+  [CSE] Error 'LA wildfire rebuild 2026': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=LA+wildfire+rebuild+2026&dateRestrict=d365&num=5
+  [CSE] Error 'Topanga Canyon rebuild': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Topanga+Canyon+rebuild&dateRestrict=d365&num=5
+  [CSE] Error 'Malibu rebuild home 2026': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Malibu+rebuild+home+2026&dateRestrict=d365&num=5
+  [CSE] Error 'Eaton Fire rebuild progress': 429 Client Error: Too Many Requests for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyAfB5fWSoUh6nUizFM9HLkIWWoxpmA7fvY&cx=PENDING&q=Eaton+Fire+rebuild+progress&dateRestrict=d365&num=5
+  [CSE] 0 results from 0 queries
+2. Reddit JSON feeds...
+  [Reddit] 77 posts found
+3. RSS feeds...
+  [RSS] 4 entries found
+4. Grok/xAI (X/Twitter)...
+  [Grok] 45 tweets found
+5. Gemini Search Grounding...
+  [Gemini] 23 results (grounding)
+
+Total raw results: 149
+
+Deduplicating...
+  [Dedup] 41 duplicates removed, 108 unique
+Pre-scoring (heuristic)...
+
+AI scoring 108 candidates (model: claude-sonnet-4-7)...
+  [AI Score] Error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-7'}, 'request_id': 'req_011CaDipKthYZQqe7igyMwE4'}
+  [AI Score] Error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-7'}, 'request_id': 'req_011CaDipSQcZczseHrQfnu8x'}
+  [AI Score] Error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-7'}, 'request_id': 'req_011CaDipY8uCvAFMUimSCZtS'}
+  [AI Score] Error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-7'}, 'request_id': 'req_011CaDipe9ockKYR2hptjX7K'}
+  [AI Score] Error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-7'}, 'request_id': 'req_011CaDipjBffRXCYcGocVkQk'}
+  [AI Score] Error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-sonnet-4-7'}, 'request_id': 'req_011CaDippknNbYM6FJJjS8p9'}
+
+============================================================
+  RESULTS: 108 unique
+  Qualified (≥15): 31
+  Watchlist (12-14): 53
+============================================================
+
+Saved: _system/radar/reports/radar_365day_2026-04-19.json

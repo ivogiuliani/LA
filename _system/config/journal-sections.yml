@@ -1,0 +1,61 @@
+# MyVilla — Journal Section Configuration
+# Source: MyVilla_ContentSystem_Architecture.md Section 4.2
+# Used by: generate_journal.py, update_journal_index.py
+
+sections:
+  - id: insurance
+    name: "Insurance & Insurability"
+    accent_color: "#C2714F"    # terracotta
+    clusters:
+      - insurance_regulation
+    icon: "shield"
+
+  - id: materials
+    name: "Materials & Construction"
+    accent_color: "#6B8F9E"    # pacific-blue
+    clusters:
+      - materials_construction
+    icon: "layers"
+
+  - id: concrete_arch
+    name: "Concrete Architecture"
+    accent_color: "#6B8F9E"    # pacific-blue
+    clusters:
+      - concrete_architecture
+    icon: "building"
+
+  - id: permits
+    name: "Permits & Policy"
+    accent_color: "#5C6B4F"    # olive
+    clusters:
+      - rebuild_direct
+    icon: "file-text"
+
+  - id: market
+    name: "LA Luxury Market"
+    accent_color: "#C4A265"    # tuscan-gold
+    clusters:
+      - luxury_real_estate_LA
+      - luxury_architecture_LA
+    icon: "trending-up"
+
+  - id: climate
+    name: "Climate & Resilience"
+    accent_color: "#A8B5A8"    # coastal-sage
+    clusters:
+      - climate_resilience
+    icon: "sun"
+
+# ── Journal Criteria (filtering radar → journal) ──
+journal_criteria:
+  min_score: 17
+  min_sources: 1
+  max_articles_per_day: 2
+  max_articles_per_week: 5
+
+# ── Dedup Cooldowns ──
+cooldowns:
+  topic_tag: 21        # days — longer than social (14)
+  data_point: 45       # days — specific stat not reused for 6 weeks
+  source_cited: 14     # days — don't cite same publication too often
+  section: 3           # days — alternate between sections for variety

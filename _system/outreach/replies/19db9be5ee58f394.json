@@ -1,0 +1,32 @@
+{
+  "thread_id": "19db9be5ee58f394",
+  "outreach_message_id": "19db9be5ee58f394",
+  "outreach_subject": "A European angle on your IBHS Wildfire Prepared piece",
+  "outreach_to": "sofia@greenhomebuildermag.com",
+  "outreach_sent_at": "2026-04-23T09:49:13+00:00",
+  "replies": [
+    {
+      "thread_id": "19db9be5ee58f394",
+      "gmail_message_id": "19db9be6841432c6",
+      "rfc822_message_id": "<69e9eb1c.050a0220.150d60.1d9f.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a sofia@greenhomebuildermag.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\n\r\n\r\nLa risposta del server remoto è:\r\n554 5.7.1 <sofia@greenhomebuildermag.com>: Recipient address rejected: Access denied",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a sofia@greenhomebuildermag.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. La risposta del server remoto è: 554",
+      "received_at": "2026-04-23T09:49:16+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "IMPORTANT",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "19db9be5ee58f394",
+      "outreach_subject": "A European angle on your IBHS Wildfire Prepared piece",
+      "outreach_to": "sofia@greenhomebuildermag.com",
+      "outreach_sent_at": "2026-04-23T09:49:13+00:00"
+    }
+  ],
+  "last_checked_at": "2026-04-28T20:39:44+00:00"
+}

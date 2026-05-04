@@ -1,0 +1,46 @@
+# MyVilla — Image Generation Style Config
+# Source: MyVilla_ContentSystem_Architecture.md Section 7
+# Used by: scripts/generate_images.py
+
+style:
+  aspect_ratio: "16:9"
+  resolution: "1792x1024"
+
+  # Base prompt suffix applied to every image
+  base_prompt_suffix: >
+    Architectural photography style, muted warm tones with
+    terracotta (#C2714F) and pacific blue (#6B8F9E) accents.
+    Clean, minimal, editorial. No text overlays. No people.
+    Concrete textures, California light, Mediterranean influence.
+
+  # Override per section
+  section_overrides:
+    insurance:
+      mood: "Abstract, data-visualization inspired, geometric"
+      palette: "Warm earth tones, terracotta dominant"
+    materials:
+      mood: "Close-up material textures, concrete surfaces, construction detail"
+      palette: "Grey-blue, raw concrete, steel"
+    concrete_arch:
+      mood: "Architectural exterior, dramatic light, monolithic forms"
+      palette: "Concrete grey, warm golden hour light"
+    permits:
+      mood: "Urban LA landscape, civic architecture, aerial"
+      palette: "Muted olive, urban grey, sky blue"
+    market:
+      mood: "Luxury interior/exterior, California hillside, golden hour"
+      palette: "Warm gold, cream, tuscan tones"
+    climate:
+      mood: "Nature + architecture, biophilic, green integrated with concrete"
+      palette: "Coastal sage, green, natural light"
+
+# API config
+api:
+  provider: "openai"        # openai (DALL-E 3) or replicate (Flux Pro)
+  model: "dall-e-3"
+  quality: "hd"             # hd or standard
+  fallback_to_stock: true   # Use stock pool if generation fails
+
+# Stock image pool (fallback)
+stock_pool_dir: "blog/img/stock/"
+stock_cooldown_days: 90     # Don't reuse same stock image within 90 days

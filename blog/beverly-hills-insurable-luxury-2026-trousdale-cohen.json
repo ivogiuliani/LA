@@ -1,0 +1,178 @@
+{
+  "slug": "beverly-hills-insurable-luxury-2026-trousdale-cohen",
+  "title": "Beverly Hills 2026: The 2025 Trades Closed the Old Regime. The New Brief Starts on a Different Baseline.",
+  "subtitle": "The 2025 trophy trades — Ridgedale, Wallace Ridge, Benedict Canyon, Alpine — closed on legacy structures under policies written before the reset. A ground-up Beverly Hills commission in 2026 is a different specification, and the 3 percent WUI-hardening premium is its entry fee, not a value-add.",
+  "section": "insurance",
+  "tag_label": "Insurance",
+  "meta_description": "Beverly Hills trophy trades at $32M–$60M cleared in 2025 on legacy structures and pre-reset homeowners policies — the last chapter of the old regime. A 2026 ground-up commission designs into Mercury's Sustainable Insurance Strategy, the 2026 California WUI Code, and IBHS Wildfire Prepared Home Plus from day one, at a 3 percent hardening-cost premium.",
+  "meta_keywords": "Beverly Hills insurance, Trousdale Estates sales 2025, Beverly Hills Flats trophy sales, California insurance reset 2025, State Farm emergency rate increase, Sustainable Insurance Strategy, Mercury SIS filing, Verisk wildfire model, IBHS Wildfire Prepared Home Plus, 2026 California WUI Code, UCLA Anderson Palisades Eaton losses, 1028 Ridgedale Drive, 912 Benedict Canyon, 1120 Wallace Ridge, grandfathered homeowners policy, insurable luxury Los Angeles, Beverly Hills custom home 2026",
+  "sources": [
+    {
+      "name": "UCLA Anderson Forecast",
+      "title": "Economic Impact of the Los Angeles Wildfires",
+      "url": "https://www.anderson.ucla.edu/about/centers/ucla-anderson-forecast/economic-impact-los-angeles-wildfires",
+      "type": "study",
+      "excerpt": "March 2025 Anderson Forecast report refines total property and capital losses to $76B–$131B; insured losses up to $45B; State Farm $7.6B; FAIR Plan $4.8B."
+    },
+    {
+      "name": "California Department of Insurance",
+      "title": "Commissioner Lara adopts judge's ruling on State Farm emergency rates",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2025/release038-2025.cfm",
+      "type": "gov",
+      "excerpt": "CDI approved a 17% emergency homeowners rate increase for State Farm (down from 21.8%), effective June 1, 2025, conditioned on a $400M parent-company cash infusion and a non-renewal moratorium through end of 2025."
+    },
+    {
+      "name": "California Department of Insurance",
+      "title": "DOI, Consumer Watchdog and State Farm reach settlement on prior emergency rate request",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2026/release012-2026.cfm",
+      "type": "gov",
+      "excerpt": "March 2026 three-party settlement locking in the 17% homeowners rate and extending the non-renewal moratorium for at least one more year."
+    },
+    {
+      "name": "Mercury Insurance Newsroom",
+      "title": "Mercury Insurance Submits California's First Sustainable Insurance Strategy Homeowners Rate Filing",
+      "url": "https://newsroom.mercuryinsurance.com/2025-08-15-Mercury-Insurance-Submits-Californias-First-Sustainable-Insurance-Strategy-Homeowners-Rate-Filing",
+      "type": "industry",
+      "excerpt": "Mercury's August 2025 SIS filing: average 6.9% rate increase; first California insurer to deploy the Verisk wildfire catastrophe model; mitigation discounts can cut up to a third off the wildfire portion of premium."
+    },
+    {
+      "name": "Headwaters Economics / IBHS",
+      "title": "Construction costs for wildfire resistant homes",
+      "url": "https://headwaterseconomics.org/natural-hazards/wildfire/construction-costs-for-wildfire-resistant-homes/",
+      "type": "study",
+      "excerpt": "Headwaters-IBHS October 2025 Altadena study: building new homes to high wildfire-resistant standards costs only 2–3% more than traditional construction."
+    },
+    {
+      "name": "The Real Deal",
+      "title": "Aussie billionaire James Packer's Beverly Hills manse sells for $60M",
+      "url": "https://therealdeal.com/la/2025/04/28/james-packers-beverly-hills-manse-sells-for-60-million/",
+      "type": "article",
+      "excerpt": "1028 Ridgedale Drive (Beverly Hills Flats) sold for $60M in April 2025, the year's priciest Beverly Hills trade at publication."
+    },
+    {
+      "name": "The Real Deal",
+      "title": "Focus on TRD Data: Priciest Beverly Hills Single-Family Sale",
+      "url": "https://therealdeal.com/la/2025/09/29/focus-on-trddata-priciest-beverly-hills-single-family-sale/",
+      "type": "article",
+      "excerpt": "1028 Ridgedale Drive ($59.6M) and 942 North Alpine Drive ($51.8M) — the only two $50M-plus Beverly Hills single-family trades in 2025."
+    },
+    {
+      "name": "The Real Deal",
+      "title": "Rick Caruso's old house notches priciest sale in US at $48M",
+      "url": "https://therealdeal.com/la/2025/09/30/rick-carusos-former-beverly-hills-home-priciest-sale-in-u-s/",
+      "type": "article",
+      "excerpt": "912 Benedict Canyon Drive (17,000+ sq ft, formerly owned by Rick Caruso) sold for $47.5M (~$2,793/sf) in September 2025 — the most expensive US residential sale that month."
+    },
+    {
+      "name": "The Real Deal",
+      "title": "Trousdale Estates nabs neighborhood's priciest trade this year with $32M close",
+      "url": "https://therealdeal.com/la/2025/07/01/trousdale-estates-manse-sells-for-record-32-million/",
+      "type": "article",
+      "excerpt": "1120 Wallace Ridge sold for $32.3M in July 2025 — the priciest 2025 Trousdale trade, a ~65% gain over the 2022 $19.5M purchase."
+    },
+    {
+      "name": "The Real Deal",
+      "title": "Sprawling Beverly Park estate relists for $80M",
+      "url": "https://therealdeal.com/la/2025/12/09/beverly-park-manse-heads-back-to-market-for-80-million/",
+      "type": "article",
+      "excerpt": "73 Beverly Park Lane relisted at just under $80M ($2,807/sf) in December 2025, an 11% cut from the May ask."
+    }
+  ],
+  "key_data": [
+    {
+      "number": "$76B–$131B",
+      "label": "UCLA Anderson Forecast\nPalisades + Eaton property and capital losses"
+    },
+    {
+      "number": "17%",
+      "label": "CDI-approved State Farm\nemergency homeowners rate increase, June 2025"
+    },
+    {
+      "number": "~3%",
+      "label": "Headwaters / IBHS: construction-cost\npremium for Wildfire Prepared Home Plus"
+    }
+  ],
+  "our_perspective": "At My Villa, we read the 2025 Beverly Hills tape for what it was: the last chapter of the prior homeowners-insurance regime, not a verdict on the next one. Ridgedale, Wallace Ridge, Benedict Canyon, Alpine — all legacy structures on legacy policies, closing under rules that no longer apply to a permit pulled today. A ground-up Beverly Hills commission in 2026 is a different engineering problem. It has to satisfy the 2026 California WUI Code on day one, stay aligned with all ten Safer from Wildfires measures, and be a credible candidate for IBHS Wildfire Prepared Home Plus — because the carrier pricing its first renewal will be pricing against Mercury's Sustainable Insurance Strategy formula and the Verisk catastrophe model, not against a 2023 policy. We build in reinforced concrete with DGU, the Italian firm behind Renzo Piano's Kimbell Art Museum expansion and the Pinault Collection's Palazzo Grassi, and we engineer climate with Transsolar. The envelope is non-combustible by design, not by retrofit. The Headwaters and IBHS 3 percent hardening premium is the line that buys the Mercury SIS discount pathway, the IBHS Plus designation, and the clean underwriter sign-off that a $30 million-plus Beverly Hills asset needs to stay insurable, standing, and liquid through the next cycle. It is not a value-add — it is the entry fee.",
+  "body_html": "<p class=\"reveal\">In 2025, California repriced its homeowners-insurance line in public. The <a href=\"https://www.insurance.ca.gov/0400-news/0100-press-releases/2025/release038-2025.cfm\">California Department of Insurance approved the first 17 percent State Farm emergency rate increase</a>, Mercury filed <a href=\"https://newsroom.mercuryinsurance.com/2025-08-15-Mercury-Insurance-Submits-Californias-First-Sustainable-Insurance-Strategy-Homeowners-Rate-Filing\">the state's first Sustainable Insurance Strategy rate plan</a>, and the <a href=\"https://www.anderson.ucla.edu/about/centers/ucla-anderson-forecast/economic-impact-los-angeles-wildfires\">UCLA Anderson Forecast</a> pegged total Palisades and Eaton property and capital losses at $76 billion to $131 billion. Yet the top of Beverly Hills still printed — $60 million at Ridgedale, $51.8 million at Alpine, $47.5 million at Benedict Canyon, $32.3 million at Wallace Ridge. The top cleared. But what cleared was the old regime, and that is the part worth reading carefully before a 2026 brief gets written.</p>\n\n<h2 class=\"reveal\">The 2025 reset, in three filings</h2>\n\n<p class=\"reveal\">The regulatory year had three inflection points, and together they describe a shift, not a spike. In May, <a href=\"https://www.insurance.ca.gov/0400-news/0100-press-releases/2025/release038-2025.cfm\">CDI approved a 17 percent State Farm emergency homeowners rate increase</a>, conditioned on a $400 million parent-company cash infusion and a non-renewal moratorium through the end of 2025. In August, <a href=\"https://newsroom.mercuryinsurance.com/2025-08-15-Mercury-Insurance-Submits-Californias-First-Sustainable-Insurance-Strategy-Homeowners-Rate-Filing\">Mercury submitted California's first filing under the Sustainable Insurance Strategy</a> — a 6.9 percent average increase paired with the first regulator-sanctioned use of the Verisk wildfire catastrophe model, and mitigation discounts capable of cutting up to a third off the wildfire portion of premium. In March 2026, a <a href=\"https://www.insurance.ca.gov/0400-news/0100-press-releases/2026/release012-2026.cfm\">three-party settlement between CDI, Consumer Watchdog, and State Farm</a> locked the 17 percent in place and extended the non-renewal moratorium at least another year. Read together, the three filings are a single signal: California is moving structure-level wildfire mitigation from alongside the rating formula to inside it. Every new-build brief written after this point is being drafted into the new formula, not the one the 2025 trades closed under.</p>\n\n<div class=\"key-data\">\n  <div><strong>$76B&ndash;$131B</strong><span>UCLA Anderson Forecast estimate of total Palisades + Eaton property and capital losses (March 2025)</span></div>\n  <div><strong>17%</strong><span>CDI-approved State Farm emergency homeowners rate increase, effective June 1, 2025</span></div>\n  <div><strong>~3%</strong><span>Headwaters Economics / IBHS: added construction cost for Wildfire Prepared Home Plus standard (Altadena study, October 2025)</span></div>\n</div>\n\n<h2 class=\"reveal\">What cleared in 2025 was legacy stock on legacy policies</h2>\n\n<p class=\"reveal\">The 2025 Beverly Hills top-tier was not a new-construction print list. It was a legacy-trophy list. In April, <a href=\"https://therealdeal.com/la/2025/04/28/james-packers-beverly-hills-manse-sells-for-60-million/\">1028 Ridgedale Drive — James Packer's Beverly Hills Flats estate — traded at $60 million</a>, the year's priciest BH single-family print. <a href=\"https://therealdeal.com/la/2025/09/29/focus-on-trddata-priciest-beverly-hills-single-family-sale/\">The Real Deal's September TRD Data review</a> logged Ridgedale alongside 942 North Alpine Drive at $51.8 million as the only two $50 million-plus Beverly Hills single-family closings of the year. In July, <a href=\"https://therealdeal.com/la/2025/07/01/trousdale-estates-manse-sells-for-record-32-million/\">1120 Wallace Ridge closed at $32.3 million</a> — the priciest Trousdale Estates trade of 2025, a roughly 65 percent gain over the 2022 purchase price of $19.5 million. In September, <a href=\"https://therealdeal.com/la/2025/09/30/rick-carusos-former-beverly-hills-home-priciest-sale-in-u-s/\">912 Benedict Canyon Drive closed at $47.5 million</a> — a 17,000-plus-square-foot estate formerly owned by Rick Caruso, booking the most expensive US residential sale of that month.</p>\n\n<p class=\"reveal\">Every one of these is an existing structure, built long before the 2026 California WUI Code was drafted, transacted on homeowners policies bound before the 2025 reset took effect. They cleared because the seller, the buyer, and the existing carrier could all price the structure under the prior regime. A $60 million trade closing in 2025 on a policy written in 2022 or 2023 is not a vote of confidence in the new rating formula — it has no reason to touch it. The CDI 17 percent, the Mercury SIS filing, the March 2026 settlement: none of them reach backward into a grandfathered renewal that has not come up yet. These prints are not a signal that the 3 percent hardening premium is priced in. They are the last chapter of the regime that premium was designed to replace.</p>\n\n<p class=\"reveal\">The counter-print makes the same point from the other side. <a href=\"https://therealdeal.com/la/2025/12/09/beverly-park-manse-heads-back-to-market-for-80-million/\">73 Beverly Park Lane relisted at just under $80 million in December 2025 — an 11 percent cut from its May ask</a> — stale trophy product, priced without a thesis, not clearing even in the 90210. In the legacy chapter, liquid legacy stock trades and indistinct legacy stock sits. Neither outcome tells a 2026 client anything about what their new commission has to deliver.</p>\n\n<h2 class=\"reveal\">The 2026 ground-up brief starts on a different baseline</h2>\n\n<p class=\"reveal\">A Beverly Hills client commissioning a new home this year is not operating under the regime that closed Ridgedale or Wallace Ridge. A ground-up permit pulled in 2026 designs into the <a href=\"/blog/mediterranean-villa-wui-code-2026-la-rebuild.html\">2026 California WUI Code on day one</a>, into an admitted market where Mercury's Sustainable Insurance Strategy plan is live and others are queued, and into a resale horizon where the next buyer's underwriter — not today's grandfathered carrier — will reprice the structure against the Verisk catastrophe model. The renewal letter that lands in 2028 will not be the renewal Packer's buyer just inherited. That is the specification problem every 2026 brief has to answer, even in the 90210.</p>\n\n<p class=\"reveal\">What closes the gap is structural mitigation priced into the envelope from the start, not bolted on at the first non-renewal notice. The <a href=\"https://headwaterseconomics.org/natural-hazards/wildfire/construction-costs-for-wildfire-resistant-homes/\">October 2025 Headwaters Economics and IBHS Altadena study</a> found high wildfire-resistant construction adds only 2 to 3 percent over traditional cost — roughly $15,000 on a $500,000 Altadena build. In Beverly Hills, where construction already runs far above the Altadena baseline, the 3 percent is a smaller line still, and it is the line that buys alignment with <a href=\"/blog/courtyard-villa-fire-resilience-2026-la-rebuild.html\">all ten Safer from Wildfires measures</a>, the Mercury SIS discount pathway, and the IBHS Wildfire Prepared Home Plus standard at once. The same 3 percent that is a rounding error on a $30 million-plus build is the difference between a renewal that is routine and a renewal that becomes the next non-admitted-market problem.</p>\n\n<h2 class=\"reveal\">The floor didn't move. The brief did.</h2>\n\n<p class=\"reveal\">Beverly Hills at the top did not reprice in 2025. The floor of what a $30 million-plus commission has to deliver did. The trades that cleared this year closed under rules that no longer apply to the next commission, and the 3 percent WUI-hardening premium is not a value-add the market is still debating — it is the entry fee to the 2028 renewal, and therefore to the trade after that. The question a client should bring to a 2026 brief is not whether a trophy home can still clear at $60 million in Beverly Hills. It can. The question is whether a home being commissioned this year will still be insurable, standing, and liquid when its first full renewal lands on a desk that prices mitigation inside the formula, not alongside it. That is a different specification, written on a different baseline — and it is the one every new brief has to start from.</p>",
+  "excerpt": "In 2025, California repriced its homeowners-line in public while Beverly Hills still printed $32M–$60M trades at Ridgedale, Wallace Ridge, Benedict Canyon, and Alpine. But those trades closed on legacy structures under policies written before the reset — the last chapter of the old regime, not a verdict on the next one. A ground-up Beverly Hills commission in 2026 is a different specification, written on a different baseline: 2026 California WUI Code on day one, Mercury SIS-aligned mitigation discounts, IBHS Wildfire Prepared Home Plus. The 3 percent hardening premium is the entry fee to the 2028 renewal — not a value-add.",
+  "image_prompt": "Architectural photography of a muted-cream reinforced-concrete luxury villa in Beverly Hills Trousdale Estates at late-afternoon golden hour, flat roof, deep cantilevered eaves, travertine motor court, olive trees and lavender in a five-foot non-combustible perimeter, city skyline in the hazy distance, Mediterranean-modern in warm muted tones, crisp shadows, no people",
+  "topic_tags": [
+    "beverly-hills",
+    "trousdale-estates",
+    "beverly-hills-flats",
+    "insurance",
+    "california-insurance-reset",
+    "sustainable-insurance-strategy",
+    "ibhs-plus",
+    "wui-code",
+    "insurability",
+    "ground-up-custom"
+  ],
+  "data_points_cited": [
+    "UCLA Anderson Forecast: $76B–$131B total Palisades + Eaton property and capital losses; insured losses up to $45B (March 2025)",
+    "CDI approved 17% State Farm emergency homeowners rate increase effective June 1, 2025, with $400M parent-company cash infusion and non-renewal moratorium through end of 2025",
+    "March 2026 CDI / Consumer Watchdog / State Farm settlement locked in the 17% rate and extended the non-renewal moratorium at least one more year",
+    "Mercury Insurance August 2025 SIS filing: 6.9% average rate increase, first use of Verisk wildfire catastrophe model, up to one-third wildfire-premium discount for mitigation",
+    "Headwaters / IBHS Altadena study (October 2025): high wildfire-resistant standards cost ~2–3% more than traditional construction",
+    "IBHS: Wildfire Prepared Home Plus adds ~3% (~$15K) to a $500K Altadena build",
+    "1028 Ridgedale Drive (Beverly Hills Flats) sold for $60M, April 2025",
+    "1028 Ridgedale Drive ($59.6M) and 942 North Alpine Drive ($51.8M) — only two $50M-plus BH single-family trades of 2025",
+    "912 Benedict Canyon Drive (formerly Rick Caruso, 17,000+ sf) sold for $47.5M (~$2,793/sf) September 2025 — priciest US residential sale that month",
+    "1120 Wallace Ridge sold for $32.3M July 2025, priciest Trousdale 2025 trade, ~65% gain over 2022 $19.5M purchase",
+    "73 Beverly Park Lane relisted at just under $80M ($2,807/sf) in December 2025 — 11% cut from May ask"
+  ],
+  "read_time_min": 6,
+  "hero_image": {
+    "local_path": "/Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/blog/assets/img/beverly-hills-insurable-luxury-2026-trousdale-cohen-hero.jpg",
+    "web_path": "assets/img/beverly-hills-insurable-luxury-2026-trousdale-cohen-hero.jpg",
+    "photo_id": "17EJD0QdKFI",
+    "author_name": "Peter Thomas",
+    "author_url": "https://unsplash.com/@lifeof_peter_?utm_source=myvilla&utm_medium=referral",
+    "unsplash_url": "https://unsplash.com/photos/a-modern-house-overlooking-a-city-with-a-swimming-pool-17EJD0QdKFI?utm_source=myvilla&utm_medium=referral",
+    "alt_description": "Beverly Hills luxury villa with pool overlooking downtown Los Angeles — insurable trophy property, 2026 California WUI Code context",
+    "color": "#c0c0d9",
+    "source": "pending",
+    "origin": "pending"
+  },
+  "_date": "2026-04-20",
+  "_section_id": "insurance",
+  "_section_name": "Insurance",
+  "_source_item": {
+    "title": "Economic Impact of the Los Angeles Wildfires",
+    "url": "https://www.anderson.ucla.edu/about/centers/ucla-anderson-forecast/economic-impact-los-angeles-wildfires",
+    "publication": "UCLA Anderson Forecast",
+    "cluster": "insurance"
+  },
+  "seo_title": "Beverly Hills 2026: Why $32M–$60M Trades Cleared the Reset",
+  "related": [
+    {
+      "slug": "mediterranean-villa-wui-code-2026-la-rebuild",
+      "title": "Mediterranean Villa Meets the 2026 California WUI Code",
+      "tag_label": "Permits & Code"
+    },
+    {
+      "slug": "courtyard-villa-fire-resilience-2026-la-rebuild",
+      "title": "The Courtyard Villa as Fire Perimeter: From Pompeii to the 2026 Palisades Rebuild",
+      "tag_label": "Materials"
+    },
+    {
+      "slug": "beverly-hills-custom-home-cost-reinforced-concrete-2026",
+      "title": "Beverly Hills Custom Home Cost 2026: The Reinforced-Concrete Math",
+      "tag_label": "Concrete Architecture"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why did Beverly Hills trophy trades keep clearing at $32M–$60M in 2025, during California's insurance reset?",
+      "a": "Those trades were existing structures transacting on homeowners policies bound before the 2025 reset — the last chapter of the prior regime. The 17% State Farm emergency rate increase, Mercury's Sustainable Insurance Strategy filing, and the March 2026 CDI settlement only reach renewals that come up after the effective dates. A 2025 close on a 2022–2023-bound policy doesn't touch the new rating formula."
+    },
+    {
+      "q": "What does a 2026 ground-up Beverly Hills commission have to deliver to be insurable?",
+      "a": "A ground-up permit pulled in 2026 designs into the 2026 California WUI Code on day one, aligns with all ten Safer from Wildfires measures, and is a credible candidate for the IBHS Wildfire Prepared Home Plus standard. The carrier pricing its first renewal will be using Mercury's Sustainable Insurance Strategy formula and the Verisk catastrophe model — not a grandfathered 2023 policy."
+    },
+    {
+      "q": "How much does WUI-compliant hardening add to construction cost?",
+      "a": "The October 2025 Headwaters Economics / IBHS Altadena study puts it at 2–3% over traditional construction — roughly $15,000 on a $500,000 Altadena build. In Beverly Hills, where construction already runs far above that baseline, the 3% is a smaller line item still — and the one that buys alignment with the IBHS Wildfire Prepared Home Plus standard and the Mercury SIS discount pathway."
+    }
+  ]
+}

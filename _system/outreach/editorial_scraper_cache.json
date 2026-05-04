@@ -1,0 +1,146 @@
+{
+  "housingwire.com": {
+    "cached_at": 1777014579.965615,
+    "result": null
+  },
+  "constructionowners.com": {
+    "cached_at": 1777014620.978786,
+    "result": null
+  },
+  "beinsure.com": {
+    "cached_at": 1777015948.671623,
+    "result": {
+      "email": "go@beinsure.com",
+      "source": "article_scraped",
+      "path": "/news/california-blocks-home-insurance-non-renewals-after-gifford-fire/",
+      "score": 2
+    }
+  },
+  "wallpaper.com": {
+    "cached_at": 1777180652.273377,
+    "result": null
+  },
+  "prnewswire.com": {
+    "cached_at": 1777180663.4089139,
+    "result": null
+  },
+  "greenhomebuildermag.com": {
+    "cached_at": 1777180684.021634,
+    "result": null
+  },
+  "dezeen.com": {
+    "cached_at": 1777180685.373626,
+    "result": null
+  },
+  "archdaily.com": {
+    "cached_at": 1777180700.9807591,
+    "result": null
+  },
+  "malibutimes.com": {
+    "cached_at": 1777180711.517483,
+    "result": null
+  },
+  "christiesresocal.com": {
+    "cached_at": 1777180720.787437,
+    "result": null
+  },
+  "theoutragedconsumer.com": {
+    "cached_at": 1777180730.3694909,
+    "result": null
+  },
+  "firerescue1.com": {
+    "cached_at": 1777267016.6070259,
+    "result": null
+  },
+  "californiacontractorinsurance.com": {
+    "cached_at": 1777267021.786602,
+    "result": null
+  },
+  "substack.com": {
+    "cached_at": 1777267029.696008,
+    "result": null
+  },
+  "robbreport.com": {
+    "cached_at": 1777324059.594015,
+    "result": {
+      "email": "editorial@robbreport.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 18
+    }
+  },
+  "losangelesgeneralcontractor.com": {
+    "cached_at": 1777324066.886676,
+    "result": null
+  },
+  "guidewire.com": {
+    "cached_at": 1777325372.965367,
+    "result": {
+      "email": "pr@guidewire.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 7
+    }
+  },
+  "joycerey.com": {
+    "cached_at": 1777325385.4736588,
+    "result": {
+      "email": "joyce@joycerey.com",
+      "source": "article_scraped",
+      "path": "/blog/answering-your-faqs-on-the-2025-california-building-standards-taking-effect-in-2026/",
+      "score": 2
+    }
+  },
+  "architecturaldigest.com": {
+    "cached_at": 1777325396.888577,
+    "result": null
+  },
+  "dig-in.com": {
+    "cached_at": 1777443575.170295,
+    "result": null
+  },
+  "insurancebusinessmag.com": {
+    "cached_at": 1777443580.319242,
+    "result": null
+  },
+  "propertyinsurancecoveragelaw.com": {
+    "cached_at": 1777443611.268877,
+    "result": null
+  },
+  "builtechcg.com": {
+    "cached_at": 1777699010.756017,
+    "result": {
+      "email": "info@builtechcg.com",
+      "source": "article_scraped",
+      "path": "/articles/california-s-first-icf-type-i-home-a-new-wildfire-standard",
+      "score": 6
+    }
+  },
+  "ca.gov": {
+    "cached_at": 1777785449.790772,
+    "result": {
+      "email": "webassist@insurance.ca.gov",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 7
+    }
+  },
+  "davisvanguard.org": {
+    "cached_at": 1777785454.0155342,
+    "result": {
+      "email": "info@davisvanguard.org",
+      "source": "article_scraped",
+      "path": "/2026/05/san-jose-fire-resistant-adu/",
+      "score": 11
+    }
+  },
+  "lrecompanies.com": {
+    "cached_at": 1777785480.928019,
+    "result": {
+      "email": "info@lrecompanies.com",
+      "source": "article_scraped",
+      "path": "/spring-construction-season-what-developers-need-to-know-about-californias-2026-building-code-updates/",
+      "score": 6
+    }
+  }
+}

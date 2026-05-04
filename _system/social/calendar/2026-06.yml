@@ -1,0 +1,206 @@
+month: 2026-06
+generated_at: '2026-04-28T23:23:55'
+slot_count: 13
+slots:
+- date: '2026-06-01'
+  day: monday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: vision
+  pillar_name: Vision
+  format: single_image_or_quote_card
+  caption_target_chars: 220
+  visual_hint: render or moodboard with strong horizon line; concrete tones
+  status: draft
+  slug: the-villa-as-a-cultural-artefact
+  sub_topic: The villa as a cultural artefact
+  framing_angle: juxtaposition
+  draft_generated_at: '2026-04-29T00:49:48'
+- date: '2026-06-03'
+  day: wednesday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: archetype
+  pillar_name: Archetypes
+  format: carousel
+  caption_target_chars: 250
+  visual_hint: historical b/w photo or rendered drawing for slide 1; references for
+    slides 2-5; MyVilla render for slide 6
+  status: draft
+  slug: archetype-portico
+  sub_topic: Portico
+  archetype_definition: Threshold — covered passage between landscape and interior
+  archetype_masters:
+  - Imperatore Adriano — Villa Adriana, Tivoli, 117-138 A.D.
+  - Nanni di Baccio Bigio / Giacomo della Porta — Villa Medici, Roma, 1564-80
+  - Aldo Rossi — San Cataldo, Modena, 1931
+  - Osvaldo Borsani — Villa Borsani, Varedo, 1943
+  slides: 6
+  draft_generated_at: '2026-04-29T00:49:59'
+- date: '2026-06-04'
+  day: thursday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: partner_echo
+  pillar_name: Partner Echo
+  format: single_image_or_carousel_first_frame
+  caption_target_chars: 200
+  visual_hint: borrowed from partner; first frame if carousel
+  status: draft
+  slug: partner-buromilan
+  partner_handle: buromilan
+  partner_focus: structural engineering
+  partner_role_in_myvilla: BUROMILAN is My Villa's structural engineering partner.
+    Every villa's load path, seismic detail, and reinforced-concrete frame is engineered
+    by their team — the same discipline they refined across 90+ projects with Renzo
+    Piano.
+  partner_post_shortcode: DPwQLK-DEm3
+  partner_post_url: https://www.instagram.com/p/DPwQLK-DEm3/
+  partner_post_local_thumbnail: _system/social/partner_cache/buromilan/DPwQLK-DEm3.jpg
+  partner_post_image_count: 9
+  partner_post_relevance_score: 6
+  partner_post_relevance_rationale: Reinforced concrete structural work and seismic-resilience
+    engineering merit attention, but airport/hospitality typology and scale lack residential
+    villa resonance; commercial program dilutes editoria
+  draft_generated_at: '2026-04-29T11:51:12'
+- date: '2026-06-08'
+  day: monday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: vision
+  pillar_name: Vision
+  format: single_image_or_quote_card
+  caption_target_chars: 220
+  visual_hint: render or moodboard with strong horizon line; concrete tones
+  status: planned
+  slug: compact-spatial-planning-thermal-mass-elevated-f
+  sub_topic: Compact spatial planning + thermal mass + elevated foundations
+- date: '2026-06-10'
+  day: wednesday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: system
+  pillar_name: System
+  format: single_image_or_carousel
+  caption_target_chars: 220
+  visual_hint: concrete texture detail OR structural diagram OR moodboard tone palette
+  status: planned
+  slug: modularity-without-monotony
+  sub_topic: Modularity without monotony
+- date: '2026-06-11'
+  day: thursday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: partner_echo
+  pillar_name: Partner Echo
+  format: single_image_or_carousel_first_frame
+  caption_target_chars: 200
+  visual_hint: borrowed from partner; first frame if carousel
+  status: planned_pending_scrape
+  slug: partner-dgu_baja
+  partner_handle: dgu_baja
+  partner_focus: concrete construction
+  partner_role_in_myvilla: DGU is My Villa's concrete construction partner. They mix
+    and place every cubic meter of our reinforced concrete on-site in California —
+    the same crews that delivered Palazzo Grassi, Punta della Dogana, Aman Venice,
+    and the Kimbell Art Museum expansion.
+- date: '2026-06-15'
+  day: monday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: vision
+  pillar_name: Vision
+  format: single_image_or_quote_card
+  caption_target_chars: 220
+  visual_hint: render or moodboard with strong horizon line; concrete tones
+  status: planned
+  slug: historical-references-in-dialogue-with-la-modern
+  sub_topic: Historical references in dialogue with LA modernism
+- date: '2026-06-17'
+  day: wednesday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: archetype
+  pillar_name: Archetypes
+  format: carousel
+  caption_target_chars: 250
+  visual_hint: historical b/w photo or rendered drawing for slide 1; references for
+    slides 2-5; MyVilla render for slide 6
+  status: planned
+  slug: archetype-pergola
+  sub_topic: Pergola
+  archetype_definition: Filtered shade — engineered light between sky and floor
+  archetype_masters:
+  - Ubaldo Badas — Padiglione Eugenio Tavolara, Sassari, 1951
+  - Ignazio Gardella — Villa Rozzi, Banchette di Ivrea, 1958
+  slides: 6
+- date: '2026-06-18'
+  day: thursday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: partner_echo
+  pillar_name: Partner Echo
+  format: single_image_or_carousel_first_frame
+  caption_target_chars: 200
+  visual_hint: borrowed from partner; first frame if carousel
+  status: planned_pending_scrape
+  slug: partner-transsolar_klimaengineering
+  partner_handle: transsolar_klimaengineering
+  partner_focus: climate engineering
+  partner_role_in_myvilla: Transsolar is My Villa's climate engineering partner. They
+    design the passive ventilation, daylight, and thermal-mass behaviour of every
+    villa so that comfort under California sun is engineered, not hoped for. Same
+    studio that worked with Piano, SANAA, Foster.
+- date: '2026-06-22'
+  day: monday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: vision
+  pillar_name: Vision
+  format: single_image_or_quote_card
+  caption_target_chars: 220
+  visual_hint: render or moodboard with strong horizon line; concrete tones
+  status: planned
+  slug: permanence-vs-renewal-why-concrete-outlasts-tren
+  sub_topic: Permanence vs renewal — why concrete outlasts trends
+- date: '2026-06-24'
+  day: wednesday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: system
+  pillar_name: System
+  format: single_image_or_carousel
+  caption_target_chars: 220
+  visual_hint: concrete texture detail OR structural diagram OR moodboard tone palette
+  status: planned
+  slug: assembly-as-design-decision
+  sub_topic: Assembly as design decision
+- date: '2026-06-25'
+  day: thursday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: partner_echo
+  pillar_name: Partner Echo
+  format: single_image_or_carousel_first_frame
+  caption_target_chars: 200
+  visual_hint: borrowed from partner; first frame if carousel
+  status: planned_pending_scrape
+  slug: partner-its__vision
+  partner_handle: its__vision
+  partner_focus: architecture (IT'S)
+  partner_role_in_myvilla: IT'S Architecture leads My Villa's design from Rome and
+    Paris. Every typology, proportion, and architectural decision starts on their
+    drawing boards — the same practice behind Piazza dei Cinquecento, Termini Station,
+    and the FOROF centre.
+- date: '2026-06-29'
+  day: monday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: vision
+  pillar_name: Vision
+  format: single_image_or_quote_card
+  caption_target_chars: 220
+  visual_hint: render or moodboard with strong horizon line; concrete tones
+  status: planned
+  slug: two-millennia-of-villa-typology-adaptability-per
+  sub_topic: Two millennia of villa typology — adaptability + permanence

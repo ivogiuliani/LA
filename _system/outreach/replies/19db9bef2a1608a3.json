@@ -1,0 +1,32 @@
+{
+  "thread_id": "19db9bef2a1608a3",
+  "outreach_message_id": "19db9bef2a1608a3",
+  "outreach_subject": "One thought on IBHS going national",
+  "outreach_to": "media@ibhs.org",
+  "outreach_sent_at": "2026-04-23T09:49:51+00:00",
+  "replies": [
+    {
+      "thread_id": "19db9bef2a1608a3",
+      "gmail_message_id": "19db9befdd03574b",
+      "rfc822_message_id": "<69e9eb42.050a0220.11ea28.172e.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a media@ibhs.org perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\nUlteriori informazioni: https://aka.ms/EXOSmtpErrors\r\n(attenzione: questo link indirizza a un sito di terze parti)\r\n\r\nLa risposta del server remoto è:\r\n550 5.4.1 Recipient address rejected: Access denied. For more information see https://aka.ms/EXOSmtpErrors [BN1PEPF0000468D.namprd05.prod.outlook.com 2026-04-23T09:49:54.474Z 08DE9FCAAF3E10D8]",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a media@ibhs.org perché l&#39;indirizzo risulta inesistente o non può ricevere email. ULTERIORI INFORMAZIONI Questo link ti indirizzerà a",
+      "received_at": "2026-04-23T09:49:54+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "IMPORTANT",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "19db9bef2a1608a3",
+      "outreach_subject": "One thought on IBHS going national",
+      "outreach_to": "media@ibhs.org",
+      "outreach_sent_at": "2026-04-23T09:49:51+00:00"
+    }
+  ],
+  "last_checked_at": "2026-04-28T20:39:44+00:00"
+}

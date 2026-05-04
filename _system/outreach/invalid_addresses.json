@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "addresses": {
+    "richard.lawson@housingwire.com": {
+      "first_bounced_at": "2026-04-22T22:05:03+00:00",
+      "bounce_count": 2,
+      "source_threads": [
+        "19db739a4b8e0123"
+      ],
+      "last_bounced_at": "2026-04-23T18:13:23+00:00",
+      "reason": "550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For mo"
+    },
+    "r.lawson@housingwire.com": {
+      "first_bounced_at": "2026-04-22T22:10:15+00:00",
+      "bounce_count": 2,
+      "source_threads": [
+        "19db739a4b8e0123"
+      ],
+      "last_bounced_at": "2026-04-23T18:13:23+00:00",
+      "reason": "550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For mo",
+      "also_sent_to": "richard.lawson@housingwire.com"
+    },
+    "sofia@greenhomebuildermag.com": {
+      "first_bounced_at": "2026-04-23T09:49:16+00:00",
+      "bounce_count": 2,
+      "source_threads": [
+        "19db9be5ee58f394"
+      ],
+      "last_bounced_at": "2026-04-23T18:13:22+00:00",
+      "reason": "554 5.7.1 <sofia@greenhomebuildermag.com>: Recipient address rejected: Access denied"
+    },
+    "media@ibhs.org": {
+      "first_bounced_at": "2026-04-23T09:49:54+00:00",
+      "bounce_count": 2,
+      "source_threads": [
+        "19db9bef2a1608a3"
+      ],
+      "last_bounced_at": "2026-04-23T18:13:22+00:00",
+      "reason": "550 5.4.1 Recipient address rejected: Access denied. For more information see https://aka.ms/EXOSmtpErrors [BN1PEPF0000468D.namprd05.prod.outlook.com 2026-04-23T09:"
+    }
+  }
+}

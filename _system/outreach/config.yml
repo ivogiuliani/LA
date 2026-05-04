@@ -1,0 +1,53 @@
+# MyVilla Outreach — global send configuration
+#
+# Read by _system/scripts/gmail_client.py and _system/scripts/send_email.py.
+# Edit values here, not in the Python code.
+
+sender:
+  email: info@myvilla.la
+  name: Lisa Monelli
+  # The footer appended to every outgoing email. Must match the signature
+  # block defined in _system/knowledge/outreach_voice.md.
+  signature: |
+    Best,
+    Lisa Monelli
+    My Villa Media Team
+    info@myvilla.la · myvilla.la
+
+send:
+  # LIVE MODE — real emails go out through the Gmail API.
+  # End-to-end verified 2026-04-22 with message 19db733d29ac8993.
+  # Flip back to `true` temporarily if you need to rehearse a change
+  # without actually sending (the UI button then shows "Dry-run ✓").
+  dry_run: false
+
+  # Soft limit: refuse to send more than N emails per rolling hour.
+  # Prevents runaway loops or double-click spam. Gmail's own quota is
+  # higher, this is a local guardrail. With dry_run=false this is the
+  # primary safety net alongside the UI confirm dialog.
+  rate_limit_per_hour: 10
+
+  # If true, approve.py will require a confirmation step before calling
+  # the send endpoint (the UI button is already two-click by design —
+  # the confirm dialog always fires regardless of this flag).
+  confirm_before_send: true
+
+  # Reply-to fallback — if None, the sender.email is used.
+  reply_to: null
+
+  # Where to log every send attempt (success or failure). Auto-rotated
+  # daily when too large. Relative to the project root.
+  send_log: _system/outreach/send_log.jsonl
+
+oauth:
+  # Paths are relative to the project root.
+  client_secrets: _system/outreach/credentials/oauth_client.json
+  token: _system/outreach/credentials/token.json
+  # OAuth scopes requested on first authorization.
+  # gmail.send      - compose and send new messages
+  # gmail.modify    - label sent messages, mark as read (used later for replies)
+  # gmail.readonly  - read inbox for reply tracking (Sprint 2)
+  scopes:
+    - https://www.googleapis.com/auth/gmail.send
+    - https://www.googleapis.com/auth/gmail.modify
+    - https://www.googleapis.com/auth/gmail.readonly

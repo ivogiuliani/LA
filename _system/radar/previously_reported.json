@@ -1,0 +1,949 @@
+{
+  "reported_articles": [
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "Real Deal",
+      "title": "Tavangarian eyes disaster-prone markets for fire-resistant homes",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "Mercury News",
+      "title": "30 tons of steel: Inside a $3.5M Palisades fire-resistant house",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "Bloomberg",
+      "title": "CA Insurance Crisis Hits Even Homes Facing Lower Wildfire Risk",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "Bloomberg",
+      "title": "New LA Home Designs, Reimagined By Fire",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "LAist",
+      "title": "Why homeowners rebuilding from Palisades Fire are choosing concrete",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "SMDP",
+      "title": "PaliBuilds Rewrites Pacific Palisades Rebuild Playbook",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "LAist",
+      "title": "This LA home was built to be fireproof. Will it survive?",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "Roger Perry",
+      "title": "Los Angeles Wildfire Risk Real Estate Guide 2026",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "NPR",
+      "title": "Fire victims say fighting with insurance has delayed rebuilding",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "KQED",
+      "title": "As LA Fire Victims Look To Rebuild, Some Turning To Concrete",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "Marketplace",
+      "title": "After CA fires, residents are building homes for the future",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-25",
+      "source": "Straight Dope Forum",
+      "title": "Is it practical to build very fire resistant homes in LA?",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-26",
+      "source": "Daily News (syndicated)",
+      "title": "30 tons of steel: $3.5M Palisades fire-resistant house (Versa Villa)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-26",
+      "source": "Concrete Products Magazine",
+      "title": "Building Beyond the Flame: concrete & WUI codes",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-26",
+      "source": "Bloomberg",
+      "title": "California Developers Designing HOAs That Protect from Wildfires",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-26",
+      "source": "Yo! Venice",
+      "title": "Palisades Rebuild Gains Momentum as Permits Rise",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-26",
+      "source": "Bloomberg",
+      "title": "California Insurance Crisis Hits Even Homes Facing Lower Wildfire Risk",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-26",
+      "source": "Dwell",
+      "title": "Divisive Plan to Build Luxury Prefabs on Burned Malibu Lots (Mowbray brothers)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-26",
+      "source": "Malibu Times",
+      "title": "Malibu Council Confronts Fire Rebuild Crisis",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-27",
+      "source": "Dwell",
+      "title": "Here Are the Homes Developers Are Building in Altadena",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-27",
+      "source": "Westside Current",
+      "title": "Three Neighborhoods Accounted for 65% of Latest Palisades Rebuild Permits",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-27",
+      "source": "Newt Gingrich / X",
+      "title": "Commentary on slow rebuild progress + county dashboard",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "Santa Monica Observer",
+      "title": "Very Few Pacific Palisades Residents Pull Building Permits, or Plan to Rebuild. Here's Why",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "Robb Report",
+      "title": "Pine Flat Residence: Fire-Resistant Contemporary Design in Healdsburg (Faulkner Architects)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "CA Dept of Insurance",
+      "title": "Landmark study: rebuilding LA to wildfire safety standards could slash future fire losses",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "Designboom",
+      "title": "Pine Flat Residence by Faulkner Architects brings off-grid living to Northern California",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "CalMatters",
+      "title": "When home insurance fails, California's families and communities feel the fallout",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "The Daily Economy",
+      "title": "28 Homes Rebuilt in a Year: Why LA's Fire Recovery Is Stalled",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "Hoodline",
+      "title": "Bay Area House Hunters Chase California's So-Called 'Fireproof' Neighborhoods",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "The Camarillo Acorn",
+      "title": "Concrete innovations on the road to fire rebuilding (RSG-3D panels, Camarillo Heights)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "WSJ / X",
+      "title": "@WSJ tweet — Developer builds LA home with 6-hour fire resistance",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": "x.com/WSJ/status/2026614007281410211"
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "Matthew Seedorff / X",
+      "title": "@MattSeedorff tweet — noncompliance notices on empty Palisades lots",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": "x.com/MattSeedorff/status/2025808730693230995"
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "Westside Current / X",
+      "title": "@WestsideCurrent tweet — new pre-approved home plans for Palisades",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": "x.com/WestsideCurrent/status/2031744224786354474"
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "Insurance Journal",
+      "title": "California Bill Requires Insurers to Offer, Renew Coverage for 'Fire-Safe' Homes (SB 1076)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "SM Mirror",
+      "title": "Pacific Palisades mobile home park destroyed in fire being quietly marketed for redevelopment",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "Yo! Venice",
+      "title": "Gelson's Plans Palisades Rebuild (March 27)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "Pasadena Now",
+      "title": "New Developer-Built Home is First of Eaton Fire Rebuild in Altadena",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-28",
+      "source": "Wildfire LA",
+      "title": "A Faster Path Home: Factory-Built Rebuilds Gaining Ground in Altadena and Palisades",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-30",
+      "source": "Yo! Venice",
+      "title": "Palisades Rebuild Gains Momentum as Permits Rise, Land Sales Increase (March 23 — 683 lots, 650 permits, 100/month pace)",
+      "score": 15,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-30",
+      "source": "Hoodline",
+      "title": "Burned-Out Altadena and Palisades Lots Become Investor Battlefield (March 3 — 40-60% investor purchases)",
+      "score": 13,
+      "cluster": null,
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-30",
+      "source": "Contemporist",
+      "title": "Rebuilding After Fire, This California Home Is Designed to Withstand the Next One — Erin Miller (March 18 — Pine Flat Residence, Faulkner Architects)",
+      "score": 11,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-30",
+      "source": "LAist",
+      "title": "How Altadena is battling to rebuild without being displaced — Rafael Agustin (March 13)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-30",
+      "source": "Circling The News",
+      "title": "Truth about Palisades Rebuild Permitting Numbers — Sue Pascoe (March 17)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-30",
+      "source": "Mountain Pacific Acorn",
+      "title": "Concrete Innovation — Scott Steepleton (March 28 — RSG-3D panels, Mountain Fire rebuild)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-30",
+      "source": "Palisades News",
+      "title": "Amid Nearly 1,900 Wildfire-Related Investigations, County Extends Price Gouging Protections (Feb 25)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-31",
+      "source": "Insurify / InsuranceNewsNet",
+      "title": "California Homeowners Could Face 16% Insurance Rate Jump in 2026",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-31",
+      "source": "Malibu Times (Opinion)",
+      "title": "Malibu can and must rebuild faster — safely and locally (Jo Drummond, Feb 17)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-31",
+      "source": "Metropolis Magazine",
+      "title": "How Robotic Homebuilding Is Accelerating the Pacific Palisades Rebuild (Cosmic Buildings)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-31",
+      "source": "FOX 11 Los Angeles",
+      "title": "Pacific Palisades rebuilding project delayed for months; Residents question LA City review",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-31",
+      "source": "Homes.com",
+      "title": "Rebuild permitting is slowing in the Pacific Palisades, new data shows",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-31",
+      "source": "Fox Business",
+      "title": "One year later, LA residents continue to face rebuilding challenges, \"fatigue factor\"",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-31",
+      "source": "Morningstar/PR Newswire",
+      "title": "Six Altadena Families Begin Rebuilding Together in La Viña After Eaton Fire",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-31",
+      "source": "LA Public Press",
+      "title": "One month after executive order, is Altadena rebuilding any faster?",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-31",
+      "source": "Palisades News",
+      "title": "Foreign Investor Acquires $65M in Fire-Damaged Malibu Lots for Luxury Rebuild (Mowbray Brothers)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-03-31",
+      "source": "Governing.com",
+      "title": "California Takes Aim at Home Insurance Crisis With New Laws",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-01",
+      "source": "Insurance Journal West",
+      "title": "Study: Rebuilding LA to Wildfire Safety Standards Could Lower Future Fire Losses (March 30, 2026)",
+      "score": 17,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-01",
+      "source": "Wildfire LA / MySafe:LA",
+      "title": "What Lies Beneath: Soil Contamination Concerns Grow in Pacific Palisades, Malibu, and Altadena (March 27, 2026)",
+      "score": 12,
+      "cluster": null,
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-01",
+      "source": "CA Senate",
+      "title": "SB 1076: Insurance Coverage for Fire-Safe Homes Act (Sen. Perez)",
+      "score": 20,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-01",
+      "source": "Construction Executive",
+      "title": "Rebuilding in Fire-Damaged LA One Year Later",
+      "score": 17,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-01",
+      "source": "Milken Institute",
+      "title": "Rebuilding from the Bottom Up: The LA Fires One Year Later",
+      "score": 17,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-01",
+      "source": "Texarkana Gazette",
+      "title": "Locals wanted to rebuild. Then the big investors moved in",
+      "score": 17,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-01",
+      "source": "SMDP",
+      "title": "Palisades Resident Rebuilds with Zero-Interest Loan",
+      "score": 16,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-01",
+      "source": "CA FAIR Plan",
+      "title": "April 1: Automatic Recurring Payments Now Available",
+      "score": 16,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "SMDP",
+      "title": "Insurance Will Decide Palisades Rebuilding, Candidates Say (April 2)",
+      "score": 20,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Spectrum News 1",
+      "title": "Altadena couple embracing technology to rebuild after Eaton Fire (April 7)",
+      "score": 19,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "@MichaelARothman / X",
+      "title": "John Stossel on Palisades rebuild bureaucracy",
+      "score": 19,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": "x.com/MichaelARothman/status/2041487093063716936"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Live Insurance News",
+      "title": "The Rebuild Decision That Could Save LA Homeowners 800% on Insurance (April 5)",
+      "score": 18,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "@CityMalibu / X",
+      "title": "ULI + Pepperdine Malibu Rebuilding Post-Wildfire Summit April 10",
+      "score": 18,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": "x.com/CityMalibu/status/2041183282973360217"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "NBC Los Angeles",
+      "title": "How Gardena company constructs fire-resistant homes — Cover (April 4)",
+      "score": 17,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Mayor Bass / lacity.gov",
+      "title": "First Approvals Under Standard Plan Pilot Program (April 3)",
+      "score": 17,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Construct Elements",
+      "title": "California Wildfires — Home Builders Prioritize Fire-Resistant Materials",
+      "score": 16,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Berkeley Political Review",
+      "title": "In an Era of Wildfire, California Faces a New Crisis at Home (April 5)",
+      "score": 15,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "LA Today",
+      "title": "Altadena residents struggle with slow rebuilding process (April 2)",
+      "score": 15,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "AIA",
+      "title": "L.A. architects are reimagining resilient homes — Patrick Sisson (Sep 2025)",
+      "score": 14,
+      "cluster": null,
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "stirworld",
+      "title": "Faulkner Architects conceives CAMPout fire-proof residence",
+      "score": 14,
+      "cluster": null,
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "d5mag",
+      "title": "A Fire-Resistant House Built for Life in California's Wild Landscape",
+      "score": 14,
+      "cluster": null,
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "thecooldown",
+      "title": "Architects push boundaries with fire-resistant house design",
+      "score": 14,
+      "cluster": null,
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Malibu Times",
+      "title": "Pepperdine predicts slow road to fire rebuilds — Judy Abel (Jan 2026)",
+      "score": 13,
+      "cluster": null,
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "xArchitecture",
+      "title": "Designing for Wildfire: Building Resilience for Summer 2026 — Paige Bateman (Oct 2025)",
+      "score": 12,
+      "cluster": null,
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "@CityMalibu / X",
+      "title": "Malibu Rebuild Meetings April 14",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": "x.com/CityMalibu/status/2041666132558397490"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "@LACoFDPIO / X",
+      "title": "Crown Fire 280 acres Acton",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": "x.com/LACoFDPIO/status/2040150638131314876"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Kelley Westbrook Group",
+      "title": "Pacific Palisades Rebuild Update April 2026",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Pepperdine",
+      "title": "One Year After Palisades Fire, Decades-Long Road to Recovery",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "CA Insurance Commissioner",
+      "title": "Smoke Damage Recovery Act (release006-2026)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "IBHS",
+      "title": "Updated Wildfire Prepared Home Standard (June 2025 release)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Mayor Bass / lacity.gov",
+      "title": "First Certificate of Occupancy Issued for Rebuilt Palisades Home",
+      "score": 21,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "ABC7 Los Angeles",
+      "title": "Wildfire victims look to nontraditional materials",
+      "score": 20,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": "https://abc7.com/post/wildfire-victims-look-nontraditional-materials-methods-solution-rebuilding-homes-following-destructive-fires/16017398/"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "r/LosAngeles",
+      "title": "LA considers waiving sales tax for Palisades Fire victims",
+      "score": 19,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": "https://reddit.com/r/LosAngeles/comments/1sa1nr2/"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "ABC7 Los Angeles",
+      "title": "Santa Clarita family using fireproof ICF to rebuild",
+      "score": 18,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": "https://abc7.com/post/santa-clarita-family-using-fireproof-icf-technology-rebuild-home-2019-tick-fire/15861235/"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Insurance.com",
+      "title": "One year later: Have Palisades and Eaton fires changed home insurance?",
+      "score": 18,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": "https://www.insurance.com/home-and-renters-insurance/how-palisades-eaton-fires-changed-california-home-insurance/"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "LA Downtown News",
+      "title": "Rethinking Fire Safety: Expert perspective",
+      "score": 17,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": "https://www.ladowntownnews.com/news/rethinking-fire-safety-an-expert-s-perspective-as-la-continues-to-rebuild/article_84a38cd7-e3ce-4f00-9d61-43993f2019e5.html"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "IA Magazine",
+      "title": "1 Year After LA Fires: How Risk Coverage Insurability Have Shifted",
+      "score": 17,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": "https://www.iamagazine.com/2026/01/12/1-year-after-la-fires-how-risk-coverage-and-insurability-have-shifted/"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "ABC10 / Emergent Construction",
+      "title": "3D printed concrete homes Altadena",
+      "score": 17,
+      "cluster": null,
+      "action_type": "qualified",
+      "url": "https://www.abc10.com/article/news/local/norcal-company-prints-homes-families-rebuild-la-wildfires/103-21c343a2-f033-4f8f-adfa-3482d0d6b2b3"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Wallpaper*",
+      "title": "Curvy concrete villa Belgium — seashells + Le Corbusier",
+      "score": 16,
+      "cluster": "NEW CLUSTER F",
+      "action_type": "qualified",
+      "url": "https://www.wallpaper.com/architecture/residential/concrete-seaside-villa-belgium"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "ok.com",
+      "title": "$42.5M Bel-Air listing reveals luxury trends 2026",
+      "score": 16,
+      "cluster": "NEW CLUSTER E",
+      "action_type": "qualified",
+      "url": "https://us.ok.com/ask_news/what-a-42-5-million-bel-air-property-listing-reveals-about-luxury-real-estate-trends-in-2026/"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Designboom",
+      "title": "Monolithic concrete residence S-AR Mexico",
+      "score": 15,
+      "cluster": "NEW CLUSTER F",
+      "action_type": "qualified",
+      "url": "https://www.designboom.com/architecture/monolithic-concrete-residence-s-ar-patios-mexico-villa-santiago/"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Designboom",
+      "title": "Brutalist villa six concrete volumes Mexico City",
+      "score": 15,
+      "cluster": "NEW CLUSTER F",
+      "action_type": "qualified",
+      "url": "https://www.designboom.com/architecture/six-extruded-concrete-volumes-brutalist-villa-facade-mexico-city-casa-ailes-jaime-guzman/"
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Heyler Realty",
+      "title": "Luxury Home Design Trends LA 2026",
+      "score": 14,
+      "cluster": "NEW CLUSTER D",
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Roger Perry",
+      "title": "LA Luxury Homes What Buyers Want 2026",
+      "score": 14,
+      "cluster": "NEW CLUSTER E",
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Snyder Diamond",
+      "title": "2026 Luxury Home Design Trends SoCal",
+      "score": 14,
+      "cluster": "NEW CLUSTER D",
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Wallpaper*",
+      "title": "10 Striking Houses March 2026",
+      "score": 13,
+      "cluster": "NEW CLUSTER F",
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "Good Good Good",
+      "title": "3D prints inflammable homes for LA victims",
+      "score": 13,
+      "cluster": null,
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "LAist",
+      "title": "Eaton Fire survivors cesspools face rebuilding challenges",
+      "score": 12,
+      "cluster": null,
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "CBS LA",
+      "title": "First modular home Altadena — Samara/Caruso",
+      "score": 12,
+      "cluster": null,
+      "action_type": "watchlist",
+      "url": null
+    },
+    {
+      "date_first_reported": "2026-04-08",
+      "source": "ULI LA / LinkedIn",
+      "title": "Pepperdine Summit April 10 panelist details (Ambrosini, Bundy, Burdge, Cusimano, Green, Irvin, Kawahara, Keinan, Schmitz)",
+      "score": null,
+      "cluster": null,
+      "action_type": null,
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+# MyVilla — Instagram Editorial Calendar Configuration
+# Source of truth for the editorial pipeline (NOT the reactive radar pipeline).
+# Consumed by: editorial_planner.py, editorial_generator.py, approve.py (Editorial tab)
+# See _system/knowledge/content_strategy_instagram.md for the strategy doc.
+
+account:
+  handle: "myvilla.la"
+  url: "https://instagram.com/myvilla.la"
+  timezone: "America/Los_Angeles"
+
+cadence:
+  posts_per_week: 3
+  # 3 editorial slots/week, fixed days. Reactive (Tue/Fri) handled by generate_social.py.
+  schedule:
+    - day: "monday"
+      time: "09:00"
+      pillar: "vision"
+    - day: "wednesday"
+      time: "09:00"
+      pillar_rotation:                # alternates week-by-week
+        - "archetype"
+        - "system"
+    - day: "thursday"
+      time: "09:00"
+      pillar: "partner_echo"          # Phase 2 — stub-only until partner_scraper.py lands
+
+# ══════════════════════════════════════════════════════════════════════
+# PILLARS
+# ══════════════════════════════════════════════════════════════════════
+
+pillars:
+  vision:
+    name: "Vision"
+    short: "The thesis"
+    description: >
+      Why the Italian villa typology in LA. Resilience as architectural continuity,
+      not as a sales pitch. "Italian Soul, Californian Body" manifesto territory.
+    sources:
+      - "_system/knowledge/project_brief.md (pp.3-12, 53-59)"
+    format: "single_image_or_quote_card"
+    caption_target_chars: 220     # before fold ≤250
+    visual_hint: "render or moodboard with strong horizon line; concrete tones"
+    sub_topics:
+      - "Two millennia of villa typology — adaptability + permanence"
+      - "Why LA needs villas, not lightweight construction"
+      - "Italian Soul, Californian Body — what it really means"
+      - "Resilience as continuity, not as fear"
+      - "The villa as a cultural artefact"
+      - "Compact spatial planning + thermal mass + elevated foundations"
+      - "Historical references in dialogue with LA modernism"
+      - "Permanence vs renewal — why concrete outlasts trends"
+
+  archetype:
+    name: "Archetypes"
+    short: "Form language"
+    description: >
+      The 9 architectural archetypes from project_brief.md (pp.15-44),
+      each paired with Italian masters. Carousel format: archetype +
+      historical references + how MyVilla interprets it.
+    sources:
+      - "_system/knowledge/project_brief.md (pp.15-44)"
+    format: "carousel"
+    slides: 6
+    caption_target_chars: 250
+    visual_hint: "historical b/w photo or rendered drawing for slide 1; references for slides 2-5; MyVilla render for slide 6"
+    archetypes:
+      - name: "Courtyard"
+        definition: "Inward-facing room without roof — privacy, microclimate, contained ritual"
+        masters:
+          - "Gio Ponti — Villa Planchart, Caracas, 1957"
+          - "Marco Zanuso — Casa Arzale, Sardegna, 1964"
+          - "Toni Follina — Casa Follina, Treviso, 1972"
+          - "Alberto Ponis — Casa Gostner, Sardegna, 1998"
+      - name: "Podium"
+        definition: "Elevated base — proportion, mass, the villa lifted from its ground"
+        masters:
+          - "Andrea Palladio — Villa La Rotonda, Vicenza, 1566"
+          - "Vittoriano Viganò — Casa La Scala, San Felice del Benaco, 1956"
+          - "Carlo Scarpa — Tomba Brion, San Vito di Altivole, 1978"
+      - name: "Portico"
+        definition: "Threshold — covered passage between landscape and interior"
+        masters:
+          - "Imperatore Adriano — Villa Adriana, Tivoli, 117-138 A.D."
+          - "Nanni di Baccio Bigio / Giacomo della Porta — Villa Medici, Roma, 1564-80"
+          - "Aldo Rossi — San Cataldo, Modena, 1931"
+          - "Osvaldo Borsani — Villa Borsani, Varedo, 1943"
+      - name: "Pergola"
+        definition: "Filtered shade — engineered light between sky and floor"
+        masters:
+          - "Ubaldo Badas — Padiglione Eugenio Tavolara, Sassari, 1951"
+          - "Ignazio Gardella — Villa Rozzi, Banchette di Ivrea, 1958"
+      - name: "Fireplace"
+        definition: "Domestic anchor — the gravitational centre of the room"
+        masters:
+          - "Cini Boeri — Casa Rotonda, La Maddalena, 1966"
+          - "Carlo Scarpa — Villa Il Palazzetto, Monselice, 1970"
+      - name: "Window"
+        definition: "Framed view — landscape as composition, light as material"
+        masters:
+          - "Umberto Riva — Casa Bottero, Milano, 1966"
+          - "Giancarlo De Carlo — Ca' Romanino, Urbino, 1967"
+      - name: "Living Green Roof"
+        definition: "The roof as fifth facade and ecosystem — landscape continued upward"
+        masters:
+          - "Adalberto Libera — Casa Malaparte, Capri, 1937"
+          - "Vico Magistretti — Casa Arosio, Arenzano, 1959"
+      - name: "Fence"
+        definition: "Edge condition — how the villa meets what surrounds it"
+        masters:
+          - "Carlo Scarpa — Fondazione Querini Stampalia, Venezia, 1959"
+          - "Luigi Moretti — Villa La Saracena, Santa Marinella, 1957"
+
+  system:
+    name: "System"
+    short: "Concrete as language"
+    description: >
+      Reinforced concrete as architectural medium — moodboard, structure,
+      modularity, assembly, personalisation. DGU lineage (Palazzo Grassi,
+      Punta della Dogana, Kimbell Art Museum). Transsolar climate engineering.
+      Never "bunker"; always "material permanence".
+    sources:
+      - "_system/knowledge/project_brief.md (pp.68-92)"
+      - "_system/config/brand-voice.yml (credential_anchors)"
+    format: "single_image_or_carousel"
+    caption_target_chars: 220
+    visual_hint: "concrete texture detail OR structural diagram OR moodboard tone palette"
+    sub_topics:
+      - "On-site mobile concrete plants — why we produce locally"
+      - "Concrete tones — the moodboard"
+      - "Modularity without monotony"
+      - "Assembly as design decision"
+      - "Personalisation within a system"
+      - "DGU lineage — Kimbell Art Museum (Renzo Piano)"
+      - "DGU lineage — Palazzo Grassi & Punta della Dogana (Pinault Collection)"
+      - "Transsolar climate engineering — High Comfort Low Impact"
+      - "BUROMILAN — engineering architecture"
+      - "Why exposed concrete beats cladding"
+      - "Resource recovery and reuse — circular concrete"
+      - "Durable material for lasting constructions"
+
+  partner_echo:
+    name: "Partner Echo"
+    short: "Curated repost"
+    description: >
+      Repost from a MyVilla operational partner — these are NOT reference
+      firms we admire from a distance, they are the people building MyVilla
+      with us. Each post must make the working relationship EXPLICIT, not
+      just tag the partner in passing. We have not delivered a villa yet,
+      so the framing is "working with X on the design / engineering /
+      construction of MyVilla" — never "built by X for us".
+    handles:
+      - handle: "buromilan"
+        focus: "structural engineering"
+        role_in_myvilla: >
+          BUROMILAN is My Villa's structural engineering partner. Every
+          villa's load path, seismic detail, and reinforced-concrete frame
+          is engineered by their team — the same discipline they refined
+          across 90+ projects with Renzo Piano.
+      - handle: "dgu_baja"
+        focus: "concrete construction"
+        role_in_myvilla: >
+          DGU is My Villa's concrete construction partner. They mix and
+          place every cubic meter of our reinforced concrete on-site in
+          California — the same crews that delivered Palazzo Grassi, Punta
+          della Dogana, Aman Venice, and the Kimbell Art Museum expansion.
+      - handle: "transsolar_klimaengineering"
+        focus: "climate engineering"
+        role_in_myvilla: >
+          Transsolar is My Villa's climate engineering partner. They design
+          the passive ventilation, daylight, and thermal-mass behaviour of
+          every villa so that comfort under California sun is engineered,
+          not hoped for. Same studio that worked with Piano, SANAA, Foster.
+      - handle: "its__vision"
+        focus: "architecture (IT'S)"
+        role_in_myvilla: >
+          IT'S Architecture leads My Villa's design from Rome and Paris.
+          Every typology, proportion, and architectural decision starts on
+          their drawing boards — the same practice behind Piazza dei
+          Cinquecento, Termini Station, and the FOROF centre.
+    format: "single_image_or_carousel_first_frame"
+    caption_target_chars: 200
+    visual_hint: "borrowed from partner; first frame if carousel"
+    rules:
+      - "First line: a hook that names the partner's CONTRIBUTION to MyVilla"
+      - "Make the operational partnership explicit — they are co-creators, not references"
+      - "Quote the partner's own caption verbatim once"
+      - "Never imply a delivered MyVilla — we are designing, engineering, and building together right now"
+      - "Max 1 repost per partner per month"
+      - "Skip: company anniversaries, holiday greetings, people-only shots"
+
+# ══════════════════════════════════════════════════════════════════════
+# HASHTAGS
+# ══════════════════════════════════════════════════════════════════════
+
+hashtags:
+  core:                   # always present, all 3
+    - "MyVilla"
+    - "MyVillaLA"
+    - "ReinforcedConcrete"
+
+  rotational:             # pick 2-3 per post depending on topic
+    form:
+      - "ItalianVilla"
+      - "ArchitecturalConcrete"
+      - "ConcreteArchitecture"
+      - "VillaDesign"
+      - "VillaTypology"          # added v4 — core editorial thesis
+      - "CourtyardHouse"         # added v4 — Courtyard archetype tag
+      - "ExposedConcrete"
+      - "ArchitectureDetails"
+    place:
+      - "Malibu"
+      - "BeverlyHills"
+      - "LosAngeles"
+      - "LosAngelesArchitecture" # added v4 — variant we use frequently
+      - "CaliforniaArchitecture"
+      - "BelAir"
+    theme:
+      - "FireResilient"
+      - "ResilientDesign"
+      - "BiophilicDesign"
+      - "ItalianDesign"
+      - "ArchitecturalPermanence" # added v4 — aligns with brand-voice "permanence"
+      - "ArchitecturalHeritage"   # added v4 — Italian masters lineage
+      - "LuxuryHomes"
+      - "ContemporaryArchitecture"
+      - "ArchitectureLovers"
+
+  forbidden:              # off-brand — never use even if relevant on surface
+    - "fireproof"
+    - "bunker"
+    - "investment"
+    - "luxurylifestyle"
+    - "dreamhome"
+    - "luxuryliving"
+
+  per_post:
+    min: 5
+    max: 6                # quality > quantity; never the IG max of 30
+
+# ══════════════════════════════════════════════════════════════════════
+# CONSTRAINTS — enforced by editorial_generator.py
+# ══════════════════════════════════════════════════════════════════════
+
+constraints:
+  language: "English"
+  forbidden_terms:        # mirrors brand-voice.yml; duplicated for editorial guard
+    - "bunker"
+    - "fortress"
+    - "fortezza"
+    - "bunker anti-incendio"
+    - "anti-fire"
+    - "anti-incendio"
+    - "dream home"
+    - "protect your family"
+    - "survive the next fire"
+    - "fireproof"
+
+  required_elements:
+    - "Caption ≤ 250 chars before fold (first 125 chars hook)"
+    - "5-6 hashtags total at end"
+    - "Value-first opening (architectural insight, not promotion)"
+    - "No claim that MyVilla has built villas (none yet)"
+    - "Paolo Mezzalama only in quote attribution if needed"
+
+  banned_phrases:         # boilerplate to avoid (mirrors content_strategy.md §7)
+    - "material, not accessories, compounds over decades"
+    - "not what style but what system"
+    - "come visit our villas"
+    - "discover our portfolio"
+
+# ══════════════════════════════════════════════════════════════════════
+# COOLDOWNS — prevent repeat sub-topics within window
+# ══════════════════════════════════════════════════════════════════════
+
+cooldowns:
+  vision_subtopic_days: 60        # don't reuse same Vision sub-topic within 60d
+  archetype_days: 90              # 8 archetypes ≈ 8 weeks; 90d cycle has slack
+  system_subtopic_days: 45        # 12 sub-topics ≈ 12 weeks if 1/wk
+  partner_per_handle_days: 30     # max 1 repost per partner per month
+
+  # Max age of a partner IG post we'll consider for echoing. Architecture
+  # posts age slowly — a Tomba Brion detail from 18 months ago is still
+  # editorially fresh. 365d keeps high-relevance older content in play
+  # while we wait for partners to publish new on-brand work.
+  partner_post_max_age_days: 365

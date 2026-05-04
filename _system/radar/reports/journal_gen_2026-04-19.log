@@ -1,0 +1,137 @@
+
+My Villa — Journal Generator
+==================================================
+  [KB] Loaded perspective KB (40168 chars) from /Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/_system/knowledge
+  [Strategy] Loaded content strategy (9171 chars)
+Date: 2026-04-19 | Model: claude-opus-4-7
+
+Filtering candidates...
+  [Filter] Skipped (section cooldown): Landmark study shows rebuilding Los Angeles to wil
+  [Filter] 9 candidates passed (min_score=15, max=10)
+
+Generating article 1/9: Olson Kundig’s Brand-New Concrete House in West Ho...
+  Cluster: luxury_architecture_LA → Section: LA Luxury Market
+  [Generate] Created: concrete-luxury-homes-west-hollywood-olson-kundig-market-signal
+  [Image] Searching 1 cited sources...
+  [image/source] 8899 Beverly: og=yes body=2 → 3 candidates
+  [Image] Found 3 source candidates, downloading best...
+  [image/source] Saved: concrete-luxury-homes-west-hollywood-olson-kundig-market-signal-hero.jpg (207.1 KB)
+  [Image] ✓ Source image: assets/img/concrete-luxury-homes-west-hollywood-olson-kundig-market-signal-hero.jpg
+  Saved: /Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/_drafts/journal/concrete-luxury-homes-west-hollywood-olson-kundig-market-signal.html
+  Size: 36.5 KB
+  JSON:  concrete-luxury-homes-west-hollywood-olson-kundig-market-signal.json
+
+Generating article 2/9: Fresh Foundations: 5 Compelling New Luxury Homes i...
+  Cluster: luxury_real_estate_LA → Section: LA Luxury Market
+  [Generate] Created: new-luxury-homes-los-angeles-2026-market-signal
+  [Image] Searching 1 cited sources...
+  [image/source] The Agency Journal: og=yes body=1 → 2 candidates
+  [Image] Found 2 source candidates, downloading best...
+  [image/source] Saved: new-luxury-homes-los-angeles-2026-market-signal-hero.jpg (178.0 KB)
+  [Image] ✓ Source image: assets/img/new-luxury-homes-los-angeles-2026-market-signal-hero.jpg
+  Saved: /Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/_drafts/journal/new-luxury-homes-los-angeles-2026-market-signal.html
+  Size: 36.3 KB
+  JSON:  new-luxury-homes-los-angeles-2026-market-signal.json
+
+Generating article 3/9: California Bill Requires Insurers to Offer, Renew ...
+  Cluster: insurance_regulation → Section: Insurance & Insurability
+  [Generate] Created: california-insurer-must-renew-fire-safe-homes-bill-2026
+  [Image] Searching 3 cited sources...
+  [image/source] Insurance Journal: og=yes body=1 → 2 candidates
+  [image/source] https://www.insurance.ca.gov/01-consumer: og=no body=2 → 2 candidates
+  [image/source] Wildfire Prepared Home - A Program of IBHS: og=yes body=0 → 1 candidates
+  [Image] Found 5 source candidates, downloading best...
+  [image/source] Saved: california-insurer-must-renew-fire-safe-homes-bill-2026-hero.jpg (386.9 KB)
+  [Image] ✓ Source image: assets/img/california-insurer-must-renew-fire-safe-homes-bill-2026-hero.jpg
+  Saved: /Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/_drafts/journal/california-insurer-must-renew-fire-safe-homes-bill-2026.html
+  Size: 37.3 KB
+  JSON:  california-insurer-must-renew-fire-safe-homes-bill-2026.json
+
+Generating article 4/9: Foreign buyers eye luxe LA homes as proposed wealt...
+  Cluster: luxury_real_estate_LA → Section: LA Luxury Market
+  [Generate] Created: foreign-buyers-la-luxury-homes-wealth-tax-2026
+  [Image] Searching 3 cited sources...
+  [image/source] Fox Business: og=yes body=0 → 1 candidates
+  [image/source] https://leginfo.legislature.ca.gov/faces: og=no body=6 → 6 candidates
+  [image/source] https://www.insurance.ca.gov/01-consumer: og=no body=2 → 2 candidates
+  [Image] Found 9 source candidates, downloading best...
+  [image/source] Saved: foreign-buyers-la-luxury-homes-wealth-tax-2026-hero.png (1896.8 KB)
+  [Image] ✓ Source image: assets/img/foreign-buyers-la-luxury-homes-wealth-tax-2026-hero.png
+  Saved: /Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/_drafts/journal/foreign-buyers-la-luxury-homes-wealth-tax-2026.html
+  Size: 38.2 KB
+  JSON:  foreign-buyers-la-luxury-homes-wealth-tax-2026.json
+
+Generating article 5/9: IBHS expands Wildfire Prepared program to 10 addit...
+  Cluster: insurance_regulation → Section: Insurance & Insurability
+  [Generate] Created: ibhs-wildfire-prepared-ten-states-california-standard
+  [Image] Searching 3 cited sources...
+  [image/source] https://www.prnewswire.com/news-releases: og=yes body=1 → 2 candidates
+  [image/source] Wildfire Prepared Home - A Program of IBHS: og=yes body=0 → 1 candidates
+  [image/source] https://www.insurance.ca.gov/01-consumer: og=no body=2 → 2 candidates
+  [Image] Found 5 source candidates, downloading best...
+  [image/source] Saved: ibhs-wildfire-prepared-ten-states-california-standard-hero.jpg (32.9 KB)
+  [Image] ✓ Source image: assets/img/ibhs-wildfire-prepared-ten-states-california-standard-hero.jpg
+  Saved: /Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/_drafts/journal/ibhs-wildfire-prepared-ten-states-california-standard.html
+  Size: 38.1 KB
+  JSON:  ibhs-wildfire-prepared-ten-states-california-standard.json
+
+Generating article 6/9: Navigating the 2026 LA Luxury Real Estate Market E...
+  Cluster: luxury_real_estate_LA → Section: LA Luxury Market
+  [Generate] Created: la-luxury-real-estate-2026-new-construction-buyer-shift
+  [Image] Searching 3 cited sources...
+  [image/source] The Real Deal: og=yes body=6 → 7 candidates
+  [image/source] https://www.insurance.ca.gov/01-consumer: og=no body=2 → 2 candidates
+  [image/source] fetch failed for https://ibhs.org/wildfire-prepared/: HTTP Error 404: Not Found
+  [Image] Found 9 source candidates, downloading best...
+  [image/source] Saved: la-luxury-real-estate-2026-new-construction-buyer-shift-hero.jpg (57.2 KB)
+  [Image] ✓ Source image: assets/img/la-luxury-real-estate-2026-new-construction-buyer-shift-hero.jpg
+  Saved: /Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/_drafts/journal/la-luxury-real-estate-2026-new-construction-buyer-shift.html
+  Size: 37.7 KB
+  JSON:  la-luxury-real-estate-2026-new-construction-buyer-shift.json
+
+Generating article 7/9: fastcompany.com...
+  Cluster: luxury_architecture_LA → Section: LA Luxury Market
+  [Generate] Created: kb-home-wildfire-resilient-neighborhood-california-signal
+  [Image] Searching 3 cited sources...
+  [image/source] fetch failed for https://www.fastcompany.com/91478487/kb-home-first-wildfire-: HTTP Error 403: Forbidden
+  [image/source] Wildfire Prepared Home - A Program of IBHS: og=yes body=0 → 1 candidates
+  [image/source] https://www.insurance.ca.gov/01-consumer: og=no body=2 → 2 candidates
+  [Image] Found 3 source candidates, downloading best...
+  [image/source] Saved: kb-home-wildfire-resilient-neighborhood-california-signal-hero.jpg (31.7 KB)
+  [Image] ✓ Source image: assets/img/kb-home-wildfire-resilient-neighborhood-california-signal-hero.jpg
+  Saved: /Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/_drafts/journal/kb-home-wildfire-resilient-neighborhood-california-signal.html
+  Size: 37.3 KB
+  JSON:  kb-home-wildfire-resilient-neighborhood-california-signal.json
+
+Generating article 8/9: Wildfire Hardening Discounts Explained - Californi...
+  Cluster: insurance_regulation → Section: Insurance & Insurability
+  [Generate] Created: california-fair-plan-wildfire-hardening-discounts-2026
+  [Image] Searching 3 cited sources...
+  [image/source] Total Screen: og=yes body=0 → 1 candidates
+  [image/source] https://www.insurance.ca.gov/01-consumer: og=no body=2 → 2 candidates
+  [image/source] fetch failed for https://wildfireprepared.org/designation/: HTTP Error 404: Not Found
+  [Image] Found 3 source candidates, downloading best...
+  [image/source] Saved: california-fair-plan-wildfire-hardening-discounts-2026-hero.jpg (123.8 KB)
+  [Image] ✓ Source image: assets/img/california-fair-plan-wildfire-hardening-discounts-2026-hero.jpg
+  Saved: /Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/_drafts/journal/california-fair-plan-wildfire-hardening-discounts-2026.html
+  Size: 38.1 KB
+  JSON:  california-fair-plan-wildfire-hardening-discounts-2026.json
+
+Generating article 9/9: This Los Angeles home blends contemporary Italian ...
+  Cluster: luxury_architecture_LA → Section: LA Luxury Market
+  [Generate] Created: italian-design-luxury-homes-los-angeles-2026
+  [Image] Searching 3 cited sources...
+  [image/source] Homes and Gardens: og=yes body=0 → 1 candidates
+  [image/source] fetch failed for https://www.businessoffashion.com/articles/luxury/why-the-wo: HTTP Error 404: Not Found
+  [image/source] Global: og=yes body=6 → 7 candidates
+  [Image] Found 8 source candidates, downloading best...
+  [image/source] Saved: italian-design-luxury-homes-los-angeles-2026-hero.jpg (207.7 KB)
+  [Image] ✓ Source image: assets/img/italian-design-luxury-homes-los-angeles-2026-hero.jpg
+  Saved: /Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/_drafts/journal/italian-design-luxury-homes-los-angeles-2026.html
+  Size: 37.1 KB
+  JSON:  italian-design-luxury-homes-los-angeles-2026.json
+
+Ledger updated: /Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website/_system/history/journal_ledger.json
+
+==================================================
+Generated 9 article(s)

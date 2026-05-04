@@ -1,0 +1,54 @@
+{
+  "thread_id": "19db739a4b8e0123",
+  "outreach_message_id": "19db739a4b8e0123",
+  "outreach_subject": "A European angle on your IBHS piece",
+  "outreach_to": "richard.lawson@housingwire.com",
+  "outreach_sent_at": "2026-04-22T22:05:00+00:00",
+  "replies": [
+    {
+      "thread_id": "19db739a4b8e0123",
+      "gmail_message_id": "19db739ac8e0cca8",
+      "rfc822_message_id": "<69e9460f.050a0220.2ebaf8.4601.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a richard.lawson@housingwire.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\nUlteriori informazioni: https://support.google.com/mail/?p=NoSuchUser\r\n\r\nRisposta:\r\n\r\n550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For more information, go to https://support.google.com/mail/?p=NoSuchUser 5a478bee46e88-2e53cfccca5sor4013770eec.25 - gsmtp",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a richard.lawson@housingwire.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. ULTERIORI INFORMAZIONI Risposta: 550",
+      "received_at": "2026-04-22T22:05:03+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "IMPORTANT",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "19db739a4b8e0123",
+      "outreach_subject": "A European angle on your IBHS piece",
+      "outreach_to": "richard.lawson@housingwire.com",
+      "outreach_sent_at": "2026-04-22T22:05:00+00:00"
+    },
+    {
+      "thread_id": "19db739a4b8e0123",
+      "gmail_message_id": "19db73e6f80df62f",
+      "rfc822_message_id": "<69e94747.050a0220.24340f.0d7e.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a r.lawson@housingwire.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\nUlteriori informazioni: https://support.google.com/mail/?p=NoSuchUser\r\n\r\nRisposta:\r\n\r\n550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For more information, go to https://support.google.com/mail/?p=NoSuchUser 5a478bee46e88-2e8be2d13e1sor2072506eec.19 - gsmtp",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a r.lawson@housingwire.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. ULTERIORI INFORMAZIONI Risposta: 550 5.1.1",
+      "received_at": "2026-04-22T22:10:15+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "IMPORTANT",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "19db739a4b8e0123",
+      "outreach_subject": "A European angle on your IBHS piece",
+      "outreach_to": "richard.lawson@housingwire.com",
+      "outreach_sent_at": "2026-04-22T22:05:00+00:00"
+    }
+  ],
+  "last_checked_at": "2026-04-28T20:39:43+00:00"
+}

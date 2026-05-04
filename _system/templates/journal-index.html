@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Journal — My Villa | Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --terracotta: #C2714F;
+  --olive: #5C6B4F;
+  --tuscan-gold: #C4A265;
+  --warm-sand: #D4B896;
+  --espresso: #3E2F2B;
+  --coastal-sage: #A8B5A8;
+  --dusk-blue: #8A9B9E;
+  --pacific-blue: #6B8F9E;
+  --sky-mist: #9BB8C4;
+  --sand-white: #F0EBE3;
+  --charcoal: #2C2C2C;
+  --stone-grey: #A09890;
+  --light-linen: #EDE6DC;
+  --cream: #FAF8F5;
+  --offblack: #1a1816;
+  --white: #FFFFFF;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --section-pad: clamp(80px, 12vh, 140px);
+  --side-pad: clamp(24px, 5vw, 120px);
+}
+html { -webkit-font-smoothing: antialiased; }
+@media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+  html { scroll-behavior: smooth; }
+}
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ══════════════ NAV ══════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px var(--side-pad);
+  padding-top: max(22px, env(safe-area-inset-top));
+  background: rgba(62,47,43,0.97);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: padding 0.3s;
+}
+.nav.scrolled { padding: 14px var(--side-pad); }
+.nav-logo-wrap { display: flex; flex-direction: column; text-decoration: none; }
+.nav-logo {
+  font-family: var(--serif); font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400; letter-spacing: 0.22em; color: var(--white);
+}
+.nav-payoff {
+  font-family: var(--sans); font-size: 10px; font-weight: 400; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--white); opacity: 0.6; margin-top: 2px;
+}
+.nav-links { display: flex; gap: 24px; align-items: center; }
+.nav-links a {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--white); opacity: 0.6;
+  transition: color 0.3s, opacity 0.3s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+  background: var(--pacific-blue); transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--white); opacity: 1; }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { opacity: 1; }
+.nav-links a.active::after { width: 100%; }
+.nav-cta {
+  font-size: 10px !important; font-weight: 600 !important;
+  letter-spacing: 0.12em !important; opacity: 1 !important;
+  border: 1px solid var(--terracotta) !important; padding: 10px 24px;
+  transition: all 0.3s !important;
+}
+.nav-cta:hover { background: var(--pacific-blue) !important; border-color: var(--pacific-blue) !important; }
+.nav-cta::after { display: none !important; }
+.nav-burger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  width: 28px; padding: 4px 0;
+}
+.nav-burger span {
+  display: block; height: 1.5px; background: var(--white); transition: all 0.3s;
+}
+.mobile-menu {
+  position: fixed; inset: 0; background: rgba(62,47,43,0.98);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+  z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.4s;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a { font-family: var(--serif); font-size: 28px; color: var(--white); transition: color 0.3s; }
+.mobile-menu a:hover { color: var(--terracotta); }
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+}
+
+/* ══════════════ HERO ══════════════ */
+.hero {
+  background: var(--espresso);
+  padding: 160px var(--side-pad) 80px;
+  text-align: center;
+  min-height: 50vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.hero-label {
+  font-family: var(--sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 24px;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 400; line-height: 1.15;
+  color: var(--white); margin-bottom: 24px;
+}
+.hero-title em { font-style: italic; font-weight: 300; }
+.hero-divider {
+  width: 60px; height: 1px;
+  background: var(--tuscan-gold);
+  margin: 0 auto 24px;
+}
+.hero-subtitle {
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.7; color: var(--white);
+  opacity: 0.6; max-width: 620px;
+}
+.hero-subscribe {
+  display: inline-block; margin-top: 28px;
+  font-family: var(--sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--tuscan-gold); opacity: 0.8;
+  border-bottom: 1px solid rgba(196,162,101,0.3);
+  padding-bottom: 4px;
+  transition: opacity 0.3s, border-color 0.3s;
+}
+.hero-subscribe:hover { opacity: 1; border-color: var(--tuscan-gold); }
+
+/* ══════════════ CATEGORY NAV ══════════════ */
+.cat-nav {
+  background: var(--espresso);
+  padding: 0 var(--side-pad) 40px;
+  display: flex; justify-content: center;
+  gap: 8px; flex-wrap: wrap;
+}
+.cat-pill {
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 10px 22px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5);
+  cursor: pointer; transition: all 0.3s;
+  background: transparent;
+}
+.cat-pill:hover,
+.cat-pill.active {
+  border-color: var(--tuscan-gold);
+  color: var(--white);
+  background: rgba(196,162,101,0.1);
+}
+
+/* ══════════════ FEATURED ARTICLE ══════════════ */
+.featured-section {
+  background: var(--cream);
+  padding: var(--section-pad) var(--side-pad) 60px;
+}
+.featured-wrapper {
+  max-width: 1100px; margin: 0 auto;
+}
+.featured-label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 32px;
+}
+.featured-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--light-linen);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+}
+.featured-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+}
+.featured-img {
+  width: 100%; height: 100%;
+  min-height: 360px;
+  background: linear-gradient(135deg, #C2714F22 0%, #6B8F9E22 100%);
+  position: relative; overflow: hidden;
+}
+.featured-img-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, var(--espresso) 0%, #5a4440 50%, var(--pacific-blue) 100%);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 360px;
+}
+.featured-img-placeholder span {
+  font-family: var(--serif); font-size: 14px;
+  color: rgba(255,255,255,0.3); font-style: italic;
+}
+.featured-body { padding: 48px 48px 48px 0; }
+.featured-tag {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.featured-tag::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--light-linen);
+}
+.featured-title {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 400; line-height: 1.2;
+  color: var(--espresso); margin-bottom: 16px;
+}
+.featured-excerpt {
+  font-size: 15px; line-height: 1.75;
+  color: var(--charcoal); opacity: 0.7;
+  margin-bottom: 24px;
+}
+.featured-meta {
+  font-size: 12px; color: var(--stone-grey);
+  letter-spacing: 0.05em;
+}
+.read-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--pacific-blue);
+  margin-top: 20px; transition: gap 0.3s;
+}
+.read-link:hover { gap: 14px; }
+.read-link svg { transition: transform 0.3s; }
+
+@media (max-width: 768px) {
+  .featured-card { grid-template-columns: 1fr; }
+  .featured-body { padding: 32px 24px; }
+  .featured-img-placeholder { min-height: 220px; }
+}
+
+/* ══════════════ SECTION BLOCK ══════════════ */
+.section-block {
+  padding: 0 var(--side-pad) 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-header {
+  display: flex; align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--light-linen);
+}
+.section-name {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 400; color: var(--espresso);
+}
+.section-count {
+  font-size: 12px; color: var(--stone-grey);
+  letter-spacing: 0.08em;
+}
+.section-accent {
+  width: 40px; height: 2px; margin-bottom: 12px;
+}
+
+/* ══════════════ ARTICLE GRID ══════════════ */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+@media (max-width: 900px) {
+  .article-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .article-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid #e8e3da;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+.card-accent {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px;
+}
+.card-img {
+  width: 100%; height: 200px;
+  overflow: hidden;
+}
+.card-img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.card-img-placeholder span {
+  font-family: var(--serif); font-size: 12px;
+  color: rgba(255,255,255,0.25); font-style: italic;
+}
+.card-body { padding: 24px; }
+.card-tag {
+  font-family: var(--sans); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 10px; display: block;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 400; line-height: 1.3;
+  color: var(--espresso); margin-bottom: 10px;
+}
+.card-excerpt {
+  font-size: 14px; line-height: 1.65;
+  color: var(--charcoal); opacity: 0.65;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-meta {
+  font-size: 11px; color: var(--stone-grey);
+  letter-spacing: 0.05em;
+}
+.card-source {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 12px; padding-top: 12px;
+  border-top: 1px solid var(--light-linen);
+}
+.card-source-icon {
+  width: 18px; height: 18px;
+  border-radius: 3px; background: var(--light-linen);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.card-source-icon svg { width: 11px; height: 11px; }
+.card-source-icon.src-x { background: #1a1816; }
+.card-source-icon.src-x svg { fill: #fff; }
+.card-source-icon.src-reddit { background: #FF4500; }
+.card-source-icon.src-reddit svg { fill: #fff; }
+.card-source-icon.src-article { background: var(--espresso); }
+.card-source-icon.src-article svg { stroke: var(--cream); }
+.card-source-icon.src-gov { background: var(--pacific-blue); }
+.card-source-icon.src-gov svg { stroke: #fff; }
+.card-source-icon.src-study { background: var(--olive); }
+.card-source-icon.src-study svg { stroke: #fff; }
+.card-source-text {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--stone-grey);
+  line-height: 1.3;
+}
+.card-source-text strong {
+  color: var(--charcoal); font-weight: 600;
+}
+
+/* Featured source */
+.featured-sources {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 20px;
+}
+.source-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 100px;
+  background: var(--light-linen);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.06em; color: var(--charcoal);
+  transition: background 0.3s;
+}
+.source-badge:hover { background: #e0d8cc; }
+.source-badge svg { width: 12px; height: 12px; opacity: 0.6; }
+.source-badge.sb-article { background: rgba(62,47,43,0.3); color: var(--cream); }
+.source-badge.sb-study { background: rgba(92,107,79,0.3); color: var(--cream); }
+.source-badge.sb-x { background: rgba(26,24,22,0.4); color: var(--cream); }
+.source-badge.sb-reddit { background: rgba(255,69,0,0.2); color: #FF4500; }
+.source-badge.sb-gov { background: rgba(107,143,158,0.3); color: var(--cream); }
+
+/* Color coding by section */
+.accent-insurance { background: var(--terracotta); }
+.tag-insurance { color: var(--terracotta); }
+
+.accent-construction { background: var(--pacific-blue); }
+.tag-construction { color: var(--pacific-blue); }
+
+.accent-permits { background: var(--olive); }
+.tag-permits { color: var(--olive); }
+
+.accent-market { background: var(--tuscan-gold); }
+.tag-market { color: var(--tuscan-gold); }
+
+.accent-climate { background: var(--coastal-sage); }
+.tag-climate { color: var(--coastal-sage); }
+
+/* ══════════════ JOURNAL CTA ══════════════ */
+.journal-cta {
+  background: var(--espresso);
+  padding: var(--section-pad) var(--side-pad);
+  text-align: center;
+}
+.journal-cta-inner {
+  max-width: 620px; margin: 0 auto;
+}
+.journal-cta-label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 20px;
+}
+.journal-cta-divider {
+  width: 60px; height: 1px;
+  background: var(--tuscan-gold);
+  margin: 0 auto 28px;
+}
+.journal-cta-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 400; line-height: 1.2;
+  color: var(--white); margin-bottom: 20px;
+}
+.journal-cta-title em {
+  font-style: italic; font-weight: 300;
+}
+.journal-cta-text {
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.8;
+  color: var(--white); opacity: 0.6;
+  margin-bottom: 40px;
+}
+.journal-cta-buttons {
+  display: flex; gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-btn {
+  display: inline-block;
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 14px 32px; border-radius: 2px;
+  transition: all 0.3s; cursor: pointer;
+  text-decoration: none;
+}
+.cta-btn-primary {
+  background: var(--terracotta); color: var(--white);
+  border: 1px solid var(--terracotta);
+}
+.cta-btn-primary:hover {
+  background: var(--pacific-blue); border-color: var(--pacific-blue);
+}
+.cta-btn-secondary {
+  background: transparent; color: var(--white);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.cta-btn-secondary:hover {
+  border-color: var(--white);
+}
+@media (max-width: 500px) {
+  .journal-cta-buttons { flex-direction: column; align-items: center; }
+  .cta-btn { width: 100%; max-width: 280px; text-align: center; }
+}
+
+/* ══════════════ FOOTER ══════════════ */
+.footer {
+  background: var(--offblack);
+  padding: 30px var(--side-pad);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.footer-brand-wrap { display: flex; align-items: baseline; gap: 12px; }
+.footer-brand {
+  font-family: var(--serif); font-size: 16px;
+  letter-spacing: 0.2em; color: var(--white);
+}
+.footer-brand-payoff {
+  font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+}
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.5); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-size: 13px; color: var(--white); opacity: 0.8;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--pacific-blue); }
+@media (max-width: 600px) {
+  .footer { flex-direction: column; text-align: center; gap: 16px; }
+  .footer-brand-wrap { justify-content: center; }
+  .footer-links { justify-content: center; gap: 16px; }
+}
+
+/* ══════════════ REVEAL ══════════════ */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav class="nav">
+  <a href="https://myvilla.la" class="nav-logo-wrap">
+    <span class="nav-logo">MY VILLA</span>
+    <span class="nav-payoff">Italian Soul &middot; Californian Body</span>
+  </a>
+  <div class="nav-links">
+    <a href="#" class="active">Journal</a>
+    <a href="https://myvilla.la/#contact" class="nav-cta">Request Briefing</a>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero-label reveal">Journal</div>
+  <h1 class="hero-title reveal reveal-d1">Perspectives on <em>Building</em><br>in Los Angeles</h1>
+  <div class="hero-divider reveal reveal-d2"></div>
+  <p class="hero-subtitle reveal reveal-d3">We monitor daily what's shaping the future of building in Los Angeles — insurance, materials, regulation, and resilience. Grounded in data, informed by our research.</p>
+  <a href="https://myvilla.la" class="hero-subscribe reveal reveal-d4">Discover My Villa &rarr;</a>
+</section>
+
+<!-- ══════════════ CATEGORY PILLS ══════════════ -->
+<div class="cat-nav">
+  <button class="cat-pill active">All</button>
+  <button class="cat-pill">Insurance</button>
+  <button class="cat-pill">Materials</button>
+  <button class="cat-pill">Permits &amp; Policy</button>
+  <button class="cat-pill">Luxury Market</button>
+  <button class="cat-pill">Climate &amp; Resilience</button>
+</div>
+
+<!-- ══════════════ FEATURED ══════════════ -->
+<section class="featured-section">
+  <div class="featured-wrapper">
+    <div class="featured-label reveal">Latest</div>
+    <div class="featured-card reveal reveal-d1">
+      <div class="featured-img">
+        <div class="featured-img-placeholder">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-tag">Rebuild &amp; Milestones</div>
+        <h2 class="featured-title">The First Rebuilt Home in Palisades Just Got Its Keys</h2>
+        <p class="featured-excerpt">Mayor Bass announced the first Certificate of Occupancy for a rebuilt home in Pacific Palisades. A milestone that shifts the conversation from "whether" to "how" — and raises the question: what materials will define the next 1,000 homes?</p>
+        <div class="featured-meta">April 8, 2026 &middot; 5 min read</div>
+        <div class="featured-sources">
+          <span class="source-badge sb-gov"><svg viewBox="0 0 16 16" fill="none"><path d="M3 14h10M4 10v4M8 7v7M12 10v4M3 7l5-5 5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Mayor Bass / City of LA</span>
+          <span class="source-badge sb-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg> NAHB / Census Bureau</span>
+        </div>
+        <div class="read-link">Read Article <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ INSURANCE & ASSICURABILITÀ ══════════════ -->
+<div class="section-block">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-accent accent-insurance"></div>
+      <h2 class="section-name">Insurance &amp; Insurability</h2>
+    </div>
+    <span class="section-count">4 articles</span>
+  </div>
+  <div class="article-grid">
+    <!-- Card 1 -->
+    <article class="card reveal reveal-d1">
+      <div class="card-accent accent-insurance"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #3E2F2B, #C2714F);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-insurance">Insurance</span>
+        <h3 class="card-title">Why California Homeowners Are Choosing Concrete After the Fires</h3>
+        <p class="card-excerpt">Mercury Insurance's 50% discount for fire-resistant concrete homes signals a major shift in how California is rebuilding.</p>
+        <div class="card-meta">March 21, 2026 &middot; 7 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>NPR</strong>, <strong>Mercury Insurance</strong></span>
+        </div>
+      </div>
+    </article>
+    <!-- Card 2 -->
+    <article class="card reveal reveal-d2">
+      <div class="card-accent accent-insurance"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #5C3D2E, #8A6B5E);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-insurance">Insurance</span>
+        <h3 class="card-title">The Rebuild Decision: 3% More Cost, 800% Insurance Savings</h3>
+        <p class="card-excerpt">Headwaters Economics data reveals the starkest cost-benefit equation in California construction history.</p>
+        <div class="card-meta">April 5, 2026 &middot; 5 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>Live Insurance News</strong>, <strong>Headwaters Economics</strong></span>
+        </div>
+      </div>
+    </article>
+    <!-- Card 3 -->
+    <article class="card reveal reveal-d3">
+      <div class="card-accent accent-insurance"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #4A3C38, #9B8070);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-insurance">Insurance Crisis</span>
+        <h3 class="card-title">FAIR Plan Enrollment Surges 43%: What It Means for Homeowners</h3>
+        <p class="card-excerpt">As major insurers exit California, the state's insurer of last resort is overwhelmed. The implications for anyone building or buying.</p>
+        <div class="card-meta">April 2, 2026 &middot; 6 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-study"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M4 13c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>Berkeley Political Review</strong>, <strong>CDI</strong></span>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<!-- ══════════════ MATERIALS & CONSTRUCTION ══════════════ -->
+<div class="section-block">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-accent accent-construction"></div>
+      <h2 class="section-name">Materials &amp; Construction</h2>
+    </div>
+    <span class="section-count">6 articles</span>
+  </div>
+  <div class="article-grid">
+    <article class="card reveal reveal-d1">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #3E4A52, #6B8F9E);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials</span>
+        <h3 class="card-title">Wood Frame vs. Concrete: What California Builders Won't Tell You</h3>
+        <p class="card-excerpt">94% of US homes are built with the same material that feeds wildfires. A look at the data behind the alternative.</p>
+        <div class="card-meta">April 7, 2026 &middot; 8 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-study"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M4 13c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>NAHB / U.S. Census Bureau</strong></span>
+        </div>
+      </div>
+    </article>
+    <article class="card reveal reveal-d2">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #4A5A60, #9BB8C4);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials</span>
+        <h3 class="card-title">Fire-Resistant vs. Non-Combustible: A Distinction That Matters</h3>
+        <p class="card-excerpt">From ember-resistant vents to fully reinforced concrete — the spectrum of fire protection and what each level actually delivers.</p>
+        <div class="card-meta">April 4, 2026 &middot; 5 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>IBHS</strong>, <strong>Construct Elements</strong></span>
+        </div>
+      </div>
+    </article>
+    <article class="card reveal reveal-d3">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #556B6E, #8A9B9E);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Technology</span>
+        <h3 class="card-title">Homebound Compresses Timelines — But What About Materials?</h3>
+        <p class="card-excerpt">A tech platform cuts Altadena permitting from 5 months to 30 days. The material inside the walls remains unchanged.</p>
+        <div class="card-meta">April 8, 2026 &middot; 4 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>Spectrum News 1</strong></span>
+        </div>
+      </div>
+    </article>
+    <!-- Card 4 — NEW from expanded radar -->
+    <article class="card reveal reveal-d4">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #3E4A52, #5a7a8a);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials</span>
+        <h3 class="card-title">From ICF to 3D Printing: The Concrete Spectrum Reshaping LA</h3>
+        <p class="card-excerpt">Wildfire victims are turning to nontraditional materials — ICF walls, 3D-printed concrete, steel frames. A look at the full spectrum and what each approach actually delivers.</p>
+        <div class="card-meta">April 7, 2026 &middot; 7 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>ABC7 Los Angeles</strong>, <strong>ABC10</strong></span>
+        </div>
+      </div>
+    </article>
+    <!-- Card 5 — NEW from expanded radar -->
+    <article class="card reveal">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #4A5560, #7A9BAA);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Case Study</span>
+        <h3 class="card-title">A Santa Clarita Family Rebuilds with ICF After the Tick Fire</h3>
+        <p class="card-excerpt">After losing their wood-frame home, this family chose insulated concrete forms. What they learned about cost, timeline, and insurance.</p>
+        <div class="card-meta">April 3, 2026 &middot; 5 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>ABC7 Los Angeles</strong></span>
+        </div>
+      </div>
+    </article>
+    <!-- Card 6 — NEW from expanded radar -->
+    <article class="card reveal reveal-d1">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #3A5060, #6B8F9E);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Insurance</span>
+        <h3 class="card-title">One Year Later: Have the Fires Changed Home Insurance?</h3>
+        <p class="card-excerpt">A year after the Palisades and Eaton fires, the insurance landscape has fundamentally shifted. How construction materials are becoming the key variable in the equation.</p>
+        <div class="card-meta">April 1, 2026 &middot; 6 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>Insurance.com</strong>, <strong>IA Magazine</strong></span>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<!-- ══════════════ CONCRETE ARCHITECTURE (NEW CLUSTER) ══════════════ -->
+<div class="section-block">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-accent accent-construction"></div>
+      <h2 class="section-name">Concrete Architecture</h2>
+    </div>
+    <span class="section-count">2 articles</span>
+  </div>
+  <div class="article-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <article class="card reveal reveal-d1">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #4A4A4A, #8A9B9E);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Architecture</span>
+        <h3 class="card-title">A Curving Concrete Villa on the Belgian Coast — And What It Tells Us About LA</h3>
+        <p class="card-excerpt">Wallpaper* profiles a seashell-inspired concrete home by Magalie Munters. The same material language is emerging in Los Angeles — driven by fire, not aesthetics.</p>
+        <div class="card-meta">April 6, 2026 &middot; 4 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>Wallpaper*</strong></span>
+        </div>
+      </div>
+    </article>
+    <article class="card reveal reveal-d2">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #5A5A50, #9B9B8E);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Architecture</span>
+        <h3 class="card-title">S-AR's Monolithic Residence: When Walls, Floor and Roof Become One</h3>
+        <p class="card-excerpt">Designboom covers a Mexican villa where concrete is both structure and surface. The same philosophy that's driving residential construction's material shift.</p>
+        <div class="card-meta">April 2, 2026 &middot; 4 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>Designboom</strong></span>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<!-- ══════════════ PERMITS & POLICY ══════════════ -->
+<div class="section-block">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-accent accent-permits"></div>
+      <h2 class="section-name">Permits &amp; Policy</h2>
+    </div>
+    <span class="section-count">3 articles</span>
+  </div>
+  <div class="article-grid">
+    <!-- NEW from expanded radar — Reddit -->
+    <article class="card reveal">
+      <div class="card-accent accent-permits"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #44503E, #6B7B5E);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-permits">Tax &amp; Incentives</span>
+        <h3 class="card-title">LA Considers Waiving Sales Tax for Palisades Rebuild</h3>
+        <p class="card-excerpt">Councilmember Traci Park's proposal to exempt local sales tax for fire victims. Combined with insurance discounts for non-combustible materials, the financial equation shifts dramatically.</p>
+        <div class="card-meta">April 1, 2026 &middot; 4 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-reddit"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zm4.6 9.2c0 2.2-2.1 4-4.6 4s-4.6-1.8-4.6-4c0-.5.1-.9.3-1.3-.5-.3-.8-.8-.8-1.4a1.5 1.5 0 012.7-.9c.8-.5 1.8-.8 2.9-.8l.7-2.5a.3.3 0 01.4-.2l1.8.4a1 1 0 011.9.3c0 .6-.4 1-.9 1l-1.6-.3-.5 2.1c1 .1 2 .4 2.7.9.3-.4.7-.6 1.2-.6a1.5 1.5 0 011.2 2.4c.1.3.2.6.2.9z"/></svg></div>
+          <span class="card-source-text">Citing <strong>r/LosAngeles</strong> (42 upvotes, 61 comments)</span>
+        </div>
+      </div>
+    </article>
+    <article class="card reveal reveal-d1">
+      <div class="card-accent accent-permits"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #3E4A3A, #5C6B4F);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-permits">Policy</span>
+        <h3 class="card-title">Mayor Bass's Standard Plan Pilot: Faster Permitting for Palisades</h3>
+        <p class="card-excerpt">LA's new pilot program expedites the rebuild process. We look at what it covers, what it doesn't, and whether speed alone is enough.</p>
+        <div class="card-meta">April 3, 2026 &middot; 5 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-gov"><svg viewBox="0 0 16 16" fill="none"><path d="M3 14h10M4 10v4M8 7v7M12 10v4M3 7l5-5 5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>Mayor Bass / City of LA</strong></span>
+        </div>
+      </div>
+    </article>
+    <article class="card reveal reveal-d2">
+      <div class="card-accent accent-permits"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #4A5A42, #8B9B7A);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-permits">Legislation</span>
+        <h3 class="card-title">New California Bills Target Slow Insurance Payouts</h3>
+        <p class="card-excerpt">Doubled penalties, accelerated claims handling, and the Disaster Recovery Reform Act — what new legislation means for the rebuild.</p>
+        <div class="card-meta">April 1, 2026 &middot; 6 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-gov"><svg viewBox="0 0 16 16" fill="none"><path d="M3 14h10M4 10v4M8 7v7M12 10v4M3 7l5-5 5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>Commissioner Lara</strong>, <strong>Sen. Padilla</strong></span>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<!-- ══════════════ LUXURY MARKET ══════════════ -->
+<div class="section-block">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-accent accent-market"></div>
+      <h2 class="section-name">LA Luxury Market</h2>
+    </div>
+    <span class="section-count">2 articles</span>
+  </div>
+  <div class="article-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <article class="card reveal reveal-d1">
+      <div class="card-accent accent-market"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #6B5A3E, #C4A265);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-market">Market</span>
+        <h3 class="card-title">$42.5M in Bel-Air: What LA's Top Listings Reveal About 2026 Luxury</h3>
+        <p class="card-excerpt">The latest Bel-Air listing sets the bar for amenities and design. But the next frontier in luxury isn't features — it's permanence and material integrity.</p>
+        <div class="card-meta">April 7, 2026 &middot; 5 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>ok.com</strong></span>
+        </div>
+      </div>
+    </article>
+    <article class="card reveal reveal-d2">
+      <div class="card-accent accent-market"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #7A6A50, #D4B896);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-market">Market</span>
+        <h3 class="card-title">Pepperdine Predicts a Slow Road to Full Recovery</h3>
+        <p class="card-excerpt">After Tubbs, 76% rebuilt in 6 years. After Camp, less than 30% in 5. What the data says about LA's timeline.</p>
+        <div class="card-meta">April 6, 2026 &middot; 5 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>Malibu Times</strong>, <strong>Pepperdine University</strong></span>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<!-- ══════════════ CLIMATE & RESILIENCE ══════════════ -->
+<div class="section-block">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-accent accent-climate"></div>
+      <h2 class="section-name">Climate &amp; Resilience</h2>
+    </div>
+    <span class="section-count">2 articles</span>
+  </div>
+  <div class="article-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <article class="card reveal reveal-d1">
+      <div class="card-accent accent-climate"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #5A6B5A, #A8B5A8);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-climate">Resilience</span>
+        <h3 class="card-title">Crown Fire in Acton: 280 Acres and a Reminder</h3>
+        <p class="card-excerpt">A wildfire 40 miles from downtown, in April. The risk isn't seasonal anymore — and neither should our building standards be.</p>
+        <div class="card-meta">April 6, 2026 &middot; 4 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-x"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.3 6.7L14.1 1h-1.1L8.8 6l-3.5-5H1.5l5 7.3L1.5 15h1.1l4.4-5.1 3.5 5.1h3.8L9.3 6.7zm-1.6 1.8l-.5-.7L3.2 2h1.7l3.2 4.6.5.7 4.2 6H11l-3.3-4.8z"/></svg></div>
+          <span class="card-source-text">Citing <strong>LACoFD</strong> (via X)</span>
+        </div>
+      </div>
+    </article>
+    <article class="card reveal reveal-d2">
+      <div class="card-accent accent-climate"></div>
+      <div class="card-img">
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg, #6B7B6B, #9BB8C4);">
+          <span>article image</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-climate">Design</span>
+        <h3 class="card-title">Biophilic Design in a Fire Zone: Contradiction or Necessity?</h3>
+        <p class="card-excerpt">How to integrate nature into architecture when nature itself is the threat. The approach that reconciles green living with fire resilience.</p>
+        <div class="card-meta">March 25, 2026 &middot; 6 min read</div>
+        <div class="card-source">
+          <div class="card-source-icon src-article"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <span class="card-source-text">Citing <strong>AIA</strong>, <strong>The Cooldown</strong></span>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<!-- ══════════════ JOURNAL CTA ══════════════ -->
+<section class="journal-cta" id="about">
+  <div class="journal-cta-inner reveal">
+    <div class="journal-cta-label">About This Journal</div>
+    <div class="journal-cta-divider"></div>
+    <h2 class="journal-cta-title">Curated by <em>My Villa</em></h2>
+    <p class="journal-cta-text">We build museum-grade reinforced concrete villas in Los Angeles — fire-resilient, seismically engineered, designed for centuries. This Journal is how we share what we learn from monitoring the forces reshaping construction in California.</p>
+    <div class="journal-cta-buttons">
+      <a href="https://myvilla.la" class="cta-btn cta-btn-primary">Explore My Villa</a>
+      <a href="https://myvilla.la/#contact" class="cta-btn cta-btn-secondary">Request a Briefing</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <div class="footer-brand-wrap">
+    <div class="footer-brand">MY VILLA</div>
+    <div class="footer-brand-payoff">Italian Soul &middot; Californian Body</div>
+  </div>
+  <div class="footer-copy">&copy; 2026 My Villa</div>
+  <div class="footer-links">
+    <a href="mailto:info@myvilla.la">info@myvilla.la</a>
+    <a href="https://myvilla.la">myvilla.la</a>
+    <a href="https://myvilla.la/privacy.html">Privacy Policy</a>
+  </div>
+</footer>
+
+<!-- ══════════════ JS ══════════════ -->
+<script>
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Category filter (visual demo)
+document.querySelectorAll('.cat-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

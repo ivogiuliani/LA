@@ -1,0 +1,44 @@
+# MyVilla — Approved Quotes for Public Use
+# Source: MyVilla_Knowledge_Base.md Section 4 (Il Team)
+# Used by: generate_journal.py, generate_social.py
+# Only these quotes may be attributed to Paolo Mezzalama in generated content.
+
+speaker: "Paolo Mezzalama"
+role: "Founder, My Villa"
+
+quotes:
+  - id: "origin"
+    text: >
+      MyVilla è nata da una domanda semplice: perché la California dovrebbe
+      ricostruire domani con la stessa logica che ha fallito ieri?
+    text_en: >
+      MyVilla was born from a simple question: why should California rebuild
+      tomorrow with the same logic that failed yesterday?
+    use_context:
+      - "origin story"
+      - "rebuild narrative"
+      - "why now"
+
+  - id: "permanence"
+    text: >
+      Stiamo portando a Los Angeles un'idea europea di permanenza — case
+      progettate non solo per essere belle, ma per durare.
+    text_en: >
+      We're bringing to Los Angeles a European idea of permanence — homes
+      designed not just to be beautiful, but to last.
+    use_context:
+      - "European vs American construction"
+      - "brand positioning"
+      - "materials story"
+
+  - id: "true_luxury"
+    text: >
+      Il vero lusso non è eccesso. È resilienza, comfort, precisione e la
+      certezza che una casa durerà.
+    text_en: >
+      True luxury isn't excess. It's resilience, comfort, precision, and the
+      certainty that a home will endure.
+    use_context:
+      - "luxury redefined"
+      - "brand philosophy"
+      - "what luxury means"
