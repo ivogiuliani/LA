@@ -6410,6 +6410,132 @@ def _esc_js(text):
     )
 
 
+# ── Git auto-push (after every Pubblica) ─────────────────────────────
+#
+# Best-effort wrapper that runs `git add -A && git commit && git push`
+# after a successful publish, so the live site picks up the new article
+# without manual operator intervention.
+#
+# All failure modes (no remote, no network, auth issue, merge conflict,
+# nothing to commit) are caught and logged but **never** roll back the
+# publish — the article is already in blog/ and the indexes are already
+# rewritten; pushing is a separate, asynchronous concern.
+#
+# Disable for a single session by exporting MYVILLA_AUTOPUSH=0 before
+# launching review.command.
+
+_AUTOPUSH_TIMEOUT_S = 30
+
+
+def _autopush_commit_message(filename: str, content_type: str) -> str:
+    """Build a human-readable commit message for the auto-push.
+
+    For journal articles, tries to pull the title from the published
+    HTML <title> tag; falls back to the filename. Social approvals get a
+    generic message because their content lives outside the tracked tree
+    (the autopush will usually no-op for social, but the message is
+    still set in case future state changes cause something to commit).
+    """
+    if content_type == "journal":
+        published = BLOG_DIR / filename
+        if published.exists():
+            try:
+                content = published.read_text(encoding="utf-8", errors="replace")
+                m = re.search(r"<title>(.*?)</title>", content, re.IGNORECASE | re.DOTALL)
+                if m:
+                    title = html.unescape(m.group(1).strip())
+                    title = re.sub(r"\s*[—-]\s*My Villa Journal\s*$", "", title)
+                    if title:
+                        return f"Publish journal: {title}"
+            except Exception:
+                pass
+        return f"Publish journal: {filename}"
+    if content_type == "social":
+        return f"Approve social post: {filename}"
+    return f"Update from approve.py: {filename}"
+
+
+def _run_git(args: list[str], timeout: int = _AUTOPUSH_TIMEOUT_S) -> subprocess.CompletedProcess:
+    """Thin wrapper: always run from ROOT_DIR, capture output, never raise."""
+    return subprocess.run(
+        ["git", *args],
+        cwd=str(ROOT_DIR),
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+    )
+
+
+def _git_autopush(commit_msg: str) -> bool:
+    """Stage all → commit → push origin/main. Best-effort; returns success.
+
+    Returns True only when a push actually happened (i.e. there was
+    something to commit AND it landed on origin). Returns False for
+    every other case (disabled by env var, no remote, nothing to commit,
+    auth failure, network failure). Never raises.
+    """
+    if os.environ.get("MYVILLA_AUTOPUSH", "1").strip() in ("0", "false", "no", ""):
+        print("  [autopush] disabled via MYVILLA_AUTOPUSH=0 — skipping")
+        return False
+
+    if not (ROOT_DIR / ".git").exists():
+        print("  [autopush] no .git directory in project root — skipping")
+        return False
+
+    try:
+        # 1. Verify there is a remote configured. Without one we can't push.
+        remote_check = _run_git(["remote"], timeout=5)
+        if remote_check.returncode != 0 or not remote_check.stdout.strip():
+            print("  [autopush] no git remote configured — skipping "
+                  "(set up with: git remote add origin <url>)")
+            return False
+
+        # 2. Stage everything (gitignore-protected: .env, drafts, archives,
+        # OAuth tokens are all excluded by .gitignore).
+        add = _run_git(["add", "-A"], timeout=15)
+        if add.returncode != 0:
+            print(f"  [autopush] git add failed: {add.stderr.strip()[:200]}")
+            return False
+
+        # 3. Skip if nothing changed (e.g. social approve that only touches
+        # _system/social/posts/, which is in .gitignore).
+        diff_quiet = _run_git(["diff", "--cached", "--quiet"], timeout=5)
+        if diff_quiet.returncode == 0:
+            print("  [autopush] nothing to commit — skipping push")
+            return False
+
+        # 4. Commit.
+        commit = _run_git(["commit", "-m", commit_msg], timeout=15)
+        if commit.returncode != 0:
+            print(f"  [autopush] commit failed: {commit.stderr.strip()[:200]}")
+            return False
+
+        # 5. Push. The slow step. If it fails (network, auth, conflict)
+        # the local commit is still made — operator can run `git push`
+        # later to recover.
+        push = _run_git(["push", "origin", "main"], timeout=_AUTOPUSH_TIMEOUT_S)
+        if push.returncode != 0:
+            print(f"  [autopush] push failed: {push.stderr.strip()[:200]}")
+            print("  [autopush] commit is local-only; run 'git push' "
+                  "manually when the issue is resolved")
+            return False
+
+        # 6. Report the new commit hash for log clarity.
+        sha = _run_git(["rev-parse", "--short", "HEAD"], timeout=5)
+        sha_str = sha.stdout.strip() if sha.returncode == 0 else "(unknown)"
+        print(f"  [autopush] ✓ pushed {sha_str} to origin/main "
+              f"({commit_msg!r})")
+        return True
+
+    except subprocess.TimeoutExpired:
+        print(f"  [autopush] timeout after {_AUTOPUSH_TIMEOUT_S}s — push abandoned. "
+              "Run 'git push' manually.")
+        return False
+    except Exception as e:  # noqa: BLE001 — never crash the publish
+        print(f"  [autopush] unexpected error: {type(e).__name__}: {e}")
+        return False
+
+
 # ── HTTP Request Handler ─────────────────────────────────────────────
 
 class ReviewHandler(BaseHTTPRequestHandler):
@@ -6848,6 +6974,11 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 except Exception as e:
                     print(f"  Warning: update_homepage_journal.py failed: {e}")
 
+            # Auto-push to GitHub so the live site picks up the new article
+            # without a manual `git push`. Best-effort: any failure is
+            # logged but does not roll back the publish.
+            _git_autopush(_autopush_commit_message(filename, "journal"))
+
             self._send_json({"ok": True, "message": f"Published: {filename}"})
 
         elif content_type == "social":
@@ -6861,6 +6992,11 @@ class ReviewHandler(BaseHTTPRequestHandler):
             dst = approved_dir / filename
             shutil.move(str(src), str(dst))
             print(f"  Approved social: {filename} -> _system/social/posts/approved/")
+
+            # Best-effort autopush. _system/social/posts/ is gitignored so
+            # the call usually no-ops, but we keep the hook for symmetry
+            # and in case future state changes touch tracked files.
+            _git_autopush(_autopush_commit_message(filename, "social"))
 
             self._send_json({"ok": True, "message": f"Approved: {filename}"})
 
