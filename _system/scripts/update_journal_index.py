@@ -377,7 +377,7 @@ def render_featured(article):
           </span>"""
 
     return f"""
-  <div class="featured-label reveal">Latest</div>
+  <div class="featured-label reveal">Featured</div>
   <a href="{esc(article['filename'])}" style="text-decoration:none;color:inherit;">
   <div class="featured-card reveal reveal-d1">
     <div class="featured-img">
