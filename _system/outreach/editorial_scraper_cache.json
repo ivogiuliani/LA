@@ -29,7 +29,7 @@
     "result": null
   },
   "dezeen.com": {
-    "cached_at": 1777180685.373626,
+    "cached_at": 1778044796.77323,
     "result": null
   },
   "archdaily.com": {
@@ -151,5 +151,26 @@
       "path": "/contact",
       "score": 11
     }
+  },
+  "morningstar.com": {
+    "cached_at": 1778044797.874635,
+    "result": null
+  },
+  "hoodline.com": {
+    "cached_at": 1778044799.330097,
+    "result": null
+  },
+  "therealdeal.com": {
+    "cached_at": 1778044804.184763,
+    "result": {
+      "email": "events@therealdeal.com",
+      "source": "article_scraped",
+      "path": "/bsh-events/building-luxury-beverly-hills",
+      "score": 7
+    }
+  },
+  "uphelp.org": {
+    "cached_at": 1778044808.285992,
+    "result": null
   }
 }
