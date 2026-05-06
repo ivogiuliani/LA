@@ -690,6 +690,124 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .team-grid { grid-template-columns: 1fr; }
 }
 
+/* ── Studio hero card — IT'S Architecture as primary partner ── */
+.studio-hero-card {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 48px;
+  background: var(--espresso);
+  border-top: 3px solid var(--tuscan-gold);
+  padding: 48px clamp(28px, 4vw, 56px);
+  margin-top: 40px;
+  margin-bottom: 56px;
+}
+.studio-text { display: flex; flex-direction: column; }
+.studio-logo { height: 44px; margin-bottom: 18px; display: flex; align-items: center; }
+.studio-logo img { height: 100%; width: auto; max-width: 220px; object-fit: contain; filter: brightness(0) invert(0.92); }
+.studio-meta {
+  font-size: 11px; letter-spacing: 0.2em; font-weight: 500;
+  color: var(--tuscan-gold); text-transform: uppercase;
+  margin-bottom: 14px; opacity: 0.95;
+}
+.studio-firm {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 36px);
+  color: var(--white);
+  margin-bottom: 18px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+.studio-thesis {
+  font-size: 16px; line-height: 1.75;
+  color: var(--white); opacity: 0.78;
+  margin-bottom: 24px;
+}
+.studio-thesis strong { color: var(--white); opacity: 0.96; font-weight: 600; }
+.studio-portfolio-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--tuscan-gold); opacity: 0.85;
+  margin-bottom: 8px;
+}
+.studio-portfolio {
+  font-size: 14.5px; line-height: 1.7;
+  color: var(--white); opacity: 0.55;
+  margin-bottom: 28px;
+}
+.studio-portfolio strong { color: var(--white); opacity: 0.92; font-weight: 600; }
+.studio-cta { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; margin-top: auto; }
+.studio-link-primary {
+  font-size: 12px; letter-spacing: 0.18em; font-weight: 600;
+  text-transform: uppercase; text-decoration: none;
+  color: var(--tuscan-gold); border-bottom: 1px solid var(--tuscan-gold);
+  padding-bottom: 4px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.studio-link-primary:hover { color: var(--white); border-color: var(--white); }
+.studio-link-secondary {
+  font-size: 12px; letter-spacing: 0.1em; font-weight: 500;
+  text-transform: uppercase; text-decoration: none;
+  color: var(--white); opacity: 0.5;
+  transition: opacity 0.2s;
+}
+.studio-link-secondary:hover { opacity: 0.95; }
+.studio-founders-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--tuscan-gold); opacity: 0.85;
+  margin-bottom: 22px;
+}
+.founders-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.founder-card { text-align: center; }
+.founder-photo {
+  width: 100%; height: auto; aspect-ratio: 1 / 1;
+  object-fit: cover; object-position: center 18%;
+  border-radius: 50%;
+  filter: grayscale(0.22) brightness(0.95);
+  transition: filter 0.4s, transform 0.4s;
+  display: block;
+}
+.founder-card:hover .founder-photo {
+  filter: grayscale(0) brightness(1);
+  transform: scale(1.03);
+}
+.founder-name {
+  font-family: var(--serif);
+  font-size: 15px; font-weight: 500;
+  color: var(--white); opacity: 0.92;
+  margin-top: 14px; line-height: 1.25;
+}
+.founder-role {
+  font-size: 10px; letter-spacing: 0.12em; font-weight: 500;
+  text-transform: uppercase;
+  color: var(--white); opacity: 0.42;
+  margin-top: 5px;
+}
+
+/* System partners sub-section */
+.system-partners-header { margin-top: 8px; margin-bottom: 8px; }
+.system-partners-title {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.4vw, 28px);
+  color: var(--white);
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.95;
+  line-height: 1.2;
+}
+.team-grid.system-grid { grid-template-columns: repeat(3, 1fr); margin-top: 14px; }
+
+@media (max-width: 1000px) {
+  .studio-hero-card { grid-template-columns: 1fr; gap: 36px; padding: 40px 28px; }
+  .team-grid.system-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 550px) {
+  .team-grid.system-grid { grid-template-columns: 1fr; }
+  .founders-grid { gap: 12px; }
+  .founder-name { font-size: 13.5px; }
+  .founder-role { font-size: 9.5px; }
+}
+
 /* ══════════════════════════════════════════
    5. VISION (full-bleed image)
    ══════════════════════════════════════════ */
@@ -2131,6 +2249,288 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .journal-card-title { font-size: 20px; }
 }
 
+/* ── Topical Desks variant (4 columns by topic) ── */
+.journal-grid.topical {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
+}
+.topical-col { display: flex; flex-direction: column; }
+.topical-col-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--terracotta);
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(194, 113, 79, 0.25);
+  margin-bottom: 16px;
+}
+.topical-col:nth-child(2) .topical-col-eyebrow { color: var(--pacific-blue); border-bottom-color: rgba(107, 143, 158, 0.3); }
+.topical-col:nth-child(3) .topical-col-eyebrow { color: var(--tuscan-gold); border-bottom-color: rgba(196, 162, 101, 0.3); }
+.topical-col:nth-child(4) .topical-col-eyebrow { color: var(--coastal-sage); border-bottom-color: rgba(140, 156, 138, 0.35); }
+.topical-col .journal-card { min-height: 0; }
+.journal-card-hero {
+  display: block;
+  width: 100%; height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center center;
+  background: var(--cream);
+  filter: saturate(0.92);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.topical-col .journal-card:hover .journal-card-hero { filter: saturate(1.05); transform: scale(1.02); }
+.topical-col .journal-card-body { padding: 18px 20px 22px; gap: 10px; }
+.topical-col .journal-card-title { font-size: 17px; line-height: 1.3; }
+.topical-col .journal-card-excerpt { font-size: 12.5px; line-height: 1.55; -webkit-line-clamp: 4; }
+.topical-col .journal-card-meta { font-size: 10px; margin-top: 4px; }
+.topical-col .journal-card-meta::before { width: 18px; }
+.topical-col:nth-child(1) .journal-card::before { background: var(--terracotta); }
+.topical-col:nth-child(2) .journal-card::before { background: var(--pacific-blue); }
+.topical-col:nth-child(3) .journal-card::before { background: var(--tuscan-gold); }
+.topical-col:nth-child(4) .journal-card::before { background: var(--coastal-sage); }
+.topical-col:nth-child(2) .journal-card .journal-card-meta::before { background: var(--pacific-blue); }
+.topical-col:nth-child(3) .journal-card .journal-card-meta::before { background: var(--tuscan-gold); }
+.topical-col:nth-child(4) .journal-card .journal-card-meta::before { background: var(--coastal-sage); }
+
+@media (max-width: 1100px) {
+  .journal-grid.topical { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+}
+@media (max-width: 600px) {
+  .journal-grid.topical { grid-template-columns: 1fr; gap: 24px; }
+}
+
+/* ── Live pulse dot ── */
+@keyframes pulseDot {
+  0%   { box-shadow: 0 0 0 0 rgba(107, 196, 122, 0.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(107, 196, 122, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(107, 196, 122, 0); }
+}
+.live-pulse {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #6BC47A;
+  animation: pulseDot 2.2s infinite;
+  flex-shrink: 0;
+}
+.live-pulse.on-light { background: #4FA864; } /* darker for light backgrounds */
+.live-pulse.on-light { animation-name: pulseDotDark; }
+@keyframes pulseDotDark {
+  0%   { box-shadow: 0 0 0 0 rgba(79, 168, 100, 0.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(79, 168, 100, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(79, 168, 100, 0); }
+}
+.nav-link-journal { display: inline-flex; align-items: center; gap: 8px; }
+.mobile-menu .nav-link-journal { gap: 10px; }
+
+/* ── Nav journal stamp (stack: Journal + sub-line "Updated today") ── */
+.nav-link-journal {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  line-height: 1.1;
+}
+.nav-link-journal::after { display: none; } /* disable default underline */
+.nav-link-journal .nav-journal-text {
+  position: relative;
+  display: inline-block;
+}
+.nav-link-journal .nav-journal-text::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  height: 1px;
+  background: var(--warm-sand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.nav-link-journal:hover .nav-journal-text::after { transform: scaleX(1); }
+@keyframes stampGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(194, 113, 79, 0.55); }
+  50%      { box-shadow: 0 0 0 5px rgba(194, 113, 79, 0); }
+}
+@keyframes pulseDotWhiteSm {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.75); }
+  70%  { box-shadow: 0 0 0 4px rgba(255, 255, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+.nav-journal-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 1px 9px 1px 8px;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--terracotta);
+  border-radius: 3px;
+  white-space: nowrap;
+  line-height: 1.4;
+  animation: stampGlow 2.6s ease-in-out infinite;
+}
+.nav-journal-stamp .live-pulse {
+  width: 6px; height: 6px;
+  background: #fff;
+  animation: pulseDotWhiteSm 2.2s infinite;
+}
+.mobile-menu .nav-link-journal { gap: 6px; }
+.mobile-menu .nav-journal-stamp { font-size: 11px; padding: 2px 10px; }
+
+/* ── Journal Strip (above-the-fold compact monitoring) ── */
+.journal-strip {
+  padding: 56px var(--side-pad) 72px;
+  background: var(--cream);
+  border-bottom: 1px solid rgba(192, 180, 165, 0.3);
+}
+.journal-strip-inner { max-width: 1280px; margin: 0 auto; }
+.journal-strip-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(192, 180, 165, 0.35);
+  padding-bottom: 14px;
+  gap: 16px;
+}
+.journal-strip-title {
+  font-family: var(--sans);
+  font-size: 11px; letter-spacing: 0.28em;
+  font-weight: 600; color: var(--terracotta);
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 12px;
+  flex-wrap: wrap;
+}
+.journal-strip-link {
+  font-size: 11px; letter-spacing: 0.18em; font-weight: 600;
+  color: var(--espresso); opacity: 0.62;
+  text-decoration: none; text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.2s, opacity 0.2s;
+}
+.journal-strip-link:hover { color: var(--terracotta); opacity: 1; }
+.journal-strip-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+}
+.journal-strip-item {
+  text-decoration: none; color: inherit;
+  border-left: 2px solid var(--terracotta);
+  padding-left: 18px;
+  display: block;
+  transition: border-color 0.25s, transform 0.25s, padding-left 0.25s;
+}
+.journal-strip-item:nth-child(2) { border-left-color: var(--pacific-blue); }
+.journal-strip-item:nth-child(3) { border-left-color: var(--tuscan-gold); }
+.journal-strip-item:nth-child(4) { border-left-color: var(--coastal-sage); }
+.journal-strip-item:hover { padding-left: 22px; }
+.journal-strip-item-eyebrow {
+  font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; font-weight: 600;
+  color: var(--terracotta);
+  margin-bottom: 8px;
+}
+.journal-strip-item:nth-child(2) .journal-strip-item-eyebrow { color: var(--pacific-blue); }
+.journal-strip-item:nth-child(3) .journal-strip-item-eyebrow { color: var(--tuscan-gold); }
+.journal-strip-item:nth-child(4) .journal-strip-item-eyebrow { color: var(--coastal-sage); }
+.journal-strip-item-title {
+  font-family: var(--serif);
+  font-size: 16px; line-height: 1.32;
+  color: var(--espresso);
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.journal-strip-item:hover .journal-strip-item-title { color: var(--terracotta); }
+.journal-strip-item:nth-child(2):hover .journal-strip-item-title { color: var(--pacific-blue); }
+.journal-strip-item:nth-child(3):hover .journal-strip-item-title { color: var(--tuscan-gold); }
+.journal-strip-item:nth-child(4):hover .journal-strip-item-title { color: var(--coastal-sage); }
+.journal-strip-item-meta {
+  font-size: 10px; letter-spacing: 0.06em;
+  color: var(--stone-grey);
+  text-transform: uppercase;
+}
+@media (max-width: 1100px) {
+  .journal-strip-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+}
+@media (max-width: 600px) {
+  .journal-strip-grid { grid-template-columns: 1fr; gap: 22px; }
+  .journal-strip-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+
+/* ── Inline Watch Box (for Resilience / Material / Investment) ── */
+.desk-watch-box {
+  margin: 56px auto 0;
+  max-width: 880px;
+  padding: 26px 32px;
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 3px solid var(--tuscan-gold);
+  border-radius: 0 4px 4px 0;
+  display: grid;
+  grid-template-columns: minmax(140px, auto) 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.desk-watch-label {
+  display: flex; flex-direction: column;
+  gap: 2px;
+  line-height: 1.3;
+}
+.desk-watch-label-mono {
+  font-size: 10px; letter-spacing: 0.22em;
+  font-weight: 700; text-transform: uppercase;
+  color: var(--tuscan-gold);
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-bottom: 6px;
+}
+.desk-watch-label-mono .live-pulse { width: 5px; height: 5px; }
+.desk-watch-topic {
+  font-family: var(--serif);
+  font-size: 17px; line-height: 1.25;
+  color: rgba(255,255,255,0.92);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.desk-watch-meta {
+  font-size: 9.5px;
+  color: rgba(196, 162, 101, 0.7);
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.desk-watch-box ul { list-style: none; padding: 0; margin: 0; }
+.desk-watch-box li { margin-bottom: 12px; }
+.desk-watch-box li:last-child { margin-bottom: 0; }
+.desk-watch-box a {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  color: rgba(255,255,255,0.82);
+  transition: color 0.2s;
+}
+.desk-watch-box a:hover { color: var(--tuscan-gold); }
+.desk-watch-box .watch-arrow {
+  display: inline-block;
+  color: var(--tuscan-gold);
+  opacity: 0.7;
+  transition: transform 0.2s, opacity 0.2s;
+  flex-shrink: 0;
+}
+.desk-watch-box a:hover .watch-arrow { transform: translateX(3px); opacity: 1; }
+@media (max-width: 700px) {
+  .desk-watch-box { grid-template-columns: 1fr; gap: 14px; padding: 22px 24px; }
+}
+
 /* ══════════════════════════════════════════
    CTA / CONTACT
    ══════════════════════════════════════════ */
@@ -2554,7 +2954,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <a href="#resilience">Resilience</a>
     <a href="#investment">Investment</a>
     <a href="#process">Process</a>
-    <a href="/blog/index.html">Journal</a>
+    <a href="#team">Team</a>
+    <a href="/blog/index.html" class="nav-link-journal"><span class="nav-journal-text">Journal</span><span class="nav-journal-stamp"><span class="live-pulse" aria-hidden="true"></span>Updated today</span></a>
     <a href="#contact" class="nav-cta">Request Briefing</a>
   </div>
   <div class="nav-burger" id="burger" aria-label="Menu">
@@ -2570,7 +2971,8 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   <a href="#resilience" onclick="closeMobile()">Resilience</a>
   <a href="#investment" onclick="closeMobile()">Investment</a>
   <a href="#process" onclick="closeMobile()">Process</a>
-  <a href="/blog/index.html" onclick="closeMobile()">Journal</a>
+  <a href="#team" onclick="closeMobile()">Team</a>
+  <a href="/blog/index.html" onclick="closeMobile()" class="nav-link-journal"><span class="nav-journal-text">Journal</span><span class="nav-journal-stamp"><span class="live-pulse" aria-hidden="true"></span>Updated today</span></a>
   <a href="#contact" onclick="closeMobile()">Request Briefing</a>
 </div>
 
@@ -2595,7 +2997,7 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </div>
 </section>
 
-<!-- ══════════════ 2. THESIS ══════════════ -->
+<!-- ══════════════ 3. THESIS ══════════════ -->
 <section class="thesis" id="thesis">
   <div class="thesis-headline reveal">My Villa.</div>
   <div class="thesis-tagline reveal reveal-delay-1">Where Italian warmth meets <span class="cal-accent">Californian ease</span>.</div>
@@ -3127,58 +3529,6 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </div>
 </section>
 
-<!-- ══════════════ 4. THE TEAM ══════════════ -->
-<section class="team" id="team">
-  <div class="team-inner">
-    <div class="section-label reveal">The Team</div>
-    <h2 class="section-title reveal">Four Partners. Three Continents. One System.</h2>
-    <p class="seo-kw light reveal" style="margin-bottom:20px;">Italian-American Architecture & Construction Team</p>
-    <div class="team-grid">
-      <div class="team-card reveal">
-        <div class="team-logo"><img src="img/logos/its-architecture.png" alt="IT'S Architecture"></div>
-        <div class="team-role">Architecture<br>& Design</div>
-        <div class="team-firm">IT'S Architecture</div>
-        <div class="team-loc">Rome · Paris</div>
-        <div class="team-divider"></div>
-        <div class="team-highlight">IT'S is a research and innovation-oriented architecture firm founded in 2016 by Alessandro Cambi, Francesco Marinelli and Paolo Mezzalama with offices in Rome and Paris.</div>
-        <div class="team-credits-label">Portfolio</div>
-        <div class="team-credits"><strong>French Ministry of Culture</strong> recognition (NAJA). <strong>Italian National Architecture Prize</strong>. Principal projects include redevelopment of <strong>Piazza dei Cinquecento</strong> and <strong>Termini station</strong> in Rome; renovation of the former school of architecture in Nanterre on the <strong>Pôle Léonard de Vinci</strong> campus in Paris; new headquarters of the <strong>MSA – Mutualité Sociale Agricole</strong> in Bordeaux; experimental housing in EUR, Rome; the new <strong>FOROF</strong> centre for contemporary art by Giovanna Caruso Fendi in Rome.</div>
-      </div>
-      <div class="team-card reveal reveal-delay-1">
-        <div class="team-logo"><img src="img/logos/dgu.png" alt="DGU"></div>
-        <div class="team-role">Architectural<br>Concrete</div>
-        <div class="team-firm">DGU</div>
-        <div class="team-loc">Treviso · L.A. · Baja California</div>
-        <div class="team-divider"></div>
-        <div class="team-highlight">DGU is an Italian construction company renowned for its excellence in restoration, redevelopment, and the creation of complex and prestigious architectural works.</div>
-        <div class="team-credits-label">Portfolio</div>
-        <div class="team-credits"><strong>Palazzo Grassi &amp; Punta della Dogana</strong> for Pinault Collection (Tadao Ando). <strong>Aman Venice</strong>&nbsp;— Best Restoration in Italy 2014. <strong>Kimbell Art Museum</strong>, Texas (Renzo Piano). Currently building <strong>Aman Amanvari</strong>, Baja&nbsp;California.</div>
-      </div>
-      <div class="team-card reveal reveal-delay-2">
-        <div class="team-logo"><img src="img/logos/transsolar-new.png" alt="Transsolar Klima Engineering"></div>
-        <div class="team-role">Climate<br>Engineering</div>
-        <div class="team-firm">Transsolar</div>
-        <div class="team-loc">Stuttgart · New York</div>
-        <div class="team-divider"></div>
-        <div class="team-highlight">Transsolar is a diverse team of engineers and architects focused on creating climate-responsive built environments, enhancing the human experience while minimizing resource use: High Comfort, Low Impact.</div>
-        <div class="team-credits-label">Portfolio</div>
-        <div class="team-credits"><strong>30+ years</strong>. <strong>Harvard Science &amp; Engineering Complex</strong> (LEED Platinum). <strong>Masdar City</strong>, Abu&nbsp;Dhabi. <strong>Mercedes-Benz Museum</strong>. <strong>Genzyme Center</strong>, Boston. 4&nbsp;offices: Stuttgart, Munich, Paris &amp;&nbsp;New&nbsp;York.</div>
-      </div>
-      <div class="team-card reveal reveal-delay-3">
-        <div class="team-logo"><img src="img/logos/buromilan.svg" alt="BURO MILAN"></div>
-        <div class="team-role">Structural<br>Engineering</div>
-        <div class="team-firm">BUROMILAN</div>
-        <div class="team-loc">Milan · Venice · New York</div>
-        <div class="team-divider"></div>
-        <div class="team-highlight">BUROMILAN is an engineering company with over 40 years of experience in the design of civil, commercial, industrial and infrastructural works, public and private.</div>
-        <div class="team-credits-label">Portfolio</div>
-        <div class="team-credits"><strong>90+ projects</strong> across Europe, Asia &amp; Africa. With <strong>Renzo Piano</strong>: Politecnico di Milano Bovisa Campus. With <strong>Mario Cucinella</strong>: Fondazione Luigi Rovati Museum (<strong>Compasso d'Oro 2024</strong>), New Cremona Hospital.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- ══════════════ MATERIAL / CONCRETE + RESILIENCE ══════════════ -->
 <section class="material" id="material">
   <div class="material-inner">
@@ -3379,43 +3729,151 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   </div>
 </section>
 
-<!-- ══════════════ 16c. FROM THE JOURNAL ══════════════ -->
-<section class="homepage-journal" id="journal-preview" aria-label="From the Journal">
-  <div class="homepage-journal-inner">
-    <div class="journal-header">
-      <div class="section-label reveal">From the Journal</div>
-      <h2 class="section-title dark reveal">Editorial intelligence on LA luxury, insurance, and the economics of building once.</h2>
-      <div class="journal-header-meta reveal reveal-delay-1">
-        A running read on the market, the codes, and the material decisions that now determine what a luxury home in Southern California actually is.
+<!-- ══════════════ THE TEAM (between Process and The Desk) ══════════════ -->
+<section class="team" id="team">
+  <div class="team-inner">
+
+    <div class="section-label reveal">The Team</div>
+    <h2 class="section-title reveal">The studio behind My Villa.</h2>
+    <p class="seo-kw light reveal" style="margin-bottom:8px;">A research-driven Italian architecture practice — Rome · Paris · Los Angeles.</p>
+
+    <!-- Studio hero card: IT'S Architecture (primary) -->
+    <div class="studio-hero-card reveal reveal-delay-1">
+      <div class="studio-text">
+        <div class="studio-logo"><img src="img/logos/its-architecture.png" alt="IT'S Architecture"></div>
+        <div class="studio-meta">Architecture &amp; Design · Rome · Paris · Los Angeles</div>
+        <h3 class="studio-firm">IT'S Architecture</h3>
+        <p class="studio-thesis">IT'S is a research- and innovation-oriented practice founded in 2016 by <strong>Alessandro Cambi</strong>, <strong>Francesco Marinelli</strong> and <strong>Paolo Mezzalama</strong>. Its thesis: architecture as a <strong>long-duration object</strong> — designed to outlast trends, weather, and market cycles. My Villa is the studio's California practice and response to the climate challenges affecting the city of Los Angeles.</p>
+        <div class="studio-portfolio-label">Selected Portfolio &amp; Recognition</div>
+        <p class="studio-portfolio"><strong>French Ministry of Culture</strong> recognition (NAJA). <strong>Italian National Architecture Prize</strong>. Numerous design competitions have been won and prestigious projects completed. Paolo Mezzalama is an Advisor to the <strong>American Academy in Rome</strong>.</p>
+        <div class="studio-cta">
+          <a href="https://its.vision" class="studio-link-primary" target="_blank" rel="noopener">its.vision ↗</a>
+        </div>
+      </div>
+      <div class="studio-founders">
+        <div class="studio-founders-label">Founding Partners</div>
+        <div class="founders-grid">
+          <div class="founder-card">
+            <img class="founder-photo" src="img/team/mezzalama.jpg" alt="Paolo Mezzalama" loading="lazy" width="600" height="800">
+            <div class="founder-name">Paolo Mezzalama</div>
+            <div class="founder-role">Founding Partner</div>
+          </div>
+          <div class="founder-card">
+            <img class="founder-photo" src="img/team/cambi.jpg" alt="Alessandro Cambi" loading="lazy" width="600" height="800">
+            <div class="founder-name">Alessandro Cambi</div>
+            <div class="founder-role">Founding Partner</div>
+          </div>
+          <div class="founder-card">
+            <img class="founder-photo" src="img/team/marinelli.jpg" alt="Francesco Marinelli" loading="lazy" width="600" height="800">
+            <div class="founder-name">Francesco Marinelli</div>
+            <div class="founder-role">Founding Partner</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="journal-grid reveal reveal-delay-2">
-<!-- JOURNAL:AUTO:START -->
-      <a class="journal-card" href="blog/california-insurance-crisis-regulatory-authority-2026.html" aria-label="Read: California Insurance Crisis: Regulatory Authority and Luxury Home Underwriting in 2026">
-        <div class="journal-card-body">
-          <span class="journal-card-tag">Insurance &amp; Insurability</span>
-          <h3 class="journal-card-title">California Insurance Crisis: Regulatory Authority and Luxury Home Underwriting in 2026</h3>
-          <p class="journal-card-excerpt">Will California act on its insurance crisis? Consumer Watchdog says regulators have untapped authority — what it means for luxury home underwriting in 2026.</p>
-          <div class="journal-card-meta">May 6, 2026 · 5 min read</div>
-        </div>
-      </a>
-      <a class="journal-card" href="blog/wildfire-preparedness-week-2026-california-luxury-construction.html" aria-label="Read: California Wildfire Preparedness Week 2026: A Signal for Luxury Construction">
-        <div class="journal-card-body">
-          <span class="journal-card-tag">LA Luxury Market</span>
-          <h3 class="journal-card-title">California Wildfire Preparedness Week 2026: A Signal for Luxury Construction</h3>
-          <p class="journal-card-excerpt">What does California Wildfire Preparedness Week 2026 mean for luxury home construction? A look at how state-level signals shape underwriting and design choices.</p>
-          <div class="journal-card-meta">May 5, 2026 · 5 min read</div>
-        </div>
-      </a>
-      <a class="journal-card" href="blog/all-concrete-malibu-mansion-44m-listing-luxury-market-signal.html" aria-label="Read: All-Concrete Malibu Mansion at $44M: A Luxury Market Read">
-        <div class="journal-card-body">
-          <span class="journal-card-tag">Materials &amp; Construction</span>
-          <h3 class="journal-card-title">All-Concrete Malibu Mansion at $44M: A Luxury Market Read</h3>
-          <p class="journal-card-excerpt">What does a $44M all-concrete Malibu mansion say about luxury home construction in California? A look at how monolithic concrete is priced at the top of the coast.</p>
-          <div class="journal-card-meta">May 5, 2026 · 5 min read</div>
-        </div>
-      </a>
-      <!-- JOURNAL:AUTO:END -->
+
+    <!-- System partners header -->
+    <div class="system-partners-header reveal">
+      <div class="section-label" style="margin-bottom:10px;">System Partners</div>
+      <div class="system-partners-title">Built with a system of specialists.</div>
+    </div>
+
+    <div class="team-grid system-grid">
+      <div class="team-card reveal">
+        <div class="team-logo"><img src="img/logos/dgu.png" alt="DGU"></div>
+        <div class="team-role">Architectural<br>Concrete</div>
+        <div class="team-firm">DGU</div>
+        <div class="team-loc">Treviso · L.A. · Baja California</div>
+        <div class="team-divider"></div>
+        <div class="team-highlight">DGU is an Italian construction company renowned for its excellence in restoration, redevelopment, and the creation of complex and prestigious architectural works.</div>
+        <div class="team-credits-label">Portfolio</div>
+        <div class="team-credits"><strong>Palazzo Grassi &amp; Punta della Dogana</strong> for Pinault Collection (Tadao Ando). <strong>Aman Venice</strong>&nbsp;— Best Restoration in Italy 2014. <strong>Kimbell Art Museum</strong>, Texas (Renzo Piano). Currently building <strong>Aman Amanvari</strong>, Baja&nbsp;California.</div>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-logo"><img src="img/logos/transsolar-new.png" alt="Transsolar Klima Engineering"></div>
+        <div class="team-role">Climate<br>Engineering</div>
+        <div class="team-firm">Transsolar</div>
+        <div class="team-loc">Stuttgart · New York</div>
+        <div class="team-divider"></div>
+        <div class="team-highlight">Transsolar is a diverse team of engineers and architects focused on creating climate-responsive built environments, enhancing the human experience while minimizing resource use: High Comfort, Low Impact.</div>
+        <div class="team-credits-label">Portfolio</div>
+        <div class="team-credits"><strong>30+ years</strong>. <strong>Harvard Science &amp; Engineering Complex</strong> (LEED Platinum). <strong>Masdar City</strong>, Abu&nbsp;Dhabi. <strong>Mercedes-Benz Museum</strong>. <strong>Genzyme Center</strong>, Boston. 4&nbsp;offices: Stuttgart, Munich, Paris &amp;&nbsp;New&nbsp;York.</div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-logo"><img src="img/logos/buromilan.svg" alt="BURO MILAN"></div>
+        <div class="team-role">Structural<br>Engineering</div>
+        <div class="team-firm">BUROMILAN</div>
+        <div class="team-loc">Milan · Venice · New York</div>
+        <div class="team-divider"></div>
+        <div class="team-highlight">BUROMILAN is an engineering company with over 40 years of experience in the design of civil, commercial, industrial and infrastructural works, public and private.</div>
+        <div class="team-credits-label">Portfolio</div>
+        <div class="team-credits"><strong>90+ projects</strong> across Europe, Asia &amp; Africa. With <strong>Renzo Piano</strong>: Politecnico di Milano Bovisa Campus. With <strong>Mario Cucinella</strong>: Fondazione Luigi Rovati Museum (<strong>Compasso d'Oro 2024</strong>), New Cremona Hospital.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ 16c. THE DESK (Monitoring Desk + Topical Desks) ══════════════ -->
+<section class="homepage-journal" id="journal-preview" aria-label="The Desk">
+  <div class="homepage-journal-inner">
+    <div class="journal-header">
+      <div class="section-label reveal">The Monitoring Desk</div>
+      <h2 class="section-title dark reveal">Editorial intelligence on California's risk reality.</h2>
+      <div class="journal-header-meta reveal reveal-delay-1">
+        Daily monitoring of the construction, insurance and code economics that decide what a luxury home in Southern California actually is. We track the signal — and publish only what changes the math.
+      </div>
+    </div>
+    <div class="journal-grid topical reveal reveal-delay-2">
+
+      <div class="topical-col">
+        <div class="topical-col-eyebrow">Insurance</div>
+        <a class="journal-card" href="blog/california-insurance-crisis-regulatory-authority-2026.html" aria-label="Read: California Insurance Crisis — Regulatory Authority and Luxury Home Underwriting in 2026">
+          <img class="journal-card-hero" src="blog/assets/img/california-insurance-crisis-regulatory-authority-2026-hero.jpg" alt="" loading="lazy" width="800" height="500">
+          <div class="journal-card-body">
+            <h3 class="journal-card-title">California Insurance Crisis: Regulatory Authority and Luxury Home Underwriting in 2026</h3>
+            <p class="journal-card-excerpt">Consumer Watchdog argues California regulators already have the authority to resolve the home insurance crisis. Whichever way the political debate breaks, the underwriting question for luxury homes is increasingly settled at the wall section, not the ZIP code.</p>
+            <div class="journal-card-meta">May 6, 2026 · 5 min read</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="topical-col">
+        <div class="topical-col-eyebrow">Fire Code</div>
+        <a class="journal-card" href="blog/california-mandate-retreat-insurable-home-california-2026.html" aria-label="Read: California Mandate Retreat — Insurable Home California 2026">
+          <img class="journal-card-hero" src="blog/assets/img/california-mandate-retreat-insurable-home-california-2026-hero.png" alt="" loading="lazy" width="800" height="500">
+          <div class="journal-card-body">
+            <h3 class="journal-card-title">Insurable Home California: What the State's Mandate Retreat Means</h3>
+            <p class="journal-card-excerpt">California has stepped back from forcing insurers to offer coverage in high-risk fire zones. The decision shifts the burden back onto the structure: how the home is built, certified and documented decides whether it stays insurable.</p>
+            <div class="journal-card-meta">Apr 30, 2026 · 5 min read</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="topical-col">
+        <div class="topical-col-eyebrow">Rebuild</div>
+        <a class="journal-card" href="blog/all-concrete-malibu-mansion-44m-listing-luxury-market-signal.html" aria-label="Read: All-Concrete Malibu Mansion $44M Listing">
+          <img class="journal-card-hero" src="blog/assets/img/all-concrete-malibu-mansion-44m-listing-luxury-market-signal-hero.jpg" alt="" loading="lazy" width="800" height="500">
+          <div class="journal-card-body">
+            <h3 class="journal-card-title">All-Concrete Malibu Mansion at $44M: A Luxury Market Read</h3>
+            <p class="journal-card-excerpt">A $44M all-concrete mansion in Malibu, surfaced in early May 2026, is the latest sign that the ultra-prime California coast is pricing monolithic concrete as the new floor — not a feature.</p>
+            <div class="journal-card-meta">May 5, 2026 · 5 min read</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="topical-col">
+        <div class="topical-col-eyebrow">Market</div>
+        <a class="journal-card" href="blog/wildfire-preparedness-week-2026-california-luxury-construction.html" aria-label="Read: California Wildfire Preparedness Week 2026">
+          <img class="journal-card-hero" src="blog/assets/img/wildfire-preparedness-week-2026-california-luxury-construction-hero.png" alt="" loading="lazy" width="800" height="500">
+          <div class="journal-card-body">
+            <h3 class="journal-card-title">California Wildfire Preparedness Week 2026: A Signal for Luxury Construction</h3>
+            <p class="journal-card-excerpt">Governor Newsom's May 2026 Wildfire Preparedness Week proclamation reframes readiness as a year-round discipline. For LA luxury, the signal is clear: design for the fire that hasn't happened yet.</p>
+            <div class="journal-card-meta">May 5, 2026 · 5 min read</div>
+          </div>
+        </a>
+      </div>
+
     </div>
     <div class="journal-cta reveal reveal-delay-3">
       <a href="blog/index.html" class="journal-cta-link">Read the full Journal &rarr;</a>
