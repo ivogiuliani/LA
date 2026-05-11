@@ -1491,12 +1491,59 @@ def build_dashboard():
 
     # Build journal cards
     journal_cards = ""
+    journal_dir = DRAFTS_DIR / "journal"
     for d in journal:
         section_badge = ""
         if d["section"]:
             section_badge = (
                 f'<span class="badge badge-section">{_esc(d["section"])}</span>'
             )
+
+        # ── IG companion block ──────────────────────────────────────
+        # Each journal draft can have a sibling .ig.md file with the
+        # Instagram announcement caption. If it exists, render an
+        # editable textarea inline so the operator approves both with
+        # a single "Pubblica" click. If it doesn't exist, show a small
+        # button to generate it on demand.
+        journal_stem = Path(d["file"]).stem
+        companion_path = journal_dir / f"{journal_stem}.ig.md"
+        if companion_path.exists():
+            try:
+                raw = companion_path.read_text(encoding="utf-8")
+                # Strip optional YAML frontmatter for the textarea preview;
+                # we keep the file on disk untouched and re-merge frontmatter
+                # at save-time if the operator edits.
+                m = re.match(r"^---\s*\n.*?\n---\s*\n+(.*)", raw, re.DOTALL)
+                ig_body_preview = (m.group(1) if m else raw).strip()
+            except Exception:
+                ig_body_preview = ""
+            ig_companion_block = (
+                f'<div class="ig-companion-block">'
+                f'<div class="ig-companion-head">'
+                f'<span class="ig-companion-label">📷 Instagram companion (sotto l\'articolo, approvato qui)</span>'
+                f'<button class="btn btn-mini" onclick="regenerateIGCompanion(\'{_esc_js(d["file"])}\', this)" '
+                f'title="Re-genera con Anthropic (sovrascrive il testo qui sotto)">↻ Rigenera</button>'
+                f'</div>'
+                f'<textarea class="ig-companion-editor" '
+                f'data-companion-for="{_esc(d["file"])}" '
+                f'oninput="updateIGCompanionCount(this)">{_esc(ig_body_preview)}</textarea>'
+                f'<div class="ig-companion-foot">'
+                f'<span class="ig-companion-charcount">{len(ig_body_preview)} chars</span>'
+                f'<span class="ig-companion-hint">Pubblica: il caption viene salvato e l\'IG va in <code>_system/social/posts/approved/</code></span>'
+                f'</div>'
+                f'</div>'
+            )
+        else:
+            ig_companion_block = (
+                f'<div class="ig-companion-block ig-companion-empty">'
+                f'<button class="btn btn-mini btn-ig-generate" '
+                f'onclick="generateIGCompanion(\'{_esc_js(d["file"])}\', this)">'
+                f'📷 Genera Instagram companion'
+                f'</button>'
+                f'<span class="ig-companion-hint">Anteprima del post che annuncia l\'articolo. Verrà approvato insieme.</span>'
+                f'</div>'
+            )
+
         journal_cards += f"""
         <div class="card" id="card-journal-{_esc(d['file'])}" data-file="{_esc(d['file'])}" data-type="journal">
           <div class="card-status-stripe"></div>
@@ -1510,6 +1557,7 @@ def build_dashboard():
               <span class="meta-date">{_esc(d['date'])}</span>
               <span class="meta-size">{d['size_kb']} KB</span>
             </div>
+            {ig_companion_block}
             <div class="card-actions">
               <a class="btn btn-preview" href="/preview?file={_esc(d['file'])}" target="_blank">Anteprima</a>
               <a class="btn btn-edit" href="/preview?file={_esc(d['file'])}&edit=1" target="_blank">Modifica</a>
@@ -2879,6 +2927,86 @@ def build_dashboard():
     cursor: not-allowed !important;
     opacity: 0.75;
   }}
+
+  /* ── IG companion block (inside journal cards) ──────── */
+  .ig-companion-block {{
+    margin: 0.9rem 0 0.6rem;
+    padding: 0.7rem 0.9rem;
+    background: linear-gradient(135deg, #fff5f5, #fef0f5);
+    border: 1px solid rgba(220,100,140,0.18);
+    border-radius: 7px;
+  }}
+  .ig-companion-block.ig-companion-empty {{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }}
+  .ig-companion-head {{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }}
+  .ig-companion-label {{
+    font-size: 0.78rem;
+    color: #b03060;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }}
+  .ig-companion-editor {{
+    width: 100%;
+    min-height: 95px;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.83rem;
+    line-height: 1.45;
+    resize: vertical;
+    background: #fff;
+    color: #2c2c2c;
+    box-sizing: border-box;
+  }}
+  .ig-companion-editor:focus {{
+    outline: none;
+    border-color: #b03060;
+    box-shadow: 0 0 0 2px rgba(176,48,96,0.1);
+  }}
+  .ig-companion-foot {{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.4rem;
+    font-size: 0.72rem;
+    color: #888;
+  }}
+  .ig-companion-charcount {{ font-variant-numeric: tabular-nums; }}
+  .ig-companion-charcount.over-limit {{ color: #c0392b; font-weight: 600; }}
+  .ig-companion-hint {{ font-style: italic; }}
+  .ig-companion-hint code {{
+    background: rgba(0,0,0,0.05);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }}
+  .btn-mini {{
+    background: rgba(176,48,96,0.08);
+    color: #b03060;
+    border: 1px solid rgba(176,48,96,0.25);
+    padding: 0.28rem 0.65rem;
+    font-size: 0.72rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s;
+  }}
+  .btn-mini:hover {{
+    background: rgba(176,48,96,0.16);
+    border-color: rgba(176,48,96,0.45);
+  }}
+  .btn-mini:disabled {{ opacity: 0.5; cursor: wait; }}
+  .btn-ig-generate {{ background: rgba(176,48,96,0.12); }}
 
   /* ── Radar News cards ─────────────────────────────── */
   .section-subtitle {{
@@ -4652,13 +4780,16 @@ def build_dashboard():
 
   {f'''
   <div class="section section-editorial">
-    <h2 class="section-heading">📆 Editorial Plan (Instagram) <span class="section-count">{len(editorial)}</span></h2>
+    <h2 class="section-heading">🤝 Partner reposts (Instagram) <span class="section-count">{len(editorial)}</span></h2>
     <p class="section-subtitle">
-      Auto-generated <strong>partner_echo</strong> posts only. The institutional pillars
-      (vision / archetype / system) are now managed by the human editorial team — they
-      remain in <code>_system/social/editorial_plan/</code> as a reference plan but are
-      not auto-drafted. Distinct from reactive Social Posts (radar-driven). Approve, edit, then click
-      <strong>📦 Build package</strong> to produce a copy-paste folder ready to publish from the IG app.
+      Event-driven model (since 2026-05-04): we no longer plan an editorial calendar
+      for IG. Instead we react to two triggers:
+      <strong>(1)</strong> when we publish a journal article, an Instagram companion
+      is generated inline on the article card (above) and approved with the same
+      "Pubblica" click;
+      <strong>(2)</strong> when a relevant partner publishes something, we draft a
+      repost — those are the cards listed here. Institutional content
+      (vision / archetype / system) is now handled by the human editorial team.
     </p>
     <div class="editorial-toolbar">
       <button class="btn btn-edit" onclick="planEditorialMonth(this)">📝 Plan next month</button>
@@ -4915,6 +5046,127 @@ function copyAndOpen(platform, btn) {{
     document.execCommand('copy');
     showToast('Copied! Open ' + platform + ' to paste.');
   }});
+}}
+
+/* ── IG companion (inside journal cards) ──────────
+   New event-driven model: when we publish a journal article we also
+   announce it on Instagram. The caption is generated on demand from
+   the journal sidecar (article title + excerpt + sources) and
+   editable inline before "Pubblica" approves both at once.
+*/
+function _findIGCompanionEditor(file) {{
+  return document.querySelector(`.ig-companion-editor[data-companion-for="${{file}}"]`);
+}}
+
+function _replaceIGEmptyWithEditor(file, body, btnEmptyBlock) {{
+  // Swap the "📷 Genera Instagram companion" empty state for the editor
+  // so a freshly-generated caption is immediately editable + persisted
+  // via the auto-save on input.
+  const card = btnEmptyBlock.closest('.card');
+  const oldBlock = btnEmptyBlock.closest('.ig-companion-block');
+  if (!card || !oldBlock) return;
+  const html =
+    '<div class="ig-companion-block">' +
+      '<div class="ig-companion-head">' +
+        '<span class="ig-companion-label">📷 Instagram companion (sotto l\\'articolo, approvato qui)</span>' +
+        '<button class="btn btn-mini" onclick="regenerateIGCompanion(\\'' + file + '\\', this)" ' +
+                'title="Re-genera con Anthropic (sovrascrive il testo qui sotto)">↻ Rigenera</button>' +
+      '</div>' +
+      '<textarea class="ig-companion-editor" data-companion-for="' + file + '" oninput="updateIGCompanionCount(this)"></textarea>' +
+      '<div class="ig-companion-foot">' +
+        '<span class="ig-companion-charcount">0 chars</span>' +
+        '<span class="ig-companion-hint">Pubblica: il caption viene salvato e l\\'IG va in <code>_system/social/posts/approved/</code></span>' +
+      '</div>' +
+    '</div>';
+  oldBlock.outerHTML = html;
+  const ta = _findIGCompanionEditor(file);
+  if (ta) {{
+    ta.value = body;
+    updateIGCompanionCount(ta);
+  }}
+}}
+
+function generateIGCompanion(file, btn) {{
+  btn.disabled = true;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner"></span>Generating…';
+  fetch('/api/generate-ig-companion', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{file: file}})
+  }})
+  .then(r => r.json())
+  .then(resp => {{
+    if (resp.ok) {{
+      _replaceIGEmptyWithEditor(file, resp.body || '', btn);
+      showToast('IG companion generated. Edit inline before "Pubblica".');
+    }} else {{
+      btn.disabled = false;
+      btn.innerHTML = orig;
+      showToast('IG generate failed: ' + (resp.error || 'unknown'));
+    }}
+  }})
+  .catch(err => {{
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    showToast('IG generate network error: ' + err.message);
+  }});
+}}
+
+function regenerateIGCompanion(file, btn) {{
+  const ta = _findIGCompanionEditor(file);
+  if (ta && ta.value.trim() && !confirm('Sovrascrivere il testo attuale con una nuova generazione AI?')) {{
+    return;
+  }}
+  btn.disabled = true;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner"></span>↻';
+  fetch('/api/generate-ig-companion', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{file: file, force: true}})
+  }})
+  .then(r => r.json())
+  .then(resp => {{
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    if (resp.ok) {{
+      if (ta) {{
+        ta.value = resp.body || '';
+        updateIGCompanionCount(ta);
+      }}
+      showToast('IG companion rigenerato.');
+    }} else {{
+      showToast('Rigenerazione fallita: ' + (resp.error || 'unknown'));
+    }}
+  }})
+  .catch(err => {{
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    showToast('IG rigenerazione network error: ' + err.message);
+  }});
+}}
+
+function updateIGCompanionCount(ta) {{
+  const block = ta.closest('.ig-companion-block');
+  if (!block) return;
+  const count = ta.value.length;
+  const el = block.querySelector('.ig-companion-charcount');
+  if (el) {{
+    el.textContent = count + ' chars';
+    el.classList.toggle('over-limit', count > 2200);  /* IG hard cap */
+  }}
+  /* Debounced save: 700ms after the last keystroke we persist the edit
+     to the .ig.md file so a refresh keeps it. */
+  clearTimeout(ta._igSaveTimer);
+  ta._igSaveTimer = setTimeout(() => {{
+    const file = ta.getAttribute('data-companion-for');
+    fetch('/api/save-ig-companion', {{
+      method: 'POST',
+      headers: {{'Content-Type': 'application/json'}},
+      body: JSON.stringify({{file: file, body: ta.value}})
+    }}).catch(() => {{}});  /* silent — visible save state is the textarea itself */
+  }}, 700);
 }}
 
 /* ── Section: expand/collapse (for Early Signals) ─ */
@@ -6992,6 +7244,18 @@ class ReviewHandler(BaseHTTPRequestHandler):
         if parsed.path == "/api/dismiss-radar-item":
             self._handle_dismiss_radar_item(data.get("url", ""))
             return
+        if parsed.path == "/api/generate-ig-companion":
+            self._handle_generate_ig_companion(
+                data.get("file", ""),
+                force=bool(data.get("force", False)),
+            )
+            return
+        if parsed.path == "/api/save-ig-companion":
+            self._handle_save_ig_companion(
+                data.get("file", ""),
+                data.get("body", ""),
+            )
+            return
 
         # ── Editorial IG endpoints (Phase 1 — draft-only) ─────────────
         # These intentionally bypass the journal/social file/type
@@ -7165,6 +7429,24 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 shutil.move(str(sidecar_src), str(sidecar_dst))
                 print(f"  Moved sidecar JSON: {sidecar_src.name} -> blog/")
 
+            # ── IG companion (if present): approve alongside ────────
+            # The inline editor on the journal card has already saved
+            # any edits to <stem>.ig.md via /api/save-ig-companion.
+            # On Pubblica we move that file straight to
+            # _system/social/posts/approved/ so the IG publish layer
+            # picks it up without a second review step. The new file
+            # name follows the social-post convention so existing
+            # tooling reads it without special-casing.
+            companion_src = src.with_suffix(".ig.md")
+            if companion_src.exists():
+                approved_social = SYSTEM_DIR / "social" / "posts" / "approved"
+                approved_social.mkdir(parents=True, exist_ok=True)
+                date_prefix = datetime.now().strftime("%Y-%m-%d")
+                article_stem = src.stem
+                companion_dst = approved_social / f"{date_prefix}-ig-journal-{article_stem}.md"
+                shutil.move(str(companion_src), str(companion_dst))
+                print(f"  Approved IG companion: {companion_dst.name}")
+
             # Update journal index
             idx_script = SCRIPT_DIR / "update_journal_index.py"
             if idx_script.exists():
@@ -7283,6 +7565,14 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 sidecar_dst = dst.with_suffix(".json")
                 shutil.move(str(sidecar_src), str(sidecar_dst))
                 print(f"  Archived sidecar JSON: {sidecar_src.name}")
+            # Also archive the IG companion .ig.md if the operator
+            # generated one — rejecting the article kills the companion
+            # too (it was tied to that specific piece).
+            companion_src = src.with_suffix(".ig.md")
+            if companion_src.exists():
+                companion_dst = dst.with_suffix(".ig.md")
+                shutil.move(str(companion_src), str(companion_dst))
+                print(f"  Archived IG companion: {companion_src.name}")
 
         msg = f"Archived: {filename}"
         if dismissed_source_urls:
@@ -8372,6 +8662,135 @@ class ReviewHandler(BaseHTTPRequestHandler):
         except Exception as e:  # noqa: BLE001
             print(f"  [dismiss-radar] error: {type(e).__name__}: {e}")
             self._send_json({"ok": False, "error": str(e)}, 500)
+
+    # ── /api/generate-ig-companion ──────────────────────────────────
+    def _handle_generate_ig_companion(self, filename, *, force=False):
+        """Shell out to generate_ig_companion.py for a journal draft.
+
+        The script reads _drafts/journal/<slug>.json, calls Anthropic,
+        writes _drafts/journal/<slug>.ig.md. We then read that file
+        back, strip the frontmatter, and return the body so the JS can
+        drop it into the inline editor.
+
+        `force=True` overwrites an existing companion; default skips
+        regen if the file already exists (used by the on-demand
+        "Genera" empty-state button which only fires when there's no
+        companion yet).
+        """
+        if not filename:
+            self._send_json({"ok": False, "error": "missing 'file'"}, 400)
+            return
+        safe = Path(filename).name
+        # Strip suffix to find the journal stem the script expects.
+        if safe.endswith(".json"):
+            stem = safe[:-5]
+        elif safe.endswith(".html"):
+            stem = safe[:-5]
+        else:
+            stem = Path(safe).stem
+        journal_dir = DRAFTS_DIR / "journal"
+        article_json = journal_dir / f"{stem}.json"
+        if not article_json.exists():
+            self._send_json(
+                {"ok": False, "error": f"sidecar not found: {article_json.name}"},
+                404,
+            )
+            return
+        companion_path = journal_dir / f"{stem}.ig.md"
+        if companion_path.exists() and not force:
+            # Idempotent: return what's already there.
+            self._send_json({
+                "ok": True,
+                "body": self._read_ig_companion_body(companion_path),
+                "cached": True,
+            })
+            return
+        # Shell out — the script handles dotenv + Anthropic itself.
+        try:
+            result = subprocess.run(
+                [sys.executable, str(SCRIPT_DIR / "generate_ig_companion.py"),
+                 "--article", str(article_json),
+                 "--output",  str(companion_path)],
+                capture_output=True, text=True, timeout=60,
+            )
+            if result.returncode != 0:
+                err = (result.stderr or result.stdout or "").strip()[:500]
+                self._send_json(
+                    {"ok": False, "error": f"generator failed: {err}"},
+                    500,
+                )
+                return
+            self._send_json({
+                "ok": True,
+                "body": self._read_ig_companion_body(companion_path),
+            })
+        except subprocess.TimeoutExpired:
+            self._send_json(
+                {"ok": False, "error": "generator timed out (60s)"},
+                504,
+            )
+        except Exception as e:  # noqa: BLE001
+            self._send_json(
+                {"ok": False, "error": f"{type(e).__name__}: {e}"},
+                500,
+            )
+
+    def _read_ig_companion_body(self, path):
+        """Read the .ig.md file and return just the body (no frontmatter)."""
+        try:
+            raw = path.read_text(encoding="utf-8")
+            m = re.match(r"^---\s*\n.*?\n---\s*\n+(.*)", raw, re.DOTALL)
+            return (m.group(1) if m else raw).strip()
+        except Exception:
+            return ""
+
+    # ── /api/save-ig-companion ──────────────────────────────────────
+    def _handle_save_ig_companion(self, filename, body):
+        """Persist an edit to the journal article's IG companion .ig.md.
+
+        Preserves the YAML frontmatter at the top of the file (if any)
+        and only updates the body below the second `---` separator.
+        Char_count in the frontmatter is also refreshed.
+        """
+        if not filename:
+            self._send_json({"ok": False, "error": "missing 'file'"}, 400)
+            return
+        safe = Path(filename).name
+        if safe.endswith(".json") or safe.endswith(".html"):
+            stem = safe[:-5]
+        else:
+            stem = Path(safe).stem
+        companion_path = DRAFTS_DIR / "journal" / f"{stem}.ig.md"
+        if not companion_path.exists():
+            self._send_json(
+                {"ok": False, "error": f"companion not found: {companion_path.name}"},
+                404,
+            )
+            return
+        try:
+            raw = companion_path.read_text(encoding="utf-8")
+            m = re.match(r"^---\s*\n(.*?)\n---\s*\n", raw, re.DOTALL)
+            if m:
+                frontmatter = m.group(1)
+                # Refresh char_count in the frontmatter so downstream
+                # readers stay in sync with the edited body.
+                new_count = len((body or "").strip())
+                frontmatter = re.sub(
+                    r"(?m)^char_count:\s*\d+\s*$",
+                    f"char_count: {new_count}",
+                    frontmatter,
+                )
+                new_raw = f"---\n{frontmatter}\n---\n\n{(body or '').strip()}\n"
+            else:
+                # File had no frontmatter — overwrite as plain text.
+                new_raw = (body or "").strip() + "\n"
+            companion_path.write_text(new_raw, encoding="utf-8")
+            self._send_json({"ok": True, "char_count": len((body or "").strip())})
+        except Exception as e:  # noqa: BLE001
+            self._send_json(
+                {"ok": False, "error": f"{type(e).__name__}: {e}"},
+                500,
+            )
 
     def _archive_reply_draft(self, thread_id, *, sent):
         """Move `_drafts/email_replies/<id>.json` aside.
