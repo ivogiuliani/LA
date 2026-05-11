@@ -35,8 +35,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
+
+# Strict pattern: only radar_YYYY-MM-DD.json. Excludes historical /
+# test artefacts like radar_with_grok_gemini.json or
+# radar_60day_2026-04-19.json which would otherwise sort later in
+# the alphabetic order and shadow today's real radar.
+_DAILY_RADAR_RX = re.compile(r"^radar_\d{4}-\d{2}-\d{2}\.json$")
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 SYSTEM_DIR = SCRIPT_DIR.parent
@@ -153,10 +160,17 @@ def publish_team_radar(
 
 
 def _find_latest_radar() -> Path | None:
+    """Most recent radar_YYYY-MM-DD.json. Skips test / historical files
+    (radar_with_*, radar_60day_*, radar_test_*, etc.) so a stray
+    filename in the reports folder cannot shadow the real daily radar
+    in lexical order."""
     reports = SYSTEM_DIR / "radar" / "reports"
     if not reports.exists():
         return None
-    candidates = sorted(reports.glob("radar_*.json"))
+    candidates = sorted(
+        f for f in reports.glob("radar_*.json")
+        if _DAILY_RADAR_RX.match(f.name)
+    )
     return candidates[-1] if candidates else None
 
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  MY VILLA — wordmark logo (placeholder, derived from homepage hero typography)
+  Master: Cormorant Garamond + Montserrat. Color: #FAF8F5 on transparent.
+  Designed for dark backgrounds. Swap fill to #1a1816 for use on cream/white.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&amp;family=Montserrat:wght@400&amp;display=swap');
+      .wordmark {
+        font-family: 'Cormorant Garamond', 'EB Garamond', 'Garamond', serif;
+        font-weight: 400;
+        font-size: 180px;
+        letter-spacing: 45px;
+        fill: #FAF8F5;
+      }
+      .tagline {
+        font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 400;
+        font-size: 22px;
+        letter-spacing: 8px;
+        fill: #FAF8F5;
+        opacity: 0.85;
+      }
+      .accent { fill: #C2714F; }
+      .divider { stroke: #D4B896; stroke-width: 1.5; opacity: 0.6; }
+    </style>
+  </defs>
+  <text class="wordmark" x="750" y="260" text-anchor="middle">MY VILLA</text>
+  <line class="divider" x1="640" y1="300" x2="860" y2="300"/>
+  <text class="tagline" x="750" y="345" text-anchor="middle">
+    ITALIAN SOUL  <tspan class="accent">·</tspan>  CALIFORNIAN BODY
+  </text>
+</svg>
