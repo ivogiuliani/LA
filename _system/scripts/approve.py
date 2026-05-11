@@ -38,6 +38,85 @@ BLOG_DIR = ROOT_DIR / "blog"
 ARCHIVE_DIR = ROOT_DIR / "_archive"
 
 
+# ── Auto-archive stale drafts ────────────────────────────────────────
+#
+# Background: the radar generates ~10 social drafts/day (5 X + 5 IG),
+# the journal pipeline occasionally drops articles, and the reply
+# monitor produces email-reply drafts on incoming traffic. Without
+# pruning, the home dashboard accumulates hundreds of stale items that
+# the operator scrolls past every morning.
+#
+# Policy: at every review-server startup, sweep _drafts/ and move any
+# file older than AUTO_ARCHIVE_DAYS to its corresponding _archive/
+# subfolder. Non-destructive: every file is moved (shutil.move), never
+# deleted. Operator can fish a file back out of _archive/<type>/ if
+# they change their mind.
+
+AUTO_ARCHIVE_DAYS = 14
+
+# Source draft folder → (extensions to consider, archive subfolder).
+# Same name pairs in _drafts/ and _archive/ so a manual restore is a
+# trivial copy back.
+_AUTO_ARCHIVE_TARGETS = (
+    ("journal",        (".html", ".json")),
+    ("social",         (".md",)),
+    ("email_replies",  (".json",)),
+)
+
+
+def auto_archive_old_drafts(threshold_days=AUTO_ARCHIVE_DAYS, verbose=True):
+    """Move stale drafts from _drafts/<type>/ to _archive/<type>/.
+
+    Runs at server startup. Returns a dict {type: count_moved} so the
+    boot banner can summarise. Filenames are preserved; if a file with
+    the same name already exists in _archive/ (rare), a numeric suffix
+    is added so we never silently overwrite.
+
+    Errors per-file are logged and the sweep continues — one corrupt
+    file shouldn't block the entire archive run.
+    """
+    import time as _time
+
+    cutoff = _time.time() - (threshold_days * 86400)
+    moved_summary = {}
+    drafts_root = ROOT_DIR / "_drafts"
+
+    for type_name, exts in _AUTO_ARCHIVE_TARGETS:
+        src_dir = drafts_root / type_name
+        if not src_dir.exists():
+            continue
+        dst_dir = ARCHIVE_DIR / type_name
+        count = 0
+        for f in src_dir.iterdir():
+            if not f.is_file():
+                continue
+            if exts and f.suffix.lower() not in exts:
+                continue
+            try:
+                if f.stat().st_mtime >= cutoff:
+                    continue
+                dst_dir.mkdir(parents=True, exist_ok=True)
+                target = dst_dir / f.name
+                # Disambiguate name clashes without overwriting.
+                if target.exists():
+                    stem, sfx = target.stem, target.suffix
+                    i = 1
+                    while target.exists():
+                        target = dst_dir / f"{stem}.archived{i}{sfx}"
+                        i += 1
+                shutil.move(str(f), str(target))
+                count += 1
+            except Exception as e:  # noqa: BLE001 — log + continue
+                if verbose:
+                    print(f"  [auto-archive] could not move {f.name}: {e}")
+        if count > 0:
+            moved_summary[type_name] = count
+            if verbose:
+                print(f"  [auto-archive] {type_name}: moved {count} drafts "
+                      f"older than {threshold_days}d → _archive/{type_name}/")
+    return moved_summary
+
+
 # ── .env loader (same pattern as other scripts) ──────────────────────
 def load_dotenv():
     env_file = ROOT_DIR / ".env"
@@ -8494,7 +8573,27 @@ def main():
     parser.add_argument(
         "--no-browser", action="store_true", help="Don't auto-open browser"
     )
+    parser.add_argument(
+        "--no-auto-archive", action="store_true",
+        help=f"Skip the startup sweep that moves drafts older than "
+             f"{AUTO_ARCHIVE_DAYS} days into _archive/. Useful for "
+             f"debugging or one-off runs.",
+    )
+    parser.add_argument(
+        "--archive-days", type=int, default=AUTO_ARCHIVE_DAYS,
+        help=f"Override the auto-archive threshold (default {AUTO_ARCHIVE_DAYS} days).",
+    )
     args = parser.parse_args()
+
+    # Auto-archive: prune stale drafts before the dashboard renders, so
+    # the operator only sees recent work. Non-destructive — everything
+    # goes to _archive/, never deleted.
+    if not args.no_auto_archive:
+        print("  Auto-archiving stale drafts...")
+        summary = auto_archive_old_drafts(threshold_days=args.archive_days)
+        if not summary:
+            print(f"  [auto-archive] nothing older than {args.archive_days}d to move.")
+        print()
 
     # Find a free port starting from --port (retries up to 10 ports)
     server = None
