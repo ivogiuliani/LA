@@ -49,10 +49,18 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
 
-# Reuse the same renderer that powers the local /radar dashboard so the
-# team view stays in lockstep with what the operator sees.
+# Reuse the same renderer that powers the local HOME dashboard at /,
+# not just the radar at /radar. That way the team view includes:
+#   - Radar News + Viral + Early Signals + Watchlist
+#   - Journal Articles in draft (pre-publish queue)
+#   - Social Posts in draft (reactive + partner reposts)
+#   - Editorial Plan / partner reposts
+# The operator can see the full pipeline state remotely, not just the
+# news scouting layer. Interactive buttons (Pubblica, Modify, etc.) are
+# render-only on the static page because the server isn't running —
+# the dashboard already has a banner that warns about this.
 sys.path.insert(0, str(SCRIPT_DIR))
-from generate_radar_report import render_dashboard  # noqa: E402
+from approve import build_dashboard  # noqa: E402
 
 DEFAULT_PASSWORD = "ivopaolo"
 
@@ -138,25 +146,37 @@ def wrap_with_password_gate(html: str, password_hash: str) -> str:
     return block + html
 
 
-def publish_team_radar(
-    radar_data: dict,
-    date_str: str,
+def publish_team_dashboard(
     *,
     output_path: Path | None = None,
     password: str = DEFAULT_PASSWORD,
 ) -> Path:
-    """Render + gate the radar, then write to disk. Returns output path.
+    """Render the full home dashboard, wrap with password gate, write to disk.
 
-    Designed to be called from generate_radar_report.py at the end of a
-    successful render. Failures should bubble up to the caller so the
+    Calls approve.build_dashboard() to produce the SAME HTML the
+    operator sees at http://localhost:8787/, then wraps it. The team
+    view ends up with Journal Articles, Social Posts, and the full
+    radar (News + Viral + Early) in one place.
+
+    Returns the output path. Failures bubble up to the caller so the
     main script can log them without blocking the rest of the pipeline.
     """
-    html = render_dashboard(radar_data, date_str)
+    html = build_dashboard()
     gated = wrap_with_password_gate(html, _sha256(password))
     out = Path(output_path) if output_path else (ROOT_DIR / "team" / "radar" / "index.html")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(gated, encoding="utf-8")
     return out
+
+
+# Backward-compat shim: generate_radar_report.py used to call
+# publish_team_radar(radar_data, date_str). The new signature ignores
+# those args (build_dashboard reads the latest radar itself), but we
+# keep the old name working so a stale import doesn't break the radar
+# pipeline.
+def publish_team_radar(radar_data=None, date_str=None, *,
+                       output_path=None, password=DEFAULT_PASSWORD):
+    return publish_team_dashboard(output_path=output_path, password=password)
 
 
 def _find_latest_radar() -> Path | None:
@@ -177,10 +197,6 @@ def _find_latest_radar() -> Path | None:
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[1])
     parser.add_argument(
-        "--radar",
-        help="Path to a radar JSON. Default: most recent in _system/radar/reports/.",
-    )
-    parser.add_argument(
         "--output",
         default=str(ROOT_DIR / "team" / "radar" / "index.html"),
         help="Output HTML path (default: team/radar/index.html).",
@@ -192,23 +208,16 @@ def main(argv=None) -> int:
     )
     args = parser.parse_args(argv)
 
-    radar_path = Path(args.radar) if args.radar else _find_latest_radar()
-    if not radar_path or not radar_path.exists():
-        print("No radar JSON found.", file=sys.stderr)
-        return 1
     try:
-        data = json.loads(radar_path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as e:
-        print(f"Malformed radar JSON {radar_path}: {e}", file=sys.stderr)
+        out = publish_team_dashboard(
+            output_path=Path(args.output),
+            password=args.password,
+        )
+    except Exception as e:  # noqa: BLE001 — surface the real cause
+        print(f"  [team-dashboard] error: {type(e).__name__}: {e}", file=sys.stderr)
         return 1
-    date_str = data.get("date", radar_path.stem.replace("radar_", ""))
-    out = publish_team_radar(
-        data, date_str,
-        output_path=Path(args.output),
-        password=args.password,
-    )
     size_kb = out.stat().st_size / 1024
-    print(f"  [team-radar] wrote {out} ({size_kb:.1f} KB)")
+    print(f"  [team-dashboard] wrote {out} ({size_kb:.1f} KB)")
     return 0
 
 
