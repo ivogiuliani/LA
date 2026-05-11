@@ -148,5 +148,31 @@
   "kate mazade|dezeen.com": {
     "cached_at": 1778044795.190262,
     "result": null
+  },
+  "levi sumagaysay|calmatters.org": {
+    "cached_at": 1778135227.327379,
+    "result": {
+      "email": "levi@calmatters.org",
+      "email_source": "apollo",
+      "email_status": "verified",
+      "apollo_id": "57d81fe7a6da980a3d7a46ca",
+      "title": "Reporter",
+      "headline": "Reporter at CalMatters",
+      "linkedin_url": "http://www.linkedin.com/in/levis",
+      "organization_name": "CalMatters"
+    }
+  },
+  "jordan aquistapace|dupontregistry.com": {
+    "cached_at": 1778480798.594253,
+    "result": {
+      "email": "jaquistapace@dupontregistry.com",
+      "email_source": "apollo",
+      "email_status": "verified",
+      "apollo_id": "61f4efeff6fcac0001b7988e",
+      "title": "Director of Luxury Lifestyle Content",
+      "headline": "Director of Luxury Lifestyle Content at duPont REGISTRY",
+      "linkedin_url": "http://www.linkedin.com/in/jordan-aquistapace-2088713a7",
+      "organization_name": "duPont REGISTRY"
+    }
   }
 }
