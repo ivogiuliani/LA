@@ -220,9 +220,13 @@ def _ping_apify(key, timeout):
 
 
 # Provider name → (env var, ping fn). Order is the order shown in reports.
+# Apollo removed 2026-05-04 (subscription cancelled; the apollo_lookup
+# module still imports gracefully and short-circuits to None when the
+# env var is missing — see apollo_lookup.lookup()). To restore Apollo,
+# uncomment the line below and re-add APOLLO_API_KEY to .env.
 _API_CHECKS = (
     ("anthropic",  "ANTHROPIC_API_KEY",   _ping_anthropic),
-    ("apollo",     "APOLLO_API_KEY",      _ping_apollo),
+    # ("apollo",     "APOLLO_API_KEY",      _ping_apollo),
     ("xai_grok",   "XAI_API_KEY",         _ping_xai),
     ("gemini",     "GEMINI_API_KEY",      _ping_gemini),
     ("google_cse", "GOOGLE_CSE_API_KEY",  _ping_google_cse),
