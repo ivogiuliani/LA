@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Villa — Engagement Radar · 2026-04-09</title>
+<style>
+  :root {
+    --cream: #f5f0e8; --warm-white: #faf8f4; --dark: #1a1714; --dark-2: #2c2720;
+    --brown: #4a3728; --terracotta: #C2714F; --terracotta-light: #e8855a;
+    --espresso: #3E2F2B; --mv-cream: #FAF8F5;
+    --gold: #b89a5e; --gold-light: #d4b87a; --green: #3d6b4f; --green-light: #5a9b72;
+    --olive: #5C6B4F; --stone: #A09890;
+    --blue: #2b4f7a; --blue-light: #4a7ab5; --muted: #8a7d70; --border: #e0d8cc;
+    --shadow: rgba(26,23,20,0.12); --red: #c0392b; --purple: #6b4a8a; --purple-light: #8a6aaa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', 'Times New Roman', serif; background: var(--cream); color: var(--dark); min-height: 100vh; }
+
+  header { background: var(--dark); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+  .header-brand { display: flex; align-items: center; gap: 16px; }
+  .header-logo { font-size: 18px; font-weight: normal; color: var(--gold-light); letter-spacing: 0.12em; text-transform: uppercase; }
+  .header-logo span { color: var(--muted); font-size: 13px; letter-spacing: 0.06em; text-transform: none; display: block; margin-top: 1px; }
+  .header-divider { width: 1px; height: 32px; background: #3a3530; }
+  .header-title { font-size: 13px; color: #8a7d70; letter-spacing: 0.04em; }
+  .header-stats { display: flex; gap: 24px; align-items: center; }
+  .stat-pill { font-size: 12px; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--muted); }
+  .stat-pill strong { color: var(--gold-light); font-size: 15px; }
+
+  /* ── API Health banner — injected from api_health_banner.CSS_DARK ─── */
+  
+/* ── API Health banner — dark theme (radar dashboard) ─── */
+.api-health-banner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 40px;
+  background: #211d18;
+  border-bottom: 1px solid #3a3530;
+  flex-wrap: wrap;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+.api-health-banner.banner-ok   { background: #1f2a1f; }
+.api-health-banner.banner-fail { background: #2a1c1c; }
+.api-health-banner.banner-warn { background: #2a261c; }
+.api-health-headline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-weight: 600;
+}
+.banner-ok   .api-health-headline { color: #6dcc8a; }
+.banner-fail .api-health-headline { color: #e07b7b; }
+.banner-warn .api-health-headline { color: var(--gold-light); }
+.api-health-headline .api-dot { width: 9px; height: 9px; border-radius: 50%; }
+.banner-ok   .api-health-headline .api-dot { background: #5a9b72; box-shadow: 0 0 8px rgba(90,155,114,0.7); }
+.banner-fail .api-health-headline .api-dot { background: #c0392b; box-shadow: 0 0 8px rgba(192,57,43,0.7); }
+.banner-warn .api-health-headline .api-dot { background: var(--gold-light); box-shadow: 0 0 8px rgba(212,184,122,0.6); }
+.api-health-pills { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.api-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  color: #c0b8a8;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  cursor: help;
+  transition: background 0.15s;
+}
+.api-pill:hover { background: rgba(255,255,255,0.08); }
+.api-pill .api-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.api-pill.api-ok      .api-dot { background: #5a9b72; box-shadow: 0 0 6px rgba(90,155,114,0.5); }
+.api-pill.api-fail    .api-dot { background: #c0392b; box-shadow: 0 0 6px rgba(192,57,43,0.5); }
+.api-pill.api-missing .api-dot { background: #6b6b6b; }
+.api-pill.api-skip    .api-dot { background: var(--gold-light); }
+.api-pill.api-ok   { color: #b8d4c0; }
+.api-pill.api-fail { color: #e8a8a8; }
+.api-pill.api-skip { color: var(--gold-light); }
+@media (max-width: 720px) {
+  .api-health-banner   { padding: 8px 14px; gap: 10px; }
+  .api-health-headline { width: 100%; font-size: 10px; }
+  .api-pill            { font-size: 10px; padding: 2px 8px; }
+}
+
+
+  main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+  .page-title { text-align: center; margin-bottom: 40px; }
+  .page-title h1 { font-size: 28px; font-weight: normal; color: var(--dark); letter-spacing: 0.04em; margin-bottom: 8px; }
+  .page-title p { font-size: 14px; color: var(--muted); font-family: 'Helvetica Neue', Arial, sans-serif; }
+
+  .summary-bar { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+  .summary-card { flex: 1; min-width: 110px; background: var(--dark); border-radius: 10px; padding: 18px 20px; text-align: center; }
+  .summary-card .num { font-size: 32px; color: var(--gold-light); font-weight: normal; display: block; }
+  .summary-card .label { font-size: 11px; color: var(--muted); font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; display: block; }
+
+  .section-header { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .section-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .card { background: var(--warm-white); border-radius: 14px; border: 1px solid var(--border); margin-bottom: 28px; overflow: hidden; box-shadow: 0 2px 16px var(--shadow); transition: box-shadow 0.2s; }
+  .card:hover { box-shadow: 0 6px 32px rgba(26,23,20,0.18); }
+  .card.sent { opacity: 0.6; border-left: 4px solid var(--olive); }
+  .card.sent .card-title, .card.sent .draft-section { text-decoration: none; }
+  .card.sent .body-textarea, .card.sent .tweet-textarea, .card.sent .reddit-textarea, .card.sent .subject-input { text-decoration: line-through; color: var(--muted); }
+  .card.skipped { opacity: 0.4; border-left: 4px solid var(--stone); }
+  .card.new-cluster { border-left: 4px solid var(--purple); }
+  .card.sent.new-cluster { border-left: 4px solid var(--olive); }
+  .card.skipped.new-cluster { border-left: 4px solid var(--stone); }
+
+  .card-header { display: flex; align-items: center; gap: 16px; padding: 20px 24px 16px; border-bottom: 1px solid var(--border); background: var(--warm-white); }
+  .score-badge { width: 52px; height: 52px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+  .score-badge .score-num { font-size: 20px; font-weight: 700; line-height: 1; }
+  .score-badge .score-label { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-top: 2px; }
+  .score-high { background: #1a2e1e; color: #6dcc8a; }
+  .score-med-high { background: #1e2a12; color: #a0d458; }
+  .score-med { background: #2a2210; color: var(--gold-light); }
+
+  .card-meta { flex: 1; min-width: 0; }
+  .card-meta-top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+  .type-badge { font-size: 10px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
+  .tier-badge { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.05em; text-transform: uppercase; cursor: help; color: #fff; }
+  .tier-S { background: #1a4d2e; }
+  .tier-A { background: #2d5a3d; }
+  .tier-B { background: #8b6914; }
+  .tier-C { background: #7a5c3f; }
+  .tier-D { background: #6b6b6b; }
+  .traffic-label { color: var(--muted); font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; }
+  .type-email { background: #e8f0ff; color: #2b4f7a; }
+  .type-tweet { background: #e8f5ff; color: #1a6fa8; }
+  .type-reddit { background: #ffe8e0; color: #c1622f; }
+  .cluster-badge { font-size: 10px; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--muted); background: #f0ece4; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.06em; }
+  .cluster-badge.new { background: #ede4f4; color: var(--purple); font-weight: 600; }
+
+  .card-title { font-size: 16px; font-weight: normal; color: var(--dark); line-height: 1.4; margin-bottom: 6px; }
+  .card-title a { color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); transition: border-color 0.15s, color 0.15s; }
+  .card-title a:hover { color: var(--terracotta); border-color: var(--terracotta); }
+  .card-source { font-size: 12px; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--muted); }
+  .card-source .dot { margin: 0 6px; }
+
+  .contact-section { display: flex; align-items: flex-start; gap: 12px; padding: 14px 24px; background: #f7f3ec; border-bottom: 1px solid var(--border); }
+  .contact-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--dark); color: var(--gold-light); display: flex; align-items: center; justify-content: center; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 600; flex-shrink: 0; margin-top: 2px; }
+  .contact-info { flex: 1; min-width: 0; }
+  .contact-name { font-size: 14px; color: var(--dark); font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 500; }
+  .contact-role { font-size: 12px; color: var(--muted); font-family: 'Helvetica Neue', Arial, sans-serif; margin-top: 2px; }
+  .to-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .to-prefix { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 600; flex-shrink: 0; }
+  .to-input { flex: 1; font-size: 13px; font-family: 'Helvetica Neue', Arial, sans-serif; padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px; background: #fff; color: var(--dark); min-width: 0; }
+  .to-input:focus { outline: none; border-color: var(--terracotta); }
+  .email-warn { font-size: 16px; color: #c47b18; flex-shrink: 0; cursor: help; }
+
+  .draft-section { padding: 20px 24px 24px; }
+  .draft-label { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .draft-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .subject-row { display: flex; gap: 0; margin-bottom: 12px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: white; }
+  .subject-prefix { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 600; color: var(--muted); background: #f0ece4; padding: 10px 14px; display: flex; align-items: center; white-space: nowrap; letter-spacing: 0.06em; text-transform: uppercase; border-right: 1px solid var(--border); }
+  input[type="text"].subject-input { flex: 1; border: none; outline: none; padding: 10px 14px; font-size: 13px; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--dark); background: white; width: 100%; }
+  input[type="text"].subject-input:focus { background: #fffdf8; }
+
+  .body-textarea { width: 100%; min-height: 200px; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13.5px; font-family: 'Georgia', serif; line-height: 1.7; color: var(--dark); background: white; resize: vertical; outline: none; transition: border-color 0.15s; }
+  .body-textarea:focus { border-color: var(--gold); background: #fffdf8; }
+
+  .tweet-textarea { width: 100%; min-height: 80px; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 14px; font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.5; color: var(--dark); background: white; resize: vertical; outline: none; transition: border-color 0.15s; }
+  .tweet-textarea:focus { border-color: var(--blue-light); background: #f8fbff; }
+
+  .reddit-textarea { width: 100%; min-height: 140px; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13.5px; font-family: 'Georgia', serif; line-height: 1.7; color: var(--dark); background: white; resize: vertical; outline: none; transition: border-color 0.15s; }
+  .reddit-textarea:focus { border-color: var(--terracotta); background: #fffaf6; }
+
+  .char-count { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--muted); text-align: right; margin-top: 4px; }
+  .char-count.warn { color: var(--terracotta); }
+  .char-count.over { color: var(--red); font-weight: 700; }
+
+  .card-footer { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; border-top: 1px solid var(--border); background: #faf7f2; gap: 12px; flex-wrap: wrap; }
+  .action-group { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 18px; border-radius: 8px; font-size: 13px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 500; cursor: pointer; border: 1px solid transparent; transition: all 0.15s; text-decoration: none; white-space: nowrap; }
+  .btn-primary { background: var(--dark); color: var(--gold-light); border-color: var(--dark); }
+  .btn-primary:hover { background: var(--brown); border-color: var(--brown); color: #f0d898; }
+  .btn-secondary { background: white; color: var(--dark); border-color: var(--border); }
+  .btn-secondary:hover { background: var(--cream); border-color: var(--gold); color: var(--brown); }
+  .btn-success { background: var(--green); color: white; border-color: var(--green); }
+  .btn-success:hover { background: #2d5239; }
+  .btn-skip { background: transparent; color: #c0b0a0; border-color: #ddd; }
+  .btn-skip:hover { color: #a08070; border-color: #c0a898; background: #faf5f0; }
+  .btn-reddit { background: #ff4500; color: white; border-color: #ff4500; }
+  .btn-reddit:hover { background: #cc3700; }
+  .btn-publish { background: var(--terracotta); color: white; border-color: var(--terracotta); font-weight: 600; }
+  .btn-publish:hover { background: #a85b3e; border-color: #a85b3e; }
+  .btn-save { background: white; color: var(--espresso); border-color: var(--border); }
+  .btn-save:hover { background: var(--mv-cream); border-color: var(--terracotta); color: var(--terracotta); }
+  .btn-revise { background: white; color: var(--espresso); border-color: var(--terracotta); }
+  .btn-revise:hover { background: var(--terracotta); color: white; }
+  .published-label { font-size: 13px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 600; color: var(--olive); letter-spacing: 0.04em; }
+  .save-feedback { font-size: 11px; color: var(--olive); font-family: 'Helvetica Neue', Arial, sans-serif; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+  .save-feedback.show { opacity: 1; }
+
+  /* Opus revision preview inside a card */
+  .opus-preview { margin-top: 14px; padding: 14px 16px; background: #fffaf6; border: 1px solid var(--terracotta); border-left: 4px solid var(--terracotta); border-radius: 8px; }
+  .opus-preview .op-label { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .opus-preview .op-content { font-size: 13.5px; font-family: 'Georgia', serif; line-height: 1.65; color: var(--dark); background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; white-space: pre-wrap; margin-bottom: 10px; max-height: 320px; overflow-y: auto; }
+  .opus-preview .op-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .opus-preview .op-error { color: var(--red); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; line-height: 1.5; }
+  .opus-spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--terracotta); border-top-color: transparent; border-radius: 50%; animation: opus-spin 0.8s linear infinite; vertical-align: middle; }
+  @keyframes opus-spin { to { transform: rotate(360deg); } }
+
+  /* Server status banner */
+  .server-banner { margin-bottom: 20px; padding: 12px 18px; border-radius: 8px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; display: flex; align-items: center; gap: 10px; }
+  .server-banner.offline { background: #fdf3ec; border: 1px solid #e8c4a8; color: var(--brown); }
+  .server-banner.online { background: transparent; color: var(--olive); font-size: 12px; padding: 4px 0; justify-content: flex-end; }
+  .server-banner .server-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .server-banner.offline .server-dot { background: #d4a96a; }
+  .server-banner.online .server-dot { background: var(--olive); box-shadow: 0 0 6px rgba(92,107,79,0.5); }
+
+  /* Modal (Revisiona con Opus) */
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(26,23,20,0.66); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+  .modal-backdrop.open { display: flex; }
+  .modal-card { background: white; border-radius: 14px; max-width: 600px; width: 100%; padding: 28px 30px 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); max-height: 92vh; overflow-y: auto; font-family: 'Helvetica Neue', Arial, sans-serif; }
+  .modal-title { font-family: 'Georgia', 'Cormorant Garamond', serif; font-size: 24px; color: var(--espresso); font-weight: normal; margin-bottom: 6px; }
+  .modal-sub { font-size: 12px; color: var(--muted); margin-bottom: 18px; letter-spacing: 0.04em; }
+  .modal-card label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .modal-card textarea { width: 100%; min-height: 120px; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; font-size: 13.5px; font-family: 'Georgia', serif; line-height: 1.6; color: var(--dark); background: var(--mv-cream); resize: vertical; outline: none; }
+  .modal-card textarea:focus { border-color: var(--terracotta); background: white; }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+  .modal-close { background: transparent; border: none; font-size: 20px; color: var(--muted); cursor: pointer; float: right; line-height: 1; padding: 0; }
+  .modal-close:hover { color: var(--espresso); }
+
+  .status-indicator { font-size: 12px; font-family: 'Helvetica Neue', Arial, sans-serif; display: flex; align-items: center; gap: 6px; }
+  .status-indicator .dot { width: 7px; height: 7px; border-radius: 50%; background: #d4a96a; }
+  .status-indicator.sent .dot { background: var(--green-light); }
+  .status-indicator.skipped .dot { background: #c0a898; }
+
+  .copy-feedback { font-size: 11px; color: var(--green); font-family: 'Helvetica Neue', Arial, sans-serif; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+  .copy-feedback.show { opacity: 1; }
+
+  .watchlist-card { background: var(--warm-white); border-radius: 14px; border: 1.5px dashed var(--border); margin-bottom: 20px; padding: 20px 24px; opacity: 0.8; box-shadow: none; }
+  .watchlist-card:hover { opacity: 1; }
+  .watchlist-card.new-cluster { border-color: var(--purple-light); }
+  .watchlist-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .watchlist-score { width: 44px; height: 44px; border-radius: 8px; background: #2a2416; color: #b89a5e; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Helvetica Neue', Arial, sans-serif; flex-shrink: 0; }
+  .watchlist-score .wnum { font-size: 17px; font-weight: 700; line-height: 1; }
+  .watchlist-score .wlabel { font-size: 8px; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.06em; }
+  .watchlist-title { font-size: 14px; color: var(--dark); line-height: 1.4; }
+  .watchlist-title a { color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); }
+  .watchlist-source { font-size: 12px; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--muted); margin-top: 4px; }
+  .watchlist-note { background: #f2ede4; border-radius: 8px; padding: 12px 16px; font-size: 12px; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--brown); line-height: 1.6; border-left: 3px solid var(--gold); }
+
+  footer { text-align: center; padding: 32px; font-size: 12px; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--muted); border-top: 1px solid var(--border); margin-top: 20px; }
+  footer strong { color: var(--brown); }
+
+  @media (max-width: 700px) {
+    header { padding: 0 16px; }
+    .header-stats { display: none; }
+    main { padding: 24px 14px 60px; }
+    .card-header { flex-wrap: wrap; }
+    .summary-bar { gap: 10px; }
+    .summary-card { min-width: 110px; }
+  }
+</style>
+
+  <meta name="robots" content="noindex,nofollow,noarchive,nocache">
+  <style id="mv-auth-gate-style">
+    html { visibility: hidden !important; }
+    html.mv-team-authed { visibility: visible !important; }
+  </style>
+  <script id="mv-auth-gate-script">
+  (function() {
+    const CORRECT_HASH = '5d0ac4e87798711132ded7fe8ad405c33eaaa616d77621d55dd5ddd58fedeb4e';
+    const SESSION_KEY  = 'myvilla-team-auth';
+
+    function reveal() {
+      sessionStorage.setItem(SESSION_KEY, '1');
+      document.documentElement.classList.add('mv-team-authed');
+    }
+
+    function deny() {
+      // Replace the whole document with a minimal access-denied page
+      // so the protected content is not even in the rendered tree.
+      document.documentElement.innerHTML =
+        '<body style="font-family:-apple-system,sans-serif;padding:3rem;' +
+        'visibility:visible;color:#666;background:#faf8f5">' +
+        '<h1 style="color:#333">Access denied</h1>' +
+        '<p>Reload the page to retry.</p></body>';
+      document.documentElement.classList.add('mv-team-authed');
+    }
+
+    function ask() {
+      const p = prompt('My Villa team radar\n\nEnter password:');
+      if (p === null || p === '') { deny(); return; }
+      if (!window.crypto || !window.crypto.subtle) {
+        alert('Your browser is too old for the auth gate. Use a modern browser.');
+        deny();
+        return;
+      }
+      const enc = new TextEncoder().encode(p);
+      window.crypto.subtle.digest('SHA-256', enc).then(function(buf) {
+        const arr = Array.from(new Uint8Array(buf));
+        const hex = arr.map(function(b) { return b.toString(16).padStart(2,'0'); }).join('');
+        if (hex === CORRECT_HASH) { reveal(); }
+        else { alert('Wrong password. Try again.'); ask(); }
+      });
+    }
+
+    if (sessionStorage.getItem(SESSION_KEY) === '1') {
+      reveal();
+    } else if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', ask);
+    } else {
+      ask();
+    }
+  })();
+  </script>
+
+</head>
+<body>
+
+
+
+<header>
+  <div class="header-brand">
+    <div class="header-logo">
+      My Villa
+      <span>Italian Soul, Californian Body</span>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-title">Engagement Radar &middot; 2026-04-09</div>
+  </div>
+  <div class="header-stats">
+    <div class="stat-pill"><strong id="pendingCount">3</strong> pending</div>
+    <div class="stat-pill"><strong id="sentCount">0</strong> sent</div>
+  </div>
+</header>
+
+<main>
+  <div id="serverBanner" class="server-banner offline" style="display:none;">
+    <span class="server-dot"></span>
+    <span id="serverBannerText">Il review server non &egrave; attivo. Le funzioni Modifica e Revisiona Opus richiedono l'avvio di review.command.</span>
+  </div>
+
+  <div class="page-title">
+    <h1>Engagement Opportunities</h1>
+    <p>2026-04-09 &middot; Lookback: 7 days &middot; 42 scanned &middot; 3 qualified &middot; 3 watchlist</p>
+  </div>
+
+  <div class="summary-bar">
+    <div class="summary-card"><span class="num">3</span><span class="label">Qualified</span></div>
+    <div class="summary-card"><span class="num">0</span><span class="label">Emails</span></div>
+    <div class="summary-card"><span class="num">0</span><span class="label">Tweets</span></div>
+    <div class="summary-card"><span class="num">0</span><span class="label">Reddit</span></div>
+    <div class="summary-card"><span class="num">3</span><span class="label">Watchlist</span></div>
+  </div>
+
+  <div class="section-header">Qualified Opportunities (Score &ge; 15)</div>
+  <div class="card" id="card-0" data-draft-type="email">
+    <div class="card-header">
+      <div class="score-badge score-med">
+        <span class="score-num">15</span>
+        <span class="score-label">Score</span>
+      </div>
+      <div class="card-meta">
+        <div class="card-meta-top">
+          <span class="type-email type-badge">Email</span>
+          <span class="cluster-badge">Reddit</span>
+          <span class="tier-badge tier-C" title="Niche / emerging — varies">C-Tier</span>
+        </div>
+        <div class="card-title"><a href="https://reddit.com/r/LosAngeles/comments/1seghdp/laist_a_foul_problem_fire_survivors_with/" target="_blank">[LAist] A foul problem: Fire survivors with cesspools and septic tanks face unique rebuilding challenges</a></div>
+        <div class="card-source">r/LosAngeles<span class="dot">&middot;</span><span class="traffic-label">varies</span><span class="dot">&middot;</span>2026-04-06T17:21:36</div>
+      </div>
+    </div>
+    <div class="contact-section">
+      <div class="contact-avatar">N/</div>
+      <div class="contact-info">
+        <div class="contact-name">Newsroom / Editorial</div>
+        <div class="contact-role">r/LosAngeles</div>
+        <div class="to-row">
+          <span class="to-prefix">To</span>
+          <input type="email" class="to-input" id="to-0" placeholder="email@publication.com" value="" oninput="saveState('card-0')">
+          <span class="email-warn" title="Email mancante — verifica manualmente">&#9888;</span>
+        </div>
+      </div>
+    </div>
+    <div class="draft-section">
+      <div class="draft-label">Email Draft</div>
+      <div class="subject-row">
+        <span class="subject-prefix">Subject</span>
+        <input type="text" class="subject-input" id="subj-0" oninput="saveState('card-0')" value="">
+      </div>
+      <textarea class="body-textarea" id="body-0" oninput="countChars(0); saveState('card-0')"></textarea>
+      <div class="char-count" id="cc-0">0 caratteri</div>
+      <div class="opus-preview" id="opus-0" style="display:none;"></div>
+    </div>
+    <div class="card-footer">
+      <div class="action-group"><button class="btn btn-primary" onclick="copyDraft(0)">&#9993; Copy Draft</button><button class="btn btn-secondary" type="button" onclick="openMail(0)">&#9993; Apri Mail</button><button class="btn btn-save" onclick="saveEdits('card-0', 0)">&#128190; Salva modifiche</button><button class="btn btn-revise" onclick="openReviseModal(0, 'email', 'card-0', '[LAist] A foul problem: Fire survivors with cesspools and septic tanks face unique rebuilding challenges', 'https://reddit.com/r/LosAngeles/comments/1seghdp/laist_a_foul_problem_fire_survivors_with/', 'r/LosAngeles')">&#9998; Revisiona con Opus</button></div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span class="copy-feedback" id="cf-0">Copied!</span>
+        <span class="save-feedback" id="sf-0">Salvato!</span>
+        <div class="status-indicator" id="status-0">
+          <span class="dot"></span>
+          <span>Pending</span>
+        </div>
+        <button class="btn btn-publish" id="pub-btn-0" onclick="markSent('card-0', 0)">Pubblica</button>
+        <span class="published-label" id="pub-label-0" style="display:none;">&#10003; Pubblicato</span>
+        <button class="btn btn-skip" onclick="markSkipped('card-0', 0)">Scarta</button>
+      </div>
+    </div></div>
+<div class="card new-cluster" id="card-1" data-draft-type="email">
+    <div class="card-header">
+      <div class="score-badge score-med">
+        <span class="score-num">15</span>
+        <span class="score-label">Score</span>
+      </div>
+      <div class="card-meta">
+        <div class="card-meta-top">
+          <span class="type-email type-badge">Email</span>
+          <span class="cluster-badge new">Concrete Arch</span>
+          <span class="tier-badge tier-A" title="Premium lifestyle / design — 6M+/mo">A-Tier</span>
+        </div>
+        <div class="card-title"><a href="https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHOaOl4kgncHUmiLdl93VxUkS6TkqAIQjkrhcOoRYieIO4q-rxtVf1pPN6LXRhrO-OzBMWe7yQRltV6JA9qtddMYWJUxlZb7eCgX245WKq4YnTKqwrabXNB0Ki2USTasypGkWLC6U0YfgTfQNWDbEeD25usOmvq6WkzNqRU1UzH" target="_blank">dezeen.com</a></div>
+        <div class="card-source">dezeen.com<span class="dot">&middot;</span><span class="traffic-label">6M+/mo</span><span class="dot">&middot;</span></div>
+      </div>
+    </div>
+    <div class="contact-section">
+      <div class="contact-avatar">N/</div>
+      <div class="contact-info">
+        <div class="contact-name">Newsroom / Editorial</div>
+        <div class="contact-role">dezeen.com</div>
+        <div class="to-row">
+          <span class="to-prefix">To</span>
+          <input type="email" class="to-input" id="to-1" placeholder="email@publication.com" value="" oninput="saveState('card-1')">
+          <span class="email-warn" title="Email mancante — verifica manualmente">&#9888;</span>
+        </div>
+      </div>
+    </div>
+    <div class="draft-section">
+      <div class="draft-label">Email Draft</div>
+      <div class="subject-row">
+        <span class="subject-prefix">Subject</span>
+        <input type="text" class="subject-input" id="subj-1" oninput="saveState('card-1')" value="">
+      </div>
+      <textarea class="body-textarea" id="body-1" oninput="countChars(1); saveState('card-1')"></textarea>
+      <div class="char-count" id="cc-1">0 caratteri</div>
+      <div class="opus-preview" id="opus-1" style="display:none;"></div>
+    </div>
+    <div class="card-footer">
+      <div class="action-group"><button class="btn btn-primary" onclick="copyDraft(1)">&#9993; Copy Draft</button><button class="btn btn-secondary" type="button" onclick="openMail(1)">&#9993; Apri Mail</button><button class="btn btn-save" onclick="saveEdits('card-1', 1)">&#128190; Salva modifiche</button><button class="btn btn-revise" onclick="openReviseModal(1, 'email', 'card-1', 'dezeen.com', 'https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHOaOl4kgncHUmiLdl93VxUkS6TkqAIQjkrhcOoRYieIO4q-rxtVf1pPN6LXRhrO-OzBMWe7yQRltV6JA9qtddMYWJUxlZb7eCgX245WKq4YnTKqwrabXNB0Ki2USTasypGkWLC6U0YfgTfQNWDbEeD25usOmvq6WkzNqRU1UzH', 'dezeen.com')">&#9998; Revisiona con Opus</button></div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span class="copy-feedback" id="cf-1">Copied!</span>
+        <span class="save-feedback" id="sf-1">Salvato!</span>
+        <div class="status-indicator" id="status-1">
+          <span class="dot"></span>
+          <span>Pending</span>
+        </div>
+        <button class="btn btn-publish" id="pub-btn-1" onclick="markSent('card-1', 1)">Pubblica</button>
+        <span class="published-label" id="pub-label-1" style="display:none;">&#10003; Pubblicato</span>
+        <button class="btn btn-skip" onclick="markSkipped('card-1', 1)">Scarta</button>
+      </div>
+    </div></div>
+<div class="card" id="card-2" data-draft-type="email">
+    <div class="card-header">
+      <div class="score-badge score-med">
+        <span class="score-num">15</span>
+        <span class="score-label">Score</span>
+      </div>
+      <div class="card-meta">
+        <div class="card-meta-top">
+          <span class="type-email type-badge">Email</span>
+          <span class="cluster-badge">Arch Blogs</span>
+          <span class="tier-badge tier-A" title="Premium lifestyle / design — 10M+/mo">A-Tier</span>
+        </div>
+        <div class="card-title"><a href="https://www.archdaily.com/1040411/villa-in-recco-gosplan-plus-giordano-hadamik-architects-plus-caarpa-plus-studikey" target="_blank">Villa in Recco / Gosplan + Giordano Hadamik Architects + caarpa + studio.skey</a></div>
+        <div class="card-source">ArchDaily Global<span class="dot">&middot;</span><span class="traffic-label">10M+/mo</span><span class="dot">&middot;</span>Thu, 09 Apr 2026 10:00:00 +0000</div>
+      </div>
+    </div>
+    <div class="contact-section">
+      <div class="contact-avatar">N/</div>
+      <div class="contact-info">
+        <div class="contact-name">Newsroom / Editorial</div>
+        <div class="contact-role">ArchDaily Global</div>
+        <div class="to-row">
+          <span class="to-prefix">To</span>
+          <input type="email" class="to-input" id="to-2" placeholder="email@publication.com" value="" oninput="saveState('card-2')">
+          <span class="email-warn" title="Email mancante — verifica manualmente">&#9888;</span>
+        </div>
+      </div>
+    </div>
+    <div class="draft-section">
+      <div class="draft-label">Email Draft</div>
+      <div class="subject-row">
+        <span class="subject-prefix">Subject</span>
+        <input type="text" class="subject-input" id="subj-2" oninput="saveState('card-2')" value="">
+      </div>
+      <textarea class="body-textarea" id="body-2" oninput="countChars(2); saveState('card-2')"></textarea>
+      <div class="char-count" id="cc-2">0 caratteri</div>
+      <div class="opus-preview" id="opus-2" style="display:none;"></div>
+    </div>
+    <div class="card-footer">
+      <div class="action-group"><button class="btn btn-primary" onclick="copyDraft(2)">&#9993; Copy Draft</button><button class="btn btn-secondary" type="button" onclick="openMail(2)">&#9993; Apri Mail</button><button class="btn btn-save" onclick="saveEdits('card-2', 2)">&#128190; Salva modifiche</button><button class="btn btn-revise" onclick="openReviseModal(2, 'email', 'card-2', 'Villa in Recco / Gosplan + Giordano Hadamik Architects + caarpa + studio.skey', 'https://www.archdaily.com/1040411/villa-in-recco-gosplan-plus-giordano-hadamik-architects-plus-caarpa-plus-studikey', 'ArchDaily Global')">&#9998; Revisiona con Opus</button></div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span class="copy-feedback" id="cf-2">Copied!</span>
+        <span class="save-feedback" id="sf-2">Salvato!</span>
+        <div class="status-indicator" id="status-2">
+          <span class="dot"></span>
+          <span>Pending</span>
+        </div>
+        <button class="btn btn-publish" id="pub-btn-2" onclick="markSent('card-2', 2)">Pubblica</button>
+        <span class="published-label" id="pub-label-2" style="display:none;">&#10003; Pubblicato</span>
+        <button class="btn btn-skip" onclick="markSkipped('card-2', 2)">Scarta</button>
+      </div>
+    </div></div>
+
+  <div class="section-header">Watchlist (Score 12&ndash;14)</div>
+  
+    <div class="watchlist-card">
+      <div class="watchlist-header">
+        <div class="watchlist-score"><span class="wnum">13</span><span class="wlabel">Score</span></div>
+        <div>
+          <div class="watchlist-title"><a href="https://reddit.com/r/Homebuilding/comments/1seeb4p/many_studs_are_spliced_upstairs_on_balloon_framed/" target="_blank">Many studs are spliced upstairs on balloon framed home</a></div>
+          <div class="watchlist-source">r/homebuilding &middot; <span class="tier-badge tier-C" title="Niche / emerging — varies">C-Tier</span> <span class="traffic-label">varies</span> &middot; Reddit</div>
+        </div>
+      </div>
+      <div class="watchlist-note">Homebuilding subreddit question about spliced studs in a fire-damaged balloon-framed home, touching on structural integrity concerns during post-fire rebuilding.</div>
+    </div>
+
+    <div class="watchlist-card">
+      <div class="watchlist-header">
+        <div class="watchlist-score"><span class="wnum">13</span><span class="wlabel">Score</span></div>
+        <div>
+          <div class="watchlist-title"><a href="https://robbreport.com/shelter/celebrity-homes/ozzy-sharon-osbourne-house-los-angeles-1237765517/" target="_blank">Ozzy and Sharon Osbourne’s Los Angeles Home Lists for $17 Million</a></div>
+          <div class="watchlist-source">Robb Report Shelter | Luxury Real Estate and Interior Design &middot; <span class="tier-badge tier-A" title="Premium lifestyle / design — 3M+/mo">A-Tier</span> <span class="traffic-label">3M+/mo</span> &middot; Arch Blogs</div>
+        </div>
+      </div>
+      <div class="watchlist-note">Ozzy and Sharon Osbourne&#x27;s 100-year-old Hancock Park LA mansion is listed for $17 million, targeting the UHNW LA market via Robb Report.</div>
+    </div>
+
+    <div class="watchlist-card">
+      <div class="watchlist-header">
+        <div class="watchlist-score"><span class="wnum">13</span><span class="wlabel">Score</span></div>
+        <div>
+          <div class="watchlist-title"><a href="https://www.architecturaldigest.com/story/the-brentwood-home-audrey-hepburn-rented-from-deborah-kerr-home-sold-for-94-million" target="_blank">The Brentwood Home Audrey Hepburn Rented from Deborah Kerr Sells for $9.4 Million</a></div>
+          <div class="watchlist-source">Architectural Digest &middot; <span class="tier-badge tier-A" title="Premium lifestyle / design — 12M+/mo">A-Tier</span> <span class="traffic-label">12M+/mo</span> &middot; Arch Blogs</div>
+        </div>
+      </div>
+      <div class="watchlist-note">A historic Brentwood Georgian-style home with celebrity provenance sells for $9.4M after 30+ years under the same ownership.</div>
+    </div>
+
+</main>
+
+<footer>
+  <strong>My Villa</strong> &middot; Engagement Radar &middot; Generated 2026-05-11 23:49 &middot; Automated pipeline v2.0
+</footer>
+
+<div class="modal-backdrop" id="reviseModal" onclick="if(event.target===this)closeReviseModal()">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeReviseModal()" aria-label="Chiudi">&times;</button>
+    <div class="modal-title">Chiedi a Opus di revisionare</div>
+    <div class="modal-sub" id="reviseModalSub">Fornisci un feedback per guidare la revisione.</div>
+    <label for="reviseFeedback">Feedback</label>
+    <textarea id="reviseFeedback" placeholder="Es: pi&ugrave; corto, tono meno formale, aggiungi un esempio concreto..."></textarea>
+    <div class="modal-actions">
+      <button class="btn btn-skip" onclick="closeReviseModal()">Annulla</button>
+      <button class="btn btn-publish" id="reviseSubmitBtn" onclick="submitRevise()">Invia a Opus</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── State persistence (localStorage) ──
+const STORAGE_KEY = 'myvilla_radar_20260409';
+const REVIEW_SERVER_URL = 'http://127.0.0.1:8787';
+let reviewServerOnline = false;
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+  catch { return {}; }
+}
+function persistState(state) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+function saveState(cardId) {
+  const state = loadState();
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  const textarea = card.querySelector('textarea');
+  const subjInput = card.querySelector('.subject-input');
+  const toInput = card.querySelector('.to-input');
+  state[cardId] = {
+    body: textarea ? textarea.value : '',
+    subject: subjInput ? subjInput.value : '',
+    to: toInput ? toInput.value : '',
+    status: card.classList.contains('sent') ? 'sent' : card.classList.contains('skipped') ? 'skipped' : 'pending',
+  };
+  persistState(state);
+}
+function saveEdits(cardId, idx) {
+  saveState(cardId);
+  const sf = document.getElementById('sf-' + idx);
+  if (sf) {
+    sf.classList.add('show');
+    setTimeout(() => sf.classList.remove('show'), 1800);
+  }
+}
+function restoreState() {
+  const state = loadState();
+  for (const [cardId, data] of Object.entries(state)) {
+    const card = document.getElementById(cardId);
+    if (!card) continue;
+    if (data.body) { const ta = card.querySelector('textarea'); if (ta) ta.value = data.body; }
+    if (data.subject) { const si = card.querySelector('.subject-input'); if (si) si.value = data.subject; }
+    if (data.to) { const ti = card.querySelector('.to-input'); if (ti) ti.value = data.to; }
+    if (data.status === 'sent') applySentVisual(card);
+    if (data.status === 'skipped') applySkippedVisual(card);
+  }
+  // Refresh counters on all textareas
+  document.querySelectorAll('.card').forEach(card => {
+    const ta = card.querySelector('textarea');
+    if (ta) {
+      const m = ta.id.match(/body-(\d+)/);
+      if (m) countChars(parseInt(m[1], 10));
+    }
+  });
+  updateCounts();
+}
+
+// ── Actions ──
+function copyDraft(idx) {
+  const body = document.getElementById('body-' + idx);
+  if (!body) return;
+  navigator.clipboard.writeText(body.value).then(() => {
+    const cf = document.getElementById('cf-' + idx);
+    cf.classList.add('show');
+    setTimeout(() => cf.classList.remove('show'), 2000);
+  });
+}
+function openMail(idx) {
+  const subj = document.getElementById('subj-' + idx);
+  const body = document.getElementById('body-' + idx);
+  const to = document.getElementById('to-' + idx);
+  if (!body) return;
+  const recipient = to ? (to.value || '').trim() : '';
+  const subject = subj ? (subj.value || '') : '';
+  const bodyText = body.value || '';
+  // Build mailto: URL manually (don't encode the recipient, it breaks Mail.app)
+  const url = 'mailto:' + recipient
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(bodyText);
+  // Use window.location instead of window.open — mailto: must replace current nav intent
+  window.location.href = url;
+}
+function updateTweetLink(idx) {
+  const body = document.getElementById('body-' + idx);
+  const link = document.getElementById('tweetlink-' + idx);
+  if (body && link) {
+    link.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(body.value);
+  }
+}
+function countChars(idx) {
+  const body = document.getElementById('body-' + idx);
+  const cc = document.getElementById('cc-' + idx);
+  if (!body || !cc) return;
+  const len = body.value.length;
+  const card = body.closest('.card');
+  const dtype = card ? card.getAttribute('data-draft-type') : '';
+  if (dtype === 'tweet') {
+    cc.textContent = len + '/280';
+    cc.className = 'char-count' + (len > 280 ? ' over' : len > 250 ? ' warn' : '');
+  } else {
+    cc.textContent = len + ' caratteri';
+    cc.className = 'char-count';
+  }
+}
+
+function applySentVisual(card) {
+  card.classList.remove('skipped');
+  card.classList.add('sent');
+  const idxMatch = card.id.match(/card-(\d+)/);
+  if (!idxMatch) return;
+  const idx = idxMatch[1];
+  const si = document.getElementById('status-' + idx);
+  if (si) {
+    si.className = 'status-indicator sent';
+    si.querySelector('span:last-child').textContent = 'Pubblicato';
+  }
+  const btn = document.getElementById('pub-btn-' + idx);
+  const lbl = document.getElementById('pub-label-' + idx);
+  if (btn) btn.style.display = 'none';
+  if (lbl) lbl.style.display = 'inline';
+}
+function applySkippedVisual(card) {
+  card.classList.remove('sent');
+  card.classList.add('skipped');
+  const idxMatch = card.id.match(/card-(\d+)/);
+  if (!idxMatch) return;
+  const idx = idxMatch[1];
+  const si = document.getElementById('status-' + idx);
+  if (si) {
+    si.className = 'status-indicator skipped';
+    si.querySelector('span:last-child').textContent = 'Scartato';
+  }
+  const btn = document.getElementById('pub-btn-' + idx);
+  const lbl = document.getElementById('pub-label-' + idx);
+  if (btn) btn.style.display = 'inline-flex';
+  if (lbl) lbl.style.display = 'none';
+}
+
+function markSent(cardId, idx) {
+  const card = document.getElementById(cardId);
+  applySentVisual(card);
+  saveState(cardId);
+  updateCounts();
+}
+function markSkipped(cardId, idx) {
+  const card = document.getElementById(cardId);
+  applySkippedVisual(card);
+  saveState(cardId);
+  updateCounts();
+}
+function updateCounts() {
+  const cards = document.querySelectorAll('.card');
+  let pending = 0, sent = 0;
+  cards.forEach(c => {
+    if (c.classList.contains('sent')) sent++;
+    else if (!c.classList.contains('skipped')) pending++;
+  });
+  document.getElementById('pendingCount').textContent = pending;
+  document.getElementById('sentCount').textContent = sent;
+}
+
+// ── Revisiona con Opus: modal + API ──
+let reviseCtx = null; // { idx, draftType, cardId, title, url, publication }
+
+function openReviseModal(idx, draftType, cardId, title, url, publication) {
+  reviseCtx = { idx, draftType, cardId, title, url, publication };
+  const modal = document.getElementById('reviseModal');
+  const fb = document.getElementById('reviseFeedback');
+  const sub = document.getElementById('reviseModalSub');
+  if (fb) fb.value = '';
+  if (sub) sub.textContent = 'Tipo: ' + draftType + ' · ' + (title || '');
+  modal.classList.add('open');
+  setTimeout(() => { if (fb) fb.focus(); }, 50);
+}
+function closeReviseModal() {
+  const modal = document.getElementById('reviseModal');
+  modal.classList.remove('open');
+  reviseCtx = null;
+}
+async function submitRevise() {
+  if (!reviseCtx) return;
+  const { idx, draftType, cardId, title, url, publication } = reviseCtx;
+  const fb = document.getElementById('reviseFeedback').value.trim();
+  const body = document.getElementById('body-' + idx);
+  const content = body ? body.value : '';
+  const previewEl = document.getElementById('opus-' + idx);
+  const submitBtn = document.getElementById('reviseSubmitBtn');
+
+  // Map draft_type: backend expects email | tweet | reddit
+  const dt = draftType === 'reddit_comment' ? 'reddit' : draftType;
+
+  // Show loading state in the card preview area
+  previewEl.style.display = 'block';
+  previewEl.innerHTML = '<div class="op-label"><span class="opus-spinner"></span> Opus sta revisionando&hellip;</div>';
+  if (submitBtn) submitBtn.disabled = true;
+  closeReviseModal();
+
+  try {
+    const res = await fetch(REVIEW_SERVER_URL + '/api/revise', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'radar_draft',
+        draft_type: dt,
+        content: content,
+        feedback: fb,
+        context: { title: title, url: url, publication: publication }
+      })
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const revised = data.revised || data.content || data.text || '';
+    if (!revised) throw new Error('Risposta vuota dal review server');
+    renderOpusPreview(idx, revised, draftType, cardId, title, url, publication);
+  } catch (err) {
+    previewEl.innerHTML = '<div class="op-label">Errore</div><div class="op-error">Il review server non &egrave; attivo. Avvialo con doppio click su review.command per usare la revisione Opus.</div><div class="op-actions" style="margin-top:10px;"><button class="btn btn-skip" onclick="discardRevision(' + idx + ')">Chiudi</button></div>';
+  } finally {
+    if (submitBtn) submitBtn.disabled = false;
+  }
+}
+
+function renderOpusPreview(idx, revised, draftType, cardId, title, url, publication) {
+  const previewEl = document.getElementById('opus-' + idx);
+  if (!previewEl) return;
+  // Store revised text on a data attribute for accept
+  previewEl.dataset.revised = revised;
+  previewEl.dataset.draftType = draftType;
+  previewEl.dataset.cardId = cardId;
+  previewEl.dataset.title = title;
+  previewEl.dataset.url = url;
+  previewEl.dataset.publication = publication;
+  const safe = revised.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  previewEl.innerHTML =
+    '<div class="op-label">Proposta Opus</div>' +
+    '<div class="op-content">' + safe + '</div>' +
+    '<div class="op-actions">' +
+      '<button class="btn btn-publish" onclick="acceptRevision(' + idx + ')">Accetta</button>' +
+      '<button class="btn btn-revise" onclick="reviseAgain(' + idx + ')">Revisiona ancora</button>' +
+      '<button class="btn btn-skip" onclick="discardRevision(' + idx + ')">Scarta</button>' +
+    '</div>';
+}
+
+function acceptRevision(idx) {
+  const previewEl = document.getElementById('opus-' + idx);
+  const body = document.getElementById('body-' + idx);
+  if (!previewEl || !body) return;
+  body.value = previewEl.dataset.revised || '';
+  const cardId = previewEl.dataset.cardId;
+  countChars(idx);
+  saveState(cardId);
+  discardRevision(idx);
+}
+function reviseAgain(idx) {
+  const previewEl = document.getElementById('opus-' + idx);
+  if (!previewEl) return;
+  openReviseModal(
+    idx,
+    previewEl.dataset.draftType,
+    previewEl.dataset.cardId,
+    previewEl.dataset.title || '',
+    previewEl.dataset.url || '',
+    previewEl.dataset.publication || ''
+  );
+}
+function discardRevision(idx) {
+  const previewEl = document.getElementById('opus-' + idx);
+  if (!previewEl) return;
+  previewEl.style.display = 'none';
+  previewEl.innerHTML = '';
+}
+
+// ── Review server health check ──
+async function checkReviewServer() {
+  const banner = document.getElementById('serverBanner');
+  const textEl = document.getElementById('serverBannerText');
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 1500);
+    const res = await fetch(REVIEW_SERVER_URL + '/', { method: 'GET', signal: ctrl.signal, mode: 'cors' });
+    clearTimeout(t);
+    reviewServerOnline = true;
+    banner.className = 'server-banner online';
+    banner.style.display = 'flex';
+    if (textEl) textEl.innerHTML = '&bull; Opus revisione attiva';
+  } catch (e) {
+    reviewServerOnline = false;
+    banner.className = 'server-banner offline';
+    banner.style.display = 'flex';
+    if (textEl) textEl.textContent = "Il review server non \u00e8 attivo. Le funzioni Modifica e Revisiona Opus richiedono l'avvio di review.command.";
+  }
+}
+
+// Close modal on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeReviseModal();
+});
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  restoreState();
+  checkReviewServer();
+});
+</script>
+</body>
+</html>
