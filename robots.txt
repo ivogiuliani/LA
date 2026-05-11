@@ -5,7 +5,6 @@
 User-agent: *
 Allow: /
 Disallow: /old/
-Disallow: /team/    # internal team radar — soft-gated, not for indexing
 
 # Explicitly allow AI crawlers for AI search visibility
 User-agent: GPTBot

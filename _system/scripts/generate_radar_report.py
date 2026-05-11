@@ -2317,18 +2317,6 @@ def main():
     print(f"Saved: {output_path}")
     print(f"File size: {output_path.stat().st_size / 1024:.1f} KB")
 
-    # Also publish a password-gated copy at team/radar/index.html so
-    # collaborators can view it at https://myvilla.la/team/radar/.
-    # Failure here is logged but does not abort — the local radar HTML
-    # is the canonical view.
-    try:
-        from publish_radar_team import publish_team_radar
-        team_path = publish_team_radar(radar_data, date_str)
-        team_kb = team_path.stat().st_size / 1024
-        print(f"Saved team-radar: {team_path} ({team_kb:.1f} KB)")
-    except Exception as e:
-        print(f"  Warning: team-radar publish failed: {type(e).__name__}: {e}")
-
     # Also export Markdown report (human-readable daily digest)
     if args.markdown != "none":
         if args.markdown:

@@ -7015,33 +7015,6 @@ def _git_autopush(commit_msg: str) -> bool:
         return False
 
 
-# ── Team dashboard refresh (after publish / reject) ──────────────────
-#
-# The static team page at myvilla.la/team/radar/ is normally refreshed
-# once per radar cycle (generate_radar_report.py calls publish_team_
-# dashboard at the end). But when the operator publishes or rejects an
-# article in the middle of the day, the team page is stale until the
-# next radar run. Hook into the publish/reject flow so the team view
-# tracks reality.
-#
-# Best-effort: a failure here is logged but doesn't block the
-# publish/reject action — the local state is already correct.
-
-def _refresh_team_dashboard():
-    """Regenerate team/radar/index.html from the current dashboard state.
-
-    Imports publish_team_dashboard lazily so a missing module doesn't
-    break the rest of approve.py at import time. Any error is caught
-    and logged.
-    """
-    try:
-        from publish_radar_team import publish_team_dashboard
-        out = publish_team_dashboard()
-        print(f"  [team-dashboard] refreshed: {out.name}")
-    except Exception as e:  # noqa: BLE001 — never block publish/reject
-        print(f"  [team-dashboard] refresh failed: {type(e).__name__}: {e}")
-
-
 # ── HTTP Request Handler ─────────────────────────────────────────────
 
 class ReviewHandler(BaseHTTPRequestHandler):
@@ -7514,10 +7487,6 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 except Exception as e:
                     print(f"  Warning: update_homepage_journal.py failed: {e}")
 
-            # Refresh the team dashboard so collaborators see the change
-            # at myvilla.la/team/radar/ on their next visit. Best-effort.
-            _refresh_team_dashboard()
-
             # Auto-push to GitHub so the live site picks up the new article
             # without a manual `git push`. Best-effort: any failure is
             # logged but does not roll back the publish.
@@ -7604,10 +7573,6 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 companion_dst = dst.with_suffix(".ig.md")
                 shutil.move(str(companion_src), str(companion_dst))
                 print(f"  Archived IG companion: {companion_src.name}")
-
-        # Refresh the team dashboard so collaborators see the change
-        # at myvilla.la/team/radar/ on their next visit. Best-effort.
-        _refresh_team_dashboard()
 
         msg = f"Archived: {filename}"
         if dismissed_source_urls:
