@@ -394,6 +394,46 @@ def google_cse_search(api_key, cx, clusters, date_restrict="d7"):
     return results
 
 
+# Hosts to discard from Brave results before downstream scoring.
+# These are domains that frequently match our keywords but never produce
+# actionable content for outreach: encyclopedias, video platforms, social
+# networks, listing aggregators, and obvious construction-vendor SEO farms.
+# The AI scoring step would eventually discard them anyway, but pruning
+# them here saves a few cents per radar run on Sonnet tokens.
+_BRAVE_HOST_BLACKLIST = {
+    # Encyclopedias / wikis
+    "wikipedia.org", "en.wikipedia.org",
+    # Video / social
+    "youtube.com", "www.youtube.com", "m.youtube.com",
+    "facebook.com", "www.facebook.com", "m.facebook.com",
+    "instagram.com", "www.instagram.com",
+    "pinterest.com", "www.pinterest.com",
+    "tiktok.com", "www.tiktok.com",
+    # Generic listing / shopping
+    "yelp.com", "www.yelp.com", "yellowpages.com",
+    "amazon.com", "ebay.com",
+    # Q&A / forums (low signal)
+    "quora.com", "www.quora.com",
+    "answers.com", "ask.com",
+}
+
+
+def _is_blacklisted_brave_host(host):
+    """True if a Brave result host is in the noise blacklist."""
+    if not host:
+        return False
+    h = host.lower().strip().lstrip(".")
+    if h in _BRAVE_HOST_BLACKLIST:
+        return True
+    # Strip the leading subdomain once and re-check, so blog.foo.com
+    # matches a foo.com entry. We don't go further than one strip to
+    # avoid over-matching (e.g. foo.bar.org → bar.org).
+    parts = h.split(".")
+    if len(parts) > 2 and ".".join(parts[1:]) in _BRAVE_HOST_BLACKLIST:
+        return True
+    return False
+
+
 def _interleave_cluster_keywords(clusters):
     """Yield (cluster_id, keyword) pairs round-robin across clusters.
 
@@ -505,16 +545,21 @@ def brave_search(api_key, clusters, lookback_days=7, query_cap=30):
                 # in profile.long_name or meta_url.hostname; fall back to
                 # parsing the URL ourselves so the field is always set.
                 url = item.get("url", "")
-                pub = (
-                    (item.get("profile") or {}).get("long_name")
-                    or (item.get("meta_url") or {}).get("hostname")
-                    or ""
-                )
-                if not pub and url:
+                host = (item.get("meta_url") or {}).get("hostname") or ""
+                if not host and url:
                     try:
-                        pub = urllib.parse.urlparse(url).netloc
+                        host = urllib.parse.urlparse(url).netloc
                     except Exception:
-                        pub = ""
+                        host = ""
+
+                # Filter out Wikipedia / YouTube / social / listing farms
+                # so the AI scorer doesn't waste tokens on them.
+                if _is_blacklisted_brave_host(host):
+                    continue
+
+                pub = (
+                    (item.get("profile") or {}).get("long_name") or host
+                )
 
                 results.append({
                     "source": "brave",
