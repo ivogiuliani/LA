@@ -33,3 +33,4 @@ __pycache__/
 
 # macOS drag-source artifacts (no purpose on a web server)
 *.textClipping
+vid.zip
