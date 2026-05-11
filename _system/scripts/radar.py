@@ -18,6 +18,7 @@ import sys
 import time
 import argparse
 import hashlib
+import urllib.parse
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -162,6 +163,37 @@ def _ping_google_cse(key, timeout):
         return False, f"HTTP {e.code}"
 
 
+def _ping_brave(key, timeout):
+    """Verify the Brave Search API key with a cheap one-word query.
+
+    Returns (True, "<plan-info>") on success, (False, "...") on failure.
+    Brave's /res/v1/web/search endpoint costs nothing on the free tier
+    until quota is hit, so this ping is safe to run every radar cycle.
+    """
+    import urllib.request, urllib.error, json as _j
+    req = urllib.request.Request(
+        "https://api.search.brave.com/res/v1/web/search?q=test&count=1",
+        headers={
+            "Accept": "application/json",
+            "X-Subscription-Token": key,
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            body = _j.loads(r.read())
+            n = len((body.get("web") or {}).get("results") or [])
+            # Try to surface the rate-limit headers (X-RateLimit-Remaining)
+            # so the operator sees free-tier quota burn.
+            remaining = r.headers.get("X-RateLimit-Remaining", "?")
+            return True, f"{n} results, monthly quota remaining: {remaining}"
+    except urllib.error.HTTPError as e:
+        if e.code in (401, 403):
+            return False, f"HTTP {e.code} (invalid key)"
+        if e.code == 429:
+            return False, "HTTP 429 (quota exhausted)"
+        return False, f"HTTP {e.code}"
+
+
 def _ping_apify(key, timeout):
     """Verify the Apify token by calling the cheap /users/me endpoint.
     Returns (True, "<plan> — $X.XX credit left") on success."""
@@ -194,6 +226,7 @@ _API_CHECKS = (
     ("xai_grok",   "XAI_API_KEY",         _ping_xai),
     ("gemini",     "GEMINI_API_KEY",      _ping_gemini),
     ("google_cse", "GOOGLE_CSE_API_KEY",  _ping_google_cse),
+    ("brave",      "BRAVE_API_KEY",       _ping_brave),
     ("apify",      "APIFY_API_TOKEN",     _ping_apify),
 )
 
@@ -361,6 +394,138 @@ def google_cse_search(api_key, cx, clusters, date_restrict="d7"):
     return results
 
 
+def _lookback_to_brave_freshness(lookback_days):
+    """Map a numeric lookback window onto Brave's freshness parameter.
+
+    Brave accepts pd/pw/pm/py (past day/week/month/year). For arbitrary
+    day counts we round up to the next bucket so we don't accidentally
+    drop relevant items just inside the window.
+    """
+    if lookback_days <= 1:  return "pd"
+    if lookback_days <= 7:  return "pw"
+    if lookback_days <= 31: return "pm"
+    return "py"
+
+
+def brave_search(api_key, clusters, lookback_days=7, query_cap=65):
+    """Search via Brave Web Search API — drop-in alternative to Google CSE.
+
+    Why this exists: Google CSE has been returning 403 PERMISSION_DENIED
+    on this account since 2026-04-27 (ticket open with Google). Brave's
+    Web Search has an independent index, a generous free tier (2000
+    queries/month, 1 qps), and the same coverage of luxury/architecture
+    publications we care about. It's enabled by setting BRAVE_API_KEY in
+    .env (get one for free at https://api.search.brave.com/).
+
+    When CSE comes back, both sources will run in parallel — Brave's
+    independent index often surfaces results the Google index doesn't
+    (and vice versa), so keeping both is a net win.
+
+    Args:
+      api_key: BRAVE_API_KEY (empty string → skip without burning credits)
+      clusters: same clusters dict consumed by google_cse_search
+      lookback_days: forwarded to freshness mapping
+      query_cap: hard cap on queries per run. Default 65 keeps a
+        full radar run under the free tier even when scheduled daily
+        (~65/day × 30 = 1950/month, leaves headroom).
+    """
+    if not api_key or not api_key.strip():
+        print("  [Brave] Skipped — BRAVE_API_KEY not configured. "
+              "Get a free key at https://api.search.brave.com/ and "
+              "add BRAVE_API_KEY=… to .env to enable.")
+        return []
+
+    results = []
+    base_url = "https://api.search.brave.com/res/v1/web/search"
+    freshness = _lookback_to_brave_freshness(lookback_days)
+    query_count = 0
+    consecutive_failures = 0
+
+    headers = {
+        "Accept": "application/json",
+        "X-Subscription-Token": api_key.strip(),
+        "User-Agent": "MyVillaRadar/1.0 (+https://myvilla.la)",
+    }
+
+    for cluster_id, cluster_data in clusters.items():
+        keywords = cluster_data.get("keywords", [])
+        for q in keywords:
+            if query_count >= query_cap:
+                print(f"  [Brave] Query cap reached ({query_count}), stopping")
+                break
+            try:
+                resp = requests.get(base_url, params={
+                    "q": q,
+                    "count": 5,
+                    "freshness": freshness,
+                    "country": "us",
+                    "safesearch": "moderate",
+                }, headers=headers, timeout=10)
+                resp.raise_for_status()
+                data = resp.json()
+                query_count += 1
+                consecutive_failures = 0
+
+                for item in data.get("web", {}).get("results", []):
+                    # Brave returns netloc-style host (e.g. "www.dezeen.com")
+                    # in profile.long_name or meta_url.hostname; fall back to
+                    # parsing the URL ourselves so the field is always set.
+                    url = item.get("url", "")
+                    pub = (
+                        (item.get("profile") or {}).get("long_name")
+                        or (item.get("meta_url") or {}).get("hostname")
+                        or ""
+                    )
+                    if not pub and url:
+                        try:
+                            pub = urllib.parse.urlparse(url).netloc
+                        except Exception:
+                            pub = ""
+
+                    results.append({
+                        "source": "brave",
+                        "cluster": cluster_id,
+                        "query": q,
+                        "title": item.get("title", ""),
+                        "url": url,
+                        "snippet": item.get("description", ""),
+                        "publication": pub,
+                        # Brave gives age as a human string like "2 days ago"
+                        # or sometimes a real ISO date in page_age.
+                        "date": item.get("page_age") or item.get("age") or "",
+                    })
+                # Free tier: 1 qps. Sleep slightly above 1s to avoid 429s.
+                time.sleep(1.05)
+            except requests.HTTPError as e:
+                status = e.response.status_code if e.response else "?"
+                if status == 429:
+                    # Rate limit — back off harder and continue.
+                    print(f"  [Brave] 429 rate-limited on {q!r}; backing off 5s")
+                    time.sleep(5)
+                    consecutive_failures += 1
+                elif status in (401, 403):
+                    print(f"  [Brave] HTTP {status} — key invalid or quota exhausted. Stopping.")
+                    break
+                else:
+                    print(f"  [Brave] HTTP {status} on {q!r}")
+                    consecutive_failures += 1
+                # Bail out if we hit 5 failures in a row — the API is
+                # clearly unhappy, no point burning credits.
+                if consecutive_failures >= 5:
+                    print(f"  [Brave] 5 consecutive failures, aborting")
+                    break
+            except Exception as e:
+                print(f"  [Brave] Error '{q}': {type(e).__name__}: {e}")
+                consecutive_failures += 1
+                if consecutive_failures >= 5:
+                    break
+        if consecutive_failures >= 5 or query_count >= query_cap:
+            break
+
+    print(f"  [Brave] {len(results)} results from {query_count} queries")
+    return results
+
+
 def reddit_search(config, lookback_days=7):
     """Search Reddit via JSON API (no auth required)."""
     subreddits = config.get("reddit", {}).get("subreddits", [])
@@ -443,20 +608,33 @@ def rss_scan(config, lookback_days=14):
         return []
 
     rss_feeds = [
+        # ── Architecture & design (international) ──
         "https://www.dezeen.com/feed/",
         "https://www.archdaily.com/feed",
         "https://www.designboom.com/feed/",
         "https://www.dwell.com/feed/",
         "https://robbreport.com/shelter/feed/",
         "https://www.architecturaldigest.com/feed/rss",
+        # ── LA / California real estate & market (added 2026-05-04 to reduce
+        # insurance-bias in the radar output; these feeds publish daily on
+        # LA luxury market, new construction, and architect-designed homes). ──
+        "https://therealdeal.com/la/feed/",
+        "https://dirt.com/feed/",
+        "https://www.latimes.com/business/real-estate/rss2.0.xml",
+        "https://www.latimes.com/california/rss2.0.xml",
+        "https://la.curbed.com/rss/index.xml",
+        "https://www.bisnow.com/los-angeles/feed",
     ]
 
-    # Strategy-aligned priority keywords — tier-1 geos + insurability + newbuild first,
-    # rebuild/wildfire moved to secondary signals (still present, lower weight).
+    # Strategy-aligned priority keywords. A feed entry must contain at least
+    # one of these in title+summary to pass through. Tuned 2026-05-04 to
+    # widen architecture surface area (mid-century, modernist, Spanish
+    # revival, etc.) so architectural feeds aren't filtered down to zero by
+    # geo+commercial keywords alone.
     priority_keywords = [
         # Tier-1/2 geographies (lead)
         "malibu", "beverly hills", "bel air", "holmby hills", "brentwood",
-        "hidden hills", "calabasas", "westside",
+        "hidden hills", "calabasas", "westside", "pacific palisades",
         # Insurability + underwriting (primary commercial cluster)
         "insurable", "insurance", "fair plan", "ibhs", "mercury", "wui code",
         "safer from wildfires", "non-renewal", "wildfire prepared home",
@@ -468,6 +646,19 @@ def rss_scan(config, lookback_days=14):
         "italian design", "courtyard villa",
         # Newbuild framing
         "custom home", "new construction", "luxury home builder", "luxury villa",
+        "spec home", "architect-designed",
+        # ── Architecture styles & inspiration (added 2026-05-04) ──
+        # These widen the net so feeds like Dezeen/ArchDaily catch
+        # California-relevant architecture even when the article doesn't
+        # explicitly name a city or use "concrete" / "fire-resistant".
+        "modernist", "mid-century", "midcentury", "mid century",
+        "spanish revival", "spanish colonial", "spanish-style",
+        "california modern", "hollywood regency",
+        "contemporary villa", "modern villa", "modern residence",
+        "luxury residence", "private residence", "single-family home",
+        # Architects / firms common in LA luxury residential
+        "marmol radziner", "kaa design", "walker workshop",
+        "belzberg architects", "william hefner", "standard architecture",
         # Secondary (still in scope, lower priority)
         "rebuild", "palisades", "altadena", "wildfire",
         "concrete", "residential concrete", "brutalist",
@@ -1808,6 +1999,8 @@ def main():
     parser.add_argument("--skip-reddit", action="store_true")
     parser.add_argument("--skip-rss", action="store_true")
     parser.add_argument("--skip-cse", action="store_true")
+    parser.add_argument("--skip-brave", action="store_true",
+                        help="Skip Brave Search (the CSE alternative)")
     parser.add_argument("--skip-ai-score", action="store_true",
                         help="Skip AI scoring, use heuristic only")
     args = parser.parse_args()
@@ -1855,6 +2048,19 @@ def main():
         all_results.extend(cse_results)
     else:
         print("1. Google CSE — skipped")
+
+    # 1b. Brave Search (alternative web search). Runs alongside CSE — when
+    # CSE comes back, both contribute and the dedup step collapses the
+    # overlap. While CSE is broken (the 403 issue with Google), this is
+    # the only working web-search source for top-tier publications.
+    if not args.skip_brave:
+        print("1b. Brave Search...")
+        brave_key = os.environ.get("BRAVE_API_KEY", "")
+        brave_results = brave_search(
+            brave_key, clusters, lookback_days=args.lookback)
+        all_results.extend(brave_results)
+    else:
+        print("1b. Brave Search — skipped")
 
     # 2. Reddit
     if not args.skip_reddit:

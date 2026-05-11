@@ -224,31 +224,49 @@ target_domains:
 # ── Reddit Sources ──
 reddit:
   subreddits:
+    # ── Wealth / luxury market ──
     - "fatFIRE"
     - "RichPeoplePF"
     - "LuxuryRealEstate"
     - "RealEstate"
     - "homebuilding"
+    # ── Architecture & design (high-volume visual subs; balance bias toward insurance) ──
     - "architecture"
     - "ModernistArchitecture"
     - "brutalism"
+    - "ArchitecturePorn"           # 2.4M members — very high volume
+    - "midcenturymodern"           # popular California typology
+    - "InteriorDesign"             # 4M members
+    - "HouseDesign"                # focused on residential design
+    - "DesignPorn"                 # broader design, often surfaces home photography
+    # ── Location ──
     - "LosAngeles"
+    # ── Pain points / commercial intent ──
     - "Insurance"
     - "AskEngineers"
     - "HomeImprovement"
   search_keywords:
+    # ── Insurance / commercial (existing) ──
     - "luxury home California fire"
     - "fire resistant luxury home"
     - "insurable home California"
     - "reinforced concrete house"
     - "ICF home build"
     - "California insurance crisis luxury"
+    # ── Italian / Mediterranean villa typology ──
     - "Italian villa California"
     - "Mediterranean home California"
+    # ── Geographic ──
     - "custom home builder Malibu"
     - "custom home Beverly Hills"
+    # ── Architecture-focused (added 2026-05-04 to rebalance away from insurance bias) ──
     - "concrete architecture home"
     - "brutalist house design"
+    - "modernist house Los Angeles"
+    - "mid-century modern California"
+    - "Spanish revival home"
+    - "contemporary villa California"
+    - "California architect home"
 
 
 # ── X/Twitter Sources ──

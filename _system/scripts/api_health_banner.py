@@ -59,6 +59,7 @@ API_LABEL_MAP = {
     "xai_grok":   "xAI / Grok",
     "gemini":     "Gemini",
     "google_cse": "Google CSE",
+    "brave":      "Brave Search",
     "apify":      "Apify (partner scrape)",
 }
 
