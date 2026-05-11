@@ -394,6 +394,33 @@ def google_cse_search(api_key, cx, clusters, date_restrict="d7"):
     return results
 
 
+def _interleave_cluster_keywords(clusters):
+    """Yield (cluster_id, keyword) pairs round-robin across clusters.
+
+    Why: if we just iterated clusters in YAML order and hit a query cap,
+    we'd burn the entire budget on the first 2-3 clusters (insurance,
+    materials, regulation) and never touch architecture / Italian villa.
+    Round-robin guarantees every cluster gets a fair share even under
+    aggressive caps. With a cap of 30 across 7 clusters, each gets ~4
+    queries before any cluster runs out, which is exactly what we want
+    to balance the radar's current insurance bias.
+    """
+    cluster_iters = [
+        (cid, iter(c.get("keywords", []) or []))
+        for cid, c in clusters.items()
+    ]
+    while cluster_iters:
+        next_iters = []
+        for cid, it in cluster_iters:
+            try:
+                yield cid, next(it)
+                next_iters.append((cid, it))
+            except StopIteration:
+                # This cluster is exhausted; drop it from the rotation.
+                pass
+        cluster_iters = next_iters
+
+
 def _lookback_to_brave_freshness(lookback_days):
     """Map a numeric lookback window onto Brave's freshness parameter.
 
@@ -407,27 +434,32 @@ def _lookback_to_brave_freshness(lookback_days):
     return "py"
 
 
-def brave_search(api_key, clusters, lookback_days=7, query_cap=65):
+def brave_search(api_key, clusters, lookback_days=7, query_cap=30):
     """Search via Brave Web Search API — drop-in alternative to Google CSE.
 
     Why this exists: Google CSE has been returning 403 PERMISSION_DENIED
     on this account since 2026-04-27 (ticket open with Google). Brave's
-    Web Search has an independent index, a generous free tier (2000
-    queries/month, 1 qps), and the same coverage of luxury/architecture
-    publications we care about. It's enabled by setting BRAVE_API_KEY in
-    .env (get one for free at https://api.search.brave.com/).
+    Web Search has an independent index and the same coverage of luxury
+    /architecture publications we care about. Enabled by setting
+    BRAVE_API_KEY in .env (get one at https://api.search.brave.com/).
 
     When CSE comes back, both sources will run in parallel — Brave's
     independent index often surfaces results the Google index doesn't
     (and vice versa), so keeping both is a net win.
 
+    Pricing math (as of 2026-05): Brave Search is $5 per 1,000 requests,
+    but they apply a $5 monthly credit automatically. So the first 1,000
+    requests/month cost $0. With a daily radar cycle we'd burn
+    query_cap × 30 requests/month. We default to 30/day = 900/month,
+    leaving a ~10% safety margin under the free credit.
+
     Args:
       api_key: BRAVE_API_KEY (empty string → skip without burning credits)
       clusters: same clusters dict consumed by google_cse_search
       lookback_days: forwarded to freshness mapping
-      query_cap: hard cap on queries per run. Default 65 keeps a
-        full radar run under the free tier even when scheduled daily
-        (~65/day × 30 = 1950/month, leaves headroom).
+      query_cap: hard cap on queries per run. Default 30 keeps daily
+        scheduling under the free $5/month credit (30 × 30 = 900 < 1000).
+        Raise it only if you're OK paying $5 per extra 1,000 queries.
     """
     if not api_key or not api_key.strip():
         print("  [Brave] Skipped — BRAVE_API_KEY not configured. "
@@ -447,82 +479,77 @@ def brave_search(api_key, clusters, lookback_days=7, query_cap=65):
         "User-Agent": "MyVillaRadar/1.0 (+https://myvilla.la)",
     }
 
-    for cluster_id, cluster_data in clusters.items():
-        keywords = cluster_data.get("keywords", [])
-        for q in keywords:
-            if query_count >= query_cap:
-                print(f"  [Brave] Query cap reached ({query_count}), stopping")
-                break
-            try:
-                resp = requests.get(base_url, params={
-                    "q": q,
-                    "count": 5,
-                    "freshness": freshness,
-                    "country": "us",
-                    "safesearch": "moderate",
-                }, headers=headers, timeout=10)
-                resp.raise_for_status()
-                data = resp.json()
-                query_count += 1
-                consecutive_failures = 0
-
-                for item in data.get("web", {}).get("results", []):
-                    # Brave returns netloc-style host (e.g. "www.dezeen.com")
-                    # in profile.long_name or meta_url.hostname; fall back to
-                    # parsing the URL ourselves so the field is always set.
-                    url = item.get("url", "")
-                    pub = (
-                        (item.get("profile") or {}).get("long_name")
-                        or (item.get("meta_url") or {}).get("hostname")
-                        or ""
-                    )
-                    if not pub and url:
-                        try:
-                            pub = urllib.parse.urlparse(url).netloc
-                        except Exception:
-                            pub = ""
-
-                    results.append({
-                        "source": "brave",
-                        "cluster": cluster_id,
-                        "query": q,
-                        "title": item.get("title", ""),
-                        "url": url,
-                        "snippet": item.get("description", ""),
-                        "publication": pub,
-                        # Brave gives age as a human string like "2 days ago"
-                        # or sometimes a real ISO date in page_age.
-                        "date": item.get("page_age") or item.get("age") or "",
-                    })
-                # Free tier: 1 qps. Sleep slightly above 1s to avoid 429s.
-                time.sleep(1.05)
-            except requests.HTTPError as e:
-                status = e.response.status_code if e.response else "?"
-                if status == 429:
-                    # Rate limit — back off harder and continue.
-                    print(f"  [Brave] 429 rate-limited on {q!r}; backing off 5s")
-                    time.sleep(5)
-                    consecutive_failures += 1
-                elif status in (401, 403):
-                    print(f"  [Brave] HTTP {status} — key invalid or quota exhausted. Stopping.")
-                    break
-                else:
-                    print(f"  [Brave] HTTP {status} on {q!r}")
-                    consecutive_failures += 1
-                # Bail out if we hit 5 failures in a row — the API is
-                # clearly unhappy, no point burning credits.
-                if consecutive_failures >= 5:
-                    print(f"  [Brave] 5 consecutive failures, aborting")
-                    break
-            except Exception as e:
-                print(f"  [Brave] Error '{q}': {type(e).__name__}: {e}")
-                consecutive_failures += 1
-                if consecutive_failures >= 5:
-                    break
-        if consecutive_failures >= 5 or query_count >= query_cap:
+    aborted = False
+    for cluster_id, q in _interleave_cluster_keywords(clusters):
+        if query_count >= query_cap:
+            print(f"  [Brave] Query cap reached ({query_count}), stopping")
             break
+        if consecutive_failures >= 5:
+            print(f"  [Brave] 5 consecutive failures, aborting")
+            break
+        try:
+            resp = requests.get(base_url, params={
+                "q": q,
+                "count": 5,
+                "freshness": freshness,
+                "country": "us",
+                "safesearch": "moderate",
+            }, headers=headers, timeout=10)
+            resp.raise_for_status()
+            data = resp.json()
+            query_count += 1
+            consecutive_failures = 0
 
-    print(f"  [Brave] {len(results)} results from {query_count} queries")
+            for item in data.get("web", {}).get("results", []):
+                # Brave returns netloc-style host (e.g. "www.dezeen.com")
+                # in profile.long_name or meta_url.hostname; fall back to
+                # parsing the URL ourselves so the field is always set.
+                url = item.get("url", "")
+                pub = (
+                    (item.get("profile") or {}).get("long_name")
+                    or (item.get("meta_url") or {}).get("hostname")
+                    or ""
+                )
+                if not pub and url:
+                    try:
+                        pub = urllib.parse.urlparse(url).netloc
+                    except Exception:
+                        pub = ""
+
+                results.append({
+                    "source": "brave",
+                    "cluster": cluster_id,
+                    "query": q,
+                    "title": item.get("title", ""),
+                    "url": url,
+                    "snippet": item.get("description", ""),
+                    "publication": pub,
+                    # Brave gives age as a human string like "2 days ago"
+                    # or sometimes a real ISO date in page_age.
+                    "date": item.get("page_age") or item.get("age") or "",
+                })
+            # Free tier: 1 qps. Sleep slightly above 1s to avoid 429s.
+            time.sleep(1.05)
+        except requests.HTTPError as e:
+            status = e.response.status_code if e.response else "?"
+            if status == 429:
+                # Rate limit — back off harder and continue.
+                print(f"  [Brave] 429 rate-limited on {q!r}; backing off 5s")
+                time.sleep(5)
+                consecutive_failures += 1
+            elif status in (401, 403):
+                print(f"  [Brave] HTTP {status} — key invalid or quota exhausted. Stopping.")
+                aborted = True
+                break
+            else:
+                print(f"  [Brave] HTTP {status} on {q!r}")
+                consecutive_failures += 1
+        except Exception as e:
+            print(f"  [Brave] Error '{q}': {type(e).__name__}: {e}")
+            consecutive_failures += 1
+
+    print(f"  [Brave] {len(results)} results from {query_count} queries"
+          f"{' (aborted on auth/quota)' if aborted else ''}")
     return results
 
 
