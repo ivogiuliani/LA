@@ -4652,10 +4652,12 @@ def build_dashboard():
 
   {f'''
   <div class="section section-editorial">
-    <h2 class="section-heading">📆 Editorial Calendar (Instagram)<span class="section-count">{len(editorial)}</span></h2>
+    <h2 class="section-heading">📆 Editorial Plan (Instagram) <span class="section-count">{len(editorial)}</span></h2>
     <p class="section-subtitle">
-      Brand-foundation IG posts scheduled from <code>_system/social/calendar/</code>.
-      Distinct from reactive Social Posts (radar-driven). Approve, edit, then click
+      Auto-generated <strong>partner_echo</strong> posts only. The institutional pillars
+      (vision / archetype / system) are now managed by the human editorial team — they
+      remain in <code>_system/social/editorial_plan/</code> as a reference plan but are
+      not auto-drafted. Distinct from reactive Social Posts (radar-driven). Approve, edit, then click
       <strong>📦 Build package</strong> to produce a copy-paste folder ready to publish from the IG app.
     </p>
     <div class="editorial-toolbar">
@@ -7214,6 +7216,31 @@ class ReviewHandler(BaseHTTPRequestHandler):
             self._send_json({"ok": False, "error": f"File not found: {filename}"}, 404)
             return
 
+        # ── Journal-only: before archiving, persist the source URLs ──
+        # so the radar never re-suggests this article on future scans.
+        # The sidecar .json keeps the `sources[]` array from radar that
+        # inspired the journal piece; we mark each one as user_dismissed
+        # in previously_reported.json (same mechanism used by the Radar
+        # News "Discard" button — radar.py natively filters these out).
+        dismissed_source_urls = []
+        if content_type == "journal":
+            sidecar_src = src.with_suffix(".json")
+            if sidecar_src.exists():
+                try:
+                    sidecar = json.loads(sidecar_src.read_text(encoding="utf-8"))
+                    for s in (sidecar.get("sources") or []):
+                        u = (s.get("url") or "").strip()
+                        if u and u not in dismissed_source_urls:
+                            dismissed_source_urls.append(u)
+                except Exception as e:
+                    print(f"  Warning: could not parse sidecar to extract source URLs: {e}")
+
+            if dismissed_source_urls:
+                self._mark_urls_user_dismissed(
+                    dismissed_source_urls,
+                    reason_note=f"rejected journal: {filename}",
+                )
+
         archive_sub.mkdir(parents=True, exist_ok=True)
         dst = archive_sub / filename
         shutil.move(str(src), str(dst))
@@ -7227,7 +7254,61 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 shutil.move(str(sidecar_src), str(sidecar_dst))
                 print(f"  Archived sidecar JSON: {sidecar_src.name}")
 
-        self._send_json({"ok": True, "message": f"Archived: {filename}"})
+        msg = f"Archived: {filename}"
+        if dismissed_source_urls:
+            msg += f" (also dismissed {len(dismissed_source_urls)} source URL(s) so the radar won't re-suggest)"
+        self._send_json({
+            "ok": True,
+            "message": msg,
+            "dismissed_source_urls": dismissed_source_urls,
+        })
+
+    def _mark_urls_user_dismissed(self, urls, reason_note=""):
+        """Append a list of URLs to previously_reported.json as user_dismissed.
+
+        Idempotent: URLs already present are skipped. Used by both the
+        Radar News "Discard" button (single URL) and journal rejection
+        (multiple source URLs at once). Atomic write protects the index.
+        """
+        if not urls:
+            return 0
+        dedup_path = SYSTEM_DIR / "radar" / "previously_reported.json"
+        try:
+            if dedup_path.exists():
+                data = json.loads(dedup_path.read_text(encoding="utf-8"))
+            else:
+                data = {"reported_articles": []}
+            articles = data.setdefault("reported_articles", [])
+            existing = {a.get("url") for a in articles if a.get("url")}
+            added = 0
+            today = datetime.now().strftime("%Y-%m-%d")
+            for u in urls:
+                if u in existing:
+                    continue
+                articles.append({
+                    "date_first_reported": today,
+                    "source": "user_dismissed",
+                    "title": "",
+                    "score": None,
+                    "cluster": None,
+                    "action_type": "user_dismissed",
+                    "url": u,
+                    "note": reason_note,
+                })
+                existing.add(u)
+                added += 1
+            if added:
+                tmp = dedup_path.with_suffix(".json.tmp")
+                tmp.write_text(
+                    json.dumps(data, indent=2, ensure_ascii=False),
+                    encoding="utf-8",
+                )
+                tmp.replace(dedup_path)
+                print(f"  [dismiss] {added} URL(s) added to previously_reported.json ({reason_note})")
+            return added
+        except Exception as e:  # noqa: BLE001
+            print(f"  [dismiss] failed to update previously_reported.json: {e}")
+            return 0
 
     # ── /api/get_draft ──────────────────────────────────────────────
     def _handle_get_draft(self, filename, content_type):

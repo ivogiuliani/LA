@@ -404,7 +404,7 @@ def google_cse_search(api_key, cx, clusters, date_restrict="d7"):
 # networks, listing aggregators, and obvious construction-vendor SEO farms.
 # The AI scoring step would eventually discard them anyway, but pruning
 # them here saves a few cents per radar run on Sonnet tokens.
-_BRAVE_HOST_BLACKLIST = {
+_NOISE_HOST_BLACKLIST = {
     # Encyclopedias / wikis
     "wikipedia.org", "en.wikipedia.org",
     # Video / social
@@ -419,23 +419,45 @@ _BRAVE_HOST_BLACKLIST = {
     # Q&A / forums (low signal)
     "quora.com", "www.quora.com",
     "answers.com", "ask.com",
+    # Short-term rental marketplaces — they often appear for "luxury
+    # villa California" type queries but never produce actionable PR
+    # outreach. They're listing aggregators, not publications.
+    "airbnb.com", "www.airbnb.com",
+    "vrbo.com", "www.vrbo.com",
+    "homeaway.com", "www.homeaway.com",
+    "booking.com", "www.booking.com",
 }
 
 
-def _is_blacklisted_brave_host(host):
-    """True if a Brave result host is in the noise blacklist."""
+def _is_noise_host(host):
+    """True if a result host is on the global noise blacklist.
+
+    Used by both brave_search() at fetch time and deduplicate() at the
+    pipeline-merge stage, so the same low-signal domain is filtered no
+    matter which source surfaced it (Gemini, RSS, Reddit, etc).
+    """
     if not host:
         return False
     h = host.lower().strip().lstrip(".")
-    if h in _BRAVE_HOST_BLACKLIST:
+    if h in _NOISE_HOST_BLACKLIST:
         return True
     # Strip the leading subdomain once and re-check, so blog.foo.com
     # matches a foo.com entry. We don't go further than one strip to
     # avoid over-matching (e.g. foo.bar.org → bar.org).
     parts = h.split(".")
-    if len(parts) > 2 and ".".join(parts[1:]) in _BRAVE_HOST_BLACKLIST:
+    if len(parts) > 2 and ".".join(parts[1:]) in _NOISE_HOST_BLACKLIST:
         return True
     return False
+
+
+def _host_from_url(url):
+    """Best-effort URL → netloc (host) without throwing on garbage input."""
+    if not url:
+        return ""
+    try:
+        return urllib.parse.urlparse(url).netloc.lower()
+    except Exception:
+        return ""
 
 
 def _interleave_cluster_keywords(clusters):
@@ -558,7 +580,7 @@ def brave_search(api_key, clusters, lookback_days=7, query_cap=30):
 
                 # Filter out Wikipedia / YouTube / social / listing farms
                 # so the AI scorer doesn't waste tokens on them.
-                if _is_blacklisted_brave_host(host):
+                if _is_noise_host(host):
                     continue
 
                 pub = (
@@ -1404,10 +1426,18 @@ def gemini_search(api_key, config, lookback_days=7):
 # ══════════════════════════════════════════════════════════════════════
 
 def deduplicate(results, known_urls, known_titles):
-    """Remove already-reported URLs/titles and internal duplicates."""
+    """Remove already-reported URLs, internal duplicates, and noise hosts.
+
+    Three filters in one pass:
+      1. Known-already URLs (radar's persistent dedup index).
+      2. Within-batch duplicates (URL or fuzzy-equal lowercased title).
+      3. Noise hosts (Wikipedia, YouTube, social, Airbnb / Vrbo
+         marketplaces, etc.) — see _NOISE_HOST_BLACKLIST.
+    """
     seen_urls = set(known_urls)
     seen_titles = set(known_titles)
     unique = []
+    noise_skipped = 0
     for r in results:
         url = r.get("url", "")
         title_key = r.get("title", "").lower().strip()
@@ -1415,6 +1445,14 @@ def deduplicate(results, known_urls, known_titles):
         # Skip empty URLs
         if not url and not title_key:
             continue
+
+        # Filter noise hosts (Airbnb / Vrbo / Wikipedia / YouTube / etc.)
+        # regardless of which source surfaced this result.
+        host = _host_from_url(url) or (r.get("publication") or "").lower().strip()
+        if _is_noise_host(host):
+            noise_skipped += 1
+            continue
+
         # URL dedup
         if url and url in seen_urls:
             continue
@@ -1429,7 +1467,11 @@ def deduplicate(results, known_urls, known_titles):
         unique.append(r)
 
     removed = len(results) - len(unique)
-    print(f"  [Dedup] {removed} duplicates removed, {len(unique)} unique")
+    if noise_skipped:
+        print(f"  [Dedup] {removed} removed ({noise_skipped} noise hosts + "
+              f"{removed - noise_skipped} duplicates), {len(unique)} unique")
+    else:
+        print(f"  [Dedup] {removed} duplicates removed, {len(unique)} unique")
     return unique
 
 

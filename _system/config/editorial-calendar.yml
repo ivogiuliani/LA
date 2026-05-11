@@ -9,20 +9,20 @@ account:
   timezone: "America/Los_Angeles"
 
 cadence:
-  posts_per_week: 3
-  # 3 editorial slots/week, fixed days. Reactive (Tue/Fri) handled by generate_social.py.
+  # 2026-05-04: institutional pillars (vision / archetype / system) are now
+  # handled by a HUMAN editorial team — no auto-generation. Only
+  # partner_echo remains in the automation. The pillars stay defined
+  # below as a reference plan for the human team. Reactive posts
+  # (Tue/Fri) continue via generate_social.py.
+  posts_per_week: 1
   schedule:
-    - day: "monday"
-      time: "09:00"
-      pillar: "vision"
-    - day: "wednesday"
-      time: "09:00"
-      pillar_rotation:                # alternates week-by-week
-        - "archetype"
-        - "system"
     - day: "thursday"
       time: "09:00"
-      pillar: "partner_echo"          # Phase 2 — stub-only until partner_scraper.py lands
+      pillar: "partner_echo"          # partner reposts, weekly
+
+  # Previous schedule (now human-managed, kept for reference):
+  # - monday    09:00  vision
+  # - wednesday 09:00  archetype / system (rotation)
 
 # ══════════════════════════════════════════════════════════════════════
 # PILLARS
@@ -32,6 +32,7 @@ pillars:
   vision:
     name: "Vision"
     short: "The thesis"
+    auto_generate: false   # 2026-05-04: human editorial team handles institutional pillars
     description: >
       Why the Italian villa typology in LA. Resilience as architectural continuity,
       not as a sales pitch. "Italian Soul, Californian Body" manifesto territory.
@@ -52,6 +53,7 @@ pillars:
 
   archetype:
     name: "Archetypes"
+    auto_generate: false   # 2026-05-04: human editorial team handles institutional pillars
     short: "Form language"
     description: >
       The 9 architectural archetypes from project_brief.md (pp.15-44),
@@ -112,6 +114,7 @@ pillars:
 
   system:
     name: "System"
+    auto_generate: false   # 2026-05-04: human editorial team handles institutional pillars
     short: "Concrete as language"
     description: >
       Reinforced concrete as architectural medium — moodboard, structure,

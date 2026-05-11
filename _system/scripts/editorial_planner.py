@@ -30,7 +30,12 @@ SYSTEM_DIR = SCRIPT_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
 HISTORY_DIR = SYSTEM_DIR / "history"
 SOCIAL_DIR = SYSTEM_DIR / "social"
-CALENDAR_DIR = SOCIAL_DIR / "calendar"
+# Renamed 2026-05-04: was "calendar/", but now most pillars (vision /
+# archetype / system) are human-managed and this folder is a hybrid
+# plan — partner_echo slots are auto-driven, the rest is reference for
+# the human editorial team. The "editorial_plan" name captures both
+# uses.
+CALENDAR_DIR = SOCIAL_DIR / "editorial_plan"
 
 CONFIG_FILE = CONFIG_DIR / "editorial-calendar.yml"
 LEDGER_FILE = HISTORY_DIR / "editorial_ledger.json"
@@ -298,7 +303,7 @@ def plan_month(year, month, config, ledger):
 # ══════════════════════════════════════════════════════════════════════
 
 def write_calendar(year, month, slots, dry_run=False):
-    """Write slots to _system/social/calendar/YYYY-MM.yml."""
+    """Write slots to _system/social/editorial_plan/YYYY-MM.yml."""
     CALENDAR_DIR.mkdir(parents=True, exist_ok=True)
 
     out = {
