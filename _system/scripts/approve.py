@@ -1236,6 +1236,34 @@ def scan_radar_opportunities():
     viral_raw = data.get("viral_opportunities", []) or []
     early_raw = data.get("early_signals", []) or []
 
+    # ── Filter out user-dismissed URLs ────────────────────────────────
+    # Items the operator explicitly dismissed via "Discard" on a radar
+    # card are persisted in previously_reported.json with
+    # action_type="user_dismissed". We exclude them here so a page
+    # refresh confirms the dismissal immediately, without waiting for
+    # the next radar cycle (radar.py also honors this file natively, so
+    # the URL is filtered at both layers).
+    dismissed_urls = set()
+    dedup_path = SYSTEM_DIR / "radar" / "previously_reported.json"
+    if dedup_path.exists():
+        try:
+            dedup_data = json.loads(dedup_path.read_text(encoding="utf-8"))
+            for a in dedup_data.get("reported_articles", []):
+                if a.get("action_type") == "user_dismissed" and a.get("url"):
+                    dismissed_urls.add(a["url"])
+        except Exception as e:
+            print(f"  [radar] Failed to load dismissals from {dedup_path.name}: {e}")
+
+    if dismissed_urls:
+        before = len(qualified) + len(viral_raw) + len(early_raw)
+        qualified = [x for x in qualified if x.get("url") not in dismissed_urls]
+        viral_raw = [x for x in viral_raw  if x.get("url") not in dismissed_urls]
+        early_raw = [x for x in early_raw  if x.get("url") not in dismissed_urls]
+        after = len(qualified) + len(viral_raw) + len(early_raw)
+        if before != after:
+            print(f"  [radar] hid {before - after} user-dismissed item(s) "
+                  f"from the dashboard view")
+
     # Markdown path (if generate_radar_report was run with --markdown)
     md_file = radar_file.with_suffix(".md")
     md_path = md_file.name if md_file.exists() else None
@@ -2276,6 +2304,21 @@ def build_dashboard():
                 if snippet and not insight_block else ''
             )
 
+            # Discard footer — single button at the bottom of every Radar
+            # News card. Adds the URL to previously_reported.json so the
+            # item disappears immediately AND is excluded from every
+            # future radar scan. URL is escaped for the JS context so a
+            # URL with quotes can't break the handler.
+            discard_block = (
+                f'<div class="news-card-discard">'
+                f'<button class="btn btn-discard-news" '
+                f'onclick="dismissRadarItem(\'{_esc_js(url)}\', this)" '
+                f'title="Hide this item and prevent it from re-appearing in future radar scans">'
+                f'🗑 Discard'
+                f'</button>'
+                f'</div>'
+            )
+
             news_cards += f"""
         <div class="card news-card" data-score="{score}" data-type="{dtype}">
           <div class="card-status-stripe"></div>
@@ -2293,6 +2336,7 @@ def build_dashboard():
             {insight_block}
             {tweet_reply_block}
             {pitch_block}
+            {discard_block}
           </div>
         </div>"""
 
@@ -2842,6 +2886,36 @@ def build_dashboard():
     color: #888;
     margin: -0.6rem 0 1rem;
     font-style: italic;
+  }}
+
+  /* Discreet Discard footer at the bottom of every Radar News card.
+     Right-aligned, neutral tone — it's a permanent dismissal so we
+     don't want it visually competing with Send/Copy buttons above. */
+  .news-card-discard {{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
+    border-top: 1px dashed rgba(0,0,0,0.08);
+  }}
+  .btn-discard-news {{
+    background: transparent;
+    color: #888;
+    border: 1px solid rgba(0,0,0,0.12);
+    padding: 0.35rem 0.85rem;
+    font-size: 0.78rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s;
+  }}
+  .btn-discard-news:hover {{
+    color: #a85d3f;
+    border-color: #a85d3f;
+    background: rgba(168,93,63,0.05);
+  }}
+  .btn-discard-news:disabled {{
+    opacity: 0.5;
+    cursor: wait;
   }}
   .radar-meta {{
     margin-top: 0.6rem;
@@ -4919,6 +4993,49 @@ function skipViral(btn) {{
   showToast('Skipped — reload page to restore');
 }}
 
+/* ── Radar News: permanent dismiss ──────────────
+   Tells the backend to add the URL to previously_reported.json so this
+   item never appears again on any future radar scan. The card fades
+   out and is removed from the DOM, and a refresh confirms the
+   dismissal (the server filters dismissed URLs at render time).
+*/
+function dismissRadarItem(url, btn) {{
+  if (!url) return;
+  if (!confirm('Discard this item? It will no longer appear in this radar nor in any future radar scan.')) {{
+    return;
+  }}
+  btn.disabled = true;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner"></span>Discarding...';
+  fetch('/api/dismiss-radar-item', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{url: url}})
+  }})
+  .then(r => r.json())
+  .then(resp => {{
+    if (resp.ok) {{
+      const card = btn.closest('.news-card');
+      if (card) {{
+        card.style.transition = 'opacity 0.3s, transform 0.3s';
+        card.style.opacity = '0';
+        card.style.transform = 'scale(0.98)';
+        setTimeout(() => {{ if (card.parentNode) card.parentNode.removeChild(card); }}, 320);
+      }}
+      showToast('Discarded — will not reappear.');
+    }} else {{
+      btn.disabled = false;
+      btn.innerHTML = orig;
+      showToast('Discard failed: ' + (resp.error || 'unknown'));
+    }}
+  }})
+  .catch(err => {{
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    showToast('Network error: ' + err.message);
+  }});
+}}
+
 /* ── Journalist Pitch: copy email body (edited) ── */
 function copyPitch(btn) {{
   const card = btn.closest('.card');
@@ -6840,6 +6957,9 @@ class ReviewHandler(BaseHTTPRequestHandler):
         if parsed.path == "/api/dismiss-reply":
             self._handle_dismiss_reply(data.get("thread_id", ""))
             return
+        if parsed.path == "/api/dismiss-radar-item":
+            self._handle_dismiss_radar_item(data.get("url", ""))
+            return
 
         # ── Editorial IG endpoints (Phase 1 — draft-only) ─────────────
         # These intentionally bypass the journal/social file/type
@@ -8058,6 +8178,64 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 {"ok": False, "error": f"{type(e).__name__}: {e}"},
                 500,
             )
+
+    # ── /api/dismiss-radar-item ─────────────────────────────────────
+    def _handle_dismiss_radar_item(self, url):
+        """Permanently dismiss a Radar News item by URL.
+
+        Appends the URL to `_system/radar/previously_reported.json` with
+        action_type='user_dismissed' so:
+          1. radar.py excludes it from every future scan (existing dedup
+             machinery already honors the URL set in that file).
+          2. scan_radar_opportunities() in this server filters it out of
+             the current dashboard view immediately, so a page refresh
+             confirms the dismissal.
+
+        Reversible — the operator can edit the JSON to remove the entry.
+        """
+        url = (url or "").strip()
+        if not url:
+            self._send_json({"ok": False, "error": "missing 'url'"}, 400)
+            return
+
+        dedup_path = SYSTEM_DIR / "radar" / "previously_reported.json"
+        try:
+            if dedup_path.exists():
+                data = json.loads(dedup_path.read_text(encoding="utf-8"))
+            else:
+                data = {"reported_articles": []}
+
+            articles = data.setdefault("reported_articles", [])
+            # Skip duplicate entries — idempotent.
+            if any(a.get("url") == url for a in articles):
+                self._send_json({"ok": True, "message": "already dismissed",
+                                 "url": url})
+                return
+
+            articles.append({
+                "date_first_reported": datetime.now().strftime("%Y-%m-%d"),
+                "source": "user_dismissed",
+                "title": "",
+                "score": None,
+                "cluster": None,
+                "action_type": "user_dismissed",
+                "url": url,
+            })
+
+            # Atomic write so a partial failure can't corrupt the dedup file.
+            tmp = dedup_path.with_suffix(".json.tmp")
+            tmp.write_text(
+                json.dumps(data, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            tmp.replace(dedup_path)
+
+            print(f"  [dismiss-radar] {url}")
+            self._send_json({"ok": True, "url": url,
+                             "message": "Dismissed (will not reappear)"})
+        except Exception as e:  # noqa: BLE001
+            print(f"  [dismiss-radar] error: {type(e).__name__}: {e}")
+            self._send_json({"ok": False, "error": str(e)}, 500)
 
     def _archive_reply_draft(self, thread_id, *, sent):
         """Move `_drafts/email_replies/<id>.json` aside.
