@@ -944,6 +944,15 @@
       "cluster": null,
       "action_type": null,
       "url": null
+    },
+    {
+      "date_first_reported": "2026-05-11",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.airbnb.com/rooms/44593416"
     }
   ]
 }

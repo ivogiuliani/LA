@@ -5242,6 +5242,18 @@ function sendOutreachEmail(btn, email, mode) {{
     }}
   }}
 
+  /* Pull the article URL out of the card header (.news-title a) so the
+     backend can persist it as "user_dismissed" in previously_reported.json.
+     This prevents future radar scans from re-suggesting the same article
+     after we've already sent a pitch on it — guarding against
+     double-sends to journalists. Missing URL is OK; backend treats it
+     as optional. */
+  let sourceUrl = '';
+  try {{
+    const link = card.querySelector('.news-title a, .card-title a');
+    sourceUrl = link ? link.getAttribute('href') || '' : '';
+  }} catch (e) {{ /* ignore — extraction is best-effort */ }}
+
   fetch('/api/send-email', {{
     method: 'POST',
     headers: {{'Content-Type': 'application/json'}},
@@ -5250,6 +5262,7 @@ function sendOutreachEmail(btn, email, mode) {{
       subject: subject,
       body: body,
       uploaded_attachments: attachments,
+      source_url: sourceUrl,
     }})
   }})
   .then(r => r.json().then(data => ({{status: r.status, data: data}})))
@@ -5263,7 +5276,23 @@ function sendOutreachEmail(btn, email, mode) {{
         showToast('Dry-run OK — no real send. Flip config.yml dry_run:false to send for real.');
       }} else {{
         btn.textContent = 'Sent ✓';
-        showToast('Email sent to ' + email + ' (msg ' + (data.message_id || '?') + ')');
+        const dismissedNote = (data.dismissed_source_url
+          ? ' — article will not reappear in future radar scans'
+          : '');
+        showToast('Email sent to ' + email + ' (msg ' + (data.message_id || '?') + ')' + dismissedNote);
+        /* Fade the card out after a real send (not dry-run). The
+           backend has already persisted the source_url so a refresh
+           confirms the dismissal anyway, but the visual feedback is
+           important: the operator sees the card disappear and knows
+           the radar won't propose it again. */
+        if (data.dismissed_source_url) {{
+          setTimeout(() => {{
+            card.style.transition = 'opacity 0.4s, transform 0.4s';
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.98)';
+            setTimeout(() => {{ if (card.parentNode) card.parentNode.removeChild(card); }}, 420);
+          }}, 1200);
+        }}
       }}
       setTimeout(() => {{
         btn.classList.remove('sent');
@@ -6932,6 +6961,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 data.get("subject", ""),
                 data.get("body", ""),
                 uploaded_attachments=data.get("uploaded_attachments") or [],
+                source_url=(data.get("source_url") or "").strip(),
             )
             return
 
@@ -8007,7 +8037,8 @@ class ReviewHandler(BaseHTTPRequestHandler):
         return paths
 
     # ── /api/send-email ──────────────────────────────────────────────
-    def _handle_send_email(self, to, subject, body, uploaded_attachments=None):
+    def _handle_send_email(self, to, subject, body,
+                           uploaded_attachments=None, source_url=""):
         """
         Send an outreach email through the Gmail API.
 
@@ -8021,6 +8052,12 @@ class ReviewHandler(BaseHTTPRequestHandler):
         the user attached from the dashboard. The canonical voice rule is
         "niente allegati nella prima mail", but the dashboard lets the user
         override this case-by-case when they judge it appropriate.
+
+        `source_url` is the URL of the radar article that produced this
+        pitch. When a REAL send succeeds (not dry_run), the URL is
+        appended to previously_reported.json as user_dismissed so the
+        radar never re-proposes it — guards against accidentally sending
+        a second pitch to the same journalist about the same article.
 
         Returns the SendResult as JSON. When `dry_run: true` in config.yml,
         the response has ok=true and reason='dry_run' but no message_id.
@@ -8059,6 +8096,24 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 status = 409  # Conflict — address known-bad, don't retry
             else:
                 status = 500
+
+            # Anti-double-send guard: on a REAL successful send (not
+            # dry_run), mark the source URL as user_dismissed so the
+            # radar never re-suggests it. We only do this on real sends
+            # so a dry-run rehearsal doesn't permanently hide the item.
+            if (result.get("ok")
+                    and result.get("reason") != "dry_run"
+                    and source_url):
+                added = self._mark_urls_user_dismissed(
+                    [source_url],
+                    reason_note=f"email sent to {to}",
+                )
+                if added:
+                    # Surface the dismissal in the response so the JS
+                    # can fade the card out + tell the operator.
+                    result = dict(result)
+                    result["dismissed_source_url"] = source_url
+
             self._send_json(result, status)
         except ImportError as e:
             self._send_json(
