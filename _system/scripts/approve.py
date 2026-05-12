@@ -64,6 +64,81 @@ _AUTO_ARCHIVE_TARGETS = (
 )
 
 
+def auto_generate_ig_companions(verbose=True):
+    """For every journal draft in _drafts/journal/<slug>.html, ensure a
+    sibling <slug>.ig.md companion exists. Generate via Anthropic if it
+    doesn't.
+
+    Runs at server startup so the operator never has to click the
+    "Genera Instagram companion" button manually — the companion is
+    ready inline on the card by the time the dashboard loads.
+
+    Cost: ~$0.01-0.02 per generation (Sonnet, ~300 token I/O). Skipped
+    if the companion already exists, so steady-state cost is zero.
+
+    Failures are logged per-article and the sweep continues; one bad
+    sidecar (or one Anthropic blip) shouldn't block the server start.
+    Returns a dict {slug: result} for the boot banner.
+    """
+    journal_dir = DRAFTS_DIR / "journal"
+    if not journal_dir.exists():
+        return {}
+
+    # Build the to-generate list first so we can summarise upfront.
+    pending = []
+    for html_file in journal_dir.glob("*.html"):
+        stem = html_file.stem
+        companion = journal_dir / f"{stem}.ig.md"
+        if companion.exists():
+            continue
+        sidecar = html_file.with_suffix(".json")
+        if not sidecar.exists():
+            if verbose:
+                print(f"  [ig-companion] skip {stem}: no .json sidecar")
+            continue
+        pending.append((stem, sidecar, companion))
+
+    if not pending:
+        return {}
+
+    if verbose:
+        print(f"  [ig-companion] generating {len(pending)} missing companion(s)...")
+
+    script = SCRIPT_DIR / "generate_ig_companion.py"
+    if not script.exists():
+        if verbose:
+            print(f"  [ig-companion] generator script not found at {script}; skipping")
+        return {}
+
+    summary = {}
+    for stem, sidecar, companion in pending:
+        try:
+            r = subprocess.run(
+                [sys.executable, str(script),
+                 "--article", str(sidecar),
+                 "--output",  str(companion)],
+                capture_output=True, text=True, timeout=60,
+            )
+            if r.returncode == 0:
+                summary[stem] = "ok"
+                if verbose:
+                    print(f"  [ig-companion] ✓ {stem}")
+            else:
+                err = (r.stderr or r.stdout or "?").strip()[:200]
+                summary[stem] = f"fail: {err}"
+                if verbose:
+                    print(f"  [ig-companion] ✗ {stem}: {err}")
+        except subprocess.TimeoutExpired:
+            summary[stem] = "timeout"
+            if verbose:
+                print(f"  [ig-companion] ✗ {stem}: timeout (>60s)")
+        except Exception as e:  # noqa: BLE001
+            summary[stem] = f"error: {type(e).__name__}"
+            if verbose:
+                print(f"  [ig-companion] ✗ {stem}: {type(e).__name__}: {e}")
+    return summary
+
+
 def auto_archive_old_drafts(threshold_days=AUTO_ARCHIVE_DAYS, verbose=True):
     """Move stale drafts from _drafts/<type>/ to _archive/<type>/.
 
@@ -1563,7 +1638,9 @@ def build_dashboard():
               <a class="btn btn-edit" href="/preview?file={_esc(d['file'])}&edit=1" target="_blank">Modifica</a>
               <button class="btn btn-image" onclick="openImagePicker('{_esc_js(d['file'])}', this)">Scegli immagine</button>
               <button class="btn btn-opus" onclick="openReviseModal('{_esc_js(d['file'])}', 'journal', this)">Revise</button>
-              <button class="btn btn-approve" onclick="doAction('approve', '{_esc_js(d['file'])}', 'journal', this)">Pubblica</button>
+              <button class="btn btn-approve" onclick="doAction('approve', '{_esc_js(d['file'])}', 'journal', this)">📝 Pubblica journal</button>
+              <button class="btn btn-approve-ig btn-disabled" disabled
+                      title="Da attivare quando l'account Instagram sarà configurato. Per ora il caption resta nel draft.">📷 Pubblica IG</button>
               <button class="btn btn-reject" onclick="doAction('reject', '{_esc_js(d['file'])}', 'journal', this)">Cancella</button>
             </div>
           </div>
@@ -4242,6 +4319,29 @@ def build_dashboard():
     color: #fff;
   }}
   .btn-approve:hover {{ background: #4e5d42; box-shadow: 0 2px 8px rgba(92,107,79,0.3); }}
+
+  /* Pubblica IG — gemello di btn-approve ma in rosa-magenta (coerente
+     col blocco IG companion). Resta disabilitato finché l'account
+     Instagram non è collegato; il :disabled state lo rende grigiastro
+     e non-cliccabile, e il tooltip spiega perché. */
+  .btn-approve-ig {{
+    background: #b03060;
+    color: #fff;
+  }}
+  .btn-approve-ig:hover {{ background: #8e2650; box-shadow: 0 2px 8px rgba(176,48,96,0.3); }}
+  .btn-approve-ig:disabled,
+  .btn-approve-ig.btn-disabled {{
+    background: #d8c8d0;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+  }}
+  .btn-approve-ig:disabled:hover,
+  .btn-approve-ig.btn-disabled:hover {{
+    background: #d8c8d0;
+    box-shadow: none;
+  }}
 
   .btn-reject {{
     background: var(--terracotta);
@@ -7429,23 +7529,25 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 shutil.move(str(sidecar_src), str(sidecar_dst))
                 print(f"  Moved sidecar JSON: {sidecar_src.name} -> blog/")
 
-            # ── IG companion (if present): approve alongside ────────
-            # The inline editor on the journal card has already saved
-            # any edits to <stem>.ig.md via /api/save-ig-companion.
-            # On Pubblica we move that file straight to
-            # _system/social/posts/approved/ so the IG publish layer
-            # picks it up without a second review step. The new file
-            # name follows the social-post convention so existing
-            # tooling reads it without special-casing.
+            # ── IG companion: decoupled from journal publish ────────
+            # 2026-05-12: the operator wants journal-publish and IG-publish
+            # to be separate clicks (the IG button on the card is the
+            # other "Pubblica" — currently disabled until the IG account
+            # is wired up).
+            #
+            # So we leave the .ig.md companion in place in _drafts/journal/
+            # when the journal article is published. It becomes orphaned
+            # (no sibling .html anymore) but the file stays there for the
+            # operator to either:
+            #   - approve it later via the (future) "Pubblica IG" button
+            #   - let auto-archive sweep it after 14 days
+            # When the IG account goes live, we'll add an
+            # /approve-ig endpoint that moves the file to
+            # _system/social/posts/approved/.
             companion_src = src.with_suffix(".ig.md")
             if companion_src.exists():
-                approved_social = SYSTEM_DIR / "social" / "posts" / "approved"
-                approved_social.mkdir(parents=True, exist_ok=True)
-                date_prefix = datetime.now().strftime("%Y-%m-%d")
-                article_stem = src.stem
-                companion_dst = approved_social / f"{date_prefix}-ig-journal-{article_stem}.md"
-                shutil.move(str(companion_src), str(companion_dst))
-                print(f"  Approved IG companion: {companion_dst.name}")
+                print(f"  IG companion left in place: {companion_src.name} "
+                      f"(awaiting separate 'Pubblica IG' action)")
 
             # Update journal index
             idx_script = SCRIPT_DIR / "update_journal_index.py"
@@ -9316,6 +9418,11 @@ def main():
         "--archive-days", type=int, default=AUTO_ARCHIVE_DAYS,
         help=f"Override the auto-archive threshold (default {AUTO_ARCHIVE_DAYS} days).",
     )
+    parser.add_argument(
+        "--no-auto-ig", action="store_true",
+        help="Skip the startup pass that auto-generates IG companions "
+             "for journal drafts. Useful for offline / no-API runs.",
+    )
     args = parser.parse_args()
 
     # Auto-archive: prune stale drafts before the dashboard renders, so
@@ -9326,6 +9433,16 @@ def main():
         summary = auto_archive_old_drafts(threshold_days=args.archive_days)
         if not summary:
             print(f"  [auto-archive] nothing older than {args.archive_days}d to move.")
+        print()
+
+    # Auto-generate IG companions for journal drafts that don't have one
+    # yet. The operator should never have to click "Genera" — the IG
+    # preview is always pre-populated by the time the dashboard loads.
+    if not args.no_auto_ig:
+        print("  Auto-generating missing IG companions...")
+        ig_summary = auto_generate_ig_companions()
+        if not ig_summary:
+            print("  [ig-companion] all journal drafts already have a companion.")
         print()
 
     # Find a free port starting from --port (retries up to 10 ports)

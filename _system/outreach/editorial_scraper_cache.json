@@ -189,5 +189,84 @@
   "airbnb.com": {
     "cached_at": 1778480797.783819,
     "result": null
+  },
+  "liveinsurancenews.com": {
+    "cached_at": 1778563533.8586628,
+    "result": null
+  },
+  "forbes.com": {
+    "cached_at": 1778563535.398357,
+    "result": {
+      "email": "feedback@forbes.com",
+      "source": "article_scraped",
+      "path": "/sites/emmareynolds/2026/05/06/a-400-million-la-home-is-the-most-expensive-ever-listed-in-the-us/",
+      "score": 13
+    }
+  },
+  "emberprousa.com": {
+    "cached_at": 1778563535.946039,
+    "result": null
+  },
+  "dailynews.com": {
+    "cached_at": 1778563550.465583,
+    "result": {
+      "email": "dnmetro@dailynews.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 7
+    }
+  },
+  "smdp.com": {
+    "cached_at": 1778563551.933575,
+    "result": {
+      "email": "editor@smdp.com",
+      "source": "about_page",
+      "path": "/about",
+      "score": 18
+    }
+  },
+  "insurancejournal.com": {
+    "cached_at": 1778563571.423043,
+    "result": {
+      "email": "newsdesk@insurancejournal.com",
+      "source": "article_scraped",
+      "path": "/news/west/2026/05/06/868665.htm",
+      "score": 7
+    }
+  },
+  "movoto.com": {
+    "cached_at": 1778563571.964842,
+    "result": null
+  },
+  "latimes.com": {
+    "cached_at": 1778563579.7512,
+    "result": {
+      "email": "tips@latimes.com",
+      "source": "article_scraped",
+      "path": "/tips",
+      "score": 20
+    }
+  },
+  "theguardian.com": {
+    "cached_at": 1778563583.139221,
+    "result": {
+      "email": "media@theguardian.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 11
+    }
+  },
+  "durabondfencing.com": {
+    "cached_at": 1778563612.753448,
+    "result": null
+  },
+  "insuranceforgood.org": {
+    "cached_at": 1778563618.5366762,
+    "result": {
+      "email": "info@insuranceforgood.org",
+      "source": "about_page",
+      "path": "/about",
+      "score": 11
+    }
   }
 }

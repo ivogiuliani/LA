@@ -953,6 +953,102 @@
       "cluster": null,
       "action_type": "user_dismissed",
       "url": "https://www.airbnb.com/rooms/44593416"
+    },
+    {
+      "date_first_reported": "2026-05-12",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.prnewswire.com/news-releases/as-embers-travel-miles-and-drive-most-home-ignitions-defensible-space-is-evolving-302763564.html"
+    },
+    {
+      "date_first_reported": "2026-05-12",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/400-million-megamansion-los-angeles-bel-air-1238025360/",
+      "note": "email sent to editorial@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-05-12",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.gov.ca.gov/2026/05/04/governor-newsom-warns-insurance-companies-after-major-state-enforcement-against-state-farm/"
+    },
+    {
+      "date_first_reported": "2026-05-12",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.greenhomebuildermag.com/architect-designs-fire-resistant-home-in-pacific-palisades/"
+    },
+    {
+      "date_first_reported": "2026-05-12",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://emberprousa.com/california-fair-plan-explained-what-homeowners-need-to-know-in-2026/"
+    },
+    {
+      "date_first_reported": "2026-05-12",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dailynews.com/2026/05/06/two-california-home-insurers-to-raise-rates-expand-coverage-by-late-2026/",
+      "note": "email sent to dnmetro@dailynews.com"
+    },
+    {
+      "date_first_reported": "2026-05-12",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/news/west/2026/05/06/868665.htm",
+      "note": "email sent to newsdesk@insurancejournal.com"
+    },
+    {
+      "date_first_reported": "2026-05-12",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/business/story/2026-05-04/state-farm-wild-fires-fines-regulators-license-mishandling-fire-claims-eaton-palisades",
+      "note": "email sent to tips@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-05-12",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.theguardian.com/us-news/2026/may/04/california-state-farm-insurance-violations-wildfires",
+      "note": "email sent to media@theguardian.com"
+    },
+    {
+      "date_first_reported": "2026-05-12",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.sfchronicle.com/california/article/farmers-home-insurance-rate-hike-22253335.php",
+      "note": "email sent to feedback@sfchronicle.com"
     }
   ]
 }
