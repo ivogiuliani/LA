@@ -52,15 +52,23 @@ ARCHIVE_DIR = ROOT_DIR / "_archive"
 # deleted. Operator can fish a file back out of _archive/<type>/ if
 # they change their mind.
 
-AUTO_ARCHIVE_DAYS = 14
+AUTO_ARCHIVE_DAYS = 14   # default for journal + email_replies
 
-# Source draft folder → (extensions to consider, archive subfolder).
-# Same name pairs in _drafts/ and _archive/ so a manual restore is a
-# trivial copy back.
+# Source draft folder → (extensions to consider, threshold in days).
+# Per-type thresholds because the content types have very different
+# half-lives:
+#   - social reactive: 7 days. The draft mtime is essentially the
+#     publication date of the source article it reacts to (the radar
+#     generates within 24h of finding the article). Commenting on
+#     news older than a week reads as late / out-of-touch.
+#   - journal articles: 14 days. They take longer to refine and the
+#     operator may sit on a piece for two weeks before publishing.
+#   - email_replies: 14 days. Journalist responses worth following up
+#     for a couple of weeks; older = stale conversation.
 _AUTO_ARCHIVE_TARGETS = (
-    ("journal",        (".html", ".json")),
-    ("social",         (".md",)),
-    ("email_replies",  (".json",)),
+    ("journal",        (".html", ".json"),  14),
+    ("social",         (".md",),             7),
+    ("email_replies",  (".json",),          14),
 )
 
 
@@ -139,7 +147,7 @@ def auto_generate_ig_companions(verbose=True):
     return summary
 
 
-def auto_archive_old_drafts(threshold_days=AUTO_ARCHIVE_DAYS, verbose=True):
+def auto_archive_old_drafts(threshold_days=None, verbose=True):
     """Move stale drafts from _drafts/<type>/ to _archive/<type>/.
 
     Runs at server startup. Returns a dict {type: count_moved} so the
@@ -147,16 +155,27 @@ def auto_archive_old_drafts(threshold_days=AUTO_ARCHIVE_DAYS, verbose=True):
     the same name already exists in _archive/ (rare), a numeric suffix
     is added so we never silently overwrite.
 
+    `threshold_days`:
+      - None (default): use the per-type threshold encoded in
+        _AUTO_ARCHIVE_TARGETS (journal=14, social=7, replies=14).
+      - int: override across all types (used by --archive-days CLI flag
+        for one-off cleanups; e.g. --archive-days 3 to aggressively
+        compact the dashboard before a demo).
+
     Errors per-file are logged and the sweep continues — one corrupt
     file shouldn't block the entire archive run.
     """
     import time as _time
 
-    cutoff = _time.time() - (threshold_days * 86400)
     moved_summary = {}
     drafts_root = ROOT_DIR / "_drafts"
+    now = _time.time()
 
-    for type_name, exts in _AUTO_ARCHIVE_TARGETS:
+    for type_name, exts, type_threshold in _AUTO_ARCHIVE_TARGETS:
+        # CLI override beats the per-type default.
+        effective_threshold = threshold_days if threshold_days is not None else type_threshold
+        cutoff = now - (effective_threshold * 86400)
+
         src_dir = drafts_root / type_name
         if not src_dir.exists():
             continue
@@ -188,7 +207,7 @@ def auto_archive_old_drafts(threshold_days=AUTO_ARCHIVE_DAYS, verbose=True):
             moved_summary[type_name] = count
             if verbose:
                 print(f"  [auto-archive] {type_name}: moved {count} drafts "
-                      f"older than {threshold_days}d → _archive/{type_name}/")
+                      f"older than {effective_threshold}d → _archive/{type_name}/")
     return moved_summary
 
 
@@ -9415,8 +9434,12 @@ def main():
              f"debugging or one-off runs.",
     )
     parser.add_argument(
-        "--archive-days", type=int, default=AUTO_ARCHIVE_DAYS,
-        help=f"Override the auto-archive threshold (default {AUTO_ARCHIVE_DAYS} days).",
+        "--archive-days", type=int, default=-1,
+        help="Override the per-type auto-archive threshold with a single "
+             "value applied across all draft types (journal/social/replies). "
+             "Defaults to -1 = use per-type thresholds (journal=14d, "
+             "social=7d, replies=14d). Use this only for one-off compactions "
+             "(e.g. --archive-days 3 before a demo).",
     )
     parser.add_argument(
         "--no-auto-ig", action="store_true",
@@ -9430,9 +9453,14 @@ def main():
     # goes to _archive/, never deleted.
     if not args.no_auto_archive:
         print("  Auto-archiving stale drafts...")
-        summary = auto_archive_old_drafts(threshold_days=args.archive_days)
+        # Pass None to use per-type defaults (journal=14, social=7,
+        # replies=14). The CLI flag is only honored when explicitly
+        # given by the operator (default is the sentinel below).
+        threshold_override = args.archive_days if args.archive_days != -1 else None
+        summary = auto_archive_old_drafts(threshold_days=threshold_override)
         if not summary:
-            print(f"  [auto-archive] nothing older than {args.archive_days}d to move.")
+            print(f"  [auto-archive] nothing to move "
+                  f"(per-type thresholds: journal=14d, social=7d, replies=14d).")
         print()
 
     # Auto-generate IG companions for journal drafts that don't have one
