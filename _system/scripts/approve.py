@@ -7537,6 +7537,16 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 except Exception as e:
                     print(f"  [Approve] Warning: link validation raised {e} — publishing anyway")
 
+            # ── Before moving: dismiss the source URLs in the sidecar ──
+            # so the radar won't re-suggest the same story on the next
+            # scan. Same mechanism used by Cancella and by the Discard
+            # button on Radar News cards. Done BEFORE the move so the
+            # sidecar is still findable at the draft path.
+            dismissed_source_urls = self._dismiss_journal_sources(
+                src.with_suffix(".json"),
+                reason_note=f"published journal: {filename}",
+            )
+
             BLOG_DIR.mkdir(parents=True, exist_ok=True)
             shutil.move(str(src), str(dst))
             print(f"  Published: {filename} -> blog/")
@@ -7613,7 +7623,17 @@ class ReviewHandler(BaseHTTPRequestHandler):
             # logged but does not roll back the publish.
             _git_autopush(_autopush_commit_message(filename, "journal"))
 
-            self._send_json({"ok": True, "message": f"Published: {filename}"})
+            pub_msg = f"Published: {filename}"
+            if dismissed_source_urls:
+                pub_msg += (
+                    f" (and dismissed {len(dismissed_source_urls)} source "
+                    f"URL(s) so the radar won't re-suggest)"
+                )
+            self._send_json({
+                "ok": True,
+                "message": pub_msg,
+                "dismissed_source_urls": dismissed_source_urls,
+            })
 
         elif content_type == "social":
             src = DRAFTS_DIR / "social" / filename
@@ -7651,28 +7671,14 @@ class ReviewHandler(BaseHTTPRequestHandler):
 
         # ── Journal-only: before archiving, persist the source URLs ──
         # so the radar never re-suggests this article on future scans.
-        # The sidecar .json keeps the `sources[]` array from radar that
-        # inspired the journal piece; we mark each one as user_dismissed
-        # in previously_reported.json (same mechanism used by the Radar
-        # News "Discard" button — radar.py natively filters these out).
+        # Both rejection AND publication should mark the sources as
+        # handled — see _dismiss_journal_sources for the shared logic.
         dismissed_source_urls = []
         if content_type == "journal":
-            sidecar_src = src.with_suffix(".json")
-            if sidecar_src.exists():
-                try:
-                    sidecar = json.loads(sidecar_src.read_text(encoding="utf-8"))
-                    for s in (sidecar.get("sources") or []):
-                        u = (s.get("url") or "").strip()
-                        if u and u not in dismissed_source_urls:
-                            dismissed_source_urls.append(u)
-                except Exception as e:
-                    print(f"  Warning: could not parse sidecar to extract source URLs: {e}")
-
-            if dismissed_source_urls:
-                self._mark_urls_user_dismissed(
-                    dismissed_source_urls,
-                    reason_note=f"rejected journal: {filename}",
-                )
+            dismissed_source_urls = self._dismiss_journal_sources(
+                src.with_suffix(".json"),
+                reason_note=f"rejected journal: {filename}",
+            )
 
         archive_sub.mkdir(parents=True, exist_ok=True)
         dst = archive_sub / filename
@@ -7704,15 +7710,64 @@ class ReviewHandler(BaseHTTPRequestHandler):
             "dismissed_source_urls": dismissed_source_urls,
         })
 
-    def _mark_urls_user_dismissed(self, urls, reason_note=""):
-        """Append a list of URLs to previously_reported.json as user_dismissed.
+    def _dismiss_journal_sources(self, sidecar_path, reason_note):
+        """Read a journal sidecar JSON, dismiss every sources[].url+title.
 
-        Idempotent: URLs already present are skipped. Used by both the
-        Radar News "Discard" button (single URL) and journal rejection
-        (multiple source URLs at once). Atomic write protects the index.
+        Called from both _handle_approve and _handle_reject so the radar
+        never re-suggests an article we've already processed — published
+        OR rejected, both are "handled" from the operator's standpoint.
+
+        Returns the list of URLs successfully added (skips duplicates
+        already in previously_reported.json). Empty list when sidecar
+        missing or has no sources.
+        """
+        if not sidecar_path.exists():
+            return []
+        try:
+            sidecar = json.loads(sidecar_path.read_text(encoding="utf-8"))
+        except Exception as e:
+            print(f"  Warning: could not parse {sidecar_path.name}: {e}")
+            return []
+        urls, titles = [], []
+        seen = set()
+        for s in (sidecar.get("sources") or []):
+            u = (s.get("url") or "").strip()
+            t = (s.get("title") or "").strip()
+            if u and u not in seen:
+                seen.add(u)
+                urls.append(u)
+                titles.append(t)
+        if not urls:
+            return []
+        added = self._mark_urls_user_dismissed(
+            urls, reason_note=reason_note, titles=titles,
+        )
+        # Return the list we attempted to add (caller wants to surface
+        # them in the API response). `added` is just the count.
+        return urls if added else []
+
+    def _mark_urls_user_dismissed(self, urls, reason_note="", titles=None):
+        """Append URLs (and optional matching titles) to previously_reported.json.
+
+        Idempotent: URLs already present are skipped. Used by the Radar
+        News "Discard" button (single URL, no title) and by
+        _dismiss_journal_sources (multiple URL+title pairs).
+
+        `titles`: optional list parallel to `urls`. When provided, each
+        dedup entry gets a non-empty title field so radar.py's title
+        fuzzy-match catches the same story under a different aggregator
+        URL.
+
+        Atomic write protects the index from torn-write corruption.
         """
         if not urls:
             return 0
+        # Pad/trim titles to match urls length so zip() never silently
+        # truncates the loop.
+        if titles is None:
+            titles = [""] * len(urls)
+        elif len(titles) < len(urls):
+            titles = titles + [""] * (len(urls) - len(titles))
         dedup_path = SYSTEM_DIR / "radar" / "previously_reported.json"
         try:
             if dedup_path.exists():
@@ -7723,13 +7778,13 @@ class ReviewHandler(BaseHTTPRequestHandler):
             existing = {a.get("url") for a in articles if a.get("url")}
             added = 0
             today = datetime.now().strftime("%Y-%m-%d")
-            for u in urls:
+            for u, t in zip(urls, titles):
                 if u in existing:
                     continue
                 articles.append({
                     "date_first_reported": today,
                     "source": "user_dismissed",
-                    "title": "",
+                    "title": t,
                     "score": None,
                     "cluster": None,
                     "action_type": "user_dismissed",

@@ -1049,6 +1049,1246 @@
       "action_type": "user_dismissed",
       "url": "https://www.sfchronicle.com/california/article/farmers-home-insurance-rate-hike-22253335.php",
       "note": "email sent to feedback@sfchronicle.com"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.kqed.org/news/12083384/californias-home-insurance-market-is-in-crisis-can-a-new-insurance-commissioner-fix-it",
+      "note": "email sent to mediarelations@kqed.org"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.gov.ca.gov/2026/05/07/during-wildfire-preparedness-week-governor-newsom-announces-70-million-available-for-wildfire-prevention-and-resilience-projects-statewide/",
+      "note": "email sent to webassist@insurance.ca.gov"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Two of California's largest insurers seek new rate hikes",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.sfchronicle.com/california/article/aaa-travelers-home-insurance-22236797.php",
+      "note": "published journal (backfill): aaa-travelers-rate-hike-california-luxury-home-insurance-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Touring a $44,000,000 All Concrete MALIBU Mansion With Insane Ocean Views",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/JeremyWilsiuwe/status/2051069207270359093",
+      "note": "published journal (backfill): all-concrete-malibu-mansion-44m-listing-luxury-market-signal"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Touring a $44,000,000 All Concrete Malibu Mansion With Insane Ocean Views",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/JeremyWilsiuwe/status/2046714323083395232",
+      "note": "published journal (backfill): all-concrete-malibu-mansion-44m-viral-tour-what-it-signals"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Altadena Fire Victims Face Steep HOA Bills and Foreclosure Threats",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://nationaltoday.com/us/ca/altadena/news/2026/04/07/altadena-fire-victims-face-steep-hoa-bills-and-foreclosure-threats/",
+      "note": "published journal (backfill): altadena-hoa-bills-rebuild-cost-structure"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires Regulation",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/01-consumers/200-wrr/saferfromwildfiresregulation.cfm",
+      "note": "published journal (backfill): altadena-hoa-bills-rebuild-cost-structure"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Altadena couple embracing technology to rebuild after Eaton Fire",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://spectrumnews1.com/ca/southern-california/wildfires/2026/04/07/altadena-rebuilding-eaton-fire-homebound",
+      "note": "published journal (backfill): altadena-rebuild-technology-eaton-fire"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Eaton Fire Recovery Dashboard",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://recovery.lacounty.gov/eaton-fire/",
+      "note": "published journal (backfill): altadena-rebuild-technology-eaton-fire"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires Regulation",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2022/release116-2022.cfm",
+      "note": "published journal (backfill): altadena-rebuild-technology-eaton-fire"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Late philanthropist couple's Bel-Air manse listed for $35M goes into contract",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/05/13/bel-air-manse-asking-35m-tops-la-signed-contracts/",
+      "note": "published journal (backfill): bel-air-35m-contract-luxury-new-construction-california-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/01-consumers/140-catastrophes/SaferfromWildfiresFramework.cfm",
+      "note": "published journal (backfill): bel-air-35m-contract-luxury-new-construction-california-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Wildfire Prepared Home",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://ibhs.org/wildfire-prepared/wildfire-prepared-home/",
+      "note": "published journal (backfill): bel-air-35m-contract-luxury-new-construction-california-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Aman Will Bring Luxury Living to New Heights at the Upcoming One Beverly Hills",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/new-construction/aman-residences-one-beverly-hills-1237026830/",
+      "note": "published journal (backfill): beverly-hills-custom-home-cost-reinforced-concrete-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Olson Kundig's Brand-New Concrete House in West Hollywood Debuts at $5.75 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/concrete-house-8899-beverly-1236458260/",
+      "note": "published journal (backfill): beverly-hills-custom-home-cost-reinforced-concrete-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/01-consumers/200-wrr/Safer-from-Wildfires.cfm",
+      "note": "published journal (backfill): beverly-hills-custom-home-cost-reinforced-concrete-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Mercury Insurance Submits California's First Sustainable Insurance Strategy Homeowners Rate Filing",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://newsroom.mercuryinsurance.com/2025-08-15-Mercury-Insurance-Submits-Californias-First-Sustainable-Insurance-Strategy-Homeowners-Rate-Filing",
+      "note": "published journal (backfill): beverly-hills-custom-home-cost-reinforced-concrete-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "IBHS Releases Updated Wildfire Prepared Home Standard",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://ibhs.org/ibhs-news-releases/ibhs-releases-updated-wildfire-prepared-home-standard/",
+      "note": "published journal (backfill): beverly-hills-custom-home-cost-reinforced-concrete-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Parts of Beverly Hills added to new Cal Fire hazard maps",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://beverlypress.com/2025/04/parts-of-beverly-hills-added-to-new-cal-fire-hazard-maps/",
+      "note": "published journal (backfill): beverly-hills-custom-home-cost-reinforced-concrete-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Eli Sasson scores $33.4M refi for Beverly Hills mansion days before foreclosure auction",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/08/01/eli-sasson-scores-33-4m-refi-for-beverly-hills-manse/",
+      "note": "published journal (backfill): beverly-hills-custom-home-cost-reinforced-concrete-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Los Angeles Construction Cost 2025: Complete Updated Guide",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://jdj-consulting.com/what-is-the-los-angeles-construction-cost-2025/",
+      "note": "published journal (backfill): beverly-hills-custom-home-cost-reinforced-concrete-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Economic Impact of the Los Angeles Wildfires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.anderson.ucla.edu/about/centers/ucla-anderson-forecast/economic-impact-los-angeles-wildfires",
+      "note": "published journal (backfill): beverly-hills-insurable-luxury-2026-trousdale-cohen"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Commissioner Lara adopts judge's ruling on State Farm emergency rates",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2025/release038-2025.cfm",
+      "note": "published journal (backfill): beverly-hills-insurable-luxury-2026-trousdale-cohen"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "DOI, Consumer Watchdog and State Farm reach settlement on prior emergency rate request",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2026/release012-2026.cfm",
+      "note": "published journal (backfill): beverly-hills-insurable-luxury-2026-trousdale-cohen"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Construction costs for wildfire resistant homes",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://headwaterseconomics.org/natural-hazards/wildfire/construction-costs-for-wildfire-resistant-homes/",
+      "note": "published journal (backfill): beverly-hills-insurable-luxury-2026-trousdale-cohen"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Aussie billionaire James Packer's Beverly Hills manse sells for $60M",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/04/28/james-packers-beverly-hills-manse-sells-for-60-million/",
+      "note": "published journal (backfill): beverly-hills-insurable-luxury-2026-trousdale-cohen"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Focus on TRD Data: Priciest Beverly Hills Single-Family Sale",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/09/29/focus-on-trddata-priciest-beverly-hills-single-family-sale/",
+      "note": "published journal (backfill): beverly-hills-insurable-luxury-2026-trousdale-cohen"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Rick Caruso's old house notches priciest sale in US at $48M",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/09/30/rick-carusos-former-beverly-hills-home-priciest-sale-in-u-s/",
+      "note": "published journal (backfill): beverly-hills-insurable-luxury-2026-trousdale-cohen"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Trousdale Estates nabs neighborhood's priciest trade this year with $32M close",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/07/01/trousdale-estates-manse-sells-for-record-32-million/",
+      "note": "published journal (backfill): beverly-hills-insurable-luxury-2026-trousdale-cohen"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Sprawling Beverly Park estate relists for $80M",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/12/09/beverly-park-manse-heads-back-to-market-for-80-million/",
+      "note": "published journal (backfill): beverly-hills-insurable-luxury-2026-trousdale-cohen"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Wildfire Hardening Discounts Explained — California FAIR Plan 2026",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://totalscreen.com/fire-protection-vent-covers/ember-safety/wildfire-hardening-discounts-explained-california-fair-plan-2026/",
+      "note": "published journal (backfill): california-fair-plan-wildfire-hardening-discounts-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires — Regulation and Mitigation Discount Framework",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/01-consumers/200-wrr/saferfromwildfiresfaq.cfm",
+      "note": "published journal (backfill): california-fair-plan-wildfire-hardening-discounts-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Wildfire Prepared Home — Designation Standards",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://wildfireprepared.org/designation/",
+      "note": "published journal (backfill): california-fair-plan-wildfire-hardening-discounts-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Consumer Watchdog Says California Has the Power to Respond to the Insurance Crisis",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.morningstar.com/news/pr-newswire/20260505dc52314/consumer-watchdog-says-california-has-the-power-to-respond-to-the-insurance-crisis",
+      "note": "published journal (backfill): california-insurance-crisis-regulatory-authority-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Hilton vs. Becerra clash over California insurance state of emergency",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/CBSLosAngeles/status/2049339965343998216",
+      "note": "published journal (backfill): california-insurance-emergency-debate-luxury-construction"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "California Bill Requires Insurers to Offer, Renew Coverage for 'Fire-Safe' Homes",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/magazines/mag-features/2026/03/09/860625.htm",
+      "note": "published journal (backfill): california-insurer-must-renew-fire-safe-homes-bill-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires Regulation",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/Safer-from-Wildfires.cfm",
+      "note": "published journal (backfill): california-insurer-must-renew-fire-safe-homes-bill-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Wildfire Prepared Home",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://ibhs.org/wildfire-prepared-home/",
+      "note": "published journal (backfill): california-insurer-must-renew-fire-safe-homes-bill-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "California steps back from mandating insurers offer coverage",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancebusinessmag.com/us/news/breaking-news/california-steps-back-from-mandating-insurers-offer-coverage-573128.aspx",
+      "note": "published journal (backfill): california-mandate-retreat-insurable-home-california-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Sustainable Insurance Strategy",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2024/release032-2024.cfm",
+      "note": "published journal (backfill): california-mandate-retreat-insurable-home-california-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Landmark study shows rebuilding Los Angeles to wildfire safety standards could slash future fire losses",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2026/release015-2026.cfm",
+      "note": "published journal (backfill): california-rebuild-wildfire-standards-loss-reduction-study"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "New California Law Aims to Stabilize Insurance for Those Unable to Get Private Coverage",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/news/west/2025/10/14/843460.htm",
+      "note": "published journal (backfill): california-sb-insurance-stabilization-2025-fair-plan-bonds"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "California Again Delays Wildfire Protection Rules for Homes",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/news/west/2025/12/10/850448.htm",
+      "note": "published journal (backfill): california-zone-0-delay-2026-wui-rebuild-planning"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Zone 0 Ember-Resistant Zone Regulations",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://bof.fire.ca.gov/regulations/proposed-rule-packages/ember-resistant-zone-zone-0/",
+      "note": "published journal (backfill): california-zone-0-delay-2026-wui-rebuild-planning"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires — Mitigation Framework",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/01-consumers/200-wrr/saferfromwildfires.cfm",
+      "note": "published journal (backfill): california-zone-0-delay-2026-wui-rebuild-planning"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Concrete innovations on the road to fire rebuilding",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.thecamarilloacorn.com/articles/concrete-innovations-on-the-road-to-fire-rebuilding/",
+      "note": "published journal (backfill): concrete-innovations-fire-rebuilding-camarillo-acorn"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "2025 Incident Archive — Palisades Fire and Eaton Fire",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.fire.ca.gov/incidents/2025",
+      "note": "published journal (backfill): concrete-innovations-fire-rebuilding-camarillo-acorn"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Wildfire Prepared Home — Research and Standards",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://ibhs.org/wildfire/wildfire-prepared-home/",
+      "note": "published journal (backfill): concrete-innovations-fire-rebuilding-camarillo-acorn"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "2022 California Building Standards Code, Title 24 Part 7 (WUI)",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dgs.ca.gov/BSC/Codes",
+      "note": "published journal (backfill): concrete-innovations-fire-rebuilding-camarillo-acorn"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Olson Kundig's Brand-New Concrete House in West Hollywood Debuts at $5.75 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://8899beverlyblvd.com/press/2025/04/concrete-house-debut-west-hollywood/",
+      "note": "published journal (backfill): concrete-luxury-homes-west-hollywood-olson-kundig-market-signal"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Altadena rebuild with non-combustible concrete masonry, concrete roof, and steel studs",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/cncacement/status/2048861095797067953",
+      "note": "published journal (backfill): concrete-masonry-altadena-rebuild-resilience-case-study"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Fire Resistance Ratings of Concrete Masonry Assemblies (TEK 07-01D)",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://ncma.org/resource/fire-resistance-ratings-of-concrete-masonry-assemblies/",
+      "note": "published journal (backfill): concrete-masonry-altadena-rebuild-resilience-case-study"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Roman Housing",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.metmuseum.org/toah/hd/hous/hd_hous.htm",
+      "note": "published journal (backfill): courtyard-villa-fire-resilience-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "The Villa Medici",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://villamedici.it/en/the-villa-medici/",
+      "note": "published journal (backfill): courtyard-villa-fire-resilience-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "ETRU Museo Nazionale etrusco di Villa Giulia",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.museoetru.it/",
+      "note": "published journal (backfill): courtyard-villa-fire-resilience-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "The Villa: Form and Ideology of Country Houses",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://press.princeton.edu/books/paperback/9780691252315/the-villa",
+      "note": "published journal (backfill): courtyard-villa-fire-resilience-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Courtyard Housing in Los Angeles: A Typological Analysis",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://openlibrary.org/books/OL4094517M/Courtyard_housing_in_Los_Angeles",
+      "note": "published journal (backfill): courtyard-villa-fire-resilience-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Courtyard design for energy efficiency and thermal comfort",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12701073/",
+      "note": "published journal (backfill): courtyard-villa-fire-resilience-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Study of thermal comfort in courtyards in a hot arid climate",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0038092X12000266",
+      "note": "published journal (backfill): courtyard-villa-fire-resilience-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "IBHS findings on LA County's Palisades and Eaton Fires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://ibhs.org/ibhs-news-releases/ibhs-findings-on-la-countys-palisades-and-eaton-fires/",
+      "note": "published journal (backfill): courtyard-villa-fire-resilience-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "After devastating LA fires, California is drafting nation's toughest rules for homes",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://laist.com/brief/news/climate-environment/after-devastating-la-fires-california-is-drafting-nations-toughest-rules-for-homes",
+      "note": "published journal (backfill): courtyard-villa-fire-resilience-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Commissioner Lara approves major FAIR Plan expansion to help HOAs, builders, farmers, and businesses access insurance coverage",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2025/release028-2025.cfm",
+      "note": "published journal (backfill): fair-plan-expansion-luxury-new-construction-california-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "About the FAIR Plan",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.cfpnet.com/about-us/",
+      "note": "published journal (backfill): fair-plan-expansion-luxury-new-construction-california-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Sustainable Insurance Strategy",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0500-about-us/0500-news/Sustainable-Insurance-Strategy.cfm",
+      "note": "published journal (backfill): fair-plan-expansion-luxury-new-construction-california-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Foreign buyers eye luxe LA homes as proposed wealth tax pushes billionaires out of California",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.foxbusiness.com/lifestyle/foreign-buyers-flock-la-luxury-homes-californias-proposed-wealth-tax-drives-billionaires-out-state",
+      "note": "published journal (backfill): foreign-buyers-la-luxury-homes-wealth-tax-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "AB 259 — Wealth Tax: False Claims Act",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB259",
+      "note": "published journal (backfill): foreign-buyers-la-luxury-homes-wealth-tax-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "2 million more homes can get wildfire mitigation discounts: IBHS",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dig-in.com/news/2-million-more-homes-can-get-wildfire-mitigation-discounts-ibhs",
+      "note": "published journal (backfill): ibhs-2-million-homes-wildfire-discounts-california-insurability"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "IBHS expands Wildfire Prepared program to 10 additional states",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.prnewswire.com/news-releases/ibhs-expands-wildfire-prepared-program-to-10-additional-states-302739270.html",
+      "note": "published journal (backfill): ibhs-wildfire-prepared-13-states-california-luxury-construction"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Certification Enables California, Oregon Homeowners to Earn Premium Discounts",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/news/west/2025/05/29/824983.htm",
+      "note": "published journal (backfill): ibhs-wildfire-prepared-home-plus-california-certification-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires — Mitigation Framework",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/Safer-From-Wildfires.cfm",
+      "note": "published journal (backfill): ibhs-wildfire-prepared-ten-states-california-standard"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "IBHS expands wildfire resilience program as fire risk grows",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.housingwire.com/articles/wildfire-risk-spreads-east/",
+      "note": "published journal (backfill): ibhs-wildfire-program-expansion-california-luxury-insurability"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "California's First ICF Type I Home: A New Wildfire Standard",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.builtechcg.com/articles/california-s-first-icf-type-i-home-a-new-wildfire-standard",
+      "note": "published journal (backfill): icf-type-i-construction-california-luxury-homes"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "2021 IBC Chapter 6: Types of Construction",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://codes.iccsafe.org/content/IBC2021P2/chapter-6-types-of-construction",
+      "note": "published journal (backfill): icf-type-i-construction-california-luxury-homes"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Insurance Will Decide Palisades Rebuilding, Candidates Say",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.smdp.com/insurance-will-decide-if-we-rebuild-candidates-face-palisades-reality-in-high-stakes-forum/",
+      "note": "published journal (backfill): insurance-decides-palisades-rebuild-candidates-forum"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Updated world map of the Köppen-Geiger climate classification",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://hess.copernicus.org/articles/11/1633/2007/",
+      "note": "published journal (backfill): italian-villa-architectural-logic-la-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "I quattro libri dell'architettura di Andrea Palladio (Venice, 1570 first edition)",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://archive.org/details/qvattrolibridel00pall",
+      "note": "published journal (backfill): italian-villa-architectural-logic-la-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Los Angeles: The Architecture of Four Ecologies",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.ucpress.edu/books/los-angeles-2/paper",
+      "note": "published journal (backfill): italian-villa-architectural-logic-la-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Edwin Wallace Neff — architect profile",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://pcad.lib.washington.edu/person/307/",
+      "note": "published journal (backfill): italian-villa-architectural-logic-la-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Wallace Neff — Architect of a Golden Era 1895–1982",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://altadenaheritage.org/wallace-neff/",
+      "note": "published journal (backfill): italian-villa-architectural-logic-la-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Courtyards as passive climate buffers",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0378778825002269",
+      "note": "published journal (backfill): italian-villa-architectural-logic-la-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Marcus Vitruvius Pollio: de Architectura, Book VI",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Vitruvius/6*.html",
+      "note": "published journal (backfill): italian-villa-architectural-logic-la-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Court & Garden: From the French Hôtel to the City of Modern Architecture",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://archive.org/details/courtgardenfromf0000denn",
+      "note": "published journal (backfill): italian-villa-architectural-logic-la-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "KB Home unveils the first wildfire-resilient neighborhood",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.fastcompany.com/91478487/kb-home-first-wildfire-resiliant-neighborhood",
+      "note": "published journal (backfill): kb-home-wildfire-resilient-neighborhood-california-signal"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires framework",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/01-consumers/140-catastrophes/SaferFromWildfiresFramework.cfm",
+      "note": "published journal (backfill): kb-home-wildfire-resilient-neighborhood-california-signal"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "LA County Launches Investigation Into State Farm Over Wildfire Claims",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/news/west/2025/11/13/847527.htm",
+      "note": "published journal (backfill): la-county-state-farm-investigation-wildfire-claims-luxury-rebuild-california"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Commissioner Lara orders market conduct exam of State Farm over wildfire claims handling",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2025/release041-2025.cfm",
+      "note": "published journal (backfill): la-county-state-farm-investigation-wildfire-claims-luxury-rebuild-california"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "State Farm customers describe months of delays after Palisades, Eaton fires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2025-10-22/state-farm-wildfire-claims-delays-palisades-eaton",
+      "note": "published journal (backfill): la-county-state-farm-investigation-wildfire-claims-luxury-rebuild-california"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Navigating the 2026 LA Luxury Real Estate Market Evolution",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/sponsored/bsh/navigating-the-2026-la-luxury-real-estate-market-evolution/",
+      "note": "published journal (backfill): la-luxury-real-estate-2026-new-construction-buyer-shift"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/SaferFromWildfiresRegulation.cfm",
+      "note": "published journal (backfill): la-luxury-real-estate-2026-new-construction-buyer-shift"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Wildfire Prepared Home",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://ibhs.org/wildfire-prepared/",
+      "note": "published journal (backfill): la-luxury-real-estate-2026-new-construction-buyer-shift"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "California leaders promised fire recovery in record time. LA isn't seeing it.",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.eenews.net/articles/california-leaders-promised-fire-recovery-in-record-time-la-isnt-seeing-it/",
+      "note": "published journal (backfill): la-rebuild-pace-34-homes-permit-backlog"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "A year after the Palisades and Eaton fires, a long road to rebuilding",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2026-01-07/palisades-eaton-fire-anniversary-rebuild-progress",
+      "note": "published journal (backfill): la-rebuild-pace-34-homes-permit-backlog"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Los Angeles residential wildfire damage reaches nearly $52B, according to Redfin",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/07/24/los-angeles-wildfire-damage-tops-50-billion/",
+      "note": "published journal (backfill): la-wildfire-damage-52-billion-luxury-map-redfin"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "LA Fires Caused an Estimated $51.7 Billion in Home Damages",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.redfin.com/news/la-fires-home-damages/",
+      "note": "published journal (backfill): la-wildfire-damage-52-billion-luxury-map-redfin"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "I wanted to hate the new LACMA. Then I went back",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/public-buildings/review-lacma-david-geffen-galleries",
+      "note": "published journal (backfill): lacma-david-geffen-galleries-concrete-architecture-los-angeles"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Unidentified foreign investor grabs 9 burned Malibu lots for $65M",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/08/12/investor-buys-burned-lots-in-malibu-looking-to-develop/",
+      "note": "published journal (backfill): malibu-burn-lots-foreign-investor-65m-luxury-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires: Regulation for Insurance Discounts",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2022/release110-2022.cfm",
+      "note": "published journal (backfill): malibu-burn-lots-foreign-investor-65m-luxury-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Ex-LA Dodgers owner puts Malibu mansion back on market for nearly $75M",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/10/27/former-dodgers-owner-relists-malibu-mansion-with-price-cut/",
+      "note": "published journal (backfill): malibu-luxury-market-bifurcation-2026-legacy-vs-new-construction"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Safer from Wildfires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/01-consumers/140-catastrophes/SaferFromWildfiresFAQ.cfm",
+      "note": "published journal (backfill): malibu-luxury-market-bifurcation-2026-legacy-vs-new-construction"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Unmasked in Malibu: Buyer of multiple burned lots tied to Mowbray brothers",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/08/19/toymakers-nick-mat-mowbray-tied-to-malibu-burned-lot-sales/",
+      "note": "published journal (backfill): malibu-prefab-villas-zuru-mowbray-factory-built-luxury"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "California Building Code Chapter 7A — Materials and Construction Methods for Exterior Wildfire Exposure",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/wildland-hazards-building-codes",
+      "note": "published journal (backfill): malibu-prefab-villas-zuru-mowbray-factory-built-luxury"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Chapter 7A — 2025 California Building Code",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://codes.iccsafe.org/content/CABC2025P2/chapter-7a-materials-and-construction-methods-for-exterior-wildfire-exposure",
+      "note": "published journal (backfill): mediterranean-villa-wui-code-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "2025 Part 2 Chapters 5, 7, 7A and 8",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dgs.ca.gov/BSC/Resources/2025-Title-24-California-Code-Changes/2025-Part-2-Chapters-5--7--7A-and-8",
+      "note": "published journal (backfill): mediterranean-villa-wui-code-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "California Strengthens Resiliency with Adoption of 2024 International Wildland-Urban Interface Code",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.iccsafe.org/about/periodicals-and-newsroom/california-strengthens-resiliency-with-adoption-of-2024-international-wildland-urban-interface-code/",
+      "note": "published journal (backfill): mediterranean-villa-wui-code-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "AB-3074 Fire prevention: wildfire risk: defensible space: ember-resistant zones",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201920200AB3074",
+      "note": "published journal (backfill): mediterranean-villa-wui-code-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Board of Forestry Pauses Zone 0 Decision",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wildfirela.org/2025/12/10/board-of-forestry-pauses-zone-0-decision/",
+      "note": "published journal (backfill): mediterranean-villa-wui-code-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "ASTM E2886 — Exterior Vents Ember Resistance Test",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://store.astm.org/e2886_e2886m-20.html",
+      "note": "published journal (backfill): mediterranean-villa-wui-code-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Concrete Tile and Terracotta Tile Roofing Assemblies Exposed to Wind-Driven Firebrand Showers (NIST TN 1794)",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.nist.gov/publications/performance-concrete-tile-and-terracotta-tile-roofing-assemblies-exposed-wind-driven",
+      "note": "published journal (backfill): mediterranean-villa-wui-code-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Role of Residential Siding Materials on the Spread of Exterior Fires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://fsri.org/research-update/journal-article-investigates-role-residential-siding-materials-spread-exterior",
+      "note": "published journal (backfill): mediterranean-villa-wui-code-2026-la-rebuild"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Fresh Foundations: 5 Compelling New Luxury Homes in the Greater L.A. Area",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://blog.theagencyre.com/fresh-foundations-5-compelling-new-luxury-homes-in-the-greater-l-a-area/",
+      "note": "published journal (backfill): new-luxury-homes-los-angeles-2026-market-signal"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "The Rebuild Decision That Could Save LA Homeowners 800% on Insurance — It Only Costs 3% More",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.liveinsurancenews.com/rebuild-los-angeles-homeowners/8570874/",
+      "note": "published journal (backfill): rebuild-math-3-percent-construction-cost-800-percent-insurance-savings"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "California investigates State Farm over claims from Los Angeles fires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://calmatters.org/economy/2025/06/california-investigates-state-farm/",
+      "note": "published journal (backfill): state-farm-investigation-california-insurance-carrier-risk-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Commissioner Lara announces enforcement actions following Los Angeles wildfires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2025/release031-2025.cfm",
+      "note": "published journal (backfill): state-farm-investigation-california-insurance-carrier-risk-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "State Farm's emergency rate hike approved by California regulators",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2025-05-13/state-farm-emergency-rate-hike-approved",
+      "note": "published journal (backfill): state-farm-investigation-california-insurance-carrier-risk-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Medici Villas and Gardens in Tuscany",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://unesco.cultura.gov.it/en/projects/ville-e-giardini-medicei-della-toscana/",
+      "note": "published journal (backfill): villa-medici-tuscany-to-malibu-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "The Medici Villas and Gardens UNESCO World Heritage Sites",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://villegiardinimedicei.it/en/the-medici-villas-and-gardens-unesco-world-heritage-sites/",
+      "note": "published journal (backfill): villa-medici-tuscany-to-malibu-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "The Villa Medici in Fiesole",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://villegiardinimedicei.it/en/the-villa-medici-in-fiesole/",
+      "note": "published journal (backfill): villa-medici-tuscany-to-malibu-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "The Medici Villa of Castello",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://villegiardinimedicei.it/en/the-medici-villa-of-castello/",
+      "note": "published journal (backfill): villa-medici-tuscany-to-malibu-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "The Medici Villa of Poggio a Caiano",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://villegiardinimedicei.it/en/the-medici-villa-of-poggio-a-caiano/",
+      "note": "published journal (backfill): villa-medici-tuscany-to-malibu-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Historic Changes and Future Projections in Köppen–Geiger Climate Classifications in Major Wine Regions Worldwide",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.mdpi.com/2225-1154/12/7/94",
+      "note": "published journal (backfill): villa-medici-tuscany-to-malibu-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Firescape politics of wildfires in the Mediterranean: Example from rural Tuscany, Italy",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0016718524001295",
+      "note": "published journal (backfill): villa-medici-tuscany-to-malibu-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "LA changed this to speed up rebuild from Palisades, Eaton fires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://calmatters.org/housing/2026/01/la-fires-rebuild-permitting/",
+      "note": "published journal (backfill): villa-medici-tuscany-to-malibu-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Rethinking Post-Fire Rebuilding Strategies — Q&A with Zoltan Pali",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.spfa.com/news/2026/04/rethinking-post-fire-rebuilding-strategies-q-a-with-zoltan-pali",
+      "note": "published journal (backfill): villa-medici-tuscany-to-malibu-climate-analog-2026"
+    },
+    {
+      "date_first_reported": "2026-05-13",
+      "source": "user_dismissed",
+      "title": "Governor Newsom proclaims Wildfire Preparedness Week as state doubles down on wildfire readiness",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.gov.ca.gov/2026/05/04/governor-newsom-proclaims-wildfire-preparedness-week-as-state-doubles-down-on-wildfire-readiness/",
+      "note": "published journal (backfill): wildfire-preparedness-week-2026-california-luxury-construction"
     }
   ]
 }

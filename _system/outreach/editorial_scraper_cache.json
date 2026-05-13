@@ -268,5 +268,34 @@
       "path": "/about",
       "score": 11
     }
+  },
+  "kqed.org": {
+    "cached_at": 1778649696.627383,
+    "result": {
+      "email": "mediarelations@kqed.org",
+      "source": "article_scraped",
+      "path": "/pressroom",
+      "score": 7
+    }
+  },
+  "ccr-mag.com": {
+    "cached_at": 1778649698.1010282,
+    "result": null
+  },
+  "investing.com": {
+    "cached_at": 1778649707.81614,
+    "result": null
+  },
+  "danleighhomes.com": {
+    "cached_at": 1778649708.400552,
+    "result": null
+  },
+  "parametric-architecture.com": {
+    "cached_at": 1778649719.3878021,
+    "result": null
+  },
+  "parriva.com": {
+    "cached_at": 1778649721.785582,
+    "result": null
   }
 }
