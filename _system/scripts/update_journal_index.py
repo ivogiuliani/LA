@@ -114,7 +114,7 @@ def extract_metadata(filepath):
 # ══════════════════════════════════════════════════════════════════════
 
 # Scalability rules
-PREVIEW_LIMIT = 4               # Articles shown per section in the index
+PREVIEW_LIMIT = 6               # Articles shown per section in the index (2 rows of 3)
 # Generate a dedicated /blog/category/{section}.html page when a section has
 # MORE than this many articles. Set to 1 so any section with 2+ articles gets
 # its own topical hub (SEO: a landing destination for section queries, and
