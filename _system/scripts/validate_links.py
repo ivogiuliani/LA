@@ -66,6 +66,35 @@ SKIP_HOST_SUFFIXES = (
     "api.whatsapp.com/send",
 )
 
+# Hosts where the network layer itself refuses our automated check
+# (HTTP 000 / connection refused / DNS resolves but content blocked),
+# but we know the URLs are stable and authoritative. Treat ANY error
+# from these hosts as a pass so the publish flow doesn't false-block
+# on real, valid links.
+#
+# Added cases:
+#   codes.iccsafe.org — International Code Council building codes.
+#     CloudFront in front aggressively blocks scripted GET/HEAD even with
+#     browser User-Agent; checked from the operator's Mac on 2026-05-13
+#     and confirmed root iccsafe.org returns 200 while the codes
+#     subdomain returns connection-reset. URLs themselves are stable
+#     (they're the canonical references for IBC/CBC chapter pages).
+TRUSTED_UNVERIFIABLE_HOSTS = (
+    "codes.iccsafe.org",
+)
+
+
+def is_trusted_unverifiable(url: str) -> bool:
+    try:
+        host = urllib.parse.urlparse(url).netloc.lower()
+    except Exception:
+        return False
+    for suffix in TRUSTED_UNVERIFIABLE_HOSTS:
+        if host == suffix or host.endswith("." + suffix):
+            return True
+    return False
+
+
 # Known-safe anti-bot / CDN-fronted / hotlink-locked hosts: accept 401/403/429
 # as "probably up — the URL resolves, the server just gates bots or requires auth".
 TOLERATE_403_HOSTS = (
@@ -194,6 +223,14 @@ def check_url(url: str) -> dict:
 
     if should_skip(url):
         result.update(ok=True, status=0, reason="skipped (internal/social/font)", method="skip")
+        return result
+
+    # Known-good but anti-bot-blocked hosts: pass without HTTP check so
+    # publishing isn't gated on a domain we trust by hand.
+    if is_trusted_unverifiable(url):
+        result.update(ok=True, status=0,
+                      reason="trusted-unverifiable (host blocks automated check)",
+                      method="trust")
         return result
 
     last_err = ""
