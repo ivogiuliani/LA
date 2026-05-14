@@ -100,7 +100,7 @@
     "result": null
   },
   "insurancebusinessmag.com": {
-    "cached_at": 1777443580.319242,
+    "cached_at": 1778736152.244809,
     "result": null
   },
   "propertyinsurancecoveragelaw.com": {
@@ -296,6 +296,22 @@
   },
   "parriva.com": {
     "cached_at": 1778649721.785582,
+    "result": null
+  },
+  "politico.com": {
+    "cached_at": 1778736148.669962,
+    "result": null
+  },
+  "coveragecat.com": {
+    "cached_at": 1778736152.347241,
+    "result": null
+  },
+  "aol.com": {
+    "cached_at": 1778736157.1104572,
+    "result": null
+  },
+  "bankrate.com": {
+    "cached_at": 1778736179.9562812,
     "result": null
   }
 }

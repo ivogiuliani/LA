@@ -57,17 +57,19 @@ AUTO_ARCHIVE_DAYS = 14   # default for journal + email_replies
 # Source draft folder → (extensions to consider, threshold in days).
 # Per-type thresholds because the content types have very different
 # half-lives:
-#   - social reactive: 7 days. The draft mtime is essentially the
-#     publication date of the source article it reacts to (the radar
-#     generates within 24h of finding the article). Commenting on
-#     news older than a week reads as late / out-of-touch.
+#   - social reactive: 1 day (24h). Tightened from 7d on 2026-05-14 per
+#     operator: a social post about news older than 24h reads as late;
+#     the team should react fresh or skip. The mtime of the draft file
+#     is ~the publication date of the source article (radar generates
+#     within ~24h of finding the article), so 1-day mtime threshold
+#     approximates "source published in the last day or two".
 #   - journal articles: 14 days. They take longer to refine and the
 #     operator may sit on a piece for two weeks before publishing.
 #   - email_replies: 14 days. Journalist responses worth following up
 #     for a couple of weeks; older = stale conversation.
 _AUTO_ARCHIVE_TARGETS = (
     ("journal",        (".html", ".json"),  14),
-    ("social",         (".md",),             7),
+    ("social",         (".md",),             1),
     ("email_replies",  (".json",),          14),
 )
 
@@ -1535,6 +1537,35 @@ def scan_radar_opportunities():
         return (bucket, -(entry.get("score") or 0))
 
     news_items.sort(key=_news_sort_key)
+
+    # ── Filter email-type items so the dashboard never shows a pitch
+    # that the operator can't actually send. Three conditions to keep
+    # an email card visible:
+    #   (a) contact_email is non-empty — no address means no Send. Keeping
+    #       these visible just produced "?email@publication.com" placeholder
+    #       cards the operator had to scroll past every day.
+    #   (b) URL not already user_dismissed — covered upstream when this
+    #       same function loads previously_reported.json above (we filter
+    #       dismissed URLs from qualified/viral/early before this point).
+    #   (c) Implicit: items always come from the LATEST radar JSON
+    #       (find_latest_radar above picks `radar_YYYY-MM-DD.json` with
+    #       the most recent date). Items from old radar runs are never
+    #       loaded into news_items, so "ultima scansione" is the default.
+    # Other draft types (tweet, reddit_comment) are NOT filtered — those
+    # don't depend on having a destination address.
+    filtered_news = []
+    hidden_no_email = 0
+    for it in news_items:
+        dtype = (it.get("draft_type") or "").lower()
+        if dtype == "email":
+            ct_email = (it.get("contact_email") or "").strip()
+            if not ct_email:
+                hidden_no_email += 1
+                continue
+        filtered_news.append(it)
+    if hidden_no_email:
+        print(f"  [radar] hid {hidden_no_email} email pitch(es) with no contact_email")
+    news_items = filtered_news
 
     return {
         "date": date_str,
@@ -9515,7 +9546,7 @@ def main():
         summary = auto_archive_old_drafts(threshold_days=threshold_override)
         if not summary:
             print(f"  [auto-archive] nothing to move "
-                  f"(per-type thresholds: journal=14d, social=7d, replies=14d).")
+                  f"(per-type thresholds: journal=14d, social=1d, replies=14d).")
         print()
 
     # Auto-generate IG companions for journal drafts that don't have one

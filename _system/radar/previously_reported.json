@@ -2289,6 +2289,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.gov.ca.gov/2026/05/04/governor-newsom-proclaims-wildfire-preparedness-week-as-state-doubles-down-on-wildfire-readiness/",
       "note": "published journal (backfill): wildfire-preparedness-week-2026-california-luxury-construction"
+    },
+    {
+      "date_first_reported": "2026-05-14",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2026/05/12/developer-offers-bel-air-mansion-for-sale-as-spec-manse/",
+      "note": "email sent to events@therealdeal.com"
     }
   ]
 }
