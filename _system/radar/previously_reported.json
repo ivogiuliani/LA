@@ -2299,6 +2299,36 @@
       "action_type": "user_dismissed",
       "url": "https://therealdeal.com/la/2026/05/12/developer-offers-bel-air-mansion-for-sale-as-spec-manse/",
       "note": "email sent to events@therealdeal.com"
+    },
+    {
+      "date_first_reported": "2026-05-14",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/",
+      "note": "email sent to webassist@insurance.ca.gov"
+    },
+    {
+      "date_first_reported": "2026-05-15",
+      "source": "user_dismissed",
+      "title": "California's first ICF Type I home — a new wildfire-resistant WUI benchmark",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/BuiltechCG/status/2052768744460398739",
+      "note": "published journal: icf-type-i-california-wui-residential-benchmark.html"
+    },
+    {
+      "date_first_reported": "2026-05-15",
+      "source": "user_dismissed",
+      "title": "2021 IBC Chapter 6 — Types of Construction",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://codes.iccsafe.org/content/IBC2021P1/chapter-6-types-of-construction",
+      "note": "published journal: icf-type-i-california-wui-residential-benchmark.html"
     }
   ]
 }

@@ -1,0 +1,64 @@
+{
+  "slug": "icf-type-i-california-wui-residential-benchmark",
+  "title": "Fire-Resistant Home in California: ICF Type I Sets WUI Benchmark",
+  "subtitle": "A residential project in the Wildland-Urban Interface adopts a construction classification usually reserved for hospitals and high-rises.",
+  "section": "materials",
+  "tag_label": "Materials & Construction",
+  "meta_description": "How does a fire-resistant home in California get classified Type I? Inside the first residential ICF project to adopt a noncombustible WUI standard.",
+  "meta_keywords": "fire-resistant home California, ICF home builder California, reinforced concrete home Los Angeles, custom home Malibu, WUI construction, insurable home California, luxury home builder California",
+  "sources": [
+    {
+      "name": "X / Builtech Construction Group",
+      "title": "California's first ICF Type I home — a new wildfire-resistant WUI benchmark",
+      "url": "https://x.com/BuiltechCG/status/2052768744460398739",
+      "type": "x",
+      "excerpt": "Builtech announces what it describes as California's first ICF Type I home, framing the project as a new benchmark for noncombustible wildfire-resistant construction in the Wildland-Urban Interface."
+    },
+    {
+      "name": "International Code Council",
+      "title": "2021 IBC Chapter 6 — Types of Construction",
+      "url": "https://codes.iccsafe.org/content/IBC2021P1/chapter-6-types-of-construction",
+      "type": "gov",
+      "excerpt": "IBC defines Type I construction as buildings with structural elements of noncombustible materials and rated fire-resistance ratings — the highest classification under the code."
+    }
+  ],
+  "key_data": [
+    {
+      "number": "Type I",
+      "label": "Highest IBC construction\nclassification — noncombustible"
+    },
+    {
+      "number": "3 hr",
+      "label": "Fire-resistance rating\navailable for primary structure"
+    },
+    {
+      "number": "1st",
+      "label": "Known ICF Type I residential\nproject in California"
+    }
+  ],
+  "our_perspective": "We read the residential adoption of Type I as a quiet but important inversion. For most of the last decade, the WUI conversation has been about adding things to a wood-framed house — ember-resistant vents, Class A roofs, hardened glazing — until the assembly behaves more like a noncombustible building. Type I starts from the other end: the structure is noncombustible to begin with, and the surface details refine an already inert system. That is the logic our villas follow. Built in reinforced concrete by DGU — the contractor behind Renzo Piano's Kimbell expansion and Tadao Ando's Punta della Dogana — the envelope is the rating, not an add-on to it.",
+  "body_html": "<p class=\"reveal\">A residential project in California's Wildland-Urban Interface has been announced as the state's first home built to IBC Type I construction — a classification typically associated with hospitals, high-rises, and institutional buildings rather than single-family houses. The announcement came from Builtech Construction Group, posted on X with a link to the firm's project write-up, and framed the home as a new benchmark for wildfire-resistant residential construction (<a href=\"https://x.com/BuiltechCG/status/2052768744460398739\">Builtech Construction Group on X, May 2026</a>).</p>\n\n<p class=\"reveal\">The home uses Insulated Concrete Form (ICF) walls as the primary structural envelope. What separates it from the broader ICF residential category is the deliberate pursuit of Type I classification — a code distinction that asks not only what the cladding is made of, but what the entire load-bearing structure is made of.</p>\n\n<h2 class=\"reveal\">What Type I actually means</h2>\n\n<p class=\"reveal\">Under the International Building Code, construction is classified across five types (I through V), with Type I representing the most stringent category. Type I requires that the structural frame, bearing walls, and floor and roof assemblies be of noncombustible materials, with fire-resistance ratings of up to three hours for primary structural elements depending on subtype (<a href=\"https://codes.iccsafe.org/content/IBC2021P1/chapter-6-types-of-construction\">International Code Council, IBC Chapter 6</a>). Type V, by contrast, permits combustible framing — which describes the overwhelming majority of California single-family housing stock.</p>\n\n<p class=\"reveal\">Most California WUI homes today comply with Chapter 7A of the state building code, which regulates exterior exposure: ignition-resistant siding, ember-resistant vents, Class A roofs, tempered glazing. Chapter 7A is meaningful, but it governs the surface of the building. It does not require the structural skeleton behind that surface to be noncombustible. A Chapter 7A-compliant home can — and usually does — sit on a wood-framed structure.</p>\n\n<div class=\"key-data\">\n<p><strong>The classification gap.</strong> Type V construction allows combustible framing throughout. Type I requires noncombustible structural elements with rated fire-resistance assemblies. Chapter 7A sits on top of either — it does not change which one you start with.</p>\n</div>\n\n<h2 class=\"reveal\">Why this matters for the insurability stack</h2>\n\n<p class=\"reveal\">The California Department of Insurance's Safer from Wildfires regulation requires admitted carriers to recognize twelve mitigation measures across three layers: the structure, the immediate parcel, and the surrounding community (California Department of Insurance). Most of those measures are surface-level — roof, vents, eaves, defensible space. A Type I structure does not replace those requirements; it changes the baseline from which they are measured.</p>\n\n<p class=\"reveal\">For underwriters, the practical question is whether the home in front of them behaves more like a wood-framed structure with hardened cladding, or like a noncombustible building with a refined exterior. Those two profiles age differently, repair differently after a brush event, and present different total loss probabilities. The first single-family Type I project in California gives carriers a residential reference point for the second profile — one that until now mostly existed in commercial and institutional portfolios.</p>\n\n<h2 class=\"reveal\">The Los Angeles read</h2>\n\n<p class=\"reveal\">In Malibu, the Hollywood Hills, and the Westside canyon neighborhoods where insurance non-renewals have concentrated, the conversation about building has largely been a conversation about exterior assemblies. Owners ask which roof, which vent, which cladding. The Type I announcement reframes the question: it asks whether the structure under the cladding is rated at all.</p>\n\n<p class=\"reveal\">That is not a small distinction for the high-value end of the market. A reinforced concrete or ICF envelope at Type I removes an entire category of risk — interstitial combustion, hidden cavity ignition, post-event structural compromise — that surface upgrades cannot address. Whether residential Type I scales beyond demonstration projects will depend on cost, design fluency, and the willingness of insurers to price the difference. The classification, at minimum, now exists at the single-family scale.</p>\n\n<p class=\"reveal\">As more projects pursue the same path, the residential WUI conversation may shift from how to harden a combustible house to which buildings were noncombustible to begin with. That is a different vocabulary — and a different set of design starting points — than the rebuild market has been working in.</p>",
+  "excerpt": "California's first ICF Type I home reframes the residential wildfire conversation: instead of hardening a combustible structure, the structure itself is noncombustible from the start. A look at what Type I actually means under the IBC, and why it matters for the Los Angeles insurability stack.",
+  "image_prompt": "Architectural photography of a contemporary reinforced concrete villa under construction in the California Wildland-Urban Interface, exposed ICF walls visible, late afternoon warm light, muted earth tones, dry chaparral hillside in background, no people, editorial photography style, high detail",
+  "topic_tags": [
+    "icf-type-i-residential",
+    "noncombustible-classification",
+    "california-wui-code"
+  ],
+  "data_points_cited": [
+    "California's first known ICF Type I residential project (Builtech, May 2026)",
+    "IBC Type I requires noncombustible structural frame with up to 3-hour fire-resistance ratings",
+    "California Chapter 7A regulates exterior WUI exposure but does not require noncombustible structure",
+    "Safer from Wildfires regulation: 12 measures across 3 layers"
+  ],
+  "read_time_min": 6,
+  "_date": "2026-05-15",
+  "_section_id": "materials",
+  "_section_name": "Materials & Construction",
+  "_source_item": {
+    "title": "@BuiltechCG: Author: @BuiltechCG | Text: California’s first ICF Type I home is setting a new...",
+    "url": "https://x.com/BuiltechCG/status/2052768744460398739",
+    "publication": "X/Twitter",
+    "cluster": "twitter"
+  }
+}
