@@ -2329,6 +2329,16 @@
       "action_type": "user_dismissed",
       "url": "https://codes.iccsafe.org/content/IBC2021P1/chapter-6-types-of-construction",
       "note": "published journal: icf-type-i-california-wui-residential-benchmark.html"
+    },
+    {
+      "date_first_reported": "2026-05-16",
+      "source": "user_dismissed",
+      "title": "California FAIR Plan Wildfire Hardening Discounts: How to Save on Your Premium",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://fbia.com/blog/fair-plan-wildfire-hardening-discounts/",
+      "note": "published journal: fair-plan-wildfire-hardening-discounts-california-luxury-homes.html"
     }
   ]
 }
