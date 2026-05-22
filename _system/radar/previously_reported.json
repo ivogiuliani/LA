@@ -2339,6 +2339,26 @@
       "action_type": "user_dismissed",
       "url": "https://fbia.com/blog/fair-plan-wildfire-hardening-discounts/",
       "note": "published journal: fair-plan-wildfire-hardening-discounts-california-luxury-homes.html"
+    },
+    {
+      "date_first_reported": "2026-05-22",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2026/05/20/joe-roth-sells-off-beverly-hills-mid-century-modern/",
+      "note": "email sent to events@therealdeal.com"
+    },
+    {
+      "date_first_reported": "2026-05-22",
+      "source": "user_dismissed",
+      "title": "16 Rudolph Schindler homes in LA that exemplify his modernist style",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/residential/rudolph-schindler-homes-los-angeles-usa",
+      "note": "published journal: rudolph-schindler-los-angeles-concrete-modernism-lessons.html"
     }
   ]
 }

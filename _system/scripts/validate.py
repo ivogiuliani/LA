@@ -224,7 +224,7 @@ Return JSON:
 Return ONLY valid JSON."""
 
 
-def ai_validate(text, content_type="general", model="claude-sonnet-4-7"):
+def ai_validate(text, content_type="general", model="claude-sonnet-4-6"):
     """Use Claude Sonnet for deeper brand voice validation."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
@@ -314,7 +314,7 @@ def main():
                         help="Directories or files with Journal articles to validate")
     parser.add_argument("--config", default=None,
                         help="Config directory (default: _system/config/)")
-    parser.add_argument("--model", default="claude-sonnet-4-7",
+    parser.add_argument("--model", default="claude-sonnet-4-6",
                         help="Model for AI validation")
     parser.add_argument("--ai", action="store_true",
                         help="Enable AI validation (uses API credits)")
