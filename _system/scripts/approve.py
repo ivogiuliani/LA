@@ -244,9 +244,16 @@ except ImportError:
 
 # ── WYSIWYG inline editor injection ─────────────────────────────────
 
-def _build_wysiwyg_injection(filename: str) -> str:
+def _build_wysiwyg_injection(filename: str, in_blog: bool = False) -> str:
     """Return CSS + HTML + JS to inject before </body> in a preview page,
     transforming it into an inline WYSIWYG editor.
+
+    `in_blog`: True when the file being edited is in blog/ (already
+    published). The injected toolbar shows a different "live mode"
+    banner so the operator knows their edits will go straight to the
+    public site (no draft → publish round-trip). Actual save logic is
+    the same — /api/save_draft now falls back to blog/ when the file
+    isn't in _drafts/journal/.
     """
     # We avoid Python f-strings for the JS/CSS blocks to prevent
     # escaping hell with JS template-literals and CSS braces.
@@ -727,6 +734,65 @@ body.editing .wysiwyg-excerpt-wrap{display:block;}
 
 
 # ── Draft scanning helpers ───────────────────────────────────────────
+
+def _scan_articles_in_dir(directory):
+    """Shared helper: scan a directory of journal HTML files and return
+    a list of metadata dicts. Used by scan_journal_drafts (queue) and
+    scan_published_articles (live blog/).
+    """
+    if not directory.exists():
+        return []
+    out = []
+    for f in sorted(directory.glob("*.html")):
+        # The blog/index.html is the journal landing page, not an article.
+        if f.name == "index.html":
+            continue
+        content = f.read_text(encoding="utf-8", errors="replace")
+
+        m = re.search(r"<title>(.*?)</title>", content, re.IGNORECASE | re.DOTALL)
+        title = html.unescape(m.group(1).strip()) if m else f.stem.replace("-", " ").title()
+        title = re.sub(r"\s*[—-]\s*My Villa Journal\s*$", "", title)
+
+        m = re.search(r'class="article-hero-tag"[^>]*>(.*?)<', content, re.DOTALL)
+        section = html.unescape(m.group(1).strip()) if m else ""
+
+        m = re.search(
+            r'<meta\s+name="description"\s+content="(.*?)"',
+            content, re.IGNORECASE,
+        )
+        excerpt = html.unescape(m.group(1).strip()) if m else ""
+
+        m = re.search(
+            r'<meta\s+property="article:published_time"\s+content="(.*?)"',
+            content, re.IGNORECASE,
+        )
+        if not m:
+            m = re.search(r'class="article-date"[^>]*>(.*?)<', content, re.DOTALL)
+        date_str = m.group(1).strip() if m else ""
+
+        out.append({
+            "file": f.name,
+            "title": title,
+            "section": section,
+            "excerpt": excerpt,
+            "date": date_str,
+            "size_kb": round(f.stat().st_size / 1024, 1),
+            "mtime": f.stat().st_mtime,
+        })
+    return out
+
+
+def scan_published_articles():
+    """Scan blog/*.html — articles already live on myvilla.la.
+
+    Returned items are sorted newest-first by file mtime so the
+    dashboard surfaces the most-recent publishes at the top of the
+    "Published" section.
+    """
+    items = _scan_articles_in_dir(BLOG_DIR)
+    items.sort(key=lambda d: d.get("mtime", 0), reverse=True)
+    return items
+
 
 def scan_journal_drafts():
     """Scan _drafts/journal/*.html and extract metadata from each."""
@@ -1591,6 +1657,7 @@ def scan_radar_opportunities():
 def build_dashboard():
     """Generate the full HTML review dashboard."""
     journal = scan_journal_drafts()
+    published = scan_published_articles()
     social = scan_social_drafts()
     editorial = scan_editorial_drafts()
     radar = scan_radar_opportunities()
@@ -1693,6 +1760,35 @@ def build_dashboard():
                       title="Da attivare quando l'account Instagram sarà configurato. Per ora il caption resta nel draft.">📷 Pubblica IG</button>
               <button class="btn btn-reject" onclick="doAction('reject', '{_esc_js(d['file'])}', 'journal', this)">Cancella</button>
             </div>
+          </div>
+        </div>"""
+
+    # Build published-articles rows (compact, list-style — 58+ live
+    # articles would be too many full cards). One row per article with
+    # title, date, section badge, and 3 small actions: View live,
+    # Modifica, Unpublish.
+    published_rows = ""
+    for p in published:
+        section_badge = (
+            f'<span class="badge badge-section published-row-section">{_esc(p["section"])}</span>'
+            if p["section"] else ""
+        )
+        public_url = f"https://myvilla.la/blog/{p['file']}"
+        date_short = (p.get("date") or "")[:10]  # YYYY-MM-DD if ISO
+        published_rows += f"""
+        <div class="published-row" id="published-{_esc(p['file'])}" data-file="{_esc(p['file'])}">
+          <div class="published-row-main">
+            <div class="published-row-title">{_esc(p['title'])}</div>
+            <div class="published-row-meta">
+              {section_badge}
+              <span class="published-row-date">{_esc(date_short)}</span>
+              <span class="published-row-size">{p['size_kb']} KB</span>
+            </div>
+          </div>
+          <div class="published-row-actions">
+            <a class="btn btn-mini" href="{_esc(public_url)}" target="_blank" rel="noreferrer" title="Apri pagina live">↗ Live</a>
+            <a class="btn btn-mini" href="/preview?file={_esc(p['file'])}&edit=1" target="_blank" title="Modifica inline">✏ Modifica</a>
+            <button class="btn btn-mini btn-mini-danger" onclick="unpublishArticle('{_esc_js(p['file'])}', this)" title="Rimuove dal sito (sposta in archivio)">🗑 Rimuovi</button>
           </div>
         </div>"""
 
@@ -3053,6 +3149,64 @@ def build_dashboard():
     color: #fff !important;
     cursor: not-allowed !important;
     opacity: 0.75;
+  }}
+
+  /* ── Published Articles rows (compact list) ──────────── */
+  .published-row {{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    transition: background 0.15s;
+  }}
+  .published-row:hover {{ background: #faf6f0; }}
+  .published-row-main {{
+    flex: 1;
+    min-width: 0;
+  }}
+  .published-row-title {{
+    font-weight: 600;
+    color: var(--espresso);
+    font-size: 0.95rem;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }}
+  .published-row-meta {{
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.75rem;
+    color: #888;
+  }}
+  .published-row-section {{ font-size: 0.7rem; }}
+  .published-row-date {{ font-variant-numeric: tabular-nums; }}
+  .published-row-actions {{
+    display: flex;
+    gap: 0.3rem;
+    flex-shrink: 0;
+  }}
+  .btn-mini-danger {{
+    background: rgba(168,93,63,0.08);
+    color: #a85d3f;
+    border: 1px solid rgba(168,93,63,0.25);
+  }}
+  .btn-mini-danger:hover {{
+    background: rgba(168,93,63,0.18);
+    border-color: rgba(168,93,63,0.45);
+  }}
+  @media (max-width: 720px) {{
+    .published-row {{
+      flex-direction: column;
+      align-items: stretch;
+    }}
+    .published-row-actions {{ justify-content: flex-end; }}
   }}
 
   /* ── IG companion block (inside journal cards) ──────── */
@@ -4975,6 +5129,14 @@ def build_dashboard():
   </div>
 
   <div class="section">
+    <h2 class="section-heading" onclick="togglePublishedSection(this)" style="cursor:pointer; user-select:none;">📚 Published Articles<span class="section-count">{len(published)}</span><span id="published-toggle-icon" style="float:right; font-size:0.7em; color:#999;">▾ click per espandere</span></h2>
+    <div id="published-list" style="display:none;">
+      <p class="section-subtitle" style="margin-bottom: 1rem;">Articoli già live su myvilla.la. Click "↗ Live" per vedere la pagina, "✏ Modifica" per editare inline, "🗑 Rimuovi" per togliere dal sito (sposta in <code>_archive/blog/journal/</code>).</p>
+      {published_rows if published else '<p style="color:#999; font-size:0.9rem;">No published articles yet.</p>'}
+    </div>
+  </div>
+
+  <div class="section">
     <h2 class="section-heading">📱 Social Posts<span class="section-count">{len(social)}</span></h2>
     <div class="social-platforms-status" id="social-platforms-status"></div>
     {social_cards if social else '<p style="color:#999; font-size:0.9rem;">No social drafts pending.</p>'}
@@ -5382,6 +5544,58 @@ function copyViralReply(btn) {{
     textarea.select();
     document.execCommand('copy');
     showToast('Copied!');
+  }});
+}}
+
+/* ── Published Articles: toggle the collapsable section ─── */
+function togglePublishedSection(heading) {{
+  const list = document.getElementById('published-list');
+  const icon = document.getElementById('published-toggle-icon');
+  if (!list) return;
+  const isHidden = list.style.display === 'none';
+  list.style.display = isHidden ? '' : 'none';
+  if (icon) icon.textContent = isHidden ? '▴ click per chiudere' : '▾ click per espandere';
+}}
+
+/* ── Published Articles: remove from the live site ─────────
+   Two-click confirmation gate (irreversible-feeling action even
+   though the file is just moved to _archive/blog/journal/).
+   Server rebuilds the indices and auto-pushes; in ~60s the page
+   is gone from myvilla.la.
+*/
+function unpublishArticle(file, btn) {{
+  if (!confirm('Rimuovere QUESTO articolo dal sito myvilla.la?\\n\\nIl file viene spostato in _archive/blog/journal/ e il sito si aggiorna in ~60 secondi.\\n\\nFile: ' + file)) {{
+    return;
+  }}
+  btn.disabled = true;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner"></span>Rimuovendo...';
+  fetch('/api/unpublish', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{file: file, type: 'journal'}})
+  }})
+  .then(r => r.json())
+  .then(resp => {{
+    if (resp.ok) {{
+      const row = document.getElementById('published-' + file);
+      if (row) {{
+        row.style.transition = 'opacity 0.3s, max-height 0.3s';
+        row.style.opacity = '0';
+        row.style.maxHeight = '0';
+        setTimeout(() => {{ if (row.parentNode) row.parentNode.removeChild(row); }}, 320);
+      }}
+      showToast('Rimosso dal sito. Sito aggiornato tra ~60s.');
+    }} else {{
+      btn.disabled = false;
+      btn.innerHTML = orig;
+      showToast('Rimozione fallita: ' + (resp.error || 'unknown'));
+    }}
+  }})
+  .catch(err => {{
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    showToast('Errore di rete: ' + err.message);
   }});
 }}
 
@@ -7272,14 +7486,27 @@ class ReviewHandler(BaseHTTPRequestHandler):
 
             # Sanitize: only allow simple filenames, no path traversal
             safe_name = Path(filename).name
+            # Look in _drafts/journal/ first (queue), then in blog/
+            # (already-published). This lets the same /preview URL serve
+            # both draft review AND post-publish editing without the
+            # caller needing to know which folder the file lives in.
             filepath = DRAFTS_DIR / "journal" / safe_name
-            if not filepath.exists() or not filepath.suffix == ".html":
+            in_blog = False
+            if not filepath.exists():
+                blog_path = BLOG_DIR / safe_name
+                if blog_path.exists():
+                    filepath = blog_path
+                    in_blog = True
+            if not filepath.exists() or filepath.suffix != ".html":
                 self._send_html(f"<h1>File not found: {_esc(safe_name)}</h1>", 404)
                 return
 
             content = filepath.read_text(encoding="utf-8", errors="replace")
-            # Inject WYSIWYG inline editor
-            wysiwyg = _build_wysiwyg_injection(safe_name)
+            # Inject WYSIWYG inline editor — the editor JS handles both
+            # draft and live articles; the difference is the save target
+            # (the existing /api/save_journal route already detects the
+            # current location).
+            wysiwyg = _build_wysiwyg_injection(safe_name, in_blog=in_blog)
             content = content.replace("</body>", wysiwyg + "\n</body>")
             self._send_html(content)
 
@@ -7478,6 +7705,8 @@ class ReviewHandler(BaseHTTPRequestHandler):
             self._handle_approve(safe_name, content_type)
         elif parsed.path == "/reject":
             self._handle_reject(safe_name, content_type)
+        elif parsed.path == "/api/unpublish":
+            self._handle_unpublish(safe_name, content_type)
         elif parsed.path == "/api/get_draft":
             self._handle_get_draft(safe_name, content_type)
         elif parsed.path == "/api/save_draft":
@@ -7685,6 +7914,98 @@ class ReviewHandler(BaseHTTPRequestHandler):
 
             self._send_json({"ok": True, "message": f"Approved: {filename}"})
 
+    def _handle_unpublish(self, filename, content_type):
+        """Remove an already-published article from the live site.
+
+        Mirror of _handle_approve in reverse: the .html + .json
+        (sidecar) move from blog/ → _archive/blog/journal/, the
+        indices/sitemap/homepage are rebuilt, and the change is
+        auto-pushed so GitHub Pages drops the page within ~60s.
+
+        Only journal content_type is supported (social posts don't
+        have a public "unpublish" semantics — they're published
+        directly to X/IG, not to myvilla.la).
+
+        The article's source URLs stay in previously_reported.json:
+        unpublishing means "we no longer want this on the site", not
+        "the underlying story is fair game for re-coverage". If the
+        operator wants the radar to re-suggest those URLs, they can
+        edit previously_reported.json by hand to remove the entries.
+        """
+        if content_type != "journal":
+            self._send_json(
+                {"ok": False, "error": "Only 'journal' is unpublishable."},
+                400,
+            )
+            return
+
+        src_html = BLOG_DIR / Path(filename).name
+        if not src_html.exists() or src_html.suffix != ".html":
+            self._send_json(
+                {"ok": False, "error": f"Not in blog/: {filename}"},
+                404,
+            )
+            return
+
+        archive_sub = ARCHIVE_DIR / "blog" / "journal"
+        archive_sub.mkdir(parents=True, exist_ok=True)
+
+        moved = []
+        # Move .html
+        dst_html = archive_sub / src_html.name
+        # Disambiguate if the same name was already unpublished once.
+        if dst_html.exists():
+            ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+            dst_html = archive_sub / f"{src_html.stem}.{ts}{src_html.suffix}"
+        try:
+            shutil.move(str(src_html), str(dst_html))
+            moved.append(dst_html.name)
+            print(f"  Unpublished: {src_html.name} → _archive/blog/journal/")
+        except Exception as e:  # noqa: BLE001
+            self._send_json(
+                {"ok": False, "error": f"Move failed: {type(e).__name__}: {e}"},
+                500,
+            )
+            return
+
+        # Move sidecar .json
+        sidecar = src_html.with_suffix(".json")
+        if sidecar.exists():
+            dst_json = archive_sub / sidecar.name
+            if dst_json.exists():
+                ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+                dst_json = archive_sub / f"{sidecar.stem}.{ts}{sidecar.suffix}"
+            shutil.move(str(sidecar), str(dst_json))
+            moved.append(dst_json.name)
+            print(f"  Moved sidecar: {sidecar.name}")
+
+        # Rebuild journal index + sitemap + homepage block
+        for script_name in (
+            "update_journal_index.py",
+            "update_sitemap.py",
+            "update_homepage_journal.py",
+        ):
+            script_path = SCRIPT_DIR / script_name
+            if script_path.exists():
+                try:
+                    subprocess.run(
+                        [sys.executable, str(script_path)],
+                        cwd=str(SCRIPT_DIR),
+                        timeout=30,
+                    )
+                    print(f"  Rebuilt: {script_name}")
+                except Exception as e:  # noqa: BLE001
+                    print(f"  Warning: {script_name} failed: {e}")
+
+        # Auto-push so the live site drops the page within ~60s.
+        _git_autopush(f"Unpublish journal: {Path(filename).stem}")
+
+        self._send_json({
+            "ok": True,
+            "message": f"Unpublished: {filename}",
+            "archived_as": moved,
+        })
+
     def _handle_reject(self, filename, content_type):
         if content_type == "journal":
             src = DRAFTS_DIR / "journal" / filename
@@ -7881,12 +8202,26 @@ class ReviewHandler(BaseHTTPRequestHandler):
     def _handle_save_draft(self, filename, content_type, data):
         try:
             if content_type == "journal":
+                # Look in _drafts/journal/ first; if missing, fall back
+                # to blog/. This allows the same /api/save_draft route to
+                # update both pending drafts AND already-published
+                # articles edited in-place via the WYSIWYG editor.
                 html_path = DRAFTS_DIR / "journal" / filename
                 if filename.endswith(".json"):
                     json_path = html_path
                     html_path = json_path.with_suffix(".html")
                 else:
                     json_path = html_path.with_suffix(".json")
+                # Fallback to blog/ if the draft path doesn't exist.
+                if not html_path.exists() and not json_path.exists():
+                    blog_html = BLOG_DIR / Path(filename).name
+                    blog_json = blog_html.with_suffix(".json")
+                    if blog_html.exists() or blog_json.exists():
+                        html_path = blog_html if filename.endswith(".html") else blog_html
+                        if filename.endswith(".json"):
+                            json_path = blog_json
+                        else:
+                            json_path = blog_html.with_suffix(".json")
 
                 if not isinstance(data, dict):
                     self._send_json({"ok": False, "error": "data must be an object"}, 400)
