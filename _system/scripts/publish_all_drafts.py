@@ -278,31 +278,284 @@ def _publish_one(html_path: Path, *, force: bool, dry_run: bool) -> dict:
         return result
 
 
+# ── Ready-to-send journalist pitches ─────────────────────────────────
+#
+# The radar produces email pitches in radar_YYYY-MM-DD.json under
+# qualified[]. Each has draft.{subject, body, contact_email,
+# email_source}. The dashboard's "Send now" button (one-at-a-time)
+# already calls send_email.send_draft and marks the source URL as
+# user_dismissed on success. This batch version replicates the same
+# flow for every pitch that's "safe to auto-send":
+#
+#   email_source in {apollo, editorial_scraped, editorial_fallback}
+#
+# Excluded by policy from auto-send:
+#   - apollo_likely : Apollo's "likely match" tag means the operator
+#                     should eyeball the journalist name before send.
+#   - pattern_guess : ~50% bounce rate historically. Reputation risk.
+#   - empty/None    : no contact_email — can't send anyway.
+#
+# Hard safety nets layered on top (all enforced by send_email already):
+#   - dry_run flag in _system/outreach/config.yml
+#   - rate_limit_per_hour: 10 (refuses runaway sends; failures show up
+#                              as reason='rate_limited' in errors)
+#   - blacklist: refuses addresses that previously bounced
+
+SAFE_EMAIL_SOURCES = {"apollo", "editorial_scraped", "editorial_fallback"}
+
+_DAILY_RADAR_RX = re.compile(r"^radar_\d{4}-\d{2}-\d{2}\.json$")
+
+
+def _find_latest_radar_json():
+    reports = SYSTEM_DIR / "radar" / "reports"
+    if not reports.exists():
+        return None
+    cands = sorted(f for f in reports.glob("radar_*.json")
+                   if _DAILY_RADAR_RX.match(f.name))
+    return cands[-1] if cands else None
+
+
+def _load_dismissed_urls():
+    """Return the set of URLs already marked user_dismissed (so we
+    never re-send a pitch on the same article).
+    """
+    path = SYSTEM_DIR / "radar" / "previously_reported.json"
+    if not path.exists():
+        return set()
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return set()
+    urls = set()
+    for a in (data.get("reported_articles") or []):
+        u = a.get("url")
+        if u:
+            urls.add(u)
+    return urls
+
+
+def _mark_pitch_url_dismissed(url, title, recipient):
+    """Append the pitch's source URL to previously_reported.json so the
+    radar/dashboard never re-suggest it (or auto-resend it).
+    Same mechanism approve.py uses on /api/send-email success.
+    """
+    if not url:
+        return
+    path = SYSTEM_DIR / "radar" / "previously_reported.json"
+    try:
+        if path.exists():
+            data = json.loads(path.read_text(encoding="utf-8"))
+        else:
+            data = {"reported_articles": []}
+        articles = data.setdefault("reported_articles", [])
+        if any(a.get("url") == url for a in articles):
+            return  # idempotent
+        articles.append({
+            "date_first_reported": datetime.now().strftime("%Y-%m-%d"),
+            "source": "user_dismissed",
+            "title": title or "",
+            "score": None,
+            "cluster": None,
+            "action_type": "user_dismissed",
+            "url": url,
+            "note": f"auto-sent pitch to {recipient}",
+        })
+        tmp = path.with_suffix(".json.tmp")
+        tmp.write_text(json.dumps(data, indent=2, ensure_ascii=False),
+                       encoding="utf-8")
+        tmp.replace(path)
+    except Exception as e:  # noqa: BLE001
+        print(f"  [dismiss-url] {type(e).__name__}: {e}")
+
+
+def _send_ready_pitches(*, dry_run=False, max_per_run=15):
+    """Send all radar pitch emails that are safe to auto-dispatch.
+
+    Returns a dict {sent, skipped, errors} of compact records for the
+    digest email.
+    """
+    radar_json = _find_latest_radar_json()
+    if not radar_json:
+        return {"sent": [], "skipped": [], "errors": []}
+
+    try:
+        radar = json.loads(radar_json.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"  [pitches] failed to parse {radar_json.name}: {e}")
+        return {"sent": [], "skipped": [], "errors": []}
+
+    dismissed = _load_dismissed_urls()
+
+    sent, skipped, errors = [], [], []
+    candidates = []
+    for it in (radar.get("qualified") or []):
+        draft = it.get("draft") or {}
+        if (draft.get("type") or "").lower() != "email":
+            continue
+        to_addr = (draft.get("contact_email") or "").strip()
+        if not to_addr:
+            continue
+        candidates.append(it)
+
+    # Sort by score descending so the best pitches go out before the
+    # rate-limit gate kicks in.
+    candidates.sort(
+        key=lambda x: -(x.get("ai_score") or x.get("preliminary_score") or 0)
+    )
+
+    try:
+        from send_email import send_draft
+    except ImportError as e:
+        print(f"  [pitches] send_email module unavailable: {e}")
+        return {"sent": [], "skipped": [], "errors": []}
+
+    for i, it in enumerate(candidates):
+        draft = it["draft"]
+        title = (it.get("title") or "?")[:80]
+        to_addr = (draft.get("contact_email") or "").strip()
+        source = (draft.get("email_source") or "").strip()
+        url = it.get("url") or ""
+        subject = (draft.get("subject") or "").strip()
+        body = (draft.get("body") or "").strip()
+        publication = (it.get("publication") or "").strip()
+
+        # Already covered: don't double-send on the same article.
+        if url and url in dismissed:
+            skipped.append({
+                "title": title, "to": to_addr,
+                "reason": "already sent (URL in dedup)",
+            })
+            continue
+
+        # Policy gate: only safe sources auto-send.
+        if source not in SAFE_EMAIL_SOURCES:
+            skipped.append({
+                "title": title, "to": to_addr,
+                "reason": f"risky source ({source or 'unknown'}) — needs manual review",
+            })
+            continue
+
+        # Sanity: subject + body present.
+        if not subject or not body:
+            skipped.append({
+                "title": title, "to": to_addr,
+                "reason": "empty subject or body",
+            })
+            continue
+
+        # Soft batch cap on top of the per-hour rate limit. Mostly a
+        # belt-and-suspenders against a runaway radar that produced
+        # an unusual number of qualified items in one run.
+        if len(sent) >= max_per_run:
+            skipped.append({
+                "title": title, "to": to_addr,
+                "reason": f"batch cap reached ({max_per_run}) — will retry next run",
+            })
+            continue
+
+        if dry_run:
+            sent.append({
+                "title": title, "to": to_addr,
+                "subject": subject, "publication": publication,
+                "source": source,
+            })
+            continue
+
+        # Send for real.
+        try:
+            result = send_draft(to=to_addr, subject=subject, body=body)
+        except Exception as e:  # noqa: BLE001
+            errors.append({
+                "title": title, "to": to_addr,
+                "error": f"{type(e).__name__}: {e}",
+            })
+            continue
+
+        ok = getattr(result, "ok", False)
+        result_dry = getattr(result, "dry_run", False)
+        reason = getattr(result, "reason", "") or ""
+        err = getattr(result, "error", "") or ""
+
+        if ok and result_dry:
+            # outreach/config.yml has dry_run: true. Treat as informational.
+            skipped.append({
+                "title": title, "to": to_addr,
+                "reason": "outreach config in dry_run mode",
+            })
+        elif ok:
+            sent.append({
+                "title": title, "to": to_addr,
+                "subject": subject, "publication": publication,
+                "source": source,
+            })
+            # Mark URL so radar/dashboard never re-suggest this article.
+            if url:
+                _mark_pitch_url_dismissed(url, title, to_addr)
+        elif reason == "rate_limited":
+            skipped.append({
+                "title": title, "to": to_addr,
+                "reason": "rate-limited (10/h) — will retry next run",
+            })
+            # Stop sending further: the hour-bucket is full.
+            print(f"  [pitches] rate limit hit at {len(sent)} sent — stopping")
+            break
+        elif reason == "blacklisted":
+            skipped.append({
+                "title": title, "to": to_addr,
+                "reason": "address blacklisted (previously bounced)",
+            })
+        else:
+            errors.append({
+                "title": title, "to": to_addr,
+                "error": f"{reason} {err}".strip() or "unknown",
+            })
+
+    return {"sent": sent, "skipped": skipped, "errors": errors}
+
+
 # ── Digest email ─────────────────────────────────────────────────────
 
-def _format_digest(published, skipped, errors, dry_run=False) -> tuple[str, str]:
-    """Returns (subject, body) for the digest email."""
+def _format_digest(published, skipped, errors,
+                   *, pitches=None, dry_run=False) -> tuple[str, str]:
+    """Returns (subject, body) for the daily digest email.
+
+    `pitches` is the dict returned by _send_ready_pitches() — when
+    provided, the digest grows a "✉ Email inviate ai giornalisti"
+    section listing sent, skipped (with reason), and errored sends.
+    """
     today = datetime.now().strftime("%Y-%m-%d")
     n_pub = len(published)
+    n_pitch_sent = len((pitches or {}).get("sent") or [])
     prefix = "[DRY-RUN] " if dry_run else ""
-    if n_pub == 0 and not skipped and not errors:
-        subject = f"{prefix}[My Villa] Nessun nuovo articolo journal — {today}"
-    elif n_pub == 0:
-        subject = f"{prefix}[My Villa] Nessun articolo pubblicato (tutti bloccati) — {today}"
+
+    # Subject reflects whatever happened — both counts when both, just
+    # one when only one bucket has activity.
+    parts = []
+    if n_pub:
+        parts.append(f"{n_pub} articolo" + ("" if n_pub == 1 else " s/articoli pubblicato"))
+    if n_pitch_sent:
+        parts.append(f"{n_pitch_sent} email")
+    if parts:
+        subject = f"{prefix}[My Villa] " + " + ".join(parts) + f" — {today}"
+    elif skipped or errors or (pitches and (pitches.get("skipped") or pitches.get("errors"))):
+        subject = f"{prefix}[My Villa] Nulla pubblicato/inviato (tutto bloccato) — {today}"
     else:
-        plural = "articolo" if n_pub == 1 else "articoli"
-        subject = f"{prefix}[My Villa] {n_pub} {plural} pubblicato sul journal — {today}"
+        subject = f"{prefix}[My Villa] Nessuna attività journal/outreach — {today}"
 
     lines = []
+    lines.append("Ciao Ivo,\n")
+
+    # ── Section 1: journal articles ──
     if n_pub:
         verb = "sarebbero pubblicati" if dry_run else "sono stati pubblicati"
-        lines.append(f"Ciao Ivo,\n\nQuesti {n_pub} articoli {verb} oggi sul journal:\n")
+        lines.append(f"\n📝 ARTICOLI PUBBLICATI ({n_pub})\n")
+        lines.append(f"Questi articoli {verb} oggi sul journal:\n")
         for i, p in enumerate(published, 1):
             lines.append(f"{i}. {p['title']}")
             lines.append(f"   {p['public_url']}")
             lines.append("")
     else:
-        lines.append("Ciao Ivo,\n\nNessun articolo nuovo pubblicato oggi.\n")
+        lines.append("\n📝 ARTICOLI PUBBLICATI: nessuno oggi.\n")
 
     if skipped:
         lines.append("\n── Articoli bloccati (link rotti, rimangono in coda) ──\n")
@@ -318,9 +571,42 @@ def _format_digest(published, skipped, errors, dry_run=False) -> tuple[str, str]
         lines.append("\n── Articoli con errore (intervento manuale necessario) ──\n")
         for e in errors:
             lines.append(f"• {e['title']}: {e['reason']}")
+        lines.append("")
 
-    lines.append("\n--\nAuto-published by publish_all_drafts.py")
+    # ── Section 2: pitch emails to journalists ──
+    if pitches is not None:
+        p_sent = pitches.get("sent") or []
+        p_skip = pitches.get("skipped") or []
+        p_err = pitches.get("errors") or []
+        if p_sent or p_skip or p_err:
+            verb = "sarebbero inviate" if dry_run else "sono state inviate"
+            lines.append(f"\n✉️  EMAIL AI GIORNALISTI ({len(p_sent)} inviate)\n")
+            if p_sent:
+                lines.append(f"Queste pitch {verb} oggi da info@myvilla.la:\n")
+                for i, p in enumerate(p_sent, 1):
+                    pub = f" ({p['publication']})" if p.get("publication") else ""
+                    lines.append(f"{i}. → {p['to']}{pub}")
+                    lines.append(f"   subject: {p['subject']}")
+                    lines.append(f"   ref: {p['title']}")
+                    lines.append("")
+            if p_skip:
+                lines.append("── Email saltate (review umana richiesta) ──\n")
+                for s in p_skip:
+                    lines.append(f"• {s.get('to', '?')}  ({s['reason']})")
+                    lines.append(f"  ref: {s['title']}")
+                    lines.append("")
+            if p_err:
+                lines.append("── Email con errore di invio ──\n")
+                for e in p_err:
+                    lines.append(f"• {e.get('to', '?')}: {e['error']}")
+                    lines.append(f"  ref: {e['title']}")
+                lines.append("")
+        else:
+            lines.append("\n✉️  EMAIL AI GIORNALISTI: nessuna pitch in coda oggi.\n")
+
+    lines.append("\n--\nAuto-published + outreach by publish_all_drafts.py")
     lines.append(f"Site: {SITE_BASE}/blog/")
+    lines.append("Le pitch 'risky' (Apollo likely, pattern_guess) restano per review manuale sul dashboard.")
 
     return subject, "\n".join(lines)
 
@@ -368,9 +654,11 @@ def _send_digest(subject, body, *, to: str, dry_run: bool) -> bool:
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[1])
     parser.add_argument("--dry-run", action="store_true",
-                        help="Don't move files, don't push, don't email; just report.")
+                        help="Don't move files, don't push, don't send mails; just report.")
     parser.add_argument("--no-email", action="store_true",
                         help="Publish, but skip the digest email.")
+    parser.add_argument("--no-pitches", action="store_true",
+                        help="Skip the auto-send of journalist pitches.")
     parser.add_argument("--force", action="store_true",
                         help="Bypass broken-link validation.")
     parser.add_argument("--to", default=DEFAULT_RECIPIENT,
@@ -382,11 +670,13 @@ def main(argv=None):
     _load_dotenv()
 
     drafts = _list_journal_drafts()
-    if not drafts:
-        print("Nothing to publish — _drafts/journal/ has no .html files.")
-        return 0
-
-    print(f"Found {len(drafts)} draft(s) in _drafts/journal/")
+    # We intentionally DON'T early-return when drafts is empty anymore —
+    # there may still be journalist pitches to auto-send from the radar
+    # even when no journal articles need publishing.
+    if drafts:
+        print(f"Found {len(drafts)} draft(s) in _drafts/journal/")
+    else:
+        print("No journal drafts to publish.")
     print()
 
     published, skipped, errors = [], [], []
@@ -430,18 +720,45 @@ def main(argv=None):
             print(f"  {'✓ pushed ' + pushed_sha if ok else '✗ push failed'}")
             print()
 
+    # Send journalist pitches that are safe to auto-dispatch (after
+    # publishing journal articles — order matters because publishing
+    # marks source URLs as user_dismissed, which would otherwise cause
+    # the same article's pitch to be skipped here as 'already sent').
+    pitches = None
+    if not args.no_pitches:
+        print("Sending ready journalist pitches...")
+        pitches = _send_ready_pitches(dry_run=args.dry_run)
+        s = pitches["sent"]
+        sk = pitches["skipped"]
+        er = pitches["errors"]
+        print(f"  Sent: {len(s)}    Skipped: {len(sk)}    Errors: {len(er)}")
+        for item in s:
+            print(f"    ✓ → {item['to']}  ({item['title'][:50]})")
+        for item in sk:
+            print(f"    ⤳ skip {item.get('to','?')}: {item['reason']}")
+        for item in er:
+            print(f"    ✗ {item.get('to','?')}: {item['error']}")
+        print()
+
     # Digest email
     if not args.no_email:
         print("Sending digest email...")
         subject, body = _format_digest(
-            published, skipped, errors, dry_run=args.dry_run,
+            published, skipped, errors,
+            pitches=pitches, dry_run=args.dry_run,
         )
         _send_digest(subject, body, to=args.to, dry_run=args.dry_run)
 
     print()
-    print(f"Summary: {len(published)} published, {len(skipped)} skipped, "
-          f"{len(errors)} errors.")
-    return 0 if not errors else 2
+    pitch_sent = len((pitches or {}).get("sent") or [])
+    pitch_skip = len((pitches or {}).get("skipped") or [])
+    pitch_err = len((pitches or {}).get("errors") or [])
+    print(
+        f"Summary: {len(published)} published, {len(skipped)} skipped, "
+        f"{len(errors)} publish errors  |  "
+        f"{pitch_sent} pitches sent, {pitch_skip} skipped, {pitch_err} errors."
+    )
+    return 0 if not (errors or pitch_err) else 2
 
 
 if __name__ == "__main__":

@@ -2439,6 +2439,26 @@
       "action_type": "user_dismissed",
       "url": "https://nickiandkaren.com/ask-a-realtor/fire-resistant-features-increase-home-value-southern-california/",
       "note": "auto-published journal: fire-resistant-features-luxury-home-value-southern-california"
+    },
+    {
+      "date_first_reported": "2026-05-24",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.newsweek.com/california-fires-insurance-crisis-11976270",
+      "note": "email sent to newsroom@newsweek.com"
+    },
+    {
+      "date_first_reported": "2026-05-24",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://ibhs.org/ibhs-news-releases/ibhss-fortified-program-surpasses-100000-designations/",
+      "note": "email sent to aaycock@ibhs.org"
     }
   ]
 }
