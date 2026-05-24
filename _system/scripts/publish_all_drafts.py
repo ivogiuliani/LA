@@ -848,15 +848,43 @@ def _build_html_digest(published, skipped, errors,
 
 
 def _html_article_card(p: dict, *, dry_run: bool) -> str:
-    """One row in the articles table — hero image + title + excerpt."""
+    """One row in the articles table — hero image + title + excerpt.
+
+    When `hero_image_url` is missing (the article was generated
+    without a hero — rare but possible: image search can fail), we
+    fall back to a brand-aligned placeholder block so the digest
+    layout stays consistent and the card doesn't look broken.
+    """
     hero = p.get("hero_image_url")
-    img_block = ""
     if hero:
         img_block = (
             f'<img src="{_html_escape(hero)}" alt="" '
             f'width="540" '
             f'style="display:block;width:100%;max-width:540px;height:auto;'
             f'border-radius:4px;margin-bottom:14px;border:0;outline:none;"/>'
+        )
+    else:
+        # Placeholder: brand gradient + section label + MV monogram.
+        # Inline CSS so Gmail keeps the gradient (some clients strip
+        # CSS gradients; the fallback is a solid terracotta block).
+        section_text = (p.get("section") or "MY VILLA").upper()
+        img_block = (
+            f'<div style="display:block;width:100%;max-width:540px;'
+            f'height:200px;background:#C2714F;'
+            f'background:linear-gradient(135deg,#C2714F 0%,#C4A265 100%);'
+            f'border-radius:4px;margin-bottom:14px;'
+            f'text-align:center;line-height:200px;'
+            f'font-family:Georgia,serif;font-size:13px;'
+            f'letter-spacing:0.2em;color:#FAF8F5;'
+            f'text-transform:uppercase;">'
+            f'<span style="display:inline-block;line-height:1.5;'
+            f'vertical-align:middle;">'
+            f'<span style="font-family:Georgia,serif;font-size:28px;'
+            f'letter-spacing:0.16em;display:block;margin-bottom:6px;">'
+            f'MY <span style="color:#FFE8D6;">VILLA</span></span>'
+            f'<span style="font-size:11px;opacity:0.9;">'
+            f'{_html_escape(section_text)}</span>'
+            f'</span></div>'
         )
     section_pill = ""
     if p.get("section"):
