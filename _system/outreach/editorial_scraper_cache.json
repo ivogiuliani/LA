@@ -21,7 +21,7 @@
     "result": null
   },
   "prnewswire.com": {
-    "cached_at": 1778822966.896555,
+    "cached_at": 1779514030.02252,
     "result": null
   },
   "greenhomebuildermag.com": {
@@ -317,5 +317,111 @@
   "fbia.com": {
     "cached_at": 1778822948.514226,
     "result": null
+  },
+  "ocregister.com": {
+    "cached_at": 1779513890.327595,
+    "result": {
+      "email": "dfoley@ocregister.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 7
+    }
+  },
+  "sacbee.com": {
+    "cached_at": 1779514012.14212,
+    "result": null
+  },
+  "newsweek.com": {
+    "cached_at": 1779514017.646344,
+    "result": {
+      "email": "newsroom@newsweek.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 14
+    }
+  },
+  "ktvu.com": {
+    "cached_at": 1779514063.076499,
+    "result": null
+  },
+  "insurancenewsnet.com": {
+    "cached_at": 1779514078.4585018,
+    "result": null
+  },
+  "newhousebuilder.com": {
+    "cached_at": 1779514101.592641,
+    "result": {
+      "email": "info@newhousebuilder.com",
+      "source": "article_scraped",
+      "path": "/insulated-concrete-forms/",
+      "score": 6
+    }
+  },
+  "gjsentinel.com": {
+    "cached_at": 1779514111.211891,
+    "result": null
+  },
+  "ibhs.org": {
+    "cached_at": 1779514126.972437,
+    "result": {
+      "email": "aaycock@ibhs.org",
+      "source": "article_scraped",
+      "path": "/ibhs-news-releases/ibhss-fortified-program-surpasses-100000-designations/",
+      "score": 7
+    }
+  },
+  "economiccollapse.report": {
+    "cached_at": 1779514151.770988,
+    "result": null
+  },
+  "nickiandkaren.com": {
+    "cached_at": 1779514170.927402,
+    "result": null
+  },
+  "latentinsure.com": {
+    "cached_at": 1779514175.665169,
+    "result": null
+  },
+  "theunion.com": {
+    "cached_at": 1779514185.359671,
+    "result": null
+  },
+  "builderonline.com": {
+    "cached_at": 1779514187.0827389,
+    "result": null
+  },
+  "ktbs.com": {
+    "cached_at": 1779514196.58482,
+    "result": null
+  },
+  "oldharbor.com": {
+    "cached_at": 1779514211.375365,
+    "result": {
+      "email": "info@oldharbor.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 11
+    }
+  },
+  "fox21online.com": {
+    "cached_at": 1779514221.8790898,
+    "result": null
+  },
+  "mercurynews.com": {
+    "cached_at": 1779600314.5932999,
+    "result": null
+  },
+  "eenews.net": {
+    "cached_at": 1779600327.687698,
+    "result": null
+  },
+  "yubanet.com": {
+    "cached_at": 1779600330.443816,
+    "result": {
+      "email": "news@yubanet.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 19
+    }
   }
 }

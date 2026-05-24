@@ -2359,6 +2359,46 @@
       "action_type": "user_dismissed",
       "url": "https://www.wallpaper.com/architecture/residential/rudolph-schindler-homes-los-angeles-usa",
       "note": "published journal: rudolph-schindler-los-angeles-concrete-modernism-lessons.html"
+    },
+    {
+      "date_first_reported": "2026-05-24",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.sfchronicle.com/california/article/home-insurance-fair-plan-rates-22268752.php",
+      "note": "email sent to feedback@sfchronicle.com"
+    },
+    {
+      "date_first_reported": "2026-05-24",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.ocregister.com/2026/05/20/california-fair-plan-rates-going-up-29-in-late-2026/",
+      "note": "email sent to dfoley@ocregister.com"
+    },
+    {
+      "date_first_reported": "2026-05-24",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://oldharbor.com/2026/05/20/safeco-insurance-non-renewal/",
+      "note": "email sent to info@oldharbor.com"
+    },
+    {
+      "date_first_reported": "2026-05-24",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://yubanet.com/regional/wildfire-ready-coalition-presents-workshop-on-wildfire-ready-home-advisory-assessments/",
+      "note": "email sent to news@yubanet.com"
     }
   ]
 }
