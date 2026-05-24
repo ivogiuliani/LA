@@ -174,6 +174,133 @@ def save_ledger(ledger):
     save_json(HISTORY_DIR / "journal_ledger.json", ledger)
 
 
+# ── Fuzzy-title duplicate detection ──────────────────────────────────
+#
+# The topic_cooldown mechanism (below) only catches articles that share
+# an EXACT topic_tag string. In practice the LLM invents subtly
+# different tags every run ("fair-plan-rate-hike" vs "fair-plan-
+# october-2026") and the cooldown misses the duplication. This second
+# layer compares the SOURCE TITLE of the candidate against:
+#   1. titles of articles already in _drafts/journal/ (pending queue)
+#   2. titles of articles published in the last `lookback_days` days
+# Two titles are considered the same topic when they share at least
+# `overlap_threshold` significant tokens (4+ char alphabetic words,
+# minus a stopword list).
+#
+# Tuning: threshold of 3 catches 'FAIR Plan 29% Hike' vs 'FAIR Plan 29%
+# Rate Hike' (5 shared tokens) while staying under generic news drift
+# like 'Mercury Insurance California' vs 'Travelers Insurance California'
+# (2 shared tokens, both common across stories).
+
+_TOPIC_STOPWORDS = {
+    # Articles, prepositions, common verbs
+    "the", "and", "for", "with", "from", "into", "onto", "this", "that",
+    "these", "those", "have", "been", "being", "were", "will", "would",
+    "could", "should", "shall", "must", "what", "when", "where", "which",
+    "while", "after", "before", "about", "above", "below", "than", "more",
+    "less", "most", "least", "some", "many", "much", "both", "either",
+    "neither",
+    # Common but non-discriminating in OUR domain (these words appear in
+    # most My Villa journal titles, so they don't disambiguate stories).
+    # NOTE: words like "rate", "fire", "code", "wildfire" are KEPT in the
+    # signature on purpose — they're the words that DO distinguish.
+    "california", "home", "house", "luxury", "angeles", "year",
+}
+
+
+def _stem(word):
+    """Naive plural stripper. Good enough for title-level dedup.
+
+    Rules:
+      'rates' → 'rate'  (simple -s plural; the common case for our domain)
+      'companies' → 'company'  (-ies plural)
+      'houses' → 'house'  (the trailing -e survives because we only strip -s)
+
+    Edge case we accept: 'taxes' → 'taxe' is technically wrong (should be
+    'tax'), but the word never appears in our journal pipeline so the
+    loss of accuracy is irrelevant. Pinning to "-es means strip both
+    chars" was the bug that caused 'rates' → 'rat'.
+    """
+    if len(word) <= 4:
+        return word
+    if word.endswith("ies"):
+        return word[:-3] + "y"
+    if word.endswith("s"):
+        return word[:-1]
+    return word
+
+
+def _topic_signature(title):
+    """Significant tokens from a title — stopwords removed, plurals stemmed.
+
+    Stemming matters: without it, 'rate' vs 'rates' or 'home' vs 'homes'
+    look like different tokens and the overlap drops below threshold.
+    With stemming, 'FAIR Plan rates' and 'FAIR Plan Rate Hike' share
+    {fair, plan, rate} — 3 tokens → caught as duplicate.
+    """
+    if not title:
+        return set()
+    out = set()
+    for w in re.findall(r"[A-Za-z]{4,}", title.lower()):
+        if w in _TOPIC_STOPWORDS:
+            continue
+        stem = _stem(w)
+        if stem in _TOPIC_STOPWORDS:
+            continue
+        out.add(stem)
+    return out
+
+
+def is_duplicate_topic(candidate_title, ledger,
+                       *, lookback_days=21, overlap_threshold=3):
+    """Detect duplicate-topic articles before they get generated.
+
+    Returns (is_dup: bool, conflict_title: str). False/"" when no
+    overlap found. Compares against:
+      a) titles of pending drafts in _drafts/journal/*.json (any age)
+      b) titles of recently-published articles in the ledger (last
+         `lookback_days` days)
+    """
+    cand_sig = _topic_signature(candidate_title)
+    if len(cand_sig) < overlap_threshold:
+        return False, ""
+
+    # Pending drafts — high-signal: if we have an unpublished article on
+    # this topic, generating another now is almost always wrong.
+    drafts_dir = SYSTEM_DIR.parent / "_drafts" / "journal"
+    if drafts_dir.exists():
+        for f in drafts_dir.glob("*.json"):
+            try:
+                draft = json.loads(f.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            other_title = draft.get("title") or ""
+            other_sig = _topic_signature(other_title)
+            if other_sig and len(cand_sig & other_sig) >= overlap_threshold:
+                return True, other_title
+
+    # Published articles — last `lookback_days` days only. Beyond that,
+    # the world has moved on and a follow-up piece is legitimate.
+    try:
+        cutoff = datetime.now() - timedelta(days=lookback_days)
+    except Exception:
+        cutoff = None
+    for art in ledger.get("published_articles") or []:
+        pub_str = art.get("published_at") or art.get("date") or ""
+        if cutoff is not None and pub_str:
+            try:
+                if datetime.strptime(pub_str[:10], "%Y-%m-%d") < cutoff:
+                    continue
+            except Exception:
+                pass
+        other_title = art.get("title") or ""
+        other_sig = _topic_signature(other_title)
+        if other_sig and len(cand_sig & other_sig) >= overlap_threshold:
+            return True, other_title
+
+    return False, ""
+
+
 def is_in_cooldown(ledger, today_str):
     """Return blocked topics, data points, sources, sections."""
     blocked = {
@@ -232,6 +359,17 @@ def filter_candidates(radar_data, ledger, journal_config, max_articles=2, min_sc
         pub = item.get("publication", "")
         if pub.lower() in [s.lower() for s in blocked["sources"]]:
             print(f"  [Filter] Skipped (source cooldown): {item.get('title', '')[:50]}")
+            continue
+
+        # Fuzzy duplicate-topic guard: compare the candidate's source
+        # title against existing drafts + recently-published articles.
+        # Catches near-duplicates the topic_cooldown misses because the
+        # LLM invents slightly different topic_tag strings each run.
+        cand_title = item.get("title", "")
+        is_dup, conflict = is_duplicate_topic(cand_title, ledger)
+        if is_dup:
+            print(f"  [Filter] Skipped (duplicate topic): {cand_title[:60]}")
+            print(f"             conflicts with: {conflict[:60]}")
             continue
 
         candidates.append(item)
