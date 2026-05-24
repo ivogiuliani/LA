@@ -2429,6 +2429,16 @@
       "action_type": "user_dismissed",
       "url": "https://peer.berkeley.edu/publications/2017-09",
       "note": "published journal: reinforced-concrete-default-california-home-construction.html"
+    },
+    {
+      "date_first_reported": "2026-05-24",
+      "source": "user_dismissed",
+      "title": "Boost Home Value with Fire-Resistant Features in LA",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://nickiandkaren.com/ask-a-realtor/fire-resistant-features-increase-home-value-southern-california/",
+      "note": "auto-published journal: fire-resistant-features-luxury-home-value-southern-california"
     }
   ]
 }
