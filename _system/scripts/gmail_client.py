@@ -218,6 +218,7 @@ class GmailClient:
         to: str,
         subject: str,
         body: str,
+        html_body: str | None = None,
         cc: str | None = None,
         bcc: str | None = None,
         thread_id: str | None = None,
@@ -254,10 +255,29 @@ class GmailClient:
         """
         cfg = self.config
 
-        # Choose singlepart/multipart based on whether we have attachments.
+        # Compose the message. Three possible structures:
+        #
+        #   1. No HTML, no attachments → plain MIMEText (legacy path,
+        #      unchanged so existing journalist pitches keep going out
+        #      byte-identical to before).
+        #   2. HTML provided (with or without attachments) → MIMEMultipart
+        #      ("mixed") wrapping a MIMEMultipart("alternative") with both
+        #      text/plain and text/html parts. Email clients pick HTML
+        #      when they can, fall back to plain otherwise.
+        #   3. No HTML, but attachments present → MIMEMultipart("mixed")
+        #      with plain body + attached files.
         attachments = attachments or []
-        if attachments:
-            msg: MIMEText | MIMEMultipart = MIMEMultipart("mixed")
+        if html_body:
+            outer: MIMEText | MIMEMultipart = MIMEMultipart("mixed")
+            alt = MIMEMultipart("alternative")
+            alt.attach(MIMEText(body, "plain", _charset="utf-8"))
+            alt.attach(MIMEText(html_body, "html", _charset="utf-8"))
+            outer.attach(alt)
+            for path in attachments:
+                self._attach_file(outer, path)
+            msg = outer
+        elif attachments:
+            msg = MIMEMultipart("mixed")
             msg.attach(MIMEText(body, _charset="utf-8"))
             for path in attachments:
                 self._attach_file(msg, path)

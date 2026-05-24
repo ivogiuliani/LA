@@ -213,23 +213,47 @@ def _dismiss_journal_sources(sidecar_data: dict, slug: str):
         print(f"  [dismiss] error: {type(e).__name__}: {e}")
 
 
+def _find_hero_image(slug: str) -> str | None:
+    """Public URL of the hero image, or None if no file exists in the
+    expected location. Mirrors update_journal_index.find_hero_image."""
+    img_dir = BLOG_DIR / "assets" / "img"
+    for ext in ("jpg", "jpeg", "png", "webp"):
+        p = img_dir / f"{slug}-hero.{ext}"
+        if p.exists():
+            return f"{SITE_BASE}/blog/assets/img/{slug}-hero.{ext}"
+    return None
+
+
 def _publish_one(html_path: Path, *, force: bool, dry_run: bool) -> dict:
     """Move one draft to blog/, handle sidecar + IG companion.
 
     Returns a dict with keys: status (published|skipped_links|error),
     title, slug, public_url, reason (if skipped), broken_links (if any).
+    Plus rendering fields used by the HTML digest: subtitle, excerpt,
+    section, hero_image_url.
     """
     slug = html_path.stem
     sidecar = html_path.with_suffix(".json")
     companion = html_path.with_suffix(".ig.md")
     sidecar_data = _read_sidecar(sidecar)
     title = sidecar_data.get("title") or slug
+    subtitle = sidecar_data.get("subtitle") or ""
+    excerpt = (
+        sidecar_data.get("meta_description")
+        or sidecar_data.get("excerpt")
+        or ""
+    )
+    section = sidecar_data.get("tag_label") or sidecar_data.get("section") or ""
 
     result = {
         "status": "?",
         "title": title,
+        "subtitle": subtitle,
+        "excerpt": excerpt,
+        "section": section,
         "slug": slug,
         "public_url": f"{SITE_BASE}/blog/{slug}.html",
+        "hero_image_url": _find_hero_image(slug),
         "reason": "",
         "broken_links": [],
     }
@@ -302,6 +326,23 @@ def _publish_one(html_path: Path, *, force: bool, dry_run: bool) -> dict:
 #   - blacklist: refuses addresses that previously bounced
 
 SAFE_EMAIL_SOURCES = {"apollo", "editorial_scraped", "editorial_fallback"}
+
+
+def _publication_reach_label(publication: str, url: str = "") -> str:
+    """Human-readable readers/month for a publication. Empty string when
+    unknown. Imports the canonical PUBLICATION_REACH table from
+    approve.py so the digest stays in sync with what the dashboard
+    shows on every radar card.
+    """
+    try:
+        from approve import _lookup_publication_reach, _format_reach
+    except Exception:
+        return ""
+    millions = _lookup_publication_reach(publication or "", url or "")
+    if not millions:
+        return ""
+    label = _format_reach(millions)
+    return label or ""
 
 _DAILY_RADAR_RX = re.compile(r"^radar_\d{4}-\d{2}-\d{2}\.json$")
 
@@ -453,11 +494,13 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
             })
             continue
 
+        reach_label = _publication_reach_label(publication, url)
+
         if dry_run:
             sent.append({
                 "title": title, "to": to_addr,
                 "subject": subject, "publication": publication,
-                "source": source,
+                "source": source, "reach": reach_label, "url": url,
             })
             continue
 
@@ -486,7 +529,7 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
             sent.append({
                 "title": title, "to": to_addr,
                 "subject": subject, "publication": publication,
-                "source": source,
+                "source": source, "reach": reach_label, "url": url,
             })
             # Mark URL so radar/dashboard never re-suggest this article.
             if url:
@@ -516,12 +559,16 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
 # ── Digest email ─────────────────────────────────────────────────────
 
 def _format_digest(published, skipped, errors,
-                   *, pitches=None, dry_run=False) -> tuple[str, str]:
-    """Returns (subject, body) for the daily digest email.
+                   *, pitches=None, dry_run=False) -> tuple[str, str, str]:
+    """Returns (subject, plain_body, html_body) for the daily digest.
+
+    The plain body is the legacy text version (kept for email clients
+    without HTML support and as the multipart/alternative fallback).
+    The HTML body is the brand-aligned visual digest, rendered with
+    inline CSS (the only reliable styling in Gmail/Outlook/Apple Mail).
 
     `pitches` is the dict returned by _send_ready_pitches() — when
-    provided, the digest grows a "✉ Email inviate ai giornalisti"
-    section listing sent, skipped (with reason), and errored sends.
+    provided, both bodies grow an "Email ai giornalisti" section.
     """
     today = datetime.now().strftime("%Y-%m-%d")
     n_pub = len(published)
@@ -532,11 +579,13 @@ def _format_digest(published, skipped, errors,
     # one when only one bucket has activity.
     parts = []
     if n_pub:
-        parts.append(f"{n_pub} articolo" + ("" if n_pub == 1 else " s/articoli pubblicato"))
+        parts.append("1 articolo pubblicato" if n_pub == 1
+                     else f"{n_pub} articoli pubblicati")
     if n_pitch_sent:
-        parts.append(f"{n_pitch_sent} email")
+        parts.append("1 email inviata" if n_pitch_sent == 1
+                     else f"{n_pitch_sent} email inviate")
     if parts:
-        subject = f"{prefix}[My Villa] " + " + ".join(parts) + f" — {today}"
+        subject = f"{prefix}[My Villa] " + " · ".join(parts) + f" — {today}"
     elif skipped or errors or (pitches and (pitches.get("skipped") or pitches.get("errors"))):
         subject = f"{prefix}[My Villa] Nulla pubblicato/inviato (tutto bloccato) — {today}"
     else:
@@ -608,15 +657,292 @@ def _format_digest(published, skipped, errors,
     lines.append(f"Site: {SITE_BASE}/blog/")
     lines.append("Le pitch 'risky' (Apollo likely, pattern_guess) restano per review manuale sul dashboard.")
 
-    return subject, "\n".join(lines)
+    plain_body = "\n".join(lines)
+    html_body = _build_html_digest(
+        published, skipped, errors, pitches=pitches, dry_run=dry_run,
+    )
+    return subject, plain_body, html_body
 
 
-def _send_digest(subject, body, *, to: str, dry_run: bool) -> bool:
-    """Send the digest via the existing send_email module."""
+# ── HTML digest (brand-aligned) ──────────────────────────────────────
+#
+# Inline CSS only — Gmail strips <style> blocks and external stylesheets
+# don't load in most email clients. Single-column 600px-wide layout is
+# the safe email standard (renders on phones too).
+#
+# Brand palette (mirrors the website CSS variables):
+#   espresso   #3E2F2B  — primary text, headings
+#   terracotta #C2714F  — accents, CTAs, link color
+#   tuscan-gold #C4A265 — secondary accent
+#   warm-sand  #D4B896  — soft fills
+#   sand-white #F0EBE3  — page background
+
+def _html_escape(s: str) -> str:
+    return html.escape(str(s or ""), quote=True)
+
+
+def _build_html_digest(published, skipped, errors,
+                      *, pitches=None, dry_run=False) -> str:
+    today = datetime.now().strftime("%A, %B %-d, %Y")
+    dry_banner = ""
+    if dry_run:
+        dry_banner = (
+            '<tr><td style="padding:0 32px 12px 32px;">'
+            '<div style="background:#FFF6E0;border:1px solid #C4A265;'
+            'color:#6B4A00;padding:10px 14px;border-radius:4px;'
+            'font-family:-apple-system,sans-serif;font-size:12px;'
+            'letter-spacing:0.04em;text-transform:uppercase;'
+            'text-align:center;">'
+            'Dry-run preview — nothing sent</div></td></tr>'
+        )
+
+    article_cards = ""
+    for p in published:
+        article_cards += _html_article_card(p, dry_run=dry_run)
+    if not published:
+        article_cards = (
+            '<tr><td style="padding:12px 32px;color:#888;'
+            'font-family:-apple-system,sans-serif;font-size:14px;'
+            'font-style:italic;">'
+            'Nessun articolo pubblicato oggi.</td></tr>'
+        )
+
+    skipped_block = ""
+    if skipped or errors:
+        rows = ""
+        for s in skipped:
+            rows += (
+                f'<tr><td style="padding:6px 32px;color:#a85d3f;'
+                f'font-family:-apple-system,sans-serif;font-size:13px;">'
+                f'• <strong>{_html_escape(s["title"])}</strong><br>'
+                f'<span style="color:#888;font-size:12px;">'
+                f'{_html_escape(s["reason"])}</span>'
+                f'</td></tr>'
+            )
+        for e in errors:
+            rows += (
+                f'<tr><td style="padding:6px 32px;color:#a85d3f;'
+                f'font-family:-apple-system,sans-serif;font-size:13px;">'
+                f'• <strong>{_html_escape(e["title"])}</strong>: '
+                f'{_html_escape(e["reason"])}'
+                f'</td></tr>'
+            )
+        skipped_block = (
+            '<tr><td style="padding:18px 32px 6px 32px;">'
+            '<div style="font-family:-apple-system,sans-serif;'
+            'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;'
+            'color:#888;font-weight:600;">'
+            'Articoli bloccati o con errore</div></td></tr>' + rows
+        )
+
+    pitch_block = ""
+    if pitches is not None:
+        sent = pitches.get("sent") or []
+        p_skip = pitches.get("skipped") or []
+        p_err = pitches.get("errors") or []
+        rows = ""
+        for s in sent:
+            rows += _html_pitch_row(s, dry_run=dry_run)
+        if p_skip:
+            rows += (
+                '<tr><td style="padding:14px 32px 6px 32px;">'
+                '<div style="font-family:-apple-system,sans-serif;'
+                'font-size:11px;letter-spacing:0.10em;text-transform:uppercase;'
+                'color:#888;">'
+                'Saltate (review manuale richiesta)</div></td></tr>'
+            )
+            for s in p_skip:
+                rows += (
+                    f'<tr><td style="padding:4px 32px;color:#888;'
+                    f'font-family:-apple-system,sans-serif;font-size:12px;">'
+                    f'• {_html_escape(s.get("to","?"))} — {_html_escape(s["reason"])}'
+                    f'</td></tr>'
+                )
+        if p_err:
+            rows += (
+                '<tr><td style="padding:14px 32px 6px 32px;">'
+                '<div style="font-family:-apple-system,sans-serif;'
+                'font-size:11px;letter-spacing:0.10em;text-transform:uppercase;'
+                'color:#a85d3f;">'
+                'Errori di invio</div></td></tr>'
+            )
+            for e in p_err:
+                rows += (
+                    f'<tr><td style="padding:4px 32px;color:#a85d3f;'
+                    f'font-family:-apple-system,sans-serif;font-size:12px;">'
+                    f'• {_html_escape(e.get("to","?"))}: {_html_escape(e["error"])}'
+                    f'</td></tr>'
+                )
+
+        if sent or p_skip or p_err:
+            header = (
+                '<tr><td style="padding:24px 32px 8px 32px;'
+                'border-top:1px solid #D4B896;">'
+                '<h2 style="margin:14px 0 4px;font-family:Georgia,serif;'
+                'font-size:20px;font-weight:normal;color:#3E2F2B;'
+                'letter-spacing:0.02em;">'
+                '<span style="color:#C2714F;">✉</span> '
+                f'Email ai giornalisti '
+                f'<span style="color:#888;font-size:14px;font-weight:normal;">'
+                f'({len(sent)} {"inviata" if len(sent)==1 else "inviate"})'
+                '</span></h2></td></tr>'
+            )
+            pitch_block = header + rows
+
+    return f"""<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Villa — Daily digest</title>
+</head>
+<body style="margin:0;padding:0;background:#F0EBE3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#F0EBE3;">
+<tr><td align="center" style="padding:32px 16px;">
+<table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="background:#FFFFFF;border-radius:6px;box-shadow:0 2px 10px rgba(62,47,43,0.08);max-width:600px;width:100%;">
+
+  <!-- Brand header -->
+  <tr><td align="center" style="padding:40px 32px 24px;border-bottom:1px solid #D4B896;">
+    <div style="font-family:Georgia,'Cormorant Garamond',serif;font-size:30px;font-weight:normal;letter-spacing:0.18em;color:#3E2F2B;">
+      MY <span style="color:#C2714F;">VILLA</span>
+    </div>
+    <div style="font-family:-apple-system,sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#888;margin-top:6px;">
+      Italian Soul, Californian Body
+    </div>
+    <div style="margin-top:18px;font-family:-apple-system,sans-serif;font-size:12px;color:#5C6B4F;letter-spacing:0.06em;">
+      {_html_escape(today)} — daily journal &amp; outreach digest
+    </div>
+  </td></tr>
+
+  {dry_banner}
+
+  <!-- Journal articles -->
+  <tr><td style="padding:24px 32px 0;">
+    <h2 style="margin:0 0 4px;font-family:Georgia,serif;font-size:20px;font-weight:normal;color:#3E2F2B;letter-spacing:0.02em;">
+      <span style="color:#C2714F;">📝</span> Articoli pubblicati
+      <span style="color:#888;font-size:14px;font-weight:normal;">({len(published)})</span>
+    </h2>
+  </td></tr>
+  {article_cards}
+  {skipped_block}
+
+  {pitch_block}
+
+  <!-- Footer -->
+  <tr><td align="center" style="padding:28px 32px 32px;border-top:1px solid #D4B896;background:#FAF6F0;">
+    <div style="font-family:Georgia,serif;font-size:13px;color:#3E2F2B;letter-spacing:0.04em;">
+      <a href="{SITE_BASE}/blog/" style="color:#C2714F;text-decoration:none;border-bottom:1px solid rgba(194,113,79,0.4);">
+        myvilla.la/blog
+      </a>
+    </div>
+    <div style="font-family:-apple-system,sans-serif;font-size:10px;color:#999;margin-top:8px;letter-spacing:0.04em;">
+      Auto-published &middot; pitch 'risky' restano per review manuale sul dashboard
+    </div>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>"""
+
+
+def _html_article_card(p: dict, *, dry_run: bool) -> str:
+    """One row in the articles table — hero image + title + excerpt."""
+    hero = p.get("hero_image_url")
+    img_block = ""
+    if hero:
+        img_block = (
+            f'<img src="{_html_escape(hero)}" alt="" '
+            f'width="540" '
+            f'style="display:block;width:100%;max-width:540px;height:auto;'
+            f'border-radius:4px;margin-bottom:14px;border:0;outline:none;"/>'
+        )
+    section_pill = ""
+    if p.get("section"):
+        section_pill = (
+            f'<span style="display:inline-block;background:#F0EBE3;'
+            f'color:#5C6B4F;font-family:-apple-system,sans-serif;'
+            f'font-size:10px;letter-spacing:0.12em;text-transform:uppercase;'
+            f'padding:3px 10px;border-radius:3px;margin-bottom:10px;">'
+            f'{_html_escape(p["section"])}</span>'
+        )
+    excerpt = p.get("excerpt") or p.get("subtitle") or ""
+    excerpt_html = ""
+    if excerpt:
+        excerpt_html = (
+            f'<p style="margin:8px 0 14px;font-family:-apple-system,sans-serif;'
+            f'font-size:14px;line-height:1.55;color:#555;">'
+            f'{_html_escape(excerpt)}</p>'
+        )
+    cta_label = "Leggi sul sito →" if not dry_run else "Anteprima →"
+    return f"""
+  <tr><td style="padding:16px 32px 8px;">
+    {img_block}
+    {section_pill}
+    <h3 style="margin:0;font-family:Georgia,serif;font-size:18px;font-weight:normal;color:#3E2F2B;line-height:1.3;">
+      <a href="{_html_escape(p['public_url'])}" style="color:#3E2F2B;text-decoration:none;">
+        {_html_escape(p['title'])}
+      </a>
+    </h3>
+    {excerpt_html}
+    <a href="{_html_escape(p['public_url'])}" style="display:inline-block;font-family:-apple-system,sans-serif;font-size:12px;color:#C2714F;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid rgba(194,113,79,0.5);padding-bottom:1px;">
+      {cta_label}
+    </a>
+  </td></tr>
+  <tr><td style="padding:12px 32px;"><hr style="border:none;border-top:1px solid #F0EBE3;margin:0;"></td></tr>
+"""
+
+
+def _html_pitch_row(p: dict, *, dry_run: bool) -> str:
+    """One row per sent pitch — recipient + publication + reach."""
+    reach = p.get("reach") or ""
+    reach_pill = ""
+    if reach:
+        reach_pill = (
+            f'<span style="display:inline-block;background:#FFF6E0;'
+            f'color:#6B4A00;font-family:-apple-system,sans-serif;'
+            f'font-size:11px;font-weight:600;padding:2px 8px;'
+            f'border-radius:3px;margin-left:8px;">'
+            f'👥 {_html_escape(reach)}</span>'
+        )
+    pub = p.get("publication") or ""
+    pub_html = (
+        f'<span style="color:#5C6B4F;font-weight:600;">{_html_escape(pub)}</span>'
+        if pub else
+        '<span style="color:#888;font-style:italic;">(publication unknown)</span>'
+    )
+    sent_label = "sarebbe inviata" if dry_run else "inviata"
+    return f"""
+  <tr><td style="padding:10px 32px;">
+    <div style="font-family:-apple-system,sans-serif;font-size:14px;color:#3E2F2B;line-height:1.45;">
+      {pub_html}{reach_pill}
+    </div>
+    <div style="font-family:-apple-system,sans-serif;font-size:13px;color:#666;margin-top:4px;">
+      → <a href="mailto:{_html_escape(p['to'])}" style="color:#C2714F;text-decoration:none;">{_html_escape(p['to'])}</a>
+    </div>
+    <div style="font-family:-apple-system,sans-serif;font-size:12px;color:#888;margin-top:6px;font-style:italic;">
+      “{_html_escape(p.get('subject',''))}”
+    </div>
+    <div style="font-family:-apple-system,sans-serif;font-size:11px;color:#aaa;margin-top:4px;">
+      rif: {_html_escape(p.get('title',''))[:80]}
+    </div>
+  </td></tr>
+  <tr><td style="padding:8px 32px;"><hr style="border:none;border-top:1px solid #F0EBE3;margin:0;"></td></tr>
+"""
+
+
+def _send_digest(subject, plain_body, html_body, *, to: str, dry_run: bool) -> bool:
+    """Send the digest via the existing send_email module.
+
+    Both `plain_body` and `html_body` are passed: send_email composes a
+    multipart/alternative MIME so HTML-capable clients get the branded
+    layout and text-only clients fall back to plain.
+    """
     if dry_run:
         print(f"\n[dry-run] Email NOT sent. Would send to {to}:")
         print(f"  Subject: {subject}")
-        print(f"  Body:\n{body}\n")
+        print(f"  Plain body:\n{plain_body[:600]}...")
         return True
     try:
         from send_email import send_raw
@@ -630,7 +956,8 @@ def _send_digest(subject, body, *, to: str, dry_run: bool) -> bool:
         result = send_raw(
             to=to,
             subject=subject,
-            body=body,
+            body=plain_body,
+            html_body=html_body,
             skip_signature=True,
             kind="journal_digest",
         )
@@ -743,11 +1070,12 @@ def main(argv=None):
     # Digest email
     if not args.no_email:
         print("Sending digest email...")
-        subject, body = _format_digest(
+        subject, plain_body, html_body = _format_digest(
             published, skipped, errors,
             pitches=pitches, dry_run=args.dry_run,
         )
-        _send_digest(subject, body, to=args.to, dry_run=args.dry_run)
+        _send_digest(subject, plain_body, html_body,
+                     to=args.to, dry_run=args.dry_run)
 
     print()
     pitch_sent = len((pitches or {}).get("sent") or [])
