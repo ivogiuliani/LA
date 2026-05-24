@@ -2399,6 +2399,36 @@
       "action_type": "user_dismissed",
       "url": "https://yubanet.com/regional/wildfire-ready-coalition-presents-workshop-on-wildfire-ready-home-advisory-assessments/",
       "note": "email sent to news@yubanet.com"
+    },
+    {
+      "date_first_reported": "2026-05-24",
+      "source": "user_dismissed",
+      "title": "Reinforced concrete should be the default for California home construction",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/wavetossed/status/2057657689409531904",
+      "note": "published journal: reinforced-concrete-default-california-home-construction.html"
+    },
+    {
+      "date_first_reported": "2026-05-24",
+      "source": "user_dismissed",
+      "title": "ACI 318-19: Building Code Requirements for Structural Concrete",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.concrete.org/store/productdetail.aspx?ItemID=318U19",
+      "note": "published journal: reinforced-concrete-default-california-home-construction.html"
+    },
+    {
+      "date_first_reported": "2026-05-24",
+      "source": "user_dismissed",
+      "title": "Seismic Performance of Reinforced Concrete Buildings",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://peer.berkeley.edu/publications/2017-09",
+      "note": "published journal: reinforced-concrete-default-california-home-construction.html"
     }
   ]
 }
