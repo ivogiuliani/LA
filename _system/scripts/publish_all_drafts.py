@@ -348,10 +348,15 @@ def _send_digest(subject, body, *, to: str, dry_run: bool) -> bool:
             skip_signature=True,
             kind="journal_digest",
         )
-        if result.get("ok"):
-            print(f"  ✓ digest sent to {to} (msg {result.get('message_id', '?')})")
+        # SendResult is a @dataclass (see send_email.py), so use
+        # attribute access — NOT dict .get().
+        if getattr(result, "ok", False):
+            msg_id = getattr(result, "message_id", None) or "?"
+            print(f"  ✓ digest sent to {to} (msg {msg_id})")
             return True
-        print(f"  ✗ digest send failed: {result.get('reason')} {result.get('error', '')}")
+        err = getattr(result, "error", "") or ""
+        reason = getattr(result, "reason", "") if hasattr(result, "reason") else ""
+        print(f"  ✗ digest send failed: {reason} {err}".strip())
         return False
     except Exception as e:  # noqa: BLE001
         print(f"  [digest] error: {type(e).__name__}: {e}")
