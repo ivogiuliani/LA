@@ -1664,11 +1664,48 @@ def update_ledger(ledger, article, date_str):
 # AUTO-IMAGE FETCHING
 # ══════════════════════════════════════════════════════════════════════
 
+_BRAND_FALLBACK_HERO = SYSTEM_DIR.parent / "img" / "hero.png"
+
+
+def _copy_brand_fallback_hero(slug, img_dir):
+    """Copy img/hero.png into blog/assets/img/<slug>-hero.png when both
+    source-image scraping and Unsplash failed. Returns the same shape
+    fetch_hero_image returns so the caller treats it uniformly.
+
+    This is the third tier of fallback. Some articles cite only sources
+    that block scraping (X tweets, codes.iccsafe.org behind CloudFront)
+    AND have a topic too generic to match cleanly on Unsplash. Rather
+    than ship those articles without a hero (and trigger the digest
+    placeholder block), we use the brand wordmark image as a stable
+    visual anchor — same idea behind the digest's gradient placeholder
+    but applied site-wide so the article page itself looks polished.
+    """
+    if not _BRAND_FALLBACK_HERO.exists():
+        return None
+    try:
+        import shutil as _shutil
+        dest = Path(img_dir) / f"{slug}-hero.png"
+        _shutil.copy(_BRAND_FALLBACK_HERO, dest)
+        # web_path is relative to the article (in blog/), so the same
+        # 'assets/img/<slug>-hero.png' the other paths return.
+        return {
+            "web_path": f"assets/img/{slug}-hero.png",
+            "source": "brand_fallback",
+            "credit": "My Villa",
+        }
+    except Exception as e:  # noqa: BLE001
+        print(f"  [Image] brand-fallback copy failed: {e}")
+        return None
+
+
 def auto_fetch_hero_image(article, slug, img_dir):
     """Try to automatically fetch a hero image for the article.
-    1. First try source images from cited articles
-    2. Fallback to Unsplash search
-    Returns hero_image dict or None.
+    1. First try source images from cited articles.
+    2. Fallback to Unsplash search.
+    3. Final fallback: copy the brand hero image from img/hero.png so
+       no article ships without a visual anchor.
+    Returns hero_image dict or None (only if even the brand asset is
+    missing — extremely unlikely).
     """
     if not IMAGE_PICKER_OK:
         print("  [Image] image_picker not available — skipping")
@@ -1717,7 +1754,15 @@ def auto_fetch_hero_image(article, slug, img_dir):
         except Exception as e:
             print(f"  [Image] Unsplash error: {e}")
 
-    print("  [Image] No image found")
+    # 3. Final fallback: copy the brand hero image so every article
+    # has at least a visual anchor (the My Villa wordmark image).
+    print("  [Image] Source + Unsplash failed — using brand fallback")
+    result = _copy_brand_fallback_hero(slug, img_dir)
+    if result:
+        print(f"  [Image] ✓ Brand fallback: {result['web_path']}")
+        return result
+
+    print("  [Image] No image found (brand fallback also unavailable)")
     return None
 
 

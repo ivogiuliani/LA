@@ -57,7 +57,7 @@
     "result": null
   },
   "substack.com": {
-    "cached_at": 1777267029.696008,
+    "cached_at": 1779686613.765901,
     "result": null
   },
   "robbreport.com": {
@@ -423,5 +423,35 @@
       "path": "/contact-us",
       "score": 19
     }
+  },
+  "santacruzsentinel.com": {
+    "cached_at": 1779686568.682924,
+    "result": {
+      "email": "newsroom@santacruzsentinel.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 19
+    }
+  },
+  "briefglance.com": {
+    "cached_at": 1779686573.084807,
+    "result": null
+  },
+  "clearsurance.com": {
+    "cached_at": 1779686581.703271,
+    "result": {
+      "email": "info@clearsurance.com",
+      "source": "article_scraped",
+      "path": "/newsroom",
+      "score": 11
+    }
+  },
+  "unitedroofingcalifornia.com": {
+    "cached_at": 1779686607.9303858,
+    "result": null
+  },
+  "laurabrauestates.com": {
+    "cached_at": 1779686623.1947699,
+    "result": null
   }
 }
