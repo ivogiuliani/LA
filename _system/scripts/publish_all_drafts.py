@@ -1013,8 +1013,8 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
                    "dopo 7 giorni di silenzio", "#A65E1F"),
         _mini_card(len(t3_today), "Ultime email",
                    "invito a call con Paolo", "#8B3A1F"),
-        _mini_card(len(rescue_today), "Contatti recuperati",
-                   "da generico a diretto", "#2E5D6B"),
+        _mini_card(len(rescue_today), "Giornalisti identificati",
+                   "al posto degli alias redazione", "#2E5D6B"),
     ):
         if cell:
             breakdown_cells.append(cell)
@@ -1052,11 +1052,22 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
             f'{value}</td>'
         )
 
+    # Colors picked for fast at-a-glance reading:
+    #   green   = active / good (in conversation)
+    #   taupe   = neutral closed (3 touches done)
+    #   amber   = action needed (replied — go answer them!)
+    #   red     = error (bad address)
+    # Old palette had three earth-tones that read as one blob.
+    PIPE_GREEN = "#6B8E5C"   # fresh sage green (clear positive)
+    PIPE_NEUTRAL = "#9B8E7A" # warm taupe (closed, no action)
+    PIPE_AMBER = "#D97F4A"   # vivid terracotta (action!)
+    PIPE_RED = "#B8463F"     # clean red (error)
+
     pipeline_bar_cells = (
-        _bar_segment(in_cadence, "#5C6B4F", "")
-        + _bar_segment(exhausted, "#A65E1F", "")
-        + _bar_segment(replied_count, "#C2714F", "")
-        + _bar_segment(invalid_count, "#a85d3f", "")
+        _bar_segment(in_cadence, PIPE_GREEN, "")
+        + _bar_segment(exhausted, PIPE_NEUTRAL, "")
+        + _bar_segment(replied_count, PIPE_AMBER, "")
+        + _bar_segment(invalid_count, PIPE_RED, "")
     )
 
     def _legend_row(value: int, color: str, label: str, hint: str) -> str:
@@ -1078,16 +1089,16 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
         )
 
     legend_rows = (
-        _legend_row(in_cadence, "#5C6B4F",
+        _legend_row(in_cadence, PIPE_GREEN,
                     "giornalisti in conversazione",
                     "riceveranno seconda o ultima email")
-        + _legend_row(exhausted, "#A65E1F",
+        + _legend_row(exhausted, PIPE_NEUTRAL,
                       "conversazioni concluse",
                       "3 email inviate, stop totale")
-        + _legend_row(replied_count, "#C2714F",
+        + _legend_row(replied_count, PIPE_AMBER,
                       "hanno risposto",
                       "da gestire a mano in Gmail")
-        + _legend_row(invalid_count, "#a85d3f",
+        + _legend_row(invalid_count, PIPE_RED,
                       "indirizzi non validi",
                       "bounce, in blacklist")
     )
@@ -1183,7 +1194,7 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
             _group_section("Prime email inviate oggi — nuovi giornalisti",
                             "#5C6B4F", cold_today)
             + _group_section(
-                "🆙 Contatti diretti recuperati — al posto di alias generici",
+                "🆙 Giornalisti identificati — al posto di alias redazione",
                 "#2E5D6B", rescue_today)
             + _group_section(
                 "Seconde email — un dato concreto in più (dopo 7 giorni)",
@@ -1289,12 +1300,12 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
                 '<div style="font-family:-apple-system,sans-serif;'
                 'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;'
                 f'color:#A65E1F;font-weight:600;">'
-                f'🆙 Contatti diretti da validare ({len(pending)})'
+                f'🆙 Giornalisti identificati — email da validare ({len(pending)})'
                 '</div>'
                 '<div style="font-family:-apple-system,sans-serif;'
                 'font-size:11px;color:#888;margin-top:2px;font-style:italic;">'
-                'Email indovinata da pattern (non verificata sulla pagina). '
-                'Approvali dal dashboard radar o cancellali.'
+                'Nome trovato sull\'articolo, email indovinata dal pattern '
+                'comune della testata. Verifica e approva dal dashboard radar.'
                 '</div></td></tr>' + rows + more_note
             )
 
@@ -1596,7 +1607,7 @@ def _html_pitch_row(p: dict, *, dry_run: bool) -> str:
             f'color:#2E5D6B;font-family:-apple-system,sans-serif;'
             f'font-size:10px;font-weight:600;padding:2px 7px;'
             f'border-radius:3px;margin-left:8px;letter-spacing:0.04em;">'
-            f'🆙 CONTATTO DIRETTO (era {_html_escape(p["rescue_of"])})</span>'
+            f'🆙 GIORNALISTA IDENTIFICATO (era {_html_escape(p["rescue_of"])})</span>'
         )
     elif touch_n == 2:
         touch_pill = (
