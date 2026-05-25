@@ -912,13 +912,32 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
     p_err = pitches.get("errors") or []
     m = _compute_pitch_metrics(sent)
 
+    # Touch breakdown for today's sends (cold / T2 / T3)
+    cold_today = [s for s in sent if (s.get("touch_n") or 1) == 1]
+    t2_today = [s for s in sent if (s.get("touch_n") or 1) == 2]
+    t3_today = [s for s in sent if (s.get("touch_n") or 1) == 3]
+
+    # Follow-up ledger status (passed from publish_all_drafts via the
+    # pitches dict — see _ledger_status injection there).
+    ledger_status = pitches.get("_ledger_status") or {}
+    in_cadence = ledger_status.get("in_cadence", 0)
+    exhausted = ledger_status.get("exhausted", 0)
+
     has_history = m["sent_total"] > 0
     has_today_activity = bool(sent or p_skip or p_err)
     if not has_history and not has_today_activity:
         return ""
 
     # ── Header ─────────────────────────────────────────────────────
-    today_label = f"{len(sent)} {'inviata' if len(sent)==1 else 'inviate'} oggi"
+    parts = []
+    if cold_today:
+        parts.append(f"{len(cold_today)} cold")
+    if t2_today:
+        parts.append(f"{len(t2_today)} follow-up T2")
+    if t3_today:
+        parts.append(f"{len(t3_today)} follow-up T3")
+    today_label = " · ".join(parts) if parts else "nessuna mail oggi"
+
     header = (
         '<tr><td style="padding:28px 32px 4px 32px;'
         'border-top:1px solid #D4B896;">'
@@ -956,27 +975,47 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
         )
 
     # Row 1: volume (today / week / lifetime)
+    # Today's sub-label shows the touch breakdown if there's any
+    # follow-up activity, so the user can tell cold vs warm at a glance.
+    today_sublabel = "mail inviate"
+    if t2_today or t3_today:
+        parts = []
+        if cold_today:
+            parts.append(f"{len(cold_today)} cold")
+        if t2_today:
+            parts.append(f"{len(t2_today)} T2")
+        if t3_today:
+            parts.append(f"{len(t3_today)} T3")
+        today_sublabel = " · ".join(parts)
+
     row1 = (
         '<tr>'
         + _kpi_cell("Oggi", str(m["sent_today"]), "#5C6B4F",
-                    "mail inviate")
+                    today_sublabel)
         + _kpi_cell("Ultimi 7 gg", str(m["sent_week"]), "#3E2F2B")
         + _kpi_cell("Totale storico", str(m["sent_total"]), "#3E2F2B",
-                    f'{m["unique_recipients"]} contatti unici')
+                    f'{m["unique_recipients"]} contatti')
         + '</tr>'
     )
 
-    # Row 2: reach / replies / deliverability
+    # Row 2: pipeline state — actionable view of who's still alive in
+    # the cadence, who's exhausted (3 touches reached, no reply),
+    # who responded, who bounced.
     replies_accent = "#C2714F" if m["replies_count"] > 0 else "#3E2F2B"
     invalid_accent = "#a85d3f" if m["invalid_count"] > 0 else "#3E2F2B"
     deliv_str = (
         f'{m["deliverability_pct"]:.0f}%'
         if m["deliverability_pct"] is not None else "—"
     )
+    # "Cadence attiva" sublabel hints at scope
+    cadence_sublabel = (
+        f'{exhausted} esauriti dopo 3 touch'
+        if exhausted else 'in 3-touch cadence'
+    )
     row2 = (
         '<tr>'
-        + _kpi_cell("Testate", str(m["unique_publications"]), "#3E2F2B",
-                    "domini unici")
+        + _kpi_cell("Cadence attiva", str(in_cadence), "#5C6B4F",
+                    cadence_sublabel)
         + _kpi_cell("Risposte", str(m["replies_count"]), replies_accent,
                     "da gestire" if m["replies_count"] > 0 else "in attesa")
         + _kpi_cell("Invalidi", str(m["invalid_count"]), invalid_accent,
@@ -992,18 +1031,30 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
         '</table></td></tr>'
     )
 
-    # ── Sent today (detailed rows) ─────────────────────────────────
+    # ── Sent today, grouped by touch type ──────────────────────────
+    # Cold pitches → T2 follow-ups → T3 final follow-ups. Each group
+    # gets its own sub-header so you can tell at a glance what each
+    # message is.
     sent_block = ""
     if sent:
-        sub_header = (
-            '<tr><td style="padding:14px 32px 4px 32px;">'
-            '<div style="font-family:-apple-system,sans-serif;'
-            'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;'
-            'color:#5C6B4F;font-weight:600;">'
-            f'Inviate oggi ({len(sent)})</div></td></tr>'
+        def _group_section(label: str, color: str, items: list) -> str:
+            if not items:
+                return ""
+            sub = (
+                f'<tr><td style="padding:14px 32px 4px 32px;">'
+                f'<div style="font-family:-apple-system,sans-serif;'
+                f'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;'
+                f'color:{color};font-weight:600;">{label} ({len(items)})</div>'
+                f'</td></tr>'
+            )
+            return sub + "".join(_html_pitch_row(s, dry_run=dry_run)
+                                 for s in items)
+
+        sent_block = (
+            _group_section("Cold pitch inviate oggi", "#5C6B4F", cold_today)
+            + _group_section("Follow-up T2 — data bump", "#A65E1F", t2_today)
+            + _group_section("Follow-up T3 — founder call", "#8B3A1F", t3_today)
         )
-        rows = "".join(_html_pitch_row(s, dry_run=dry_run) for s in sent)
-        sent_block = sub_header + rows
 
     # ── Da gestire (real replies) ──────────────────────────────────
     handle_block = ""
@@ -1333,6 +1384,27 @@ def _html_pitch_row(p: dict, *, dry_run: bool) -> str:
         '<span style="color:#888;font-style:italic;">(publication unknown)</span>'
     )
 
+    # Touch indicator pill — distinguishes cold pitch (T1) from
+    # follow-up T2 (data bump) and T3 (founder call).
+    touch_pill = ""
+    touch_n = p.get("touch_n") or 1
+    if touch_n == 2:
+        touch_pill = (
+            '<span style="display:inline-block;background:#FFF3E0;'
+            'color:#A65E1F;font-family:-apple-system,sans-serif;'
+            'font-size:10px;font-weight:600;padding:2px 7px;'
+            'border-radius:3px;margin-left:8px;letter-spacing:0.04em;">'
+            '🔁 FOLLOW-UP T2</span>'
+        )
+    elif touch_n == 3:
+        touch_pill = (
+            '<span style="display:inline-block;background:#F3E5DD;'
+            'color:#8B3A1F;font-family:-apple-system,sans-serif;'
+            'font-size:10px;font-weight:600;padding:2px 7px;'
+            'border-radius:3px;margin-left:8px;letter-spacing:0.04em;">'
+            '📞 FOLLOW-UP T3</span>'
+        )
+
     # Body of the pitch, rendered as a "letter" block. Plain text → HTML:
     # paragraphs split on double-newline, single newlines become <br>.
     body_block = ""
@@ -1361,7 +1433,7 @@ def _html_pitch_row(p: dict, *, dry_run: bool) -> str:
     return f"""
   <tr><td style="padding:10px 32px;">
     <div style="font-family:-apple-system,sans-serif;font-size:14px;color:#3E2F2B;line-height:1.45;">
-      {pub_html}{reach_pill}
+      {pub_html}{reach_pill}{touch_pill}
     </div>
     <div style="font-family:-apple-system,sans-serif;font-size:13px;color:#666;margin-top:4px;">
       → <a href="mailto:{_html_escape(p['to'])}" style="color:#C2714F;text-decoration:none;">{_html_escape(p['to'])}</a>
@@ -1511,6 +1583,64 @@ def main(argv=None):
             print(f"    ⤳ skip {item.get('to','?')}: {item['reason']}")
         for item in er:
             print(f"    ✗ {item.get('to','?')}: {item['error']}")
+        print()
+
+        # Follow-up engine — 3-touch cadence for journalists who never
+        # replied to the cold pitch. Touches 2 (data bump @ +7d) and 3
+        # (founder call @ +14d) run automatically; STOP after T3.
+        try:
+            sys.path.insert(0, str(SCRIPT_DIR))
+            import followup_engine
+            print("Running follow-up engine (3-touch cadence)...")
+            fu_result = followup_engine.run(dry_run=args.dry_run)
+            fs = fu_result.get("sent") or []
+            fsk = fu_result.get("skipped") or []
+            fer = fu_result.get("errors") or []
+            print(f"  Follow-ups sent: {len(fs)}  skipped: {len(fsk)}  errors: {len(fer)}")
+            for it in fs:
+                print(f"    ✓ T{it['touch_n']} → {it['to']}  ({it.get('publication','?')})")
+            for it in fsk:
+                print(f"    ⤳ T{it.get('touch_n','?')} → {it.get('to','?')}: {it['reason']}")
+            for it in fer:
+                print(f"    ✗ T{it.get('touch_n','?')} → {it.get('to','?')}: {it['error']}")
+            print()
+
+            # Merge follow-ups into the pitches dict so the digest builder
+            # sees them in the same control panel. Keep them flagged with
+            # touch_n so the renderer can show "Follow-up T2" labels.
+            for it in fs:
+                # Re-use the same shape as cold pitches so _html_pitch_row
+                # renders them uniformly. The touch_n field is the marker
+                # that distinguishes them in the digest.
+                pitches.setdefault("sent", []).append({
+                    "to": it["to"],
+                    "publication": it.get("publication") or "",
+                    "reach": _publication_reach_label(
+                        it.get("publication") or "", it.get("source_url", "")),
+                    "subject": it["subject"],
+                    "body": it.get("body", ""),
+                    "title": it.get("title", ""),
+                    "url": it.get("source_url", ""),
+                    "touch_n": it["touch_n"],   # ← marker
+                })
+            for it in fsk:
+                pitches.setdefault("skipped", []).append({
+                    "to": it["to"],
+                    "reason": it["reason"],
+                    "touch_n": it.get("touch_n"),
+                })
+            for it in fer:
+                pitches.setdefault("errors", []).append({
+                    "to": it["to"],
+                    "error": it["error"],
+                    "touch_n": it.get("touch_n"),
+                })
+            pitches["_ledger_status"] = fu_result.get("ledger_status_counts") or {}
+            pitches["_ledger_total"] = fu_result.get("ledger_total_contacts") or 0
+        except ImportError as e:
+            print(f"  [followup] engine not available: {e}")
+        except Exception as e:  # noqa: BLE001
+            print(f"  [followup] engine error: {type(e).__name__}: {e}")
         print()
 
     # Digest email
