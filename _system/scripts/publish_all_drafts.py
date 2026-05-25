@@ -1166,9 +1166,13 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
         + '</tr></table></td></tr>'
     )
 
+    # Order: OGGI first (azione immediata → vede subito cosa è successo),
+    # then TOTALI (numeri lifetime), then PIPELINE (stato strutturale
+    # — context, va in fondo perché meno actionable).
     kpi_grid = (
         today_section_title + today_hero + today_breakdown
-        + pipeline_section + stats_section
+        + stats_section
+        + pipeline_section
     )
 
     # ── Sent today, grouped by touch type ──────────────────────────
