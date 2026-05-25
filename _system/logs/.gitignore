@@ -1,0 +1,4 @@
+# Daily run log per-date — rumore, non utile in repo
+daily_publish_*.log
+launchd_daily_publish.*.log
+.daily_publish.lock/
