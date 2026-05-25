@@ -2479,6 +2479,36 @@
       "action_type": "user_dismissed",
       "url": "https://myvilla.la/team.html",
       "note": "auto-published journal: bel-air-luxury-buyers-active-construction-2026"
+    },
+    {
+      "date_first_reported": "2026-05-25",
+      "source": "user_dismissed",
+      "title": "California FAIR Plan rates going up 29.1% in late 2026 – Santa Cruz Sentinel",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.santacruzsentinel.com/2026/05/24/california-fair-plan-rates-going-up-29-in-late-2026/",
+      "note": "auto-sent pitch to newsroom@santacruzsentinel.com"
+    },
+    {
+      "date_first_reported": "2026-05-25",
+      "source": "user_dismissed",
+      "title": "Insulated Concrete Forms (ICF): 12 Essential Pros & Cons",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://newhousebuilder.com/insulated-concrete-forms/",
+      "note": "auto-sent pitch to info@newhousebuilder.com"
+    },
+    {
+      "date_first_reported": "2026-05-25",
+      "source": "user_dismissed",
+      "title": "Best and Cheapest Homeowners Insurance in California for 2026 | Clearsurance",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://clearsurance.com/best-homeowners-insurance/CA",
+      "note": "auto-sent pitch to info@clearsurance.com"
     }
   ]
 }

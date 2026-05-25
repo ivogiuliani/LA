@@ -514,10 +514,14 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
             })
             continue
 
-        ok = getattr(result, "ok", False)
-        result_dry = getattr(result, "dry_run", False)
-        reason = getattr(result, "reason", "") or ""
-        err = getattr(result, "error", "") or ""
+        # send_draft returns a dict (asdict of SendResult), NOT a
+        # dataclass — so dict access, not getattr. Earlier draft of
+        # this code used getattr() which always hit the default and
+        # mis-classified successful sends as "unknown error".
+        ok = result.get("ok", False)
+        result_dry = result.get("dry_run", False)
+        reason = result.get("reason") or ""
+        err = result.get("error") or ""
 
         if ok and result_dry:
             # outreach/config.yml has dry_run: true. Treat as informational.
