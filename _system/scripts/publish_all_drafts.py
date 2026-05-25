@@ -450,6 +450,24 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
         print(f"  [pitches] send_email module unavailable: {e}")
         return {"sent": [], "skipped": [], "errors": []}
 
+    # Lazy import of author_lookup + followup_engine helpers so the T1
+    # upgrade path is available. If either is missing, the upgrade is
+    # skipped silently and cold pitches go to the original alias as
+    # before — no regression.
+    try:
+        sys.path.insert(0, str(SCRIPT_DIR))
+        import author_lookup
+        import followup_engine
+        _t1_upgrade_available = True
+    except ImportError as e:
+        print(f"  [pitches] T1 upgrade unavailable: {e}")
+        author_lookup = None
+        followup_engine = None
+        _t1_upgrade_available = False
+
+    t1_upgrades_done = 0
+    t1_upgrades_queued = 0
+
     for i, it in enumerate(candidates):
         draft = it["draft"]
         title = (it.get("title") or "?")[:80]
@@ -494,6 +512,97 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
             })
             continue
 
+        # ── T1 UPGRADE: if the radar gave us a newsroom alias, try to
+        # find a direct journalist contact NOW (before send) rather
+        # than waiting 14 days for the follow-up rescue. Same logic as
+        # the T3 rescue but applied to the very first touch.
+        upgrade_from_alias = None
+        if (_t1_upgrade_available and url
+                and author_lookup.is_generic_alias(to_addr)):
+            try:
+                lookup = author_lookup.find_direct_contact(url)
+            except Exception as e:  # noqa: BLE001
+                print(f"  [t1-upgrade] lookup error for {to_addr}: {e}")
+                lookup = None
+
+            if lookup and lookup.get("email"):
+                conf = lookup.get("confidence", "low")
+                rescued_email = lookup["email"]
+                contact_ctx = {
+                    "email": to_addr,
+                    "publication": publication,
+                    "source_url": url,
+                    "source_title": title,
+                }
+
+                if conf == "high":
+                    # Verified email on the page (mailto/JSON-LD/profile)
+                    # — generate a FRESH cold pitch body addressed to
+                    # the journalist, and re-route the send.
+                    try:
+                        new_body = followup_engine._generate_rescue_cold_body(
+                            contact_ctx, lookup.get("name") or ""
+                        )
+                        new_subject = followup_engine._build_rescue_subject(
+                            contact_ctx
+                        )
+                    except Exception as e:  # noqa: BLE001
+                        print(f"  [t1-upgrade] body gen failed: {e}")
+                        new_body = None
+
+                    if new_body:
+                        print(
+                            f"  [t1-upgrade] ✓ {to_addr} → {rescued_email} "
+                            f"({lookup.get('source')}, verified — direct send)"
+                        )
+                        upgrade_from_alias = to_addr
+                        to_addr = rescued_email
+                        body = new_body
+                        subject = new_subject
+                        t1_upgrades_done += 1
+
+                elif conf == "low":
+                    # Pattern guess — name on page, email constructed
+                    # from common pattern. Queue for manual review
+                    # instead of auto-sending to the (maybe wrong)
+                    # address. The alias is NOT used either — we
+                    # mark the URL dismissed so radar won't resurface
+                    # the same article tomorrow.
+                    try:
+                        rb = followup_engine._generate_rescue_cold_body(
+                            contact_ctx, lookup.get("name") or ""
+                        )
+                        rs = followup_engine._build_rescue_subject(
+                            contact_ctx
+                        )
+                        if rb and not dry_run:
+                            followup_engine._save_rescue_draft(
+                                contact_ctx, lookup, rb, rs
+                            )
+                    except Exception as e:  # noqa: BLE001
+                        print(f"  [t1-upgrade] draft save failed: {e}")
+                    print(
+                        f"  [t1-upgrade] ~ {to_addr} → {rescued_email} "
+                        f"(pattern_guess — queued for review)"
+                    )
+                    skipped.append({
+                        "title": title, "to": to_addr,
+                        "reason": (
+                            f"contatto diretto trovato ({rescued_email}) "
+                            f"ma email indovinata da pattern — bozza in coda "
+                            f"per review manuale"
+                        ),
+                    })
+                    if url and not dry_run:
+                        _mark_pitch_url_dismissed(
+                            url, title, f"queued:{rescued_email}"
+                        )
+                    t1_upgrades_queued += 1
+                    continue
+                # If lookup returned but with no confidence value we
+                # fall through and send to the alias as originally
+                # planned.
+
         reach_label = _publication_reach_label(publication, url)
 
         if dry_run:
@@ -502,6 +611,7 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
                 "subject": subject, "body": body,
                 "publication": publication,
                 "source": source, "reach": reach_label, "url": url,
+                "rescue_of": upgrade_from_alias,
             })
             continue
 
@@ -536,6 +646,7 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
                 "subject": subject, "body": body,
                 "publication": publication,
                 "source": source, "reach": reach_label, "url": url,
+                "rescue_of": upgrade_from_alias,
             })
             # Mark URL so radar/dashboard never re-suggest this article.
             if url:
@@ -559,7 +670,19 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
                 "error": f"{reason} {err}".strip() or "unknown",
             })
 
-    return {"sent": sent, "skipped": skipped, "errors": errors}
+    if t1_upgrades_done or t1_upgrades_queued:
+        print(
+            f"  [t1-upgrade] {t1_upgrades_done} verified (auto-sent), "
+            f"{t1_upgrades_queued} pattern-guess queued for review"
+        )
+
+    return {
+        "sent": sent,
+        "skipped": skipped,
+        "errors": errors,
+        "t1_upgrades_done": t1_upgrades_done,
+        "t1_upgrades_queued": t1_upgrades_queued,
+    }
 
 
 # ── Digest email ─────────────────────────────────────────────────────
