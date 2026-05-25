@@ -2459,6 +2459,26 @@
       "action_type": "user_dismissed",
       "url": "https://ibhs.org/ibhs-news-releases/ibhss-fortified-program-surpasses-100000-designations/",
       "note": "email sent to aaycock@ibhs.org"
+    },
+    {
+      "date_first_reported": "2026-05-25",
+      "source": "user_dismissed",
+      "title": "Construction doesn't scare off buyer of $32M Bel-Air manse",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2025/05/22/here-are-l-a-countys-top-residential-contracts/",
+      "note": "auto-published journal: bel-air-luxury-buyers-active-construction-2026"
+    },
+    {
+      "date_first_reported": "2026-05-25",
+      "source": "user_dismissed",
+      "title": "My Villa — Italian-Designed Luxury Villas in Los Angeles",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://myvilla.la/team.html",
+      "note": "auto-published journal: bel-air-luxury-buyers-active-construction-2026"
     }
   ]
 }
