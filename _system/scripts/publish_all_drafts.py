@@ -499,7 +499,8 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
         if dry_run:
             sent.append({
                 "title": title, "to": to_addr,
-                "subject": subject, "publication": publication,
+                "subject": subject, "body": body,
+                "publication": publication,
                 "source": source, "reach": reach_label, "url": url,
             })
             continue
@@ -532,7 +533,8 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
         elif ok:
             sent.append({
                 "title": title, "to": to_addr,
-                "subject": subject, "publication": publication,
+                "subject": subject, "body": body,
+                "publication": publication,
                 "source": source, "reach": reach_label, "url": url,
             })
             # Mark URL so radar/dashboard never re-suggest this article.
@@ -626,36 +628,95 @@ def _format_digest(published, skipped, errors,
             lines.append(f"• {e['title']}: {e['reason']}")
         lines.append("")
 
-    # ── Section 2: pitch emails to journalists ──
+    # ── Section 2: pitch emails to journalists (control panel) ──
     if pitches is not None:
         p_sent = pitches.get("sent") or []
         p_skip = pitches.get("skipped") or []
         p_err = pitches.get("errors") or []
-        if p_sent or p_skip or p_err:
+        m = _compute_pitch_metrics(p_sent)
+        has_today = bool(p_sent or p_skip or p_err)
+        has_history = m["sent_total"] > 0
+        if has_today or has_history:
             verb = "sarebbero inviate" if dry_run else "sono state inviate"
-            lines.append(f"\n✉️  EMAIL AI GIORNALISTI ({len(p_sent)} inviate)\n")
+            lines.append(
+                f"\n✉️  EMAIL AI GIORNALISTI — outreach control panel\n"
+            )
+            # KPI summary line
+            deliv_str = (
+                f'{m["deliverability_pct"]:.0f}%'
+                if m["deliverability_pct"] is not None else "—"
+            )
+            lines.append(
+                f"   Oggi: {m['sent_today']}  ·  "
+                f"7gg: {m['sent_week']}  ·  "
+                f"Totale: {m['sent_total']}\n"
+                f"   Testate: {m['unique_publications']}  ·  "
+                f"Risposte: {m['replies_count']}  ·  "
+                f"Invalidi: {m['invalid_count']}  ·  "
+                f"Consegna: {deliv_str}\n"
+            )
             if p_sent:
+                lines.append(f"-- Inviate oggi ({len(p_sent)}) --")
                 lines.append(f"Queste pitch {verb} oggi da info@myvilla.la:\n")
                 for i, p in enumerate(p_sent, 1):
                     pub = f" ({p['publication']})" if p.get("publication") else ""
                     lines.append(f"{i}. → {p['to']}{pub}")
                     lines.append(f"   subject: {p['subject']}")
+                    body = (p.get("body") or "").strip()
+                    if body:
+                        lines.append("")
+                        lines.append("   --- testo inviato ---")
+                        for bl in body.splitlines():
+                            lines.append(f"   {bl}" if bl else "")
+                        lines.append("   --- fine ---")
                     lines.append(f"   ref: {p['title']}")
                     lines.append("")
+            if m["replies_count"] > 0:
+                lines.append(
+                    f"-- ⚠ Da gestire — risposte ricevute ({m['replies_count']}) --"
+                )
+                for r in sorted(
+                    m["replies"],
+                    key=lambda x: x.get("received_at") or "",
+                    reverse=True,
+                )[:5]:
+                    lines.append(
+                        f"• {r.get('from_address','?')}  "
+                        f"({(r.get('received_at') or '')[:10]})"
+                    )
+                    subj = (r.get("subject") or "")[:80]
+                    lines.append(f'  "{subj}"')
+                if m["replies_count"] > 5:
+                    lines.append(
+                        f"… +{m['replies_count'] - 5} altre. Tutte in Gmail.\n"
+                    )
+                else:
+                    lines.append("")
+            if m["invalid_count"] > 0:
+                lines.append(
+                    f"-- Indirizzi invalidi ({m['invalid_count']}) --"
+                )
+                for addr, info in list(m["invalid_addresses"].items())[:3]:
+                    reason = (info.get("reason") or "")[:60]
+                    lines.append(f"• {addr} — {reason}")
+                if m["invalid_count"] > 3:
+                    lines.append(
+                        f"… +{m['invalid_count'] - 3} altri nel registro"
+                    )
+                lines.append("")
             if p_skip:
-                lines.append("── Email saltate (review umana richiesta) ──\n")
+                lines.append(f"-- Saltate oggi ({len(p_skip)}) --")
                 for s in p_skip:
                     lines.append(f"• {s.get('to', '?')}  ({s['reason']})")
-                    lines.append(f"  ref: {s['title']}")
-                    lines.append("")
+                lines.append("")
             if p_err:
-                lines.append("── Email con errore di invio ──\n")
+                lines.append(f"-- Errori invio ({len(p_err)}) --")
                 for e in p_err:
                     lines.append(f"• {e.get('to', '?')}: {e['error']}")
                     lines.append(f"  ref: {e['title']}")
                 lines.append("")
         else:
-            lines.append("\n✉️  EMAIL AI GIORNALISTI: nessuna pitch in coda oggi.\n")
+            lines.append("\n✉️  EMAIL AI GIORNALISTI: nessuna attività oggi.\n")
 
     lines.append("\n--\nAuto-published + outreach by publish_all_drafts.py")
     lines.append(f"Site: {SITE_BASE}/blog/")
@@ -683,6 +744,381 @@ def _format_digest(published, skipped, errors,
 
 def _html_escape(s: str) -> str:
     return html.escape(str(s or ""), quote=True)
+
+
+# Domain blacklist: addresses to these belong to *us*, not journalists.
+# Used by metrics to avoid counting our own digest/smoke-test sends as
+# outreach.
+_INTERNAL_DOMAINS = {
+    "me.com",        # ivolo@me.com — daily digest recipient
+    "myvilla.la",    # info@myvilla.la — our outbound + self test
+    "gmail.com",     # ivo.giuliani@gmail.com — smoke tests
+    "example.com",   # dry-run smoke test default
+}
+
+
+def _compute_pitch_metrics(today_sent: list) -> dict:
+    """Build aggregate KPIs for the outreach control panel.
+
+    Reads three sources of truth:
+      • send_log.jsonl       — every Gmail send (real + dry-run)
+      • replies_log.jsonl    — replies & bounces detected by the
+                                Gmail reply-watcher
+      • invalid_addresses.json — hard-bounce registry
+
+    Internal mail (digest to self, smoke tests) is filtered out via
+    _INTERNAL_DOMAINS so the counters reflect *actual* journalist
+    outreach.
+
+    Today_sent is the live list of pitches sent in the current run —
+    counted separately from the historical log to avoid double-counting
+    when the log row hasn't been flushed yet.
+    """
+    outreach_dir = SYSTEM_DIR / "outreach"
+
+    def _domain(addr: str) -> str:
+        return addr.split("@", 1)[1].lower() if "@" in addr else ""
+
+    def _is_internal(addr: str) -> bool:
+        return _domain(addr) in _INTERNAL_DOMAINS
+
+    # ── send_log.jsonl ─────────────────────────────────────────────
+    all_real_sends = []
+    sends_today_hist = []
+    today_iso = datetime.now().strftime("%Y-%m-%d")
+    log_path = outreach_dir / "send_log.jsonl"
+    if log_path.exists():
+        try:
+            for raw in log_path.read_text(encoding="utf-8").splitlines():
+                raw = raw.strip()
+                if not raw:
+                    continue
+                try:
+                    row = json.loads(raw)
+                except json.JSONDecodeError:
+                    continue
+                if not row.get("ok"):
+                    continue
+                if row.get("dry_run"):
+                    continue
+                to = (row.get("to") or "").strip().lower()
+                if not to or _is_internal(to):
+                    continue
+                all_real_sends.append(row)
+                if (row.get("timestamp") or "").startswith(today_iso):
+                    sends_today_hist.append(row)
+        except OSError:
+            pass
+
+    # ── replies_log.jsonl: separate real replies from bounces ──────
+    # Three buckets:
+    #   • bounce_events: from mailer-daemon/postmaster
+    #   • internal_echoes: from ivolo@me.com etc. (Ivo replying to
+    #     his own copy, or any thread chatter inside our domains —
+    #     NOT a journalist reply, doesn't need handling)
+    #   • real_replies: actual third-party replies (the ones that
+    #     show up in the "Da gestire" panel)
+    replies_path = outreach_dir / "replies_log.jsonl"
+    real_replies = []
+    bounce_events = []
+    if replies_path.exists():
+        try:
+            for raw in replies_path.read_text(encoding="utf-8").splitlines():
+                raw = raw.strip()
+                if not raw:
+                    continue
+                try:
+                    row = json.loads(raw)
+                except json.JSONDecodeError:
+                    continue
+                fr = (row.get("from_address") or "").lower()
+                if "mailer-daemon" in fr or "postmaster" in fr:
+                    bounce_events.append(row)
+                elif _is_internal(fr):
+                    # Ivo replying from his own address — not a
+                    # journalist response, skip.
+                    continue
+                else:
+                    real_replies.append(row)
+        except OSError:
+            pass
+
+    # ── invalid_addresses.json ─────────────────────────────────────
+    invalid_addresses = {}
+    invalid_path = outreach_dir / "invalid_addresses.json"
+    if invalid_path.exists():
+        try:
+            data = json.loads(invalid_path.read_text(encoding="utf-8"))
+            invalid_addresses = data.get("addresses") or {}
+        except (OSError, json.JSONDecodeError):
+            pass
+
+    # ── rollups ────────────────────────────────────────────────────
+    # today_sent (live) is authoritative for "today". If anything
+    # snuck into the log already, prefer the live list — same count
+    # but cleaner per-row data for display.
+    sent_today = len(today_sent or [])
+
+    # past 7 days from the log (excludes today if today's log row
+    # hasn't been written yet — but today is already counted above)
+    from datetime import timedelta
+    week_cutoff = (datetime.now() - timedelta(days=7)).isoformat()
+    sent_week = sum(
+        1 for s in all_real_sends
+        if (s.get("timestamp") or "") >= week_cutoff
+    )
+    sent_total = len(all_real_sends)
+
+    domains = {_domain(s.get("to") or "") for s in all_real_sends if s.get("to")}
+    domains.discard("")
+    unique_publications = len(domains)
+
+    recipients = {(s.get("to") or "").lower() for s in all_real_sends}
+    recipients.discard("")
+    unique_recipients = len(recipients)
+
+    # Deliverability rate: % of sends that didn't bounce.
+    bounced_addrs = set(invalid_addresses.keys())
+    delivered = sum(
+        1 for s in all_real_sends
+        if (s.get("to") or "").lower() not in bounced_addrs
+    )
+    deliverability = (delivered / sent_total * 100) if sent_total else None
+
+    return {
+        "sent_today": sent_today,
+        "sent_week": sent_week,
+        "sent_total": sent_total,
+        "unique_publications": unique_publications,
+        "unique_recipients": unique_recipients,
+        "invalid_count": len(invalid_addresses),
+        "invalid_addresses": invalid_addresses,
+        "replies_count": len(real_replies),
+        "replies": real_replies,
+        "bounces_count": len(bounce_events),
+        "deliverability_pct": deliverability,
+    }
+
+
+def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
+    """Outreach control panel: KPI grid + sent-today + needs-attention.
+
+    Returns HTML table-rows ready to be embedded in the digest <table>.
+    Returns empty string when there's literally nothing to say (no
+    sends today, no historical data, no replies).
+    """
+    sent = pitches.get("sent") or []
+    p_skip = pitches.get("skipped") or []
+    p_err = pitches.get("errors") or []
+    m = _compute_pitch_metrics(sent)
+
+    has_history = m["sent_total"] > 0
+    has_today_activity = bool(sent or p_skip or p_err)
+    if not has_history and not has_today_activity:
+        return ""
+
+    # ── Header ─────────────────────────────────────────────────────
+    today_label = f"{len(sent)} {'inviata' if len(sent)==1 else 'inviate'} oggi"
+    header = (
+        '<tr><td style="padding:28px 32px 4px 32px;'
+        'border-top:1px solid #D4B896;">'
+        '<h2 style="margin:14px 0 4px;font-family:Georgia,serif;'
+        'font-size:20px;font-weight:normal;color:#3E2F2B;'
+        'letter-spacing:0.02em;">'
+        '<span style="color:#C2714F;">✉</span> Email ai giornalisti'
+        '</h2>'
+        f'<div style="font-family:-apple-system,sans-serif;font-size:12px;'
+        f'color:#888;letter-spacing:0.04em;margin-bottom:4px;">'
+        f'Outreach control panel · {_html_escape(today_label)}</div>'
+        '</td></tr>'
+    )
+
+    # ── KPI grid (2 rows × 3 cols) ─────────────────────────────────
+    def _kpi_cell(label: str, value: str, accent: str,
+                  sublabel: str = "") -> str:
+        return (
+            f'<td width="33%" valign="top" style="padding:8px;">'
+            f'<div style="background:#FAF6F0;border-radius:4px;'
+            f'border-left:3px solid {accent};padding:12px 14px;">'
+            f'<div style="font-family:-apple-system,sans-serif;'
+            f'font-size:10px;letter-spacing:0.12em;text-transform:uppercase;'
+            f'color:#888;font-weight:600;">{_html_escape(label)}</div>'
+            f'<div style="font-family:Georgia,serif;font-size:26px;'
+            f'font-weight:normal;color:{accent};line-height:1.1;'
+            f'margin-top:6px;">{_html_escape(value)}</div>'
+            + (
+                f'<div style="font-family:-apple-system,sans-serif;'
+                f'font-size:11px;color:#888;margin-top:4px;">'
+                f'{_html_escape(sublabel)}</div>'
+                if sublabel else ''
+            )
+            + '</div></td>'
+        )
+
+    # Row 1: volume (today / week / lifetime)
+    row1 = (
+        '<tr>'
+        + _kpi_cell("Oggi", str(m["sent_today"]), "#5C6B4F",
+                    "mail inviate")
+        + _kpi_cell("Ultimi 7 gg", str(m["sent_week"]), "#3E2F2B")
+        + _kpi_cell("Totale storico", str(m["sent_total"]), "#3E2F2B",
+                    f'{m["unique_recipients"]} contatti unici')
+        + '</tr>'
+    )
+
+    # Row 2: reach / replies / deliverability
+    replies_accent = "#C2714F" if m["replies_count"] > 0 else "#3E2F2B"
+    invalid_accent = "#a85d3f" if m["invalid_count"] > 0 else "#3E2F2B"
+    deliv_str = (
+        f'{m["deliverability_pct"]:.0f}%'
+        if m["deliverability_pct"] is not None else "—"
+    )
+    row2 = (
+        '<tr>'
+        + _kpi_cell("Testate", str(m["unique_publications"]), "#3E2F2B",
+                    "domini unici")
+        + _kpi_cell("Risposte", str(m["replies_count"]), replies_accent,
+                    "da gestire" if m["replies_count"] > 0 else "in attesa")
+        + _kpi_cell("Invalidi", str(m["invalid_count"]), invalid_accent,
+                    f'consegna {deliv_str}')
+        + '</tr>'
+    )
+
+    kpi_grid = (
+        '<tr><td style="padding:6px 24px 12px 24px;">'
+        '<table role="presentation" width="100%" cellspacing="0" '
+        'cellpadding="0" border="0">'
+        + row1 + row2 +
+        '</table></td></tr>'
+    )
+
+    # ── Sent today (detailed rows) ─────────────────────────────────
+    sent_block = ""
+    if sent:
+        sub_header = (
+            '<tr><td style="padding:14px 32px 4px 32px;">'
+            '<div style="font-family:-apple-system,sans-serif;'
+            'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;'
+            'color:#5C6B4F;font-weight:600;">'
+            f'Inviate oggi ({len(sent)})</div></td></tr>'
+        )
+        rows = "".join(_html_pitch_row(s, dry_run=dry_run) for s in sent)
+        sent_block = sub_header + rows
+
+    # ── Da gestire (real replies) ──────────────────────────────────
+    handle_block = ""
+    if m["replies_count"] > 0:
+        # Show up to 5 most recent
+        recent = sorted(
+            m["replies"],
+            key=lambda r: r.get("received_at") or "",
+            reverse=True,
+        )[:5]
+        rows = ""
+        for r in recent:
+            fr = _html_escape(r.get("from_address") or "?")
+            subj = _html_escape((r.get("subject") or "")[:80])
+            when = (r.get("received_at") or "")[:10]
+            rows += (
+                f'<tr><td style="padding:6px 32px;'
+                f'font-family:-apple-system,sans-serif;font-size:13px;">'
+                f'<span style="color:#C2714F;">↩</span> '
+                f'<a href="mailto:{fr}" style="color:#3E2F2B;'
+                f'text-decoration:none;font-weight:600;">{fr}</a>'
+                f' <span style="color:#888;font-size:11px;">'
+                f'· {_html_escape(when)}</span>'
+                f'<div style="color:#666;font-size:12px;margin-top:2px;'
+                f'font-style:italic;">"{subj}"</div>'
+                f'</td></tr>'
+            )
+        more_note = ""
+        if m["replies_count"] > 5:
+            more_note = (
+                f'<tr><td style="padding:4px 32px 10px;color:#888;'
+                f'font-family:-apple-system,sans-serif;font-size:11px;">'
+                f'… e altre {m["replies_count"] - 5}. Tutte le risposte '
+                f'in Gmail.</td></tr>'
+            )
+        handle_block = (
+            '<tr><td style="padding:14px 32px 4px 32px;">'
+            '<div style="font-family:-apple-system,sans-serif;'
+            'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;'
+            f'color:#C2714F;font-weight:600;">'
+            f'⚠ Da gestire — risposte ricevute ({m["replies_count"]})'
+            '</div></td></tr>' + rows + more_note
+        )
+
+    # ── Invalid addresses (collapsed summary) ──────────────────────
+    invalid_block = ""
+    if m["invalid_count"] > 0:
+        # show first 3 addresses with reason snippet
+        items = list(m["invalid_addresses"].items())[:3]
+        rows = ""
+        for addr, info in items:
+            reason = (info.get("reason") or "")[:60]
+            rows += (
+                f'<tr><td style="padding:4px 32px;color:#888;'
+                f'font-family:-apple-system,sans-serif;font-size:12px;">'
+                f'• <span style="color:#a85d3f;text-decoration:line-through;">'
+                f'{_html_escape(addr)}</span> '
+                f'<span style="color:#aaa;font-size:11px;">'
+                f'— {_html_escape(reason)}</span>'
+                f'</td></tr>'
+            )
+        if m["invalid_count"] > 3:
+            rows += (
+                f'<tr><td style="padding:4px 32px;color:#aaa;'
+                f'font-family:-apple-system,sans-serif;font-size:11px;'
+                f'font-style:italic;">'
+                f'… +{m["invalid_count"] - 3} altri indirizzi nel registro'
+                f'</td></tr>'
+            )
+        invalid_block = (
+            '<tr><td style="padding:14px 32px 4px 32px;">'
+            '<div style="font-family:-apple-system,sans-serif;'
+            'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;'
+            'color:#a85d3f;font-weight:600;">'
+            f'Indirizzi invalidi ({m["invalid_count"]})'
+            '</div></td></tr>' + rows
+        )
+
+    # ── Saltate / Errori (compact tail) ────────────────────────────
+    tail = ""
+    if p_skip:
+        rows = "".join(
+            f'<tr><td style="padding:3px 32px;color:#aaa;'
+            f'font-family:-apple-system,sans-serif;font-size:12px;">'
+            f'• <a href="mailto:{_html_escape(s.get("to","?"))}" '
+            f'style="color:#999;text-decoration:none;">'
+            f'{_html_escape(s.get("to","?"))}</a> — '
+            f'<span style="color:#bbb;">{_html_escape(s["reason"])}</span>'
+            f'</td></tr>'
+            for s in p_skip
+        )
+        tail += (
+            '<tr><td style="padding:14px 32px 4px 32px;">'
+            '<div style="font-family:-apple-system,sans-serif;'
+            'font-size:11px;letter-spacing:0.10em;text-transform:uppercase;'
+            f'color:#888;font-weight:600;">Saltate oggi ({len(p_skip)})'
+            '</div></td></tr>' + rows
+        )
+    if p_err:
+        rows = "".join(
+            f'<tr><td style="padding:3px 32px;color:#a85d3f;'
+            f'font-family:-apple-system,sans-serif;font-size:12px;">'
+            f'• {_html_escape(e.get("to","?"))}: {_html_escape(e["error"])}'
+            f'</td></tr>'
+            for e in p_err
+        )
+        tail += (
+            '<tr><td style="padding:14px 32px 4px 32px;">'
+            '<div style="font-family:-apple-system,sans-serif;'
+            'font-size:11px;letter-spacing:0.10em;text-transform:uppercase;'
+            f'color:#a85d3f;font-weight:600;">'
+            f'Errori invio ({len(p_err)})</div></td></tr>' + rows
+        )
+
+    return header + kpi_grid + sent_block + handle_block + invalid_block + tail
 
 
 def _build_html_digest(published, skipped, errors,
@@ -741,57 +1177,9 @@ def _build_html_digest(published, skipped, errors,
 
     pitch_block = ""
     if pitches is not None:
-        sent = pitches.get("sent") or []
-        p_skip = pitches.get("skipped") or []
-        p_err = pitches.get("errors") or []
-        rows = ""
-        for s in sent:
-            rows += _html_pitch_row(s, dry_run=dry_run)
-        if p_skip:
-            rows += (
-                '<tr><td style="padding:14px 32px 6px 32px;">'
-                '<div style="font-family:-apple-system,sans-serif;'
-                'font-size:11px;letter-spacing:0.10em;text-transform:uppercase;'
-                'color:#888;">'
-                'Saltate (review manuale richiesta)</div></td></tr>'
-            )
-            for s in p_skip:
-                rows += (
-                    f'<tr><td style="padding:4px 32px;color:#888;'
-                    f'font-family:-apple-system,sans-serif;font-size:12px;">'
-                    f'• {_html_escape(s.get("to","?"))} — {_html_escape(s["reason"])}'
-                    f'</td></tr>'
-                )
-        if p_err:
-            rows += (
-                '<tr><td style="padding:14px 32px 6px 32px;">'
-                '<div style="font-family:-apple-system,sans-serif;'
-                'font-size:11px;letter-spacing:0.10em;text-transform:uppercase;'
-                'color:#a85d3f;">'
-                'Errori di invio</div></td></tr>'
-            )
-            for e in p_err:
-                rows += (
-                    f'<tr><td style="padding:4px 32px;color:#a85d3f;'
-                    f'font-family:-apple-system,sans-serif;font-size:12px;">'
-                    f'• {_html_escape(e.get("to","?"))}: {_html_escape(e["error"])}'
-                    f'</td></tr>'
-                )
-
-        if sent or p_skip or p_err:
-            header = (
-                '<tr><td style="padding:24px 32px 8px 32px;'
-                'border-top:1px solid #D4B896;">'
-                '<h2 style="margin:14px 0 4px;font-family:Georgia,serif;'
-                'font-size:20px;font-weight:normal;color:#3E2F2B;'
-                'letter-spacing:0.02em;">'
-                '<span style="color:#C2714F;">✉</span> '
-                f'Email ai giornalisti '
-                f'<span style="color:#888;font-size:14px;font-weight:normal;">'
-                f'({len(sent)} {"inviata" if len(sent)==1 else "inviate"})'
-                '</span></h2></td></tr>'
-            )
-            pitch_block = header + rows
+        # Now a full control panel: KPI grid + sent-today + replies to
+        # handle + invalid-address registry + skipped/errors tail.
+        pitch_block = _html_outreach_panel(pitches, dry_run=dry_run)
 
     return f"""<!DOCTYPE html>
 <html>
@@ -840,7 +1228,7 @@ def _build_html_digest(published, skipped, errors,
       </a>
     </div>
     <div style="font-family:-apple-system,sans-serif;font-size:10px;color:#999;margin-top:8px;letter-spacing:0.04em;">
-      Auto-published &middot; pitch 'risky' restano per review manuale sul dashboard
+      Auto-published &middot; outreach panel aggiornato in tempo reale dal log Gmail
     </div>
   </td></tr>
 
@@ -944,6 +1332,31 @@ def _html_pitch_row(p: dict, *, dry_run: bool) -> str:
         if pub else
         '<span style="color:#888;font-style:italic;">(publication unknown)</span>'
     )
+
+    # Body of the pitch, rendered as a "letter" block. Plain text → HTML:
+    # paragraphs split on double-newline, single newlines become <br>.
+    body_block = ""
+    body = (p.get("body") or "").strip()
+    if body:
+        paragraphs = [b.strip() for b in body.split("\n\n") if b.strip()]
+        body_paras_html = "".join(
+            f'<p style="margin:0 0 10px;font-family:Georgia,serif;'
+            f'font-size:13px;line-height:1.65;color:#3E2F2B;'
+            f'white-space:pre-wrap;">{_html_escape(para)}</p>'
+            for para in paragraphs
+        )
+        body_block = (
+            f'<div style="margin-top:10px;padding:14px 16px;'
+            f'background:#FAF6F0;border-left:3px solid #C4A265;'
+            f'border-radius:0 4px 4px 0;">'
+            f'<div style="font-family:-apple-system,sans-serif;'
+            f'font-size:10px;letter-spacing:0.10em;text-transform:uppercase;'
+            f'color:#888;font-weight:600;margin-bottom:8px;">'
+            f'Testo inviato</div>'
+            f'{body_paras_html}'
+            f'</div>'
+        )
+
     sent_label = "sarebbe inviata" if dry_run else "inviata"
     return f"""
   <tr><td style="padding:10px 32px;">
@@ -956,7 +1369,8 @@ def _html_pitch_row(p: dict, *, dry_run: bool) -> str:
     <div style="font-family:-apple-system,sans-serif;font-size:12px;color:#888;margin-top:6px;font-style:italic;">
       “{_html_escape(p.get('subject',''))}”
     </div>
-    <div style="font-family:-apple-system,sans-serif;font-size:11px;color:#aaa;margin-top:4px;">
+    {body_block}
+    <div style="font-family:-apple-system,sans-serif;font-size:11px;color:#aaa;margin-top:8px;">
       rif: {_html_escape(p.get('title',''))[:80]}
     </div>
   </td></tr>
