@@ -1092,9 +1092,18 @@ def render_article_html(article, date_str):
         author_url = esc(hero_image.get("author_url") or "")
         article_url = esc(hero_image.get("unsplash_url") or "")
         web_path = esc(hero_image.get("web_path"))
-        origin = hero_image.get("origin") or (
-            "source" if hero_image.get("source") == "cited_source" else "unsplash"
-        )
+        # origin: explicit > derive from source > default unsplash. The brand
+        # fallback uses source="brand_fallback" and gets a dedicated branch
+        # below (no credit line — it's our own asset).
+        src = hero_image.get("source") or ""
+        origin = hero_image.get("origin")
+        if not origin:
+            if src == "cited_source":
+                origin = "source"
+            elif src == "brand_fallback":
+                origin = "brand"
+            else:
+                origin = "unsplash"
         author_link = (
             f'<a href="{author_url}" target="_blank" rel="noopener">{author_name}</a>'
             if author_url else author_name
@@ -1106,17 +1115,25 @@ def render_article_html(article, date_str):
                 if article_url else "original article"
             )
             credit = f'Photo: {author_link} — via {article_link}'
+        elif origin == "brand":
+            # Brand-asset fallback: no figcaption — our wordmark, not a
+            # third-party photo. Showing "Photo: Unknown / Unsplash" here
+            # would be misleading (and wrong — it's not from Unsplash).
+            credit = None
         else:
             unsplash_link = (
                 f'<a href="{article_url}" target="_blank" rel="noopener">Unsplash</a>'
                 if article_url else "Unsplash"
             )
             credit = f'Photo: {author_link} / {unsplash_link}'
+        figcaption_html = (
+            f'<figcaption class="hero-credit">{credit}</figcaption>' if credit else ''
+        )
         hero_image_html = (
             '<div class="hero-image-wrap">'
             '<figure class="hero-image">'
             f'<img src="{web_path}" alt="{alt}" loading="eager" decoding="async" referrerpolicy="no-referrer">'
-            f'<figcaption class="hero-credit">{credit}</figcaption>'
+            f'{figcaption_html}'
             '</figure>'
             '</div>'
         )
@@ -1691,6 +1708,8 @@ def _copy_brand_fallback_hero(slug, img_dir):
         return {
             "web_path": f"assets/img/{slug}-hero.png",
             "source": "brand_fallback",
+            "origin": "brand",  # explicit so render_article_html doesn't
+                                # have to derive it from `source`
             "credit": "My Villa",
         }
     except Exception as e:  # noqa: BLE001
