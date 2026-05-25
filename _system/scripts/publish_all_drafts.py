@@ -912,8 +912,14 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
     p_err = pitches.get("errors") or []
     m = _compute_pitch_metrics(sent)
 
-    # Touch breakdown for today's sends (cold / T2 / T3)
-    cold_today = [s for s in sent if (s.get("touch_n") or 1) == 1]
+    # Touch breakdown for today's sends.
+    # "rescue" cold pitches are Touch 1 sends that came from the
+    # author-rescue path — they carry a `rescue_of` field with the
+    # parent alias they replaced. We surface them separately because
+    # they're newsworthy (channel upgrade!) and visually distinct.
+    rescue_today = [s for s in sent if s.get("rescue_of")]
+    cold_today = [s for s in sent
+                  if (s.get("touch_n") or 1) == 1 and not s.get("rescue_of")]
     t2_today = [s for s in sent if (s.get("touch_n") or 1) == 2]
     t3_today = [s for s in sent if (s.get("touch_n") or 1) == 3]
 
@@ -928,16 +934,7 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
     if not has_history and not has_today_activity:
         return ""
 
-    # ── Header ─────────────────────────────────────────────────────
-    parts = []
-    if cold_today:
-        parts.append(f"{len(cold_today)} cold")
-    if t2_today:
-        parts.append(f"{len(t2_today)} follow-up T2")
-    if t3_today:
-        parts.append(f"{len(t3_today)} follow-up T3")
-    today_label = " · ".join(parts) if parts else "nessuna mail oggi"
-
+    # ── Section header ─────────────────────────────────────────────
     header = (
         '<tr><td style="padding:28px 32px 4px 32px;'
         'border-top:1px solid #D4B896;">'
@@ -946,89 +943,221 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
         'letter-spacing:0.02em;">'
         '<span style="color:#C2714F;">✉</span> Email ai giornalisti'
         '</h2>'
-        f'<div style="font-family:-apple-system,sans-serif;font-size:12px;'
-        f'color:#888;letter-spacing:0.04em;margin-bottom:4px;">'
-        f'Outreach control panel · {_html_escape(today_label)}</div>'
+        '<div style="font-family:-apple-system,sans-serif;font-size:12px;'
+        'color:#888;letter-spacing:0.04em;margin-bottom:4px;">'
+        'Stato outreach giornalistico — oggi e nel tempo'
+        '</div></td></tr>'
+    )
+
+    # ───────────────────────────────────────────────────────────────
+    # BLOCK 1: OGGI — situazione del giorno
+    # ───────────────────────────────────────────────────────────────
+    today_total = len(sent)
+    today_section_title = (
+        '<tr><td style="padding:20px 32px 6px 32px;">'
+        '<div style="font-family:-apple-system,sans-serif;'
+        'font-size:11px;letter-spacing:0.16em;text-transform:uppercase;'
+        'color:#5C6B4F;font-weight:700;">'
+        '◆ OGGI</div>'
         '</td></tr>'
     )
 
-    # ── KPI grid (2 rows × 3 cols) ─────────────────────────────────
-    def _kpi_cell(label: str, value: str, accent: str,
-                  sublabel: str = "") -> str:
+    # Big "N mail inviate oggi" hero card
+    today_hero = (
+        '<tr><td style="padding:6px 24px 4px 24px;">'
+        '<div style="background:#FAF6F0;border-radius:4px;'
+        'border-left:4px solid #5C6B4F;padding:18px 22px;">'
+        '<div style="font-family:Georgia,serif;font-size:42px;'
+        'font-weight:normal;color:#3E2F2B;line-height:1;">'
+        f'{today_total}</div>'
+        '<div style="font-family:-apple-system,sans-serif;'
+        'font-size:13px;color:#5C6B4F;letter-spacing:0.04em;'
+        'margin-top:6px;">'
+        f'{"mail inviata" if today_total==1 else "mail inviate"} ai giornalisti'
+        '</div></div></td></tr>'
+    )
+
+    # Breakdown by type: 4 mini-cards in a row, only showing the ones
+    # that have any activity today. Plain-language labels.
+    def _mini_card(value: int, label: str, sublabel: str,
+                   accent: str) -> str | None:
+        if value <= 0:
+            return None
         return (
-            f'<td width="33%" valign="top" style="padding:8px;">'
-            f'<div style="background:#FAF6F0;border-radius:4px;'
-            f'border-left:3px solid {accent};padding:12px 14px;">'
-            f'<div style="font-family:-apple-system,sans-serif;'
-            f'font-size:10px;letter-spacing:0.12em;text-transform:uppercase;'
-            f'color:#888;font-weight:600;">{_html_escape(label)}</div>'
-            f'<div style="font-family:Georgia,serif;font-size:26px;'
-            f'font-weight:normal;color:{accent};line-height:1.1;'
-            f'margin-top:6px;">{_html_escape(value)}</div>'
+            '<td valign="top" align="center" '
+            'style="padding:6px;">'
+            '<div style="background:#FFFFFF;border:1px solid #E8DECE;'
+            f'border-top:3px solid {accent};border-radius:3px;'
+            'padding:10px 8px;">'
+            f'<div style="font-family:Georgia,serif;font-size:22px;'
+            f'font-weight:normal;color:{accent};line-height:1;">'
+            f'{value}</div>'
+            '<div style="font-family:-apple-system,sans-serif;'
+            'font-size:10px;color:#3E2F2B;font-weight:600;margin-top:4px;'
+            'letter-spacing:0.04em;">'
+            f'{_html_escape(label)}</div>'
             + (
-                f'<div style="font-family:-apple-system,sans-serif;'
-                f'font-size:11px;color:#888;margin-top:4px;">'
-                f'{_html_escape(sublabel)}</div>'
-                if sublabel else ''
+                '<div style="font-family:-apple-system,sans-serif;'
+                'font-size:9px;color:#888;margin-top:2px;'
+                'letter-spacing:0.02em;">'
+                f'{_html_escape(sublabel)}</div>' if sublabel else ''
             )
             + '</div></td>'
         )
 
-    # Row 1: volume (today / week / lifetime)
-    # Today's sub-label shows the touch breakdown if there's any
-    # follow-up activity, so the user can tell cold vs warm at a glance.
-    today_sublabel = "mail inviate"
-    if t2_today or t3_today:
-        parts = []
-        if cold_today:
-            parts.append(f"{len(cold_today)} cold")
-        if t2_today:
-            parts.append(f"{len(t2_today)} T2")
-        if t3_today:
-            parts.append(f"{len(t3_today)} T3")
-        today_sublabel = " · ".join(parts)
+    breakdown_cells = []
+    for cell in (
+        _mini_card(len(cold_today), "Prime email",
+                   "nuovi giornalisti", "#5C6B4F"),
+        _mini_card(len(t2_today), "Seconde email",
+                   "dopo 7 giorni di silenzio", "#A65E1F"),
+        _mini_card(len(t3_today), "Ultime email",
+                   "invito a call con Paolo", "#8B3A1F"),
+        _mini_card(len(rescue_today), "Contatti recuperati",
+                   "da generico a diretto", "#2E5D6B"),
+    ):
+        if cell:
+            breakdown_cells.append(cell)
 
-    row1 = (
-        '<tr>'
-        + _kpi_cell("Oggi", str(m["sent_today"]), "#5C6B4F",
-                    today_sublabel)
-        + _kpi_cell("Ultimi 7 gg", str(m["sent_week"]), "#3E2F2B")
-        + _kpi_cell("Totale storico", str(m["sent_total"]), "#3E2F2B",
-                    f'{m["unique_recipients"]} contatti')
-        + '</tr>'
+    today_breakdown = ""
+    if breakdown_cells:
+        today_breakdown = (
+            '<tr><td style="padding:0 24px 10px 24px;">'
+            '<table role="presentation" width="100%" cellspacing="0" '
+            'cellpadding="0" border="0"><tr>'
+            + "".join(breakdown_cells) +
+            '</tr></table></td></tr>'
+        )
+
+    # ───────────────────────────────────────────────────────────────
+    # BLOCK 2: PIPELINE STATUS — stacked bar + legend
+    # ───────────────────────────────────────────────────────────────
+    replied_count = m["replies_count"]
+    invalid_count = m["invalid_count"]
+    pipeline_total = max(
+        in_cadence + exhausted + invalid_count + replied_count, 1
     )
 
-    # Row 2: pipeline state — actionable view of who's still alive in
-    # the cadence, who's exhausted (3 touches reached, no reply),
-    # who responded, who bounced.
-    replies_accent = "#C2714F" if m["replies_count"] > 0 else "#3E2F2B"
-    invalid_accent = "#a85d3f" if m["invalid_count"] > 0 else "#3E2F2B"
+    def _bar_segment(value: int, color: str, label_short: str) -> str:
+        if value <= 0:
+            return ""
+        # min 6% so tiny segments still get a label
+        pct = max(round(value * 100 / pipeline_total), 6)
+        return (
+            f'<td width="{pct}%" valign="middle" align="center" '
+            f'style="background:{color};color:#FFFFFF;'
+            f'font-family:-apple-system,sans-serif;font-size:11px;'
+            f'font-weight:600;height:32px;padding:0 4px;'
+            f'letter-spacing:0.04em;white-space:nowrap;">'
+            f'{value}</td>'
+        )
+
+    pipeline_bar_cells = (
+        _bar_segment(in_cadence, "#5C6B4F", "")
+        + _bar_segment(exhausted, "#A65E1F", "")
+        + _bar_segment(replied_count, "#C2714F", "")
+        + _bar_segment(invalid_count, "#a85d3f", "")
+    )
+
+    def _legend_row(value: int, color: str, label: str, hint: str) -> str:
+        if value <= 0:
+            return ""
+        return (
+            '<tr>'
+            '<td width="14" valign="middle" style="padding:4px 0;">'
+            f'<div style="width:10px;height:10px;background:{color};'
+            'border-radius:2px;"></div>'
+            '</td>'
+            '<td valign="middle" style="padding:4px 8px;'
+            'font-family:-apple-system,sans-serif;font-size:12px;'
+            'color:#3E2F2B;">'
+            f'<strong>{value}</strong> {_html_escape(label)} '
+            f'<span style="color:#888;font-size:11px;">'
+            f'— {_html_escape(hint)}</span>'
+            '</td></tr>'
+        )
+
+    legend_rows = (
+        _legend_row(in_cadence, "#5C6B4F",
+                    "giornalisti in conversazione",
+                    "riceveranno seconda o ultima email")
+        + _legend_row(exhausted, "#A65E1F",
+                      "conversazioni concluse",
+                      "3 email inviate, stop totale")
+        + _legend_row(replied_count, "#C2714F",
+                      "hanno risposto",
+                      "da gestire a mano in Gmail")
+        + _legend_row(invalid_count, "#a85d3f",
+                      "indirizzi non validi",
+                      "bounce, in blacklist")
+    )
+
+    pipeline_section = ""
+    if pipeline_total > 1 or in_cadence or exhausted:
+        pipeline_section = (
+            '<tr><td style="padding:24px 32px 6px 32px;">'
+            '<div style="font-family:-apple-system,sans-serif;'
+            'font-size:11px;letter-spacing:0.16em;text-transform:uppercase;'
+            'color:#3E2F2B;font-weight:700;">'
+            f'◆ STATO PIPELINE — {pipeline_total} giornalisti in totale'
+            '</div></td></tr>'
+            '<tr><td style="padding:6px 32px 4px 32px;">'
+            '<table role="presentation" width="100%" cellspacing="0" '
+            'cellpadding="0" border="0" '
+            'style="border-radius:3px;overflow:hidden;'
+            'border:1px solid #D4B896;"><tr>'
+            + pipeline_bar_cells +
+            '</tr></table></td></tr>'
+            '<tr><td style="padding:8px 32px 6px 32px;">'
+            '<table role="presentation" cellspacing="0" cellpadding="0" '
+            'border="0">'
+            + legend_rows +
+            '</table></td></tr>'
+        )
+
+    # ───────────────────────────────────────────────────────────────
+    # BLOCK 3: TOTALI DA SEMPRE — lifetime stats
+    # ───────────────────────────────────────────────────────────────
     deliv_str = (
         f'{m["deliverability_pct"]:.0f}%'
         if m["deliverability_pct"] is not None else "—"
     )
-    # "Cadence attiva" sublabel hints at scope
-    cadence_sublabel = (
-        f'{exhausted} esauriti dopo 3 touch'
-        if exhausted else 'in 3-touch cadence'
-    )
-    row2 = (
-        '<tr>'
-        + _kpi_cell("Cadence attiva", str(in_cadence), "#5C6B4F",
-                    cadence_sublabel)
-        + _kpi_cell("Risposte", str(m["replies_count"]), replies_accent,
-                    "da gestire" if m["replies_count"] > 0 else "in attesa")
-        + _kpi_cell("Invalidi", str(m["invalid_count"]), invalid_accent,
-                    f'consegna {deliv_str}')
-        + '</tr>'
+
+    def _stat_cell(value: str, label: str) -> str:
+        return (
+            '<td width="33%" valign="top" align="center" '
+            'style="padding:8px;">'
+            '<div style="background:#FFFFFF;border:1px solid #E8DECE;'
+            'border-radius:3px;padding:12px 8px;">'
+            '<div style="font-family:Georgia,serif;font-size:22px;'
+            'font-weight:normal;color:#3E2F2B;line-height:1;">'
+            f'{_html_escape(value)}</div>'
+            '<div style="font-family:-apple-system,sans-serif;'
+            'font-size:10px;color:#888;font-weight:600;margin-top:6px;'
+            'letter-spacing:0.06em;text-transform:uppercase;">'
+            f'{_html_escape(label)}</div>'
+            '</div></td>'
+        )
+
+    stats_section = (
+        '<tr><td style="padding:24px 32px 6px 32px;">'
+        '<div style="font-family:-apple-system,sans-serif;'
+        'font-size:11px;letter-spacing:0.16em;text-transform:uppercase;'
+        'color:#3E2F2B;font-weight:700;">'
+        '◆ TOTALI DA SEMPRE</div>'
+        '</td></tr>'
+        '<tr><td style="padding:0 24px 8px 24px;">'
+        '<table role="presentation" width="100%" cellspacing="0" '
+        'cellpadding="0" border="0"><tr>'
+        + _stat_cell(str(m["sent_total"]), "Email inviate")
+        + _stat_cell(str(m["unique_publications"]), "Testate raggiunte")
+        + _stat_cell(deliv_str, "Consegna riuscita")
+        + '</tr></table></td></tr>'
     )
 
     kpi_grid = (
-        '<tr><td style="padding:6px 24px 12px 24px;">'
-        '<table role="presentation" width="100%" cellspacing="0" '
-        'cellpadding="0" border="0">'
-        + row1 + row2 +
-        '</table></td></tr>'
+        today_section_title + today_hero + today_breakdown
+        + pipeline_section + stats_section
     )
 
     # ── Sent today, grouped by touch type ──────────────────────────
@@ -1051,9 +1180,17 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
                                  for s in items)
 
         sent_block = (
-            _group_section("Cold pitch inviate oggi", "#5C6B4F", cold_today)
-            + _group_section("Follow-up T2 — data bump", "#A65E1F", t2_today)
-            + _group_section("Follow-up T3 — founder call", "#8B3A1F", t3_today)
+            _group_section("Prime email inviate oggi — nuovi giornalisti",
+                            "#5C6B4F", cold_today)
+            + _group_section(
+                "🆙 Contatti diretti recuperati — al posto di alias generici",
+                "#2E5D6B", rescue_today)
+            + _group_section(
+                "Seconde email — un dato concreto in più (dopo 7 giorni)",
+                "#A65E1F", t2_today)
+            + _group_section(
+                "Ultime email — invito a call con Paolo (dopo 14 giorni)",
+                "#8B3A1F", t3_today)
         )
 
     # ── Da gestire (real replies) ──────────────────────────────────
@@ -1095,9 +1232,71 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
             '<div style="font-family:-apple-system,sans-serif;'
             'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;'
             f'color:#C2714F;font-weight:600;">'
-            f'⚠ Da gestire — risposte ricevute ({m["replies_count"]})'
+            f'📬 Risposte da gestire ({m["replies_count"]}) — '
+            'rispondi a mano da Gmail'
             '</div></td></tr>' + rows + more_note
         )
+
+    # ── Rescue drafts pending manual review ────────────────────────
+    # The author-rescue path queues pattern-guess hits (low confidence)
+    # in rescue_drafts.jsonl instead of auto-sending. Surface them here
+    # so the user can pick them up.
+    rescue_drafts_block = ""
+    rescue_drafts_path = SYSTEM_DIR / "outreach" / "rescue_drafts.jsonl"
+    if rescue_drafts_path.exists():
+        pending = []
+        try:
+            for raw in rescue_drafts_path.read_text(encoding="utf-8").splitlines():
+                raw = raw.strip()
+                if not raw:
+                    continue
+                try:
+                    e = json.loads(raw)
+                except json.JSONDecodeError:
+                    continue
+                if e.get("status") == "pending_review":
+                    pending.append(e)
+        except OSError:
+            pending = []
+        if pending:
+            rows = ""
+            for e in pending[-5:]:  # most recent 5
+                rows += (
+                    f'<tr><td style="padding:6px 32px;'
+                    f'font-family:-apple-system,sans-serif;font-size:13px;">'
+                    f'<span style="color:#A85D3F;">🆙</span> '
+                    f'<strong style="color:#3E2F2B;">'
+                    f'{_html_escape(e.get("to","?"))}</strong> '
+                    f'<span style="color:#888;font-size:11px;">'
+                    f'· pattern-guess da {_html_escape(e.get("from_alias","?"))}'
+                    f'</span>'
+                    f'<div style="color:#666;font-size:12px;margin-top:2px;">'
+                    f'{_html_escape((e.get("to_name") or "?"))} — '
+                    f'{_html_escape((e.get("publication") or "?"))}'
+                    f'</div>'
+                    f'</td></tr>'
+                )
+            more_note = ""
+            if len(pending) > 5:
+                more_note = (
+                    f'<tr><td style="padding:4px 32px 10px;color:#888;'
+                    f'font-family:-apple-system,sans-serif;font-size:11px;">'
+                    f'… +{len(pending) - 5} altre nel rescue_drafts.jsonl'
+                    f'</td></tr>'
+                )
+            rescue_drafts_block = (
+                '<tr><td style="padding:14px 32px 4px 32px;">'
+                '<div style="font-family:-apple-system,sans-serif;'
+                'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;'
+                f'color:#A65E1F;font-weight:600;">'
+                f'🆙 Contatti diretti da validare ({len(pending)})'
+                '</div>'
+                '<div style="font-family:-apple-system,sans-serif;'
+                'font-size:11px;color:#888;margin-top:2px;font-style:italic;">'
+                'Email indovinata da pattern (non verificata sulla pagina). '
+                'Approvali dal dashboard radar o cancellali.'
+                '</div></td></tr>' + rows + more_note
+            )
 
     # ── Invalid addresses (collapsed summary) ──────────────────────
     invalid_block = ""
@@ -1129,7 +1328,8 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
             '<div style="font-family:-apple-system,sans-serif;'
             'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;'
             'color:#a85d3f;font-weight:600;">'
-            f'Indirizzi invalidi ({m["invalid_count"]})'
+            f'Indirizzi non validi ({m["invalid_count"]}) — '
+            f'bounce permanente, non più contattati'
             '</div></td></tr>' + rows
         )
 
@@ -1169,7 +1369,8 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
             f'Errori invio ({len(p_err)})</div></td></tr>' + rows
         )
 
-    return header + kpi_grid + sent_block + handle_block + invalid_block + tail
+    return (header + kpi_grid + sent_block + handle_block
+            + rescue_drafts_block + invalid_block + tail)
 
 
 def _build_html_digest(published, skipped, errors,
@@ -1386,15 +1587,24 @@ def _html_pitch_row(p: dict, *, dry_run: bool) -> str:
 
     # Touch indicator pill — distinguishes cold pitch (T1) from
     # follow-up T2 (data bump) and T3 (founder call).
+    # A rescued cold pitch is a Touch 1 but visually distinct.
     touch_pill = ""
     touch_n = p.get("touch_n") or 1
-    if touch_n == 2:
+    if p.get("rescue_of"):
+        touch_pill = (
+            f'<span style="display:inline-block;background:#E0F0F5;'
+            f'color:#2E5D6B;font-family:-apple-system,sans-serif;'
+            f'font-size:10px;font-weight:600;padding:2px 7px;'
+            f'border-radius:3px;margin-left:8px;letter-spacing:0.04em;">'
+            f'🆙 CONTATTO DIRETTO (era {_html_escape(p["rescue_of"])})</span>'
+        )
+    elif touch_n == 2:
         touch_pill = (
             '<span style="display:inline-block;background:#FFF3E0;'
             'color:#A65E1F;font-family:-apple-system,sans-serif;'
             'font-size:10px;font-weight:600;padding:2px 7px;'
             'border-radius:3px;margin-left:8px;letter-spacing:0.04em;">'
-            '🔁 FOLLOW-UP T2</span>'
+            '🔁 SECONDA EMAIL</span>'
         )
     elif touch_n == 3:
         touch_pill = (
@@ -1402,7 +1612,7 @@ def _html_pitch_row(p: dict, *, dry_run: bool) -> str:
             'color:#8B3A1F;font-family:-apple-system,sans-serif;'
             'font-size:10px;font-weight:600;padding:2px 7px;'
             'border-radius:3px;margin-left:8px;letter-spacing:0.04em;">'
-            '📞 FOLLOW-UP T3</span>'
+            '📞 ULTIMA EMAIL</span>'
         )
 
     # Body of the pitch, rendered as a "letter" block. Plain text → HTML:

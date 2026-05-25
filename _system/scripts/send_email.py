@@ -54,6 +54,11 @@ class SendResult:
     kind: str = "outreach"       # "outreach" | "reply"
     in_reply_to: str | None = None
     attachments: list[str] | None = None
+    # Full body text — saved so the digest dashboard can show what
+    # was actually sent to each journalist (the "Testo inviato" block)
+    # even retroactively. The radar/follow-up engine no longer needs
+    # to keep the body in memory after the send: it's persisted here.
+    body: str = ""
 
     def to_json(self) -> str:
         return json.dumps(asdict(self), ensure_ascii=False)
@@ -200,6 +205,7 @@ def send_raw(
                 to=to,
                 subject=subject,
                 body_chars=len(final_body),
+                body=final_body,
                 timestamp=now_iso,
                 error=(
                     f"Address {to!r} is on the bounce blacklist "
@@ -232,7 +238,7 @@ def send_raw(
                 result = SendResult(
                     ok=False, dry_run=cfg.dry_run, message_id=None,
                     thread_id=thread_id, to=to, subject=subject,
-                    body_chars=len(final_body), timestamp=now_iso,
+                    body_chars=len(final_body), body=final_body, timestamp=now_iso,
                     error=err, reason="missing_attachment",
                     kind=kind, in_reply_to=in_reply_to,
                     attachments=[str(p) for p in attachments],
@@ -254,6 +260,7 @@ def send_raw(
                 to=to,
                 subject=subject,
                 body_chars=len(final_body),
+                body=final_body,
                 timestamp=now_iso,
                 error=(
                     f"Rate limit reached: {state['sends_last_hour']} sends in the "
@@ -278,6 +285,7 @@ def send_raw(
             to=to,
             subject=subject,
             body_chars=len(final_body),
+            body=final_body,
             timestamp=now_iso,
             reason="dry_run",
             kind=kind,
@@ -308,6 +316,7 @@ def send_raw(
             to=to,
             subject=subject,
             body_chars=len(final_body),
+            body=final_body,
             timestamp=now_iso,
             kind=kind,
             in_reply_to=in_reply_to,
@@ -322,6 +331,7 @@ def send_raw(
             to=to,
             subject=subject,
             body_chars=len(final_body),
+            body=final_body,
             timestamp=now_iso,
             error=f"{type(exc).__name__}: {exc}",
             kind=kind,

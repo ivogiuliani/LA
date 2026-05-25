@@ -416,6 +416,51 @@ _DATA_POINTS = [
 ]
 
 
+def _build_rescue_cold_prompt(contact: dict, author_name: str) -> tuple[str, str]:
+    """Prompt for a FRESH cold pitch sent to a direct contact discovered
+    by the author-rescue process. NOT a follow-up — this person has
+    never received anything from us. Tone is a normal cold pitch but
+    short and respectful, referencing their specific article.
+    """
+    publication = contact.get("publication") or "your publication"
+    source_title = contact.get("source_title") or "your recent piece"
+    source_url = contact.get("source_url") or ""
+
+    common_voice = (
+        "You are Lisa Monelli, writing on behalf of My Villa Media Team. "
+        "Tone: warm, professional, never pushy. Write like a real PR person. "
+        "American English. No exclamation marks. No subject line — body only.\n\n"
+        "Sign off EXACTLY with these four lines:\n"
+        "Best,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la"
+    )
+    system = common_voice + (
+        "\n\nWrite a FRESH cold pitch to a journalist whose article you "
+        "just discovered. They have never received anything from us. "
+        "Rules:\n"
+        "- 90–130 words total\n"
+        "- Greet by first name ('Hi {first_name},')\n"
+        "- First sentence: reference their specific article warmly and "
+        "concretely (not generic — show you actually read it)\n"
+        "- Second paragraph: ONE-sentence intro of My Villa — Italian-built "
+        "homes in LA in reinforced concrete (cemento a vista) — and ONE "
+        "cultural framing line connecting their topic to Mediterranean "
+        "building practice\n"
+        "- Soft, low-friction ask: would they be open to receiving more "
+        "material, or a short call with Paolo (founder)?\n"
+        "- Do NOT mention we wrote to the newsroom first; this should "
+        "feel like the natural first contact"
+    )
+    user = (
+        f"Journalist first name: {author_name.split()[0] if author_name else 'team'}\n"
+        f"Full name: {author_name or '?'}\n"
+        f"Publication: {publication}\n"
+        f"Article title: {source_title}\n"
+        f"Article URL: {source_url}\n\n"
+        f"Write the cold pitch body now."
+    )
+    return system, user
+
+
 def _build_followup_prompt(contact: dict, touch_n: int) -> tuple[str, str]:
     """Returns (system_prompt, user_prompt) for Claude.
 
@@ -561,14 +606,195 @@ def _build_subject(contact: dict, touch_n: int) -> str:
     return f"Re: {original}"
 
 
+def _generate_rescue_cold_body(contact: dict, author_name: str) -> str | None:
+    """LLM-generated cold pitch for a direct contact discovered via
+    author-rescue. Falls back to a deterministic template if the API
+    isn't available.
+    """
+    try:
+        from anthropic import Anthropic
+    except ImportError:
+        return _rescue_template_body(contact, author_name)
+
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        return _rescue_template_body(contact, author_name)
+
+    system, user = _build_rescue_cold_prompt(contact, author_name)
+    try:
+        client = Anthropic(api_key=api_key)
+        resp = client.messages.create(
+            model="claude-sonnet-4-5",
+            max_tokens=500,
+            system=system,
+            messages=[{"role": "user", "content": user}],
+        )
+        text = "".join(
+            blk.text for blk in resp.content if getattr(blk, "type", "") == "text"
+        ).strip()
+        return text or _rescue_template_body(contact, author_name)
+    except Exception as e:  # noqa: BLE001
+        print(f"  [rescue] Claude call failed: {type(e).__name__}: {e}")
+        return _rescue_template_body(contact, author_name)
+
+
+def _rescue_template_body(contact: dict, author_name: str) -> str:
+    first = (author_name.split()[0] if author_name else "there")
+    pub = contact.get("publication") or "your publication"
+    title = (contact.get("source_title") or "your recent piece")[:80]
+    return (
+        f"Hi {first},\n\n"
+        f"Came across your piece on {pub} — really appreciated the angle "
+        f"you took on it. Wanted to introduce ourselves briefly.\n\n"
+        f"At My Villa we're building Italian-style homes in LA in "
+        f"reinforced concrete (cemento a vista) — what your beat is now "
+        f"discussing in California has been baseline Mediterranean "
+        f"construction practice for generations. We thought the cultural "
+        f"angle might be useful context for future stories.\n\n"
+        f"Would you be open to receiving more material, or to a short "
+        f"call with Paolo, our founder?\n\n"
+        f"Best,\nLisa Monelli\nMy Villa Media Team\n"
+        f"info@myvilla.la · myvilla.la"
+    )
+
+
+def _build_rescue_subject(contact: dict) -> str:
+    """Subject for the FRESH cold pitch to a direct contact found via
+    rescue. NOT 'Re: ...' — this is the first message to that person.
+    """
+    title = (contact.get("source_title") or "").strip()
+    if title:
+        # Mirror the radar's "A European angle on …" pattern
+        return f"A European angle on your {title[:60]} piece"
+    return "An Italian-construction angle for your beat"
+
+
+def _add_rescued_contact(ledger: dict, *, parent_email: str,
+                          rescued: dict, subject: str,
+                          message_id, thread_id, sent_at: str) -> None:
+    """Insert a new contact in the ledger for the rescued direct
+    journalist email AND mark the parent alias as exhausted (better
+    channel found, stop sending to the generic alias).
+    """
+    contacts = ledger.setdefault("contacts", {})
+    parent = contacts.get(parent_email)
+    rescued_email = rescued["email"].lower()
+
+    # Create or update the rescued contact
+    new = contacts.get(rescued_email) or {
+        "email": rescued_email,
+        "publication": parent.get("publication", "") if parent else "",
+        "first_seen_at": sent_at,
+        "touches": [],
+        "next_touch_at": None,
+        "status": "in_cadence",
+        "source_url": parent.get("source_url", "") if parent else "",
+        "source_title": parent.get("source_title", "") if parent else "",
+        "cold_pitch_body": "",
+        "cold_pitch_subject": subject,
+        "rescued_from": parent_email,
+        "rescue_source": rescued.get("source"),
+        "rescue_confidence": rescued.get("confidence"),
+    }
+    new["touches"].append({
+        "n": 1,
+        "type": "cold_rescued",
+        "sent_at": sent_at,
+        "message_id": message_id,
+        "thread_id": thread_id,
+        "subject": subject,
+    })
+    next_dt = datetime.fromisoformat(sent_at.replace("Z", "+00:00")) \
+        if sent_at else datetime.now(timezone.utc)
+    new["next_touch_at"] = (next_dt + timedelta(days=CADENCE_OFFSETS[1])
+                            ).strftime("%Y-%m-%d")
+    contacts[rescued_email] = new
+
+    # Mark parent alias exhausted — better channel found
+    if parent:
+        parent["status"] = "exhausted"
+        parent["next_touch_at"] = None
+        parent["exhausted_reason"] = (
+            f"author_rescue → upgraded to {rescued_email}"
+        )
+
+
 # ─────────────────────────────────────────────────────────────────────
 # Send
 # ─────────────────────────────────────────────────────────────────────
 
+def _attempt_author_rescue(contact: dict) -> dict | None:
+    """At Touch 3 for a generic-alias contact, try to find a direct
+    journalist email by scraping the original source article.
+
+    Returns the author_lookup result dict (with 'email', 'name',
+    'source', 'confidence'), or None if nothing usable was found.
+    """
+    try:
+        sys.path.insert(0, str(SCRIPT_DIR))
+        import author_lookup
+    except ImportError as e:
+        print(f"  [rescue] author_lookup unavailable: {e}")
+        return None
+    source_url = contact.get("source_url") or ""
+    if not source_url:
+        return None
+    domain = _domain(contact["email"])  # publication domain hint
+    try:
+        return author_lookup.find_direct_contact(source_url, domain)
+    except Exception as e:  # noqa: BLE001
+        print(f"  [rescue] error scraping {source_url[:60]}: {e}")
+        return None
+
+
+def _save_rescue_draft(contact: dict, rescued: dict, body: str,
+                       subject: str) -> None:
+    """Persist a low-confidence (pattern_guess) rescue draft to a
+    JSONL file. The dashboard / approve.py reads this and presents
+    it for manual review.
+    """
+    rescue_log = OUTREACH_DIR / "rescue_drafts.jsonl"
+    OUTREACH_DIR.mkdir(parents=True, exist_ok=True)
+    entry = {
+        "created_at": _now_iso(),
+        "status": "pending_review",
+        "from_alias": contact["email"],
+        "to": rescued["email"],
+        "to_name": rescued.get("name") or "",
+        "publication": contact.get("publication") or "",
+        "source_url": contact.get("source_url") or "",
+        "source_title": contact.get("source_title") or "",
+        "rescue_source": rescued.get("source") or "pattern_guess",
+        "rescue_confidence": rescued.get("confidence") or "low",
+        "evidence_url": rescued.get("evidence_url") or "",
+        "subject": subject,
+        "body": body,
+        "alternatives": rescued.get("alternatives") or [],
+    }
+    with rescue_log.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+
 def send_followups(ledger: dict, *, dry_run: bool = False,
                    max_per_run: int = MAX_FOLLOWUPS_PER_RUN) -> dict:
-    """Send all due follow-ups. Returns a digest-shaped result dict."""
+    """Send all due follow-ups. Returns a digest-shaped result dict.
+
+    At Touch 3, generic-alias contacts get an "author rescue" attempt
+    before the standard founder-call message: if the scraping finds
+    a verified direct contact, we send a FRESH cold pitch there and
+    mark the alias exhausted (better channel found). If it finds a
+    pattern_guess, we queue the draft for manual review and still
+    send the standard T3 to the alias (paracadute). If nothing is
+    found, T3 standard goes out.
+    """
     sent, skipped, errors = [], [], []
+
+    # Import author_lookup once (need its is_generic_alias helper)
+    sys.path.insert(0, str(SCRIPT_DIR))
+    try:
+        import author_lookup
+    except ImportError:
+        author_lookup = None  # rescue disabled but engine still works
 
     due_list = find_due_touches(ledger)
     if not due_list:
@@ -577,11 +803,14 @@ def send_followups(ledger: dict, *, dry_run: bool = False,
     # Lazy import so the module loads even when send_email's deps
     # (Google API client) aren't installed in test envs.
     try:
-        sys.path.insert(0, str(SCRIPT_DIR))
         from send_email import send_draft
     except ImportError as e:
         print(f"  [followup] send_email module unavailable: {e}")
         return {"sent": [], "skipped": [], "errors": []}
+
+    rescues_attempted = 0
+    rescues_verified = 0
+    rescues_pattern = 0
 
     for contact in due_list:
         if len(sent) >= max_per_run:
@@ -593,6 +822,149 @@ def send_followups(ledger: dict, *, dry_run: bool = False,
             continue
 
         touch_n = contact["next_touch_n"]
+
+        # ── Author-rescue gate at T3 for generic aliases ───────────
+        # If the recipient is a newsroom alias and we're about to do
+        # the founder-call close, first try to upgrade the channel to
+        # a direct contact. Run BEFORE we generate the standard T3
+        # body so we don't waste an LLM call when we're about to send
+        # a rescue cold pitch instead.
+        rescue_result = None
+        if (touch_n == 3 and author_lookup
+                and author_lookup.is_generic_alias(contact["email"])):
+            rescues_attempted += 1
+            print(f"  [rescue] T3 on {contact['email']} → scraping "
+                  f"{(contact.get('source_url') or '')[:60]}…")
+            rescue_result = _attempt_author_rescue(contact)
+            if rescue_result and rescue_result.get("email"):
+                conf = rescue_result.get("confidence", "low")
+                if conf == "high":
+                    rescues_verified += 1
+                else:
+                    rescues_pattern += 1
+                print(f"  [rescue] ✓ found {rescue_result['email']} "
+                      f"({rescue_result.get('source')}, {conf})")
+            else:
+                print(f"  [rescue] ✗ no direct contact found")
+
+        # ── Decision tree based on rescue outcome ──────────────────
+        # Case A: verified rescue → send FRESH cold pitch to direct
+        #         contact, mark alias exhausted, skip T3 standard.
+        # Case B: pattern-guess rescue → save as draft for manual
+        #         review (no auto-send), THEN send T3 standard to
+        #         alias as paracadute.
+        # Case C: no rescue / not eligible → T3 standard.
+
+        # Guard: if the rescued email is already a known contact in
+        # the ledger (we've already pitched them directly at some point),
+        # don't generate a duplicate. Just mark the alias exhausted and
+        # let the existing thread run its own cadence.
+        if rescue_result:
+            rescued_em = (rescue_result.get("email") or "").lower()
+            if rescued_em in ledger.get("contacts", {}):
+                existing = ledger["contacts"][rescued_em]
+                if existing.get("status") in ("in_cadence", "replied"):
+                    print(f"  [rescue] ↺ {rescued_em} already in ledger "
+                          f"({existing['status']}) — marking alias exhausted "
+                          f"without re-pitching")
+                    if not dry_run:
+                        contact_in_ledger = ledger["contacts"].get(
+                            contact["email"])
+                        if contact_in_ledger:
+                            contact_in_ledger["status"] = "exhausted"
+                            contact_in_ledger["next_touch_at"] = None
+                            contact_in_ledger["exhausted_reason"] = (
+                                f"author_rescue → already pitching "
+                                f"{rescued_em}"
+                            )
+                    continue  # skip both the rescue cold and T3 standard
+
+        if rescue_result and rescue_result.get("confidence") == "high":
+            # Case A: cold pitch to upgraded contact
+            author_name = rescue_result.get("name") or ""
+            try:
+                rescue_body = _generate_rescue_cold_body(
+                    contact, author_name)
+            except Exception as e:  # noqa: BLE001
+                rescue_body = None
+                print(f"  [rescue] body gen failed: {e}")
+
+            if not rescue_body:
+                # Falls back to standard T3 on the alias
+                rescue_result = None
+            else:
+                rescue_to = rescue_result["email"]
+                rescue_subject = _build_rescue_subject(contact)
+                if dry_run:
+                    sent.append({
+                        "to": rescue_to,
+                        "subject": rescue_subject,
+                        "body": rescue_body,
+                        "publication": contact["publication"],
+                        "touch_n": 1,        # fresh cold to NEW contact
+                        "rescue_of": contact["email"],
+                        "source_url": contact["source_url"],
+                        "title": contact["source_title"],
+                    })
+                else:
+                    try:
+                        result = send_draft(
+                            to=rescue_to, subject=rescue_subject,
+                            body=rescue_body)
+                        if result.get("ok") and not result.get("dry_run"):
+                            sent.append({
+                                "to": rescue_to,
+                                "subject": rescue_subject,
+                                "body": rescue_body,
+                                "publication": contact["publication"],
+                                "touch_n": 1,
+                                "rescue_of": contact["email"],
+                                "source_url": contact["source_url"],
+                                "title": contact["source_title"],
+                            })
+                            # Register the rescued contact in the ledger
+                            # AND mark the original alias exhausted
+                            _add_rescued_contact(
+                                ledger, parent_email=contact["email"],
+                                rescued=rescue_result,
+                                subject=rescue_subject,
+                                message_id=result.get("message_id"),
+                                thread_id=result.get("thread_id"),
+                                sent_at=result.get("timestamp") or _now_iso(),
+                            )
+                        else:
+                            errors.append({
+                                "to": rescue_to,
+                                "error": (result.get("reason") or "send failed"),
+                                "touch_n": 1,
+                            })
+                            rescue_result = None  # fall through to T3 standard
+                    except Exception as e:  # noqa: BLE001
+                        errors.append({
+                            "to": rescue_to,
+                            "error": f"{type(e).__name__}: {e}",
+                            "touch_n": 1,
+                        })
+                        rescue_result = None
+                if rescue_result:
+                    continue  # skip the T3-standard branch for this contact
+
+        # Case B: pattern-guess rescue → save draft, also send T3 standard
+        if rescue_result and rescue_result.get("confidence") == "low":
+            # Generate the rescue body & save as draft (no send)
+            try:
+                rb = _generate_rescue_cold_body(
+                    contact, rescue_result.get("name") or "")
+                rs = _build_rescue_subject(contact)
+                if rb and not dry_run:
+                    _save_rescue_draft(contact, rescue_result, rb, rs)
+                    print(f"  [rescue] draft queued for manual review: "
+                          f"{rescue_result['email']}")
+            except Exception as e:  # noqa: BLE001
+                print(f"  [rescue] draft save failed: {e}")
+            # Continue to send T3 standard as paracadute (below)
+
+        # ── T3 standard / T2 path ──────────────────────────────────
         body = _generate_body_with_claude(contact, touch_n)
         if not body:
             errors.append({
@@ -679,7 +1051,14 @@ def send_followups(ledger: dict, *, dry_run: bool = False,
                 "touch_n": touch_n,
             })
 
-    return {"sent": sent, "skipped": skipped, "errors": errors}
+    return {
+        "sent": sent,
+        "skipped": skipped,
+        "errors": errors,
+        "rescues_attempted": rescues_attempted,
+        "rescues_verified": rescues_verified,
+        "rescues_pattern": rescues_pattern,
+    }
 
 
 def _record_touch(ledger: dict, email: str, n: int, subject: str,
