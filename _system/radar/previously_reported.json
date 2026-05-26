@@ -2509,6 +2509,26 @@
       "action_type": "user_dismissed",
       "url": "https://clearsurance.com/best-homeowners-insurance/CA",
       "note": "auto-sent pitch to info@clearsurance.com"
+    },
+    {
+      "date_first_reported": "2026-05-26",
+      "source": "user_dismissed",
+      "title": "Embers, Not Flames: Why Many Homes Ignite During Wildfires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.prnewswire.com/news-releases/embers-not-flames-why-many-homes-ignite-during-wildfires-302778811.html",
+      "note": "auto-published journal: ember-ignition-wildfire-insurable-home-california"
+    },
+    {
+      "date_first_reported": "2026-05-26",
+      "source": "user_dismissed",
+      "title": "A Sketch of a Field Experiment Research Design to Measure the Benefits of Certified Disaster Resilient Real Estate Investment",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://matthewekahn.substack.com/p/a-sketch-of-a-field-experiment-research",
+      "note": "auto-published journal: certified-resilient-real-estate-roi-california-luxury"
     }
   ]
 }
