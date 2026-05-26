@@ -2529,6 +2529,26 @@
       "action_type": "user_dismissed",
       "url": "https://matthewekahn.substack.com/p/a-sketch-of-a-field-experiment-research",
       "note": "auto-published journal: certified-resilient-real-estate-roi-california-luxury"
+    },
+    {
+      "date_first_reported": "2026-05-26",
+      "source": "user_dismissed",
+      "title": "California’s largest insurers won't cover these types of roofs: Chart",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.sfchronicle.com/california/article/home-insurance-roof-california-22267447.php",
+      "note": "auto-sent pitch to feedback@sfchronicle.com"
+    },
+    {
+      "date_first_reported": "2026-05-26",
+      "source": "user_dismissed",
+      "title": "Wildfire designation program aims to help Washington homeowners keep insurance -",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://insurancenewsnet.com/oarticle/wildfire-designation-program-aims-to-help-washington-homeowners-keep-insurance",
+      "note": "auto-sent pitch to editor@insurancenewsnet.com"
     }
   ]
 }
