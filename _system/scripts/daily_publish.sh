@@ -38,6 +38,19 @@ if ! mkdir "$LOCK_FILE" 2>/dev/null; then
 fi
 trap 'rmdir "$LOCK_FILE" 2>/dev/null' EXIT
 
+# Guard "catch-up": se la pipeline è già stata eseguita CON SUCCESSO
+# oggi, skip silenzioso. Questo evita doppia esecuzione quando il
+# launchd job parte sia alle 08:00 sia al RunAtLoad (es. se accendi
+# il Mac alle 07:55, RunAtLoad lancia subito, poi alle 08:00
+# StartCalendarInterval lancia di nuovo).
+#
+# Criterio di "successo": il log di oggi esiste e contiene la riga
+# "=== daily_publish END ==="
+if [ -f "$LOG_FILE" ] && grep -q "=== daily_publish END ===" "$LOG_FILE"; then
+    log "Pipeline già completata oggi (catch-up skip)."
+    exit 0
+fi
+
 log "=== daily_publish START ==="
 log "PWD: $(pwd)"
 log "Python: $(which python3) ($(python3 --version 2>&1))"

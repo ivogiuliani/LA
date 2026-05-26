@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.myvilla.daily-publish</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/ivogiuliani/Code/myvilla-la/_system/scripts/daily_publish.sh</string>
+    </array>
+
+    <!-- Ogni giorno alle 08:00 -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>8</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <!-- Catch-up: se il Mac era spento alle 08:00, lancia appena
+         si accende (al primo login). Lo script ha una guard interna
+         che skippa se la pipeline è già stata eseguita con successo
+         oggi, quindi nessun rischio di doppia esecuzione. -->
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- Working directory del progetto -->
+    <key>WorkingDirectory</key>
+    <string>/Users/ivogiuliani/Code/myvilla-la</string>
+
+    <!-- Log su file per i casi di crash precoci (prima che lo script
+         apra il proprio log) -->
+    <key>StandardOutPath</key>
+    <string>/Users/ivogiuliani/Code/myvilla-la/_system/logs/launchd_daily_publish.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/ivogiuliani/Code/myvilla-la/_system/logs/launchd_daily_publish.err.log</string>
+
+    <!-- Path per python3 e tool comuni -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+
+    <!-- Non riavviare in loop se crasha (esce con codice non-zero):
+         meglio fallire una volta e basta che spammare retry -->
+    <key>KeepAlive</key>
+    <false/>
+</dict>
+</plist>
