@@ -213,6 +213,68 @@ def _dismiss_journal_sources(sidecar_data: dict, slug: str):
         print(f"  [dismiss] error: {type(e).__name__}: {e}")
 
 
+def _warm_cdn_hero_images(published: list[dict], *, timeout_s: int = 120) -> None:
+    """HEAD-poll each hero image URL until GitHub Pages serves it.
+
+    After `git push`, Pages can take 30-180 seconds to propagate new
+    images to the Fastly CDN. If the digest mail goes out before
+    propagation, the mail client tries to load the image, gets 404,
+    and shows a broken-image placeholder forever (most clients cache
+    that error response).
+
+    This function polls each hero URL with HEAD requests until all
+    return 200 or `timeout_s` seconds have elapsed. Falls back
+    silently if `requests` is missing — never blocks the digest send.
+    """
+    urls = []
+    for p in published:
+        u = p.get("hero_image_url")
+        if u and u.startswith("http"):
+            urls.append(u)
+    if not urls:
+        return
+
+    try:
+        import urllib.request  # stdlib, always available
+    except ImportError:
+        return
+
+    print(f"  [cdn] warming up {len(urls)} hero image(s) on GitHub Pages...")
+    import time
+    deadline = time.time() + timeout_s
+    pending = set(urls)
+    attempt = 0
+    while pending and time.time() < deadline:
+        attempt += 1
+        now_ok = set()
+        for u in list(pending):
+            try:
+                req = urllib.request.Request(u, method="HEAD")
+                with urllib.request.urlopen(req, timeout=5) as resp:
+                    if 200 <= resp.status < 300:
+                        now_ok.add(u)
+            except Exception:  # noqa: BLE001
+                pass
+        pending -= now_ok
+        if now_ok:
+            for u in now_ok:
+                print(f"  [cdn] ✓ {u.rsplit('/', 1)[-1]}")
+        if pending:
+            # Backoff: 3s × min(attempt, 6) → cap at 18s per round
+            sleep_for = 3 * min(attempt, 6)
+            print(
+                f"  [cdn] {len(pending)} still propagating, "
+                f"retrying in {sleep_for}s..."
+            )
+            time.sleep(sleep_for)
+
+    if pending:
+        print(
+            f"  [cdn] ⚠ timeout — {len(pending)} image(s) still 404; "
+            "sending digest anyway (placeholder will show)"
+        )
+
+
 def _find_hero_image(slug: str) -> str | None:
     """Public URL of the hero image, or None if no file exists in the
     expected location. Mirrors update_journal_index.find_hero_image."""
@@ -1993,6 +2055,14 @@ def main(argv=None):
 
     # Digest email
     if not args.no_email:
+        # CDN warm-up: when we publish + push and then immediately send
+        # the digest, GitHub Pages / Fastly hasn't propagated the new
+        # hero images yet — the mail arrives with broken-image
+        # placeholders. Hit each hero URL until it returns 200 (or we
+        # hit a 2-minute timeout, in which case we send anyway).
+        if published and not args.dry_run and not args.no_push:
+            _warm_cdn_hero_images(published, timeout_s=120)
+
         print("Sending digest email...")
         subject, plain_body, html_body = _format_digest(
             published, skipped, errors,
