@@ -16,7 +16,7 @@
 
 set -uo pipefail
 
-PROJECT_ROOT="/Users/ivogiuliani/Library/Mobile Documents/com~apple~CloudDocs/Los Angeles - Italian Villa/My Villa Website"
+PROJECT_ROOT="/Users/ivogiuliani/Code/myvilla-la"
 cd "$PROJECT_ROOT" || exit 1
 
 TODAY="$(date +%Y-%m-%d)"
