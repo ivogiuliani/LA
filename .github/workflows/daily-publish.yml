@@ -9,7 +9,13 @@ name: Daily Publish Pipeline
 # workflow "Daily Publish Pipeline". Utile per test e debugging.
 on:
   schedule:
-    - cron: "0 6 * * *"   # 06:00 UTC ogni giorno
+    # 06:07 UTC ogni giorno (= 08:07 CEST estate, 07:07 CET inverno).
+    # NON usare "0 6" (top of hour): GitHub Actions cron in quei
+    # minuti è in alta contesa globale e i job vengono ritardati
+    # di 15-60 min o saltati. "7 6" è un valore "spaiato" che
+    # cade fuori dai picchi di carico.
+    # Doc: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron: "7 6 * * *"
   workflow_dispatch:       # trigger manuale dalla UI di GitHub
     inputs:
       dry_run:
