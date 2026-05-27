@@ -2549,6 +2549,36 @@
       "action_type": "user_dismissed",
       "url": "https://insurancenewsnet.com/oarticle/wildfire-designation-program-aims-to-help-washington-homeowners-keep-insurance",
       "note": "auto-sent pitch to editor@insurancenewsnet.com"
+    },
+    {
+      "date_first_reported": "2026-05-27",
+      "source": "user_dismissed",
+      "title": "California homeowners are watching the insurance market break in real time",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/aerockrose/status/2058896069522788463",
+      "note": "auto-published journal: california-fire-insurance-77k-to-112k-insurable-home"
+    },
+    {
+      "date_first_reported": "2026-05-27",
+      "source": "user_dismissed",
+      "title": "On ICF mass production for the Pacific Palisades rebuild",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/AriTeman/status/1877216416471949387",
+      "note": "auto-published journal: icf-mass-production-palisades-rebuild-california"
+    },
+    {
+      "date_first_reported": "2026-05-27",
+      "source": "user_dismissed",
+      "title": "@INNsusan on California property insurance structural strain",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/INNsusan/status/2059267238113263618",
+      "note": "auto-published journal: california-property-insurance-structural-strain-2026"
     }
   ]
 }
