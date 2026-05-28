@@ -11,19 +11,19 @@
         <string>/Users/ivogiuliani/Code/myvilla-la/_system/scripts/daily_publish.sh</string>
     </array>
 
-    <!-- Ogni giorno alle 08:00 -->
-    <key>StartCalendarInterval</key>
-    <dict>
-        <key>Hour</key>
-        <integer>8</integer>
-        <key>Minute</key>
-        <integer>0</integer>
-    </dict>
+    <!-- STRATEGIA POLL-BASED (come io.giuliani.fallingknife).
+         Poll ogni 30 min. Lo script è un near-instant no-op finché
+         non sono le 08:00 (TARGET_HOUR) e finché la pipeline di oggi
+         non è già stata completata (.guard via log).
 
-    <!-- Catch-up: se il Mac era spento alle 08:00, lancia appena
-         si accende (al primo login). Lo script ha una guard interna
-         che skippa se la pipeline è già stata eseguita con successo
-         oggi, quindi nessun rischio di doppia esecuzione. -->
+         Perché NON StartCalendarInterval: macOS NON fa catch-up
+         affidabile dei calendar-interval persi durante lo sleep del
+         Mac. StartInterval invece esegue l'intervallo perso APPENA
+         il Mac si sveglia → robusto al coperchio chiuso alle 08:00. -->
+    <key>StartInterval</key>
+    <integer>1800</integer>
+
+    <!-- Esegui anche al login/load per un catch-up immediato. -->
     <key>RunAtLoad</key>
     <true/>
 

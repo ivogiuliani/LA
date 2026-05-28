@@ -19,7 +19,17 @@ set -uo pipefail
 PROJECT_ROOT="/Users/ivogiuliani/Code/myvilla-la"
 cd "$PROJECT_ROOT" || exit 1
 
+# Ora-target: la pipeline gira solo a partire da questa ora locale.
+# launchd ci invoca ogni 30 min (StartInterval), ma noi facciamo un
+# near-instant no-op finché non sono almeno le TARGET_HOUR. Stesso
+# pattern poll-based di Falling Knives (io.giuliani.fallingknife):
+# robusto allo sleep del Mac perché launchd esegue l'intervallo
+# perso APPENA il Mac si sveglia, e il primo poll dopo il wake (se
+# è già passata l'ora target) fa scattare la pipeline.
+TARGET_HOUR=8
+
 TODAY="$(date +%Y-%m-%d)"
+CURRENT_HOUR="$(date +%-H)"
 RADAR_FILE="_system/radar/reports/radar_${TODAY}.json"
 LOG_DIR="_system/logs"
 LOG_FILE="${LOG_DIR}/daily_publish_${TODAY}.log"
@@ -31,25 +41,29 @@ log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
 }
 
-# Lock semplice (no flock su macOS by default — uso mkdir, atomico).
+# ── No-op #1: troppo presto ────────────────────────────────────────
+# Prima delle TARGET_HOUR non facciamo nulla e NON logghiamo (così
+# il log non si riempie di righe a ogni poll notturno).
+if [ "$CURRENT_HOUR" -lt "$TARGET_HOUR" ]; then
+    exit 0
+fi
+
+# ── No-op #2: già fatto oggi ───────────────────────────────────────
+# Se la pipeline di oggi è già stata completata con successo, esci
+# SENZA loggare. Con un poll ogni 30 min, dopo il run delle ~08:00
+# questo no-op scatta ~32 volte al giorno: niente rumore nel log.
+# Criterio di "successo": il log di oggi contiene "=== daily_publish END ==="
+if [ -f "$LOG_FILE" ] && grep -q "=== daily_publish END ===" "$LOG_FILE"; then
+    exit 0
+fi
+
+# ── Lock: una sola istanza alla volta ──────────────────────────────
+# (no flock su macOS by default — uso mkdir, atomico).
 if ! mkdir "$LOCK_FILE" 2>/dev/null; then
-    log "Pipeline già in esecuzione (lock presente). Esco."
+    # Un'altra istanza sta già girando — esci silenzioso.
     exit 0
 fi
 trap 'rmdir "$LOCK_FILE" 2>/dev/null' EXIT
-
-# Guard "catch-up": se la pipeline è già stata eseguita CON SUCCESSO
-# oggi, skip silenzioso. Questo evita doppia esecuzione quando il
-# launchd job parte sia alle 08:00 sia al RunAtLoad (es. se accendi
-# il Mac alle 07:55, RunAtLoad lancia subito, poi alle 08:00
-# StartCalendarInterval lancia di nuovo).
-#
-# Criterio di "successo": il log di oggi esiste e contiene la riga
-# "=== daily_publish END ==="
-if [ -f "$LOG_FILE" ] && grep -q "=== daily_publish END ===" "$LOG_FILE"; then
-    log "Pipeline già completata oggi (catch-up skip)."
-    exit 0
-fi
 
 log "=== daily_publish START ==="
 log "PWD: $(pwd)"

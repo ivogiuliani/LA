@@ -558,10 +558,18 @@
           "message_id": "19e260b4d7057992",
           "thread_id": "19e260b4d7057992",
           "subject": "A European angle on the State Farm enforcement news"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-05-28T07:04:47+00:00",
+          "message_id": "19e6d66698670aa4",
+          "thread_id": "19e6d66698670aa4",
+          "subject": "Re: A European angle on the State Farm enforcement news"
         }
       ],
-      "next_touch_at": "2026-05-28",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://www.insurance.ca.gov/",
       "source_title": "CA Department of Insurance",
       "cold_pitch_body": "Hi Insurance team,\n\n(Writing to the Insurance newsroom directly — this is meant for whichever desk is closest to the topic below. Feel free to forward as appropriate.)\n\nReally striking to see the Department's action against State Farm alongside the intervenor process overhaul. The combination tells a clearer story than either piece alone: enforcement on the back end, structural reform on the front end, both aimed at the same trust deficit.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought sparked by your work: in Europe, the resilience that determines whether a claim even arises has been default construction practice for generations. The cultural gap feels like the real story.\n\nWould you be interested in more material, or in a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
@@ -903,5 +911,5 @@
       "cold_pitch_subject": "A European angle on the Washington IBHS program"
     }
   },
-  "last_hydrated_at": "2026-05-26T13:00:04.622989+00:00"
+  "last_hydrated_at": "2026-05-28T07:04:42.933208+00:00"
 }
