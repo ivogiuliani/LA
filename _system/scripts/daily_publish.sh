@@ -55,11 +55,18 @@ log "=== daily_publish START ==="
 log "PWD: $(pwd)"
 log "Python: $(which python3) ($(python3 --version 2>&1))"
 
-# Step 1: radar di oggi?
+# Step 1: radar di oggi. Se manca, lo LANCIAMO noi — la pipeline è
+# auto-sufficiente, non dipende più da scheduler esterni (Automator).
 if [ ! -f "$RADAR_FILE" ]; then
-    log "Radar di oggi non trovato: $RADAR_FILE — skip pipeline."
-    log "=== daily_publish END (no radar) ==="
-    exit 0
+    log "Radar di oggi non trovato — lancio radar.py..."
+    python3 _system/scripts/radar.py >> "$LOG_FILE" 2>&1
+    RADAR_EXIT=$?
+    log "radar.py exit code: $RADAR_EXIT"
+    if [ ! -f "$RADAR_FILE" ]; then
+        log "radar.py non ha prodotto $RADAR_FILE — skip pipeline."
+        log "=== daily_publish END (radar failed) ==="
+        exit 1
+    fi
 fi
 log "Radar trovato: $RADAR_FILE ($(stat -f '%z' "$RADAR_FILE") bytes)"
 
