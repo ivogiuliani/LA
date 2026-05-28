@@ -2579,6 +2579,16 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/INNsusan/status/2059267238113263618",
       "note": "auto-published journal: california-property-insurance-structural-strain-2026"
+    },
+    {
+      "date_first_reported": "2026-05-28",
+      "source": "user_dismissed",
+      "title": "California FAIR Plan rates going up 29.1% in late 2026",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.mercurynews.com/2026/05/21/california-fair-plan-rates-going-up-29-in-late-2026/",
+      "note": "auto-published journal: california-fair-plan-rate-hike-2026-insurable-luxury-homes"
     }
   ]
 }
