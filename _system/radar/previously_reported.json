@@ -2589,6 +2589,26 @@
       "action_type": "user_dismissed",
       "url": "https://www.mercurynews.com/2026/05/21/california-fair-plan-rates-going-up-29-in-late-2026/",
       "note": "auto-published journal: california-fair-plan-rate-hike-2026-insurable-luxury-homes"
+    },
+    {
+      "date_first_reported": "2026-05-29",
+      "source": "user_dismissed",
+      "title": "How Climate Risk Is Reshaping Luxury Real Estate—And What It Means For Developers",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.forbes.com/councils/forbesbusinesscouncil/2026/05/28/how-climate-risk-is-reshaping-luxury-real-estate-and-what-it-means-for-developers/",
+      "note": "auto-published journal: climate-risk-luxury-real-estate-california-resilient-construction-2026"
+    },
+    {
+      "date_first_reported": "2026-05-29",
+      "source": "user_dismissed",
+      "title": "Here's exactly what roof types California's 20 largest insurers won't cover",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://finance.yahoo.com/sectors/healthcare/articles/heres-exactly-roof-types-californias-120000510.html",
+      "note": "auto-published journal: california-insurer-roof-restrictions-fire-resistant-homes-2026"
     }
   ]
 }
