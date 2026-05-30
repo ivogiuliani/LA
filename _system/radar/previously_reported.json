@@ -2609,6 +2609,26 @@
       "action_type": "user_dismissed",
       "url": "https://finance.yahoo.com/sectors/healthcare/articles/heres-exactly-roof-types-californias-120000510.html",
       "note": "auto-published journal: california-insurer-roof-restrictions-fire-resistant-homes-2026"
+    },
+    {
+      "date_first_reported": "2026-05-30",
+      "source": "user_dismissed",
+      "title": "California FAIR Plan rates going up 29.1% in late 2026",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.montereyherald.com/2026/05/25/california-fair-plan-rates-going-up-29-in-late-2026/",
+      "note": "auto-published journal: california-fair-plan-29-percent-rate-increase-2026"
+    },
+    {
+      "date_first_reported": "2026-05-30",
+      "source": "user_dismissed",
+      "title": "California FAIR Plan customers will face the insurer's largest rate increase",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://beinsure.com/news/california-fair-plan-rates-rise-for-homeowners/",
+      "note": "auto-published journal: california-fair-plan-rate-increase-2026-insurable-home"
     }
   ]
 }
