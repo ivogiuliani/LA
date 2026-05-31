@@ -2629,6 +2629,26 @@
       "action_type": "user_dismissed",
       "url": "https://beinsure.com/news/california-fair-plan-rates-rise-for-homeowners/",
       "note": "auto-published journal: california-fair-plan-rate-increase-2026-insurable-home"
+    },
+    {
+      "date_first_reported": "2026-05-31",
+      "source": "user_dismissed",
+      "title": "Wildfire Preparedness Is Becoming Essential for Insurance Protection",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.independent.com/2026/05/27/wildfire-preparedness-is-becoming-essential-for-insurance-protection/",
+      "note": "auto-published journal: fire-resistant-home-california-2026-insurance-underwriting"
+    },
+    {
+      "date_first_reported": "2026-05-31",
+      "source": "user_dismissed",
+      "title": "Three Examples of How Incremental Change Led to Resilience",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.epicenterinsights.com/three-examples-of-how-incremental-change-led-to-resilience/",
+      "note": "auto-published journal: ibhs-insurance-discounts-california-fire-resistant-homes-2026"
     }
   ]
 }

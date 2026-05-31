@@ -587,9 +587,17 @@
           "message_id": "19e5abe7fad5db4d",
           "thread_id": "19e5abe7fad5db4d",
           "subject": "A European angle on the FAIR Plan 29% piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-05-31T09:29:06+00:00",
+          "message_id": "19e7d5d9ae26f0ea",
+          "thread_id": "19e7d5d9ae26f0ea",
+          "subject": "Re: A European angle on the FAIR Plan 29% piece"
         }
       ],
-      "next_touch_at": "2026-05-31",
+      "next_touch_at": "2026-06-14",
       "status": "in_cadence",
       "source_url": "https://www.ocregister.com/2026/05/20/california-fair-plan-rates-going-up-29-in-late-2026/",
       "source_title": "California FAIR Plan rates going up 29.1% in late 2026 – Orange County Register",
@@ -608,9 +616,17 @@
           "message_id": "19e5abe9652d7647",
           "thread_id": "19e5abe9652d7647",
           "subject": "A European thought on the Safeco non-renewal piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-05-31T09:29:10+00:00",
+          "message_id": "19e7d5daaac97f74",
+          "thread_id": "19e7d5daaac97f74",
+          "subject": "Re: A European thought on the Safeco non-renewal piece"
         }
       ],
-      "next_touch_at": "2026-05-31",
+      "next_touch_at": "2026-06-14",
       "status": "in_cadence",
       "source_url": "https://oldharbor.com/2026/05/20/safeco-insurance-non-renewal/",
       "source_title": "Safeco Non-Renewal in California: What to Do Next and How to Avoid a Coverage Gap",
@@ -629,9 +645,17 @@
           "message_id": "19e5abeace45d959",
           "thread_id": "19e5abeace45d959",
           "subject": "A European thought on your Wildfire-Ready workshop piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-05-31T09:29:15+00:00",
+          "message_id": "19e7d5dbc17dd26d",
+          "thread_id": "19e7d5dbc17dd26d",
+          "subject": "Re: A European thought on your Wildfire-Ready workshop piece"
         }
       ],
-      "next_touch_at": "2026-05-31",
+      "next_touch_at": "2026-06-14",
       "status": "in_cadence",
       "source_url": "https://yubanet.com/regional/wildfire-ready-coalition-presents-workshop-on-wildfire-ready-home-advisory-assessments/",
       "source_title": "Wildfire-Ready Coalition Presents Workshop on Wildfire-Ready Home Advisory Assessments",
@@ -672,9 +696,17 @@
           "message_id": "19e5af295085489b",
           "thread_id": "19e5af295085489b",
           "subject": "A European thought on the 100,000 FORTIFIED milestone"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-05-31T09:29:02+00:00",
+          "message_id": "19e7d5d88049f194",
+          "thread_id": "19e7d5d88049f194",
+          "subject": "Re: A European thought on the 100,000 FORTIFIED milestone"
         }
       ],
-      "next_touch_at": "2026-05-31",
+      "next_touch_at": "2026-06-14",
       "status": "in_cadence",
       "source_url": "https://ibhs.org/ibhs-news-releases/ibhss-fortified-program-surpasses-100000-designations/",
       "source_title": "IBHS’s FORTIFIED Program Surpasses 100,000 Designations",
@@ -911,5 +943,5 @@
       "cold_pitch_subject": "A European angle on the Washington IBHS program"
     }
   },
-  "last_hydrated_at": "2026-05-30T08:51:47.376954+00:00"
+  "last_hydrated_at": "2026-05-31T09:28:57.210302+00:00"
 }
