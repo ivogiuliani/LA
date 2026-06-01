@@ -144,6 +144,23 @@ jobs:
           PYTHONUNBUFFERED: "1"
 
       # ───────────────────────────────────────────────────────────
+      # 7b. Radar report — draft pitch + contatti editoriali + dashboard
+      #     HTML. Senza questo, publish_all_drafts non trova giornalisti
+      #     nuovi da contattare. Non-bloccante.
+      # ───────────────────────────────────────────────────────────
+      - name: Generate radar report (drafts + contacts + dashboard)
+        if: steps.guard.outputs.should_run == 'true'
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          RADAR_FILE="_system/radar/reports/radar_${TODAY}.json"
+          if [ -f "$RADAR_FILE" ]; then
+            python3 _system/scripts/generate_radar_report.py --radar "$RADAR_FILE" || \
+              echo "::warning::generate_radar_report non-bloccante fallito"
+          fi
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      # ───────────────────────────────────────────────────────────
       # 8. Generate journal articles from today's radar
       # ───────────────────────────────────────────────────────────
       - name: Generate journal articles

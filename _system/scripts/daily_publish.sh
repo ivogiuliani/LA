@@ -99,6 +99,16 @@ if [ ! -f "$RADAR_FILE" ]; then
 fi
 log "Radar trovato: $RADAR_FILE ($(stat -f '%z' "$RADAR_FILE") bytes)"
 
+# Step 1b: generate_radar_report — arricchisce il radar JSON con i draft
+# email + i contatti editoriali (via editorial scraper, solo verificati)
+# e produce l'HTML dashboard. SENZA questo step publish_all_drafts non
+# trova pitch da inviare (nessun giornalista nuovo contattato) e non si
+# genera la dashboard. Non-bloccante: se fallisce, si prosegue con
+# journal+publish (i follow-up e i feature pitch girano comunque).
+log "--- generate_radar_report.py (draft + contatti + dashboard) ---"
+python3 _system/scripts/generate_radar_report.py --radar "$RADAR_FILE" \
+    >> "$LOG_FILE" 2>&1 || log "generate_radar_report errore non bloccante (continuo)"
+
 # DRY_RUN=1 → simula senza spedire mail né pubblicare (solo per smoke test)
 DRY_FLAGS=""
 if [ "${DRY_RUN:-0}" = "1" ]; then
