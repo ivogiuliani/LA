@@ -553,7 +553,7 @@ def _generate_body_with_claude(contact: dict, touch_n: int) -> str | None:
     try:
         client = Anthropic(api_key=api_key)
         resp = client.messages.create(
-            model="claude-sonnet-4-5",
+            model="claude-sonnet-4-6",
             max_tokens=400,
             system=system,
             messages=[{"role": "user", "content": user}],
@@ -624,7 +624,7 @@ def _generate_rescue_cold_body(contact: dict, author_name: str) -> str | None:
     try:
         client = Anthropic(api_key=api_key)
         resp = client.messages.create(
-            model="claude-sonnet-4-5",
+            model="claude-sonnet-4-6",
             max_tokens=500,
             system=system,
             messages=[{"role": "user", "content": user}],

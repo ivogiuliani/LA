@@ -67,7 +67,7 @@ DEFAULT_ATTACHMENTS = [
     "_system/outreach/attachments/MyVilla_Fact_Sheet.pdf",
 ]
 
-CLAUDE_MODEL = "claude-sonnet-4-5-20250929"
+CLAUDE_MODEL = "claude-sonnet-4-6"
 
 
 # --------------------------------------------------------------------------- #

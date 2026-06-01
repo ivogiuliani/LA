@@ -137,7 +137,7 @@ Constraints (recap): 180-220 char body, ends with "Link in bio.", \
 blank line, then 5-7 CamelCase hashtags."""
 
 
-def generate_caption(article_meta, model="claude-sonnet-4-5", max_tokens=400):
+def generate_caption(article_meta, model="claude-sonnet-4-6", max_tokens=400):
     client = _anthropic_client()
     msg = client.messages.create(
         model=model,
@@ -231,8 +231,8 @@ def _main(argv=None):
         help="Output .ig.md path. Default: sibling of --article with .ig.md suffix.",
     )
     parser.add_argument(
-        "--model", default="claude-sonnet-4-5",
-        help="Anthropic model id (default: claude-sonnet-4-5).",
+        "--model", default="claude-sonnet-4-6",
+        help="Anthropic model id (default: claude-sonnet-4-6).",
     )
     parser.add_argument(
         "--print", action="store_true",
