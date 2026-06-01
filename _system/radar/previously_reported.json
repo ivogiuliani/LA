@@ -2669,6 +2669,56 @@
       "action_type": "user_dismissed",
       "url": "https://www.prnewswire.com/news-releases/beautiful-and-fire-smart-how-firescaping-can-help-reduce-wildfire-risk-around-the-home-302784364.html",
       "note": "auto-published journal: firescaping-california-zone-0-landscaping-insurance"
+    },
+    {
+      "date_first_reported": "2026-06-01",
+      "source": "user_dismissed",
+      "title": "Your last-minute guide for California insurance commissioner, controller and oth",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2026-05-31/2026-california-election-statewide-races-voter-guide",
+      "note": "auto-sent pitch to tips@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-06-01",
+      "source": "user_dismissed",
+      "title": "CA FAIR Plan Rate Increase 2026: What Homeowners Must Know",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.oakviewins.com/ca-fair-plan-rate-increase-2026/",
+      "note": "auto-sent pitch to queued:mariah.davis@oakviewins.com"
+    },
+    {
+      "date_first_reported": "2026-06-01",
+      "source": "user_dismissed",
+      "title": "California’s home insurance crisis: What it means for advisors - Insurance News ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://insurancenewsnet.com/innarticle/californias-home-insurance-crisis-what-it-means-for-advisors",
+      "note": "auto-sent pitch to editor@insurancenewsnet.com"
+    },
+    {
+      "date_first_reported": "2026-06-01",
+      "source": "user_dismissed",
+      "title": "Wyoming Company Uses High-Tech AI Sprinklers To Save Homes From Wildfire | Cowbo",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://cowboystatedaily.com/2026/05/25/wyoming-company-uses-high-tech-ai-sprinklers-to-save-homes-from-wildfire/",
+      "note": "auto-sent pitch to renee@cowboystatedaily.com"
+    },
+    {
+      "date_first_reported": "2026-06-01",
+      "source": "user_dismissed",
+      "title": "Carbon Beach Malibu: Inside Billionaire's Beach | Malibu Blog | Riviera Living |",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://shenrealty.com/malibu-real-estate-blog/carbon-beach-malibu-inside-billionaire-s-beach/",
+      "note": "auto-sent pitch to shen@shenrealty.com"
     }
   ]
 }
