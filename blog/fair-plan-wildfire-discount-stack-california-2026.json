@@ -1,0 +1,62 @@
+{
+  "slug": "fair-plan-wildfire-discount-stack-california-2026",
+  "title": "California FAIR Plan Wildfire Discount: The 16.4% Stack Explained",
+  "subtitle": "An engineer's breakdown of where the FAIR Plan discount math actually pays off — and where verification, not mitigation, is the real variable.",
+  "section": "insurance",
+  "tag_label": "Insurance & Insurability",
+  "meta_description": "Wondering how California's FAIR Plan wildfire discount works in 2026? A 16.4% discount stack is now available — but the math only pays off where IBHS verification holds.",
+  "meta_keywords": "California fire insurance solution home, FAIR Plan alternative luxury home, insurable home California, fire resistant home California, FAIR Plan wildfire discount, IBHS certification, fireproof home California",
+  "sources": [
+    {
+      "name": "Nate Wittasek, P.E. (Substack)",
+      "title": "The IBHS Number",
+      "url": "https://nathanbwittasek.substack.com/p/the-ibhs-number",
+      "type": "article",
+      "excerpt": "A licensed engineer breaks down California's 16.4% FAIR Plan wildfire-discount stack and where the IBHS certification math actually pays off for homeowners."
+    }
+  ],
+  "key_data": [
+    {
+      "number": "16.4%",
+      "label": "Wildfire-discount stack\navailable on FAIR Plan premiums"
+    },
+    {
+      "number": "3",
+      "label": "Mitigation layers recognized:\nstructure, parcel, community"
+    }
+  ],
+  "our_perspective": "We find the verification angle the most useful part of this breakdown — and the most overlooked. A discount stack only converts to dollars when an inspector can confirm what is behind the wall, not just what is bolted to it. That is a meaningful advantage for a continuous reinforced-concrete envelope: there is no combustible cavity to argue about, no cladding assembly to interpret, no sheathing whose rating depends on installation. The same material logic DGU brought to the Kimbell Art Museum's poured surfaces — where the concrete is the finish and the structure at once — leaves little for an adjuster to question. When the envelope is non-combustible by definition, verification stops being a negotiation and starts being a measurement.",
+  "body_html": "<p class=\"reveal\">Writing on his Substack, California licensed engineer Nate Wittasek has published one of the clearest breakdowns yet of how the state's FAIR Plan wildfire-discount math actually works in 2026. His central figure: a <strong>16.4% discount stack</strong> now available on FAIR Plan premiums for homes that document verified mitigation. As he frames it in <a href=\"https://nathanbwittasek.substack.com/p/the-ibhs-number\">\"The IBHS Number,\"</a> the math \"works in places we have not recognized\" and \"fails in places we have\" — and the reason for both, he argues, is the verification architecture sitting underneath the number.</p>\n\n<p class=\"reveal\">That distinction matters more than the headline percentage. The discount is real, but it is conditional — and the condition is not whether a home is safer in theory, but whether its safety can be proven to an inspector.</p>\n\n<h2 class=\"reveal\">The number, and what sits behind it</h2>\n\n<p class=\"reveal\">The discount stack is built on California's Safer from Wildfires regulation, which directs insurers — including the FAIR Plan, the state's insurer of last resort — to recognize verified mitigation across three layers: the structure, the parcel, and the surrounding community. Each layer carries its own qualifying measures, and the discounts apply in combination, which is how the figure reaches into the double digits.</p>\n\n<div class=\"key-data\">\n<p><strong>16.4%</strong> — wildfire-discount stack available on FAIR Plan premiums (Nathan Wittasek, P.E.)</p>\n<p><strong>3 layers</strong> — structure, parcel, and community recognized under Safer from Wildfires (CDI)</p>\n</div>\n\n<p class=\"reveal\">Wittasek's argument is that the discount's value is asymmetric. In some locations the stack delivers genuine savings on a premium that is otherwise punishing; in others — often the places regulators most want to incentivize — the math underdelivers because the qualifying measures are difficult to verify, retrofit, or sustain. The percentage is uniform on paper. The payoff is not.</p>\n\n<p class=\"pullquote\">The discount is uniform on paper. The payoff depends on whether safety can be proven, not just claimed.</p>\n\n<h2 class=\"reveal\">Why verification is the hinge for Los Angeles</h2>\n\n<p class=\"reveal\">For Los Angeles owners pushed onto the FAIR Plan — a growing population across Malibu, the Westside, and the canyon communities — the practical lesson is that mitigation and documentation are two different assets. A retrofitted wood-frame home may satisfy several Safer from Wildfires measures, but the discount survives only as long as an inspector can confirm assemblies that are, by nature, hidden behind cladding, sheathing, and trim. Each layer of that envelope is a place where the verification can be questioned.</p>\n\n<p class=\"reveal\">The homes that capture the full stack cleanly are the ones where the qualifying conditions are not added features but inherent properties — where there is nothing to interpret because there is nothing combustible to begin with. That is the quiet thesis inside Wittasek's number: the discount rewards legibility as much as performance, and legibility is a function of how a home is built, not how it is patched.</p>\n\n<p class=\"reveal\">As the FAIR Plan's exposure concentrates and its rates climb, the gap between a home that documents its mitigation easily and one that fights for every percentage point will widen — and so will the premium difference between them.</p>",
+  "excerpt": "An engineer's breakdown of California's 16.4% FAIR Plan wildfire-discount stack reveals the real variable isn't mitigation — it's verification. For LA owners on the FAIR Plan, how a home is built determines whether the math pays off.",
+  "image_prompt": "Architectural photography of a poured reinforced-concrete villa wall in warm afternoon light, smooth fair-faced surface meeting a clean roof edge, no visible cladding or seams, muted terracotta and sand tones, Mediterranean Southern California setting, quiet and precise composition",
+  "topic_tags": [
+    "fair-plan-wildfire-discount",
+    "ibhs-verification"
+  ],
+  "data_points_cited": [
+    "16.4% wildfire-discount stack available on FAIR Plan premiums (Nathan Wittasek, P.E.)",
+    "Safer from Wildfires recognizes mitigation across three layers: structure, parcel, community (CDI)"
+  ],
+  "read_time_min": 6,
+  "hero_image": {
+    "local_path": "/Users/ivogiuliani/Code/myvilla-la/blog/assets/img/fair-plan-wildfire-discount-stack-california-2026-hero.jpg",
+    "web_path": "assets/img/fair-plan-wildfire-discount-stack-california-2026-hero.jpg",
+    "photo_id": "src-0",
+    "author_name": "Publication",
+    "author_url": "https://nathanbwittasek.substack.com/p/the-ibhs-number",
+    "unsplash_url": "https://nathanbwittasek.substack.com/p/the-ibhs-number",
+    "alt_description": "The IBHS Number",
+    "color": "#3e2f2b",
+    "source": "cited_source",
+    "origin": "source"
+  },
+  "_date": "2026-06-01",
+  "_section_id": "insurance",
+  "_section_name": "Insurance & Insurability",
+  "_source_item": {
+    "title": "The IBHS Number - Nate Wittasek, P.E.",
+    "url": "https://nathanbwittasek.substack.com/p/the-ibhs-number",
+    "publication": "nathanbwittasek.substack.com",
+    "cluster": "insurance_regulation"
+  }
+}

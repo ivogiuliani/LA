@@ -2649,6 +2649,26 @@
       "action_type": "user_dismissed",
       "url": "https://www.epicenterinsights.com/three-examples-of-how-incremental-change-led-to-resilience/",
       "note": "auto-published journal: ibhs-insurance-discounts-california-fire-resistant-homes-2026"
+    },
+    {
+      "date_first_reported": "2026-06-01",
+      "source": "user_dismissed",
+      "title": "The IBHS Number",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://nathanbwittasek.substack.com/p/the-ibhs-number",
+      "note": "auto-published journal: fair-plan-wildfire-discount-stack-california-2026"
+    },
+    {
+      "date_first_reported": "2026-06-01",
+      "source": "user_dismissed",
+      "title": "Beautiful and Fire-Smart: How Firescaping Can Help Reduce Wildfire Risk Around the Home",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.prnewswire.com/news-releases/beautiful-and-fire-smart-how-firescaping-can-help-reduce-wildfire-risk-around-the-home-302784364.html",
+      "note": "auto-published journal: firescaping-california-zone-0-landscaping-insurance"
     }
   ]
 }
