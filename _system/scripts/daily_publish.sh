@@ -127,6 +127,16 @@ python3 _system/scripts/publish_all_drafts.py $DRY_FLAGS \
 PUB_EXIT=$?
 log "publish_all_drafts.py exit code: $PUB_EXIT"
 
+# Step 4: feature_pitch — proporre a 1-2 testate locali/giorno un
+# articolo su My Villa. Self-contained (dedup via feature_pitch_log,
+# rate-limit via send_email, solo email verificate auto-inviate).
+# Un fallimento qui NON deve rompere la pipeline → || true.
+log "--- feature_pitch.py $DRY_FLAGS ---"
+FP_DRY=""
+[ "${DRY_RUN:-0}" = "1" ] && FP_DRY="--dry-run"
+python3 _system/scripts/feature_pitch.py $FP_DRY >> "$LOG_FILE" 2>&1 || \
+    log "feature_pitch.py errore non bloccante (continuo)"
+
 log "=== daily_publish END ==="
 
 # Exit code: 0 se entrambi 0, altrimenti il primo non-zero

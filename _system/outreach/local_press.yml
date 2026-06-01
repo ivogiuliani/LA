@@ -1,0 +1,129 @@
+# MyVilla — Local Press Target List (feature-pitch outreach)
+#
+# Local LA/SoCal real-estate, luxury & shelter publications we want to
+# pitch for a FEATURE / PROFILE on My Villa (not a story-angle pitch on
+# their existing article — a proposal that THEY write about us).
+#
+# Used by: _system/scripts/feature_pitch.py
+#
+# Flow per outlet:
+#   1. Find editorial contact (editorial_scraper on contact_url, or the
+#      known_email below if set and verified).
+#   2. Generate a brand-feature pitch (Claude, brand voice).
+#   3. verified email → auto-send (rate-limited, deduped via ledger).
+#      pattern-guess → queue for manual review (never blind-send).
+#   4. Record in contact_ledger as touch type 'feature_pitch'.
+#
+# Cadence: max 2 new feature pitches/day (avoid looking like a blast).
+# Follow-up: handled by the same 3-touch cadence as journalist pitches,
+#            but with feature-specific bump/closer angles.
+
+cadence:
+  max_per_day: 2
+  # Days between feature-pitch touches (a touch more patient than the
+  # news-pegged journalist cadence — features are editorial-calendar work).
+  followup_days: [10, 24]
+
+outlets:
+  # ── Tier 1: luxury RE + design, our core fit ──
+  - name: "DIGS"
+    domain: "digs.net"
+    contact_url: "https://digs.net/contact-us/"
+    beat: "luxury real estate, architecture & design — LA Westside / South Bay"
+    priority: 1
+    # Published contact for South Bay DIGS (same publisher as digs.net),
+    # found on their site — verified, not guessed.
+    known_email: "contact@southbaydigs.com"
+
+  - name: "Luxe Interiors + Design (California)"
+    domain: "luxesource.com"
+    contact_url: "https://luxesource.com/contact/"
+    beat: "high-end interiors & architecture, California edition"
+    priority: 1
+    known_email: null
+
+  - name: "Modern Luxury Los Angeles"
+    domain: "modernluxury.com"
+    contact_url: "https://www.modernluxury.com/los-angeles/contact"
+    beat: "LA luxury lifestyle, homes & design"
+    priority: 1
+    known_email: null
+
+  - name: "LA Confidential"
+    domain: "laconfidentialmag.com"
+    contact_url: "https://laconfidentialmag.com/contact"
+    beat: "LA luxury lifestyle & real estate (Modern Luxury)"
+    priority: 1
+    known_email: null
+
+  - name: "Haute Residence"
+    domain: "hauteresidence.com"
+    contact_url: "https://hauteresidence.com/contact/"
+    beat: "luxury real estate network & features"
+    priority: 1
+    known_email: null
+
+  # ── Tier 2: LA city / regional ──
+  - name: "Los Angeles Magazine"
+    domain: "lamag.com"
+    contact_url: "https://lamag.com/contact"
+    beat: "LA city culture, real estate & design"
+    priority: 2
+    known_email: null
+
+  - name: "The Real Deal — Los Angeles"
+    domain: "therealdeal.com"
+    contact_url: "https://therealdeal.com/la/"
+    beat: "LA real estate news & development"
+    priority: 2
+    known_email: null
+
+  - name: "Variety — Dirt"
+    domain: "variety.com"
+    contact_url: "https://variety.com/v/dirt/"
+    beat: "celebrity & luxury real estate"
+    priority: 2
+    known_email: null
+
+  # ── Tier 3: hyper-local community papers (our build sites) ──
+  - name: "The Malibu Times"
+    domain: "malibutimes.com"
+    contact_url: "https://www.malibutimes.com/contact/"
+    beat: "Malibu local news, homes & rebuild"
+    priority: 3
+    known_email: null
+
+  - name: "Beverly Hills Courier"
+    domain: "bhcourier.com"
+    contact_url: "https://bhcourier.com/contact/"
+    beat: "Beverly Hills local news & real estate"
+    priority: 3
+    known_email: null
+
+  - name: "Palisadian-Post"
+    domain: "palipost.com"
+    contact_url: "https://www.palipost.com/contact/"
+    beat: "Pacific Palisades local news & rebuild"
+    priority: 3
+    known_email: null
+
+  - name: "Canyon News"
+    domain: "canyon-news.com"
+    contact_url: "https://www.canyon-news.com/contact-us"
+    beat: "Bel-Air / Beverly Hills / Brentwood local"
+    priority: 3
+    known_email: null
+
+  - name: "The Acorn"
+    domain: "toacorn.com"
+    contact_url: "https://www.toacorn.com/contact/"
+    beat: "Calabasas / Hidden Hills / Agoura local"
+    priority: 3
+    known_email: null
+
+  - name: "Montecito Journal"
+    domain: "montecitojournal.net"
+    contact_url: "https://www.montecitojournal.net/contact/"
+    beat: "Montecito / Santa Barbara luxury local"
+    priority: 3
+    known_email: null

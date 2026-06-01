@@ -181,6 +181,22 @@ jobs:
           PYTHONUNBUFFERED: "1"
 
       # ───────────────────────────────────────────────────────────
+      # 9b. Feature pitch — proponi a 1-2 testate locali/giorno un
+      #     articolo su My Villa (self-contained, non-bloccante).
+      # ───────────────────────────────────────────────────────────
+      - name: Feature pitch to local press
+        if: steps.guard.outputs.should_run == 'true'
+        run: |
+          FP_FLAG=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            FP_FLAG="--dry-run"
+          fi
+          python3 _system/scripts/feature_pitch.py $FP_FLAG || \
+            echo "::warning::feature_pitch non-bloccante fallito"
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      # ───────────────────────────────────────────────────────────
       # 10. Commit + push state changes
       # ───────────────────────────────────────────────────────────
       - name: Commit & push state changes
