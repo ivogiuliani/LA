@@ -68,6 +68,35 @@ class SendResult:
 # Policy helpers
 # --------------------------------------------------------------------------- #
 
+import re as _re
+
+# Canonical founder name. The LLM that drafts outreach emails sometimes
+# expands a bare "Paolo" into an INVENTED surname (e.g. "Paolo Giordano",
+# the novelist) when a prompt doesn't pin the full name. This is a
+# deterministic safety net applied to EVERY outgoing email (subject +
+# body), independent of which generator produced the text.
+FOUNDER_FULL_NAME = "Paolo Mezzalama"
+
+
+def sanitize_founder_name(text: str) -> str:
+    """Force any 'Paolo <Surname>' to 'Paolo Mezzalama'.
+
+    Matches 'Paolo' followed by a single Capitalized word that is NOT
+    'Mezzalama' (negative lookahead) and rewrites it. Leaves untouched:
+      - 'Paolo Mezzalama' / 'Paolo Mezzalama's' (lookahead guards it)
+      - 'Paolo,' / 'Paolo.' / 'Paolo is' / 'with Paolo' (no Capitalized
+        surname follows)
+    """
+    if not text:
+        return text
+    # \bPaolo\s+ + a capitalized token (incl. accented), unless it's Mezzalama.
+    return _re.sub(
+        r"\bPaolo\s+(?!Mezzalama\b)[A-ZÀ-Þ][a-zà-ÿ'’-]+",
+        FOUNDER_FULL_NAME,
+        text,
+    )
+
+
 def compose_body(body: str, signature: str) -> str:
     """
     Append the canonical signature to `body` if not already present.
@@ -181,6 +210,13 @@ def send_raw(
     """
     cfg = config or load_config()
     now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+    # Founder-name safety net: fix any hallucinated 'Paolo <surname>'
+    # in BOTH subject and body before anything else (compose, log, send).
+    subject = sanitize_founder_name(subject)
+    body = sanitize_founder_name(body)
+    if html_body:
+        html_body = sanitize_founder_name(html_body)
 
     # Compose final body with signature injection.
     final_body = body if skip_signature else compose_body(body, cfg.signature)

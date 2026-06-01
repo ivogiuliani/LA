@@ -430,6 +430,8 @@ def _build_rescue_cold_prompt(contact: dict, author_name: str) -> tuple[str, str
         "You are Lisa Monelli, writing on behalf of My Villa Media Team. "
         "Tone: warm, professional, never pushy. Write like a real PR person. "
         "American English. No exclamation marks. No subject line — body only.\n\n"
+        "FOUNDER NAME: the founder is 'Paolo Mezzalama'. If you name him, "
+        "use 'Paolo' or 'Paolo Mezzalama' — NEVER invent any other surname.\n\n"
         "Sign off EXACTLY with these four lines:\n"
         "Best,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la"
     )
@@ -483,6 +485,8 @@ def _build_followup_prompt(contact: dict, touch_n: int) -> tuple[str, str]:
         "with 'Hello,' or 'Hi team,' — NEVER say 'Hi Kqed team' or 'Hi Robbreport "
         "team'. Publication names that are ugly when lowercased and squished get "
         "skipped; a plain 'Hello,' is always safe.\n\n"
+        "FOUNDER NAME: the founder is 'Paolo Mezzalama'. If you name him, "
+        "use 'Paolo' or 'Paolo Mezzalama' — NEVER invent any other surname.\n\n"
         "Sign off EXACTLY with these four lines:\n"
         "Best,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la"
     )

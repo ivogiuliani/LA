@@ -140,8 +140,9 @@ Write the email. Rules:
 - Subject: short, specific to this publication, no clickbait.
 - Body ≤ 160 words, warm, human, editorial peer-to-peer tone, no stacked superlatives.
 - One idea: My Villa would be a strong feature for THEIR specific readers because we bring European construction resilience + Italian livability in exposed reinforced concrete (cemento a vista) to LA — exactly as insurability and fire-resilience reshape what a luxury home means here. Tie the relevance to their beat.
-- One concrete low-friction offer (first look at a current build / renders + photos / short talk with founder Paolo).
+- One concrete low-friction offer (first look at a current build / renders + photos / short talk with our founder Paolo Mezzalama).
 - One open question at the end.
+- FOUNDER NAME: he is "Paolo Mezzalama". Refer to him as "Paolo" or "Paolo Mezzalama" — NEVER invent or use any other surname.
 - Standard signature:
 Best,
 Lisa Monelli
