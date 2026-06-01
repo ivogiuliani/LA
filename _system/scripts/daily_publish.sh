@@ -69,6 +69,21 @@ log "=== daily_publish START ==="
 log "PWD: $(pwd)"
 log "Python: $(which python3) ($(python3 --version 2>&1))"
 
+# ── Sync + cross-rail guard ────────────────────────────────────────
+# Allinea il repo a origin/main così vediamo il marker .last_digest_date
+# scritto dall'ALTRO scheduler (GitHub Actions). Se il cloud ha già
+# fatto il run di oggi, il marker è la data di oggi → usciamo SENZA
+# lanciare radar/journal/publish (niente spreco, niente mail doppia).
+log "git pull --rebase per sincronizzare il marker cross-rail..."
+git pull --rebase origin main >> "$LOG_FILE" 2>&1 || log "  (git pull fallito — proseguo con lo stato locale)"
+
+MARKER_FILE="_system/outreach/.last_digest_date"
+if [ -f "$MARKER_FILE" ] && [ "$(cat "$MARKER_FILE" 2>/dev/null | tr -d '[:space:]')" = "$TODAY" ]; then
+    log "Digest di oggi già inviato da GitHub Actions (marker=$TODAY) — skip."
+    log "=== daily_publish END (cloud already ran) ==="
+    exit 0
+fi
+
 # Step 1: radar di oggi. Se manca, lo LANCIAMO noi — la pipeline è
 # auto-sufficiente, non dipende più da scheduler esterni (Automator).
 if [ ! -f "$RADAR_FILE" ]; then

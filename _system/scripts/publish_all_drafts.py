@@ -58,6 +58,17 @@ SITE_BASE = "https://myvilla.la"
 
 # ── Helpers ──────────────────────────────────────────────────────────
 
+# Cross-rail idempotency marker. The pipeline can be triggered by TWO
+# independent schedulers — the local launchd job (fires ~08:00 when the
+# Mac is awake) and the GitHub Actions cron (fires later, as a Mac-off
+# fallback). Both share this repo, so we use a git-committed date marker
+# to guarantee the day's work (publish + digest email) happens EXACTLY
+# ONCE: whichever rail runs first writes today's date here and pushes;
+# the other rail sees it and skips. Prevents the duplicate digest emails
+# the user was getting when both rails ran.
+DIGEST_MARKER = SYSTEM_DIR / "outreach" / ".last_digest_date"
+
+
 def _load_dotenv():
     env_file = ROOT_DIR / ".env"
     if not env_file.exists():
@@ -69,6 +80,37 @@ def _load_dotenv():
             continue
         k, _, v = line.partition("=")
         os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+
+def _digest_already_done_today() -> bool:
+    """True if the day's pipeline already completed (per the git marker).
+
+    Read the committed date marker. If it equals today's date, another
+    rail (local launchd or GitHub Actions) already published + emailed
+    today, so we must skip to avoid a duplicate digest.
+    """
+    if not DIGEST_MARKER.exists():
+        return False
+    try:
+        last = DIGEST_MARKER.read_text(encoding="utf-8").strip()
+    except OSError:
+        return False
+    return last == datetime.now().strftime("%Y-%m-%d")
+
+
+def _mark_digest_done_today() -> None:
+    """Stamp today's date into the marker so the other rail skips.
+
+    Written only after a real digest send. The subsequent git autopush
+    (or the GitHub Actions commit step) propagates it to the other rail.
+    """
+    try:
+        DIGEST_MARKER.parent.mkdir(parents=True, exist_ok=True)
+        DIGEST_MARKER.write_text(
+            datetime.now().strftime("%Y-%m-%d") + "\n", encoding="utf-8"
+        )
+    except OSError as e:
+        print(f"  [guard] could not write digest marker: {e}")
 
 
 def _list_journal_drafts() -> list[Path]:
@@ -1920,9 +1962,23 @@ def main(argv=None):
                         help=f"Digest recipient (default: {DEFAULT_RECIPIENT}).")
     parser.add_argument("--no-push", action="store_true",
                         help="Don't run git auto-push after publishing.")
+    parser.add_argument("--ignore-guard", action="store_true",
+                        help="Bypass the once-per-day cross-rail guard "
+                             "(for manual re-runs).")
     args = parser.parse_args(argv)
 
     _load_dotenv()
+
+    # Cross-rail once-per-day guard. Skip the whole pipeline if another
+    # scheduler already did today's run (and emailed the digest). Bypass
+    # with --ignore-guard, and never applies to dry-runs or --no-email.
+    if (not args.dry_run and not args.no_email and not args.ignore_guard
+            and _digest_already_done_today()):
+        print(
+            f"Digest già inviato oggi ({datetime.now():%Y-%m-%d}) da un "
+            "altro scheduler — skip (usa --ignore-guard per forzare)."
+        )
+        return 0
 
     drafts = _list_journal_drafts()
     # We intentionally DON'T early-return when drafts is empty anymore —
@@ -2068,8 +2124,27 @@ def main(argv=None):
             published, skipped, errors,
             pitches=pitches, dry_run=args.dry_run,
         )
-        _send_digest(subject, plain_body, html_body,
-                     to=args.to, dry_run=args.dry_run)
+        sent_ok = _send_digest(subject, plain_body, html_body,
+                               to=args.to, dry_run=args.dry_run)
+        # Stamp the cross-rail marker so the other scheduler skips today.
+        # Only for real sends (not dry-run) — the autopush below commits it.
+        if sent_ok and not args.dry_run:
+            _mark_digest_done_today()
+
+    # Final state push: commit the digest marker + outreach state
+    # (ledger, send_log, dedup) so the OTHER scheduler rail sees today's
+    # marker and skips. Runs even on no-article days — the mid-pipeline
+    # autopush only fires when articles were published, which would
+    # otherwise leave the marker unpushed and let the other rail re-send.
+    # Gated on `not no_push`: the GitHub Actions rail passes --no-push and
+    # commits via its own workflow step instead.
+    if not args.dry_run and not args.no_push and not args.no_email:
+        ok, sha = _git_autopush(
+            f"Daily pipeline state {datetime.now():%Y-%m-%d} [skip ci]\n\n"
+            "Digest marker + outreach state (auto-committed)."
+        )
+        if ok and sha:
+            print(f"  [state] pushed {sha}")
 
     print()
     pitch_sent = len((pitches or {}).get("sent") or [])

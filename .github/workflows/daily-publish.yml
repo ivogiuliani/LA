@@ -44,9 +44,37 @@ jobs:
           persist-credentials: true # per il git push finale
 
       # ───────────────────────────────────────────────────────────
+      # 1b. CROSS-RAIL GUARD: il Mac locale (launchd poll-based) di
+      #     solito gira PRIMA (~08:00 CEST) e scrive il marker
+      #     .last_digest_date con la data di oggi, poi pusha. Questo
+      #     workflow gira più tardi (cron GitHub ritardato di 2-4h).
+      #     Se il marker è già di oggi → il locale ha già pubblicato
+      #     e mandato il digest: SALTIAMO tutti gli step successivi
+      #     (niente radar sprecato, niente mail doppia). Il workflow
+      #     resta come fallback per quando il Mac è spento.
+      #     dry_run forza sempre l'esecuzione (per test manuali).
+      # ───────────────────────────────────────────────────────────
+      - name: Cross-rail guard (skip se il Mac ha già pubblicato oggi)
+        id: guard
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          MARKER="_system/outreach/.last_digest_date"
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::dry-run — guard bypassato"
+          elif [ -f "$MARKER" ] && [ "$(cat "$MARKER" | tr -d '[:space:]')" = "$TODAY" ]; then
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Marker già di oggi ($TODAY) — il Mac ha già pubblicato. Skip."
+          else
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Nessun run del Mac oggi — il workflow procede come fallback."
+          fi
+
+      # ───────────────────────────────────────────────────────────
       # 2. Setup Python 3.11 (versione moderna, no warning EOL)
       # ───────────────────────────────────────────────────────────
       - name: Setup Python
+        if: steps.guard.outputs.should_run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -57,6 +85,7 @@ jobs:
       # 3. Install dependencies
       # ───────────────────────────────────────────────────────────
       - name: Install Python dependencies
+        if: steps.guard.outputs.should_run == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install -r _system/requirements.txt
@@ -67,6 +96,7 @@ jobs:
       # 4. Restore .env from GitHub Secrets
       # ───────────────────────────────────────────────────────────
       - name: Restore .env from secrets
+        if: steps.guard.outputs.should_run == 'true'
         run: |
           cat > .env << 'EOF'
           ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
@@ -86,6 +116,7 @@ jobs:
       # 5. Restore Gmail OAuth credentials
       # ───────────────────────────────────────────────────────────
       - name: Restore Gmail OAuth credentials
+        if: steps.guard.outputs.should_run == 'true'
         run: |
           mkdir -p _system/outreach/credentials
           echo '${{ secrets.GMAIL_OAUTH_CLIENT }}' > _system/outreach/credentials/oauth_client.json
@@ -96,6 +127,7 @@ jobs:
       # 6. Configure git identity for the auto-push
       # ───────────────────────────────────────────────────────────
       - name: Configure git
+        if: steps.guard.outputs.should_run == 'true'
         run: |
           git config user.name  "My Villa Bot"
           git config user.email "info@myvilla.la"
@@ -104,6 +136,7 @@ jobs:
       # 7. Run radar (always — needs today's signals)
       # ───────────────────────────────────────────────────────────
       - name: Run radar
+        if: steps.guard.outputs.should_run == 'true'
         run: |
           mkdir -p _system/radar/reports
           python3 _system/scripts/radar.py
@@ -114,6 +147,7 @@ jobs:
       # 8. Generate journal articles from today's radar
       # ───────────────────────────────────────────────────────────
       - name: Generate journal articles
+        if: steps.guard.outputs.should_run == 'true'
         run: |
           TODAY=$(date -u +%Y-%m-%d)
           RADAR_FILE="_system/radar/reports/radar_${TODAY}.json"
@@ -132,6 +166,7 @@ jobs:
       # 9. Publish drafts + cold pitch + follow-up + digest email
       # ───────────────────────────────────────────────────────────
       - name: Publish + outreach + digest
+        if: steps.guard.outputs.should_run == 'true'
         run: |
           DRY_RUN_FLAG=""
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
@@ -149,7 +184,7 @@ jobs:
       # 10. Commit + push state changes
       # ───────────────────────────────────────────────────────────
       - name: Commit & push state changes
-        if: github.event.inputs.dry_run != 'true'
+        if: steps.guard.outputs.should_run == 'true' && github.event.inputs.dry_run != 'true'
         run: |
           # Aggiungo tutto tranne i file di stato locali non in git.
           # Includo:
