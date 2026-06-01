@@ -705,23 +705,31 @@ def rss_scan(config, lookback_days=14):
         print("  [RSS] Skipped — feedparser not installed")
         return []
 
+    # (feed_url, cluster) — cluster drives the journal section downstream.
     rss_feeds = [
         # ── Architecture & design (international) ──
-        "https://www.dezeen.com/feed/",
-        "https://www.archdaily.com/feed",
-        "https://www.designboom.com/feed/",
-        "https://www.dwell.com/feed/",
-        "https://robbreport.com/shelter/feed/",
-        "https://www.architecturaldigest.com/feed/rss",
+        ("https://www.dezeen.com/feed/", "architecture_blogs"),
+        ("https://www.archdaily.com/feed", "architecture_blogs"),
+        ("https://www.designboom.com/feed/", "architecture_blogs"),
+        ("https://www.dwell.com/feed/", "architecture_blogs"),
+        ("https://robbreport.com/shelter/feed/", "luxury_real_estate"),
+        ("https://www.architecturaldigest.com/feed/rss", "architecture_blogs"),
         # ── LA / California real estate & market (added 2026-05-04 to reduce
         # insurance-bias in the radar output; these feeds publish daily on
         # LA luxury market, new construction, and architect-designed homes). ──
-        "https://therealdeal.com/la/feed/",
-        "https://dirt.com/feed/",
-        "https://www.latimes.com/business/real-estate/rss2.0.xml",
-        "https://www.latimes.com/california/rss2.0.xml",
-        "https://la.curbed.com/rss/index.xml",
-        "https://www.bisnow.com/los-angeles/feed",
+        ("https://therealdeal.com/la/feed/", "luxury_real_estate"),
+        ("https://dirt.com/feed/", "luxury_real_estate"),
+        ("https://www.latimes.com/business/real-estate/rss2.0.xml", "luxury_real_estate"),
+        ("https://www.latimes.com/california/rss2.0.xml", "insurance_regulation"),
+        ("https://la.curbed.com/rss/index.xml", "luxury_real_estate"),
+        ("https://www.bisnow.com/los-angeles/feed", "luxury_real_estate"),
+        # ── Local LA/SoCal community press (added 2026-06-01, RSS verified) ──
+        # The local papers we "follow" for articles to cover + journalists to
+        # contact. Only feeds confirmed to return entries are kept here;
+        # outlets without public RSS (DIGS, LA Mag, BH Courier, Montecito,
+        # Malibu Times, The Acorn) are still targeted via feature_pitch.py.
+        ("https://www.palipost.com/feed/", "luxury_real_estate"),   # Palisadian-Post
+        ("https://www.canyon-news.com/feed/", "luxury_real_estate"), # Bel-Air/BH/Brentwood
     ]
 
     # Strategy-aligned priority keywords. A feed entry must contain at least
@@ -766,7 +774,7 @@ def rss_scan(config, lookback_days=14):
     cutoff = datetime.now() - timedelta(days=lookback_days)
     results = []
 
-    for feed_url in rss_feeds:
+    for feed_url, feed_cluster in rss_feeds:
         try:
             feed = feedparser.parse(feed_url)
             for entry in feed.entries[:20]:
@@ -785,7 +793,7 @@ def rss_scan(config, lookback_days=14):
 
                 results.append({
                     "source": "rss",
-                    "cluster": "architecture_blogs",
+                    "cluster": feed_cluster,
                     "query": "rss_feed",
                     "title": entry.get("title", ""),
                     "url": entry.get("link", ""),
