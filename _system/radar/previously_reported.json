@@ -2719,6 +2719,16 @@
       "action_type": "user_dismissed",
       "url": "https://shenrealty.com/malibu-real-estate-blog/carbon-beach-malibu-inside-billionaire-s-beach/",
       "note": "auto-sent pitch to shen@shenrealty.com"
+    },
+    {
+      "date_first_reported": "2026-06-01",
+      "source": "user_dismissed",
+      "title": "Resilience in Motion: The Palisades Standing Home Market Reemerges",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://palipost.com/palisades-standing-home-market-reemerges/",
+      "note": "auto-published journal: palisades-standing-home-market-california-luxury-2026"
     }
   ]
 }

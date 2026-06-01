@@ -21,7 +21,7 @@
     "result": null
   },
   "prnewswire.com": {
-    "cached_at": 1779514030.02252,
+    "cached_at": 1780306180.614932,
     "result": null
   },
   "greenhomebuildermag.com": {
@@ -345,7 +345,7 @@
     "result": null
   },
   "insurancenewsnet.com": {
-    "cached_at": 1779514078.4585018,
+    "cached_at": 1780306215.548523,
     "result": null
   },
   "newhousebuilder.com": {
@@ -379,7 +379,7 @@
     "result": null
   },
   "latentinsure.com": {
-    "cached_at": 1779514175.665169,
+    "cached_at": 1780306215.046365,
     "result": null
   },
   "theunion.com": {
@@ -408,7 +408,7 @@
     "result": null
   },
   "mercurynews.com": {
-    "cached_at": 1779600314.5932999,
+    "cached_at": 1780306248.658921,
     "result": null
   },
   "eenews.net": {
@@ -453,5 +453,48 @@
   "laurabrauestates.com": {
     "cached_at": 1779686623.1947699,
     "result": null
+  },
+  "digs.net": {
+    "cached_at": 1780304431.298367,
+    "result": null
+  },
+  "yahoo.com": {
+    "cached_at": 1780306191.350589,
+    "result": null
+  },
+  "oakviewins.com": {
+    "cached_at": 1780306192.223425,
+    "result": {
+      "email": "info@oakviewins.com",
+      "source": "article_scraped",
+      "path": "/ca-fair-plan-rate-increase-2026/",
+      "score": 11
+    }
+  },
+  "nbcnews.com": {
+    "cached_at": 1780306210.231049,
+    "result": null
+  },
+  "cowboystatedaily.com": {
+    "cached_at": 1780306217.347254,
+    "result": {
+      "email": "news@cowboystatedaily.com",
+      "source": "article_scraped",
+      "path": "/2026/05/25/wyoming-company-uses-high-tech-ai-sprinklers-to-save-homes-from-wildfire/",
+      "score": 14
+    }
+  },
+  "earth911.com": {
+    "cached_at": 1780306231.1329012,
+    "result": null
+  },
+  "shenrealty.com": {
+    "cached_at": 1780306271.65423,
+    "result": {
+      "email": "shen@shenrealty.com",
+      "source": "article_scraped",
+      "path": "/malibu-real-estate-blog/carbon-beach-malibu-inside-billionaire-s-beach/",
+      "score": 7
+    }
   }
 }
