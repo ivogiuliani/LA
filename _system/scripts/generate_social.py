@@ -195,7 +195,7 @@ Return a JSON array:
 Return ONLY valid JSON, no markdown fences."""
 
 
-def generate_reactive_posts(items, model="claude-opus-4-7"):
+def generate_reactive_posts(items, model="claude-opus-4-8"):
     """Generate reactive social posts from radar signals."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
@@ -236,7 +236,7 @@ def generate_reactive_posts(items, model="claude-opus-4-7"):
         return []
 
 
-def generate_companion_posts(articles, model="claude-opus-4-7"):
+def generate_companion_posts(articles, model="claude-opus-4-8"):
     """Generate social companion posts for Journal articles."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
@@ -337,7 +337,7 @@ def main():
                         help="Journal article JSON files (for companion posts)")
     parser.add_argument("--output", "-o", default=None,
                         help="Output directory (default: _system/social/posts/reactive/)")
-    parser.add_argument("--model", default="claude-opus-4-7",
+    parser.add_argument("--model", default="claude-opus-4-8",
                         help="Claude model for generation")
     parser.add_argument("--min-score", type=int, default=15,
                         help="Min radar score for reactive posts (default: 15)")

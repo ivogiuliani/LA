@@ -9,7 +9,7 @@ Usage:
     --output _system/radar/reports/radar_dashboard_2026-04-09.html
 
   python3 generate_radar_report.py \
-    --radar radar.json --model claude-opus-4-7 --skip-drafts
+    --radar radar.json --model claude-opus-4-8 --skip-drafts
 """
 
 import json
@@ -236,7 +236,7 @@ def _known_publication_reach(pub, url=""):
     return None
 
 
-def estimate_unknown_reach(items, model="claude-opus-4-7"):
+def estimate_unknown_reach(items, model="claude-opus-4-8"):
     """For each item whose publication is NOT in the static PUBLICATION_REACH,
     ask Opus to estimate monthly unique visitors (in millions). Mutates each
     `item` in place adding `item["reach_estimate"]` (float, 0 if can't guess).
@@ -865,7 +865,7 @@ def _rewrite_for_editorial(
     return f"{before}{new_greeting}\n\n{disclaimer}\n\n{after}"
 
 
-def generate_drafts(items, model="claude-opus-4-7"):
+def generate_drafts(items, model="claude-opus-4-8"):
     """Generate email/tweet/reddit drafts for qualified items using Opus."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
@@ -1154,7 +1154,7 @@ code — it's that 90% of GCs never trained on it."
 """
 
 
-def generate_viral_reply_drafts(viral_items, model="claude-opus-4-7"):
+def generate_viral_reply_drafts(viral_items, model="claude-opus-4-8"):
     """Generate reply drafts for viral social posts.
 
     Uses a different prompt/voice from the journalist-pitch drafts.
@@ -2239,7 +2239,7 @@ def main():
     parser.add_argument("--markdown", "-m", default=None,
                         help="Output Markdown path (default: same dir as radar, .md). "
                              "Use 'none' to skip markdown export.")
-    parser.add_argument("--model", type=str, default="claude-opus-4-7",
+    parser.add_argument("--model", type=str, default="claude-opus-4-8",
                         help="Claude model for draft generation")
     parser.add_argument("--skip-drafts", action="store_true",
                         help="Skip AI draft generation")

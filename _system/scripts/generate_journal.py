@@ -841,7 +841,7 @@ def verify_sources_live(article, item=None, strict=True):
 
 
 def generate_article(item, section_id, section_name, brand_voice, blocked,
-                     model="claude-opus-4-7", perspective_kb="",
+                     model="claude-opus-4-8", perspective_kb="",
                      prior_articles=None, content_strategy=""):
     """Generate a Journal article using Opus."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -1800,7 +1800,7 @@ def main():
                         help="Path to config directory")
     parser.add_argument("--knowledge", default=None,
                         help="Path to knowledge directory")
-    parser.add_argument("--model", default="claude-opus-4-7",
+    parser.add_argument("--model", default="claude-opus-4-8",
                         help="Claude model for generation")
     parser.add_argument("--min-score", type=int, default=None,
                         help="Override min score from config")

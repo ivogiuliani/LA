@@ -8526,7 +8526,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
 
         try:
             client = anthropic.Anthropic(api_key=api_key)
-            model = "claude-opus-4-7"
+            model = "claude-opus-4-8"
 
             if content_type == "journal":
                 system_prompt = (
@@ -8707,7 +8707,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
         try:
             client = anthropic.Anthropic(api_key=api_key)
             resp = client.messages.create(
-                model="claude-opus-4-7",
+                model="claude-opus-4-8",
                 max_tokens=max_tokens,
                 system=system_prompt,
                 messages=[{"role": "user", "content": user_msg}],
