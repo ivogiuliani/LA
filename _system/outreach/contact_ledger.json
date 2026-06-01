@@ -725,9 +725,17 @@
           "message_id": "19e5e12279f8cf53",
           "thread_id": "19e5e12279f8cf53",
           "subject": "A European angle on your FAIR Plan piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-01T08:22:21+00:00",
+          "message_id": "19e8246d8a08c913",
+          "thread_id": "19e8246d8a08c913",
+          "subject": "Re: A European angle on your FAIR Plan piece"
         }
       ],
-      "next_touch_at": "2026-06-01",
+      "next_touch_at": "2026-06-15",
       "status": "in_cadence",
       "source_url": "https://www.santacruzsentinel.com/2026/05/24/california-fair-plan-rates-going-up-29-in-late-2026/",
       "source_title": "California FAIR Plan rates going up 29.1% in late 2026 – Santa Cruz Sentinel",
@@ -746,9 +754,17 @@
           "message_id": "19e5e1229269df1f",
           "thread_id": "19e5e1229269df1f",
           "subject": "A European angle on your ICF pros and cons piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-01T08:22:15+00:00",
+          "message_id": "19e8246c4c27dfe9",
+          "thread_id": "19e8246c4c27dfe9",
+          "subject": "Re: A European angle on your ICF pros and cons piece"
         }
       ],
-      "next_touch_at": "2026-06-01",
+      "next_touch_at": "2026-06-15",
       "status": "in_cadence",
       "source_url": "https://newhousebuilder.com/insulated-concrete-forms/",
       "source_title": "Insulated Concrete Forms (ICF): 12 Essential Pros & Cons",
@@ -943,5 +959,5 @@
       "cold_pitch_subject": "A European angle on the Washington IBHS program"
     }
   },
-  "last_hydrated_at": "2026-05-31T09:28:57.210302+00:00"
+  "last_hydrated_at": "2026-06-01T08:22:10.663029+00:00"
 }
