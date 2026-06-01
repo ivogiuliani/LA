@@ -27,6 +27,12 @@ send:
   # primary safety net alongside the UI confirm dialog.
   rate_limit_per_hour: 10
 
+  # Anti-spam DAILY cap: refuse to send more than N emails per rolling
+  # 24h across ALL outreach (cold pitches + follow-ups + feature pitches).
+  # Keeps total journalist contact <= 10/day so we never look like a
+  # blast. Enforced alongside the hourly cap; whichever is hit blocks.
+  rate_limit_per_day: 10
+
   # If true, approve.py will require a confirmation step before calling
   # the send endpoint (the UI button is already two-click by design —
   # the confirm dialog always fires regardless of this flag).

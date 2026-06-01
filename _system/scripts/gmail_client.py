@@ -62,6 +62,7 @@ class OutreachConfig:
     signature: str
     dry_run: bool
     rate_limit_per_hour: int
+    rate_limit_per_day: int
     confirm_before_send: bool
     reply_to: str | None
     send_log: Path
@@ -96,6 +97,7 @@ class OutreachConfig:
             signature=sender.get("signature", "").rstrip(),
             dry_run=bool(send.get("dry_run", True)),
             rate_limit_per_hour=int(send.get("rate_limit_per_hour", 10)),
+            rate_limit_per_day=int(send.get("rate_limit_per_day", 10)),
             confirm_before_send=bool(send.get("confirm_before_send", True)),
             reply_to=send.get("reply_to") or None,
             send_log=_resolve(send.get("send_log", "_system/outreach/send_log.jsonl")),

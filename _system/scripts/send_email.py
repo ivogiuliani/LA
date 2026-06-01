@@ -137,31 +137,39 @@ def _append_send_log(log_path: Path, result: SendResult) -> None:
 
 def rate_limit_state(config: OutreachConfig) -> dict[str, Any]:
     """
-    Return the current rate-limit state:
-    - sends_last_hour: number of successful (non dry-run) sends in the last 3600s
-    - limit: config.rate_limit_per_hour
-    - would_block: True if the next send would be refused
+    Return the current rate-limit state. Two windows, BOTH enforced:
+    - sends_last_hour vs rate_limit_per_hour (runaway-loop guard)
+    - sends_last_day  vs rate_limit_per_day  (anti-spam daily cap)
+    would_block is True if EITHER limit is hit.
     """
     entries = _read_send_log(config.send_log)
     now = time.time()
-    recent = 0
+    recent_hour = 0
+    recent_day = 0
     for e in entries:
-        if not e.get("ok"):
-            continue
-        if e.get("dry_run"):
+        if not e.get("ok") or e.get("dry_run"):
             continue
         ts_str = e.get("timestamp", "")
         try:
-            # ISO 8601 parsing
             ts = datetime.fromisoformat(ts_str.replace("Z", "+00:00")).timestamp()
         except (ValueError, TypeError):
             continue
         if now - ts <= 3600:
-            recent += 1
+            recent_hour += 1
+        if now - ts <= 86400:
+            recent_day += 1
+
+    per_day = getattr(config, "rate_limit_per_day", 10)
+    hour_block = recent_hour >= config.rate_limit_per_hour
+    day_block = recent_day >= per_day
     return {
-        "sends_last_hour": recent,
+        "sends_last_hour": recent_hour,
+        "sends_last_day": recent_day,
         "limit": config.rate_limit_per_hour,
-        "would_block": recent >= config.rate_limit_per_hour,
+        "limit_day": per_day,
+        "would_block": hour_block or day_block,
+        "block_reason": ("daily cap" if day_block else
+                         "hourly cap" if hour_block else None),
     }
 
 
@@ -299,9 +307,10 @@ def send_raw(
                 body=final_body,
                 timestamp=now_iso,
                 error=(
-                    f"Rate limit reached: {state['sends_last_hour']} sends in the "
-                    f"last hour (limit {state['limit']}). Try again later or "
-                    f"increase `rate_limit_per_hour` in config.yml."
+                    f"Rate limit reached ({state.get('block_reason','cap')}): "
+                    f"{state['sends_last_hour']}/{state['limit']} this hour, "
+                    f"{state.get('sends_last_day','?')}/{state.get('limit_day','?')} "
+                    f"today. Anti-spam daily cap — will retry next run/day."
                 ),
                 reason="rate_limited",
                 kind=kind,
