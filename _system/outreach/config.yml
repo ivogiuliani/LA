@@ -29,9 +29,19 @@ send:
 
   # Anti-spam DAILY cap: refuse to send more than N emails per rolling
   # 24h across ALL outreach (cold pitches + follow-ups + feature pitches).
-  # Keeps total journalist contact <= 10/day so we never look like a
-  # blast. Enforced alongside the hourly cap; whichever is hit blocks.
-  rate_limit_per_day: 10
+  # This is the PRIMARY anti-spam control for a single mailbox
+  # (info@myvilla.la): the hourly cap alone would allow ~240/day, far too
+  # much for one mailbox and bad for sender reputation.
+  #
+  # Number rationale (verified 2026-06-01 vs cold-email best practice):
+  #   - Gmail technical limit: ~500/day (consumer). Not the constraint.
+  #   - Safe for a WARMED single mailbox: 25-50/day.
+  #   - Warm-up phase (new domains): 10-20/day.
+  #   myvilla.la has been doing outreach ~6 weeks → "lightly warmed", so
+  #   20/day sits safely in range with headroom for busy days (natural
+  #   volume is ~8-12/day) while staying well clear of spam territory.
+  #   Keep bounce rate <2% and spam complaints <0.3% (Gmail/Yahoo rules).
+  rate_limit_per_day: 20
 
   # If true, approve.py will require a confirmation step before calling
   # the send endpoint (the UI button is already two-click by design —
