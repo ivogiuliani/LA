@@ -372,30 +372,107 @@ def filter_candidates(radar_data, ledger, journal_config, max_articles=2, min_sc
             print(f"             conflicts with: {conflict[:60]}")
             continue
 
+        # Attach the resolved section so the diversity pass below can
+        # spread the day's picks across sections.
+        item["_resolved_section"] = section
         candidates.append(item)
 
-    # Limit per day
-    candidates = candidates[:max_articles]
-    print(f"  [Filter] {len(candidates)} candidates passed (min_score={min_score}, max={max_articles})")
+    # ── Section-diverse selection ──────────────────────────────────
+    # Don't just take the top-N by score: if the top items are all
+    # 'insurance' (high news volume), we'd publish 2-3 insurance pieces
+    # and starve other sections. Instead:
+    #   Pass 1: best-scoring candidate from EACH section (max variety)
+    #   Pass 2: fill remaining slots with the next-best overall
+    # Within a section, higher score wins. This guarantees that when
+    # multiple sections have material, a single run spans them.
+    def _score(it):
+        return it.get("ai_score", it.get("preliminary_score", 0))
+
+    candidates.sort(key=_score, reverse=True)  # global score order
+
+    selected = []
+    seen_sections = set()
+    # Pass 1 — one per section, in score order
+    for it in candidates:
+        if len(selected) >= max_articles:
+            break
+        sec = it.get("_resolved_section")
+        if sec not in seen_sections:
+            selected.append(it)
+            seen_sections.add(sec)
+    # Pass 2 — fill any remaining slots with best remaining (allows a
+    # 2nd article from an already-used section only if nothing else left)
+    if len(selected) < max_articles:
+        for it in candidates:
+            if len(selected) >= max_articles:
+                break
+            if it not in selected:
+                selected.append(it)
+
+    candidates = selected
+    by_sec = {}
+    for it in candidates:
+        by_sec[it.get("_resolved_section")] = by_sec.get(it.get("_resolved_section"), 0) + 1
+    spread = ", ".join(f"{k}:{v}" for k, v in by_sec.items()) or "none"
+    print(f"  [Filter] {len(candidates)} candidates passed "
+          f"(min_score={min_score}, max={max_articles}) — sezioni: {spread}")
     return candidates
 
 
 def cluster_to_section(cluster, journal_config):
-    """Map a radar cluster to a journal section ID."""
+    """Map a radar cluster to a journal section ID.
+
+    The radar assigns cluster names somewhat freely (config clusters +
+    AI/RSS-derived names like 'luxury_real_estate', 'architecture_blogs').
+    So we match in three passes, most-specific first:
+      1. Exact match against a section's declared clusters (config).
+      2. Exact match against a hardcoded fallback table.
+      3. Substring/keyword heuristic — robust to NEW cluster names so
+         nothing silently dumps into the wrong section (this was the
+         bug: 'luxury_real_estate' matched nothing and defaulted to
+         'materials', starving the 'market' section).
+    """
+    cl = (cluster or "").lower()
     sections = journal_config.get("sections", [])
+
+    # 1. Exact match against config-declared clusters
     for sec in sections:
         if cluster in sec.get("clusters", []):
             return sec["id"]
-    # Fallback
+
+    # 2. Exact fallback table
     mapping = {
         "rebuild_direct": "permits",
+        "rebuild_secondary": "permits",
         "materials_construction": "materials",
         "insurance_regulation": "insurance",
         "luxury_architecture_LA": "market",
         "luxury_real_estate_LA": "market",
+        "luxury_real_estate": "market",
+        "luxury_insurable_newbuild": "market",
+        "architecture_blogs": "concrete_arch",
+        "italian_mediterranean_villa": "concrete_arch",
         "concrete_architecture": "concrete_arch",
+        "climate_resilience": "climate",
     }
-    return mapping.get(cluster, "materials")
+    if cluster in mapping:
+        return mapping[cluster]
+
+    # 3. Substring heuristic — robust to unseen cluster names
+    if "insurance" in cl or "fair_plan" in cl or "regulation" in cl:
+        return "insurance"
+    if "climate" in cl or "resilience" in cl or "sustainab" in cl:
+        return "climate"
+    if "rebuild" in cl or "permit" in cl or "policy" in cl:
+        return "permits"
+    if "real_estate" in cl or "market" in cl or "newbuild" in cl or "new_build" in cl:
+        return "market"
+    if "concrete" in cl or "architecture" in cl or "villa" in cl or "design" in cl:
+        return "concrete_arch"
+    if "material" in cl or "construction" in cl:
+        return "materials"
+    # Last resort: materials (broadest construction bucket)
+    return "materials"
 
 
 def section_info(section_id, journal_config):

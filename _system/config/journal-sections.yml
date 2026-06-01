@@ -22,6 +22,8 @@ sections:
     accent_color: "#6B8F9E"    # pacific-blue
     clusters:
       - concrete_architecture
+      - architecture_blogs
+      - italian_mediterranean_villa
     icon: "building"
 
   - id: permits
@@ -29,14 +31,17 @@ sections:
     accent_color: "#5C6B4F"    # olive
     clusters:
       - rebuild_direct
+      - rebuild_secondary
     icon: "file-text"
 
   - id: market
     name: "LA Luxury Market"
     accent_color: "#C4A265"    # tuscan-gold
     clusters:
+      - luxury_real_estate          # radar's actual cluster name (was unmapped → defaulted to materials)
       - luxury_real_estate_LA
       - luxury_architecture_LA
+      - luxury_insurable_newbuild    # new-build market angle
     icon: "trending-up"
 
   - id: climate

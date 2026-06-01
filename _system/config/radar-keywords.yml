@@ -112,6 +112,37 @@ clusters:
       - "high end home sale Malibu"
       - "Montecito luxury real estate"
       - "Newport Coast luxury home"
+      # ── expanded 2026-06-01 for section balance (more market angles) ──
+      - "Brentwood luxury home sale 2026"
+      - "Pacific Palisades luxury listing 2026"
+      - "Holmby Hills estate sale"
+      - "Calabasas luxury real estate market"
+      - "LA luxury housing market trends 2026"
+      - "California mansion record sale 2026"
+      - "celebrity home sale Los Angeles 2026"
+      - "luxury new construction premium California"
+      - "spec mansion Los Angeles 2026"
+      - "trophy home Beverly Hills"
+
+  # ── Cluster H: Climate, Resilience & Sustainability ──
+  #   Feeds the "Climate & Resilience" journal section (previously
+  #   unfed — no cluster mapped to it). Angle: building resilient,
+  #   low-carbon luxury homes for a hotter/drier/fire-prone California.
+  climate_resilience:
+    id: "H"
+    label: "Climate & Resilience"
+    priority: 2
+    keywords:
+      - "climate resilient home design California"
+      - "sustainable luxury home California"
+      - "passive cooling Mediterranean architecture"
+      - "thermal mass concrete home climate"
+      - "drought tolerant luxury landscape California"
+      - "net zero luxury home California"
+      - "wildfire resilient community design California"
+      - "climate adaptation housing California 2026"
+      - "heat resilient building design Southern California"
+      - "low carbon concrete construction"
 
   # ── Cluster F: Concrete / Museum-Grade Architecture ──
   concrete_architecture:
@@ -216,6 +247,24 @@ target_domains:
   - "calmatters.org"
   - "smobserved.com"
   - "mercurynews.com"
+  # ── Local LA/SoCal real-estate & luxury shelter magazines ──
+  # (added 2026-06-01 — broaden section coverage beyond insurance AND
+  #  build a citeable + contactable local-press list. These are the
+  #  outlets we cite in articles and pitch for a feature on My Villa.)
+  - "digs.net"               # DIGS — luxury RE + architecture, Westside/South Bay
+  - "modernluxury.com"       # Modern Luxury LA
+  - "laconfidentialmag.com"  # LA Confidential (Modern Luxury)
+  - "lamag.com"              # Los Angeles Magazine
+  - "luxesource.com"         # Luxe Interiors + Design (California)
+  - "hauteresidence.com"     # Haute Residence — luxury RE network
+  - "variety.com"            # Variety / Dirt — celebrity luxury RE
+  - "bhcourier.com"          # Beverly Hills Courier (local)
+  - "malibutimes.com"        # The Malibu Times (local)
+  - "palipost.com"           # Palisadian-Post (Pacific Palisades local)
+  - "canyon-news.com"        # Canyon News (Bel-Air/Beverly Hills/Brentwood)
+  - "toacorn.com"            # The Acorn (Calabasas/Hidden Hills/Agoura)
+  - "montecitojournal.net"   # Montecito Journal (secondary CA luxury)
+  - "wmagazine.com"          # W — design/lifestyle (occasional RE)
   # National
   - "nytimes.com"
   - "theatlantic.com"
