@@ -535,5 +535,34 @@
   "globenewswire.com": {
     "cached_at": 1780392019.7742841,
     "result": null
+  },
+  "luxesource.com": {
+    "cached_at": 1780392119.3497531,
+    "result": null
+  },
+  "modernluxury.com": {
+    "cached_at": 1780392121.6157959,
+    "result": null
+  },
+  "laconfidentialmag.com": {
+    "cached_at": 1780392130.3300889,
+    "result": null
+  },
+  "hauteresidence.com": {
+    "cached_at": 1780392131.325773,
+    "result": null
+  },
+  "lamag.com": {
+    "cached_at": 1780392132.6163,
+    "result": null
+  },
+  "variety.com": {
+    "cached_at": 1780392143.083466,
+    "result": {
+      "email": "news@variety.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 19
+    }
   }
 }
