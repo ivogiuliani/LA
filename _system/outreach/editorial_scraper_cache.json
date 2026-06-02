@@ -496,5 +496,44 @@
       "path": "/malibu-real-estate-blog/carbon-beach-malibu-inside-billionaire-s-beach/",
       "score": 7
     }
+  },
+  "krcrtv.com": {
+    "cached_at": 1780391945.225878,
+    "result": {
+      "email": "comments@krcrtv.com",
+      "source": "article_scraped",
+      "path": "/news/local/california-fair-plan-to-raise-homeowners-insurance-rates-about-29",
+      "score": 12
+    }
+  },
+  "westsidetoday.com": {
+    "cached_at": 1780391958.094796,
+    "result": null
+  },
+  "lendingtree.com": {
+    "cached_at": 1780391967.257382,
+    "result": null
+  },
+  "qualityspace.com": {
+    "cached_at": 1780391978.0337229,
+    "result": {
+      "email": "leads@qualityspace.com",
+      "source": "article_scraped",
+      "path": "/guides/california-fair-plan",
+      "score": 7
+    }
+  },
+  "meganmicco.com": {
+    "cached_at": 1780392015.2313979,
+    "result": {
+      "email": "megan@meganmicco.com",
+      "source": "article_scraped",
+      "path": "/blog/california-fair-plan-rate-increase-and-what-it-means-for-berkeley-homeowners/",
+      "score": 7
+    }
+  },
+  "globenewswire.com": {
+    "cached_at": 1780392019.7742841,
+    "result": null
   }
 }

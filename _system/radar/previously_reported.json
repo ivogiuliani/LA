@@ -2729,6 +2729,16 @@
       "action_type": "user_dismissed",
       "url": "https://palipost.com/palisades-standing-home-market-reemerges/",
       "note": "auto-published journal: palisades-standing-home-market-california-luxury-2026"
+    },
+    {
+      "date_first_reported": "2026-06-02",
+      "source": "user_dismissed",
+      "title": "How Kanye's former Malibu mansion showed the cracks in a home-flipper's model",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/magazine/june-2026/how-kanyes-former-malibu-mansion-showed-the-cracks-in-a-home-flippers-model/",
+      "note": "auto-published journal: concrete-home-resale-california-tadao-ando-malibu"
     }
   ]
 }
