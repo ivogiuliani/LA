@@ -2739,6 +2739,46 @@
       "action_type": "user_dismissed",
       "url": "https://therealdeal.com/magazine/june-2026/how-kanyes-former-malibu-mansion-showed-the-cracks-in-a-home-flippers-model/",
       "note": "auto-published journal: concrete-home-resale-california-tadao-ando-malibu"
+    },
+    {
+      "date_first_reported": "2026-06-02",
+      "source": "user_dismissed",
+      "title": "California FAIR Plan to raise homeowners insurance rates about 29%",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://krcrtv.com/news/local/california-fair-plan-to-raise-homeowners-insurance-rates-about-29",
+      "note": "auto-sent pitch to queued:alexis.bruno@krcrtv.com"
+    },
+    {
+      "date_first_reported": "2026-06-02",
+      "source": "user_dismissed",
+      "title": "Who’s Running for California Insurance Commissioner? 2026 Primary Guide | KQED",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.kqed.org/voterguide/california/insurance-commissioner",
+      "note": "auto-sent pitch to npiper@kqed.org"
+    },
+    {
+      "date_first_reported": "2026-06-02",
+      "source": "user_dismissed",
+      "title": "California FAIR Plan Homeowners Insurance: 2026 Guide",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://qualityspace.com/guides/california-fair-plan",
+      "note": "auto-sent pitch to leads@qualityspace.com"
+    },
+    {
+      "date_first_reported": "2026-06-02",
+      "source": "user_dismissed",
+      "title": "California FAIR Plan Rate Increase and What It Means for Berkeley Homeowners? - ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.meganmicco.com/blog/california-fair-plan-rate-increase-and-what-it-means-for-berkeley-homeowners/",
+      "note": "auto-sent pitch to megan@meganmicco.com"
     }
   ]
 }
