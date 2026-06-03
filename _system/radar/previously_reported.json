@@ -2779,6 +2779,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.meganmicco.com/blog/california-fair-plan-rate-increase-and-what-it-means-for-berkeley-homeowners/",
       "note": "auto-sent pitch to megan@meganmicco.com"
+    },
+    {
+      "date_first_reported": "2026-06-03",
+      "source": "user_dismissed",
+      "title": "Noncombustible vs Fire-Resistant Homes",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://noncombustiblesllc.com/compare/noncombustible-vs-fire-resistant-homes",
+      "note": "auto-published journal: noncombustible-vs-fire-resistant-homes-california"
     }
   ]
 }

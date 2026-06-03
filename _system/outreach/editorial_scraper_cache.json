@@ -183,7 +183,7 @@
     }
   },
   "cbsnews.com": {
-    "cached_at": 1778135264.908565,
+    "cached_at": 1780468850.197046,
     "result": null
   },
   "airbnb.com": {
@@ -564,5 +564,43 @@
       "path": "/contact-us",
       "score": 19
     }
+  },
+  "myvilla.la": {
+    "cached_at": 1780468828.6662788,
+    "result": {
+      "email": "info@myvilla.la",
+      "source": "about_page",
+      "path": "/team",
+      "score": 11
+    }
+  },
+  "e-a-a.com": {
+    "cached_at": 1780468836.2680929,
+    "result": null
+  },
+  "calmatters.org": {
+    "cached_at": 1780468850.6897469,
+    "result": {
+      "email": "info@calmatters.org",
+      "source": "article_scraped",
+      "path": "/politics/2026/06/california-insurance-commissioner-primary/",
+      "score": 11
+    }
+  },
+  "noncombustiblesllc.com": {
+    "cached_at": 1780468855.204056,
+    "result": null
+  },
+  "eastructuralengineering.com": {
+    "cached_at": 1780468866.2737432,
+    "result": null
+  },
+  "superformicf.com": {
+    "cached_at": 1780468866.39924,
+    "result": null
+  },
+  "prefab.com": {
+    "cached_at": 1780468889.290751,
+    "result": null
   }
 }
