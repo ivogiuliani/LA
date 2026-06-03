@@ -2789,6 +2789,46 @@
       "action_type": "user_dismissed",
       "url": "https://noncombustiblesllc.com/compare/noncombustible-vs-fire-resistant-homes",
       "note": "auto-published journal: noncombustible-vs-fire-resistant-homes-california"
+    },
+    {
+      "date_first_reported": "2026-06-03",
+      "source": "user_dismissed",
+      "title": "Concrete Homes in Los Angeles: A Guide to Fire-Resistant Rebuilds Under the 2026",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://myvilla.la/blog/concrete-innovations-fire-rebuilding-camarillo-acorn.html",
+      "note": "auto-sent pitch to info@myvilla.la"
+    },
+    {
+      "date_first_reported": "2026-06-03",
+      "source": "user_dismissed",
+      "title": "2026 Election Results for California Insurance Commissioner | KQED",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.kqed.org/elections/results/california/insurance-commissioner",
+      "note": "auto-sent pitch to npiper@kqed.org"
+    },
+    {
+      "date_first_reported": "2026-06-03",
+      "source": "user_dismissed",
+      "title": "California chooses its next insurance watchdog amid wildfire crisis",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://calmatters.org/politics/2026/06/california-insurance-commissioner-primary/",
+      "note": "auto-sent pitch to levi@calmatters.org"
+    },
+    {
+      "date_first_reported": "2026-06-03",
+      "source": "user_dismissed",
+      "title": "Are Prefab and Modular Homes Finally Becoming Luxury?",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/hotproperty/build-renovation/story/modular-home-cost-time-rebuild",
+      "note": "auto-sent pitch to sara.kitnick@latimes.com"
     }
   ]
 }

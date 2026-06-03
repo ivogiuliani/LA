@@ -292,6 +292,14 @@
           "message_id": "19e4e783611775d9",
           "thread_id": "19e4e783611775d9",
           "subject": "A thought after your Joe Roth Beverly Hills piece"
+        },
+        {
+          "n": 4,
+          "type": "extra",
+          "sent_at": "2026-06-02T09:22:18+00:00",
+          "message_id": "19e87a41bd8abfba",
+          "thread_id": "19e87a41bd8abfba",
+          "subject": "A new kind of LA luxury home, built in exposed concrete"
         }
       ],
       "next_touch_at": null,
@@ -1049,9 +1057,17 @@
           "message_id": "19e87a318b5597f3",
           "thread_id": "19e87a318b5597f3",
           "subject": "A European angle on your Who’s Running for California Insurance Commissioner? 2026 Pr piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-03T06:42:19+00:00",
+          "message_id": "19e8c37fcc537272",
+          "thread_id": "19e8c37fcc537272",
+          "subject": "A European angle on your 2026 Election Results for California Insurance Commissioner  piece"
         }
       ],
-      "next_touch_at": "2026-06-09",
+      "next_touch_at": "2026-06-17",
       "status": "in_cadence",
       "source_url": "",
       "source_title": "",
@@ -1099,7 +1115,70 @@
       "source_title": "California FAIR Plan Rate Increase and What It Means for Berkeley Homeowners? - Megan Micco - Berkeley Real Estate Expert",
       "cold_pitch_body": "Hi Meganmicco team,\n\n(Writing to the Meganmicco newsroom rather than Megan directly — we couldn't locate a direct contact. Feel free to forward if it's a better fit for them or the desk.)\n\nReally enjoyed your explainer on the FAIR Plan rate increase and SB 547. You caught a detail most coverage misses: the one-year non-renewal protection matters, but it does not solve the underlying risk that pushes homeowners onto the plan.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your piece sparked: the resilience that keeps a home off the FAIR Plan has been default Mediterranean practice for generations, built into the structure itself. That cultural gap feels like the real story.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
       "cold_pitch_subject": "A European angle on your FAIR Plan explainer"
+    },
+    "news@variety.com": {
+      "email": "news@variety.com",
+      "publication": "",
+      "first_seen_at": "2026-06-02T09:22:29+00:00",
+      "touches": [
+        {
+          "n": 1,
+          "type": "cold",
+          "sent_at": "2026-06-02T09:22:29+00:00",
+          "message_id": "19e87a442b5d369b",
+          "thread_id": "19e87a442b5d369b",
+          "subject": "A new kind of LA luxury home, built in exposed concrete"
+        }
+      ],
+      "next_touch_at": "2026-06-09",
+      "status": "in_cadence",
+      "source_url": "",
+      "source_title": "",
+      "cold_pitch_body": "",
+      "cold_pitch_subject": "A new kind of LA luxury home, built in exposed concrete"
+    },
+    "levi@calmatters.org": {
+      "email": "levi@calmatters.org",
+      "publication": "calmatters.org",
+      "first_seen_at": "2026-06-03T06:42:26+00:00",
+      "touches": [
+        {
+          "n": 1,
+          "type": "cold",
+          "sent_at": "2026-06-03T06:42:26+00:00",
+          "message_id": "19e8c3817619ca14",
+          "thread_id": "19e8c3817619ca14",
+          "subject": "A European angle on your California chooses its next insurance watchdog amid wildfire piece"
+        }
+      ],
+      "next_touch_at": "2026-06-10",
+      "status": "in_cadence",
+      "source_url": "https://calmatters.org/economy/2026/05/state-farm-california-violations/",
+      "source_title": "California: State Farm violated law in handling of L.A. fire insurance claims",
+      "cold_pitch_body": "Hi Levi,\n\nReally strong reporting on the State Farm findings — you caught something most coverage missed: the violations are not just a claims-handling story, they are reshaping how Palisades and Eaton homeowners think about rebuilding at all.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne angle your piece sparked: the cleanest hedge against a broken claims process is a home that simply does not burn. That kind of resilience has been default Mediterranean practice for generations, long before California started codifying it.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
+      "cold_pitch_subject": "One thought after your State Farm violations piece"
+    },
+    "sara.kitnick@latimes.com": {
+      "email": "sara.kitnick@latimes.com",
+      "publication": "",
+      "first_seen_at": "2026-06-03T06:42:33+00:00",
+      "touches": [
+        {
+          "n": 1,
+          "type": "cold",
+          "sent_at": "2026-06-03T06:42:33+00:00",
+          "message_id": "19e8c38334f693f5",
+          "thread_id": "19e8c38334f693f5",
+          "subject": "A European angle on your Are Prefab and Modular Homes Finally Becoming Luxury? piece"
+        }
+      ],
+      "next_touch_at": "2026-06-10",
+      "status": "in_cadence",
+      "source_url": "",
+      "source_title": "",
+      "cold_pitch_body": "",
+      "cold_pitch_subject": "A European angle on your Are Prefab and Modular Homes Finally Becoming Luxury? piece"
     }
   },
-  "last_hydrated_at": "2026-06-02T09:21:14.694351+00:00"
+  "last_hydrated_at": "2026-06-03T06:42:34.420799+00:00"
 }
