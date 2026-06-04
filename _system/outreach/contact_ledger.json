@@ -1178,7 +1178,49 @@
       "source_title": "",
       "cold_pitch_body": "",
       "cold_pitch_subject": "A European angle on your Are Prefab and Modular Homes Finally Becoming Luxury? piece"
+    },
+    "hello@canyon-news.com": {
+      "email": "hello@canyon-news.com",
+      "publication": "",
+      "first_seen_at": "2026-06-03T06:44:32+00:00",
+      "touches": [
+        {
+          "n": 1,
+          "type": "cold",
+          "sent_at": "2026-06-03T06:44:32+00:00",
+          "message_id": "19e8c3a052de8cd7",
+          "thread_id": "19e8c3a052de8cd7",
+          "subject": "A European take on resilient homes in Bel-Air"
+        }
+      ],
+      "next_touch_at": "2026-06-10",
+      "status": "in_cadence",
+      "source_url": "",
+      "source_title": "",
+      "cold_pitch_body": "",
+      "cold_pitch_subject": "A European take on resilient homes in Bel-Air"
+    },
+    "a.higham@newsweek.com": {
+      "email": "a.higham@newsweek.com",
+      "publication": "",
+      "first_seen_at": "2026-06-04T06:28:44+00:00",
+      "touches": [
+        {
+          "n": 1,
+          "type": "cold",
+          "sent_at": "2026-06-04T06:28:44+00:00",
+          "message_id": "19e9151e836b0fa4",
+          "thread_id": "19e9151e836b0fa4",
+          "subject": "A European angle on your Nearly 1 million Californians face home insurance spike in c piece"
+        }
+      ],
+      "next_touch_at": "2026-06-11",
+      "status": "in_cadence",
+      "source_url": "",
+      "source_title": "",
+      "cold_pitch_body": "",
+      "cold_pitch_subject": "A European angle on your Nearly 1 million Californians face home insurance spike in c piece"
     }
   },
-  "last_hydrated_at": "2026-06-03T06:42:34.420799+00:00"
+  "last_hydrated_at": "2026-06-04T06:28:45.124418+00:00"
 }

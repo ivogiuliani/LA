@@ -2859,6 +2859,16 @@
       "action_type": "user_dismissed",
       "url": "https://consumerwatchdog.org/insurance/new-california-legislation-would-give-consumers-new-paths-to-keep-home-insurance-coverage/",
       "note": "auto-published journal: california-insurance-legislation-2026-paths-to-keep-coverage"
+    },
+    {
+      "date_first_reported": "2026-06-04",
+      "source": "user_dismissed",
+      "title": "Nearly 1 million Californians face home insurance spike in coming months",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.newsweek.com/nearly-one-million-californians-face-home-insurance-spike-months-11944733",
+      "note": "auto-sent pitch to a.higham@newsweek.com"
     }
   ]
 }
