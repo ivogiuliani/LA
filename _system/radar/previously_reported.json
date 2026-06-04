@@ -2829,6 +2829,36 @@
       "action_type": "user_dismissed",
       "url": "https://www.latimes.com/hotproperty/build-renovation/story/modular-home-cost-time-rebuild",
       "note": "auto-sent pitch to sara.kitnick@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-06-04",
+      "source": "user_dismissed",
+      "title": "Westsider trails SF's Kim for insurance commissioner, with ripples for resi market likely",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2026/06/03/insurance-commissioners-race-bound-for-runoff/",
+      "note": "auto-published journal: california-insurance-commissioner-race-2026-luxury-market"
+    },
+    {
+      "date_first_reported": "2026-06-04",
+      "source": "user_dismissed",
+      "title": "Did State Farm Pull Out of California? (2026 Status, Explained)",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latentinsure.com/blog/state-farm-california-pullout",
+      "note": "auto-published journal: state-farm-california-status-2026-high-value-home-insurance"
+    },
+    {
+      "date_first_reported": "2026-06-04",
+      "source": "user_dismissed",
+      "title": "New California Legislation Would Give Consumers New Paths to Keep Home Insurance Coverage",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://consumerwatchdog.org/insurance/new-california-legislation-would-give-consumers-new-paths-to-keep-home-insurance-coverage/",
+      "note": "auto-published journal: california-insurance-legislation-2026-paths-to-keep-coverage"
     }
   ]
 }

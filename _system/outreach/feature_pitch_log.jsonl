@@ -6,3 +6,9 @@
 {"domain": "lamag.com", "outlet": "Los Angeles Magazine", "status": "no_email", "logged_at": "2026-06-02T11:22:12.617734"}
 {"domain": "therealdeal.com", "outlet": "The Real Deal — Los Angeles", "to": "events@therealdeal.com", "status": "sent", "subject": "A new kind of LA luxury home, built in exposed concrete", "message_id": "19e87a41bd8abfba", "logged_at": "2026-06-02T11:22:19.443740"}
 {"domain": "variety.com", "outlet": "Variety — Dirt", "to": "news@variety.com", "status": "sent", "subject": "A new kind of LA luxury home, built in exposed concrete", "message_id": "19e87a442b5d369b", "logged_at": "2026-06-02T11:22:29.888836"}
+{"domain": "malibutimes.com", "outlet": "The Malibu Times", "status": "no_email", "logged_at": "2026-06-03T08:43:30.819001"}
+{"domain": "bhcourier.com", "outlet": "Beverly Hills Courier", "status": "no_email", "logged_at": "2026-06-03T08:43:44.587785"}
+{"domain": "palipost.com", "outlet": "Palisadian-Post", "to": "mypost@palipost.com", "status": "queued_review", "subject": "A Palisades rebuild story in exposed concrete", "logged_at": "2026-06-03T08:44:23.807009"}
+{"domain": "canyon-news.com", "outlet": "Canyon News", "to": "hello@canyon-news.com", "status": "sent", "subject": "A European take on resilient homes in Bel-Air", "message_id": "19e8c3a052de8cd7", "logged_at": "2026-06-03T08:44:33.531788"}
+{"domain": "toacorn.com", "outlet": "The Acorn", "status": "no_email", "logged_at": "2026-06-03T08:45:05.071538"}
+{"domain": "montecitojournal.net", "outlet": "Montecito Journal", "status": "no_email", "logged_at": "2026-06-03T08:45:06.746959"}

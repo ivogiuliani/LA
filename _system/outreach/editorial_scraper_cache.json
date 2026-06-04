@@ -37,7 +37,7 @@
     "result": null
   },
   "malibutimes.com": {
-    "cached_at": 1777180711.517483,
+    "cached_at": 1780469010.812945,
     "result": null
   },
   "christiesresocal.com": {
@@ -341,7 +341,7 @@
     }
   },
   "ktvu.com": {
-    "cached_at": 1779514063.076499,
+    "cached_at": 1780554388.35088,
     "result": null
   },
   "insurancenewsnet.com": {
@@ -602,5 +602,44 @@
   "prefab.com": {
     "cached_at": 1780468889.290751,
     "result": null
+  },
+  "bhcourier.com": {
+    "cached_at": 1780469024.5821629,
+    "result": null
+  },
+  "palipost.com": {
+    "cached_at": 1780469057.7644958,
+    "result": {
+      "email": "mypost@palipost.com",
+      "source": "article_scraped",
+      "path": "/contact/",
+      "score": 2
+    }
+  },
+  "canyon-news.com": {
+    "cached_at": 1780469066.537538,
+    "result": {
+      "email": "hello@canyon-news.com",
+      "source": "article_scraped",
+      "path": "/contact-us",
+      "score": 14
+    }
+  },
+  "toacorn.com": {
+    "cached_at": 1780469105.065761,
+    "result": null
+  },
+  "montecitojournal.net": {
+    "cached_at": 1780469106.742172,
+    "result": null
+  },
+  "consumerwatchdog.org": {
+    "cached_at": 1780554369.524276,
+    "result": {
+      "email": "press@consumerwatchdog.org",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 12
+    }
   }
 }
