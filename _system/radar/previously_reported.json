@@ -2869,6 +2869,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.newsweek.com/nearly-one-million-californians-face-home-insurance-spike-months-11944733",
       "note": "auto-sent pitch to a.higham@newsweek.com"
+    },
+    {
+      "date_first_reported": "2026-06-05",
+      "source": "user_dismissed",
+      "title": "Serene Lakes residence earns IBHS Wildfire Prepared Home Designation | SierraSun",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.sierrasun.com/news/serene-lakes-residence-earns-ibhs-wildfire-prepared-home-designation/",
+      "note": "auto-sent pitch to editor@sierrasun.com"
     }
   ]
 }

@@ -641,5 +641,18 @@
       "path": "/contact",
       "score": 12
     }
+  },
+  "sierrasun.com": {
+    "cached_at": 1780641366.5188742,
+    "result": {
+      "email": "editor@sierrasun.com",
+      "source": "article_scraped",
+      "path": "/news/serene-lakes-residence-earns-ibhs-wildfire-prepared-home-designation/",
+      "score": 18
+    }
+  },
+  "eciks.org": {
+    "cached_at": 1780641379.124115,
+    "result": null
   }
 }
