@@ -8,11 +8,11 @@
     "result": null
   },
   "beinsure.com": {
-    "cached_at": 1777015948.671623,
+    "cached_at": 1780726420.2312121,
     "result": {
       "email": "go@beinsure.com",
       "source": "article_scraped",
-      "path": "/news/california-blocks-home-insurance-non-renewals-after-gifford-fire/",
+      "path": "/news/california-reviews-wildfire-deductibles-in-surplus-homeowners-insurance-policies/",
       "score": 2
     }
   },
@@ -653,6 +653,32 @@
   },
   "eciks.org": {
     "cached_at": 1780641379.124115,
+    "result": null
+  },
+  "ownluxuryhomes.com": {
+    "cached_at": 1780726387.033064,
+    "result": {
+      "email": "contact@ownluxuryhomes.com",
+      "source": "article_scraped",
+      "path": "/markets/luxury-insurance/guide/luxury-home-insurance-crisis-los-angeles",
+      "score": 9
+    }
+  },
+  "laist.com": {
+    "cached_at": 1780726390.5924869,
+    "result": {
+      "email": "tips@laist.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 20
+    }
+  },
+  "propertyguardian.com": {
+    "cached_at": 1780726409.4790661,
+    "result": null
+  },
+  "cginsurancesb.com": {
+    "cached_at": 1780726430.675004,
     "result": null
   }
 }
