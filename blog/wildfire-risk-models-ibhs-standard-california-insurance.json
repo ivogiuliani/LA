@@ -1,0 +1,66 @@
+{
+  "slug": "wildfire-risk-models-ibhs-standard-california-insurance",
+  "title": "Wildfire Risk Models in California: New Science Cuts Loss by a Third",
+  "subtitle": "Updated catastrophe modeling shows IBHS-standard construction reshapes the long-term insurability math for fire-zone homes.",
+  "section": "insurance",
+  "tag_label": "Insurance & Insurability",
+  "meta_description": "Will new wildfire risk models change California insurance? Updated science shows IBHS-standard construction cuts Average Annual Loss by one-third in LA fire zones.",
+  "meta_keywords": "wildfire risk models California, insurable home California, IBHS Wildfire Prepared Home, California fire insurance solution, fire resistant home California, Average Annual Loss wildfire, Los Angeles rebuild insurance",
+  "sources": [
+    {
+      "name": "Property Guardian",
+      "title": "The Models May Have Been Wrong: New Wildfire Science Is Rewriting Long-Term Risk Projections",
+      "url": "https://www.propertyguardian.com/news/new-wildfire-science-is-rewriting-long-term-risk-projections/",
+      "type": "article",
+      "excerpt": "Reports that rebuilding January 2025 LA fire zones to the IBHS Wildfire Prepared Home standard would reduce Average Annual Loss by one-third, modeled with Moody's wildfire catastrophe model."
+    }
+  ],
+  "key_data": [
+    {
+      "number": "33%",
+      "label": "Projected reduction in Average Annual Loss\nwith IBHS-standard rebuilds"
+    },
+    {
+      "number": "12",
+      "label": "Safer from Wildfires measures\ninsurers must discount for"
+    },
+    {
+      "number": "Jan 2025",
+      "label": "LA fires modeled in the\nupdated catastrophe analysis"
+    }
+  ],
+  "our_perspective": "What strikes us in this modeling is that the variable driving a one-third loss reduction is not where a home sits, but how it is built. That maps directly to how we think about construction. A reinforced-concrete envelope is non-combustible by nature — the same material logic DGU brought to the Kimbell Art Museum and Palazzo Grassi, now applied to a residence engineered to meet the IBHS standard from the first drawing rather than retrofitted toward it. When the structure itself is the mitigation, insurability stops being a negotiation and becomes a property of the building. That is the case we find most compelling: durable material is the most consequential decision a homeowner makes, and it compounds long after the policy renews.",
+  "body_html": "<p class=\"reveal\">The catastrophe models that underwrite California's fire insurance may have been understating what construction can do. According to <a href=\"https://www.propertyguardian.com/news/new-wildfire-science-is-rewriting-long-term-risk-projections/\">Property Guardian</a>, new wildfire science is rewriting long-term risk projections — and the headline finding is concrete: rebuilding the communities destroyed in the January 2025 Los Angeles fires to the IBHS Wildfire Prepared Home standard would reduce Average Annual Loss by roughly one-third, modeled using Moody's wildfire catastrophe model.</p>\n\n<p class=\"reveal\">That number matters because Average Annual Loss is the metric insurers translate into premiums. If hardened construction measurably lowers expected loss, it should measurably lower the cost — and the availability — of coverage.</p>\n\n<h2 class=\"reveal\">The data behind the shift</h2>\n\n<p class=\"reveal\">For years, wildfire risk pricing leaned heavily on location: fire hazard severity zone, vegetation, slope, proximity to wildland. The updated science does not discard geography, but it elevates the building itself as a variable carriers can credit. The <a href=\"https://www.propertyguardian.com/news/new-wildfire-science-is-rewriting-long-term-risk-projections/\">Property Guardian</a> analysis frames this as a correction: models that treated all homes in a zone as roughly interchangeable were missing the loss-reduction effect of structural mitigation.</p>\n\n<p class=\"reveal\">The benchmark in that analysis is the <a href=\"https://www.propertyguardian.com/news/new-wildfire-science-is-rewriting-long-term-risk-projections/\">IBHS Wildfire Prepared Home</a> standard — a research-based set of requirements covering Class A roofing, ember-resistant vents, non-combustible zones, and enclosed eaves. California has already wired these mitigations into regulation. Under the state's Safer from Wildfires framework, insurers must offer discounts for each of 12 mitigation measures a property adopts.</p>\n\n<div class=\"key-data\">\n<p><strong>33%</strong> — projected reduction in Average Annual Loss for LA fire-zone rebuilds meeting the IBHS standard (Moody's model, via Property Guardian).</p>\n<p><strong>12</strong> — Safer from Wildfires mitigation measures California insurers must credit (California Department of Insurance).</p>\n</div>\n\n<p class=\"reveal\">The convergence is the story: independent catastrophe modeling and state regulation are now pointing at the same lever. Both say that how a home is built changes its expected loss — and therefore its insurability.</p>\n\n<h2 class=\"reveal\">What it means for the Los Angeles market</h2>\n\n<p class=\"reveal\">For the Westside and coastal luxury markets — Malibu, the Palisades, the canyons — this reframes a debate that has felt fatalistic. The prevailing narrative held that fire-zone addresses were becoming structurally uninsurable regardless of what an owner did. The new modeling suggests the opposite: within the same zone, a home built to the IBHS standard carries a materially different loss profile than its wood-framed neighbor.</p>\n\n<p class=\"pullquote\">When loss reduction is driven by construction, the question shifts from \"where can I insure?\" to \"how is this built?\"</p>\n\n<p class=\"reveal\">The practical implication is that mitigation is no longer a discretionary upgrade — it is a pricing input. As carriers calibrate to the revised science, the gap between a hardened home and a conventional one is likely to widen, not narrow. For owners commissioning new construction on fire-exposed land, the decision to build to standard is increasingly an underwriting decision made at the design table.</p>\n\n<h2 class=\"reveal\">A correction worth watching</h2>\n\n<p class=\"reveal\">Models are revised slowly and adopted unevenly, so the full repricing will take time to reach individual policies. But the direction is now established in the data: construction quality is a quantifiable lever on wildfire loss. The homes built to that standard today are the ones the next generation of models will reward.</p>",
+  "excerpt": "New catastrophe modeling reported by Property Guardian shows that rebuilding LA fire zones to the IBHS Wildfire Prepared Home standard would cut Average Annual Loss by one-third — reframing construction quality as a core variable in California insurability.",
+  "image_prompt": "Architectural photography of a modern Mediterranean villa with exposed reinforced concrete walls on a Los Angeles hillside at golden hour, muted warm tones, olive and lavender landscaping in the foreground, soft directional light, no people, editorial calm.",
+  "topic_tags": [
+    "insurability",
+    "wildfire-risk-modeling"
+  ],
+  "data_points_cited": [
+    "IBHS-standard rebuilds reduce Average Annual Loss by one-third (Moody's model)",
+    "12 Safer from Wildfires measures insurers must discount"
+  ],
+  "read_time_min": 6,
+  "hero_image": {
+    "local_path": "/home/runner/work/LA/LA/blog/assets/img/wildfire-risk-models-ibhs-standard-california-insurance-hero.jpg",
+    "web_path": "assets/img/wildfire-risk-models-ibhs-standard-california-insurance-hero.jpg",
+    "photo_id": "src-0",
+    "author_name": "Property Guardian",
+    "author_url": "https://www.propertyguardian.com/news/new-wildfire-science-is-rewriting-long-term-risk-projections/",
+    "unsplash_url": "https://www.propertyguardian.com/news/new-wildfire-science-is-rewriting-long-term-risk-projections/",
+    "alt_description": "The Models May Have Been Wrong: New Wildfire Science Is Rewriting Long-Term Risk Projections | Property Guardian",
+    "color": "#3e2f2b",
+    "source": "cited_source",
+    "origin": "source"
+  },
+  "_date": "2026-06-07",
+  "_section_id": "insurance",
+  "_section_name": "Insurance & Insurability",
+  "_source_item": {
+    "title": "The Models May Have Been Wrong: New Wildfire Science Is Rewriting Long-Term Risk Projections | Property Guardian",
+    "url": "https://www.propertyguardian.com/news/new-wildfire-science-is-rewriting-long-term-risk-projections/",
+    "publication": "propertyguardian.com",
+    "cluster": "insurance_regulation"
+  }
+}

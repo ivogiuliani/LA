@@ -2919,6 +2919,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.latimes.com/environment/story/2026-06-05/can-california-boost-wildfire-prevention-with-less-cash",
       "note": "auto-sent pitch to noah.haggerty@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-06-07",
+      "source": "user_dismissed",
+      "title": "The Models May Have Been Wrong: New Wildfire Science Is Rewriting Long-Term Risk Projections",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.propertyguardian.com/news/new-wildfire-science-is-rewriting-long-term-risk-projections/",
+      "note": "auto-published journal: wildfire-risk-models-ibhs-standard-california-insurance"
     }
   ]
 }
