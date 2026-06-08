@@ -161,8 +161,8 @@
           "subject": "Re: A European angle on the AAA and Travelers filings"
         }
       ],
-      "next_touch_at": "2026-06-08",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://www.sfchronicle.com/california/article/aaa-travelers-home-insurance-22236797.php",
       "source_title": "Two of California’s largest insurers seek new rate hikes",
       "cold_pitch_body": "Hi Megan,\n\nReally enjoyed your reporting on AAA and Travelers filing for new rate hikes. You caught what most coverage misses: this is not a one-off, it is the market repricing what a Californian home is actually worth insuring.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete (cemento a vista).\n\nOne thought your piece sparked: the resilience standards California carriers are now pricing into their models have been default Mediterranean practice for generations. The cultural gap between how Europe and California build feels like the real story behind the rate filings.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
@@ -845,10 +845,18 @@
           "message_id": "19e60b5c55953f29",
           "thread_id": "19e60b5c55953f29",
           "subject": "A European angle on your Regulators may seek to suspend State Farm's license, citing  piece"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-08T06:08:53+00:00",
+          "message_id": "19ea5d92e4467e7d",
+          "thread_id": "19ea5d92e4467e7d",
+          "subject": "Re: A European angle on your [...] piece"
         }
       ],
-      "next_touch_at": "2026-06-08",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://www.latimes.com/business/story/2026-05-04/state-farm-wild-fires-fines-regulators-license-mishandling-fire-claims-eaton-palisades",
       "source_title": "Regulators may seek to suspend State Farm's license, citing widespread mishandling of L.A. wildfire claims - Los Angeles Times",
       "cold_pitch_body": "",
@@ -877,10 +885,18 @@
           "message_id": "19e60b6a27b147fb",
           "thread_id": "19e60b6a27b147fb",
           "subject": "A European angle on your California Fires Blaze Into an Ongoing Insurance Crisis - Ne piece"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-08T06:08:55+00:00",
+          "message_id": "19ea5d9320dd3011",
+          "thread_id": "19ea5d9320dd3011",
+          "subject": "Re: A European angle on your [...] piece"
         }
       ],
-      "next_touch_at": "2026-06-08",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://www.newsweek.com/california-fires-insurance-crisis-11976270",
       "source_title": "California Fires Blaze Into an Ongoing Insurance Crisis - Newsweek",
       "cold_pitch_body": "",
@@ -909,10 +925,18 @@
           "message_id": "19e60b6c08d60c38",
           "thread_id": "19e60b6c08d60c38",
           "subject": "A European angle on your California’s Home Insurance Market Is in Crisis. Can a New I piece"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-08T06:08:55+00:00",
+          "message_id": "19ea5d9362fbb651",
+          "thread_id": "19ea5d9362fbb651",
+          "subject": "Re: A European angle on your [...] piece"
         }
       ],
-      "next_touch_at": "2026-06-08",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://www.kqed.org/news/12083384/californias-home-insurance-market-is-in-crisis-can-a-new-insurance-commissioner-fix-it",
       "source_title": "California’s Home Insurance Market Is in Crisis. Can a New Insurance Commissioner Fix It? | KQED",
       "cold_pitch_body": "",
@@ -941,10 +965,18 @@
           "message_id": "19e60b6ef1f0f39e",
           "thread_id": "19e60b6ef1f0f39e",
           "subject": "A European angle on your Two California home insurers to raise rates, expand coverage piece"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-08T06:08:56+00:00",
+          "message_id": "19ea5d9399b0cb5f",
+          "thread_id": "19ea5d9399b0cb5f",
+          "subject": "Re: A European angle on your [...] piece"
         }
       ],
-      "next_touch_at": "2026-06-08",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://www.dailynews.com/2026/05/06/two-california-home-insurers-to-raise-rates-expand-coverage-by-late-2026/",
       "source_title": "Two California home insurers to raise rates, expand coverage by late 2026 – Daily News",
       "cold_pitch_body": "",
@@ -994,9 +1026,17 @@
           "message_id": "19e826e2fe75e5aa",
           "thread_id": "19e826e2fe75e5aa",
           "subject": "A different idea of the resilient luxury home for the Westside"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-08T06:08:57+00:00",
+          "message_id": "19ea5d93ca44f1e4",
+          "thread_id": "19ea5d93ca44f1e4",
+          "subject": "Re: A different idea of the resilient luxury home for the Westside"
         }
       ],
-      "next_touch_at": "2026-06-08",
+      "next_touch_at": "2026-06-22",
       "status": "in_cadence",
       "source_url": "",
       "source_title": "",
@@ -1015,9 +1055,17 @@
           "message_id": "19e828d3001719ef",
           "thread_id": "19e828d3001719ef",
           "subject": "A European angle on your Wyoming Company Uses High-Tech AI Sprinklers To Save Homes F piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-08T06:08:58+00:00",
+          "message_id": "19ea5d9405fda96c",
+          "thread_id": "19ea5d9405fda96c",
+          "subject": "Re: A European angle on your Wyoming Company Uses High-Tech AI Sprinklers To Save Homes F piece"
         }
       ],
-      "next_touch_at": "2026-06-08",
+      "next_touch_at": "2026-06-22",
       "status": "in_cadence",
       "source_url": "",
       "source_title": "",
@@ -1036,9 +1084,17 @@
           "message_id": "19e828d32ce5b3a8",
           "thread_id": "19e828d32ce5b3a8",
           "subject": "A European angle on your Carbon Beach rebuild piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-08T06:08:59+00:00",
+          "message_id": "19ea5d94439e05d2",
+          "thread_id": "19ea5d94439e05d2",
+          "subject": "Re: A European angle on your Carbon Beach rebuild piece"
         }
       ],
-      "next_touch_at": "2026-06-08",
+      "next_touch_at": "2026-06-22",
       "status": "in_cadence",
       "source_url": "https://shenrealty.com/malibu-real-estate-blog/carbon-beach-malibu-inside-billionaire-s-beach/",
       "source_title": "Carbon Beach Malibu: Inside Billionaire's Beach | Malibu Blog | Riviera Living | Shen Schulz",
@@ -1327,5 +1383,5 @@
       "cold_pitch_subject": "A European angle on your Can California boost wildfire prevention with less cash? A n piece"
     }
   },
-  "last_hydrated_at": "2026-06-07T08:21:44.424095+00:00"
+  "last_hydrated_at": "2026-06-08T06:08:53.417241+00:00"
 }
