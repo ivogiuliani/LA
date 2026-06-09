@@ -2929,6 +2929,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.propertyguardian.com/news/new-wildfire-science-is-rewriting-long-term-risk-projections/",
       "note": "auto-published journal: wildfire-risk-models-ibhs-standard-california-insurance"
+    },
+    {
+      "date_first_reported": "2026-06-09",
+      "source": "user_dismissed",
+      "title": "5 New Construction and Luxury Estates from Malibu to Westport",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.havenlifestyles.com/5-new-construction-and-luxury-estates-from-malibu-to-westport-la-033026",
+      "note": "auto-published journal: new-construction-luxury-estates-malibu-foundation-stage"
     }
   ]
 }
