@@ -2939,6 +2939,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.havenlifestyles.com/5-new-construction-and-luxury-estates-from-malibu-to-westport-la-033026",
       "note": "auto-published journal: new-construction-luxury-estates-malibu-foundation-stage"
+    },
+    {
+      "date_first_reported": "2026-06-09",
+      "source": "user_dismissed",
+      "title": "Some California homeowners now face ‘wildfire deductibles.’ Why that’s a problem",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.washingtonpost.com/weather/2026/06/05/some-california-homeowners-now-face-wildfire-deductibles-why-thats-problem/",
+      "note": "auto-sent pitch to letters@washpost.com"
     }
   ]
 }

@@ -124,12 +124,13 @@
           "subject": "Re: A European angle on the California insurance story"
         }
       ],
-      "next_touch_at": "2026-06-09",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://www.sfchronicle.com/california/article/home-insurance-company-california-22071083.php",
       "source_title": "Client Challenge",
       "cold_pitch_body": "Hello,\n\nYour recent reporting on the California home insurance crisis captured something most coverage flattens: the affordability problem for high-value homes is not a pricing glitch, it is a reckoning with how these houses were built in the first place.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete (cemento a vista). In Europe, resilience has been default construction practice for generations.\n\nOne thought: what California is now demanding of homeowners through WUI rules and carrier underwriting has been normal Mediterranean practice long before insurability became a topic here.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
-      "cold_pitch_subject": "A European angle on the California insurance story"
+      "cold_pitch_subject": "A European angle on the California insurance story",
+      "exhausted_reason": "author_rescue → upgraded to megan.munce@sfchronicle.com"
     },
     "megan.munce@sfchronicle.com": {
       "email": "megan.munce@sfchronicle.com",
@@ -159,9 +160,17 @@
           "message_id": "manually-reconstructed",
           "thread_id": "manually-reconstructed",
           "subject": "Re: A European angle on the AAA and Travelers filings"
+        },
+        {
+          "n": 1,
+          "type": "cold_rescued",
+          "sent_at": "2026-06-09T06:19:28+00:00",
+          "message_id": "19eab0936373a64a",
+          "thread_id": "19eab0936373a64a",
+          "subject": "A European angle on your Client Challenge piece"
         }
       ],
-      "next_touch_at": null,
+      "next_touch_at": "2026-06-16",
       "status": "exhausted",
       "source_url": "https://www.sfchronicle.com/california/article/aaa-travelers-home-insurance-22236797.php",
       "source_title": "Two of California’s largest insurers seek new rate hikes",
@@ -188,10 +197,18 @@
           "message_id": "19e63532b218729f",
           "thread_id": "19e63532b218729f",
           "subject": "Re: A European angle on your fire-resistant building piece"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-09T06:19:40+00:00",
+          "message_id": "19eab096793b1451",
+          "thread_id": "19eab096793b1451",
+          "subject": "Re: A European angle on your fire-resistant building piece"
         }
       ],
-      "next_touch_at": "2026-06-09",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://davisvanguard.org/2026/05/san-jose-fire-resistant-adu/",
       "source_title": "California Builders Embrace Fire-Resistant Construction Amid Rising Risks - Davis Vanguard",
       "cold_pitch_body": "Hi Davisvanguard team,\n\n(Writing to the Davisvanguard newsroom rather than David directly — we couldn't locate a direct contact. Feel free to forward if it's a better fit for them or the desk.)\n\nReally enjoyed your piece on California builders embracing fire-resistant construction. The San Jose ICF ADU framing is a smart entry point — small projects often surface the cultural shift before the larger market catches up.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your article sparked: what California is now codifying through WUI rules has been default Mediterranean practice for generations. Watching ADUs lead the shift, while the typology has existed in Europe for centuries, feels like the more interesting story.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
@@ -217,10 +234,18 @@
           "message_id": "19e63533e81854fa",
           "thread_id": "19e63533e81854fa",
           "subject": "Re: Loved your Santa Barbara resiliency piece, one thought"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-09T06:19:45+00:00",
+          "message_id": "19eab097d12ed0c2",
+          "thread_id": "19eab097d12ed0c2",
+          "subject": "Re: Loved your Santa Barbara resiliency piece, one thought"
         }
       ],
-      "next_touch_at": "2026-06-09",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://www.independent.com/2026/04/29/see-wildfire-resiliency-work-first-hand-at-wildfire-preparedness-week-event-in-santa-barbara-county/",
       "source_title": "See Wildfire Resiliency Work First-Hand at Wildfire Preparedness Week Event in Santa Barbara County",
       "cold_pitch_body": "Hi Independent team,\n\n(Writing to the Independent newsroom rather than Indy directly — we couldn't locate a direct contact. Feel free to forward if it's a better fit for them or the desk.)\n\nReally enjoyed the Independent's piece on the Wildfire Preparedness Week event in Santa Barbara County. The hands-on framing landed something most regional coverage misses: residents understand resilience much faster when they can see it, not just read code language.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your piece sparked: what California is now codifying through WUI and WPH Plus has been default Mediterranean practice for generations. The cultural gap, more than the technical one, feels like the real story.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
@@ -329,10 +354,18 @@
           "message_id": "19e635352132b27d",
           "thread_id": "19e635352132b27d",
           "subject": "Re: One thought after reading your Bel-Air mega mansion piece"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-09T06:19:50+00:00",
+          "message_id": "19eab098e8b499db",
+          "thread_id": "19eab098e8b499db",
+          "subject": "Re: One thought after reading your Bel-Air mega mansion piece"
         }
       ],
-      "next_touch_at": "2026-06-09",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://news.dupontregistry.com/blogs/lifestyle/this-400m-beverly-hills-estate",
       "source_title": "Inside the $400M Bel-Air Mega Mansion Everyone’s Talking About",
       "cold_pitch_body": "Hi Jordan,\n\nReally enjoyed your piece on the $400M Bel-Air estate. You captured something most luxury coverage flattens: the way scale at that level becomes a statement about permanence, not just price.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your piece sparked: in Europe, permanence is built into the material itself, not signalled through size. What LA is now codifying through WUI codes and WPH Plus has been default Mediterranean practice for generations. That cultural gap feels like an interesting thread for high-end coverage.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
@@ -418,10 +451,18 @@
           "message_id": "19e63536d825f56c",
           "thread_id": "19e63536d825f56c",
           "subject": "Re: A European angle on the DOJ filing story"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-09T06:20:11+00:00",
+          "message_id": "19eab09deeed2c8c",
+          "thread_id": "19eab09deeed2c8c",
+          "subject": "Re: A European angle on the DOJ filing story"
         }
       ],
-      "next_touch_at": "2026-06-09",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://www.insurancejournal.com/news/west/2026/05/06/868665.htm",
       "source_title": "DOJ Files Statement of Interest in California Fire Insurance Case",
       "cold_pitch_body": "Hi Insurancejournal team,\n\n(Writing to the Insurancejournal newsroom directly — this is meant for whichever desk is closest to the topic below. Feel free to forward as appropriate.)\n\nReally enjoyed your coverage of the DOJ statement of interest. The 16-insurer allegation is striking, but the deeper line in your piece is the timing one: cancellations clustered before, not after, the fires. That detail reframes the whole conversation.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your piece sparked: as carriers grow more selective, the homes that stay underwritable tend to be built the way the Mediterranean has built by default for generations. That cultural gap feels like the real story underneath the lawsuit.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
@@ -1142,9 +1183,17 @@
           "message_id": "19e87a31a5f895e5",
           "thread_id": "19e87a31a5f895e5",
           "subject": "One thought after reading your FAIR Plan guide"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-09T06:19:55+00:00",
+          "message_id": "19eab09a2a9e4441",
+          "thread_id": "19eab09a2a9e4441",
+          "subject": "Re: One thought after reading your FAIR Plan guide"
         }
       ],
-      "next_touch_at": "2026-06-09",
+      "next_touch_at": "2026-06-23",
       "status": "in_cadence",
       "source_url": "https://qualityspace.com/guides/california-fair-plan",
       "source_title": "California FAIR Plan Homeowners Insurance: 2026 Guide",
@@ -1163,9 +1212,17 @@
           "message_id": "19e87a31c845e694",
           "thread_id": "19e87a31c845e694",
           "subject": "A European angle on your FAIR Plan explainer"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-09T06:20:01+00:00",
+          "message_id": "19eab09ba5f8bb3a",
+          "thread_id": "19eab09ba5f8bb3a",
+          "subject": "Re: A European angle on your FAIR Plan explainer"
         }
       ],
-      "next_touch_at": "2026-06-09",
+      "next_touch_at": "2026-06-23",
       "status": "in_cadence",
       "source_url": "https://www.meganmicco.com/blog/california-fair-plan-rate-increase-and-what-it-means-for-berkeley-homeowners/",
       "source_title": "California FAIR Plan Rate Increase and What It Means for Berkeley Homeowners? - Megan Micco - Berkeley Real Estate Expert",
@@ -1184,9 +1241,17 @@
           "message_id": "19e87a442b5d369b",
           "thread_id": "19e87a442b5d369b",
           "subject": "A new kind of LA luxury home, built in exposed concrete"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-09T06:20:06+00:00",
+          "message_id": "19eab09cb186fab0",
+          "thread_id": "19eab09cb186fab0",
+          "subject": "Re: A new kind of LA luxury home, built in exposed concrete"
         }
       ],
-      "next_touch_at": "2026-06-09",
+      "next_touch_at": "2026-06-23",
       "status": "in_cadence",
       "source_url": "",
       "source_title": "",
@@ -1381,7 +1446,28 @@
       "source_title": "",
       "cold_pitch_body": "",
       "cold_pitch_subject": "A European angle on your Can California boost wildfire prevention with less cash? A n piece"
+    },
+    "letters@washpost.com": {
+      "email": "letters@washpost.com",
+      "publication": "The Washington Post",
+      "first_seen_at": "2026-06-09T06:19:18+00:00",
+      "touches": [
+        {
+          "n": 1,
+          "type": "cold",
+          "sent_at": "2026-06-09T06:19:18+00:00",
+          "message_id": "19eab09121500b61",
+          "thread_id": "19eab09121500b61",
+          "subject": "A European angle on your wildfire deductibles piece"
+        }
+      ],
+      "next_touch_at": "2026-06-16",
+      "status": "in_cadence",
+      "source_url": "https://www.washingtonpost.com/weather/2026/06/05/some-california-homeowners-now-face-wildfire-deductibles-why-thats-problem/",
+      "source_title": "Some California homeowners now face ‘wildfire deductibles.’ Why that’s a problem. - The Washington Post",
+      "cold_pitch_body": "Hi Washington Post team,\n\n(Writing to the Washington Post newsroom directly — this is meant for whichever desk is closest to the topic below. Feel free to forward as appropriate.)\n\nReally enjoyed your investigation into California's wildfire deductibles. You landed the detail most coverage misses: that a single inquiry was enough to push the Commissioner toward a formal review, which says a lot about how unsettled these policies still are.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your piece sparked: the resilience California is now pricing into deductibles has been default Mediterranean building practice for generations. That cultural gap feels like the real story.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
+      "cold_pitch_subject": "A European angle on your wildfire deductibles piece"
     }
   },
-  "last_hydrated_at": "2026-06-08T06:08:53.417241+00:00"
+  "last_hydrated_at": "2026-06-09T06:19:19.795055+00:00"
 }
