@@ -222,8 +222,27 @@ def publish_to_instagram(caption, image_url=None):
             "needs_image": True,
         }
 
+    # Safety net sul nome del fondatore anche nelle caption social
+    # (stesso sanitizer delle email: "Paolo Giordano" → "Paolo Mezzalama").
+    try:
+        from send_email import sanitize_founder_name
+        caption = sanitize_founder_name(caption)
+    except Exception:  # noqa: BLE001 — mai bloccare il publish per questo
+        pass
+    # Limite caption Instagram: 2200 caratteri.
+    if len(caption) > 2200:
+        caption = caption[:2197].rstrip() + "…"
+
+    # Host/versione configurabili: con il flusso "Instagram API with
+    # Instagram Login" (consigliato dal 2024, NON richiede pagina FB)
+    # l'host è graph.instagram.com; col vecchio flusso Facebook Login
+    # è graph.facebook.com. Default: instagram (la nostra guida usa quello).
+    graph_host = _get_env("IG_GRAPH_HOST") or "graph.instagram.com"
+    api_version = _get_env("IG_API_VERSION") or "v23.0"
+    base = f"https://{graph_host}/{api_version}"
+
     # Step 1: Create media container
-    container_url = f"https://graph.facebook.com/v19.0/{account_id}/media"
+    container_url = f"{base}/{account_id}/media"
     container_params = urllib.parse.urlencode({
         "image_url": image_url,
         "caption": caption,
@@ -249,8 +268,29 @@ def publish_to_instagram(caption, image_url=None):
     if not container_id:
         return {"ok": False, "error": "Failed to create media container"}
 
+    # Step 1b: attendi che il container sia pronto. Per immagini grandi
+    # il publish immediato fallisce con "media not ready" — poll dello
+    # status_code fino a FINISHED (max ~30s).
+    import time as _time
+    status_url = (f"{base}/{container_id}"
+                  f"?fields=status_code&access_token="
+                  f"{urllib.parse.quote(access_token)}")
+    for _ in range(10):
+        try:
+            with urllib.request.urlopen(status_url, timeout=15) as resp:
+                sc = json.loads(resp.read().decode("utf-8")).get("status_code")
+            if sc == "FINISHED":
+                break
+            if sc == "ERROR":
+                return {"ok": False,
+                        "error": "IG container in stato ERROR (immagine "
+                                 "non scaricabile o formato non valido?)"}
+        except Exception:  # noqa: BLE001 — lo status è best-effort
+            pass
+        _time.sleep(3)
+
     # Step 2: Publish the container
-    publish_url = f"https://graph.facebook.com/v19.0/{account_id}/media_publish"
+    publish_url = f"{base}/{account_id}/media_publish"
     publish_params = urllib.parse.urlencode({
         "creation_id": container_id,
         "access_token": access_token,
@@ -261,10 +301,23 @@ def publish_to_instagram(caption, image_url=None):
         with urllib.request.urlopen(req, timeout=30) as resp:
             publish_data = json.loads(resp.read().decode("utf-8"))
             post_id = publish_data.get("id", "")
+            # Il media id NON è lo shortcode: il permalink vero va chiesto
+            # all'API (instagram.com/p/<media_id>/ era un link rotto).
+            permalink = ""
+            if post_id:
+                try:
+                    pl_url = (f"{base}/{post_id}?fields=permalink"
+                              f"&access_token="
+                              f"{urllib.parse.quote(access_token)}")
+                    with urllib.request.urlopen(pl_url, timeout=15) as r2:
+                        permalink = json.loads(
+                            r2.read().decode("utf-8")).get("permalink", "")
+                except Exception:  # noqa: BLE001
+                    permalink = ""
             return {
                 "ok": True,
                 "post_id": post_id,
-                "url": f"https://www.instagram.com/p/{post_id}/" if post_id else "",
+                "url": permalink,
                 "message": f"Published to Instagram (post {post_id})",
             }
     except urllib.error.HTTPError as e:

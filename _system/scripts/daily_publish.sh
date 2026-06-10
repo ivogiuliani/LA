@@ -133,6 +133,16 @@ if [ "${DRY_RUN:-0}" = "1" ]; then
     FP_DRY="--dry-run"
 fi
 
+# Step 1d: ig_publisher — pubblica su Instagram i post APPROVATI da
+# Ivo (max IG_DAILY_CAP/giorno, default 1 — ramp account nuovo).
+# Gira PRIMA di publish_all_drafts così la digest riporta l'esito.
+# Senza credenziali Meta esce pulito (fase pre-setup). Non-bloccante.
+IG_DRY=""
+[ "${DRY_RUN:-0}" = "1" ] && IG_DRY="--dry-run"
+log "--- ig_publisher.py $IG_DRY ---"
+python3 _system/scripts/ig_publisher.py $IG_DRY >> "$LOG_FILE" 2>&1 || \
+    log "ig_publisher errore non bloccante (continuo)"
+
 # Step 2: generate_journal
 log "--- generate_journal.py ---"
 python3 _system/scripts/generate_journal.py \

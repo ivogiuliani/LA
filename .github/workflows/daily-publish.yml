@@ -123,6 +123,8 @@ jobs:
           UNSPLASH_ACCESS_KEY=${{ secrets.UNSPLASH_ACCESS_KEY }}
           UNSPLASH_SECRET_KEY=${{ secrets.UNSPLASH_SECRET_KEY }}
           APIFY_API_TOKEN=${{ secrets.APIFY_API_TOKEN }}
+          IG_ACCESS_TOKEN=${{ secrets.IG_ACCESS_TOKEN }}
+          IG_BUSINESS_ACCOUNT_ID=${{ secrets.IG_BUSINESS_ACCOUNT_ID }}
           EOF
           chmod 600 .env
 
@@ -229,6 +231,23 @@ jobs:
           else
             echo "should_send=true" >> "$GITHUB_OUTPUT"
           fi
+
+      # ───────────────────────────────────────────────────────────
+      # 8c. Instagram publisher — pubblica i post APPROVATI (cap
+      #     giornaliero, default 1). Senza secrets Meta esce pulito.
+      #     Prima del publish così la digest riporta l'esito.
+      # ───────────────────────────────────────────────────────────
+      - name: Instagram publisher (post approvati)
+        if: steps.guard.outputs.should_run == 'true' && steps.guard2.outputs.should_send == 'true'
+        run: |
+          IG_FLAG=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            IG_FLAG="--dry-run"
+          fi
+          python3 _system/scripts/ig_publisher.py $IG_FLAG || \
+            echo "::warning::ig_publisher non-bloccante fallito"
+        env:
+          PYTHONUNBUFFERED: "1"
 
       # ───────────────────────────────────────────────────────────
       # 9. Publish drafts + cold pitch + follow-up + digest email

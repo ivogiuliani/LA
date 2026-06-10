@@ -873,10 +873,79 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15,
     }
 
 
+# ── Instagram digest data ────────────────────────────────────────────
+
+def _ig_digest_data() -> dict:
+    """Stato Instagram per la digest: pubblicati oggi, coda approvati,
+    proposte in attesa di approvazione (per categoria). Legge i .md
+    delle code social — nessuna API call."""
+    import yaml as _yaml
+    fm_re = re.compile(r"^---\s*\n(.*?)\n---\s*\n(.*)", re.DOTALL)
+    social = SYSTEM_DIR / "social" / "posts"
+
+    def _parse(path):
+        try:
+            m = fm_re.match(path.read_text(encoding="utf-8"))
+            return (_yaml.safe_load(m.group(1)) or {}, m.group(2).strip()) if m else None
+        except Exception:  # noqa: BLE001
+            return None
+
+    def _is_ig(fm):
+        return str(fm.get("channel", "")).lower() in ("instagram", "ig")
+
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    published_today, approved_queue, proposals = [], [], []
+
+    pub_dir = social / "published"
+    if pub_dir.exists():
+        for f in pub_dir.glob("*.md"):
+            parsed = _parse(f)
+            if not parsed:
+                continue
+            fm, body = parsed
+            if _is_ig(fm) and str(fm.get("published_at", "")).startswith(today):
+                published_today.append({
+                    "file": f.name,
+                    "permalink": fm.get("ig_permalink", ""),
+                    "caption_preview": body[:160],
+                })
+
+    app_dir = social / "approved"
+    if app_dir.exists():
+        for f in app_dir.glob("*.md"):
+            parsed = _parse(f)
+            if parsed and _is_ig(parsed[0]):
+                approved_queue.append({"file": f.name,
+                                       "caption_preview": parsed[1][:120]})
+
+    # Proposte da approvare: reactive IG in stato draft
+    react_dir = social / "reactive"
+    if react_dir.exists():
+        for f in react_dir.glob("*.md"):
+            parsed = _parse(f)
+            if not parsed:
+                continue
+            fm, body = parsed
+            if _is_ig(fm) and str(fm.get("status", "draft")) == "draft":
+                proposals.append({"file": f.name, "category": "reactive",
+                                  "caption_preview": body[:120]})
+    # Companion IG degli articoli pubblicati (blog/*.ig.md)
+    for f in (ROOT_DIR / "blog").glob("*.ig.md"):
+        parsed = _parse(f)
+        if parsed:
+            proposals.append({"file": f.name, "category": "companion",
+                              "caption_preview": parsed[1][:120]})
+
+    return {"published_today": published_today,
+            "approved_queue": approved_queue,
+            "proposals": proposals}
+
+
 # ── Digest email ─────────────────────────────────────────────────────
 
 def _format_digest(published, skipped, errors,
-                   *, pitches=None, dry_run=False) -> tuple[str, str, str]:
+                   *, pitches=None, ig_data=None,
+                   dry_run=False) -> tuple[str, str, str]:
     """Returns (subject, plain_body, html_body) for the daily digest.
 
     The plain body is the legacy text version (kept for email clients
@@ -1029,13 +1098,41 @@ def _format_digest(published, skipped, errors,
         else:
             lines.append("\n✉️  EMAIL AI GIORNALISTI: nessuna attività oggi.\n")
 
+    # ── Section 3: Instagram ──
+    if ig_data:
+        pub_t = ig_data.get("published_today") or []
+        appr = ig_data.get("approved_queue") or []
+        props = ig_data.get("proposals") or []
+        if pub_t or appr or props:
+            lines.append("\n\U0001F4F8 INSTAGRAM\n")
+            if pub_t:
+                lines.append(f"Pubblicati oggi ({len(pub_t)}):")
+                for p_ in pub_t:
+                    link = p_.get("permalink") or "(permalink in arrivo)"
+                    lines.append(f"  \u2713 {link}")
+                    lines.append(f"    {p_.get('caption_preview','')[:100]}")
+                lines.append("")
+            if appr:
+                lines.append(f"Approvati in coda ({len(appr)}) — escono 1/giorno:")
+                for a in appr[:5]:
+                    lines.append(f"  \u23F3 {a['file']}")
+                lines.append("")
+            if props:
+                by_cat = {}
+                for pr in props:
+                    by_cat.setdefault(pr["category"], []).append(pr)
+                cats = " · ".join(f"{k}: {len(v)}" for k, v in by_cat.items())
+                lines.append(f"Da approvare ({len(props)}: {cats}) — apri il pannello radar")
+                lines.append("")
+
     lines.append("\n--\nAuto-published + outreach by publish_all_drafts.py")
     lines.append(f"Site: {SITE_BASE}/blog/")
     lines.append("Le pitch 'risky' (Apollo likely, pattern_guess) restano per review manuale sul dashboard.")
 
     plain_body = "\n".join(lines)
     html_body = _build_html_digest(
-        published, skipped, errors, pitches=pitches, dry_run=dry_run,
+        published, skipped, errors, pitches=pitches, ig_data=ig_data,
+        dry_run=dry_run,
     )
     return subject, plain_body, html_body
 
@@ -1703,7 +1800,8 @@ def _html_outreach_panel(pitches: dict, *, dry_run: bool) -> str:
 
 
 def _build_html_digest(published, skipped, errors,
-                      *, pitches=None, dry_run=False) -> str:
+                      *, pitches=None, ig_data=None,
+                      dry_run=False) -> str:
     today = datetime.now().strftime("%A, %B %-d, %Y")
     dry_banner = ""
     if dry_run:
@@ -1762,6 +1860,50 @@ def _build_html_digest(published, skipped, errors,
         # handle + invalid-address registry + skipped/errors tail.
         pitch_block = _html_outreach_panel(pitches, dry_run=dry_run)
 
+    # ── Instagram section ──────────────────────────────────────────
+    ig_block = ""
+    if ig_data:
+        ig_pub = ig_data.get("published_today") or []
+        ig_appr = ig_data.get("approved_queue") or []
+        ig_props = ig_data.get("proposals") or []
+        if ig_pub or ig_appr or ig_props:
+            rows = ""
+            for p_ in ig_pub:
+                link = p_.get("permalink") or ""
+                link_html = (f'<a href="{_html_escape(link)}" '
+                             f'style="color:#C2714F;">{_html_escape(link)}</a>'
+                             if link else
+                             '<span style="color:#888;">permalink in arrivo</span>')
+                rows += (f'<tr><td style="padding:6px 32px;'
+                         f'font-family:-apple-system,sans-serif;font-size:13px;">'
+                         f'\u2713 Pubblicato: {link_html}'
+                         f'<div style="color:#888;font-size:12px;margin-top:2px;">'
+                         f'{_html_escape(p_.get("caption_preview","")[:110])}…</div>'
+                         f'</td></tr>')
+            if ig_appr:
+                rows += (f'<tr><td style="padding:8px 32px;'
+                         f'font-family:-apple-system,sans-serif;font-size:13px;'
+                         f'color:#5C6B4F;">\u23F3 <strong>{len(ig_appr)}</strong> '
+                         f'approvati in coda (escono 1 al giorno)</td></tr>')
+            if ig_props:
+                by_cat = {}
+                for pr in ig_props:
+                    by_cat[pr["category"]] = by_cat.get(pr["category"], 0) + 1
+                cats = " · ".join(f"{k}: {v}" for k, v in by_cat.items())
+                rows += (f'<tr><td style="padding:8px 32px;'
+                         f'font-family:-apple-system,sans-serif;font-size:13px;'
+                         f'color:#A65E1F;">\u270D {len(ig_props)} proposte da '
+                         f'approvare ({_html_escape(cats)}) — apri il pannello'
+                         f'</td></tr>')
+            ig_block = (
+                '<tr><td style="padding:24px 32px 8px 32px;'
+                'border-top:1px solid #D4B896;">'
+                '<h2 style="margin:14px 0 4px;font-family:Georgia,serif;'
+                'font-size:20px;font-weight:normal;color:#3E2F2B;">'
+                '<span style="color:#C2714F;">\U0001F4F8</span> Instagram'
+                '</h2></td></tr>' + rows
+            )
+
     return f"""<!DOCTYPE html>
 <html>
 <head>
@@ -1800,6 +1942,8 @@ def _build_html_digest(published, skipped, errors,
   {skipped_block}
 
   {pitch_block}
+
+  {ig_block}
 
   <!-- Footer -->
   <tr><td align="center" style="padding:28px 32px 32px;border-top:1px solid #D4B896;background:#FAF6F0;">
@@ -2223,9 +2367,14 @@ def main(argv=None):
             _mark_digest_done_today()  # allinea il marker locale
         else:
             print("Sending digest email...")
+            try:
+                ig_data = _ig_digest_data()
+            except Exception as e:  # noqa: BLE001
+                print(f"  [ig-digest] non bloccante: {e}")
+                ig_data = None
             subject, plain_body, html_body = _format_digest(
                 published, skipped, errors,
-                pitches=pitches, dry_run=args.dry_run,
+                pitches=pitches, ig_data=ig_data, dry_run=args.dry_run,
             )
             sent_ok = _send_digest(subject, plain_body, html_body,
                                    to=args.to, dry_run=args.dry_run)
