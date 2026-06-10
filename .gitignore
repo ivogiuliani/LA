@@ -10,6 +10,7 @@ _archive/
 _system/history/
 _system/radar/reports/*.json
 _system/radar/reports/*.html
+_system/radar/reports/*.md
 _system/social/posts/
 _system/content_system.log
 

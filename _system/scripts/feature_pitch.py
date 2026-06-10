@@ -33,7 +33,7 @@ import argparse
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -82,13 +82,16 @@ def _already_pitched() -> set:
                 r = json.loads(line)
             except json.JSONDecodeError:
                 continue
-            if r.get("domain"):
+            status = r.get("status") or ""
+            # Solo gli esiti DEFINITIVI escludono l'outlet; no_email e
+            # queued_review devono poter essere ritentati nei run futuri.
+            if r.get("domain") and status not in ("no_email", "queued_review"):
                 done.add(r["domain"].lower())
     return done
 
 
 def _log_pitch(record: dict) -> None:
-    record["logged_at"] = datetime.now().isoformat()
+    record["logged_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     with PITCH_LOG.open("a", encoding="utf-8") as f:
         f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
@@ -108,7 +111,7 @@ def _find_email(outlet: dict) -> tuple[str | None, str]:
         )
         if res and res.get("email"):
             # The scraper scores mailto/contact-page hits as high-confidence.
-            conf = "verified" if res.get("in_mailto") or res.get("score", 0) >= 3 else "guess"
+            conf = ("verified" if res.get("in_mailto") or res.get("score", 0) >= 8 else "guess")
             return res["email"], conf
     except Exception as e:  # noqa: BLE001
         print(f"    [scraper] {outlet['domain']}: {type(e).__name__}: {e}")

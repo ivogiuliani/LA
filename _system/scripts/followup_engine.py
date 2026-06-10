@@ -152,6 +152,10 @@ def _read_send_log() -> list[dict]:
             continue
         if not r.get("ok") or r.get("dry_run"):
             continue
+        # Solo outreach: le reply manuali dalla dashboard (kind="reply")
+        # non sono touch di cadenza e gonfiavano i contatori.
+        if (r.get("kind") or "outreach") != "outreach":
+            continue
         to = (r.get("to") or "").strip().lower()
         if not to or _is_internal(to):
             continue
@@ -581,7 +585,7 @@ def _template_body(contact: dict, touch_n: int) -> str:
         # universal and least likely to feel off-topic.
         data_pt = _DATA_POINTS[2]  # Mediterranean baseline
         return (
-            f"Hi {pub.split()[0] if pub else 'team'},\n\n"
+            f"Hello,\n\n"
             f"In case the earlier note slipped through — one data point "
             f"from our side that might be useful: {data_pt}\n\n"
             f"Happy to share the underlying numbers if relevant to anything "
@@ -591,7 +595,7 @@ def _template_body(contact: dict, touch_n: int) -> str:
         )
     if touch_n == 3:
         return (
-            f"Hi {pub.split()[0] if pub else 'team'},\n\n"
+            f"Hello,\n\n"
             f"Just closing the loop on this thread. If a relevant piece "
             f"comes up down the line, Paolo — our founder — is happy to "
             f"do a 30-minute call. Otherwise, no need to reply.\n\n"
@@ -867,7 +871,7 @@ def send_followups(ledger: dict, *, dry_run: bool = False,
             rescued_em = (rescue_result.get("email") or "").lower()
             if rescued_em in ledger.get("contacts", {}):
                 existing = ledger["contacts"][rescued_em]
-                if existing.get("status") in ("in_cadence", "replied"):
+                if existing.get("status"):  # qualunque status: mai ri-pitch
                     print(f"  [rescue] ↺ {rescued_em} already in ledger "
                           f"({existing['status']}) — marking alias exhausted "
                           f"without re-pitching")

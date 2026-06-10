@@ -1,8 +1,8 @@
 name: Daily Publish Pipeline
 
-# Pipeline giornaliera: radar → generate_journal → publish + email digest.
-#
-# Gira ogni giorno alle 06:00 UTC (= 08:00 CEST in estate, 07:00 CET in inverno).
+# Pipeline giornaliera: radar → radar_report → journal → publish + digest
+# → feature pitch. Rail CLOUD (fallback del launchd locale): 4 trigger
+# cron mattutini (04:47/06:17/08:17/10:17 UTC) — basta che uno parta.
 # Non richiede il Mac acceso: gira su un runner GitHub Ubuntu.
 #
 # Manual trigger: dalla tab Actions del repo, click "Run workflow" sul
@@ -175,6 +175,21 @@ jobs:
           PYTHONUNBUFFERED: "1"
 
       # ───────────────────────────────────────────────────────────
+      # 7c. Reply monitor — risposte + bounce giornalisti (60 gg).
+      #     Aggiorna replies_log/invalid_addresses/ledger PRIMA dei
+      #     follow-up, così chi ha risposto o è bounced non riceve
+      #     altri touch. Non-bloccante.
+      # ───────────────────────────────────────────────────────────
+      - name: Reply monitor (risposte + bounce)
+        if: steps.guard.outputs.should_run == 'true'
+        run: |
+          SINCE=$(date -u -d '60 days ago' +%Y-%m-%d)
+          python3 _system/scripts/reply_monitor.py --since "$SINCE" || \
+            echo "::warning::reply_monitor non-bloccante fallito"
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      # ───────────────────────────────────────────────────────────
       # 8. Generate journal articles from today's radar
       # ───────────────────────────────────────────────────────────
       - name: Generate journal articles
@@ -194,10 +209,32 @@ jobs:
           PYTHONUNBUFFERED: "1"
 
       # ───────────────────────────────────────────────────────────
+      # 8b. RE-CHECK del marker da origin SUBITO PRIMA del publish.
+      #     Il guard iniziale (step 1b) legge il marker al checkout,
+      #     ma radar+journal durano minuti: se il rail locale ha
+      #     pubblicato NEL FRATTEMPO (e pushato il marker), questo
+      #     re-check lo vede e salta gli step irreversibili (invii).
+      #     Chiude la finestra di race locale↔cloud.
+      # ───────────────────────────────────────────────────────────
+      - name: Re-check cross-rail marker (anti-race)
+        id: guard2
+        if: steps.guard.outputs.should_run == 'true'
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          git fetch origin main --quiet 2>/dev/null || true
+          REMOTE=$(git show origin/main:_system/outreach/.last_digest_date 2>/dev/null | tr -d '[:space:]' || true)
+          if [ "${{ github.event.inputs.dry_run }}" != "true" ] && [ "$REMOTE" = "$TODAY" ]; then
+            echo "should_send=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Il rail locale ha pubblicato durante questo run (marker=$TODAY) — salto publish/outreach."
+          else
+            echo "should_send=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # ───────────────────────────────────────────────────────────
       # 9. Publish drafts + cold pitch + follow-up + digest email
       # ───────────────────────────────────────────────────────────
       - name: Publish + outreach + digest
-        if: steps.guard.outputs.should_run == 'true'
+        if: steps.guard.outputs.should_run == 'true' && steps.guard2.outputs.should_send == 'true'
         run: |
           DRY_RUN_FLAG=""
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
@@ -216,7 +253,7 @@ jobs:
       #     articolo su My Villa (self-contained, non-bloccante).
       # ───────────────────────────────────────────────────────────
       - name: Feature pitch to local press
-        if: steps.guard.outputs.should_run == 'true'
+        if: steps.guard.outputs.should_run == 'true' && steps.guard2.outputs.should_send == 'true'
         run: |
           FP_FLAG=""
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then

@@ -360,11 +360,19 @@ def google_cse_search(api_key, cx, clusters, date_restrict="d7"):
     base_url = "https://www.googleapis.com/customsearch/v1"
     query_count = 0
 
+    consecutive_failures = 0
     for cluster_id, cluster_data in clusters.items():
+        if consecutive_failures >= 3:
+            break
         keywords = cluster_data.get("keywords", [])
         for q in keywords:
             if query_count >= 80:
                 print(f"  [CSE] Query limit reached ({query_count}), stopping")
+                break
+            if consecutive_failures >= 3:
+                # Con la key in 403 da settimane, prima di questo abort
+                # si sparavano ~80 richieste condannate OGNI giorno.
+                print("  [CSE] 3 errori consecutivi — abort (key/quota KO)")
                 break
             try:
                 resp = requests.get(base_url, params={
@@ -374,9 +382,11 @@ def google_cse_search(api_key, cx, clusters, date_restrict="d7"):
                     "dateRestrict": date_restrict,
                     "num": 5,
                 }, timeout=10)
+                query_count += 1  # conta ANCHE gli errori (prima no →
+                # il cap non scattava mai con errori persistenti)
                 resp.raise_for_status()
                 data = resp.json()
-                query_count += 1
+                consecutive_failures = 0
 
                 for item in data.get("items", []):
                     results.append({
@@ -387,12 +397,17 @@ def google_cse_search(api_key, cx, clusters, date_restrict="d7"):
                         "url": item.get("link", ""),
                         "snippet": item.get("snippet", ""),
                         "publication": item.get("displayLink", ""),
-                        "date": item.get("pagemap", {}).get("metatags", [{}])[0].get(
+                        # or-guard: metatags=[] vuoto causava IndexError
+                        "date": (item.get("pagemap", {}).get("metatags") or [{}])[0].get(
                             "article:published_time", ""),
                     })
                 time.sleep(0.5)
             except Exception as e:
-                print(f"  [CSE] Error '{q}': {e}")
+                consecutive_failures += 1
+                # NON stampare l'eccezione raw: requests include l'URL
+                # completo con ?key=AIza... → API key nei log (anche CI).
+                status = getattr(getattr(e, "response", None), "status_code", "?")
+                print(f"  [CSE] Error '{q}': {type(e).__name__} (HTTP {status})")
 
     print(f"  [CSE] {len(results)} results from {query_count} queries")
     return results
@@ -602,7 +617,7 @@ def brave_search(api_key, clusters, lookback_days=7, query_cap=30):
             # Free tier: 1 qps. Sleep slightly above 1s to avoid 429s.
             time.sleep(1.05)
         except requests.HTTPError as e:
-            status = e.response.status_code if e.response else "?"
+            status = e.response.status_code if e.response is not None else "?"
             if status == 429:
                 # Rate limit — back off harder and continue.
                 print(f"  [Brave] 429 rate-limited on {q!r}; backing off 5s")
@@ -771,38 +786,52 @@ def rss_scan(config, lookback_days=14):
         "los angeles", "california home",
     ]
 
-    cutoff = datetime.now() - timedelta(days=lookback_days)
+    # published_parsed è una struct_time UTC: il cutoff va calcolato in
+    # UTC (il confronto con l'ora locale sbagliava di 7-9h al margine).
+    import calendar
+    cutoff_utc = datetime.utcnow() - timedelta(days=lookback_days)
     results = []
 
     for feed_url, feed_cluster in rss_feeds:
         try:
-            feed = feedparser.parse(feed_url)
+            # feedparser.parse(url) fa I/O di rete SENZA timeout: un
+            # feed muto bloccava l'intera pipeline. Scarichiamo noi con
+            # timeout e passiamo i byte al parser.
+            resp = requests.get(feed_url, timeout=10, headers={
+                "User-Agent": "MyVillaRadar/1.0 (+https://myvilla.la)"})
+            feed = feedparser.parse(resp.content)
             for entry in feed.entries[:20]:
-                title = entry.get("title", "").lower()
-                summary = entry.get("summary", "").lower()
-                combined = title + " " + summary
+                # try per-entry: una sola entry malformata non deve
+                # buttare via tutte le altre del feed.
+                try:
+                    title = entry.get("title", "").lower()
+                    summary = entry.get("summary", "").lower()
+                    combined = title + " " + summary
 
-                if not any(kw in combined for kw in priority_keywords):
-                    continue
-
-                published = entry.get("published_parsed")
-                if published:
-                    pub_date = datetime(*published[:6])
-                    if pub_date < cutoff:
+                    if not any(kw in combined for kw in priority_keywords):
                         continue
 
-                results.append({
-                    "source": "rss",
-                    "cluster": feed_cluster,
-                    "query": "rss_feed",
-                    "title": entry.get("title", ""),
-                    "url": entry.get("link", ""),
-                    "snippet": entry.get("summary", "")[:300],
-                    "publication": feed.feed.get("title", feed_url),
-                    "date": entry.get("published", ""),
-                })
+                    published = entry.get("published_parsed")
+                    if published:
+                        pub_date = datetime.utcfromtimestamp(
+                            calendar.timegm(published))
+                        if pub_date < cutoff_utc:
+                            continue
+
+                    results.append({
+                        "source": "rss",
+                        "cluster": feed_cluster,
+                        "query": "rss_feed",
+                        "title": entry.get("title", ""),
+                        "url": entry.get("link", ""),
+                        "snippet": entry.get("summary", "")[:300],
+                        "publication": feed.feed.get("title", feed_url),
+                        "date": entry.get("published", ""),
+                    })
+                except Exception:
+                    continue
         except Exception as e:
-            print(f"  [RSS] Error {feed_url}: {e}")
+            print(f"  [RSS] Error {feed_url}: {type(e).__name__}")
 
     print(f"  [RSS] {len(results)} entries found")
     return results
@@ -1175,12 +1204,12 @@ def grok_x_search(api_key, config, lookback_days=7):
                         if part.get("type") == "output_text":
                             tweet_text += part.get("text", "")
 
-            urls = re.findall(r'https://x\.com/\S+', tweet_text)
+            urls = re.findall(r'https://x\.com/[^\s)\]"\'<>|]+', tweet_text)
             tweet_blocks = re.split(r'\n(?=\d+\.\s|\*\*Post by|Author:)', tweet_text)
             for i, block in enumerate(tweet_blocks[:5]):
                 if not block.strip() or len(block) < 30:
                     continue
-                block_urls = re.findall(r'https://x\.com/\S+', block)
+                block_urls = re.findall(r'https://x\.com/[^\s)\]"\'<>|]+', block)
                 block_url = block_urls[0] if block_urls else (
                     urls[i] if i < len(urls) else "")
                 block_authors = re.findall(r'@(\w+)', block)
@@ -1331,7 +1360,7 @@ def gemini_search(api_key, config, lookback_days=7):
             "Safer from Wildfires measures, Zone 0 ember-resistant perimeter, IBHS "
             "Wildfire Prepared Home Plus certifications. Describe 4 articles: publication, "
             "date, main topic. Plain text, no JSON.",
-            "luxury_architecture_LA",
+            "materials_construction",
         ),
         (
             f"Search Google for articles ({window}) about ITALIAN or MEDITERRANEAN "
@@ -1423,7 +1452,9 @@ def gemini_search(api_key, config, lookback_days=7):
                 })
             time.sleep(2)
         except Exception as e:
-            print(f"  [Gemini] Error '{cluster}': {e}")
+            # Niente eccezione raw: l'URL Gemini contiene ?key=... (leak)
+            status = getattr(getattr(e, "response", None), "status_code", "?")
+            print(f"  [Gemini] Error '{cluster}': {type(e).__name__} (HTTP {status})")
 
     print(f"  [Gemini] {len(results)} results (grounding)")
     return results
@@ -1791,7 +1822,7 @@ def ai_score_batch(results, model="claude-sonnet-4-6"):
         try:
             response = client.messages.create(
                 model=model,
-                max_tokens=4096,
+                max_tokens=8192,
                 system=SCORING_SYSTEM_PROMPT,
                 messages=[{
                     "role": "user",
@@ -1799,6 +1830,14 @@ def ai_score_batch(results, model="claude-sonnet-4-6"):
                 }],
             )
             response_text = response.content[0].text.strip()
+            if getattr(response, "stop_reason", None) == "max_tokens":
+                print(f"  [AI Score] batch troncato a max_tokens — "
+                      f"possibile perdita parziale")
+            # Strip fence markdown: senza, un ```json in testa faceva
+            # fallire il parse e perdere l'INTERO batch in silenzio.
+            if response_text.startswith("```"):
+                response_text = re.sub(r'^```(?:json)?\n?', '', response_text)
+                response_text = re.sub(r'\n?```$', '', response_text)
 
             # Parse JSON response
             scored = json.loads(response_text)

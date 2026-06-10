@@ -217,7 +217,8 @@ def _known_publication_reach(pub, url=""):
     """
     try:
         # Import lazily to share the single source of truth
-        sys.path.insert(0, str(SCRIPT_DIR))
+        if str(SCRIPT_DIR) not in sys.path:
+            sys.path.insert(0, str(SCRIPT_DIR))
         from approve import PUBLICATION_REACH
     except Exception:
         return None
@@ -998,7 +999,7 @@ Return ONLY valid JSON, no markdown fences."""
             return is_invalid_address(addr)
 
         for draft in drafts:
-            idx = draft.get("index", 0)
+            idx = draft.get("index", -1)
             if 0 <= idx < len(items):
                 # Opus's email guess is discarded on principle — it had a
                 # ~50% bounce rate and contributes nothing that the three
@@ -1222,7 +1223,7 @@ Return ONLY a valid JSON array of {len(items_desc)} objects, no markdown fences.
             if start != -1 and end != -1:
                 response_text = response_text[start:end + 1]
 
-        drafts = json.loads(response_text)
+        drafts = _robust_json_parse(response_text)
         for draft in drafts:
             idx = draft.get("index", -1)
             if 0 <= idx < len(viral_items):
@@ -1413,7 +1414,14 @@ def render_card(item, idx):
 
     # Save + Revise buttons (inline with copy/open group)
     save_btn = f"""<button class="btn btn-save" onclick="saveEdits('{card_id}', {idx})">&#128190; Salva modifiche</button>"""
-    revise_btn = f"""<button class="btn btn-revise" onclick="openReviseModal({idx}, '{draft_type}', '{card_id}', '{ctx_title}', '{ctx_url}', '{ctx_pub}')">&#9998; Revisiona con Opus</button>"""
+    revise_btn = (
+        f'<button class="btn btn-revise" data-idx="{idx}" '
+        f'data-dtype="{esc(draft_type)}" data-card="{esc(card_id)}" '
+        f'data-title="{esc(ctx_title)}" data-url="{esc(ctx_url)}" '
+        f'data-pub="{esc(ctx_pub)}" '
+        f'onclick="openReviseModal(parseInt(this.dataset.idx), this.dataset.dtype, '
+        f'this.dataset.card, this.dataset.title, this.dataset.url, this.dataset.pub)"'
+        f'>&#9998; Revisiona con Opus</button>')
 
     footer_html = f"""
     <div class="card-footer">

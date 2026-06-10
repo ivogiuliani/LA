@@ -42,7 +42,7 @@ import re
 import shutil
 import subprocess
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -79,7 +79,12 @@ def _load_dotenv():
         if not line or line.startswith("#") or "=" not in line:
             continue
         k, _, v = line.partition("=")
-        os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+        k, v = k.strip(), v.strip().strip('"').strip("'")
+        # Override when the env var is missing OR empty: setdefault
+        # would keep a pre-set EMPTY var (launchd plist / CI quirk),
+        # masking the real value in .env (bug già visto in feature_pitch).
+        if v and not os.environ.get(k):
+            os.environ[k] = v
 
 
 def _digest_already_done_today() -> bool:
@@ -164,7 +169,13 @@ def _run_update_script(script_name: str) -> bool:
 
 
 def _git_autopush(commit_msg: str) -> tuple[bool, str]:
-    """Mirror of approve.py's _git_autopush logic. Returns (ok, sha)."""
+    """Mirror of approve.py's _git_autopush logic. Returns (ok, sha).
+
+    Resilient to a remote that moved ahead (the other rail pushed):
+    on push failure we pull --rebase --autostash and retry ONCE.
+    Without this, a non-fast-forward push left the local commit
+    stranded — the digest announced article URLs that never deployed.
+    """
     def _g(args, timeout=30):
         return subprocess.run(
             ["git", *args], cwd=str(ROOT_DIR),
@@ -185,13 +196,72 @@ def _git_autopush(commit_msg: str) -> tuple[bool, str]:
             return False, ""
         p = _g(["push", "origin", "main"], timeout=60)
         if p.returncode != 0:
-            print(f"  [autopush] push failed: {p.stderr[-200:]}")
-            return False, ""
+            # Remote ahead (altro rail ha pushato): riallinea e ritenta.
+            print("  [autopush] push rifiutato — pull --rebase e retry...")
+            r = _g(["pull", "--rebase", "--autostash", "origin", "main"],
+                   timeout=60)
+            if r.returncode != 0:
+                print(f"  [autopush] rebase fallito: {r.stderr[-200:]}")
+                return False, ""
+            p = _g(["push", "origin", "main"], timeout=60)
+            if p.returncode != 0:
+                print(f"  [autopush] push failed (retry): {p.stderr[-200:]}")
+                return False, ""
         sha = _g(["rev-parse", "--short", "HEAD"], timeout=5).stdout.strip()
         return True, sha
     except Exception as e:  # noqa: BLE001
         print(f"  [autopush] {type(e).__name__}: {e}")
         return False, ""
+
+
+def _other_rail_sent_today() -> bool:
+    """Last-second cross-rail check, read from ORIGIN (not the local
+    tree): True if the other scheduler already sent today's digest
+    while THIS run was in progress (radar+journal take minutes).
+    Closes the race window between the start-of-run guard and the
+    irreversible send. Fails open (False) on any git/network error.
+    """
+    def _g(args, timeout=20):
+        return subprocess.run(
+            ["git", *args], cwd=str(ROOT_DIR),
+            capture_output=True, text=True, timeout=timeout,
+        )
+    try:
+        _g(["fetch", "origin", "main", "--quiet"], timeout=25)
+        show = _g(["show", "origin/main:_system/outreach/.last_digest_date"],
+                  timeout=10)
+        if show.returncode != 0:
+            return False
+        return show.stdout.strip() == datetime.now().strftime("%Y-%m-%d")
+    except Exception:  # noqa: BLE001
+        return False
+
+
+def _push_marker_now() -> None:
+    """Commit & push ONLY the digest marker, immediately after the
+    send. A dedicated tiny commit shrinks the cross-rail race window
+    from minutes (full state push at end of run) to seconds. Non-fatal.
+    """
+    def _g(args, timeout=30):
+        return subprocess.run(
+            ["git", *args], cwd=str(ROOT_DIR),
+            capture_output=True, text=True, timeout=timeout,
+        )
+    try:
+        rel = str(DIGEST_MARKER.relative_to(ROOT_DIR))
+        _g(["add", rel], timeout=10)
+        c = _g(["commit", "-m",
+                f"Digest marker {datetime.now():%Y-%m-%d} [skip ci]"],
+               timeout=15)
+        if c.returncode != 0:
+            return  # nothing staged (marker unchanged) — fine
+        p = _g(["push", "origin", "main"], timeout=45)
+        if p.returncode != 0:
+            _g(["pull", "--rebase", "--autostash", "origin", "main"], timeout=45)
+            _g(["push", "origin", "main"], timeout=45)
+        print("  [guard] marker digest pushato (anti-race)")
+    except Exception as e:  # noqa: BLE001
+        print(f"  [guard] push marker fallito (non fatale): {e}")
 
 
 # ── Publish one article ──────────────────────────────────────────────
@@ -513,11 +583,18 @@ def _mark_pitch_url_dismissed(url, title, recipient):
         print(f"  [dismiss-url] {type(e).__name__}: {e}")
 
 
-def _send_ready_pitches(*, dry_run=False, max_per_run=15):
+def _send_ready_pitches(*, dry_run=False, max_per_run=15,
+                        preloaded_dismissed=None):
     """Send all radar pitch emails that are safe to auto-dispatch.
 
     Returns a dict {sent, skipped, errors} of compact records for the
     digest email.
+
+    `preloaded_dismissed`: snapshot of dismissed URLs taken BEFORE the
+    publish phase. Publishing an article marks its source URLs as
+    user_dismissed — without the snapshot, the pitch to the journalist
+    of a just-published article was skipped as "already sent", killing
+    the cite-then-contact strategy for same-day articles.
     """
     radar_json = _find_latest_radar_json()
     if not radar_json:
@@ -529,7 +606,8 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
         print(f"  [pitches] failed to parse {radar_json.name}: {e}")
         return {"sent": [], "skipped": [], "errors": []}
 
-    dismissed = _load_dismissed_urls()
+    dismissed = (set(preloaded_dismissed) if preloaded_dismissed is not None
+                 else _load_dismissed_urls())
 
     sent, skipped, errors = [], [], []
     candidates = []
@@ -701,6 +779,10 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
                         _mark_pitch_url_dismissed(
                             url, title, f"queued:{rescued_email}"
                         )
+                        dismissed.add(url)  # anche in memoria: lo stesso
+                        # URL può comparire 2 volte nei qualified
+                        # (multi-cluster) — senza questo, doppio pitch
+                        # nello stesso run.
                     t1_upgrades_queued += 1
                     continue
                 # If lookup returned but with no confidence value we
@@ -755,6 +837,8 @@ def _send_ready_pitches(*, dry_run=False, max_per_run=15):
             # Mark URL so radar/dashboard never re-suggest this article.
             if url:
                 _mark_pitch_url_dismissed(url, title, to_addr)
+                dismissed.add(url)  # in-memory: blocca un 2° pitch sullo
+                # stesso URL nello stesso run (item multi-cluster)
         elif reason == "rate_limited":
             skipped.append({
                 "title": title, "to": to_addr,
@@ -1012,7 +1096,10 @@ def _compute_pitch_metrics(today_sent: list) -> dict:
     # ── send_log.jsonl ─────────────────────────────────────────────
     all_real_sends = []
     sends_today_hist = []
-    today_iso = datetime.now().strftime("%Y-%m-%d")
+    # I timestamp del send_log sono UTC-aware ("+00:00"): i bucket
+    # oggi/7gg vanno calcolati in UTC, non in ora locale (skew di 2h
+    # in Italia sbagliava i conteggi a cavallo della mezzanotte).
+    today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     log_path = outreach_dir / "send_log.jsonl"
     if log_path.exists():
         try:
@@ -1089,7 +1176,7 @@ def _compute_pitch_metrics(today_sent: list) -> dict:
     # past 7 days from the log (excludes today if today's log row
     # hasn't been written yet — but today is already counted above)
     from datetime import timedelta
-    week_cutoff = (datetime.now() - timedelta(days=7)).isoformat()
+    week_cutoff = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
     sent_week = sum(
         1 for s in all_real_sends
         if (s.get("timestamp") or "") >= week_cutoff
@@ -1990,6 +2077,12 @@ def main(argv=None):
         print("No journal drafts to publish.")
     print()
 
+    # Snapshot dei dismissed PRIMA della fase publish: pubblicare un
+    # articolo marca i suoi source URL come dismissed, e senza snapshot
+    # il pitch al giornalista dell'articolo appena pubblicato veniva
+    # saltato come "already sent" (rompeva il cite-then-contact same-day).
+    dismissed_snapshot = _load_dismissed_urls()
+
     published, skipped, errors = [], [], []
     for draft in drafts:
         print(f"── {draft.name} ──")
@@ -2038,7 +2131,8 @@ def main(argv=None):
     pitches = None
     if not args.no_pitches:
         print("Sending ready journalist pitches...")
-        pitches = _send_ready_pitches(dry_run=args.dry_run)
+        pitches = _send_ready_pitches(dry_run=args.dry_run,
+                                      preloaded_dismissed=dismissed_snapshot)
         s = pitches["sent"]
         sk = pitches["skipped"]
         er = pitches["errors"]
@@ -2119,17 +2213,28 @@ def main(argv=None):
         if published and not args.dry_run and not args.no_push:
             _warm_cdn_hero_images(published, timeout_s=120)
 
-        print("Sending digest email...")
-        subject, plain_body, html_body = _format_digest(
-            published, skipped, errors,
-            pitches=pitches, dry_run=args.dry_run,
-        )
-        sent_ok = _send_digest(subject, plain_body, html_body,
-                               to=args.to, dry_run=args.dry_run)
-        # Stamp the cross-rail marker so the other scheduler skips today.
-        # Only for real sends (not dry-run) — the autopush below commits it.
-        if sent_ok and not args.dry_run:
-            _mark_digest_done_today()
+        # Re-check ULTRA-tardivo del marker da ORIGIN: radar+journal+CDN
+        # warm-up durano minuti, l'altro rail può aver inviato nel
+        # frattempo. Questo check al punto di invio chiude la race.
+        if (not args.dry_run and not args.ignore_guard
+                and _other_rail_sent_today()):
+            print("Digest già inviato dall'altro rail durante questo run "
+                  "— skip invio (anti-race).")
+            _mark_digest_done_today()  # allinea il marker locale
+        else:
+            print("Sending digest email...")
+            subject, plain_body, html_body = _format_digest(
+                published, skipped, errors,
+                pitches=pitches, dry_run=args.dry_run,
+            )
+            sent_ok = _send_digest(subject, plain_body, html_body,
+                                   to=args.to, dry_run=args.dry_run)
+            # Stamp + push IMMEDIATO del marker (commit dedicato): riduce
+            # la finestra di race cross-rail da minuti a secondi.
+            if sent_ok and not args.dry_run:
+                _mark_digest_done_today()
+                if not args.no_push:
+                    _push_marker_now()
 
     # Final state push: commit the digest marker + outreach state
     # (ledger, send_log, dedup) so the OTHER scheduler rail sees today's

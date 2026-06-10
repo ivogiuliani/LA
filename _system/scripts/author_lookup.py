@@ -90,10 +90,14 @@ def is_generic_alias(email: str) -> bool:
     # Exact match
     if local in GENERIC_ALIAS_PREFIXES:
         return True
-    # Compound prefixes ("news", "info" inside) — guard against false
-    # positives like "ginfo@..." by requiring word boundary
-    for kw in ("news", "info", "edit", "contact", "press", "media", "tips"):
-        if local == kw or local.startswith(kw + "_") or local.startswith(kw + "-"):
+    # Compound prefixes: "newstips@", "pressoffice@", "mediadesk@" sono
+    # alias di redazione anche SENZA separatore. startswith è la regola
+    # giusta: classificare per errore una persona come alias è il
+    # fallimento sicuro (parte solo un rescue in più), mentre il
+    # contrario auto-inviava un cold pitch "personale" a una redazione.
+    for kw in ("news", "info", "edit", "contact", "press", "media", "tips",
+               "desk", "team", "staff", "office", "newsroom"):
+        if local == kw or local.startswith(kw):
             return True
     return False
 

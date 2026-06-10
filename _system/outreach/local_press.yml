@@ -12,11 +12,12 @@
 #   2. Generate a brand-feature pitch (Claude, brand voice).
 #   3. verified email → auto-send (rate-limited, deduped via ledger).
 #      pattern-guess → queue for manual review (never blind-send).
-#   4. Record in contact_ledger as touch type 'feature_pitch'.
+#   4. Dedup via feature_pitch_log.jsonl (un solo pitch per outlet).
 #
 # Cadence: max 2 new feature pitches/day (avoid looking like a blast).
-# Follow-up: handled by the same 3-touch cadence as journalist pitches,
-#            but with feature-specific bump/closer angles.
+# Follow-up: NON ancora automatizzato per i feature pitch (la cadence
+#            3-touch copre solo i pitch giornalistici). followup_days
+#            qui sotto è ASPIRAZIONALE — nessuno script lo legge oggi.
 
 cadence:
   max_per_day: 2

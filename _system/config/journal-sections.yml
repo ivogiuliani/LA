@@ -52,11 +52,14 @@ sections:
     icon: "sun"
 
 # ── Journal Criteria (filtering radar → journal) ──
+# NB: i due rail (daily_publish.sh + workflow) passano --min-score e
+# --max-articles da CLI, che VINCE su questi valori. Tenuti allineati
+# alla realtà operativa per non mentire a chi legge la config.
 journal_criteria:
-  min_score: 17
+  min_score: 14
   min_sources: 1
-  max_articles_per_day: 2
-  max_articles_per_week: 5
+  max_articles_per_day: 3
+  max_articles_per_week: 12
 
 # ── Dedup Cooldowns ──
 cooldowns:

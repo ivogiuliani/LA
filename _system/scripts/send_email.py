@@ -90,8 +90,10 @@ def sanitize_founder_name(text: str) -> str:
     if not text:
         return text
     # \bPaolo\s+ + a capitalized token (incl. accented), unless it's Mezzalama.
+    # Niente apostrofi nel cognome catturato: "Paolo Giordano's" deve
+    # diventare "Paolo Mezzalama's" (il possessivo resta fuori dal match).
     return _re.sub(
-        r"\bPaolo\s+(?!Mezzalama\b)[A-ZÀ-Þ][a-zà-ÿ'’-]+",
+        r"\bPaolo\s+(?!Mezzalama\b)[A-ZÀ-Þ][a-zà-ÿ-]+",
         FOUNDER_FULL_NAME,
         text,
     )

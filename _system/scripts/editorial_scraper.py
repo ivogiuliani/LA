@@ -180,11 +180,11 @@ def _same_site(email: str, domain: str) -> bool:
     email_dom = email.split("@", 1)[1].lower() if "@" in email else ""
     if not email_dom:
         return False
-    site = (domain or "").lower().lstrip("www.").split("/")[0]
+    site = re.sub(r"^www\.", "", (domain or "").lower()).split("/")[0]
     if not site:
         return True  # no site hint → accept any
     # Strip leading "www." from email side for symmetry
-    email_dom = email_dom.lstrip("www.")
+    email_dom = re.sub(r"^www\.", "", email_dom)
     # Exact match, or either is a suffix of the other (covers news.ex.com /
     # ex.com, plus mail.ex.com / ex.com)
     site_root = _second_level(site)
@@ -282,7 +282,7 @@ def lookup(
     if not parsed.scheme or not parsed.netloc:
         return None
     if not domain:
-        domain = parsed.netloc.lstrip("www.")
+        domain = re.sub(r"^www\.", "", parsed.netloc)
     cache_key = _second_level(domain) or domain
 
     # Cache check
@@ -313,7 +313,7 @@ def lookup(
             "about_page" if "about" in tag or "masthead" in tag or "team" in tag or "staff" in tag else
             "article_scraped"
         )
-        candidate = {"email": email, "source": source, "path": tag, "score": score}
+        candidate = {"email": email, "source": source, "path": tag, "score": score, "in_mailto": in_mailto}
         if verbose:
             print(f"  [scraper] {tag} → {email} (score {score})")
         # If we got a STRONG hit from the article itself, stop here.

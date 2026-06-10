@@ -87,9 +87,15 @@ def load_json(path):
 
 
 def save_json(path, data):
+    """Atomic write: tmp + os.replace. Un kill a metà scrittura del
+    ledger lasciava un JSON troncato che faceva crashare OGNI run
+    successivo finché non si riparava a mano."""
+    path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w") as f:
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
+    os.replace(tmp, path)
 
 
 # ── Perspective knowledge base ───────────────────────────────────────
@@ -286,7 +292,12 @@ def is_duplicate_topic(candidate_title, ledger,
     except Exception:
         cutoff = None
     for art in ledger.get("published_articles") or []:
-        pub_str = art.get("published_at") or art.get("date") or ""
+        # NB: update_ledger scrive "published_date" — senza quella chiave
+        # qui, pub_str restava vuoto, il lookback di 21gg non scattava
+        # mai e TUTTI gli articoli storici (80+) bloccavano per sempre
+        # ogni nuovo titolo con >=3 token in comune (over-blocking).
+        pub_str = (art.get("published_date") or art.get("published_at")
+                   or art.get("date") or "")
         if cutoff is not None and pub_str:
             try:
                 if datetime.strptime(pub_str[:10], "%Y-%m-%d") < cutoff:
@@ -336,7 +347,9 @@ def is_in_cooldown(ledger, today_str):
 
 def filter_candidates(radar_data, ledger, journal_config, max_articles=2, min_score_override=None):
     """Filter radar results by journal criteria."""
-    min_score = min_score_override or journal_config.get("journal_criteria", {}).get("min_score", 17)
+    # `is not None` (non `or`): --min-score 0 è falsy e veniva ignorato.
+    min_score = (min_score_override if min_score_override is not None
+                 else journal_config.get("journal_criteria", {}).get("min_score", 17))
     today_str = radar_data.get("date", datetime.now().strftime("%Y-%m-%d"))
     blocked = is_in_cooldown(ledger, today_str)
 
@@ -391,6 +404,8 @@ def filter_candidates(radar_data, ledger, journal_config, max_articles=2, min_sc
     candidates.sort(key=_score, reverse=True)  # global score order
 
     selected = []
+    selected_ids = set()   # identità (id()), non uguaglianza per valore:
+    # due item radar distinti ma value-equal venivano dedupati per errore
     seen_sections = set()
     # Pass 1 — one per section, in score order
     for it in candidates:
@@ -399,6 +414,7 @@ def filter_candidates(radar_data, ledger, journal_config, max_articles=2, min_sc
         sec = it.get("_resolved_section")
         if sec not in seen_sections:
             selected.append(it)
+            selected_ids.add(id(it))
             seen_sections.add(sec)
     # Pass 2 — fill any remaining slots with best remaining (allows a
     # 2nd article from an already-used section only if nothing else left)
@@ -406,8 +422,9 @@ def filter_candidates(radar_data, ledger, journal_config, max_articles=2, min_sc
         for it in candidates:
             if len(selected) >= max_articles:
                 break
-            if it not in selected:
+            if id(it) not in selected_ids:
                 selected.append(it)
+                selected_ids.add(id(it))
 
     candidates = selected
     by_sec = {}
@@ -758,7 +775,7 @@ def _is_deep_link(url):
 def _root_domain(url):
     try:
         from urllib.parse import urlparse
-        return (urlparse(url).netloc or "").lower().lstrip("www.")
+        return re.sub(r"^www\.", "", (urlparse(url).netloc or "").lower())
     except Exception:
         return ""
 
@@ -938,6 +955,12 @@ def generate_article(item, section_id, section_name, brand_voice, blocked,
             max_tokens=8192,
             messages=[{"role": "user", "content": prompt}],
         )
+        # Output troncato a max_tokens → JSON incompleto: distinguilo
+        # dal generico parse error (token pagati, retry sensato a mano).
+        if getattr(response, "stop_reason", None) == "max_tokens":
+            print("  [Generate] ABORT: output troncato a max_tokens — "
+                  "articolo troppo lungo, alzare max_tokens o accorciare il brief")
+            return None
         text = response.content[0].text.strip()
 
         # Handle potential markdown fences
@@ -946,6 +969,12 @@ def generate_article(item, section_id, section_name, brand_voice, blocked,
             text = re.sub(r'\n?```$', '', text)
 
         article = json.loads(text)
+        # Sanitizza lo slug PRIMA di qualunque uso come filename/URL:
+        # uno slug LLM con '/', '..', spazi o maiuscole causava path
+        # traversal / FileNotFoundError / canonical URL rotti.
+        raw_slug = str(article.get("slug") or "")
+        safe_slug = re.sub(r"[^a-z0-9-]+", "-", raw_slug.lower()).strip("-")[:80]
+        article["slug"] = safe_slug or f"article-{datetime.now():%Y%m%d%H%M%S}"
         # Repair/validate source URLs against the primary radar signal.
         article = sanitize_sources(article, item)
         # Live HEAD-check every remaining URL and drop/unwrap 404s.
@@ -1989,7 +2018,7 @@ def main():
                 html_content = render_article_html(article, date_str)
 
             filepath = output_dir / filename
-            with open(filepath, "w") as f:
+            with open(filepath, "w", encoding="utf-8") as f:
                 f.write(html_content)
 
             # Final step: validate every external link. --fix strips broken
@@ -2029,7 +2058,7 @@ def main():
                 "publication": item.get("publication", ""),
                 "cluster": item.get("cluster", ""),
             }
-            with open(json_filepath, "w") as f:
+            with open(json_filepath, "w", encoding="utf-8") as f:
                 json.dump(article_with_meta, f, indent=2, ensure_ascii=False)
 
             print(f"  Saved: {filepath}")

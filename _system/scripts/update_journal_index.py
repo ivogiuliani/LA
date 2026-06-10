@@ -26,7 +26,7 @@ def esc(text):
 
 def extract_metadata(filepath):
     """Extract article metadata from HTML head tags and schema.org JSON-LD."""
-    content = filepath.read_text()
+    content = filepath.read_text(encoding="utf-8")
 
     def meta(name):
         m = re.search(rf'<meta\s+(?:name|property)="{name}"\s+content="([^"]*)"', content)
@@ -588,7 +588,7 @@ def render_index_html(articles):
     # Read the index template CSS from the template file
     template_path = SYSTEM_DIR / "templates" / "journal-index.html"
     if template_path.exists():
-        template_content = template_path.read_text()
+        template_content = template_path.read_text(encoding="utf-8")
         # Extract the <style> block
         style_match = re.search(r'<style>(.*?)</style>', template_content, re.DOTALL)
         style_block = style_match.group(1) if style_match else ""
@@ -1046,7 +1046,7 @@ def get_style_block():
     """Load the CSS <style> block from the index template."""
     template_path = SYSTEM_DIR / "templates" / "journal-index.html"
     if template_path.exists():
-        template_content = template_path.read_text()
+        template_content = template_path.read_text(encoding="utf-8")
         style_match = re.search(r'<style>(.*?)</style>', template_content, re.DOTALL)
         if style_match:
             return style_match.group(1)
@@ -1130,7 +1130,7 @@ def main():
     # Render index
     index_html = render_index_html(articles)
 
-    with open(output_path, "w") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         f.write(index_html)
     print(f"\nSaved: {output_path} ({output_path.stat().st_size / 1024:.1f} KB)")
     print(f"Total articles indexed: {len(articles)}")
