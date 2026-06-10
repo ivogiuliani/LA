@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://myvilla.la/</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -26,44 +26,62 @@
   </url>
   <url>
     <loc>https://myvilla.la/blog/index.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://myvilla.la/blog/category/climate.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myvilla.la/blog/category/concrete_arch.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myvilla.la/blog/category/insurance.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myvilla.la/blog/category/market.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myvilla.la/blog/category/materials.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myvilla.la/blog/category/permits.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myvilla.la/blog/california-insurance-commissioner-2026-single-payer-proposal.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myvilla.la/blog/fire-resilient-home-demand-california-malibu-woolsey.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myvilla.la/blog/wildfire-deductible-california-insurable-home.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>

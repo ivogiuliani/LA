@@ -1,6 +1,6 @@
 {
   "housingwire.com": {
-    "cached_at": 1777014579.965615,
+    "cached_at": 1781072787.466848,
     "result": null
   },
   "constructionowners.com": {
@@ -117,11 +117,11 @@
     }
   },
   "ca.gov": {
-    "cached_at": 1777785449.790772,
+    "cached_at": 1781072828.782378,
     "result": {
-      "email": "webassist@insurance.ca.gov",
-      "source": "contact_page",
-      "path": "/contact",
+      "email": "vigfeedback@sos.ca.gov",
+      "source": "article_scraped",
+      "path": "/candidates/insurance-commissioner-candidate-statements.htm",
       "score": 7
     }
   },
@@ -191,7 +191,7 @@
     "result": null
   },
   "liveinsurancenews.com": {
-    "cached_at": 1778563533.8586628,
+    "cached_at": 1781072818.08104,
     "result": null
   },
   "forbes.com": {
@@ -311,7 +311,7 @@
     "result": null
   },
   "bankrate.com": {
-    "cached_at": 1778736179.9562812,
+    "cached_at": 1781072861.375823,
     "result": null
   },
   "fbia.com": {
@@ -687,6 +687,10 @@
   },
   "havenlifestyles.com": {
     "cached_at": 1780985860.176884,
+    "result": null
+  },
+  "bbc.com": {
+    "cached_at": 1781072864.4972448,
     "result": null
   }
 }

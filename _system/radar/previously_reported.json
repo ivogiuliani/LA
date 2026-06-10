@@ -2949,6 +2949,36 @@
       "action_type": "user_dismissed",
       "url": "https://www.washingtonpost.com/weather/2026/06/05/some-california-homeowners-now-face-wildfire-deductibles-why-thats-problem/",
       "note": "auto-sent pitch to letters@washpost.com"
+    },
+    {
+      "date_first_reported": "2026-06-10",
+      "source": "user_dismissed",
+      "title": "2026 Election Results: Kim and Allen lead pack for California insurance commissioner",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.ocregister.com/2026/06/02/2026-election-results-11-candidates-vie-california-insurance-commissioner/",
+      "note": "auto-published journal: california-insurance-commissioner-2026-single-payer-proposal"
+    },
+    {
+      "date_first_reported": "2026-06-10",
+      "source": "user_dismissed",
+      "title": "She watched a wildfire destroy her town, so she's building fire-proof bunkers",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.bbc.com/news/articles/c78qgdpwx6eo",
+      "note": "auto-published journal: fire-resilient-home-demand-california-malibu-woolsey"
+    },
+    {
+      "date_first_reported": "2026-06-10",
+      "source": "user_dismissed",
+      "title": "A Los Angeles Attorney Was Reviewing a Client's Home Insurance Policy - He Found a $621,000 Deductible That Only Applies to Wildfires",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.liveinsurancenews.com/los-angeles-attorney-wildfires/8572918/",
+      "note": "auto-published journal: wildfire-deductible-california-insurable-home"
     }
   ]
 }
