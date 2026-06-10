@@ -35,3 +35,6 @@ __pycache__/
 # macOS drag-source artifacts (no purpose on a web server)
 *.textClipping
 vid.zip
+
+# Cache giornaliera del model resolver (rigenerata ad ogni run, per-macchina)
+_system/config/.model_cache.json

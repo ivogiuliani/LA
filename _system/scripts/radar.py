@@ -41,6 +41,23 @@ except ImportError:
 
 # ── Paths (relative to this script) ──────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── Auto-model: tier risolto via model_resolver — upgrade automatico
+# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
+# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
+# il modello non deve MAI bloccare la pipeline.
+try:
+    import sys as _sys
+    if str(SCRIPT_DIR) not in _sys.path:
+        _sys.path.insert(0, str(SCRIPT_DIR))
+    from model_resolver import resolve as _resolve_model
+except Exception:  # noqa: BLE001
+    def _resolve_model(tier, _fb={"writer": "claude-fable-5",
+                                  "heavy": "claude-opus-4-8",
+                                  "balanced": "claude-sonnet-4-6",
+                                  "cheap": "claude-haiku-4-5"}):
+        return _fb.get(tier, "claude-sonnet-4-6")
+_BALANCED_MODEL = _resolve_model("balanced")
 SYSTEM_DIR = SCRIPT_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
 KNOWLEDGE_DIR = SYSTEM_DIR / "knowledge"
@@ -1783,7 +1800,7 @@ Return a JSON array. For each item include:
 Return ONLY valid JSON array, no markdown fences."""
 
 
-def ai_score_batch(results, model="claude-sonnet-4-6"):
+def ai_score_batch(results, model=_BALANCED_MODEL):
     """Use Claude Sonnet to score a batch of results."""
     if not ANTHROPIC_OK:
         print("  [AI Score] Skipped — anthropic SDK not installed")
@@ -2149,8 +2166,8 @@ def main():
         description="My Villa Engagement Radar — Standalone Pipeline")
     parser.add_argument("--output", "-o", type=str, default=None,
                         help="Output JSON path (default: _system/radar/reports/radar_YYYY-MM-DD.json)")
-    parser.add_argument("--model", type=str, default="claude-sonnet-4-6",
-                        help="Claude model for AI scoring (default: claude-sonnet-4-6)")
+    parser.add_argument("--model", type=str, default=_BALANCED_MODEL,
+                        help="Claude model for AI scoring (default: auto, tier balanced)")
     parser.add_argument("--lookback", type=int, default=7,
                         help="Lookback window in days (default: 7)")
     parser.add_argument("--dedup", type=str, default=None,

@@ -39,6 +39,23 @@ from api_health_banner import (
 
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── Auto-model: tier risolto via model_resolver — upgrade automatico
+# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
+# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
+# il modello non deve MAI bloccare la pipeline.
+try:
+    import sys as _sys
+    if str(SCRIPT_DIR) not in _sys.path:
+        _sys.path.insert(0, str(SCRIPT_DIR))
+    from model_resolver import resolve as _resolve_model
+except Exception:  # noqa: BLE001
+    def _resolve_model(tier, _fb={"writer": "claude-fable-5",
+                                  "heavy": "claude-opus-4-8",
+                                  "balanced": "claude-sonnet-4-6",
+                                  "cheap": "claude-haiku-4-5"}):
+        return _fb.get(tier, "claude-sonnet-4-6")
+_HEAVY_MODEL = _resolve_model("heavy")
 SYSTEM_DIR = SCRIPT_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
 KNOWLEDGE_DIR = SYSTEM_DIR / "knowledge"
@@ -237,7 +254,7 @@ def _known_publication_reach(pub, url=""):
     return None
 
 
-def estimate_unknown_reach(items, model="claude-opus-4-8"):
+def estimate_unknown_reach(items, model=_HEAVY_MODEL):
     """For each item whose publication is NOT in the static PUBLICATION_REACH,
     ask Opus to estimate monthly unique visitors (in millions). Mutates each
     `item` in place adding `item["reach_estimate"]` (float, 0 if can't guess).
@@ -866,7 +883,7 @@ def _rewrite_for_editorial(
     return f"{before}{new_greeting}\n\n{disclaimer}\n\n{after}"
 
 
-def generate_drafts(items, model="claude-opus-4-8"):
+def generate_drafts(items, model=_HEAVY_MODEL):
     """Generate email/tweet/reddit drafts for qualified items using Opus."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
@@ -1155,7 +1172,7 @@ code — it's that 90% of GCs never trained on it."
 """
 
 
-def generate_viral_reply_drafts(viral_items, model="claude-opus-4-8"):
+def generate_viral_reply_drafts(viral_items, model=_HEAVY_MODEL):
     """Generate reply drafts for viral social posts.
 
     Uses a different prompt/voice from the journalist-pitch drafts.
@@ -2247,7 +2264,7 @@ def main():
     parser.add_argument("--markdown", "-m", default=None,
                         help="Output Markdown path (default: same dir as radar, .md). "
                              "Use 'none' to skip markdown export.")
-    parser.add_argument("--model", type=str, default="claude-opus-4-8",
+    parser.add_argument("--model", type=str, default=_HEAVY_MODEL,
                         help="Claude model for draft generation")
     parser.add_argument("--skip-drafts", action="store_true",
                         help="Skip AI draft generation")

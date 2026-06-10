@@ -50,6 +50,23 @@ except ImportError:
 
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── Auto-model: tier risolto via model_resolver — upgrade automatico
+# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
+# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
+# il modello non deve MAI bloccare la pipeline.
+try:
+    import sys as _sys
+    if str(SCRIPT_DIR) not in _sys.path:
+        _sys.path.insert(0, str(SCRIPT_DIR))
+    from model_resolver import resolve as _resolve_model
+except Exception:  # noqa: BLE001
+    def _resolve_model(tier, _fb={"writer": "claude-fable-5",
+                                  "heavy": "claude-opus-4-8",
+                                  "balanced": "claude-sonnet-4-6",
+                                  "cheap": "claude-haiku-4-5"}):
+        return _fb.get(tier, "claude-sonnet-4-6")
+
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
@@ -63,7 +80,7 @@ CONFIG_FILE = CONFIG_DIR / "editorial-calendar.yml"
 BRAND_VOICE_FILE = CONFIG_DIR / "brand-voice.yml"
 PROJECT_BRIEF = KNOWLEDGE_DIR / "project_brief.md"
 
-DEFAULT_MODEL = "claude-sonnet-4-6"
+DEFAULT_MODEL = _resolve_model("balanced")
 
 
 # ══════════════════════════════════════════════════════════════════════

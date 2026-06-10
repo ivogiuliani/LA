@@ -31,6 +31,23 @@ from api_health_banner import (
 
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── Auto-model: tier risolto via model_resolver — upgrade automatico
+# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
+# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
+# il modello non deve MAI bloccare la pipeline.
+try:
+    import sys as _sys
+    if str(SCRIPT_DIR) not in _sys.path:
+        _sys.path.insert(0, str(SCRIPT_DIR))
+    from model_resolver import resolve as _resolve_model
+except Exception:  # noqa: BLE001
+    def _resolve_model(tier, _fb={"writer": "claude-fable-5",
+                                  "heavy": "claude-opus-4-8",
+                                  "balanced": "claude-sonnet-4-6",
+                                  "cheap": "claude-haiku-4-5"}):
+        return _fb.get(tier, "claude-sonnet-4-6")
+_WRITER_MODEL = _resolve_model("writer")
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
 DRAFTS_DIR = ROOT_DIR / "_drafts"
@@ -8526,7 +8543,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
 
         try:
             client = anthropic.Anthropic(api_key=api_key)
-            model = "claude-opus-4-8"
+            model = _WRITER_MODEL
 
             if content_type == "journal":
                 system_prompt = (
@@ -8707,7 +8724,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
         try:
             client = anthropic.Anthropic(api_key=api_key)
             resp = client.messages.create(
-                model="claude-opus-4-8",
+                model=_WRITER_MODEL,
                 max_tokens=max_tokens,
                 system=system_prompt,
                 messages=[{"role": "user", "content": user_msg}],

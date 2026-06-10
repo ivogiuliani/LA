@@ -52,6 +52,23 @@ from pathlib import Path
 
 # ── Paths + .env loader ──────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── Auto-model: tier risolto via model_resolver — upgrade automatico
+# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
+# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
+# il modello non deve MAI bloccare la pipeline.
+try:
+    import sys as _sys
+    if str(SCRIPT_DIR) not in _sys.path:
+        _sys.path.insert(0, str(SCRIPT_DIR))
+    from model_resolver import resolve as _resolve_model
+except Exception:  # noqa: BLE001
+    def _resolve_model(tier, _fb={"writer": "claude-fable-5",
+                                  "heavy": "claude-opus-4-8",
+                                  "balanced": "claude-sonnet-4-6",
+                                  "cheap": "claude-haiku-4-5"}):
+        return _fb.get(tier, "claude-sonnet-4-6")
+_BALANCED_MODEL = _resolve_model("balanced")
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
 
@@ -137,7 +154,7 @@ Constraints (recap): 180-220 char body, ends with "Link in bio.", \
 blank line, then 5-7 CamelCase hashtags."""
 
 
-def generate_caption(article_meta, model="claude-sonnet-4-6", max_tokens=400):
+def generate_caption(article_meta, model=_BALANCED_MODEL, max_tokens=400):
     client = _anthropic_client()
     msg = client.messages.create(
         model=model,
@@ -231,8 +248,8 @@ def _main(argv=None):
         help="Output .ig.md path. Default: sibling of --article with .ig.md suffix.",
     )
     parser.add_argument(
-        "--model", default="claude-sonnet-4-6",
-        help="Anthropic model id (default: claude-sonnet-4-6).",
+        "--model", default=_BALANCED_MODEL,
+        help="Anthropic model id (default: auto, tier balanced).",
     )
     parser.add_argument(
         "--print", action="store_true",

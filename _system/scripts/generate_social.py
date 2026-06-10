@@ -25,6 +25,23 @@ except ImportError:
 
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── Auto-model: tier risolto via model_resolver — upgrade automatico
+# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
+# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
+# il modello non deve MAI bloccare la pipeline.
+try:
+    import sys as _sys
+    if str(SCRIPT_DIR) not in _sys.path:
+        _sys.path.insert(0, str(SCRIPT_DIR))
+    from model_resolver import resolve as _resolve_model
+except Exception:  # noqa: BLE001
+    def _resolve_model(tier, _fb={"writer": "claude-fable-5",
+                                  "heavy": "claude-opus-4-8",
+                                  "balanced": "claude-sonnet-4-6",
+                                  "cheap": "claude-haiku-4-5"}):
+        return _fb.get(tier, "claude-sonnet-4-6")
+_HEAVY_MODEL = _resolve_model("heavy")
 SYSTEM_DIR = SCRIPT_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
 KNOWLEDGE_DIR = SYSTEM_DIR / "knowledge"
@@ -195,7 +212,7 @@ Return a JSON array:
 Return ONLY valid JSON, no markdown fences."""
 
 
-def generate_reactive_posts(items, model="claude-opus-4-8"):
+def generate_reactive_posts(items, model=_HEAVY_MODEL):
     """Generate reactive social posts from radar signals."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
@@ -236,7 +253,7 @@ def generate_reactive_posts(items, model="claude-opus-4-8"):
         return []
 
 
-def generate_companion_posts(articles, model="claude-opus-4-8"):
+def generate_companion_posts(articles, model=_HEAVY_MODEL):
     """Generate social companion posts for Journal articles."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
@@ -337,7 +354,7 @@ def main():
                         help="Journal article JSON files (for companion posts)")
     parser.add_argument("--output", "-o", default=None,
                         help="Output directory (default: _system/social/posts/reactive/)")
-    parser.add_argument("--model", default="claude-opus-4-8",
+    parser.add_argument("--model", default=_HEAVY_MODEL,
                         help="Claude model for generation")
     parser.add_argument("--min-score", type=int, default=15,
                         help="Min radar score for reactive posts (default: 15)")

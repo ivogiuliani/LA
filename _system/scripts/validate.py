@@ -26,6 +26,23 @@ except ImportError:
 
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── Auto-model: tier risolto via model_resolver — upgrade automatico
+# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
+# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
+# il modello non deve MAI bloccare la pipeline.
+try:
+    import sys as _sys
+    if str(SCRIPT_DIR) not in _sys.path:
+        _sys.path.insert(0, str(SCRIPT_DIR))
+    from model_resolver import resolve as _resolve_model
+except Exception:  # noqa: BLE001
+    def _resolve_model(tier, _fb={"writer": "claude-fable-5",
+                                  "heavy": "claude-opus-4-8",
+                                  "balanced": "claude-sonnet-4-6",
+                                  "cheap": "claude-haiku-4-5"}):
+        return _fb.get(tier, "claude-sonnet-4-6")
+_BALANCED_MODEL = _resolve_model("balanced")
 SYSTEM_DIR = SCRIPT_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
 
@@ -224,7 +241,7 @@ Return JSON:
 Return ONLY valid JSON."""
 
 
-def ai_validate(text, content_type="general", model="claude-sonnet-4-6"):
+def ai_validate(text, content_type="general", model=_BALANCED_MODEL):
     """Use Claude Sonnet for deeper brand voice validation."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
@@ -314,7 +331,7 @@ def main():
                         help="Directories or files with Journal articles to validate")
     parser.add_argument("--config", default=None,
                         help="Config directory (default: _system/config/)")
-    parser.add_argument("--model", default="claude-sonnet-4-6",
+    parser.add_argument("--model", default=_BALANCED_MODEL,
                         help="Model for AI validation")
     parser.add_argument("--ai", action="store_true",
                         help="Enable AI validation (uses API credits)")

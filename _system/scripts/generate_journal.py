@@ -49,6 +49,23 @@ except ImportError:
 
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── Auto-model: tier risolto via model_resolver — upgrade automatico
+# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
+# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
+# il modello non deve MAI bloccare la pipeline.
+try:
+    import sys as _sys
+    if str(SCRIPT_DIR) not in _sys.path:
+        _sys.path.insert(0, str(SCRIPT_DIR))
+    from model_resolver import resolve as _resolve_model
+except Exception:  # noqa: BLE001
+    def _resolve_model(tier, _fb={"writer": "claude-fable-5",
+                                  "heavy": "claude-opus-4-8",
+                                  "balanced": "claude-sonnet-4-6",
+                                  "cheap": "claude-haiku-4-5"}):
+        return _fb.get(tier, "claude-sonnet-4-6")
+_WRITER_MODEL = _resolve_model("writer")
 SYSTEM_DIR = SCRIPT_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
 KNOWLEDGE_DIR = SYSTEM_DIR / "knowledge"
@@ -935,7 +952,7 @@ def verify_sources_live(article, item=None, strict=True):
 
 
 def generate_article(item, section_id, section_name, brand_voice, blocked,
-                     model="claude-opus-4-8", perspective_kb="",
+                     model=_WRITER_MODEL, perspective_kb="",
                      prior_articles=None, content_strategy=""):
     """Generate a Journal article using Opus."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -1906,7 +1923,7 @@ def main():
                         help="Path to config directory")
     parser.add_argument("--knowledge", default=None,
                         help="Path to knowledge directory")
-    parser.add_argument("--model", default="claude-opus-4-8",
+    parser.add_argument("--model", default=_WRITER_MODEL,
                         help="Claude model for generation")
     parser.add_argument("--min-score", type=int, default=None,
                         help="Override min score from config")

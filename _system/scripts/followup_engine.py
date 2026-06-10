@@ -39,6 +39,23 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── Auto-model: tier risolto via model_resolver — upgrade automatico
+# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
+# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
+# il modello non deve MAI bloccare la pipeline.
+try:
+    import sys as _sys
+    if str(SCRIPT_DIR) not in _sys.path:
+        _sys.path.insert(0, str(SCRIPT_DIR))
+    from model_resolver import resolve as _resolve_model
+except Exception:  # noqa: BLE001
+    def _resolve_model(tier, _fb={"writer": "claude-fable-5",
+                                  "heavy": "claude-opus-4-8",
+                                  "balanced": "claude-sonnet-4-6",
+                                  "cheap": "claude-haiku-4-5"}):
+        return _fb.get(tier, "claude-sonnet-4-6")
+_BALANCED_MODEL = _resolve_model("balanced")
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
 OUTREACH_DIR = SYSTEM_DIR / "outreach"
@@ -561,7 +578,7 @@ def _generate_body_with_claude(contact: dict, touch_n: int) -> str | None:
     try:
         client = Anthropic(api_key=api_key)
         resp = client.messages.create(
-            model="claude-sonnet-4-6",
+            model=_BALANCED_MODEL,
             max_tokens=400,
             system=system,
             messages=[{"role": "user", "content": user}],
@@ -632,7 +649,7 @@ def _generate_rescue_cold_body(contact: dict, author_name: str) -> str | None:
     try:
         client = Anthropic(api_key=api_key)
         resp = client.messages.create(
-            model="claude-sonnet-4-6",
+            model=_BALANCED_MODEL,
             max_tokens=500,
             system=system,
             messages=[{"role": "user", "content": user}],

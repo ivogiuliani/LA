@@ -56,6 +56,23 @@ import yaml
 
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── Auto-model: tier risolto via model_resolver — upgrade automatico
+# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
+# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
+# il modello non deve MAI bloccare la pipeline.
+try:
+    import sys as _sys
+    if str(SCRIPT_DIR) not in _sys.path:
+        _sys.path.insert(0, str(SCRIPT_DIR))
+    from model_resolver import resolve as _resolve_model
+except Exception:  # noqa: BLE001
+    def _resolve_model(tier, _fb={"writer": "claude-fable-5",
+                                  "heavy": "claude-opus-4-8",
+                                  "balanced": "claude-sonnet-4-6",
+                                  "cheap": "claude-haiku-4-5"}):
+        return _fb.get(tier, "claude-sonnet-4-6")
+
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
@@ -368,7 +385,7 @@ def filter_posts(shaped: list, max_age_days: int,
 # Claude relevance scoring (0..10)
 # ══════════════════════════════════════════════════════════════════════
 
-CLAUDE_SCORING_MODEL = "claude-haiku-4-5"   # cheap, fast — scoring only
+CLAUDE_SCORING_MODEL = _resolve_model("cheap")   # cheap, fast — scoring only
 CLAUDE_SCORING_TIMEOUT = 30
 
 
