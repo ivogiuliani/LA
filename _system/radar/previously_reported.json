@@ -2979,6 +2979,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.liveinsurancenews.com/los-angeles-attorney-wildfires/8572918/",
       "note": "auto-published journal: wildfire-deductible-california-insurable-home"
+    },
+    {
+      "date_first_reported": "2026-06-10",
+      "source": "user_dismissed",
+      "title": "Insurance Commissioner Candidate Statements | Official Voter Information Guide |",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://voterguide.sos.ca.gov/candidates/insurance-commissioner-candidate-statements.htm",
+      "note": "auto-sent pitch to vigfeedback@sos.ca.gov"
     }
   ]
 }

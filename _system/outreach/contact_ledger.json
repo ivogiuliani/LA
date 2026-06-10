@@ -1270,9 +1270,17 @@
           "message_id": "19e8c3817619ca14",
           "thread_id": "19e8c3817619ca14",
           "subject": "A European angle on your California chooses its next insurance watchdog amid wildfire piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-10T06:30:07+00:00",
+          "message_id": "19eb0395320db4b1",
+          "thread_id": "19eb0395320db4b1",
+          "subject": "Re: One thought after your State Farm violations piece"
         }
       ],
-      "next_touch_at": "2026-06-10",
+      "next_touch_at": "2026-06-24",
       "status": "in_cadence",
       "source_url": "https://calmatters.org/economy/2026/05/state-farm-california-violations/",
       "source_title": "California: State Farm violated law in handling of L.A. fire insurance claims",
@@ -1291,9 +1299,17 @@
           "message_id": "19e8c38334f693f5",
           "thread_id": "19e8c38334f693f5",
           "subject": "A European angle on your Are Prefab and Modular Homes Finally Becoming Luxury? piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-10T06:29:57+00:00",
+          "message_id": "19eb0392ff992955",
+          "thread_id": "19eb0392ff992955",
+          "subject": "Re: A European angle on your Are Prefab and Modular Homes Finally Becoming Luxury? piece"
         }
       ],
-      "next_touch_at": "2026-06-10",
+      "next_touch_at": "2026-06-24",
       "status": "in_cadence",
       "source_url": "",
       "source_title": "",
@@ -1312,9 +1328,17 @@
           "message_id": "19e8c3a052de8cd7",
           "thread_id": "19e8c3a052de8cd7",
           "subject": "A European take on resilient homes in Bel-Air"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-10T06:30:02+00:00",
+          "message_id": "19eb0394160499a6",
+          "thread_id": "19eb0394160499a6",
+          "subject": "Re: A European take on resilient homes in Bel-Air"
         }
       ],
-      "next_touch_at": "2026-06-10",
+      "next_touch_at": "2026-06-24",
       "status": "in_cadence",
       "source_url": "",
       "source_title": "",
@@ -1467,7 +1491,28 @@
       "source_title": "Some California homeowners now face ‘wildfire deductibles.’ Why that’s a problem. - The Washington Post",
       "cold_pitch_body": "Hi Washington Post team,\n\n(Writing to the Washington Post newsroom directly — this is meant for whichever desk is closest to the topic below. Feel free to forward as appropriate.)\n\nReally enjoyed your investigation into California's wildfire deductibles. You landed the detail most coverage misses: that a single inquiry was enough to push the Commissioner toward a formal review, which says a lot about how unsettled these policies still are.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your piece sparked: the resilience California is now pricing into deductibles has been default Mediterranean building practice for generations. That cultural gap feels like the real story.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
       "cold_pitch_subject": "A European angle on your wildfire deductibles piece"
+    },
+    "vigfeedback@sos.ca.gov": {
+      "email": "vigfeedback@sos.ca.gov",
+      "publication": "voterguide.sos.ca.gov",
+      "first_seen_at": "2026-06-10T06:29:52+00:00",
+      "touches": [
+        {
+          "n": 1,
+          "type": "cold",
+          "sent_at": "2026-06-10T06:29:52+00:00",
+          "message_id": "19eb0391c842f436",
+          "thread_id": "19eb0391c842f436",
+          "subject": "A European angle on the commissioner candidate statements"
+        }
+      ],
+      "next_touch_at": "2026-06-17",
+      "status": "in_cadence",
+      "source_url": "https://voterguide.sos.ca.gov/candidates/insurance-commissioner-candidate-statements.htm",
+      "source_title": "Insurance Commissioner Candidate Statements | Official Voter Information Guide | California Secretary of State",
+      "cold_pitch_body": "Hi Voterguide team,\n\n(Writing to the Voterguide newsroom directly — this is meant for whichever desk is closest to the topic below. Feel free to forward as appropriate.)\n\nThe candidate statements make for a revealing read — they show how many competing visions are now circling the same wildfire insurance crisis, from single-payer to market reform, without much consensus on what makes a home insurable.\n\nA quick introduction: My Villa brings European construction resilience and Italian livability to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista. In Europe, resilience has been default construction practice for generations.\n\nOne thought worth following: whichever model wins, the resilience LA is debating has been normal Mediterranean practice for generations. That cultural lag feels like the real story.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
+      "cold_pitch_subject": "A European angle on the commissioner candidate statements"
     }
   },
-  "last_hydrated_at": "2026-06-09T06:19:19.795055+00:00"
+  "last_hydrated_at": "2026-06-10T06:29:53.902269+00:00"
 }
