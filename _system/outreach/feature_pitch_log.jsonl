@@ -12,3 +12,13 @@
 {"domain": "canyon-news.com", "outlet": "Canyon News", "to": "hello@canyon-news.com", "status": "sent", "subject": "A European take on resilient homes in Bel-Air", "message_id": "19e8c3a052de8cd7", "logged_at": "2026-06-03T08:44:33.531788"}
 {"domain": "toacorn.com", "outlet": "The Acorn", "status": "no_email", "logged_at": "2026-06-03T08:45:05.071538"}
 {"domain": "montecitojournal.net", "outlet": "Montecito Journal", "status": "no_email", "logged_at": "2026-06-03T08:45:06.746959"}
+{"domain": "luxesource.com", "outlet": "Luxe Interiors + Design (California)", "status": "no_email", "logged_at": "2026-06-11T06:14:38+00:00"}
+{"domain": "modernluxury.com", "outlet": "Modern Luxury Los Angeles", "status": "no_email", "logged_at": "2026-06-11T06:14:40+00:00"}
+{"domain": "laconfidentialmag.com", "outlet": "LA Confidential", "status": "no_email", "logged_at": "2026-06-11T06:14:49+00:00"}
+{"domain": "hauteresidence.com", "outlet": "Haute Residence", "status": "no_email", "logged_at": "2026-06-11T06:15:32+00:00"}
+{"domain": "lamag.com", "outlet": "Los Angeles Magazine", "status": "no_email", "logged_at": "2026-06-11T06:15:34+00:00"}
+{"domain": "malibutimes.com", "outlet": "The Malibu Times", "status": "no_email", "logged_at": "2026-06-11T06:15:34+00:00"}
+{"domain": "bhcourier.com", "outlet": "Beverly Hills Courier", "status": "no_email", "logged_at": "2026-06-11T06:15:34+00:00"}
+{"domain": "palipost.com", "outlet": "Palisadian-Post", "to": "mypost@palipost.com", "status": "queued_review", "subject": "A Pacific Palisades rebuild story, built differently", "logged_at": "2026-06-11T06:15:39+00:00"}
+{"domain": "toacorn.com", "outlet": "The Acorn", "status": "no_email", "logged_at": "2026-06-11T06:15:55+00:00"}
+{"domain": "montecitojournal.net", "outlet": "Montecito Journal", "status": "no_email", "logged_at": "2026-06-11T06:15:57+00:00"}
