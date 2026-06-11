@@ -11,446 +11,1191 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-<meta name="robots" content="index, follow">
-
 <title>Materials &amp; Construction — My Villa Journal</title>
-<meta name="description" content="All My Villa Journal coverage in Materials &amp; Construction: 24 articles monitoring California's risk, insurance and construction landscape for luxury homes in Los Angeles.">
-<meta name="author" content="My Villa">
+<meta name="description" content="Materials &amp; Construction articles from the My Villa Journal. Perspectives on building reinforced concrete villas in Los Angeles.">
 <link rel="canonical" href="https://myvilla.la/blog/category/materials.html">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://myvilla.la/blog/category/materials.html">
-<meta property="og:title" content="Materials &amp; Construction — My Villa Journal">
-<meta property="og:image" content="https://myvilla.la/img/hero.png">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/svg+xml" href="/img/logos/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "@id": "https://myvilla.la/blog/category/materials.html",
-  "url": "https://myvilla.la/blog/category/materials.html",
-  "name": "Materials &amp; Construction — My Villa Journal",
-  "inLanguage": "en-US",
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://myvilla.la/" },
-      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://myvilla.la/blog/" },
-      { "@type": "ListItem", "position": 3, "name": "Materials &amp; Construction", "item": "https://myvilla.la/blog/category/materials.html" }
-    ]
-  }
-}
-</script>
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --ink: #16130F; --espresso: #2A211C; --cream: #FAF7F2; --linen: #F1EBE1; --white: #fff;
-  --sand: #D4B896; --gold: #C4A265; --terracotta: #C2714F; --terra-deep: #A85A3B;
-  --ink-60: rgba(22,19,15,.6); --ink-40: rgba(22,19,15,.4);
-  --cream-80: rgba(250,247,242,.8); --cream-55: rgba(250,247,242,.55);
-  --line-d: rgba(212,184,150,.16); --line-l: rgba(42,33,28,.14);
+  --terracotta: #C2714F;
+  --olive: #5C6B4F;
+  --tuscan-gold: #C4A265;
+  --warm-sand: #D4B896;
+  --espresso: #3E2F2B;
+  --coastal-sage: #A8B5A8;
+  --dusk-blue: #8A9B9E;
+  --pacific-blue: #6B8F9E;
+  --sky-mist: #9BB8C4;
+  --sand-white: #F0EBE3;
+  --charcoal: #2C2C2C;
+  --stone-grey: #A09890;
+  --light-linen: #EDE6DC;
+  --cream: #FAF8F5;
+  --offblack: #1a1816;
+  --white: #FFFFFF;
   --serif: 'Cormorant Garamond', Georgia, serif;
   --sans: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
-  --pad-x: clamp(24px, 6vw, 120px);
-  --ease: cubic-bezier(.22, 1, .36, 1);
+  --section-pad: clamp(80px, 12vh, 140px);
+  --side-pad: clamp(24px, 5vw, 120px);
 }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-body { font-family: var(--sans); font-weight: 300; background: var(--cream); color: var(--espresso); line-height: 1.78; font-size: 16px; overflow-x: hidden; }
-::selection { background: var(--terracotta); color: var(--cream); }
+html { -webkit-font-smoothing: antialiased; }
+@media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+  html { scroll-behavior: smooth; }
+}
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
 img { display: block; max-width: 100%; }
-:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
-[data-rv] { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1s var(--ease); transition-delay: calc(var(--d, 0) * 80ms); }
-[data-rv].on { opacity: 1; transform: none; }
+a { color: inherit; text-decoration: none; }
+
+/* ══════════════ NAV ══════════════ */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 16px var(--pad-x);
-  background: rgba(22,19,15,.92);
-  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  padding: 22px var(--side-pad);
+  padding-top: max(22px, env(safe-area-inset-top));
+  background: rgba(62,47,43,0.97);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: padding 0.3s;
 }
-.nav-logo-wrap { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
-.nav-logo { font-family: var(--serif); font-size: 17px; font-weight: 500; letter-spacing: .3em; color: var(--cream); }
-.nav-payoff { font-size: 8px; letter-spacing: .26em; font-weight: 500; text-transform: uppercase; color: var(--cream-55); }
-.nav-right { display: flex; align-items: center; gap: 24px; }
-.nav-right a { font-size: 11px; letter-spacing: .15em; font-weight: 500; text-transform: uppercase; color: var(--cream-80); text-decoration: none; transition: color .3s; white-space: nowrap; }
-.nav-right a:hover { color: var(--sand); }
-.nav-cta { padding: 10px 20px; background: var(--terracotta); color: #fff !important; font-weight: 600; transition: background .3s; }
-.nav-cta:hover { background: var(--terra-deep); }
-.card {
-  display: flex; flex-direction: column;
-  background: var(--white); border: 1px solid var(--line-l);
-  text-decoration: none; color: inherit; overflow: hidden; position: relative;
-  transition: transform .5s var(--ease), box-shadow .5s;
+.nav.scrolled { padding: 14px var(--side-pad); }
+.nav-logo-wrap { display: flex; flex-direction: column; text-decoration: none; }
+.nav-logo {
+  font-family: var(--serif); font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400; letter-spacing: 0.22em; color: var(--white);
 }
-.card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent, var(--terracotta)); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); z-index: 2; }
-.card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(42,33,28,.1); }
-.card:hover::before { transform: scaleX(1); }
-.card-img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; filter: saturate(.92); transition: filter .5s, transform .8s var(--ease); background: var(--linen); }
-.card:hover .card-img { filter: saturate(1.04); transform: scale(1.02); }
-.card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
-.card-tag { font-size: 9.5px; letter-spacing: .2em; font-weight: 700; text-transform: uppercase; color: var(--accent, var(--terracotta)); }
-.card-title { font-family: var(--serif); font-weight: 500; font-size: 18px; line-height: 1.3; color: var(--ink); }
-.card-excerpt { font-size: 12.5px; line-height: 1.6; color: var(--ink-60); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
-.card-meta { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-40); font-weight: 500; display: flex; align-items: center; gap: 10px; }
-.card-meta::before { content: ''; width: 18px; height: 1px; background: var(--accent, var(--terracotta)); }
-.btn {
-  display: inline-flex; align-items: center; gap: 12px;
-  padding: 16px 32px; background: var(--terracotta); color: var(--cream);
-  font-size: 12px; letter-spacing: .22em; font-weight: 600; text-transform: uppercase;
-  text-decoration: none; border: none; cursor: pointer; transition: background .35s;
+.nav-payoff {
+  font-family: var(--sans); font-size: 10px; font-weight: 400; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--white); opacity: 0.6; margin-top: 2px;
 }
-.btn:hover { background: var(--terra-deep); }
-.link-line {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 12px; letter-spacing: .2em; font-weight: 600; text-transform: uppercase;
-  text-decoration: none; color: var(--terracotta); padding-bottom: 5px; position: relative;
+.nav-links { display: flex; gap: 24px; align-items: center; }
+.nav-links a {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--white); opacity: 0.6;
+  transition: color 0.3s, opacity 0.3s; position: relative;
 }
-.link-line::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: currentColor; transform-origin: right; transition: transform .45s var(--ease); }
-.link-line:hover::after { transform: scaleX(.35); }
-.cta-band { background: var(--ink); text-align: center; padding: clamp(70px, 11vh, 120px) var(--pad-x); }
-.cta-band h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 4vw, 48px); line-height: 1.12; color: var(--cream); }
-.cta-band h2 em { font-style: italic; color: var(--sand); }
-.cta-band p { margin: 16px auto 30px; max-width: 540px; font-size: 14.5px; line-height: 1.8; color: var(--cream-55); }
-.footer { background: var(--ink); border-top: 1px solid var(--line-d); padding: 32px var(--pad-x); }
-.footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 11.5px; color: var(--cream-55); }
-.footer-inner a { color: inherit; text-decoration: none; }
-.footer-inner a:hover { color: var(--cream); }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  [data-rv] { opacity: 1 !important; transform: none !important; }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+  background: var(--pacific-blue); transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--white); opacity: 1; }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { opacity: 1; }
+.nav-links a.active::after { width: 100%; }
+.nav-cta {
+  font-size: 10px !important; font-weight: 600 !important;
+  letter-spacing: 0.12em !important; opacity: 1 !important;
+  border: 1px solid var(--terracotta) !important; padding: 10px 24px;
+  transition: all 0.3s !important;
+}
+.nav-cta:hover { background: var(--pacific-blue) !important; border-color: var(--pacific-blue) !important; }
+.nav-cta::after { display: none !important; }
+.nav-burger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  width: 28px; padding: 4px 0;
+}
+.nav-burger span {
+  display: block; height: 1.5px; background: var(--white); transition: all 0.3s;
+}
+.mobile-menu {
+  position: fixed; inset: 0; background: rgba(62,47,43,0.98);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+  z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.4s;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a { font-family: var(--serif); font-size: 28px; color: var(--white); transition: color 0.3s; }
+.mobile-menu a:hover { color: var(--terracotta); }
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
 }
 
-.j-hero { padding: clamp(130px, 18vh, 200px) var(--pad-x) clamp(48px, 7vh, 80px); background: var(--ink); }
-.j-hero-inner { max-width: 1240px; margin: 0 auto; }
-.j-hero .eyebrow { display: flex; align-items: center; gap: 14px; font-size: 11px; letter-spacing: .32em; font-weight: 600; text-transform: uppercase; color: var(--sand); margin-bottom: 22px; }
-.j-hero .eyebrow::before { content: ''; width: 50px; height: 1px; background: var(--sand); opacity: .7; }
-.j-hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 6vw, 80px); line-height: 1.02; color: var(--cream); max-width: 880px; }
-.j-hero h1 em { font-style: italic; font-weight: 300; color: var(--sand); }
-.j-hero p { margin-top: 22px; font-size: clamp(15px, 1.5vw, 17px); line-height: 1.8; color: var(--cream-55); max-width: 640px; }
-.j-stamp { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; padding: 6px 14px; border: 1px solid rgba(212,184,150,.4); font-size: 10px; letter-spacing: .2em; font-weight: 700; text-transform: uppercase; color: var(--sand); }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212,184,150,.6); } 70% { box-shadow: 0 0 0 5px rgba(212,184,150,0); } 100% { box-shadow: 0 0 0 0 rgba(212,184,150,0); } }
-.j-stamp .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sand); animation: pulse 2.4s infinite; }
-.wrap { max-width: 1240px; margin: 0 auto; padding: 0 var(--pad-x); }
-.featured { padding-top: clamp(48px, 7vh, 80px); }
-.featured-card { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); border: 1px solid var(--line-l); background: var(--white); text-decoration: none; color: inherit; overflow: hidden; transition: box-shadow .5s; }
-.featured-card:hover { box-shadow: 0 28px 60px rgba(42,33,28,.12); }
-.featured-card .f-img { position: relative; overflow: hidden; min-height: 340px; }
-.featured-card .f-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
-.featured-card:hover .f-img img { transform: scale(1.04); }
-.featured-card .f-body { padding: clamp(28px, 3.4vw, 48px); display: flex; flex-direction: column; gap: 14px; }
-.f-kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 10px; letter-spacing: .24em; font-weight: 700; text-transform: uppercase; color: var(--terracotta); }
-.f-kicker .lead-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--terracotta); }
-.featured-card h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.8vw, 38px); line-height: 1.14; color: var(--ink); }
-.featured-card .f-excerpt { font-size: 14px; line-height: 1.75; color: var(--ink-60); }
-.featured-card .f-meta { margin-top: auto; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-40); }
-.latest { padding-top: clamp(44px, 6vh, 64px); }
-.latest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.latest-item { display: block; padding: 18px 20px; background: var(--white); border: 1px solid var(--line-l); border-left: 2px solid var(--accent, var(--terracotta)); text-decoration: none; color: inherit; transition: transform .4s var(--ease), box-shadow .4s; }
-.latest-item:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(42,33,28,.08); }
-.latest-item .l-tag { font-size: 9px; letter-spacing: .2em; font-weight: 700; text-transform: uppercase; color: var(--accent, var(--terracotta)); }
-.latest-item .l-title { margin-top: 7px; font-family: var(--serif); font-weight: 500; font-size: 16px; line-height: 1.3; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.latest-item .l-meta { margin-top: 9px; font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-40); font-weight: 500; }
-.sec-block { padding-top: clamp(64px, 9vh, 96px); }
-.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-bottom: 1px solid var(--line-l); padding-bottom: 16px; margin-bottom: 26px; }
-.sec-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 3vw, 36px); color: var(--ink); display: flex; align-items: center; gap: 16px; }
-.sec-head h2::before { content: ''; width: 10px; height: 10px; background: var(--accent, var(--terracotta)); }
-.sec-head .sec-meta { display: flex; align-items: baseline; gap: 18px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--ink-40); }
-.sec-head .sec-meta a { color: var(--terracotta); text-decoration: none; }
-.sec-head .sec-meta a:hover { text-decoration: underline; }
-.sec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.bottom-pad { padding-bottom: clamp(72px, 11vh, 130px); }
-@media (max-width: 1000px) {
+/* ══════════════ HERO ══════════════ */
+.hero {
+  background: var(--espresso);
+  padding: 160px var(--side-pad) 80px;
+  text-align: center;
+  min-height: 50vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.hero-label {
+  font-family: var(--sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 24px;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 400; line-height: 1.15;
+  color: var(--white); margin-bottom: 24px;
+}
+.hero-title em { font-style: italic; font-weight: 300; }
+.hero-divider {
+  width: 60px; height: 1px;
+  background: var(--tuscan-gold);
+  margin: 0 auto 24px;
+}
+.hero-subtitle {
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.7; color: var(--white);
+  opacity: 0.6; max-width: 620px;
+}
+.hero-subscribe {
+  display: inline-block; margin-top: 28px;
+  font-family: var(--sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--tuscan-gold); opacity: 0.8;
+  border-bottom: 1px solid rgba(196,162,101,0.3);
+  padding-bottom: 4px;
+  transition: opacity 0.3s, border-color 0.3s;
+}
+.hero-subscribe:hover { opacity: 1; border-color: var(--tuscan-gold); }
+
+/* ══════════════ CATEGORY NAV ══════════════ */
+.cat-nav {
+  background: var(--espresso);
+  padding: 0 var(--side-pad) 40px;
+  display: flex; justify-content: center;
+  gap: 8px; flex-wrap: wrap;
+}
+.cat-pill {
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 10px 22px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5);
+  cursor: pointer; transition: all 0.3s;
+  background: transparent;
+}
+.cat-pill:hover,
+.cat-pill.active {
+  border-color: var(--tuscan-gold);
+  color: var(--white);
+  background: rgba(196,162,101,0.1);
+}
+
+/* ══════════════ FEATURED ARTICLE ══════════════ */
+.featured-section {
+  background: var(--cream);
+  padding: var(--section-pad) var(--side-pad) 60px;
+}
+.featured-wrapper {
+  max-width: 1100px; margin: 0 auto;
+}
+.featured-label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 32px;
+}
+.featured-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--light-linen);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+}
+.featured-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+}
+.featured-img {
+  width: 100%; height: 100%;
+  min-height: 360px;
+  background: linear-gradient(135deg, #C2714F22 0%, #6B8F9E22 100%);
+  position: relative; overflow: hidden;
+}
+.featured-img-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, var(--espresso) 0%, #5a4440 50%, var(--pacific-blue) 100%);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 360px;
+}
+.featured-img-placeholder span {
+  font-family: var(--serif); font-size: 14px;
+  color: rgba(255,255,255,0.3); font-style: italic;
+}
+.featured-body { padding: 48px 48px 48px 0; }
+.featured-tag {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.featured-tag::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--light-linen);
+}
+.featured-title {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 400; line-height: 1.2;
+  color: var(--espresso); margin-bottom: 16px;
+}
+.featured-excerpt {
+  font-size: 15px; line-height: 1.75;
+  color: var(--charcoal); opacity: 0.7;
+  margin-bottom: 24px;
+}
+.featured-meta {
+  font-size: 12px; color: var(--stone-grey);
+  letter-spacing: 0.05em;
+}
+.read-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--pacific-blue);
+  margin-top: 20px; transition: gap 0.3s;
+}
+.read-link:hover { gap: 14px; }
+.read-link svg { transition: transform 0.3s; }
+
+@media (max-width: 768px) {
   .featured-card { grid-template-columns: 1fr; }
-  .sec-grid, .latest-grid { grid-template-columns: repeat(2, 1fr); }
+  .featured-body { padding: 32px 24px; }
+  .featured-img-placeholder { min-height: 220px; }
 }
-@media (max-width: 640px) {
-  .sec-grid, .latest-grid { grid-template-columns: 1fr; }
-  .nav-right a:not(.nav-cta) { display: none; }
+
+/* ══════════════ SECTION BLOCK ══════════════ */
+.section-block {
+  padding: 0 var(--side-pad) 80px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
+.section-header {
+  display: flex; align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--light-linen);
+}
+.section-name {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 400; color: var(--espresso);
+}
+.section-count {
+  font-size: 12px; color: var(--stone-grey);
+  letter-spacing: 0.08em;
+}
+.section-accent {
+  width: 40px; height: 2px; margin-bottom: 12px;
+}
+
+/* ══════════════ ARTICLE GRID ══════════════ */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+@media (max-width: 900px) {
+  .article-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .article-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid #e8e3da;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+.card-accent {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px;
+}
+.card-img {
+  width: 100%; height: 200px;
+  overflow: hidden;
+}
+.card-img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.card-img-placeholder span {
+  font-family: var(--serif); font-size: 12px;
+  color: rgba(255,255,255,0.25); font-style: italic;
+}
+.card-body { padding: 24px; }
+.card-tag {
+  font-family: var(--sans); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 10px; display: block;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 400; line-height: 1.3;
+  color: var(--espresso); margin-bottom: 10px;
+}
+.card-excerpt {
+  font-size: 14px; line-height: 1.65;
+  color: var(--charcoal); opacity: 0.65;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-meta {
+  font-size: 11px; color: var(--stone-grey);
+  letter-spacing: 0.05em;
+}
+.card-source {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 12px; padding-top: 12px;
+  border-top: 1px solid var(--light-linen);
+}
+.card-source-icon {
+  width: 18px; height: 18px;
+  border-radius: 3px; background: var(--light-linen);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.card-source-icon svg { width: 11px; height: 11px; }
+.card-source-icon.src-x { background: #1a1816; }
+.card-source-icon.src-x svg { fill: #fff; }
+.card-source-icon.src-reddit { background: #FF4500; }
+.card-source-icon.src-reddit svg { fill: #fff; }
+.card-source-icon.src-article { background: var(--espresso); }
+.card-source-icon.src-article svg { stroke: var(--cream); }
+.card-source-icon.src-gov { background: var(--pacific-blue); }
+.card-source-icon.src-gov svg { stroke: #fff; }
+.card-source-icon.src-study { background: var(--olive); }
+.card-source-icon.src-study svg { stroke: #fff; }
+.card-source-text {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--stone-grey);
+  line-height: 1.3;
+}
+.card-source-text strong {
+  color: var(--charcoal); font-weight: 600;
+}
+
+/* Featured source */
+.featured-sources {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 20px;
+}
+.source-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 100px;
+  background: var(--light-linen);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.06em; color: var(--charcoal);
+  transition: background 0.3s;
+}
+.source-badge:hover { background: #e0d8cc; }
+.source-badge svg { width: 12px; height: 12px; opacity: 0.6; }
+.source-badge.sb-article { background: rgba(62,47,43,0.3); color: var(--cream); }
+.source-badge.sb-study { background: rgba(92,107,79,0.3); color: var(--cream); }
+.source-badge.sb-x { background: rgba(26,24,22,0.4); color: var(--cream); }
+.source-badge.sb-reddit { background: rgba(255,69,0,0.2); color: #FF4500; }
+.source-badge.sb-gov { background: rgba(107,143,158,0.3); color: var(--cream); }
+
+/* Color coding by section */
+.accent-insurance { background: var(--terracotta); }
+.tag-insurance { color: var(--terracotta); }
+
+.accent-construction { background: var(--pacific-blue); }
+.tag-construction { color: var(--pacific-blue); }
+
+.accent-permits { background: var(--olive); }
+.tag-permits { color: var(--olive); }
+
+.accent-market { background: var(--tuscan-gold); }
+.tag-market { color: var(--tuscan-gold); }
+
+.accent-climate { background: var(--coastal-sage); }
+.tag-climate { color: var(--coastal-sage); }
+
+/* ══════════════ JOURNAL CTA ══════════════ */
+.journal-cta {
+  background: var(--espresso);
+  padding: var(--section-pad) var(--side-pad);
+  text-align: center;
+}
+.journal-cta-inner {
+  max-width: 620px; margin: 0 auto;
+}
+.journal-cta-label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 20px;
+}
+.journal-cta-divider {
+  width: 60px; height: 1px;
+  background: var(--tuscan-gold);
+  margin: 0 auto 28px;
+}
+.journal-cta-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 400; line-height: 1.2;
+  color: var(--white); margin-bottom: 20px;
+}
+.journal-cta-title em {
+  font-style: italic; font-weight: 300;
+}
+.journal-cta-text {
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.8;
+  color: var(--white); opacity: 0.6;
+  margin-bottom: 40px;
+}
+.journal-cta-buttons {
+  display: flex; gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-btn {
+  display: inline-block;
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 14px 32px; border-radius: 2px;
+  transition: all 0.3s; cursor: pointer;
+  text-decoration: none;
+}
+.cta-btn-primary {
+  background: var(--terracotta); color: var(--white);
+  border: 1px solid var(--terracotta);
+}
+.cta-btn-primary:hover {
+  background: var(--pacific-blue); border-color: var(--pacific-blue);
+}
+.cta-btn-secondary {
+  background: transparent; color: var(--white);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.cta-btn-secondary:hover {
+  border-color: var(--white);
+}
+@media (max-width: 500px) {
+  .journal-cta-buttons { flex-direction: column; align-items: center; }
+  .cta-btn { width: 100%; max-width: 280px; text-align: center; }
+}
+
+/* ══════════════ FOOTER ══════════════ */
+.footer {
+  background: var(--offblack);
+  padding: 30px var(--side-pad);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.footer-brand-wrap { display: flex; align-items: baseline; gap: 12px; }
+.footer-brand {
+  font-family: var(--serif); font-size: 16px;
+  letter-spacing: 0.2em; color: var(--white);
+}
+.footer-brand-payoff {
+  font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+}
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.5); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-size: 13px; color: var(--white); opacity: 0.8;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--pacific-blue); }
+@media (max-width: 600px) {
+  .footer { flex-direction: column; text-align: center; gap: 16px; }
+  .footer-brand-wrap { justify-content: center; }
+  .footer-links { justify-content: center; gap: 16px; }
+}
+
+/* ══════════════ REVEAL ══════════════ */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+
+/* ── Category page extras ─────────────────────────────────── */
+.category-hero { padding: 100px 40px 60px; text-align: center; max-width: 900px; margin: 0 auto; }
+.category-breadcrumb { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--stone-grey); margin-bottom: 20px; }
+.category-breadcrumb a { color: var(--stone-grey); text-decoration: none; transition: color 0.2s ease; }
+.category-breadcrumb a:hover { color: var(--terracotta); }
+.category-title { font-family: var(--serif); font-size: clamp(44px, 6vw, 68px); font-weight: 300; color: var(--offblack); margin-bottom: 16px; letter-spacing: -0.01em; }
+.category-sub { font-family: var(--sans); font-size: 14px; color: var(--stone-grey); letter-spacing: 0.04em; }
+.category-accent-bar { width: 60px; height: 3px; background: #6B8F9E; margin: 28px auto; }
+.month-group { max-width: 1280px; margin: 0 auto 60px; padding: 0 40px; }
+.month-header { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid rgba(192, 180, 165, 0.3); margin-bottom: 28px; }
+.month-label { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--espresso); letter-spacing: 0.02em; }
+.month-count { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--stone-grey); }
+.back-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--sans); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--terracotta); text-decoration: none; padding: 40px; }
+.back-link:hover { color: var(--espresso); }
+@media (max-width: 768px) { .category-hero { padding: 60px 20px 40px; } .month-group { padding: 0 20px; } }
 </style>
 </head>
 <body>
 
-<nav class="nav" aria-label="Main navigation">
-  <a href="../../index.html" class="nav-logo-wrap" aria-label="My Villa — home">
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <a href="https://myvilla.la" class="nav-logo-wrap">
     <span class="nav-logo">MY VILLA</span>
     <span class="nav-payoff">Italian Soul &middot; Californian Body</span>
   </a>
-  <div class="nav-right">
-    <a href="../../index.html">Home</a>
-    <a href="../index.html">Journal</a>
-    <a href="../../team.html">Studio</a>
-    <a href="../../index.html#briefing" class="nav-cta">Request Briefing</a>
+  <div class="nav-links">
+    <a href="https://myvilla.la/#thesis">Vision</a>
+    <a href="https://myvilla.la/#collection">Collection</a>
+    <a href="https://myvilla.la/#ethical">Approach</a>
+    <a href="https://myvilla.la/#resilience">Resilience</a>
+    <a href="../index.html" class="active">Journal</a>
+    <a href="https://myvilla.la/#contact" class="nav-cta">Request Briefing</a>
+  </div>
+  <div class="nav-burger" id="burger" aria-label="Menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+    <span></span><span></span><span></span>
   </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://myvilla.la/#thesis" onclick="closeMobile()">Vision</a>
+  <a href="https://myvilla.la/#collection" onclick="closeMobile()">Collection</a>
+  <a href="https://myvilla.la/#ethical" onclick="closeMobile()">Approach</a>
+  <a href="https://myvilla.la/#resilience" onclick="closeMobile()">Resilience</a>
+  <a href="../index.html" onclick="closeMobile()">Journal</a>
+  <a href="https://myvilla.la/#contact" onclick="closeMobile()">Request Briefing</a>
+</div>
 
-<main>
-<header class="j-hero">
-  <div class="j-hero-inner">
-    <div class="eyebrow" data-rv>The Journal &middot; Section</div>
-    <h1 data-rv style="--d:1">Materials &amp; Construction<em>.</em></h1>
-    <p data-rv style="--d:2">24 articles from the Monitoring Desk.</p>
+<section class="category-hero">
+  <div class="category-breadcrumb">
+    <a href="https://myvilla.la">Home</a> &rsaquo; <a href="../index.html">Journal</a> &rsaquo; Materials &amp; Construction
   </div>
-</header>
-
-<section class="sec-block wrap" style="--accent:#C4A265">
-  <div class="sec-head" data-rv>
-    <h2>All coverage</h2>
-    <div class="sec-meta"><a href="../index.html">&larr; Back to the Journal</a></div>
-  </div>
-  <div class="sec-grid">
-<a class="card" href="../fire-resilient-home-demand-california-malibu-woolsey.html" style="--accent:#C4A265" aria-label="Read: Fire-Resilient Home Demand in California: A Malibu Origin Story">
-  <img class="card-img" src="/blog/assets/img/fire-resilient-home-demand-california-malibu-woolsey-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">Fire-Resilient Home Demand in California: A Malibu Origin Story</h3>
-    <p class="card-excerpt">A BBC feature on a Malibu entrepreneur building resilient housing after the 2018 Woolsey fire reveals how durable construction became a Southern California demand category — driven first by the event, then by insurability.</p>
-    <div class="card-meta">Jun 10, 2026 &middot; 6 min read</div>
-  </div>
-</a>
-<a class="card" href="../noncombustible-vs-fire-resistant-homes-california.html" style="--accent:#C4A265" aria-label="Read: Noncombustible vs. Fire-Resistant Homes in California: The Distinction That Decides">
-  <img class="card-img" src="/blog/assets/img/noncombustible-vs-fire-resistant-homes-california-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">Noncombustible vs. Fire-Resistant Homes in California: The Distinction That Decides</h3>
-    <p class="card-excerpt">A technical comparison from NonCombustibles LLC clarifies a distinction California buyers often miss: meeting Chapter 7A as a fire-resistant home is not the same as building a noncombustible structure. The gap shapes cost, durability, and insurability.</p>
-    <div class="card-meta">Jun 3, 2026 &middot; 6 min read</div>
-  </div>
-</a>
-<a class="card" href="../california-insurer-roof-restrictions-fire-resistant-homes-2026.html" style="--accent:#C4A265" aria-label="Read: Roof Rules from California&#x27;s Top 20 Insurers: What Fire-Resistant Homes Need in 2026">
-  <img class="card-img" src="/blog/assets/img/california-insurer-roof-restrictions-fire-resistant-homes-2026-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">Roof Rules from California&#x27;s Top 20 Insurers: What Fire-Resistant Homes Need in 2026</h3>
-    <p class="card-excerpt">The San Francisco Chronicle has mapped the underwriting guidelines of the 20 insurers that collected 90% of California&#x27;s 2024 home premiums. The roof is no longer a finish decision — it is the first underwriting filter, and it now defines what counts as an insurable luxury home.</p>
-    <div class="card-meta">May 29, 2026 &middot; 6 min read</div>
-  </div>
-</a>
-<a class="card" href="../climate-risk-luxury-real-estate-california-resilient-construction-2026.html" style="--accent:#C4A265" aria-label="Read: Climate Risk Reshapes California Luxury Real Estate in 2026">
-  <img class="card-img" src="/blog/assets/img/climate-risk-luxury-real-estate-california-resilient-construction-2026-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">Climate Risk Reshapes California Luxury Real Estate in 2026</h3>
-    <p class="card-excerpt">A Forbes Business Council op-ed argues that climate risk has made resilience a core element of luxury real estate strategy in California. The construction math — and the underwriting response — explains why.</p>
-    <div class="card-meta">May 29, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../california-fire-insurance-77k-to-112k-insurable-home.html" style="--accent:#C4A265" aria-label="Read: California Fire Insurance Jumps $77K to $112K: The Insurable Home Question">
-  <img class="card-img" src="/blog/assets/img/california-fire-insurance-77k-to-112k-insurable-home-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">California Fire Insurance Jumps $77K to $112K: The Insurable Home Question</h3>
-    <p class="card-excerpt">A California family&#x27;s fire insurance jumped from $77,000 to $112,000 in one year — a 45% increase that crystallizes a larger shift: carriers are pricing the building, not the ZIP code.</p>
-    <div class="card-meta">May 27, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../california-property-insurance-structural-strain-2026.html" style="--accent:#C4A265" aria-label="Read: California Property Insurance Strain: What It Signals for LA">
-  <img class="card-img" src="/blog/assets/img/california-property-insurance-structural-strain-2026-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">California Property Insurance Strain: What It Signals for LA</h3>
-    <p class="card-excerpt">Insurance News Network describes California&#x27;s property insurance market as under structural — not cyclical — strain. For LA luxury homeowners, the distinction reframes how coverage will be priced, and which homes will be written at all.</p>
-    <div class="card-meta">May 27, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../icf-mass-production-palisades-rebuild-california.html" style="--accent:#C4A265" aria-label="Read: ICF Mass Production for California Rebuilds: A Manufacturing Case">
-  <img class="card-img" src="/blog/assets/img/icf-mass-production-palisades-rebuild-california-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">ICF Mass Production for California Rebuilds: A Manufacturing Case</h3>
-    <p class="card-excerpt">A viral X post argues the Pacific Palisades rebuild should use mass-produced ICF molds and click-in rebar. The manufacturing logic — reusable molds, pre-bent rebar, validated wall sections — is more credible than it first sounds, and aligns with where California&#x27;s insurability framework is already heading.</p>
-    <div class="card-meta">May 27, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../fire-resistant-features-luxury-home-value-southern-california.html" style="--accent:#C4A265" aria-label="Read: Fire-Resistant Features and Luxury Home Value in California">
-  <img class="card-img" src="/blog/assets/img/fire-resistant-features-luxury-home-value-southern-california-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">Fire-Resistant Features and Luxury Home Value in California</h3>
-    <p class="card-excerpt">A Southern California luxury brokerage argues that fire-resistant construction features now function as an appraisal input — not a defensive expense. The framing matters because it comes from the sell side, where buyers and appraisers ultimately set value.</p>
-    <div class="card-meta">May 24, 2026 &middot; 6 min read</div>
-  </div>
-</a>
-<a class="card" href="../reinforced-concrete-default-california-home-construction.html" style="--accent:#C4A265" aria-label="Read: Reinforced Concrete as the California Home Construction Default">
-  <img class="card-img" src="/blog/assets/img/reinforced-concrete-default-california-home-construction-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">Reinforced Concrete as the California Home Construction Default</h3>
-    <p class="card-excerpt">A social-media post calling for reinforced concrete as California&#x27;s default home construction system articulates a structural argument with serious engineering grounding. We examine the fire and seismic case behind it — and what it means for Los Angeles luxury construction in 2026.</p>
-    <div class="card-meta">May 24, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../rudolph-schindler-los-angeles-concrete-modernism-lessons.html" style="--accent:#C4A265" aria-label="Read: Schindler&#x27;s LA Concrete Homes: Lessons for New Construction">
-  <img class="card-img" src="/blog/assets/img/rudolph-schindler-los-angeles-concrete-modernism-lessons-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">Schindler&#x27;s LA Concrete Homes: Lessons for New Construction</h3>
-    <p class="card-excerpt">Wallpaper* documents 16 Rudolph Schindler homes still standing across Los Angeles — many of them built in concrete a century ago. The survey reads as both architectural history and a longitudinal study of how concrete-framed houses behave in a fire-exposed city.</p>
-    <div class="card-meta">May 20, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../icf-type-i-california-wui-residential-benchmark.html" style="--accent:#C4A265" aria-label="Read: Fire-Resistant Home in California: ICF Type I Sets WUI Benchmark">
-  
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">Fire-Resistant Home in California: ICF Type I Sets WUI Benchmark</h3>
-    <p class="card-excerpt">California&#x27;s first ICF Type I home reframes the residential wildfire conversation: instead of hardening a combustible structure, the structure itself is noncombustible from the start. A look at what Type I actually means under the IBC, and why it matters for the Los Angeles insurability stack.</p>
-    <div class="card-meta">May 15, 2026 &middot; 6 min read</div>
-  </div>
-</a>
-<a class="card" href="../icf-type-i-california-wildfire-construction-standard.html" style="--accent:#C4A265" aria-label="Read: ICF Type I in California: A New Wildfire Construction Standard">
-  <img class="card-img" src="/blog/assets/img/icf-type-i-california-wildfire-construction-standard-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">ICF Type I in California: A New Wildfire Construction Standard</h3>
-    <p class="card-excerpt">California&#x27;s first ICF Type I home applies a noncombustible institutional construction classification to a single-family residence. Why the code category matters more than the marketing label — and what it signals for LA luxury underwriting.</p>
-    <div class="card-meta">May 12, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../wildfire-rebuild-permits-vs-materials-california-2026.html" style="--accent:#C4A265" aria-label="Read: Wildfire Rebuilds in California: Why Permits Alone Don&#x27;t Build Insurable Homes">
-  <img class="card-img" src="/blog/assets/img/wildfire-rebuild-permits-vs-materials-california-2026-hero.png" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">Wildfire Rebuilds in California: Why Permits Alone Don&#x27;t Build Insurable Homes</h3>
-    <p class="card-excerpt">A California construction firm argued on X that wildfire rebuilds are revealing a hard truth: permits don&#x27;t protect homes — materials do. We unpack what Chapter 7A actually certifies, and why ICF and reinforced concrete are increasingly the line between compliant and insurable.</p>
-    <div class="card-meta">May 12, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../all-concrete-malibu-mansion-44m-listing-luxury-market-signal.html" style="--accent:#C4A265" aria-label="Read: All-Concrete Malibu Mansion at $44M: A Luxury Market Read">
-  <img class="card-img" src="/blog/assets/img/all-concrete-malibu-mansion-44m-listing-luxury-market-signal-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">All-Concrete Malibu Mansion at $44M: A Luxury Market Read</h3>
-    <p class="card-excerpt">A $44M all-concrete mansion in Malibu, surfaced in early May 2026, is the latest sign that the ultra-prime California coast is pricing monolithic concrete as a headline feature — not a hidden engineering choice.</p>
-    <div class="card-meta">May 5, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../california-insurance-emergency-debate-luxury-construction.html" style="--accent:#C4A265" aria-label="Read: California Insurance Emergency: What a Gubernatorial Debate Reveals About Luxury Construction">
-  <img class="card-img" src="/blog/assets/img/california-insurance-emergency-debate-luxury-construction-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">California Insurance Emergency: What a Gubernatorial Debate Reveals About Luxury Construction</h3>
-    <p class="card-excerpt">California&#x27;s home insurance crisis has reached the gubernatorial debate stage, with one candidate pledging an emergency declaration. But the technical thresholds that determine which luxury homes remain insurable will outlast any single administration.</p>
-    <div class="card-meta">May 2, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../concrete-masonry-altadena-rebuild-resilience-case-study.html" style="--accent:#C4A265" aria-label="Read: Concrete Masonry Rebuild in Altadena: A Resilient Construction Case Study">
-  <img class="card-img" src="/blog/assets/img/concrete-masonry-altadena-rebuild-resilience-case-study-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">Concrete Masonry Rebuild in Altadena: A Resilient Construction Case Study</h3>
-    <p class="card-excerpt">A documented Altadena rebuild — concrete masonry walls, concrete roof, steel-stud interiors — offers a rare completed reference for what non-combustible residential construction actually looks like in LA&#x27;s fire zones.</p>
-    <div class="card-meta">Apr 29, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../lacma-david-geffen-galleries-concrete-architecture-los-angeles.html" style="--accent:#C4A265" aria-label="Read: LACMA&#x27;s Concrete Reset: What the Geffen Galleries Mean for LA">
-  <img class="card-img" src="/blog/assets/img/lacma-david-geffen-galleries-concrete-architecture-los-angeles-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">LACMA&#x27;s Concrete Reset: What the Geffen Galleries Mean for LA</h3>
-    <p class="card-excerpt">Wallpaper*&#x27;s reassessment of LACMA&#x27;s David Geffen Galleries puts cast concrete back at the center of Los Angeles&#x27;s architectural conversation — and offers a civic reference point for residential clients now weighing material permanence against the city&#x27;s wood-frame default.</p>
-    <div class="card-meta">Apr 26, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../all-concrete-malibu-mansion-44m-viral-tour-what-it-signals.html" style="--accent:#C4A265" aria-label="Read: All-Concrete Malibu Mansion at $44M: What the Viral Tour Signals">
-  <img class="card-img" src="/blog/assets/img/all-concrete-malibu-mansion-44m-viral-tour-what-it-signals-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">All-Concrete Malibu Mansion at $44M: What the Viral Tour Signals</h3>
-    <p class="card-excerpt">A viral X tour of a $44M all-concrete Malibu mansion is doing more than trending — it is confirming that monolithic concrete construction has entered the vocabulary of California ultra-prime listings. We read the signal behind the listing.</p>
-    <div class="card-meta">Apr 22, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../courtyard-villa-fire-resilience-2026-la-rebuild.html" style="--accent:#C4A265" aria-label="Read: The Courtyard Villa as Fire Perimeter: From Pompeii to the 2026 Palisades Rebuild">
-  <img class="card-img" src="/blog/assets/img/courtyard-villa-fire-resilience-2026-la-rebuild-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials</span>
-    <h3 class="card-title">The Courtyard Villa as Fire Perimeter: From Pompeii to the 2026 Palisades Rebuild</h3>
-    <p class="card-excerpt">The Roman atrium-and-peristyle plan, carried through the Renaissance villa and catalogued as LA vernacular by Polyzoides in 1982, is simultaneously a Csa-climate passive-cooling device and an IBHS Zone 0 non-combustible perimeter. After the 2025 Palisades and Eaton fires — where homes with four hardening features survived at 54 percent versus 36 percent — the courtyard wall is the detail doing three jobs at once.</p>
-    <div class="card-meta">Apr 20, 2026 &middot; 6 min read</div>
-  </div>
-</a>
-<a class="card" href="../altadena-hoa-bills-rebuild-cost-structure.html" style="--accent:#C4A265" aria-label="Read: When the HOA Bill Arrives After the Fire: Altadena&#x27;s Hidden Rebuild Cost">
-  <img class="card-img" src="/blog/assets/img/altadena-hoa-bills-rebuild-cost-structure-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">When the HOA Bill Arrives After the Fire: Altadena&#x27;s Hidden Rebuild Cost</h3>
-    <p class="card-excerpt">More than a year after the Eaton Fire, Altadena homeowners are receiving HOA bills and foreclosure notices on lots where no house stands. The story reveals a truth the LA rebuild conversation has mostly ignored: material choice determines the entire cost curve.</p>
-    <div class="card-meta">Apr 17, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../concrete-innovations-fire-rebuilding-camarillo-acorn.html" style="--accent:#C4A265" aria-label="Read: Concrete Returns to the Center of the LA Rebuild Conversation">
-  <img class="card-img" src="/blog/assets/img/concrete-innovations-fire-rebuilding-camarillo-acorn-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">Concrete Returns to the Center of the LA Rebuild Conversation</h3>
-    <p class="card-excerpt">The Camarillo Acorn&#x27;s recent reporting on concrete innovations in fire rebuilding reflects a broader shift in Southern California: material choice is moving from specification detail to strategic decision. With the 2026 WUI Code deadline approaching, what counts as a standard wall is being rewritten.</p>
-    <div class="card-meta">Apr 17, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../insurance-decides-palisades-rebuild-candidates-forum.html" style="--accent:#C4A265" aria-label="Read: When Insurance Becomes the Permit: The Palisades Rebuild Question">
-  <img class="card-img" src="/blog/assets/img/insurance-decides-palisades-rebuild-candidates-forum-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">When Insurance Becomes the Permit: The Palisades Rebuild Question</h3>
-    <p class="card-excerpt">At a Palisades candidate forum, the rebuild was reframed as an insurance problem before a construction one. The three frameworks now deciding who gets coverage — and why material choice is upstream of all of them.</p>
-    <div class="card-meta">Apr 17, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../rebuild-math-3-percent-construction-cost-800-percent-insurance-savings.html" style="--accent:#C4A265" aria-label="Read: The 3% Decision: How Construction Choice Reshapes Insurance Math in LA">
-  <img class="card-img" src="/blog/assets/img/rebuild-math-3-percent-construction-cost-800-percent-insurance-savings-hero.jpg" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">The 3% Decision: How Construction Choice Reshapes Insurance Math in LA</h3>
-    <p class="card-excerpt">A new analysis suggests fire-resistant rebuilds in Los Angeles add roughly 3% to construction cost while unlocking dramatically lower insurance premiums. The math reframes material choice as a financial variable.</p>
-    <div class="card-meta">Apr 17, 2026 &middot; 5 min read</div>
-  </div>
-</a>
-<a class="card" href="../ibhs-wildfire-prepared-home-plus-california-certification-2026.html" style="--accent:#C4A265" aria-label="Read: IBHS Wildfire Prepared Home Plus: California&#x27;s New Insurance Lever">
-  <img class="card-img" src="/blog/assets/img/ibhs-wildfire-prepared-home-plus-california-certification-2026-hero.png" alt="" loading="lazy" width="800" height="450">
-  <div class="card-body">
-    <span class="card-tag">Materials &amp; Construction</span>
-    <h3 class="card-title">IBHS Wildfire Prepared Home Plus: California&#x27;s New Insurance Lever</h3>
-    <p class="card-excerpt">IBHS&#x27;s Wildfire Prepared Home Plus designation is quietly becoming California&#x27;s most credible insurance lever — a third-party credential that compresses the state&#x27;s fragmented mitigation framework into something underwriters will actually price. Here&#x27;s what it requires and why new construction has a structural advantage.</p>
-    <div class="card-meta">May 29, 2025 &middot; 5 min read</div>
-  </div>
-</a>
-  </div>
+  <h1 class="category-title">Materials &amp; Construction</h1>
+  <div class="category-accent-bar"></div>
+  <div class="category-sub">24 articles &middot; Updated perspectives on this topic</div>
 </section>
 
-<div class="bottom-pad"></div>
-<section class="cta-band" aria-label="Request a private briefing">
-  <h2 data-rv>Reading the risk is our job.<br><em>Building past it is our craft.</em></h2>
-  <p data-rv style="--d:1">If you are considering a luxury build or rebuild in Malibu, Beverly Hills, or the broader Westside — request a private briefing with the design team.</p>
-  <a class="btn" href="../../index.html#briefing" data-rv style="--d:2"><span>Request a Private Briefing</span><span>&rarr;</span></a>
+
+<div class="month-group">
+  <div class="month-header reveal">
+    <h3 class="month-label">June 2026</h3>
+    <span class="month-count">2 articles</span>
+  </div>
+  <div class="article-grid">
+    
+    <article class="card reveal reveal-d1" data-year="2026" data-section="materials">
+      <a href="fire-resilient-home-demand-california-malibu-woolsey.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/fire-resilient-home-demand-california-malibu-woolsey-hero.jpg" alt="Fire-Resilient Home Demand in California: A Malibu Origin Story" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Fire-Resilient Home Demand in California: A Malibu Origin Story</h3>
+        <p class="card-excerpt">Why is fire-resilient home demand surging in California? A Malibu entrepreneur&#x27;s post-Woolsey venture shows the market shift — and what underwriters now reward.</p>
+        <div class="card-meta">June 10, 2026 &middot; 6 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>British Broadcasting Corporation</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal reveal-d2" data-year="2026" data-section="materials">
+      <a href="noncombustible-vs-fire-resistant-homes-california.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/noncombustible-vs-fire-resistant-homes-california-hero.jpg" alt="Noncombustible vs. Fire-Resistant Homes in California: The Distinction That Decides" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Noncombustible vs. Fire-Resistant Homes in California: The Distinction That Decides</h3>
+        <p class="card-excerpt">Wondering if a fire-resistant home in California is the same as a noncombustible one? Under Chapter 7A, the distinction shapes cost, durability, and insurability.</p>
+        <div class="card-meta">June 03, 2026 &middot; 6 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>NonCombustibles LLC</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+  </div>
+</div>
+<div class="month-group">
+  <div class="month-header reveal">
+    <h3 class="month-label">May 2026</h3>
+    <span class="month-count">13 articles</span>
+  </div>
+  <div class="article-grid">
+    
+    <article class="card reveal reveal-d1" data-year="2026" data-section="materials">
+      <a href="climate-risk-luxury-real-estate-california-resilient-construction-2026.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/climate-risk-luxury-real-estate-california-resilient-construction-2026-hero.jpg" alt="Climate Risk Reshapes California Luxury Real Estate in 2026" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Climate Risk Reshapes California Luxury Real Estate in 2026</h3>
+        <p class="card-excerpt">How is climate risk reshaping California luxury real estate in 2026? Forbes calls resilience a core asset strategy. The construction math behind it, explained.</p>
+        <div class="card-meta">May 29, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Forbes</strong>, <strong>Insurance Institute for Business &amp; Home Safety (IBHS)</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal reveal-d2" data-year="2026" data-section="materials">
+      <a href="california-insurer-roof-restrictions-fire-resistant-homes-2026.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/california-insurer-roof-restrictions-fire-resistant-homes-2026-hero.jpg" alt="Roof Rules from California&#x27;s Top 20 Insurers: What Fire-Resistant Homes Need in 2026" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Roof Rules from California&#x27;s Top 20 Insurers: What Fire-Resistant Homes Need in 2026</h3>
+        <p class="card-excerpt">Which roofs will California insurers still cover in 2026? A new dataset of the 20 largest carriers shows why Class A non-combustible assemblies now define an insurable home.</p>
+        <div class="card-meta">May 29, 2026 &middot; 6 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>San Francisco Chronicle (via Yahoo Finance)</strong>, <strong>IBHS</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal reveal-d3" data-year="2026" data-section="materials">
+      <a href="icf-mass-production-palisades-rebuild-california.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/icf-mass-production-palisades-rebuild-california-hero.jpg" alt="ICF Mass Production for California Rebuilds: A Manufacturing Case" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">ICF Mass Production for California Rebuilds: A Manufacturing Case</h3>
+        <p class="card-excerpt">Can ICF mass production accelerate California rebuilds? A viral X thread makes the manufacturing case for click-in rebar, mold reuse, and concrete homes.</p>
+        <div class="card-meta">May 27, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>X (Ari Teman)</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal reveal-d4" data-year="2026" data-section="materials">
+      <a href="california-property-insurance-structural-strain-2026.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/california-property-insurance-structural-strain-2026-hero.jpg" alt="California Property Insurance Strain: What It Signals for LA" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">California Property Insurance Strain: What It Signals for LA</h3>
+        <p class="card-excerpt">California property insurance is under structural strain in 2026, making luxury home coverage scarce. What the shift means for insurable construction in LA.</p>
+        <div class="card-meta">May 27, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>X / Insurance News Network</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="california-fire-insurance-77k-to-112k-insurable-home.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/california-fire-insurance-77k-to-112k-insurable-home-hero.jpg" alt="California Fire Insurance Jumps $77K to $112K: The Insurable Home Question" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">California Fire Insurance Jumps $77K to $112K: The Insurable Home Question</h3>
+        <p class="card-excerpt">California fire insurance just jumped from $77K to $112K for one family. Here&#x27;s what risk repricing means for insurable home design in 2026 — and why structure matters.</p>
+        <div class="card-meta">May 27, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>X / @aerockrose</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="reinforced-concrete-default-california-home-construction.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/reinforced-concrete-default-california-home-construction-hero.jpg" alt="Reinforced Concrete as the California Home Construction Default" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Reinforced Concrete as the California Home Construction Default</h3>
+        <p class="card-excerpt">Should reinforced concrete be the default for California home construction? The seismic and fire engineering case behind a growing argument among builders.</p>
+        <div class="card-meta">May 24, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>X / @wavetossed</strong>, <strong>American Concrete Institute</strong>, <strong>Pacific Earthquake Engineering Research Center (UC Berkeley)</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="fire-resistant-features-luxury-home-value-southern-california.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/fire-resistant-features-luxury-home-value-southern-california-hero.jpg" alt="Fire-Resistant Features and Luxury Home Value in California" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Fire-Resistant Features and Luxury Home Value in California</h3>
+        <p class="card-excerpt">Do fire-resistant features actually increase a luxury home&#x27;s value in Southern California? A realtor-side analysis reframes hardening as an appraisal input — not insurance.</p>
+        <div class="card-meta">May 24, 2026 &middot; 6 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Nicki &amp; Karen</strong>, <strong>Insurance Institute for Business &amp; Home Safety</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="rudolph-schindler-los-angeles-concrete-modernism-lessons.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/rudolph-schindler-los-angeles-concrete-modernism-lessons-hero.jpg" alt="Schindler&#x27;s LA Concrete Homes: Lessons for New Construction" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Schindler&#x27;s LA Concrete Homes: Lessons for New Construction</h3>
+        <p class="card-excerpt">What can today&#x27;s Los Angeles custom home builders learn from Rudolph Schindler&#x27;s concrete houses? Wallpaper* maps 16 surviving works — and a century of permanence.</p>
+        <div class="card-meta">May 20, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Wallpaper*</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="icf-type-i-california-wui-residential-benchmark.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/icf-type-i-california-wui-residential-benchmark-hero.png" alt="Fire-Resistant Home in California: ICF Type I Sets WUI Benchmark" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Fire-Resistant Home in California: ICF Type I Sets WUI Benchmark</h3>
+        <p class="card-excerpt">How does a fire-resistant home in California get classified Type I? Inside the first residential ICF project to adopt a noncombustible WUI standard.</p>
+        <div class="card-meta">May 15, 2026 &middot; 6 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>X / Builtech Construction Group</strong>, <strong>International Code Council</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="wildfire-rebuild-permits-vs-materials-california-2026.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/wildfire-rebuild-permits-vs-materials-california-2026-hero.png" alt="Wildfire Rebuilds in California: Why Permits Alone Don&#x27;t Build Insurable Homes" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Wildfire Rebuilds in California: Why Permits Alone Don&#x27;t Build Insurable Homes</h3>
+        <p class="card-excerpt">Why do California wildfire rebuilds keep failing despite full permits? The answer is in the wall assembly — ICF, steel, and concrete are redrawing the line on insurable construction.</p>
+        <div class="card-meta">May 12, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>X / Builtech Construction Group</strong>, <strong>California Department of Insurance</strong>, <strong>California Building Standards Commission</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="icf-type-i-california-wildfire-construction-standard.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/icf-type-i-california-wildfire-construction-standard-hero.jpg" alt="ICF Type I in California: A New Wildfire Construction Standard" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">ICF Type I in California: A New Wildfire Construction Standard</h3>
+        <p class="card-excerpt">How does California&#x27;s first ICF Type I home reset the wildfire construction standard? Inside the noncombustible classification reshaping WUI building.</p>
+        <div class="card-meta">May 12, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Builtech Construction Group (via X)</strong>, <strong>International Code Council</strong>, <strong>California Building Standards Commission</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="all-concrete-malibu-mansion-44m-listing-luxury-market-signal.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/all-concrete-malibu-mansion-44m-listing-luxury-market-signal-hero.jpg" alt="All-Concrete Malibu Mansion at $44M: A Luxury Market Read" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">All-Concrete Malibu Mansion at $44M: A Luxury Market Read</h3>
+        <p class="card-excerpt">What does a $44M all-concrete Malibu mansion say about luxury home construction in California? A look at how monolithic concrete is priced at the top of the coast.</p>
+        <div class="card-meta">May 05, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>X / @JeremyWilsiuwe</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="california-insurance-emergency-debate-luxury-construction.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/california-insurance-emergency-debate-luxury-construction-hero.jpg" alt="California Insurance Emergency: What a Gubernatorial Debate Reveals About Luxury Construction" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">California Insurance Emergency: What a Gubernatorial Debate Reveals About Luxury Construction</h3>
+        <p class="card-excerpt">California&#x27;s home insurance crisis is now a 2026 gubernatorial campaign issue. Here&#x27;s what an emergency declaration would mean for fire-resistant home construction in California.</p>
+        <div class="card-meta">May 02, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>CBS Los Angeles</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+  </div>
+</div>
+<div class="month-group">
+  <div class="month-header reveal">
+    <h3 class="month-label">April 2026</h3>
+    <span class="month-count">7 articles</span>
+  </div>
+  <div class="article-grid">
+    
+    <article class="card reveal reveal-d1" data-year="2026" data-section="materials">
+      <a href="concrete-masonry-altadena-rebuild-resilience-case-study.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/concrete-masonry-altadena-rebuild-resilience-case-study-hero.jpg" alt="Concrete Masonry Rebuild in Altadena: A Resilient Construction Case Study" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Concrete Masonry Rebuild in Altadena: A Resilient Construction Case Study</h3>
+        <p class="card-excerpt">How does concrete masonry perform as a rebuild material? An Altadena resilient construction case study shows non-combustible walls, concrete roof, steel studs.</p>
+        <div class="card-meta">April 29, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>X / @cncacement</strong>, <strong>National Concrete Masonry Association</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal reveal-d2" data-year="2026" data-section="materials">
+      <a href="lacma-david-geffen-galleries-concrete-architecture-los-angeles.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/lacma-david-geffen-galleries-concrete-architecture-los-angeles-hero.jpg" alt="LACMA&#x27;s Concrete Reset: What the Geffen Galleries Mean for LA" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">LACMA&#x27;s Concrete Reset: What the Geffen Galleries Mean for LA</h3>
+        <p class="card-excerpt">Wallpaper* revisits LACMA&#x27;s David Geffen Galleries: a concrete civic building reframing how Los Angeles thinks about permanence, material, and architectural ambition.</p>
+        <div class="card-meta">April 26, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Wallpaper*</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal reveal-d3" data-year="2026" data-section="materials">
+      <a href="all-concrete-malibu-mansion-44m-viral-tour-what-it-signals.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/all-concrete-malibu-mansion-44m-viral-tour-what-it-signals-hero.jpg" alt="All-Concrete Malibu Mansion at $44M: What the Viral Tour Signals" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">All-Concrete Malibu Mansion at $44M: What the Viral Tour Signals</h3>
+        <p class="card-excerpt">A viral video tour of a $44M all-concrete Malibu mansion is sharpening the buyer conversation around reinforced concrete construction in California coastal luxury.</p>
+        <div class="card-meta">April 22, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>X (Twitter)</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal reveal-d4" data-year="2026" data-section="materials">
+      <a href="courtyard-villa-fire-resilience-2026-la-rebuild.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/courtyard-villa-fire-resilience-2026-la-rebuild-hero.jpg" alt="The Courtyard Villa as Fire Perimeter: 2026 LA Rebuild" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials</span>
+        <h3 class="card-title">The Courtyard Villa as Fire Perimeter: 2026 LA Rebuild</h3>
+        <p class="card-excerpt">The Roman atrium-and-peristyle plan, carried forward through the Renaissance villa and codified for Los Angeles in 1982, is also an IBHS Zone 0 fire perimeter and a Csa-climate passive-cooling device.</p>
+        <div class="card-meta">April 20, 2026 &middot; 6 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>The Metropolitan Museum of Art</strong>, <strong>Accademia di Francia a Roma — Villa Medici</strong>, <strong>ETRU — Museo Nazionale Etrusco di Villa Giulia</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="altadena-hoa-bills-rebuild-cost-structure.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/altadena-hoa-bills-rebuild-cost-structure-hero.jpg" alt="The Hidden Cost of a Slow Fire Rebuild: HOA Dues, Insurance, and the Math of Delay" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">The Hidden Cost of a Slow Fire Rebuild: HOA Dues, Insurance, and the Math of Delay</h3>
+        <p class="card-excerpt">A wildfire rebuild that stalls keeps compounding costs homeowners don&#x27;t anticipate — HOA dues, premium hikes, the tax of delay. Why material choice changes the math.</p>
+        <div class="card-meta">April 07, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Altadena Today</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="rebuild-math-3-percent-construction-cost-800-percent-insurance-savings.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/rebuild-math-3-percent-construction-cost-800-percent-insurance-savings-hero.jpg" alt="Insurable Home California: The 3% Construction Premium That Unlocks Up to 50% Insurance Savings" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Insurable Home California: The 3% Construction Premium That Unlocks Up to 50% Insurance Savings</h3>
+        <p class="card-excerpt">Insurable home California: a ~3% construction premium for fire-resilient reinforced concrete can unlock up to 50% insurance savings. The math behind building insurable from day one.</p>
+        <div class="card-meta">April 05, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Live Insurance News</strong>, <strong>Insurance Institute for Business &amp; Home Safety (IBHS)</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+
+    <article class="card reveal" data-year="2026" data-section="materials">
+      <a href="insurance-decides-palisades-rebuild-candidates-forum.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/insurance-decides-palisades-rebuild-candidates-forum-hero.jpg" alt="Fire Insurance in California: Why Construction Material Decides Your Premium" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Fire Insurance in California: Why Construction Material Decides Your Premium</h3>
+        <p class="card-excerpt">In California&#x27;s insurance crisis, structural material — not ZIP code — increasingly determines premium and insurability. The underwriting math behind reinforced concrete.</p>
+        <div class="card-meta">April 02, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Santa Monica Daily Press</strong>, <strong>Insurance Institute for Business &amp; Home Safety</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+  </div>
+</div>
+<div class="month-group">
+  <div class="month-header reveal">
+    <h3 class="month-label">March 2026</h3>
+    <span class="month-count">1 article</span>
+  </div>
+  <div class="article-grid">
+    
+    <article class="card reveal reveal-d1" data-year="2026" data-section="materials">
+      <a href="concrete-innovations-fire-rebuilding-camarillo-acorn.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/concrete-innovations-fire-rebuilding-camarillo-acorn-hero.jpg" alt="Concrete Homes in Los Angeles: A Guide to Fire-Resistant Rebuilds Under the 2026 WUI Code" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">Concrete Homes in Los Angeles: A Guide to Fire-Resistant Rebuilds Under the 2026 WUI Code</h3>
+        <p class="card-excerpt">Reinforced concrete is back at the center of luxury home construction in fire country — accelerated by California&#x27;s 2026 WUI Code. Why insurers are taking notice.</p>
+        <div class="card-meta">March 28, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>The Camarillo Acorn</strong>, <strong>California Department of Forestry and Fire Protection</strong>, <strong>Insurance Institute for Business &amp; Home Safety</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+  </div>
+</div>
+<div class="month-group">
+  <div class="month-header reveal">
+    <h3 class="month-label">May 2025</h3>
+    <span class="month-count">1 article</span>
+  </div>
+  <div class="article-grid">
+    
+    <article class="card reveal reveal-d1" data-year="2025" data-section="materials">
+      <a href="ibhs-wildfire-prepared-home-plus-california-certification-2026.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-construction"></div>
+      <div class="card-img">
+        <img src="assets/img/ibhs-wildfire-prepared-home-plus-california-certification-2026-hero.png" alt="IBHS Wildfire Prepared Home Plus: California&#x27;s Fastest Path to an Insurable Luxury Home" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-construction">Materials &amp; Construction</span>
+        <h3 class="card-title">IBHS Wildfire Prepared Home Plus: California&#x27;s Fastest Path to an Insurable Luxury Home</h3>
+        <p class="card-excerpt">IBHS Wildfire Prepared Home Plus is California&#x27;s fastest path to an insurable luxury home — the certification that translates fire-resilient construction into premium-cycle savings.</p>
+        <div class="card-meta">May 29, 2025 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Insurance Journal</strong>, <strong>Insurance Institute for Business &amp; Home Safety</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+  </div>
+</div>
+
+<a href="../index.html" class="back-link">
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  Back to Journal
+</a>
+
+<section class="journal-cta">
+  <div class="journal-cta-inner">
+    <div class="journal-cta-label">Curated by My Villa</div>
+    <div class="journal-cta-divider"></div>
+    <h2 class="journal-cta-title">Building <em>Permanence</em> in<br>Los Angeles</h2>
+    <p class="journal-cta-text">We design and coordinate luxury reinforced concrete villas for the Los Angeles market. European engineering. Californian lifestyle.</p>
+    <div class="journal-cta-buttons">
+      <a href="https://myvilla.la" class="cta-btn cta-btn-primary">Explore My Villa</a>
+      <a href="https://myvilla.la/#contact" class="cta-btn cta-btn-secondary">Request a Briefing</a>
+    </div>
+  </div>
 </section>
-</main>
 
 <footer class="footer">
-  <div class="footer-inner">
-    <span>&copy; 2026 My Villa &middot; a practice of <a href="https://its.vision" target="_blank" rel="noopener">IT'S Architecture</a></span>
-    <span><a href="../../index.html">Home</a> &nbsp;&middot;&nbsp; <a href="../index.html">Journal</a> &nbsp;&middot;&nbsp; <a href="/privacy.html">Privacy</a></span>
+  <div class="footer-brand-wrap">
+    <span class="footer-brand">MY VILLA</span>
+    <span class="footer-brand-payoff">Italian Soul &middot; Californian Body</span>
+  </div>
+  <span class="footer-copy">&copy; 2026 My Villa. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="https://myvilla.la/team.html">Studio</a>
+    <a href="https://myvilla.la/privacy.html">Privacy</a>
   </div>
 </footer>
+
 <script>
-(function () {
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els = document.querySelectorAll('[data-rv], .a-body .reveal');
-  if ('IntersectionObserver' in window && !reduced) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -4% 0px' });
-    els.forEach(function (el) { el.classList.add('rv-ready'); io.observe(el); });
-  } else {
-    els.forEach(function (el) { el.classList.add('on'); });
-  }
-})();
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>

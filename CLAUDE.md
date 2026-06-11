@@ -20,16 +20,19 @@
 - La scheduled task `myvilla-engagement-radar` (Claude Code, 07:52 daily) è **disabilitata** dal 2026-04-20.
 - Se serve rischedulare: aggiornare la task esistente a puntare a `_system/scripts/radar.py` + `generate_radar_report.py` + `generate_journal.py` + `generate_social.py`.
 
-## Sito v2 — "Quiet Permanence" (LIVE da giugno 2026)
-- L'intero sito (homepage, team, Journal) usa il design system v2: capitoli numerati con plate-header, Cormorant Garamond + Montserrat, palette ink/cream/sand/terracotta, reveal a sipario, parallax, `prefers-reduced-motion` rispettato.
-- **Builder Journal**: `_system/scripts/build_v2.py` rigenera TUTTI gli articoli + `blog/index.html` + `blog/category/*.html` **dai sidecar `blog/*.json`** (source of truth: `body_html`, `our_perspective`, `key_data`, `sources`, `_date`, `_section_id`). Un JSON senza HTML gemello = bozza non pubblicata, viene saltato.
-  - `python3 _system/scripts/build_v2.py --root` → produzione (scrive in `blog/`, indicizzabile)
-  - senza flag → staging in `v2/blog/` con noindex
-- `update_journal_index.py` ora DELEGA a `build_v2.run(root=True, live=True)` — la CLI è invariata, quindi `approve.py` e `publish_all_drafts.py` continuano a chiamarlo per nome senza modifiche.
-- `update_homepage_journal.py` legge i JSON sidecar (non più parsing HTML) e riscrive i 4 blocchi DESK nella homepage tra i marker `<!-- DESK:{INSURANCE,FIRE_CODE,REBUILD,MARKET}:START/END -->`. **Non rimuovere i marker da index.html.**
-- **Attenzione**: il template articolo dentro `generate_journal.py` è ancora quello vecchio — il suo output HTML viene sovrascritto da build_v2 al primo rebuild. Ciò che conta è che il **JSON sidecar sia completo**.
-- `v2/` resta come staging tree (tutte le pagine noindex, canonical → root). `v2/index.html` e `v2/team.html` sono file hand-authored: per modifiche alla home/team si edita la copia root e si riporta in v2 (o viceversa).
-- Form contatto: Formspree `mgoljyjl`, honeypot `_gotcha`, evento GA4 `generate_lead` al submit.
+## Sito v2 — "Quiet Permanence" (IN STAGING su `v2/`, NON live)
+- **Stato (giugno 2026)**: il redesign completo è pronto e committato in `v2/` (homepage, team, Journal: 82 articoli + index + 6 category hub), tutte le pagine **noindex** con canonical → root. Reviewabile su https://myvilla.la/v2/ . **La root serve ancora il sito v1** e la pipeline quotidiana continua a usare i renderer storici (`update_journal_index.py` con renderer interno + `update_homepage_journal.py` a parsing HTML).
+- Design system v2: capitoli numerati con plate-header, Cormorant Garamond + Montserrat, palette ink/cream/sand/terracotta, reveal a sipario, parallax, `prefers-reduced-motion` rispettato. Form briefing: stesso endpoint Formspree `mgoljyjl`, honeypot `_gotcha`, evento GA4 `generate_lead`.
+- **Builder Journal v2**: `_system/scripts/build_v2.py` rigenera articoli + index + category **dai sidecar `blog/*.json`** (source of truth: `body_html`, `our_perspective`, `key_data`, `sources`, `_date`, `_section_id`; JSON senza HTML gemello = bozza, saltata). Include il ranking featured commerciale (strategia §4).
+  - senza flag → staging in `v2/blog/` (noindex) — uso corrente
+  - `--root` → scrive in `blog/` indicizzabile — SOLO alla promozione
+- **Procedura di promozione (quando il v2 viene approvato)**:
+  1. copiare `v2/index.html` e `v2/team.html` a root togliendo il blocco `<!-- PREVIEW FLAG -->` + noindex;
+  2. `python3 _system/scripts/build_v2.py --root`;
+  3. far delegare `update_journal_index.py` main() a `build_v2.run(root=True, live=True)` e passare `update_homepage_journal.py` alla lettura dei JSON sidecar (le due versioni v2-ready sono nella history: commit `8535c48`);
+  4. `update_homepage_journal.py` + `update_sitemap.py`; QA link/schema; push.
+- I marker `<!-- DESK:{INSURANCE,FIRE_CODE,REBUILD,MARKET}:START/END -->` esistono sia nella home v1 sia nella v2 — **non rimuoverli mai**.
+- Per modifiche al design v2 in review: editare `v2/index.html` / `v2/team.html` direttamente (file hand-authored); per il Journal v2 modificare i template in `build_v2.py` e rilanciarlo senza flag.
 
 ## SEO
 - Ogni pagina pubblicata deve avere: meta description, keywords, canonical, OG, Twitter Card, Schema.org (Article + BreadcrumbList)

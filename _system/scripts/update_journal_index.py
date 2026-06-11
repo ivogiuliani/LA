@@ -26,7 +26,7 @@ def esc(text):
 
 def extract_metadata(filepath):
     """Extract article metadata from HTML head tags and schema.org JSON-LD."""
-    content = filepath.read_text()
+    content = filepath.read_text(encoding="utf-8")
 
     def meta(name):
         m = re.search(rf'<meta\s+(?:name|property)="{name}"\s+content="([^"]*)"', content)
@@ -588,7 +588,7 @@ def render_index_html(articles):
     # Read the index template CSS from the template file
     template_path = SYSTEM_DIR / "templates" / "journal-index.html"
     if template_path.exists():
-        template_content = template_path.read_text()
+        template_content = template_path.read_text(encoding="utf-8")
         # Extract the <style> block
         style_match = re.search(r'<style>(.*?)</style>', template_content, re.DOTALL)
         style_block = style_match.group(1) if style_match else ""
@@ -1046,7 +1046,7 @@ def get_style_block():
     """Load the CSS <style> block from the index template."""
     template_path = SYSTEM_DIR / "templates" / "journal-index.html"
     if template_path.exists():
-        template_content = template_path.read_text()
+        template_content = template_path.read_text(encoding="utf-8")
         style_match = re.search(r'<style>(.*?)</style>', template_content, re.DOTALL)
         if style_match:
             return style_match.group(1)
@@ -1094,29 +1094,55 @@ def generate_category_pages(articles, output_dir):
 # ══════════════════════════════════════════════════════════════════════
 
 def main():
-    """Journal rebuild — delegates to the v2 builder (build_v2.py).
-
-    Since the v2 redesign went live (June 2026), this script's own
-    renderer (render_index_html + generate_category_pages above) is
-    superseded: the Journal — articles, index, and category hubs — is
-    regenerated from the blog/*.json sidecars by build_v2.run(root=True).
-
-    The CLI surface is unchanged on purpose: approve.py and
-    publish_all_drafts.py invoke this file by name after every publish,
-    and they keep working without modification. extract_metadata() and
-    find_hero_image() remain exported for any legacy callers.
-    """
     parser = argparse.ArgumentParser(
-        description="My Villa — Journal Rebuilder (delegates to build_v2)")
-    parser.add_argument("--articles-dir", default=None, help="(ignored — kept for CLI compatibility)")
-    parser.add_argument("--output", "-o", default=None, help="(ignored — kept for CLI compatibility)")
-    parser.parse_args()
+        description="My Villa — Journal Index Rebuilder")
+    parser.add_argument("--articles-dir", default=None,
+                        help="Directory containing article HTMLs (default: blog/)")
+    parser.add_argument("--output", "-o", default=None,
+                        help="Output path for index.html (default: blog/index.html)")
+    args = parser.parse_args()
 
-    print("\nMy Villa — Journal Rebuilder (v2 design system)")
-    print("=" * 50)
-    import build_v2
-    return build_v2.run(root=True, live=True)
+    articles_dir = Path(args.articles_dir) if args.articles_dir else BLOG_DIR
+    output_path = Path(args.output) if args.output else (articles_dir / "index.html")
+
+    print(f"\nMy Villa — Journal Index Rebuilder")
+    print(f"{'='*50}")
+    print(f"Scanning: {articles_dir}")
+
+    # Find all HTML files (exclude index.html)
+    html_files = [f for f in articles_dir.glob("*.html") if f.name != "index.html"]
+    print(f"Found {len(html_files)} article files")
+
+    # Extract metadata
+    articles = []
+    for f in html_files:
+        try:
+            meta = extract_metadata(f)
+            if meta["title"]:
+                articles.append(meta)
+                print(f"  [{meta['section']}] {meta['title'][:50]}")
+        except Exception as e:
+            print(f"  Error reading {f.name}: {e}")
+
+    # Sort by date descending
+    articles.sort(key=lambda a: a.get("date", ""), reverse=True)
+
+    # Render index
+    index_html = render_index_html(articles)
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(index_html)
+    print(f"\nSaved: {output_path} ({output_path.stat().st_size / 1024:.1f} KB)")
+    print(f"Total articles indexed: {len(articles)}")
+
+    # Generate dedicated category pages for sections exceeding the preview threshold
+    try:
+        cat_count = generate_category_pages(articles, output_path.parent)
+        if cat_count:
+            print(f"Generated {cat_count} category page(s)")
+    except Exception as e:
+        print(f"Warning: category page generation failed: {e}")
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()
