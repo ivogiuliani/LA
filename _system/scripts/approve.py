@@ -863,42 +863,123 @@ def scan_journal_drafts():
     return drafts
 
 
+def _social_source_dirs():
+    """Le sorgenti REALI dei draft social, in ordine di scansione.
+
+    Storia: il pannello leggeva solo _drafts/social/, ma dal passaggio
+    all'automazione i generatori scrivono in _system/social/posts/
+    reactive/ e i companion IG degli articoli vivono come blog/*.ig.md.
+    Risultato: la sezione social sembrava sempre vuota. Ora si scandiscono
+    tutte e tre.
+    """
+    return [
+        DRAFTS_DIR / "social",                       # legacy
+        SYSTEM_DIR / "social" / "posts" / "reactive",  # generate_social
+    ]
+
+
+def find_social_source(filename: str):
+    """Trova il file di un draft social in QUALUNQUE sorgente.
+    → Path | None. I companion .ig.md vivono in blog/."""
+    name = Path(filename).name
+    if name.endswith(".ig.md"):
+        cand = BLOG_DIR / name
+        return cand if cand.exists() else None
+    for d in _social_source_dirs():
+        cand = d / name
+        if cand.exists():
+            return cand
+    return None
+
+
+def _social_image_preview(frontmatter: dict) -> str:
+    """URL pubblico dell'immagine del post (stessa logica di
+    ig_publisher._resolve_image_url, versione preview)."""
+    img = str(frontmatter.get("image") or "").strip()
+    if img.startswith(("http://", "https://")):
+        return img
+    if img:
+        local = ROOT_DIR / img.lstrip("/")
+        if local.exists():
+            return f"https://myvilla.la/{local.relative_to(ROOT_DIR).as_posix()}"
+        return ""
+    slug = str(frontmatter.get("journal_slug") or "").strip()
+    if slug:
+        for ext in ("jpg", "jpeg", "png", "webp"):
+            cand = BLOG_DIR / "assets" / "img" / f"{slug}-hero.{ext}"
+            if cand.exists():
+                return (f"https://myvilla.la/"
+                        f"{cand.relative_to(ROOT_DIR).as_posix()}")
+    return ""
+
+
+def _parse_social_file(f):
+    """→ dict draft | None (None = già approved/published/rejected)."""
+    raw = f.read_text(encoding="utf-8", errors="replace")
+    frontmatter = {}
+    body = raw
+    fm_match = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)", raw, re.DOTALL)
+    if fm_match:
+        fm_text = fm_match.group(1)
+        body = fm_match.group(2).strip()
+        for line in fm_text.splitlines():
+            kv = line.split(":", 1)
+            if len(kv) == 2:
+                frontmatter[kv[0].strip()] = kv[1].strip().strip('"').strip("'")
+
+    status = (frontmatter.get("status") or "draft").lower()
+    if status in ("approved", "published", "rejected"):
+        return None
+
+    channel = frontmatter.get("channel", frontmatter.get("platform", ""))
+    if f.name.endswith(".ig.md"):
+        channel = channel or "ig"
+    post_type = frontmatter.get("type", "")
+    if f.name.endswith(".ig.md") and not post_type:
+        post_type = "journal_companion"
+
+    return {
+        "file": f.name,
+        "channel": channel,
+        "type": post_type,
+        "date": frontmatter.get("date",
+                                frontmatter.get("generated_at", ""))[:10],
+        "char_count": frontmatter.get("char_count", str(len(body))),
+        "body": body[:500],
+        "image_url": _social_image_preview(frontmatter),
+        "journal_slug": frontmatter.get("journal_slug", ""),
+        "article_url": frontmatter.get("article_url", ""),
+    }
+
+
 def scan_social_drafts():
-    """Scan _drafts/social/*.md and parse YAML frontmatter + body."""
-    social_dir = DRAFTS_DIR / "social"
-    if not social_dir.exists():
-        return []
-
+    """Tutti i draft social in attesa di approvazione, da TUTTE le
+    sorgenti: legacy _drafts/social, posts/reactive (generatori),
+    blog/*.ig.md (companion degli articoli pubblicati)."""
     drafts = []
-    for f in sorted(social_dir.glob("*.md")):
-        raw = f.read_text(encoding="utf-8", errors="replace")
-
-        # Split frontmatter
-        frontmatter = {}
-        body = raw
-        fm_match = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)", raw, re.DOTALL)
-        if fm_match:
-            fm_text = fm_match.group(1)
-            body = fm_match.group(2).strip()
-            for line in fm_text.splitlines():
-                kv = line.split(":", 1)
-                if len(kv) == 2:
-                    frontmatter[kv[0].strip()] = kv[1].strip().strip('"').strip("'")
-
-        channel = frontmatter.get("channel", frontmatter.get("platform", ""))
-        post_type = frontmatter.get("type", "")
-        date_str = frontmatter.get("date", "")
-        char_count = frontmatter.get("char_count", str(len(body)))
-
-        drafts.append({
-            "file": f.name,
-            "channel": channel,
-            "type": post_type,
-            "date": date_str,
-            "char_count": char_count,
-            "body": body[:500],
-        })
-
+    seen = set()
+    for d in _social_source_dirs():
+        if not d.exists():
+            continue
+        for f in sorted(d.glob("*.md")):
+            if f.name in seen:
+                continue
+            parsed = _parse_social_file(f)
+            if parsed:
+                seen.add(f.name)
+                drafts.append(parsed)
+    # Companion IG degli articoli live
+    for f in sorted(BLOG_DIR.glob("*.ig.md")):
+        if f.name in seen:
+            continue
+        parsed = _parse_social_file(f)
+        if parsed:
+            seen.add(f.name)
+            drafts.append(parsed)
+    # IG prima (è il canale appena attivato), poi per data discendente
+    drafts.sort(key=lambda x: (0 if ("ig" in x["channel"].lower()
+                                     or "instagram" in x["channel"].lower())
+                               else 1, x["date"]), reverse=False)
     return drafts
 
 
@@ -1842,6 +1923,18 @@ def build_dashboard():
             pub_label = "Publish"
             copy_label = "Copy"
 
+        img_url = d.get("image_url") or ""
+        img_block = (
+            f'<div class="social-img-preview"><img src="{_esc(img_url)}" '
+            f'alt="" loading="lazy"></div>' if img_url else
+            ('<div class="social-img-missing">⚠ Nessuna immagine — il '
+             'publisher IG la richiede (aggiungi <code>image:</code> nel '
+             'frontmatter o verrà saltato)</div>'
+             if pub_platform == "instagram" else "")
+        )
+        art_link = (f'<a href="{_esc(d.get("article_url",""))}" '
+                    f'target="_blank" style="font-size:0.78rem;">↗ articolo</a>'
+                    if d.get("article_url") else "")
         social_cards += f"""
         <div class="card" id="card-social-{_esc(d['file'])}" data-file="{_esc(d['file'])}" data-type="social" data-channel="{_esc(ch)}">
           <div class="card-status-stripe"></div>
@@ -1849,19 +1942,21 @@ def build_dashboard():
             <div class="card-header">
               <span class="badge {channel_class}">{_esc(channel_label)}</span>
               {'<span class="badge badge-type">' + _esc(d["type"]) + '</span>' if d["type"] else ''}
+              {art_link}
             </div>
+            {img_block}
             <textarea class="card-post-editor" data-field="body" oninput="updateSocialCharCount(this)">{_esc(body_raw)}</textarea>
             <div class="card-meta">
               <span class="meta-date">{_esc(d['date'])}</span>
               <span class="meta-chars"><span class="char-count-live">{len(body_raw)}</span> chars</span>
             </div>
             <div class="card-actions">
-              <button class="btn btn-edit" onclick="saveSocialDraft('{_esc_js(d['file'])}', this)">Save changes</button>
+              <button class="btn btn-approve" onclick="doAction('approve', '{_esc_js(d['file'])}', 'social', this)" title="Mette in coda: esce in automatico col cap giornaliero">✅ Approva → coda (auto)</button>
+              <button class="btn btn-publish-social" data-platform="{pub_platform}" onclick="publishSocial('{_esc_js(d['file'])}', '{pub_platform}', this)" title="Pubblica adesso via API, bypassando la coda">{pub_icon} Pubblica subito</button>
+              <button class="btn btn-edit" onclick="saveSocialDraft('{_esc_js(d['file'])}', this)">💾 Salva</button>
               <button class="btn btn-opus" onclick="openReviseModal('{_esc_js(d['file'])}', 'social', this)">Revise</button>
-              <button class="btn btn-publish-social" data-platform="{pub_platform}" onclick="publishSocial('{_esc_js(d['file'])}', '{pub_platform}', this)">{pub_icon} {pub_label}</button>
               <button class="btn btn-copy-open" onclick="copyAndOpen('{pub_platform}', this)">{copy_label}</button>
-              <button class="btn btn-approve" onclick="doAction('approve', '{_esc_js(d['file'])}', 'social', this)">Approve</button>
-              <button class="btn btn-reject" onclick="doAction('reject', '{_esc_js(d['file'])}', 'social', this)">Discard</button>
+              <button class="btn btn-reject" onclick="doAction('reject', '{_esc_js(d['file'])}', 'social', this)">🗑 Scarta</button>
             </div>
           </div>
         </div>"""
@@ -2838,6 +2933,68 @@ def build_dashboard():
           <h2>No pending drafts &mdash; all clear!</h2>
           <p>There are no articles, social posts, radar news, or replies awaiting review.</p>
         </div>"""
+
+    # ── Strip "coda & pubblicati" social (IG + X) ─────────────────────
+    # Stato delle code di pubblicazione automatica: quanti approvati in
+    # attesa per canale + cosa è uscito oggi (con permalink).
+    def _social_state_strip():
+        from datetime import timezone as _tz
+        posts_root = SYSTEM_DIR / "social" / "posts"
+        today = datetime.now(_tz.utc).strftime("%Y-%m-%d")
+        q_ig = q_x = 0
+        pub_today = []
+        fm_re = re.compile(r"^---\s*\n(.*?)\n---", re.DOTALL)
+        for sub, is_pub in (("approved", False), ("published", True)):
+            d = posts_root / sub
+            if not d.exists():
+                continue
+            for f in d.glob("*.md"):
+                try:
+                    m = fm_re.match(f.read_text(encoding="utf-8",
+                                                errors="replace"))
+                except OSError:
+                    continue
+                fm_txt = (m.group(1) if m else "").lower()
+                ch = "ig" if ("channel: ig" in fm_txt
+                              or "channel: instagram" in fm_txt) else \
+                     "x" if ("channel: x" in fm_txt
+                             or "channel: twitter" in fm_txt) else "?"
+                if not is_pub:
+                    if ch == "ig":
+                        q_ig += 1
+                    elif ch == "x":
+                        q_x += 1
+                elif f"published_at: {today}" in fm_txt \
+                        or f"published_at: '{today}" in fm_txt \
+                        or f'published_at: "{today}' in fm_txt:
+                    perma = ""
+                    pm = re.search(r"ig_permalink:\s*(\S+)", fm_txt)
+                    if pm:
+                        perma = pm.group(1).strip("'\"")
+                    pub_today.append((ch, f.name, perma))
+        items = []
+        items.append(f"<strong>In coda</strong> — Instagram: {q_ig} · X: {q_x}")
+        if pub_today:
+            links = " · ".join(
+                (f'<a href="{_esc(pl)}" target="_blank">{ch.upper()} ✓</a>'
+                 if pl else f"{ch.upper()} ✓ {_esc(fn[:30])}")
+                for ch, fn, pl in pub_today)
+            items.append(f"<strong>Pubblicati oggi</strong>: {links}")
+        else:
+            items.append("<strong>Pubblicati oggi</strong>: —")
+        return ('<div class="section" style="padding:0.8rem 1.2rem;">'
+                '<div style="display:flex;gap:2rem;flex-wrap:wrap;'
+                'font-size:0.85rem;color:#5a5247;">'
+                '<span>📸 ' + items[0] + '</span>'
+                '<span>' + items[1] + '</span>'
+                '<span style="color:#999;">esce 1/canale al giorno (auto, '
+                'mattina) — cap in .env</span>'
+                '</div></div>')
+
+    try:
+        ig_queue_strip = _social_state_strip()
+    except Exception as _e:  # noqa: BLE001 — la strip non deve rompere la pagina
+        ig_queue_strip = ""
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -4570,6 +4727,8 @@ def build_dashboard():
   }}
   .btn-reject:hover {{ background: #a85d3f; box-shadow: 0 2px 8px rgba(194,113,79,0.3); }}
 
+  .social-img-preview img {{ max-width: 280px; max-height: 180px; border-radius: 6px; margin: 6px 0; object-fit: cover; border: 1px solid #e3d9c8; }}
+  .social-img-missing {{ font-size: 0.78rem; color: #a85d3f; background: #fdf3ee; border: 1px dashed #d9a08a; border-radius: 5px; padding: 5px 9px; margin: 6px 0; }}
   .btn-publish-social {{
     background: #1a1a2e;
     color: #fff;
@@ -5063,26 +5222,47 @@ def build_dashboard():
   {empty_msg}
 
   {f'''
-  <div class="section section-replies">
-    <h2 class="section-heading">↩️ Replies<span class="section-count">{len(reply_drafts)}</span></h2>
-    <p class="section-subtitle">Journalists who replied to our outreach. Each draft either (a) sends the press kit + fact sheet so they can write the piece, or (b) proposes a 30-min call with Paolo. Review, edit, and send — all threaded through Gmail. Rate limit and dry-run are shared with first-touch outreach.</p>
-    {reply_cards}
+  <div class="section">
+    <h2 class="section-heading">📱 Social — da approvare<span class="section-count">{len(social)}</span></h2>
+    <div class="social-platforms-status" id="social-platforms-status"></div>
+    <p class="section-subtitle"><strong>Il flusso quotidiano:</strong> "✅ Approva → coda" mette il post in coda di pubblicazione automatica (Instagram: 1 al giorno; X: 1 al giorno — cap configurabili). "🚀 Pubblica subito" salta la coda e posta ora via API. I companion degli articoli hanno già la hero; i post reattivi Instagram richiedono una immagine.</p>
+    {social_cards}
   </div>
-  ''' if reply_drafts else ''}
+  ''' if social else '''
+  <div class="section">
+    <h2 class="section-heading">📱 Social — da approvare<span class="section-count">0</span></h2>
+    <p class="section-subtitle">Nessuna proposta in attesa. I generatori (radar reattivo, companion articoli, partner) ne produrranno con la prossima pipeline.</p>
+  </div>
+  '''}
+
+  {ig_queue_strip}
 
   {f'''
   <div class="section">
-    <h2 class="section-heading">🔥 Viral Opportunities<span class="section-count">{len(radar["viral"])}</span></h2>
-    <p class="section-subtitle">High-engagement social posts where a My Villa reply can add value. Sorted by virality score.</p>
+    <h2 class="section-heading">🔥 Commenti ai post virali<span class="section-count">{len(radar["viral"])}</span></h2>
+    <p class="section-subtitle">Post ad alto engagement dove un commento My Villa aggiunge valore. <strong>Flusso assistito</strong> (le API Meta non permettono di commentare post altrui): 📋 copia il testo → apri il post → incolla → poi "Scarta" per segnarlo come fatto.</p>
     {viral_cards}
   </div>
   ''' if radar and radar.get("viral") else ''}
 
   {f'''
-  <div class="section">
-    <h2 class="section-heading">📰 Radar News<span class="section-count">{len(radar["news"])}</span></h2>
-    <p class="section-subtitle">Today's qualified opportunities (score ≥ 15). Email pitches are ready inline — edit if needed, then click "Send now" to dispatch via Gmail. Rate limit: 10/hour. Flip `dry_run: true` in `_system/outreach/config.yml` to rehearse without sending.</p>
-    {news_cards}
+  <div class="section section-replies">
+    <h2 class="section-heading">↩️ Risposte giornalisti<span class="section-count">{len(reply_drafts)}</span></h2>
+    <p class="section-subtitle">Giornalisti che hanno risposto — UNICA parte email che resta manuale (il resto è automatico). Rivedi e invia: press kit o call con Paolo.</p>
+    {reply_cards}
+  </div>
+  ''' if reply_drafts else ''}
+
+  {f'''
+  <div class="section section-collapsed" data-section="radar-news">
+    <h2 class="section-heading" onclick="toggleSection(this)">
+      📰 Radar News (informativo)<span class="section-count">{len(radar["news"])}</span>
+      <span class="collapse-toggle">▸ expand</span>
+    </h2>
+    <p class="section-subtitle">Le opportunità qualificate di oggi. <strong>I pitch email partono in automatico</strong> (cap 20/giorno) — questa sezione serve solo per consultazione o invii manuali extra.</p>
+    <div class="section-body">
+      {news_cards}
+    </div>
   </div>
   ''' if radar and radar.get("news") else ''}
 
@@ -5153,11 +5333,6 @@ def build_dashboard():
     </div>
   </div>
 
-  <div class="section">
-    <h2 class="section-heading">📱 Social Posts<span class="section-count">{len(social)}</span></h2>
-    <div class="social-platforms-status" id="social-platforms-status"></div>
-    {social_cards if social else '<p style="color:#999; font-size:0.9rem;">No social drafts pending.</p>'}
-  </div>
   '''}
 </div>
 
@@ -7913,15 +8088,40 @@ class ReviewHandler(BaseHTTPRequestHandler):
             })
 
         elif content_type == "social":
-            src = DRAFTS_DIR / "social" / filename
+            src = find_social_source(filename)
             approved_dir = SYSTEM_DIR / "social" / "posts" / "approved"
-            if not src.exists():
+            if src is None:
                 self._send_json({"ok": False, "error": f"File not found: {filename}"}, 404)
                 return
 
             approved_dir.mkdir(parents=True, exist_ok=True)
-            dst = approved_dir / filename
-            shutil.move(str(src), str(dst))
+            if filename.endswith(".ig.md"):
+                # Companion di un articolo: il file vive in blog/ (fa
+                # parte dell'articolo) → si COPIA in coda come post IG
+                # e si marca l'originale, senza spostarlo.
+                raw = src.read_text(encoding="utf-8", errors="replace")
+                m = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)", raw, re.DOTALL)
+                fm_text = m.group(1) if m else ""
+                body_txt = (m.group(2).strip() if m else raw.strip())
+                if "status:" not in fm_text:
+                    fm_text += "\nstatus: approved"
+                else:
+                    fm_text = re.sub(r"status:.*", "status: approved", fm_text)
+                if "channel:" not in fm_text:
+                    fm_text = "channel: ig\n" + fm_text
+                dst = approved_dir / (Path(filename).stem.replace(".ig", "")
+                                      + "-companion.md")
+                dst.write_text(f"---\n{fm_text}\n---\n\n{body_txt}\n",
+                               encoding="utf-8")
+                # marca l'originale così non viene riproposto
+                src.write_text(raw.replace("---\n", "---\nstatus: approved\n", 1)
+                               if "status:" not in raw.split("---")[1]
+                               else re.sub(r"status:.*", "status: approved",
+                                           raw, count=1),
+                               encoding="utf-8")
+            else:
+                dst = approved_dir / filename
+                shutil.move(str(src), str(dst))
             print(f"  Approved social: {filename} -> _system/social/posts/approved/")
 
             # Best-effort autopush. _system/social/posts/ is gitignored so
@@ -8028,7 +8228,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
             src = DRAFTS_DIR / "journal" / filename
             archive_sub = ARCHIVE_DIR / "journal"
         elif content_type == "social":
-            src = DRAFTS_DIR / "social" / filename
+            src = find_social_source(filename) or (DRAFTS_DIR / "social" / filename)
             archive_sub = ARCHIVE_DIR / "social"
         else:
             self._send_json({"ok": False, "error": "Invalid type"}, 400)
@@ -8196,7 +8396,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 return
 
             # social
-            md_path = DRAFTS_DIR / "social" / filename
+            md_path = find_social_source(filename) or (DRAFTS_DIR / "social" / filename)
             if not md_path.exists():
                 self._send_json({"ok": False, "error": f"File not found: {filename}"}, 404)
                 return
@@ -8282,7 +8482,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 return
 
             # social: rewrite .md with updated body and char_count
-            md_path = DRAFTS_DIR / "social" / filename
+            md_path = find_social_source(filename) or (DRAFTS_DIR / "social" / filename)
             if not md_path.exists():
                 self._send_json({"ok": False, "error": f"File not found: {filename}"}, 404)
                 return
@@ -8774,7 +8974,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
 
         if result.get("ok"):
             # Move to approved after successful publish
-            src = DRAFTS_DIR / "social" / filename
+            src = find_social_source(filename) or (DRAFTS_DIR / "social" / filename)
             approved_dir = SYSTEM_DIR / "social" / "posts" / "approved"
             approved_dir.mkdir(parents=True, exist_ok=True)
             if src.exists():

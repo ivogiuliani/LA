@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ig_publisher.py — pubblicazione giornaliera su Instagram (Fase 1).
+ig_publisher.py — pubblicazione giornaliera social: Instagram + X (Fase 1).
 
 Flusso concordato con Ivo (2026-06-10):
   radar/generatori propongono → Ivo APPROVA dal pannello → questo
@@ -9,7 +9,8 @@ Flusso concordato con Ivo (2026-06-10):
 
 Coda:
   _system/social/posts/approved/   → post .md con frontmatter
-       channel: instagram|ig  (i post X vengono ignorati qui)
+       channel: instagram|ig|x  (X: testo puro via publish_to_x,
+       cap separato X_DAILY_CAP, niente immagine richiesta)
   _system/social/posts/published/  → spostati qui dopo il publish,
        con media_id + permalink + published_at nel frontmatter
 
@@ -100,13 +101,23 @@ def _parse_post(path: Path) -> tuple[dict, str] | None:
     return fm, m.group(2).strip()
 
 
+def _channel(fm: dict) -> str:
+    """'ig' | 'x' | '' — canale normalizzato del post."""
+    ch = str(fm.get("channel", "")).lower()
+    if ch in ("instagram", "ig"):
+        return "ig"
+    if ch in ("x", "twitter"):
+        return "x"
+    return ""
+
+
 def _is_ig(fm: dict) -> bool:
-    return str(fm.get("channel", "")).lower() in ("instagram", "ig")
+    return _channel(fm) == "ig"
 
 
-def _published_today_count() -> int:
-    """Post IG pubblicati oggi (UTC), contati da published/ (in git →
-    conteggio condiviso fra rail locale e cloud)."""
+def _published_today_count(channel: str = "ig") -> int:
+    """Post del canale pubblicati oggi (UTC), contati da published/
+    (in git → conteggio condiviso fra rail locale e cloud)."""
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     n = 0
     if not PUBLISHED_DIR.exists():
@@ -116,7 +127,7 @@ def _published_today_count() -> int:
         if not parsed:
             continue
         fm, _ = parsed
-        if _is_ig(fm) and str(fm.get("published_at", "")).startswith(today):
+        if _channel(fm) == channel and                 str(fm.get("published_at", "")).startswith(today):
             n += 1
     return n
 
@@ -185,7 +196,7 @@ def _build_caption(fm: dict, body: str) -> str:
     return f"{caption}\n\n{hash_line}" if hash_line else caption
 
 
-def _list_ig_approved() -> list[tuple[Path, dict, str]]:
+def _list_approved(channel: str = "ig") -> list[tuple[Path, dict, str]]:
     out = []
     if not APPROVED_DIR.exists():
         return out
@@ -195,9 +206,13 @@ def _list_ig_approved() -> list[tuple[Path, dict, str]]:
         if not parsed:
             continue
         fm, body = parsed
-        if _is_ig(fm):
+        if _channel(fm) == channel:
             out.append((f, fm, body))
     return out
+
+
+def _list_ig_approved():
+    return _list_approved("ig")
 
 
 def _move_to_published(path: Path, fm: dict, body: str,
@@ -206,8 +221,12 @@ def _move_to_published(path: Path, fm: dict, body: str,
     fm = dict(fm)
     fm["status"] = "published"
     fm["published_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    fm["ig_media_id"] = result.get("post_id", "")
-    fm["ig_permalink"] = result.get("url", "")
+    if _channel(fm) == "x":
+        fm["x_tweet_id"] = result.get("tweet_id", result.get("post_id", ""))
+        fm["x_url"] = result.get("url", "")
+    else:
+        fm["ig_media_id"] = result.get("post_id", "")
+        fm["ig_permalink"] = result.get("url", "")
     new_raw = "---\n" + yaml.safe_dump(fm, allow_unicode=True,
                                        sort_keys=False).strip() + \
               "\n---\n\n" + body + "\n"
@@ -355,7 +374,53 @@ def run(*, dry_run: bool = False, cap: int | None = None) -> dict:
                 # Token scaduto/invalido: inutile insistere sugli altri.
                 break
 
-    remaining = len(_list_ig_approved())
+    # ── Coda X (testo puro, niente immagine richiesta) ─────────────
+    x_cap = int(os.environ.get("X_DAILY_CAP", DEFAULT_DAILY_CAP))
+    x_queue = _list_approved("x")
+    if x_queue:
+        x_done = _published_today_count("x")
+        x_budget = max(0, x_cap - x_done)
+        if x_budget == 0:
+            print(f"  [x] cap giornaliero raggiunto ({x_done}/{x_cap}) — "
+                  f"{len(x_queue)} in coda per domani")
+        else:
+            try:
+                from publish_social import publish_to_x
+                from send_email import sanitize_founder_name
+            except ImportError as e:
+                publish_to_x = None
+                print(f"  [x] modulo publish non importabile: {e}")
+            for path, fm, body in x_queue:
+                if x_budget <= 0 or publish_to_x is None:
+                    break
+                text = sanitize_founder_name(body.strip())[:280]
+                if dry_run:
+                    print(f"  [x] [DRY] pubblicherebbe {path.name}: "
+                          f"{text[:90]}...")
+                    published.append({"file": path.name, "channel": "x",
+                                      "dry_run": True,
+                                      "caption_preview": text[:200]})
+                    x_budget -= 1
+                    continue
+                result = publish_to_x(text)
+                if result.get("ok"):
+                    dest = _move_to_published(path, fm, body, result)
+                    published.append({"file": dest.name, "channel": "x",
+                                      "permalink": result.get("url", ""),
+                                      "caption_preview": text[:200]})
+                    print(f"  [x] ✓ pubblicato {path.name} → "
+                          f"{result.get('url') or ''}")
+                    x_budget -= 1
+                elif result.get("needs_setup"):
+                    print(f"  [x] credenziali X non configurate — "
+                          f"{len(x_queue)} post restano in coda")
+                    break
+                else:
+                    skipped.append({"file": path.name, "channel": "x",
+                                    "reason": result.get("error", "?")})
+                    print(f"  [x] ✗ {path.name}: {result.get('error')}")
+
+    remaining = len(_list_ig_approved()) + len(_list_approved("x"))
     return {"published": published, "skipped": skipped,
             "pending": remaining}
 
