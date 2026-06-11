@@ -60,6 +60,58 @@ SECTIONS = {
 }
 SECTION_PREVIEW = 6   # cards per section on the front page
 
+# Featured-slot commercial-intent ranking (ported from the legacy index
+# renderer, strategy ref: _system/knowledge/content_strategy.md §4).
+# The Featured card should promote buyer-intent articles over pure news.
+# Case-insensitive substring match on title+slug; first match wins; ties
+# broken by date. Articles matching nothing rank 999 (news) and only take
+# the slot when no commercial candidate exists in the freshest pool.
+FEATURED_COMMERCIAL_KEYWORDS = [
+    "luxury home builder malibu",
+    "custom home beverly hills",
+    "custom home bel air",
+    "architect luxury home malibu",
+    "luxury home builder",
+    "custom home builder",
+    "fire-resistant home construction cost",
+    "concrete home cost",
+    "how to build fire-resistant luxury home",
+    "fire-resistant home construction",
+    "fire-resilient home construction",
+    "fire-resistant home california",
+    "concrete homes in los angeles",
+    "concrete home builder los angeles",
+    "icf home builder california",
+    "fireproof home california",
+    "reinforced concrete home",
+    "california fire insurance solution",
+    "fire insurance in california",
+    "insurable home california",
+    "fair plan alternative",
+    "insurable home",
+    "italian villa california",
+    "mediterranean villa california",
+    "italian villa",
+    "mediterranean villa",
+]
+FEATURED_POOL = 12  # only the N freshest articles compete for the slot
+
+
+def commercial_rank(art):
+    hay = (art.get("title", "") + " " + art.get("slug", "")).lower()
+    for i, kw in enumerate(FEATURED_COMMERCIAL_KEYWORDS):
+        if kw in hay:
+            return i
+    return 999
+
+
+def pick_featured(arts_sorted):
+    """Best commercial-intent article among the freshest FEATURED_POOL;
+    ties go to the most recent (pool is date-desc and min() is stable).
+    Falls back to the most recent article when nothing matches."""
+    pool = arts_sorted[:FEATURED_POOL]
+    return min(pool, key=commercial_rank) if pool else None
+
 # ────────────────────────────────────────────────────────────────────
 # shared CSS (design tokens + components used by all v2 blog pages)
 # ────────────────────────────────────────────────────────────────────
@@ -570,8 +622,8 @@ def render_article(art, all_arts, preview=True):
 # ────────────────────────────────────────────────────────────────────
 def render_index(arts, preview=True):
     arts_sorted = sorted(arts, key=lambda a: a["date"], reverse=True)
-    featured = arts_sorted[0]
-    latest = arts_sorted[1:7]
+    featured = pick_featured(arts_sorted) or arts_sorted[0]
+    latest = [a for a in arts_sorted if a["slug"] != featured["slug"]][:6]
     total = len(arts)
     url = f"{SITE}/blog/"
 
