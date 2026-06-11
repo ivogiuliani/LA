@@ -33,11 +33,11 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-# Reuse the parser + hero locator from the journal index rebuilder so the
-# homepage and the /blog/ index read the same metadata the same way.
+# Articles are sourced from the blog/*.json sidecars (same source of truth
+# as build_v2.py), so the homepage Desk and the Journal stay in sync without
+# HTML parsing.
 SCRIPT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPT_DIR))
-from update_journal_index import extract_metadata, find_hero_image  # noqa: E402
 
 SYSTEM_DIR = SCRIPT_DIR.parent
 PROJECT_ROOT = SYSTEM_DIR.parent
@@ -112,19 +112,38 @@ def format_date(iso: str) -> str:
 
 
 def collect_articles() -> list[dict]:
-    """Return all published articles with metadata (date guaranteed)."""
+    """Return all published articles, read from the blog/*.json sidecars.
+
+    A JSON without its published HTML twin is skipped (unpublished draft).
+    Normalized fields: slug, filename, title, excerpt, date, section,
+    read_time, hero (web path relative to blog/, prefix-normalized).
+    """
+    import json as _json
     out = []
-    for f in BLOG_DIR.glob("*.html"):
-        if f.stem in CATEGORY_STEMS:
+    for jf in BLOG_DIR.glob("*.json"):
+        if jf.stem in CATEGORY_STEMS:
+            continue
+        if not (BLOG_DIR / (jf.stem + ".html")).exists():
             continue
         try:
-            meta = extract_metadata(f)
+            d = _json.loads(jf.read_text(encoding="utf-8"))
         except Exception as e:
-            print(f"  [WARN] could not parse {f.name}: {e}", file=sys.stderr)
+            print(f"  [WARN] could not parse {jf.name}: {e}", file=sys.stderr)
             continue
-        if not meta.get("date"):
-            meta["date"] = datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d")
-        out.append(meta)
+        hero = ((d.get("hero_image") or {}).get("web_path") or "").lstrip("/")
+        if hero.startswith("blog/"):
+            hero = hero[len("blog/"):]
+        out.append({
+            "slug": d.get("slug") or jf.stem,
+            "filename": jf.stem + ".html",
+            "title": d.get("title", ""),
+            "excerpt": d.get("excerpt", ""),
+            "date": d.get("_date") or datetime.fromtimestamp(
+                jf.stat().st_mtime).strftime("%Y-%m-%d"),
+            "section": d.get("_section_id") or d.get("section") or "materials",
+            "read_time": f"{d.get('read_time_min', 5)} min",
+            "hero": hero or None,
+        })
     return out
 
 
@@ -144,13 +163,13 @@ def pick_best_for_topic(topic: dict, articles: list[dict]) -> dict | None:
     return matches[0]
 
 
-def hero_path_for_homepage(slug: str) -> str | None:
-    """find_hero_image returns a path relative to blog/. Prepend 'blog/' so
-    it works from the homepage at the project root."""
-    rel = find_hero_image(slug)
+def hero_path_for_homepage(article: dict) -> str | None:
+    """Hero web path (relative to blog/) → root-absolute /blog/… so the
+    same markup works on the live homepage and in the v2 staging tree."""
+    rel = article.get("hero")
     if not rel:
         return None
-    return f"blog/{rel}"
+    return f"/blog/{rel}"
 
 
 def clip_excerpt(text: str, limit: int = 280) -> str:
@@ -178,10 +197,10 @@ def render_topical_card(article: dict | None) -> str:
     meta_parts = [p for p in [format_date(article.get("date", "")), read_time] if p]
     meta_line = " · ".join(meta_parts)
 
-    hero = hero_path_for_homepage(article.get("slug", ""))
+    hero = hero_path_for_homepage(article)
     img_block = (
         f'          <img class="journal-card-hero" src="{esc(hero)}" '
-        f'alt="" loading="lazy" width="800" height="500">\n'
+        f'alt="" loading="lazy" width="800" height="450">\n'
         if hero else ""
     )
 
