@@ -20,10 +20,22 @@
 - La scheduled task `myvilla-engagement-radar` (Claude Code, 07:52 daily) è **disabilitata** dal 2026-04-20.
 - Se serve rischedulare: aggiornare la task esistente a puntare a `_system/scripts/radar.py` + `generate_radar_report.py` + `generate_journal.py` + `generate_social.py`.
 
+## Sito v2 — "Quiet Permanence" (LIVE da giugno 2026)
+- L'intero sito (homepage, team, Journal) usa il design system v2: capitoli numerati con plate-header, Cormorant Garamond + Montserrat, palette ink/cream/sand/terracotta, reveal a sipario, parallax, `prefers-reduced-motion` rispettato.
+- **Builder Journal**: `_system/scripts/build_v2.py` rigenera TUTTI gli articoli + `blog/index.html` + `blog/category/*.html` **dai sidecar `blog/*.json`** (source of truth: `body_html`, `our_perspective`, `key_data`, `sources`, `_date`, `_section_id`). Un JSON senza HTML gemello = bozza non pubblicata, viene saltato.
+  - `python3 _system/scripts/build_v2.py --root` → produzione (scrive in `blog/`, indicizzabile)
+  - senza flag → staging in `v2/blog/` con noindex
+- `update_journal_index.py` ora DELEGA a `build_v2.run(root=True, live=True)` — la CLI è invariata, quindi `approve.py` e `publish_all_drafts.py` continuano a chiamarlo per nome senza modifiche.
+- `update_homepage_journal.py` legge i JSON sidecar (non più parsing HTML) e riscrive i 4 blocchi DESK nella homepage tra i marker `<!-- DESK:{INSURANCE,FIRE_CODE,REBUILD,MARKET}:START/END -->`. **Non rimuovere i marker da index.html.**
+- **Attenzione**: il template articolo dentro `generate_journal.py` è ancora quello vecchio — il suo output HTML viene sovrascritto da build_v2 al primo rebuild. Ciò che conta è che il **JSON sidecar sia completo**.
+- `v2/` resta come staging tree (tutte le pagine noindex, canonical → root). `v2/index.html` e `v2/team.html` sono file hand-authored: per modifiche alla home/team si edita la copia root e si riporta in v2 (o viceversa).
+- Form contatto: Formspree `mgoljyjl`, honeypot `_gotcha`, evento GA4 `generate_lead` al submit.
+
 ## SEO
 - Ogni pagina pubblicata deve avere: meta description, keywords, canonical, OG, Twitter Card, Schema.org (Article + BreadcrumbList)
-- Aggiornare sempre `sitemap.xml` dopo ogni pubblicazione
+- Aggiornare sempre `sitemap.xml` dopo ogni pubblicazione (include anche le 6 category hubs)
 - Obiettivo principale dei contenuti: indicizzazione Google
+- FAQPage schema presente in homepage (sezione Investment) — tenerlo allineato alle FAQ visibili
 
 ## Output
 - Ogni radar scan deve produrre sia il **file HTML dashboard** sia il **file `.md`** giornaliero (via `generate_radar_report.py --markdown`)
