@@ -1,0 +1,32 @@
+{
+  "thread_id": "19e87a442b5d369b",
+  "outreach_message_id": "19e87a442b5d369b",
+  "outreach_subject": "A new kind of LA luxury home, built in exposed concrete",
+  "outreach_to": "news@variety.com",
+  "outreach_sent_at": "2026-06-02T09:22:29+00:00",
+  "replies": [
+    {
+      "thread_id": "19e87a442b5d369b",
+      "gmail_message_id": "19e87a44a3c9948f",
+      "rfc822_message_id": "<6a1ea0d7.cf7cf8e6.2c7e7e.f1ed.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a news@variety.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\nUlteriori informazioni: https://aka.ms/EXOSmtpErrors\r\n(attenzione: questo link indirizza a un sito di terze parti)\r\n\r\nLa risposta del server remoto è:\r\n550 5.4.1 Recipient address rejected: Access denied. For more information see https://aka.ms/EXOSmtpErrors [DS1PEPF00017095.namprd03.prod.outlook.com 2026-06-02T09:22:31.205Z 08DEBD05D776DFD8]",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a news@variety.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. ULTERIORI INFORMAZIONI Questo link ti indirizzerà a",
+      "received_at": "2026-06-02T09:22:31+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "IMPORTANT",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "19e87a442b5d369b",
+      "outreach_subject": "A new kind of LA luxury home, built in exposed concrete",
+      "outreach_to": "news@variety.com",
+      "outreach_sent_at": "2026-06-02T09:22:29+00:00"
+    }
+  ],
+  "last_checked_at": "2026-06-11T06:13:49+00:00"
+}

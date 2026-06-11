@@ -21,7 +21,7 @@
     "result": null
   },
   "prnewswire.com": {
-    "cached_at": 1780306180.614932,
+    "cached_at": 1781158341.0820239,
     "result": null
   },
   "greenhomebuildermag.com": {
@@ -61,12 +61,13 @@
     "result": null
   },
   "robbreport.com": {
-    "cached_at": 1777324059.594015,
+    "cached_at": 1781158409.019458,
     "result": {
       "email": "editorial@robbreport.com",
       "source": "contact_page",
       "path": "/contact-us",
-      "score": 18
+      "score": 18,
+      "in_mailto": true
     }
   },
   "losangelesgeneralcontractor.com": {
@@ -100,7 +101,7 @@
     "result": null
   },
   "insurancebusinessmag.com": {
-    "cached_at": 1778736152.244809,
+    "cached_at": 1781158344.8655438,
     "result": null
   },
   "propertyinsurancecoveragelaw.com": {
@@ -161,12 +162,13 @@
     "result": null
   },
   "therealdeal.com": {
-    "cached_at": 1778044804.184763,
+    "cached_at": 1781158400.49416,
     "result": {
-      "email": "events@therealdeal.com",
+      "email": "news@therealdeal.com",
       "source": "article_scraped",
-      "path": "/bsh-events/building-luxury-beverly-hills",
-      "score": 7
+      "path": "/la/2026/06/10/jane-kim-leads-california-insurance-commissioner-race/",
+      "score": 14,
+      "in_mailto": false
     }
   },
   "uphelp.org": {
@@ -183,7 +185,7 @@
     }
   },
   "cbsnews.com": {
-    "cached_at": 1780468850.197046,
+    "cached_at": 1781158357.237029,
     "result": null
   },
   "airbnb.com": {
@@ -387,7 +389,7 @@
     "result": null
   },
   "builderonline.com": {
-    "cached_at": 1779514187.0827389,
+    "cached_at": 1781158358.987401,
     "result": null
   },
   "ktbs.com": {
@@ -692,5 +694,39 @@
   "bbc.com": {
     "cached_at": 1781072864.4972448,
     "result": null
+  },
+  "calsociety.com": {
+    "cached_at": 1781158320.1699321,
+    "result": null
+  },
+  "businessinsider.com": {
+    "cached_at": 1781158372.694762,
+    "result": {
+      "email": "inbounds@businessinsider.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "fireandsafetyjournalamericas.com": {
+    "cached_at": 1781158400.313115,
+    "result": {
+      "email": "iain.hoey@fireandsafetyjournalamericas.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 5,
+      "in_mailto": true
+    }
+  },
+  "carbondaleconstruction.ca": {
+    "cached_at": 1781158405.9489741,
+    "result": {
+      "email": "ryan@carbondaleconstruction.ca",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 7,
+      "in_mailto": true
+    }
   }
 }

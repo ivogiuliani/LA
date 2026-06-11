@@ -37,6 +37,25 @@
       ],
       "last_bounced_at": "2026-04-23T18:13:22+00:00",
       "reason": "550 5.4.1 Recipient address rejected: Access denied. For more information see https://aka.ms/EXOSmtpErrors [BN1PEPF0000468D.namprd05.prod.outlook.com 2026-04-23T09:"
+    },
+    "news@variety.com": {
+      "first_bounced_at": "2026-06-02T09:22:31+00:00",
+      "bounce_count": 2,
+      "source_threads": [
+        "19e87a442b5d369b",
+        "19eab09cb186fab0"
+      ],
+      "last_bounced_at": "2026-06-09T06:20:09+00:00",
+      "reason": "550 5.4.1 Recipient address rejected: Access denied. For more information see https://aka.ms/EXOSmtpErrors [DS1PEPF0001709D.namprd05.prod.outlook.com 2026-06-09T06:"
+    },
+    "contact@ownluxuryhomes.com": {
+      "first_bounced_at": "2026-06-06T06:13:53+00:00",
+      "bounce_count": 1,
+      "source_threads": [
+        "19e9b9105f8a674d"
+      ],
+      "last_bounced_at": "2026-06-06T06:13:53+00:00",
+      "reason": "550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For mo"
     }
   }
 }
