@@ -1289,7 +1289,20 @@ def grok_x_search(api_key, config, lookback_days=7):
                 })
             time.sleep(2)
         except Exception as e:
-            print(f"  [Grok] Error '{query}': {e}")
+            _grok_fails = locals().get("_grok_fails", 0) + 1
+            status = getattr(getattr(e, "response", None), "status_code", "?")
+            print(f"  [Grok] Error '{query}': {type(e).__name__} (HTTP {status})")
+            if status == 403:
+                # 403 = crediti esauriti / spending limit (messaggio xAI
+                # verificato 2026-06-11): inutile insistere sulle altre
+                # query, abort immediato.
+                print("  [Grok] 403 permission-denied — crediti xAI "
+                      "esauriti o spending limit raggiunto. Abort. "
+                      "Ricarica su https://console.x.ai/ → Billing.")
+                break
+            if _grok_fails >= 3:
+                print("  [Grok] 3 errori consecutivi — abort")
+                break
 
     print(f"  [Grok] {len(results)} tweets found")
     return results
