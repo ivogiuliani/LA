@@ -75,3 +75,18 @@ Nota: la pipeline delle 8:00 resta su GitHub Actions in entrambi i
 casi — il tunnel serve SOLO per far vedere il pannello alla SMM.
 Lo stato viaggia via git (auto-pull nel pannello), quindi le due
 soluzioni sono intercambiabili in qualsiasi momento.
+
+## Pannello come servizio sul Mac (launchd)
+
+Installato il 2026-06-12: `com.myvilla.panel.plist` (template in questa
+cartella) → il pannello gira SEMPRE su 127.0.0.1:8787 (parte al login,
+si riavvia se crasha). Logs: `_system/logs/panel.log`.
+Comandi utili:
+```bash
+launchctl kickstart -k gui/$UID/com.myvilla.panel   # riavvia
+launchctl bootout   gui/$UID/com.myvilla.panel      # ferma
+```
+Esposizione alla SMM: Tailscale Funnel → 8787 (PANEL_PASSWORD in .env
+fa da serratura). Il Mac non deve dormire nelle ore di lavoro della
+SMM: Impostazioni di Sistema → Blocco schermo / Batteria → "Impedisci
+lo stop automatico quando il display è spento" (su alimentazione).
