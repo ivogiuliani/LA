@@ -1193,7 +1193,9 @@ def generate_viral_reply_drafts(viral_items, model=_HEAVY_MODEL):
         eng = item.get("engagement") or {}
         items_desc.append({
             "index": i,
-            "platform": "x" if item.get("source") == "grok_x" else "reddit",
+            "platform": ("x" if item.get("source") == "grok_x"
+                         else "instagram" if item.get("source") == "instagram"
+                         else "reddit"),
             "author": item.get("author", ""),
             "url": item.get("url", ""),
             "title": item.get("title", "")[:160],
@@ -1207,6 +1209,14 @@ def generate_viral_reply_drafts(viral_items, model=_HEAVY_MODEL):
         })
 
     prompt = f"""Generate a public reply draft for each of these {len(items_desc)} high-engagement social posts.
+
+Platform rules:
+- "x": a reply tweet — punchy, ≤200 chars.
+- "instagram": a COMMENT under the post — warmer and more conversational
+  than X, can be slightly longer (≤220 chars), NO hashtags in comments,
+  never salesy: add genuine value or a sharp observation; at most a soft
+  reference to our perspective (we build reinforced-concrete villas in LA).
+- "reddit": a comment in subreddit register — substantive, no marketing.
 
 For each item, output a JSON object:
 {{

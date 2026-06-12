@@ -1060,7 +1060,7 @@ def _filter_viral_opportunities(all_results, known_urls=None):
         eng = item.get("engagement") or {}
         source = item.get("source", "")
 
-        if source not in ("grok_x", "reddit"):
+        if source not in ("grok_x", "reddit", "instagram"):
             continue
 
         # Topic filter FIRST (strictest gate)
@@ -1080,6 +1080,12 @@ def _filter_viral_opportunities(all_results, known_urls=None):
                 continue
         elif source == "reddit":
             if eng.get("score", 0) < 5 and eng.get("num_comments", 0) < 3:
+                rejected_thresh += 1
+                continue
+        elif source == "instagram":
+            # Hashtag di nicchia: soglie più alte di X (su IG il rumore
+            # è enorme) ma raggiungibili da post di settore.
+            if eng.get("likes", 0) < 30 and eng.get("replies", 0) < 5:
                 rejected_thresh += 1
                 continue
 
@@ -1126,8 +1132,8 @@ def _filter_early_signals(all_results, known_urls=None, viral_urls=None):
             continue
 
         eng = item.get("engagement") or {}
-        likes = eng.get("likes", 0) if source == "grok_x" else eng.get("score", 0)
-        replies = eng.get("replies", 0) if source == "grok_x" else eng.get("num_comments", 0)
+        likes = eng.get("likes", 0) if source in ("grok_x", "instagram") else eng.get("score", 0)
+        replies = eng.get("replies", 0) if source in ("grok_x", "instagram") else eng.get("num_comments", 0)
 
         # Recency (fresh posts get a pass even with 0 engagement)
         try:
@@ -1147,8 +1153,8 @@ def _filter_early_signals(all_results, known_urls=None, viral_urls=None):
     def _early_sort_key(x):
         eng = x.get("engagement") or {}
         src = x.get("source", "")
-        likes = eng.get("likes", 0) if src == "grok_x" else eng.get("score", 0)
-        replies = eng.get("replies", 0) if src == "grok_x" else eng.get("num_comments", 0)
+        likes = eng.get("likes", 0) if src in ("grok_x", "instagram") else eng.get("score", 0)
+        replies = eng.get("replies", 0) if src in ("grok_x", "instagram") else eng.get("num_comments", 0)
         try:
             post_date = x.get("date", "")[:10]
             dt_post = datetime.strptime(post_date, "%Y-%m-%d") if post_date else today_dt
@@ -1160,6 +1166,100 @@ def _filter_early_signals(all_results, known_urls=None, viral_urls=None):
 
     early.sort(key=_early_sort_key)
     return early[:15]  # cap at 15 for signal quality
+
+
+def instagram_viral_scan(config, lookback_days=7):
+    """Scansione hashtag Instagram via Apify per post virali da
+    commentare (flusso assistito — il commento si pubblica a mano).
+
+    Usa lo stesso attore apify~instagram-scraper del partner_scraper,
+    in modalità ricerca hashtag. Budget: ~6 hashtag × 25 post/giorno
+    ≈ $10-12/mese. Config in radar-keywords.yml → instagram:.
+    """
+    token = os.environ.get("APIFY_API_TOKEN", "").strip()
+    if not token:
+        print("  [IG-viral] Skipped — APIFY_API_TOKEN non configurato")
+        return []
+    ig_cfg = (config or {}).get("instagram") or {}
+    hashtags = ig_cfg.get("hashtags") or []
+    if not hashtags:
+        print("  [IG-viral] Skipped — nessun hashtag in config")
+        return []
+    per_tag = int(ig_cfg.get("results_per_hashtag", 25))
+
+    # Attore DEDICATO agli hashtag (il generico instagram-scraper non
+    # supporta la ricerca hashtag: "no_items"). Una sola run per tutti
+    # i tag: resultsLimit è per-hashtag.
+    run_url = ("https://api.apify.com/v2/acts/apify~instagram-hashtag-scraper"
+               f"/run-sync-get-dataset-items?token={token}")
+    cutoff = datetime.utcnow() - timedelta(days=lookback_days)
+    results = []
+
+    payload = {
+        "hashtags": [t.lower().lstrip("#") for t in hashtags],
+        "resultsLimit": per_tag,
+    }
+    try:
+        resp = requests.post(run_url, json=payload, timeout=300)
+        resp.raise_for_status()
+        posts = resp.json()
+    except Exception as e:
+        status = getattr(getattr(e, "response", None), "status_code", "?")
+        print(f"  [IG-viral] Apify error: {type(e).__name__} (HTTP {status})")
+        if status in (401, 402, 403):
+            print("  [IG-viral] token/crediti Apify KO — "
+                  "controlla console.apify.com")
+        return []
+
+    if not isinstance(posts, list):
+        print("  [IG-viral] risposta inattesa dall'attore")
+        return []
+    kept = 0
+    if True:
+        for post in posts:
+            if post.get("error"):
+                continue
+            url = post.get("url") or ""
+            caption = (post.get("caption") or "").strip()
+            if not url or not caption:
+                continue
+            # lookback
+            ts = post.get("timestamp") or ""
+            try:
+                pd = datetime.fromisoformat(ts.replace("Z", ""))
+                if pd < cutoff:
+                    continue
+            except (ValueError, TypeError):
+                pd = None
+            likes = int(post.get("likesCount") or 0)
+            comments = int(post.get("commentsCount") or 0)
+            owner = post.get("ownerUsername") or "?"
+            vscore = compute_virality_score(
+                likes, 0, comments, 0,
+                pd.strftime("%Y-%m-%d") if pd else "",
+                datetime.utcnow().strftime("%Y-%m-%d"))
+            results.append({
+                "source": "instagram",
+                "cluster": "instagram_viral",
+                "query": "#" + ((post.get("hashtags") or ["?"])[0]
+                                 if isinstance(post.get("hashtags"), list)
+                                 else "instagram"),
+                "title": f"@{owner}: {caption[:90]}",
+                "url": url,
+                "snippet": caption[:300],
+                "publication": f"Instagram @{owner}",
+                "date": ts,
+                "engagement": {
+                    "likes": likes,
+                    "replies": comments,
+                    "virality_score": vscore,
+                },
+            })
+            kept += 1
+
+    print(f"  [IG-viral] {kept} post nel lookback su {len(posts)} "
+          f"raccolti da {len(hashtags)} hashtag")
+    return results
 
 
 def grok_x_search(api_key, config, lookback_days=7):
@@ -2190,6 +2290,8 @@ def main():
     parser.add_argument("--dry-run", action="store_true",
                         help="Run without saving output")
     parser.add_argument("--skip-grok", action="store_true")
+    parser.add_argument("--skip-instagram", action="store_true",
+                        help="Salta lo scan hashtag Instagram (Apify)")
     parser.add_argument("--skip-gemini", action="store_true")
     parser.add_argument("--skip-reddit", action="store_true")
     parser.add_argument("--skip-rss", action="store_true")
@@ -2272,6 +2374,14 @@ def main():
         all_results.extend(rss_results)
     else:
         print("3. RSS — skipped")
+
+    # 4b. Instagram virali (Apify hashtag scan)
+    if not getattr(args, "skip_instagram", False):
+        print("4b. Instagram hashtag (Apify)...")
+        ig_results = instagram_viral_scan(config, lookback_days=args.lookback)
+        all_results.extend(ig_results)
+    else:
+        print("4b. Instagram — skipped")
 
     # 4. Grok/X
     if not args.skip_grok:

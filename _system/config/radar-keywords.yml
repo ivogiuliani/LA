@@ -380,3 +380,22 @@ scoring:
     priority_1: 3
     priority_2: 1
     priority_3: 0
+
+# ── Instagram viral discovery (Apify) — aggiunto 2026-06-12 ──
+# Scan giornaliero degli hashtag di nicchia per trovare post virali
+# da commentare (flusso assistito: il commento si pubblica a mano).
+# Budget: 6 hashtag × 25 post ≈ 150 risultati/giorno ≈ $10-12/mese
+# (attore apify~instagram-scraper, ~$2.3/1000 risultati).
+instagram:
+  hashtags:
+    - MalibuRealEstate
+    - LuxuryRealEstateLA
+    - BeverlyHillsRealEstate
+    - ConcreteArchitecture
+    - ItalianVilla
+    - LosAngelesArchitecture
+  results_per_hashtag: 25
+  # Soglie "on-topic relaxed" (come per X): un post di nicchia con
+  # 30 like vale più di uno generico con 500.
+  min_likes: 30
+  min_comments: 5
