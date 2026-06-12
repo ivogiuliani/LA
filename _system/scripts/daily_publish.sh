@@ -160,6 +160,14 @@ python3 _system/scripts/publish_all_drafts.py $DRY_FLAGS \
 PUB_EXIT=$?
 log "publish_all_drafts.py exit code: $PUB_EXIT"
 
+# Step 3b: generate_social — proposte social del giorno dal radar
+# (max 2 set reactive = 2 IG + 2 X, con immagini auto). NON pubblica:
+# crea solo le card da approvare nel pannello. Non-bloccante.
+log "--- generate_social.py (proposte del giorno) ---"
+python3 _system/scripts/generate_social.py --radar "$RADAR_FILE" \
+    --max-posts 2 >> "$LOG_FILE" 2>&1 || \
+    log "generate_social errore non bloccante (continuo)"
+
 # Step 4: feature_pitch — non-bloccante
 log "--- feature_pitch.py $FP_DRY ---"
 python3 _system/scripts/feature_pitch.py $FP_DRY >> "$LOG_FILE" 2>&1 || \

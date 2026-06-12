@@ -268,6 +268,22 @@ jobs:
           PYTHONUNBUFFERED: "1"
 
       # ───────────────────────────────────────────────────────────
+      # 9a-bis. Proposte social del giorno (2 set reactive IG+X con
+      #         immagini auto) — solo card da approvare, non pubblica.
+      # ───────────────────────────────────────────────────────────
+      - name: Generate social proposals
+        if: steps.guard.outputs.should_run == 'true' && steps.guard2.outputs.should_send == 'true'
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          RADAR_FILE="_system/radar/reports/radar_${TODAY}.json"
+          if [ -f "$RADAR_FILE" ]; then
+            python3 _system/scripts/generate_social.py --radar "$RADAR_FILE" --max-posts 2 || \
+              echo "::warning::generate_social non-bloccante fallito"
+          fi
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      # ───────────────────────────────────────────────────────────
       # 9b. Feature pitch — proponi a 1-2 testate locali/giorno un
       #     articolo su My Villa (self-contained, non-bloccante).
       # ───────────────────────────────────────────────────────────
