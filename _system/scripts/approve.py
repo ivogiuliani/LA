@@ -950,10 +950,21 @@ def _parse_social_file(f):
     if f.name.endswith(".ig.md") and not post_type:
         post_type = "journal_companion"
 
+    # Rilevanza: score del radar se presente; i companion (annuncio di
+    # un NOSTRO articolo) valgono un mid-score fisso 13 — battono i
+    # reattivi deboli, perdono dai reattivi forti (15+).
+    try:
+        score = float(frontmatter.get("radar_score") or 0)
+    except (TypeError, ValueError):
+        score = 0
+    if not score:
+        score = 13 if f.name.endswith(".ig.md") else 10
+
     return {
         "file": f.name,
         "channel": channel,
         "type": post_type,
+        "score": score,
         "date": frontmatter.get("date",
                                 frontmatter.get("generated_at", ""))[:10],
         "char_count": frontmatter.get("char_count", str(len(body))),
@@ -988,9 +999,9 @@ def scan_social_drafts():
         if parsed:
             seen.add(f.name)
             drafts.append(parsed)
-    # Più FRESCHE prima (il cap a 3 mostra la scelta del giorno),
-    # poi IG prima di X (canale appena attivato = priorità).
-    drafts.sort(key=lambda x: x["date"], reverse=True)
+    # RILEVANZA prima (score del radar, "scegli tu i più rilevanti"),
+    # freschezza come spareggio, IG prioritario su X.
+    drafts.sort(key=lambda x: (x.get("score", 0), x["date"]), reverse=True)
     drafts.sort(key=lambda x: 0 if ("ig" in x["channel"].lower()
                                     or "instagram" in x["channel"].lower())
                 else 1)

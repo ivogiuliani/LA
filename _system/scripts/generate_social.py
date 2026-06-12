@@ -425,7 +425,7 @@ def attach_ig_image(item, slug):
 
 
 def save_post(post, post_type, date_str, output_dir, index,
-              image=None, source_url=None):
+              image=None, source_url=None, radar_score=None):
     """Save a social post as Markdown with YAML frontmatter."""
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -435,13 +435,14 @@ def save_post(post, post_type, date_str, output_dir, index,
     x_content = post.get("x_post", "")
     if x_content:
         x_path = output_dir / f"{date_str}-x-{slug}.md"
+        score_line = f"radar_score: {radar_score}\n" if radar_score else ""
         x_md = f"""---
 channel: x
 type: {post_type}
 date: {date_str}
 slug: {slug}
 status: draft
-topic_tags: {json.dumps(post.get('topic_tags', []))}
+{score_line}topic_tags: {json.dumps(post.get('topic_tags', []))}
 char_count: {len(x_content)}
 ---
 
@@ -456,13 +457,14 @@ char_count: {len(x_content)}
         ig_path = output_dir / f"{date_str}-ig-{slug}.md"
         img_line = f"image: {image}\n" if image else ""
         url_line = f"url: {source_url}\n" if source_url else ""
+        sc_line = f"radar_score: {radar_score}\n" if radar_score else ""
         ig_md = f"""---
 channel: instagram
 type: {post_type}
 date: {date_str}
 slug: {slug}
 status: draft
-{img_line}{url_line}topic_tags: {json.dumps(post.get('topic_tags', []))}
+{img_line}{url_line}{sc_line}topic_tags: {json.dumps(post.get('topic_tags', []))}
 ---
 
 {ig_content}
@@ -543,7 +545,9 @@ def main():
                     ig_img = (attach_ig_image(item, post.get("slug", f"post-{idx}"))
                               if post.get("ig_caption") else None)
                     save_post(post, "reactive", today, output_dir, idx,
-                              image=ig_img, source_url=item.get("url"))
+                              image=ig_img, source_url=item.get("url"),
+                              radar_score=(item.get("ai_score")
+                                           or item.get("preliminary_score")))
                 else:
                     x = post.get("x_post", "")
                     print(f"  [X] ({len(x)} chars) {x[:80]}...")
