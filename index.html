@@ -2683,6 +2683,9 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
 }
 .cta-alt a:hover { color: var(--white); border-color: var(--white); }
 
+/* Anchor landings clear the fixed nav */
+section[id] { scroll-margin-top: 64px; }
+
 /* ── Sticky mobile CTA (shown ≤640px after the hero, hidden near the form) ── */
 .sticky-cta {
   position: fixed; left: 16px; right: 16px;
@@ -3113,7 +3116,7 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
 
 <!-- ══════════════ 12. DINING — cinematic ══════════════ -->
 <section class="gallery-section">
-  <img src="img/dining.webp" alt="Dining room with woven ceiling and pendant lights" loading="lazy">
+  <img src="img/dining.webp" alt="Dining room with woven ceiling and pendant lights" loading="lazy" width="1210" height="745">
   <div class="gallery-overlay-right"></div>
   <div class="gallery-text right">
     <div class="section-label reveal">The Dining</div>
@@ -3146,7 +3149,7 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
     <div class="collection-desc reveal reveal-delay-1">Four foundational typologies designed as inspiration — each one a proven starting point that can be fully customized to match your vision, your site, and the way you live. From layout to materials, every element adapts to become uniquely yours.</div>
     <div class="collection-grid">
       <div class="type-card reveal">
-        <img class="type-img" src="img/courtyard-interior.webp" alt="Courtyard House" loading="lazy">
+        <img class="type-img" src="img/courtyard-interior.webp" alt="Courtyard House" loading="lazy" width="1600" height="960">
         <div class="type-text">
           <div class="type-name">Courtyard House</div>
           <div class="type-line"></div>
@@ -3154,7 +3157,7 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
         </div>
       </div>
       <div class="type-card reveal reveal-delay-1">
-        <img class="type-img" src="img/pool.webp" alt="L House" loading="lazy">
+        <img class="type-img" src="img/pool.webp" alt="L House" loading="lazy" width="1222" height="743">
         <div class="type-text">
           <div class="type-name">L House</div>
           <div class="type-line"></div>
@@ -3162,7 +3165,7 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
         </div>
       </div>
       <div class="type-card reveal">
-        <img class="type-img" src="img/external.webp" alt="Deconstructed House" loading="lazy">
+        <img class="type-img" src="img/external.webp" alt="Deconstructed House" loading="lazy" width="1216" height="751">
         <div class="type-text">
           <div class="type-name">Deconstructed House</div>
           <div class="type-line"></div>
@@ -3170,7 +3173,7 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
         </div>
       </div>
       <div class="type-card reveal reveal-delay-1">
-        <img class="type-img" src="img/courtyard.webp" alt="Hill House" loading="lazy">
+        <img class="type-img" src="img/courtyard.webp" alt="Hill House" loading="lazy" width="1222" height="737">
         <div class="type-text">
           <div class="type-name">Hill House</div>
           <div class="type-line"></div>
@@ -3277,35 +3280,35 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
       <!-- Atmosphere & Texture (Slide 85) -->
       <div class="moodboard-grid moodboard-panel active" data-panel="atmosphere">
         <div class="moodboard-item">
-          <img src="img/int-reeded-glass.webp" alt="Reeded glass" loading="lazy">
+          <img src="img/int-reeded-glass.webp" alt="Reeded glass" loading="lazy" width="486" height="523">
           <div class="mb-label">Reeded Glass</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-sheer-curtains.webp" alt="Sheer curtains" loading="lazy">
+          <img src="img/int-sheer-curtains.webp" alt="Sheer curtains" loading="lazy" width="487" height="523">
           <div class="mb-label">Sheer Linens</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-warm-workspace.webp" alt="Warm workspace" loading="lazy">
+          <img src="img/int-warm-workspace.webp" alt="Warm workspace" loading="lazy" width="487" height="523">
           <div class="mb-label">Warm Interiors</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-green-lounge.webp" alt="Green lounge" loading="lazy">
+          <img src="img/int-green-lounge.webp" alt="Green lounge" loading="lazy" width="487" height="523">
           <div class="mb-label">The Outside In</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-green-marble.webp" alt="Green marble" loading="lazy">
+          <img src="img/int-green-marble.webp" alt="Green marble" loading="lazy" width="486" height="523">
           <div class="mb-label">Green Marble</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-herringbone-fabric.webp" alt="Herringbone fabric" loading="lazy">
+          <img src="img/int-herringbone-fabric.webp" alt="Herringbone fabric" loading="lazy" width="487" height="523">
           <div class="mb-label">Herringbone Weave</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-walnut-wood.webp" alt="Walnut wood" loading="lazy">
+          <img src="img/int-walnut-wood.webp" alt="Walnut wood" loading="lazy" width="487" height="523">
           <div class="mb-label">Walnut Grain</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-woven-texture.webp" alt="Woven texture" loading="lazy">
+          <img src="img/int-woven-texture.webp" alt="Woven texture" loading="lazy" width="487" height="523">
           <div class="mb-label">Woven Texture</div>
         </div>
       </div>
@@ -3313,35 +3316,35 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
       <!-- Materials & Craftsmanship (Slide 86) -->
       <div class="moodboard-grid moodboard-panel" data-panel="materials">
         <div class="moodboard-item">
-          <img src="img/int-olive-marble.webp" alt="Olive and marble" loading="lazy">
+          <img src="img/int-olive-marble.webp" alt="Olive and marble" loading="lazy" width="486" height="523">
           <div class="mb-label">Natural Stone</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-window-detail.webp" alt="Window detail" loading="lazy">
+          <img src="img/int-window-detail.webp" alt="Window detail" loading="lazy" width="487" height="523">
           <div class="mb-label">Window Profiles</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-green-terrazzo.webp" alt="Green terrazzo" loading="lazy">
+          <img src="img/int-green-terrazzo.webp" alt="Green terrazzo" loading="lazy" width="487" height="523">
           <div class="mb-label">Green Terrazzo</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-stone-blocks.webp" alt="Stone blocks" loading="lazy">
+          <img src="img/int-stone-blocks.webp" alt="Stone blocks" loading="lazy" width="487" height="523">
           <div class="mb-label">Artisan Tiles</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-palazzo-interior.webp" alt="Palazzo interior" loading="lazy">
+          <img src="img/int-palazzo-interior.webp" alt="Palazzo interior" loading="lazy" width="486" height="523">
           <div class="mb-label">Timeless Italian Design</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-terrazzo-floor.webp" alt="Terrazzo floor" loading="lazy">
+          <img src="img/int-terrazzo-floor.webp" alt="Terrazzo floor" loading="lazy" width="487" height="523">
           <div class="mb-label">Terrazzo Flooring</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-bespoke-layout.webp" alt="Bespoke layout" loading="lazy">
+          <img src="img/int-bespoke-layout.webp" alt="Bespoke layout" loading="lazy" width="487" height="523">
           <div class="mb-label">Bespoke Layouts</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-terracotta-surface.webp" alt="Terracotta surface" loading="lazy">
+          <img src="img/int-terracotta-surface.webp" alt="Terracotta surface" loading="lazy" width="487" height="523">
           <div class="mb-label">Crafted Surfaces</div>
         </div>
       </div>
@@ -3349,35 +3352,35 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
       <!-- Italian Luxury (Slide 87) -->
       <div class="moodboard-grid moodboard-panel" data-panel="luxury">
         <div class="moodboard-item">
-          <img src="img/int-bronze-faucet.webp" alt="Bronze faucet" loading="lazy">
+          <img src="img/int-bronze-faucet.webp" alt="Bronze faucet" loading="lazy" width="476" height="523">
           <div class="mb-label">Bronze Fixtures</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-luxury-living.webp" alt="Luxury living" loading="lazy">
+          <img src="img/int-luxury-living.webp" alt="Luxury living" loading="lazy" width="487" height="523">
           <div class="mb-label">Curated Living</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-table-detail.webp" alt="Table detail" loading="lazy">
+          <img src="img/int-table-detail.webp" alt="Table detail" loading="lazy" width="487" height="523">
           <div class="mb-label">Furniture Details</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-rattan-lamp.webp" alt="Rattan lamp" loading="lazy">
+          <img src="img/int-rattan-lamp.webp" alt="Rattan lamp" loading="lazy" width="486" height="523">
           <div class="mb-label">Artisan Lighting</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-designer-chair.webp" alt="Designer chair" loading="lazy">
+          <img src="img/int-designer-chair.webp" alt="Designer chair" loading="lazy" width="800" height="600">
           <div class="mb-label">Signature Seating</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-designer-lamp.webp" alt="Designer lamp" loading="lazy">
+          <img src="img/int-designer-lamp.webp" alt="Designer lamp" loading="lazy" width="487" height="523">
           <div class="mb-label">Sculptural Lighting</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-sculptural-poolside.webp" alt="Sculptural poolside" loading="lazy">
+          <img src="img/int-sculptural-poolside.webp" alt="Sculptural poolside" loading="lazy" width="487" height="523">
           <div class="mb-label">Poolside Design</div>
         </div>
         <div class="moodboard-item">
-          <img src="img/int-stone-basin.webp" alt="Stone basin" loading="lazy">
+          <img src="img/int-stone-basin.webp" alt="Stone basin" loading="lazy" width="1080" height="1560">
           <div class="mb-label">Tailored Elements</div>
         </div>
       </div>
@@ -3418,19 +3421,19 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
         <div class="force-dot" style="background:var(--terracotta)"></div>
         <div class="force-title">Architectural<br>Intelligence</div>
         <div class="force-desc">2,000 years of Mediterranean spatial knowledge reinterpreted for Southern California. The courtyard, the portico, the pergola — accumulated wisdom, not nostalgia.</div>
-        <img class="force-img" src="img/courtyard.webp" alt="Courtyard" loading="lazy">
+        <img class="force-img" src="img/courtyard.webp" alt="Courtyard" loading="lazy" width="1222" height="737">
       </div>
       <div class="force-item reveal reveal-delay-1">
         <div class="force-dot" style="background:var(--pacific-blue)"></div>
         <div class="force-title">Material<br>Permanence</div>
         <div class="force-desc">Reinforced concrete: the same material used in the world's most enduring cultural buildings. Structures engineered to resist fire, to require less maintenance, and to retain value over time.</div>
-        <img class="force-img force-img--tall" src="img/material-permanence.webp" alt="Reinforced concrete villa exterior — Material Permanence" loading="lazy">
+        <img class="force-img force-img--tall" src="img/material-permanence.webp" alt="Reinforced concrete villa exterior — Material Permanence" loading="lazy" width="1600" height="812">
       </div>
       <div class="force-item reveal reveal-delay-2">
         <div class="force-dot" style="background:var(--coastal-sage)"></div>
         <div class="force-title">Biophilic<br>Design</div>
         <div class="force-desc">Architecture that breathes. Natural light, cross-ventilation, living walls, interior courtyards. Nature is not outside the window — it is woven into the architecture.</div>
-        <img class="force-img" src="img/biophilic-design.webp" alt="Pool, colonnade and garden — Biophilic Design" loading="lazy" style="object-position: center 100%;">
+        <img class="force-img" src="img/biophilic-design.webp" alt="Pool, colonnade and garden — Biophilic Design" loading="lazy" style="object-position: center 100%;" width="1600" height="968">
       </div>
     </div>
   </div>
@@ -3587,11 +3590,11 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
     <!-- ── Diagram area ── -->
     <div class="resilience-diagram-area" style="margin-top:56px;">
       <div class="res-diagram-card reveal">
-        <img src="img/resilience-climate.webp" alt="Climate Control Diagram — cross-ventilation, thermal mass, passive shading, bioclimatic orientation" loading="lazy">
+        <img src="img/resilience-climate.webp" alt="Climate Control Diagram — cross-ventilation, thermal mass, passive shading, bioclimatic orientation" loading="lazy" width="1600" height="1253">
         <div class="res-diagram-caption">Climate Control Design</div>
       </div>
       <div class="res-diagram-card reveal reveal-delay-1">
-        <img src="img/resilience-energy.webp" alt="Energy &amp; Water Systems — PV panels 80/20, water collection, off-grid autonomy" loading="lazy">
+        <img src="img/resilience-energy.webp" alt="Energy &amp; Water Systems — PV panels 80/20, water collection, off-grid autonomy" loading="lazy" width="1600" height="1233">
         <div class="res-diagram-caption">Energy &amp; Water Independence</div>
       </div>
     </div>
@@ -3729,7 +3732,7 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
 
 <!-- ══════════════ 16. CLOSING IMAGE ══════════════ -->
 <section class="gallery-section" style="min-height:60vh;">
-  <img src="img/external.webp" alt="Villa facade with faceted garage and jacaranda trees" loading="lazy">
+  <img src="img/external.webp" alt="Villa facade with faceted garage and jacaranda trees" loading="lazy" width="1216" height="751">
   <div class="gallery-overlay-bottom"></div>
   <div class="gallery-text bottom">
     <div class="section-label reveal">The Vision</div>
@@ -4208,12 +4211,34 @@ async function handleSubmit(e) {
   }
 }
 
-// Smooth anchor scrolling
+// Smooth anchor scrolling — with post-scroll settle.
+// Lazy images loading mid-flight stretch the layout and make the original
+// destination stale (you land short, e.g. on the Journal instead of the
+// form). After the smooth scroll stops, re-snap to the target until stable.
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
-    e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const t0 = performance.now();
+    let lastY = -1, still = 0, fixes = 0;
+    (function settle() {
+      if (performance.now() - t0 > 5000) return;        // safety stop
+      const y = window.scrollY;
+      still = (Math.abs(y - lastY) < 1) ? still + 1 : 0;
+      lastY = y;
+      if (still >= 8) {                                  // scroll has stopped
+        const off = target.getBoundingClientRect().top;
+        if (Math.abs(off) > 8 && fixes < 3) {            // landed off-target
+          fixes++; still = 0;
+          target.scrollIntoView({ block: 'start' });     // instant re-snap
+        } else {
+          return;                                        // on target — done
+        }
+      }
+      requestAnimationFrame(settle);
+    })();
   });
 });
 
