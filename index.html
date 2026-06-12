@@ -2632,6 +2632,76 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
   .cta-form .full { grid-column: auto; }
 }
 
+/* ── Briefing form v2 ports: qualifying selects, success state, email alt ── */
+.cta-form-wrap { position: relative; }
+.cta-field { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+.cta-field-label {
+  font-size: 9.5px; letter-spacing: 0.2em; font-weight: 700;
+  text-transform: uppercase; color: rgba(255,255,255,0.55);
+}
+select.cta-input {
+  -webkit-appearance: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23FFFFFF' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  padding-right: 38px;
+  cursor: pointer;
+}
+select.cta-input option { color: var(--espresso); background: var(--cream); }
+.cta-success {
+  position: absolute; inset: 0; z-index: 3;
+  background: rgba(26,24,22,0.94);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border: 1px solid rgba(196,162,101,0.35);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 40px 28px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.cta-success.show { opacity: 1; pointer-events: auto; }
+.cta-success .ok-ring {
+  width: 64px; height: 64px; border-radius: 50%;
+  border: 1.5px solid var(--tuscan-gold);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 22px;
+}
+.cta-success .ok-ring svg { width: 26px; height: 26px; }
+.cta-success .ok-ring svg path { fill: none; stroke: var(--tuscan-gold); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.cta-success h3 { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--cream); }
+.cta-success p { margin-top: 10px; font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.6); max-width: 380px; }
+.cta-alt {
+  margin-top: 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  text-align: center;
+  color: rgba(255,255,255,0.55);
+}
+.cta-alt a {
+  color: var(--warm-sand); text-decoration: none;
+  border-bottom: 1px solid rgba(212,184,150,0.45);
+  padding-bottom: 1px;
+  transition: color 0.25s, border-color 0.25s;
+}
+.cta-alt a:hover { color: var(--white); border-color: var(--white); }
+
+/* ── Sticky mobile CTA (shown ≤640px after the hero, hidden near the form) ── */
+.sticky-cta {
+  position: fixed; left: 16px; right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 90;
+  display: none;
+  padding: 16px 24px;
+  background: var(--terracotta); color: #fff;
+  font-family: var(--sans);
+  font-size: 12px; letter-spacing: 0.2em; font-weight: 700; text-transform: uppercase;
+  text-align: center; text-decoration: none;
+  box-shadow: 0 14px 34px rgba(22,19,15,0.35);
+  transform: translateY(130%); opacity: 0;
+  transition: transform 0.55s cubic-bezier(0.22,1,0.36,1), opacity 0.4s;
+}
+.sticky-cta.show { transform: none; opacity: 1; }
+@media (max-width: 640px) {
+  .sticky-cta { display: block; }
+}
 
 /* ══════════════════════════════════════════
    FOOTER
@@ -3901,22 +3971,54 @@ textarea.cta-input { min-height: 100px; resize: vertical; }
     <div class="cta-sub reveal reveal-delay-2">
       We'd love to show you the system. A tailored conversation about your site, your vision, your My Villa.
     </div>
-    <form class="cta-form reveal reveal-delay-3" id="contactForm" onsubmit="handleSubmit(event)" aria-label="Request a private briefing">
-      <input type="text" class="cta-input" placeholder="First Name" required aria-label="First Name" name="first_name" autocomplete="given-name">
-      <input type="text" class="cta-input" placeholder="Last Name" required aria-label="Last Name" name="last_name" autocomplete="family-name">
-      <input type="email" class="cta-input" placeholder="Email" required aria-label="Email address" name="email" autocomplete="email">
-      <input type="tel" class="cta-input" placeholder="Phone (optional)" aria-label="Phone number" name="phone" autocomplete="tel">
-      <textarea class="cta-input full" placeholder="Tell us about your project, your site, or what drew you to My Villa..." aria-label="Project description" name="message"></textarea>
-      <!-- Honeypot anti-spam (hidden from humans) -->
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-      <button type="submit" class="cta-submit">Request Private Briefing</button>
-      <div class="cta-micro"><strong>Our founding partner will personally respond within 48 hours.</strong></div>
-    </form>
+    <div class="cta-form-wrap reveal reveal-delay-3">
+      <form class="cta-form" id="contactForm" onsubmit="handleSubmit(event)" aria-label="Request a private briefing">
+        <input type="text" class="cta-input" placeholder="First Name" required aria-label="First Name" name="first_name" autocomplete="given-name">
+        <input type="text" class="cta-input" placeholder="Last Name" required aria-label="Last Name" name="last_name" autocomplete="family-name">
+        <input type="email" class="cta-input" placeholder="Email" required aria-label="Email address" name="email" autocomplete="email">
+        <input type="tel" class="cta-input" placeholder="Phone (optional)" aria-label="Phone number" name="phone" autocomplete="tel">
+        <div class="cta-field">
+          <label class="cta-field-label" for="ctaInterest">I'm exploring</label>
+          <select id="ctaInterest" class="cta-input" name="project_type">
+            <option value="New custom build">A new custom build</option>
+            <option value="Rebuild after fire">A rebuild after fire</option>
+            <option value="Future site / land search">A future site — still searching</option>
+            <option value="General interest">General interest</option>
+          </select>
+        </div>
+        <div class="cta-field">
+          <label class="cta-field-label" for="ctaTimeline">Timeline</label>
+          <select id="ctaTimeline" class="cta-input" name="timeline">
+            <option value="Ready now">Ready to start now</option>
+            <option value="6-12 months">Within 6–12 months</option>
+            <option value="12-24 months">Within 1–2 years</option>
+            <option value="Exploring">Just exploring</option>
+          </select>
+        </div>
+        <input type="text" class="cta-input full" placeholder="Site location (optional) — e.g. Malibu, Pacific Palisades, Bel Air…" aria-label="Site location" name="site_location">
+        <textarea class="cta-input full" placeholder="Tell us about your project, your site, or what drew you to My Villa..." aria-label="Project description" name="message"></textarea>
+        <!-- Honeypot anti-spam (hidden from humans) -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_subject" value="Private Briefing Request — myvilla.la">
+        <button type="submit" class="cta-submit">Request Private Briefing</button>
+        <div class="cta-micro"><strong>Our founding partner will personally respond within 48 hours.</strong></div>
+      </form>
+      <div class="cta-success" id="ctaSuccess" role="status">
+        <div class="ok-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5 L10 18 L20 6"/></svg></div>
+        <h3>Grazie — request received.</h3>
+        <p>Our founding partner will personally respond within 48 hours with next steps for your private briefing.</p>
+      </div>
+    </div>
     <div class="cta-scarcity"><strong>Limited commissions per year — two remaining for 2026.</strong></div>
+    <div class="cta-alt">Prefer email? Write to <a href="mailto:info@myvilla.la">info@myvilla.la</a></div>
   </div>
 </section>
 
 </main>
+
+<!-- Sticky mobile CTA (≤640px, appears after the hero, hides near the form) -->
+<a href="#contact" class="sticky-cta" id="stickyCta">Request a Private Briefing</a>
+
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer class="footer" role="contentinfo">
   <div class="footer-brand-wrap">
@@ -4081,10 +4183,16 @@ async function handleSubmit(e) {
     });
 
     if (response.ok) {
-      btn.textContent = 'Grazie. We\'ll be in touch.';
-      btn.style.background = '#5C6B4F';
-      btn.style.opacity = '1';
+      const success = document.getElementById('ctaSuccess');
+      if (success) {
+        success.classList.add('show');
+      } else {
+        btn.textContent = 'Grazie. We\'ll be in touch.';
+        btn.style.background = '#5C6B4F';
+        btn.style.opacity = '1';
+      }
       form.reset();
+      try { gtag('event', 'generate_lead', { event_category: 'briefing', event_label: 'private_briefing_form' }); } catch (err) {}
     } else {
       throw new Error('Form submission failed');
     }
@@ -4143,6 +4251,26 @@ function closeCookieBanner() {
   const b = document.getElementById('cookieBanner');
   if (b) { b.classList.remove('visible'); setTimeout(() => b.remove(), 400); }
 }
+
+// ── Sticky mobile CTA: show after the hero, hide when the form approaches ──
+(function () {
+  const sticky = document.getElementById('stickyCta');
+  if (!sticky) return;
+  const contact = document.getElementById('contact');
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const y = window.scrollY || window.pageYOffset;
+    const pastHero = y > window.innerHeight * 0.9;
+    let nearForm = false;
+    if (contact) nearForm = contact.getBoundingClientRect().top < window.innerHeight * 0.7;
+    sticky.classList.toggle('show', pastHero && !nearForm);
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  update();
+})();
 
 </script>
 
