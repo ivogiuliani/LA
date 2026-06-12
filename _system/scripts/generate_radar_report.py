@@ -2324,6 +2324,40 @@ def main():
     if not args.skip_drafts and viral:
         print(f"\nGenerating viral reply drafts (model: {args.model})...")
         viral = generate_viral_reply_drafts(viral, model=args.model)
+
+        # Auto-eliminazione (richiesta Ivo 2026-06-13): se l'AI giudica
+        # un post senza valore strategico (body=SKIP), proporlo è solo
+        # rumore. Lo togliamo dal radar E lo marchiamo dismissed, così
+        # non torna nemmeno negli scan futuri.
+        kept, skipped_items = [], []
+        for it in viral:
+            body_ = ((it.get("viral_reply") or {}).get("body") or "").strip()
+            (skipped_items if body_.upper() == "SKIP" else kept).append(it)
+        if skipped_items:
+            dedup_path = Path(__file__).resolve().parent.parent / \
+                "radar" / "previously_reported.json"
+            try:
+                dd = json.loads(dedup_path.read_text(encoding="utf-8")) \
+                    if dedup_path.exists() else {"reported": []}
+            except (OSError, json.JSONDecodeError):
+                dd = {"reported": []}
+            for it in skipped_items:
+                reason = (it.get("viral_reply") or {}).get("skip_reason", "")
+                print(f"  [ViralReply] ⊘ auto-eliminato: "
+                      f"{(it.get('title') or '')[:55]} ({reason[:50]})")
+                dd.setdefault("reported", []).append({
+                    "date_first_reported": date_str,
+                    "source": "ai_skip",
+                    "title": (it.get("title") or "")[:120],
+                    "score": None, "cluster": it.get("cluster"),
+                    "action_type": "user_dismissed",
+                    "url": it.get("url", ""),
+                    "note": f"auto-skip AI: {reason[:100]}",
+                })
+            dedup_path.write_text(
+                json.dumps(dd, indent=2, ensure_ascii=False),
+                encoding="utf-8")
+        viral = kept
         radar_data["viral_opportunities"] = viral
 
     # Persist updated drafts + reach estimates back into the source JSON so

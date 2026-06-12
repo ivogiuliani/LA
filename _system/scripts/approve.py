@@ -2216,6 +2216,8 @@ def build_dashboard():
 
         _viral_list = []
         for v in radar["viral"]:
+            if v.get("reply_skip"):
+                continue  # auto-eliminati: inutile proporli (vedi report)
             platform_icon = "𝕏" if v["platform"] == "x" else "🔥"
             platform_label = "X" if v["platform"] == "x" else "Reddit"
             platform_class = "badge-tweet" if v["platform"] == "x" else "badge-reddit"
