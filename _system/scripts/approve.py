@@ -1777,6 +1777,26 @@ def scan_radar_opportunities():
 
 # ── Dashboard HTML generation ────────────────────────────────────────
 
+_LAST_AUTO_PULL = [0.0]
+
+
+def _auto_pull_throttled(min_interval=120):
+    """git pull --rebase --autostash, max una volta ogni `min_interval`
+    secondi. Non-fatale: se fallisce (offline, conflitti) il pannello
+    rende comunque lo stato locale."""
+    import time as _t
+    now = _t.time()
+    if now - _LAST_AUTO_PULL[0] < min_interval:
+        return
+    _LAST_AUTO_PULL[0] = now
+    try:
+        subprocess.run(
+            ["git", "pull", "--rebase", "--autostash", "origin", "main"],
+            cwd=str(ROOT_DIR), capture_output=True, timeout=25)
+    except Exception:  # noqa: BLE001
+        pass
+
+
 def build_dashboard():
     """Generate the full HTML review dashboard."""
     journal = scan_journal_drafts()
@@ -7751,6 +7771,11 @@ class ReviewHandler(BaseHTTPRequestHandler):
         parsed = urlparse(self.path)
 
         if parsed.path == "/":
+            # Multi-postazione (VPS + pipeline cloud + eventuale Mac):
+            # allinea il repo prima di renderizzare, così il pannello
+            # mostra SEMPRE lo stato corrente (proposte fresche della
+            # pipeline, approvazioni fatte altrove). Throttle 120s.
+            _auto_pull_throttled()
             self._send_html(build_dashboard())
 
         elif parsed.path == "/radar":
