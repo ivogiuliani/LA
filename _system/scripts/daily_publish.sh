@@ -160,6 +160,13 @@ python3 _system/scripts/publish_all_drafts.py $DRY_FLAGS \
 PUB_EXIT=$?
 log "publish_all_drafts.py exit code: $PUB_EXIT"
 
+# Step 3a: pulizia proposte social stantie (>7 giorni) → _archive.
+# Il pannello deve mostrare solo contenuto attuale: un post reattivo
+# su una notizia vecchia è rumore per chi gestisce i social.
+mkdir -p _archive/social
+find _drafts/social _system/social/posts/reactive -name "*.md" -mtime +7 \
+    -exec mv {} _archive/social/ \; 2>/dev/null || true
+
 # Step 3b: generate_social — proposte social del giorno dal radar
 # (max 2 set reactive = 2 IG + 2 X, con immagini auto). NON pubblica:
 # crea solo le card da approvare nel pannello. Non-bloccante.

@@ -931,6 +931,18 @@ def _parse_social_file(f):
     if status in ("approved", "published", "rejected"):
         return None
 
+    # Freschezza: niente proposte più vecchie di 7 giorni — un post
+    # "reattivo" su una notizia di 2 settimane fa è rumore, non valore.
+    date_str = (frontmatter.get("date")
+                or frontmatter.get("generated_at", ""))[:10]
+    if date_str:
+        try:
+            age = (datetime.now() - datetime.strptime(date_str, "%Y-%m-%d")).days
+            if age > 7:
+                return None
+        except ValueError:
+            pass
+
     channel = frontmatter.get("channel", frontmatter.get("platform", ""))
     if f.name.endswith(".ig.md"):
         channel = channel or "ig"
@@ -1891,7 +1903,9 @@ def build_dashboard():
         </div>"""
 
     # Build social cards
-    social_cards = ""
+    social_cards_ig = []   # card IG (in ordine di scan: fresche prima)
+    social_cards_x = []    # card X
+    social_cards = ""      # (legacy var — composta più sotto con i cap)
     for d in social:
         ch = d["channel"].lower()
         if "x" in ch or "twitter" in ch:
@@ -1935,7 +1949,7 @@ def build_dashboard():
         art_link = (f'<a href="{_esc(d.get("article_url",""))}" '
                     f'target="_blank" style="font-size:0.78rem;">↗ articolo</a>'
                     if d.get("article_url") else "")
-        social_cards += f"""
+        _card_html = f"""
         <div class="card" id="card-social-{_esc(d['file'])}" data-file="{_esc(d['file'])}" data-type="social" data-channel="{_esc(ch)}">
           <div class="card-status-stripe"></div>
           <div class="card-body">
@@ -1960,6 +1974,33 @@ def build_dashboard():
             </div>
           </div>
         </div>"""
+        if pub_platform == "instagram":
+            social_cards_ig.append(_card_html)
+        else:
+            social_cards_x.append(_card_html)
+
+    # ── Composizione daily-first: il social manager vede i TOP, il
+    #    resto sta in un <details> ripiegato. Budget visivo: 3 IG + 2 X.
+    def _capped(cards, cap, label):
+        if not cards:
+            return ('<p style="color:#999;font-size:0.85rem;">'
+                    f'Nessuna proposta {label} oggi.</p>')
+        top = "".join(cards[:cap])
+        more = ""
+        if len(cards) > cap:
+            more = (f'<details class="more-cards"><summary>'
+                    f'▸ altre {len(cards) - cap} proposte {label}'
+                    f'</summary>{"".join(cards[cap:])}</details>')
+        return top + more
+
+    social_cards = (
+        '<h3 class="channel-sub">📸 Instagram — scegline 1, scarta il resto'
+        f'<span class="section-count">{len(social_cards_ig)}</span></h3>'
+        + _capped(social_cards_ig, 3, "Instagram")
+        + '<h3 class="channel-sub">𝕏 X — scegline 1'
+        f'<span class="section-count">{len(social_cards_x)}</span></h3>'
+        + _capped(social_cards_x, 2, "X")
+    )
 
     # ── Editorial IG cards (brand-foundation pipeline) ────────────────
     editorial_cards = ""
@@ -2155,6 +2196,7 @@ def build_dashboard():
                 return f"{n/1_000:.1f}K" if n < 10_000 else f"{n//1000}K"
             return str(n)
 
+        _viral_list = []
         for v in radar["viral"]:
             platform_icon = "𝕏" if v["platform"] == "x" else "🔥"
             platform_label = "X" if v["platform"] == "x" else "Reddit"
@@ -2245,7 +2287,7 @@ def build_dashboard():
                         f'</div>'
                     )
 
-            viral_cards += f"""
+            _viral_list.append(f"""
         <div class="card viral-card" data-virality="{vs}" data-platform="{v['platform']}">
           <div class="card-status-stripe"></div>
           <div class="card-body">
@@ -2260,7 +2302,15 @@ def build_dashboard():
             {reply_section}
             {actions_section}
           </div>
-        </div>"""
+        </div>""")
+
+        # Daily-first: 5 commenti visibili (i più virali — la lista è
+        # già ordinata per virality), il resto ripiegato.
+        viral_cards = "".join(_viral_list[:5])
+        if len(_viral_list) > 5:
+            viral_cards += (f'<details class="more-cards"><summary>'
+                            f'▸ altri {len(_viral_list) - 5} post virali'
+                            f'</summary>{"".join(_viral_list[5:])}</details>')
 
     # ── Early signals cards — on-topic, low engagement, no auto-reply ──
     if radar and radar.get("early"):
@@ -2982,8 +3032,21 @@ def build_dashboard():
                     if pm:
                         perma = pm.group(1).strip("'\"")
                     pub_today.append((ch, f.name, perma))
+        # Commenti Reddit pubblicati oggi (dal log del client)
+        rc_today = 0
+        rc_log = SYSTEM_DIR / "outreach" / "reddit_comment_log.jsonl"
+        if rc_log.exists():
+            for line in rc_log.read_text(encoding="utf-8").splitlines():
+                try:
+                    rr = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if rr.get("ok") and str(rr.get("timestamp", "")).startswith(today):
+                    rc_today += 1
+
         items = []
         items.append(f"<strong>In coda</strong> — Instagram: {q_ig} · X: {q_x}")
+        items.append(f"<strong>Commenti Reddit oggi</strong>: {rc_today}/5")
         if pub_today:
             links = " · ".join(
                 (f'<a href="{_esc(pl)}" target="_blank">{ch.upper()} ✓</a>'
@@ -2992,13 +3055,15 @@ def build_dashboard():
             items.append(f"<strong>Pubblicati oggi</strong>: {links}")
         else:
             items.append("<strong>Pubblicati oggi</strong>: —")
+        spans = "".join(f"<span>{it}</span>" for it in items)
         return ('<div class="section" style="padding:0.8rem 1.2rem;">'
-                '<div style="display:flex;gap:2rem;flex-wrap:wrap;'
-                'font-size:0.85rem;color:#5a5247;">'
-                '<span>📸 ' + items[0] + '</span>'
-                '<span>' + items[1] + '</span>'
-                '<span style="color:#999;">esce 1/canale al giorno (auto, '
-                'mattina) — cap in .env</span>'
+                '<div style="display:flex;gap:1.6rem;flex-wrap:wrap;'
+                'font-size:0.85rem;color:#5a5247;align-items:center;">'
+                '<strong style="color:#1a1a2e;">📋 Il lavoro di oggi: '
+                'approva 1 post IG + 1 X, pubblica 2-3 commenti</strong>'
+                + spans +
+                '<span style="color:#999;">la coda esce da sola, 1/canale '
+                'al giorno</span>'
                 '</div></div>')
 
     try:
@@ -4737,6 +4802,10 @@ def build_dashboard():
   }}
   .btn-reject:hover {{ background: #a85d3f; box-shadow: 0 2px 8px rgba(194,113,79,0.3); }}
 
+  .channel-sub {{ font-size: 1.0rem; margin: 1.1rem 0 0.5rem; color: #1a1a2e; border-bottom: 1px solid #eee3d2; padding-bottom: 4px; }}
+  .more-cards {{ margin: 0.6rem 0 1rem; }}
+  .more-cards summary {{ cursor: pointer; color: #8a7a5f; font-size: 0.85rem; padding: 6px 2px; user-select: none; }}
+  .more-cards summary:hover {{ color: #1a1a2e; }}
   .social-img-preview img {{ max-width: 280px; max-height: 180px; border-radius: 6px; margin: 6px 0; object-fit: cover; border: 1px solid #e3d9c8; }}
   .social-img-missing {{ font-size: 0.78rem; color: #a85d3f; background: #fdf3ee; border: 1px dashed #d9a08a; border-radius: 5px; padding: 5px 9px; margin: 6px 0; }}
   .btn-publish-social {{
@@ -5290,8 +5359,8 @@ def build_dashboard():
   ''' if radar and radar.get("early") else ''}
 
   {f'''
-  <div class="section section-editorial">
-    <h2 class="section-heading">🤝 Partner reposts (Instagram) <span class="section-count">{len(editorial)}</span></h2>
+  <div class="section section-editorial section-collapsed" data-section="partner">
+    <h2 class="section-heading" onclick="toggleSection(this)">🤝 Partner reposts (Instagram) <span class="section-count">{len(editorial)}</span> <span class="collapse-toggle">▸ expand</span></h2>
     <p class="section-subtitle">
       Event-driven model (since 2026-05-04): we no longer plan an editorial calendar
       for IG. Instead we react to two triggers:

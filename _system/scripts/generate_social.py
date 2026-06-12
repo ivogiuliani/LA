@@ -111,6 +111,74 @@ def get_blocked_topics(ledger, today_str):
     return blocked
 
 
+_SIG_STOPWORDS = {
+    "california", "home", "homes", "house", "luxury", "angeles", "los",
+    "real", "estate", "2026", "2025", "with", "from", "that", "this",
+    "what", "your", "their", "about", "after", "more", "into", "have",
+}
+
+
+def _topic_sig(text):
+    """Firma fuzzy di un titolo/tema: token >3 char meno stopwords.
+    Stesso approccio che ha eliminato i duplicati sul journal — i
+    topic_tags LLM variano a ogni run e il cooldown li manca."""
+    import re as _re
+    toks = _re.findall(r"[a-z0-9]{4,}", (text or "").lower())
+    return {t for t in toks if t not in _SIG_STOPWORDS}
+
+
+def _recent_social_sigs(days=14):
+    """Firme di TUTTO ciò che è uscito/in coda negli ultimi N giorni:
+    published, approved, draft, reactive, archivio recente. È lo
+    storico anti-ripetizione: un nuovo candidato che si sovrappone
+    (≥3 token) a qualcosa di recente viene scartato PRIMA della
+    chiamata LLM (zero costo)."""
+    import time as _t
+    cutoff = _t.time() - days * 86400
+    dirs = [
+        SYSTEM_DIR / "social" / "posts" / "published",
+        SYSTEM_DIR / "social" / "posts" / "approved",
+        SYSTEM_DIR / "social" / "posts" / "reactive",
+        ROOT_DIR / "_drafts" / "social",
+        ROOT_DIR / "_archive" / "social",
+    ]
+    sigs = []
+    for d in dirs:
+        if not d.exists():
+            continue
+        for f in d.glob("*.md"):
+            try:
+                if f.stat().st_mtime < cutoff:
+                    continue
+                raw = f.read_text(encoding="utf-8", errors="replace")
+            except OSError:
+                continue
+            # slug + prima riga del body come "tema"
+            import re as _re
+            m = _re.search(r"slug: (\S+)", raw)
+            slug_txt = (m.group(1).replace("-", " ") if m else "")
+            body = raw.split("---", 2)[-1].strip()
+            first_line = body.splitlines()[0] if body else ""
+            sig = _topic_sig(slug_txt + " " + first_line)
+            if sig:
+                sigs.append(sig)
+    return sigs
+
+
+def filter_redundant_candidates(candidates, days=14, overlap=3):
+    """Scarta i candidati radar il cui tema è già stato trattato di
+    recente sui social. Ritorna (tenuti, scartati)."""
+    recent = _recent_social_sigs(days)
+    kept, dropped = [], []
+    for c in candidates:
+        sig = _topic_sig(c.get("title", ""))
+        if any(len(sig & r) >= overlap for r in recent):
+            dropped.append(c)
+        else:
+            kept.append(c)
+    return kept, dropped
+
+
 # ══════════════════════════════════════════════════════════════════════
 # GENERATION (Claude Opus)
 # ══════════════════════════════════════════════════════════════════════
@@ -451,6 +519,13 @@ def main():
                       if q.get("ai_score", q.get("preliminary_score", 0)) >= args.min_score]
         candidates = candidates[:args.max_posts]
 
+        if candidates:
+            candidates, dropped = filter_redundant_candidates(candidates)
+            if dropped:
+                print(f"  [Dedup] {len(dropped)} candidati scartati "
+                      f"(tema già trattato negli ultimi 14gg):")
+                for d_ in dropped[:5]:
+                    print(f"    ⊘ {d_.get('title','')[:60]}")
         if candidates:
             print(f"\nGenerating {len(candidates)} reactive posts...")
             posts = generate_reactive_posts(candidates, model=args.model)
