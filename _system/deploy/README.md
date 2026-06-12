@@ -42,3 +42,36 @@ Il pannello è un SERVER (approva → commit → API social): GitHub Pages
   (oppure si automatizza con un webhook in futuro).
 - La password è nell'hash del Caddyfile; cambiarla = rilanciare il
   blocco 6 dello script.
+- Difesa in profondità: oltre a Caddy, il pannello stesso supporta
+  `PANEL_PASSWORD=...` in `.env` (HTTP Basic integrato in approve.py).
+
+## Alternativa a COSTO ZERO (il Mac resta in gioco)
+
+Se 5€/mese non li vogliamo spendere, il pannello può essere esposto
+dal Mac di Ivo con un tunnel — nessun VPS, nessun DNS:
+
+```bash
+# 1. password del pannello (obbligatoria se esposto!)
+echo 'PANEL_PASSWORD=una-password-seria' >> ~/Code/myvilla-la/.env
+
+# 2. tunnel (scegline uno)
+brew install cloudflared
+cloudflared tunnel --url http://127.0.0.1:8787   # → https://xxx.trycloudflare.com (URL casuale, cambia a ogni avvio)
+
+# oppure Tailscale Funnel: URL STABILE https://<mac>.<tailnet>.ts.net
+brew install --cask tailscale   # login una tantum
+tailscale funnel 8787
+```
+
+Trade-off rispetto al VPS:
+| | VPS | Tunnel dal Mac |
+|---|---|---|
+| Costo | ~5€/mese | 0€ |
+| Mac acceso | NO, mai | SÌ, quando la SMM lavora |
+| URL | content.myvilla.la | trycloudflare casuale / ts.net stabile |
+| Setup | 15 min una tantum | 5 min |
+
+Nota: la pipeline delle 8:00 resta su GitHub Actions in entrambi i
+casi — il tunnel serve SOLO per far vedere il pannello alla SMM.
+Lo stato viaggia via git (auto-pull nel pannello), quindi le due
+soluzioni sono intercambiabili in qualsiasi momento.

@@ -7762,12 +7762,43 @@ class ReviewHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _auth_ok(self) -> bool:
+        """HTTP Basic Auth opzionale: attiva solo se PANEL_PASSWORD è
+        impostata (.env o ambiente). Con password vuota il pannello
+        resta com'è (uso locale su 127.0.0.1). Serve quando il pannello
+        viene esposto fuori dal localhost (tunnel, VPS): qualunque
+        utente, conta solo la password."""
+        required = os.environ.get("PANEL_PASSWORD", "").strip()
+        if not required:
+            return True
+        import base64
+        import hmac
+        header = self.headers.get("Authorization", "")
+        if header.startswith("Basic "):
+            try:
+                supplied = base64.b64decode(header[6:]).decode("utf-8")
+                password = supplied.split(":", 1)[1]
+                if hmac.compare_digest(password, required):
+                    return True
+            except Exception:  # noqa: BLE001 — header malformato → 401
+                pass
+        body = "Password richiesta".encode("utf-8")
+        self.send_response(401)
+        self.send_header("WWW-Authenticate", 'Basic realm="My Villa Panel"')
+        self.send_header("Content-Type", "text/plain; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+        return False
+
     def do_OPTIONS(self):
         self.send_response(200)
         self._cors_headers()
         self.end_headers()
 
     def do_GET(self):
+        if not self._auth_ok():
+            return
         parsed = urlparse(self.path)
 
         if parsed.path == "/":
@@ -7921,6 +7952,8 @@ class ReviewHandler(BaseHTTPRequestHandler):
             self._send_html("<h1>404 Not Found</h1>", 404)
 
     def do_POST(self):
+        if not self._auth_ok():
+            return
         parsed = urlparse(self.path)
 
         # Read body
