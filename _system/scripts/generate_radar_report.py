@@ -2331,8 +2331,10 @@ def main():
         # non torna nemmeno negli scan futuri.
         kept, skipped_items = [], []
         for it in viral:
-            body_ = ((it.get("viral_reply") or {}).get("body") or "").strip()
-            (skipped_items if body_.upper() == "SKIP" else kept).append(it)
+            vr = it.get("viral_reply") or {}
+            body_ = (vr.get("body") or "").strip()
+            is_skip = bool(vr.get("skip")) or body_.upper() == "SKIP"
+            (skipped_items if is_skip else kept).append(it)
         if skipped_items:
             dedup_path = Path(__file__).resolve().parent.parent / \
                 "radar" / "previously_reported.json"

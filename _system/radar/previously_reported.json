@@ -3060,5 +3060,47 @@
       "url": "https://d5mag.com/tuscany-aesthetics-meet-californias-mountains-in-the-new-stone-villa/",
       "note": "auto-sent pitch to queued:leonor.gomes@d5mag.com"
     }
+  ],
+  "reported": [
+    {
+      "date_first_reported": "2026-06-12",
+      "source": "ai_skip",
+      "title": "@farzannajafi: Luxury Real Estate. Personalized Service. Extraordinary Results.\n\nWhether you’re buying, s",
+      "score": null,
+      "cluster": "instagram_viral",
+      "action_type": "user_dismissed",
+      "url": "https://www.instagram.com/p/DZd-uJ_CXxf/",
+      "note": "auto-skip AI: generic agent self-promo, no substantive hook to add value to"
+    },
+    {
+      "date_first_reported": "2026-06-12",
+      "source": "ai_skip",
+      "title": "@nicole.deleo.plaxen: Honored to be recognized in the 2026 RealTrends Verified + The Thousand Rankings among the",
+      "score": null,
+      "cluster": "instagram_viral",
+      "action_type": "user_dismissed",
+      "url": "https://www.instagram.com/p/DZam6jAmnIl/",
+      "note": "auto-skip AI: personal awards/ranking post, no relevant angle without sounding off-topic"
+    },
+    {
+      "date_first_reported": "2026-06-12",
+      "source": "ai_skip",
+      "title": "@gabrielcolombo.re: Excited to share I’ve joined Coldwell Banker Realty | Beverly Hills 💙\n213.259.6619\ngabriel",
+      "score": null,
+      "cluster": "instagram_viral",
+      "action_type": "user_dismissed",
+      "url": "https://www.instagram.com/p/DZWtcyXx2Nu/",
+      "note": "auto-skip AI: agent career announcement, nothing substantive to add"
+    },
+    {
+      "date_first_reported": "2026-06-12",
+      "source": "ai_skip",
+      "title": "@p.h.hernandez: This board is shaped by Hall of Famer Robbie Dick and was gifted to me by my wife, Sean Bu",
+      "score": null,
+      "cluster": "instagram_viral",
+      "action_type": "user_dismissed",
+      "url": "https://www.instagram.com/p/DZVZEV5Ci4B/",
+      "note": "auto-skip AI: personal lifestyle/World Oceans Day post, commercial angle would feel intrusive"
+    }
   ]
 }
