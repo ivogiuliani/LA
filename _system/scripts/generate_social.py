@@ -43,6 +43,7 @@ except Exception:  # noqa: BLE001
         return _fb.get(tier, "claude-sonnet-4-6")
 _HEAVY_MODEL = _resolve_model("heavy")
 SYSTEM_DIR = SCRIPT_DIR.parent
+ROOT_DIR = SYSTEM_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
 KNOWLEDGE_DIR = SYSTEM_DIR / "knowledge"
 HISTORY_DIR = SYSTEM_DIR / "history"
@@ -295,7 +296,68 @@ def generate_companion_posts(articles, model=_HEAVY_MODEL):
 # OUTPUT (Markdown with YAML frontmatter)
 # ══════════════════════════════════════════════════════════════════════
 
-def save_post(post, post_type, date_str, output_dir, index):
+IMG_SOCIAL_DIR = ROOT_DIR / "img" / "social"
+
+
+def attach_ig_image(item, slug):
+    """Immagine automatica per i post IG reattivi — stessa cascata a
+    3 livelli degli articoli journal:
+      1. og:image / immagini della fonte citata (item["url"])
+      2. Unsplash sul topic
+      3. brand fallback img/hero.png (mai un post IG senza visual)
+    Ritorna il path repo-relative da scrivere nel frontmatter `image:`
+    (il repo È il sito → l'URL pubblico esiste dopo il push)."""
+    try:
+        from image_picker import (fetch_source_images,
+                                  download_source_image, fetch_hero_image)
+    except ImportError:
+        return "img/hero.png"
+    IMG_SOCIAL_DIR.mkdir(parents=True, exist_ok=True)
+
+    def _found():
+        for ext in ("jpg", "jpeg", "png", "webp"):
+            f = IMG_SOCIAL_DIR / f"{slug}-hero.{ext}"
+            if f.exists():
+                return f"img/social/{f.name}"
+        return None
+
+    already = _found()
+    if already:
+        return already
+
+    url = (item or {}).get("url") or ""
+    if url:
+        try:
+            cands = fetch_source_images(
+                [{"url": url,
+                  "publication": (item or {}).get("publication", "")}],
+                max_sources=1, per_source=6)
+            if cands and download_source_image(cands[0], slug, IMG_SOCIAL_DIR):
+                got = _found()
+                if got:
+                    print(f"  [img] ✓ source: {got}")
+                    return got
+        except Exception as e:  # noqa: BLE001
+            print(f"  [img] source fail ({type(e).__name__})")
+
+    try:
+        q = ((item or {}).get("title")
+             or " ".join((item or {}).get("topic_tags") or [])
+             or "italian villa architecture los angeles")
+        if fetch_hero_image(query=q, slug=slug, out_dir=IMG_SOCIAL_DIR):
+            got = _found()
+            if got:
+                print(f"  [img] ✓ unsplash: {got}")
+                return got
+    except Exception as e:  # noqa: BLE001
+        print(f"  [img] unsplash fail ({type(e).__name__})")
+
+    print("  [img] → brand fallback img/hero.png")
+    return "img/hero.png"
+
+
+def save_post(post, post_type, date_str, output_dir, index,
+              image=None, source_url=None):
     """Save a social post as Markdown with YAML frontmatter."""
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -324,13 +386,15 @@ char_count: {len(x_content)}
     ig_content = post.get("ig_caption", "")
     if ig_content:
         ig_path = output_dir / f"{date_str}-ig-{slug}.md"
+        img_line = f"image: {image}\n" if image else ""
+        url_line = f"url: {source_url}\n" if source_url else ""
         ig_md = f"""---
 channel: instagram
 type: {post_type}
 date: {date_str}
 slug: {slug}
 status: draft
-topic_tags: {json.dumps(post.get('topic_tags', []))}
+{img_line}{url_line}topic_tags: {json.dumps(post.get('topic_tags', []))}
 ---
 
 {ig_content}
@@ -400,7 +464,11 @@ def main():
                     ).strip("-")
 
                 if not args.dry_run:
-                    save_post(post, "reactive", today, output_dir, idx)
+                    item = candidates[idx] if 0 <= idx < len(candidates) else {}
+                    ig_img = (attach_ig_image(item, post.get("slug", f"post-{idx}"))
+                              if post.get("ig_caption") else None)
+                    save_post(post, "reactive", today, output_dir, idx,
+                              image=ig_img, source_url=item.get("url"))
                 else:
                     x = post.get("x_post", "")
                     print(f"  [X] ({len(x)} chars) {x[:80]}...")
