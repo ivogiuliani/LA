@@ -2225,8 +2225,18 @@ def build_dashboard():
                         f'  <button class="btn btn-reject" onclick="skipViral(this)">Skip</button>'
                         f'</div>'
                     )
+                elif v["platform"] == "reddit":
+                    # Reddit: pubblicazione DIRETTA via API ufficiale
+                    actions_section = (
+                        f'<div class="card-actions">'
+                        f'  <button class="btn btn-publish-social" data-url="{_esc(v["url"])}" onclick="publishRedditComment(this)" title="Pubblica il commento su Reddit via API (cap 5/giorno)">🚀 Commenta su Reddit</button>'
+                        f'  <a class="btn btn-copy-open" href="{_esc(v["url"])}" target="_blank" rel="noreferrer">Apri thread</a>'
+                        f'  <button class="btn btn-copy-pitch" onclick="copyViralReply(this)">Copy</button>'
+                        f'  <button class="btn btn-reject" onclick="skipViral(this)">Skip</button>'
+                        f'</div>'
+                    )
                 else:
-                    # Reddit or other: no native compose URL
+                    # Instagram/altro: flusso assistito (no API commenti)
                     actions_section = (
                         f'<div class="card-actions">'
                         f'  <a class="btn btn-viral-reply" href="{_esc(v["url"])}" target="_blank" rel="noreferrer">Open to reply</a>'
@@ -5723,6 +5733,47 @@ function openViralReplyX(btn) {{
 }}
 
 /* ── Viral: copy reply text ────────────────────── */
+function publishRedditComment(btn) {{
+  const card = btn.closest('.card');
+  const textarea = card.querySelector('.viral-reply-editor');
+  if (!textarea || !textarea.value.trim()) {{ showToast('Commento vuoto'); return; }}
+  if (!confirm('Pubblicare questo commento su Reddit con l\'account My Villa?')) return;
+  const buttons = card.querySelectorAll('.btn');
+  buttons.forEach(b => b.disabled = true);
+  btn.textContent = '⏳ Pubblico…';
+  fetch('/api/reddit-comment', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{url: btn.dataset.url, text: textarea.value}})
+  }})
+  .then(r => r.json())
+  .then(d => {{
+    if (d.ok) {{
+      btn.textContent = '✓ Pubblicato';
+      showToast(d.message || 'Commento live su Reddit');
+      if (d.comment_url) {{
+        const link = document.createElement('a');
+        link.href = d.comment_url; link.target = '_blank';
+        link.textContent = '↗ vedi commento';
+        link.className = 'btn btn-copy-open';
+        btn.after(link);
+      }}
+      card.style.opacity = '0.55';
+    }} else {{
+      buttons.forEach(b => b.disabled = false);
+      btn.textContent = '🚀 Commenta su Reddit';
+      alert(d.needs_setup
+        ? 'Credenziali Reddit non configurate.\n\nSetup (3 min): reddit.com/prefs/apps → create app (script) → poi in .env:\nREDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USERNAME, REDDIT_PASSWORD\n\nGuida completa: _system/docs/reddit_setup.md'
+        : 'Errore: ' + (d.error || 'sconosciuto'));
+    }}
+  }})
+  .catch(e => {{
+    buttons.forEach(b => b.disabled = false);
+    btn.textContent = '🚀 Commenta su Reddit';
+    alert('Errore di rete: ' + e);
+  }});
+}}
+
 function copyViralReply(btn) {{
   const card = btn.closest('.card');
   const textarea = card.querySelector('.viral-reply-editor');
@@ -7813,6 +7864,10 @@ class ReviewHandler(BaseHTTPRequestHandler):
         if parsed.path == "/api/dismiss-radar-item":
             self._handle_dismiss_radar_item(data.get("url", ""))
             return
+        if parsed.path == "/api/reddit-comment":
+            self._handle_reddit_comment(
+                data.get("url", ""), data.get("text", ""))
+            return
         if parsed.path == "/api/generate-ig-companion":
             self._handle_generate_ig_companion(
                 data.get("file", ""),
@@ -9365,6 +9420,57 @@ class ReviewHandler(BaseHTTPRequestHandler):
             )
 
     # ── /api/dismiss-radar-item ─────────────────────────────────────
+    def _handle_reddit_comment(self, url, text):
+        """Pubblica un commento approvato sul thread Reddit via API
+        ufficiale (reddit_client). Dopo il successo l'URL viene marcato
+        dismissed così il radar non lo ripropone."""
+        if not url or not text.strip():
+            self._send_json({"ok": False, "error": "url o testo mancante"}, 400)
+            return
+        try:
+            sys.path.insert(0, str(SCRIPT_DIR))
+            import reddit_client
+            result = reddit_client.post_comment(url, text)
+        except Exception as e:  # noqa: BLE001
+            self._send_json({"ok": False,
+                             "error": f"{type(e).__name__}: {e}"}, 500)
+            return
+
+        if result.get("ok"):
+            # Marca l'URL come gestito (stesso meccanismo del dismiss)
+            try:
+                self._mark_url_dismissed_quiet(
+                    url, note=f"reddit comment: {result.get('comment_url','')}")
+            except Exception:  # noqa: BLE001
+                pass
+            self._send_json(result)
+        else:
+            status = 400 if result.get("needs_setup") else 502
+            self._send_json(result, status)
+
+    def _mark_url_dismissed_quiet(self, url, note=""):
+        """Aggiunge l'URL a previously_reported.json (user_dismissed)
+        senza passare dall'endpoint HTTP del dismiss."""
+        dedup_path = SYSTEM_DIR / "radar" / "previously_reported.json"
+        try:
+            data = json.loads(dedup_path.read_text(encoding="utf-8")) \
+                if dedup_path.exists() else {"reported": []}
+        except (OSError, json.JSONDecodeError):
+            data = {"reported": []}
+        data.setdefault("reported", []).append({
+            "date_first_reported": datetime.now().strftime("%Y-%m-%d"),
+            "source": "user_dismissed",
+            "title": "",
+            "score": None,
+            "cluster": None,
+            "action_type": "user_dismissed",
+            "url": url,
+            "note": note,
+        })
+        dedup_path.write_text(
+            json.dumps(data, indent=2, ensure_ascii=False),
+            encoding="utf-8")
+
     def _handle_dismiss_radar_item(self, url):
         """Permanently dismiss a Radar News item by URL.
 
