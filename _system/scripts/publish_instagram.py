@@ -1,35 +1,54 @@
 #!/usr/bin/env python3
 """
-My Villa — Instagram Publisher (STUB MODE)
+My Villa — Instagram Publisher
 
-Phase 1 of the editorial pipeline. Until the Meta Graph API integration is
-wired (depends on IG↔FB Page link being live), this script does NOT publish
-to Instagram. Instead it builds a "publish-ready package" — a per-post folder
-under _system/social/posts/editorial/_publish_ready/ containing:
+Two modes:
 
-  caption.txt       — final caption + hashtag line, ready to paste into the IG app
-  image.<ext>       — the picked image (single-image post)
-  carousel/01.<ext> — per-slide images (carousel post)
-  slides.txt        — per-slide headlines + body text (for designer / canva)
-  metadata.json     — full slot metadata + hashtags + scheduled time
+STUB MODE (default, no flags): builds a "publish-ready package" — a per-post
+folder under _system/social/posts/editorial/_publish_ready/ containing
+caption.txt + image + slides.txt + metadata.json, for manual copy-paste
+publishing from the Instagram app. Always available as fallback.
 
-The package lives in iCloud Drive, so it shows up on the iPhone where the
-user can copy/paste into the Instagram app.
+LIVE MODE (--publish-live): publishes directly to @myvilla.la via the
+Instagram API (graph.instagram.com). Enabled 2026-06-13 after the
+IG↔FB-Page link was fixed and the Meta app "MyVilla Publisher"
+(id 1338124771778359) was wired with an Instagram-login token.
 
-When Meta Graph API is enabled later, this script will be extended with a
-real publish() function. The stub stays useful as a fallback / preview.
+  Requirements handled automatically:
+  - Instagram accepts ONLY JPEG → webp/png get converted via Pillow
+  - Aspect ratio must be within 4:5 … 1.91:1 → center-crop if outside
+  - image_url must be PUBLIC → images already under /img/ use the live
+    site URL (https://myvilla.la/img/…); partner-cache images get copied
+    to img/social/, committed, pushed, and polled until the CDN serves
+    them (GitHub Pages deploy)
+
+  Env (.env at repo root):
+    IG_ACCESS_TOKEN          Instagram-login user token (IGAA…, ~60d)
+    IG_BUSINESS_ACCOUNT_ID   17841437849933313 (@myvilla.la)
 
 Usage:
-  python3 publish_instagram.py --draft 2026-05-04-ig-editorial-two-millennia-...md
-  python3 publish_instagram.py --month 2026-05 --status draft   # all drafts in May
-  python3 publish_instagram.py --month 2026-05 --status approved
+  # Stub package (unchanged):
+  python3 publish_instagram.py --draft <file>.md
+  python3 publish_instagram.py --month 2026-06 --status approved
+
+  # Real publishing:
+  python3 publish_instagram.py --publish-live <file>.md          # publish one draft
+  python3 publish_instagram.py --publish-live <file>.md --dry-run  # prepare only, no API call
+
+  # Token health:
+  python3 publish_instagram.py --check-token
 """
 
 import argparse
 import json
+import os
 import re
 import shutil
+import subprocess
 import sys
+import time
+import urllib.parse
+import urllib.request
 from datetime import datetime
 from pathlib import Path
 
@@ -44,7 +63,233 @@ SOCIAL_DIR = SYSTEM_DIR / "social"
 EDITORIAL_DIR = SOCIAL_DIR / "posts" / "editorial"
 PUBLISH_READY_DIR = EDITORIAL_DIR / "_publish_ready"
 IMG_DIR = ROOT_DIR / "img"
+SOCIAL_IMG_DIR = IMG_DIR / "social"        # public staging for API images
 CALENDAR_DIR = SOCIAL_DIR / "calendar"
+
+# ── Instagram API config ─────────────────────────────────────────────
+IG_GRAPH = "https://graph.instagram.com/v23.0"
+SITE_BASE_URL = "https://myvilla.la"
+
+# Aspect-ratio hard limits for IG image posts
+AR_MIN = 0.8        # 4:5 portrait
+AR_MAX = 1.91       # 1.91:1 landscape
+
+
+def load_dotenv():
+    env_file = ROOT_DIR / ".env"
+    if not env_file.exists():
+        return
+    for line in env_file.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if "=" in line:
+            k, _, v = line.partition("=")
+            k, v = k.strip(), v.strip()
+            if v and (k not in os.environ or not os.environ[k]):
+                os.environ[k] = v
+
+
+load_dotenv()
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Instagram API client (graph.instagram.com, Instagram-login token)
+# ══════════════════════════════════════════════════════════════════════
+
+def _ig_credentials():
+    # Opportunistic token refresh: every API-touching call first checks
+    # whether the token is >7 days since last refresh and renews it
+    # (rewrites .env + os.environ). Never raises — see refresh_ig_token.py.
+    try:
+        if str(SCRIPT_DIR) not in sys.path:
+            sys.path.insert(0, str(SCRIPT_DIR))
+        from refresh_ig_token import maybe_refresh
+        maybe_refresh(quiet=True)
+    except Exception:
+        pass
+
+    token = os.environ.get("IG_ACCESS_TOKEN", "").strip()
+    ig_id = os.environ.get("IG_BUSINESS_ACCOUNT_ID", "").strip()
+    if not token or token.startswith("PLACEHOLDER"):
+        raise RuntimeError("IG_ACCESS_TOKEN missing in .env")
+    if not ig_id:
+        raise RuntimeError("IG_BUSINESS_ACCOUNT_ID missing in .env")
+    return token, ig_id
+
+
+def _api_get(path: str, params: dict) -> dict:
+    url = f"{IG_GRAPH}/{path}?{urllib.parse.urlencode(params)}"
+    with urllib.request.urlopen(url, timeout=30) as r:
+        return json.loads(r.read())
+
+
+def _api_post(path: str, params: dict) -> dict:
+    data = urllib.parse.urlencode(params).encode()
+    req = urllib.request.Request(f"{IG_GRAPH}/{path}", data=data, method="POST")
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return json.loads(r.read())
+
+
+def check_token(verbose: bool = True) -> bool:
+    """Validate token + publishing permission. Returns True if healthy."""
+    try:
+        token, ig_id = _ig_credentials()
+    except RuntimeError as e:
+        if verbose:
+            print(f"  ✗ {e}")
+        return False
+    try:
+        me = _api_get("me", {"fields": "user_id,username,account_type",
+                             "access_token": token})
+        quota = _api_get(f"{ig_id}/content_publishing_limit",
+                         {"access_token": token})
+        usage = quota.get("data", [{}])[0].get("quota_usage", "?")
+        if verbose:
+            print(f"  ✓ token valid — @{me.get('username')} "
+                  f"({me.get('account_type')}) · quota 24h: {usage}/100")
+        return True
+    except urllib.error.HTTPError as e:
+        if verbose:
+            body = e.read().decode(errors="replace")[:300]
+            print(f"  ✗ API error HTTP {e.code}: {body}")
+        return False
+
+
+def api_publish_image(image_url: str, caption: str,
+                      timeout_s: int = 120) -> dict:
+    """Create a media container for image_url + caption, wait for it to be
+    ready, then publish. Returns {'media_id':…, 'permalink':…}."""
+    token, ig_id = _ig_credentials()
+
+    # 1. Create container
+    container = _api_post(f"{ig_id}/media", {
+        "image_url": image_url,
+        "caption": caption,
+        "access_token": token,
+    })
+    creation_id = container.get("id")
+    if not creation_id:
+        raise RuntimeError(f"container creation failed: {container}")
+
+    # 2. Poll container status until FINISHED (image fetch is usually fast)
+    deadline = time.time() + timeout_s
+    status = ""
+    while time.time() < deadline:
+        info = _api_get(creation_id, {"fields": "status_code",
+                                      "access_token": token})
+        status = info.get("status_code", "")
+        if status == "FINISHED":
+            break
+        if status == "ERROR":
+            raise RuntimeError(f"container {creation_id} entered ERROR state "
+                               f"(bad image_url / format / aspect ratio?)")
+        time.sleep(3)
+    if status != "FINISHED":
+        raise RuntimeError(f"container {creation_id} not ready after "
+                           f"{timeout_s}s (status={status!r})")
+
+    # 3. Publish
+    pub = _api_post(f"{ig_id}/media_publish", {
+        "creation_id": creation_id,
+        "access_token": token,
+    })
+    media_id = pub.get("id")
+    if not media_id:
+        raise RuntimeError(f"media_publish failed: {pub}")
+
+    # 4. Fetch permalink for the dashboard / draft record
+    permalink = ""
+    try:
+        meta = _api_get(media_id, {"fields": "permalink",
+                                   "access_token": token})
+        permalink = meta.get("permalink", "")
+    except Exception:
+        pass
+
+    return {"media_id": media_id, "permalink": permalink}
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Image preparation — JPEG + aspect-ratio + public URL
+# ══════════════════════════════════════════════════════════════════════
+
+def prepare_image_file(src: Path, slug: str) -> Path:
+    """Convert to JPEG (sRGB) and center-crop into IG's allowed aspect-ratio
+    window if needed. Writes to img/social/<slug>.jpg and returns the path."""
+    from PIL import Image
+
+    SOCIAL_IMG_DIR.mkdir(parents=True, exist_ok=True)
+    dst = SOCIAL_IMG_DIR / f"{slug}.jpg"
+
+    img = Image.open(src)
+    if img.mode not in ("RGB", "L"):
+        img = img.convert("RGB")
+    elif img.mode == "L":
+        img = img.convert("RGB")
+
+    w, h = img.size
+    ar = w / h
+    if ar < AR_MIN:           # too tall → crop height
+        new_h = int(w / AR_MIN)
+        top = (h - new_h) // 2
+        img = img.crop((0, top, w, top + new_h))
+    elif ar > AR_MAX:         # too wide → crop width
+        new_w = int(h * AR_MAX)
+        left = (w - new_w) // 2
+        img = img.crop((left, 0, left + new_w, h))
+
+    # IG max 8 MB / recommended max width 1440px
+    if img.width > 1440:
+        ratio = 1440 / img.width
+        img = img.resize((1440, int(img.height * ratio)), Image.LANCZOS)
+
+    img.save(dst, "JPEG", quality=90, optimize=True)
+    return dst
+
+
+def _git(*args) -> subprocess.CompletedProcess:
+    return subprocess.run(["git", *args], cwd=str(ROOT_DIR),
+                          capture_output=True, text=True, timeout=120)
+
+
+def ensure_public_url(local_jpg: Path, *, push: bool = True,
+                      wait_timeout_s: int = 300) -> str:
+    """Make img/social/<file>.jpg publicly reachable on the live site.
+    Commits + pushes the file, then polls the URL until HTTP 200."""
+    rel = local_jpg.relative_to(ROOT_DIR)
+    public_url = f"{SITE_BASE_URL}/{rel.as_posix()}"
+
+    # Already live? (e.g. re-publish attempt)
+    if _url_is_live(public_url):
+        return public_url
+
+    if push:
+        _git("add", str(rel))
+        commit = _git("commit", "-m",
+                      f"social: publish image {local_jpg.name} for IG API")
+        # commit may fail if nothing to commit — that's fine if file is
+        # already committed but not yet deployed
+        push_res = _git("push")
+        if push_res.returncode != 0:
+            raise RuntimeError(f"git push failed: {push_res.stderr[:300]}")
+
+    deadline = time.time() + wait_timeout_s
+    while time.time() < deadline:
+        if _url_is_live(public_url):
+            return public_url
+        time.sleep(10)
+    raise RuntimeError(f"{public_url} not live after {wait_timeout_s}s "
+                       f"(GitHub Pages deploy slow?)")
+
+
+def _url_is_live(url: str) -> bool:
+    try:
+        req = urllib.request.Request(url, method="HEAD")
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return r.status == 200
+    except Exception:
+        return False
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -270,11 +515,79 @@ def mark_published(draft_filename: str, ig_post_url: str = "", dry_run: bool = F
 
 
 # ══════════════════════════════════════════════════════════════════════
+# LIVE publishing flow
+# ══════════════════════════════════════════════════════════════════════
+
+def publish_live(draft_filename: str, *, dry_run: bool = False) -> bool:
+    """Publish one draft to @myvilla.la via the Instagram API.
+
+    Steps: parse draft → resolve local image → JPEG+AR prep → ensure the
+    image is publicly reachable (site URL or commit+push to img/social/) →
+    container → publish → mark_published with the real permalink.
+    """
+    src = DRAFTS_DIR / draft_filename
+    if not src.exists():
+        print(f"  ✗ Draft not found: {src}")
+        return False
+    fm, body = parse_draft(src)
+    if not fm:
+        print(f"  ✗ Draft has no frontmatter")
+        return False
+
+    if fm.get("format") == "carousel" or fm.get("slides"):
+        print(f"  ✗ Carousel publishing not implemented yet — use the stub "
+              f"package + manual publish for carousels.")
+        return False
+
+    caption, hashtag_line = split_caption_and_hashtags(body)
+    full_caption = caption + ("\n\n" + hashtag_line if hashtag_line else "")
+
+    # Resolve local image path (same logic as build_package)
+    img_filename = fm.get("image_filename", "")
+    img_web_path = (fm.get("image_web_path") or "").lstrip("/")
+    candidates = []
+    if img_web_path:
+        candidates.append(ROOT_DIR / img_web_path)
+    if img_filename:
+        candidates.append(IMG_DIR / img_filename)
+    local_src = next((p for p in candidates if p.exists()), None)
+    if local_src is None:
+        print(f"  ✗ Image not found locally: {candidates}")
+        return False
+
+    slug = fm.get("slug") or src.stem
+    print(f"  → image: {local_src.relative_to(ROOT_DIR)}")
+
+    # JPEG + aspect-ratio prep into img/social/
+    jpg = prepare_image_file(local_src, f"{fm.get('date','')}-{slug}")
+    print(f"  → prepared: {jpg.relative_to(ROOT_DIR)}")
+
+    if dry_run:
+        print(f"  [dry-run] caption ({len(full_caption)} chars):")
+        print("  " + full_caption.replace("\n", "\n  ")[:400])
+        print(f"  [dry-run] would push + publish via API")
+        return True
+
+    # Public URL (commit+push if not yet live)
+    public_url = ensure_public_url(jpg)
+    print(f"  → public: {public_url}")
+
+    # API publish
+    result = api_publish_image(public_url, full_caption)
+    permalink = result.get("permalink") or f"media_id:{result['media_id']}"
+    print(f"  ✓ PUBLISHED → {permalink}")
+
+    # State transition (moves draft, updates calendar)
+    mark_published(draft_filename, ig_post_url=permalink)
+    return True
+
+
+# ══════════════════════════════════════════════════════════════════════
 # Main
 # ══════════════════════════════════════════════════════════════════════
 
 def main():
-    parser = argparse.ArgumentParser(description="My Villa — IG Publisher (stub)")
+    parser = argparse.ArgumentParser(description="My Villa — IG Publisher")
     parser.add_argument("--draft", help="Specific draft filename in _drafts/social_editorial/")
     parser.add_argument("--month", help="YYYY-MM — process all drafts for that month")
     parser.add_argument("--status", default="draft",
@@ -282,11 +595,26 @@ def main():
     parser.add_argument("--mark-published", help="Mark a draft as published (filename)")
     parser.add_argument("--ig-post-url", default="",
                         help="Instagram post URL (used with --mark-published)")
+    parser.add_argument("--publish-live",
+                        help="Publish a draft directly to Instagram via API (filename)")
+    parser.add_argument("--check-token", action="store_true",
+                        help="Validate IG_ACCESS_TOKEN + publishing quota")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
-    print(f"\nMy Villa — IG Publisher (STUB MODE)")
+    live = bool(args.publish_live or args.check_token)
+    print(f"\nMy Villa — IG Publisher ({'LIVE' if live else 'STUB'} MODE)")
     print(f"{'=' * 50}")
+
+    # Mode 0: token health check
+    if args.check_token:
+        ok = check_token()
+        sys.exit(0 if ok else 1)
+
+    # Mode L: live publish via API
+    if args.publish_live:
+        ok = publish_live(args.publish_live, dry_run=args.dry_run)
+        sys.exit(0 if ok else 1)
 
     # Mode A: mark a draft as published (state transition only)
     if args.mark_published:
