@@ -5826,7 +5826,7 @@ function publishRedditComment(btn) {{
   const card = btn.closest('.card');
   const textarea = card.querySelector('.viral-reply-editor');
   if (!textarea || !textarea.value.trim()) {{ showToast('Commento vuoto'); return; }}
-  if (!confirm('Pubblicare questo commento su Reddit con l\'account My Villa?')) return;
+  if (!confirm('Pubblicare questo commento su Reddit con l’account My Villa?')) return;
   const buttons = card.querySelectorAll('.btn');
   buttons.forEach(b => b.disabled = true);
   btn.textContent = '⏳ Pubblico…';
@@ -5852,7 +5852,7 @@ function publishRedditComment(btn) {{
       buttons.forEach(b => b.disabled = false);
       btn.textContent = '🚀 Commenta su Reddit';
       alert(d.needs_setup
-        ? 'Credenziali Reddit non configurate.\n\nSetup (3 min): reddit.com/prefs/apps → create app (script) → poi in .env:\nREDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USERNAME, REDDIT_PASSWORD\n\nGuida completa: _system/docs/reddit_setup.md'
+        ? 'Credenziali Reddit non configurate.\\n\\nSetup (3 min): reddit.com/prefs/apps → create app (script) → poi in .env:\\nREDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USERNAME, REDDIT_PASSWORD\\n\\nGuida: _system/docs/reddit_setup.md'
         : 'Errore: ' + (d.error || 'sconosciuto'));
     }}
   }})
