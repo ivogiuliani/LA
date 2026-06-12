@@ -154,7 +154,7 @@
     }
   },
   "morningstar.com": {
-    "cached_at": 1778044797.874635,
+    "cached_at": 1781245233.446987,
     "result": null
   },
   "hoodline.com": {
@@ -727,6 +727,16 @@
       "path": "/contact",
       "score": 7,
       "in_mailto": true
+    }
+  },
+  "d5mag.com": {
+    "cached_at": 1781245221.152288,
+    "result": {
+      "email": "editor@d5mag.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 13,
+      "in_mailto": false
     }
   }
 }

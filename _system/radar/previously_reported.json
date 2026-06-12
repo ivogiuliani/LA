@@ -3039,6 +3039,26 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/jesse-bochco-house-los-angeles-venice-1238315242/",
       "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-06-12",
+      "source": "user_dismissed",
+      "title": "Who's running for insurance commissioner in CA's 2026 election?",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://calmatters.org/california-voter-guide-2026/insurance-commissioner/",
+      "note": "auto-sent pitch to elections@calmatters.org"
+    },
+    {
+      "date_first_reported": "2026-06-12",
+      "source": "user_dismissed",
+      "title": "Tuscany Aesthetics Meet California’s Mountains in the New “Stone Villa”",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://d5mag.com/tuscany-aesthetics-meet-californias-mountains-in-the-new-stone-villa/",
+      "note": "auto-sent pitch to queued:leonor.gomes@d5mag.com"
     }
   ]
 }

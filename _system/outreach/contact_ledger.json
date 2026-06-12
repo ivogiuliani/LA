@@ -1386,9 +1386,17 @@
           "message_id": "19e967f38ce1bf6f",
           "thread_id": "19e967f38ce1bf6f",
           "subject": "One thought after your IBHS Serene Lakes report"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-12T06:22:51+00:00",
+          "message_id": "19eba7f67a1aa7db",
+          "thread_id": "19eba7f67a1aa7db",
+          "subject": "Re: One thought after your IBHS Serene Lakes report"
         }
       ],
-      "next_touch_at": "2026-06-12",
+      "next_touch_at": "2026-06-26",
       "status": "in_cadence",
       "source_url": "https://www.sierrasun.com/news/serene-lakes-residence-earns-ibhs-wildfire-prepared-home-designation/",
       "source_title": "Serene Lakes residence earns IBHS Wildfire Prepared Home Designation | SierraSun.com",
@@ -1535,8 +1543,8 @@
           "subject": "A European angle on the 2026 insurance crisis"
         }
       ],
-      "next_touch_at": "2026-06-18",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "replied",
       "source_url": "https://markets.businessinsider.com/news/stocks/shieldly-premier-insurance-solutions-highlights-what-california-homeowners-need-to-know-as-the-home-insurance-crisis-continues-in-2026-1036239937",
       "source_title": "Shieldly Premier Insurance Solutions Highlights What California Homeowners Need to Know as the Home Insurance Crisis Continues in 2026 | Markets Insider",
       "cold_pitch_body": "Hi Markets team,\n\n(Writing to the Markets newsroom rather than Plentisoft directly — we couldn't locate a direct contact. Feel free to forward if it's a better fit for them or the desk.)\n\nReally appreciated your rundown of what California homeowners face in 2026 — higher premiums, stricter underwriting, shrinking availability. You laid out the squeeze clearly without overpromising easy fixes.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your piece sparked: the durability that underwriters are now scrambling to price has been default Mediterranean building practice for generations. That cultural gap feels like the real story behind the crisis.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
@@ -1577,8 +1585,8 @@
           "subject": "A European angle on your Jane Kim leads CA insurance chief race, boasts $30K in real  piece"
         }
       ],
-      "next_touch_at": "2026-06-18",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "bounced",
       "source_url": "",
       "source_title": "",
       "cold_pitch_body": "",
@@ -1604,7 +1612,28 @@
       "source_title": "How Much Faster Can an ICF Home Be Built Compared to a Standard Home?",
       "cold_pitch_body": "Hi Carbondaleconstruction team,\n\n(Writing to the Carbondaleconstruction newsroom rather than admin3512597 directly — we couldn't locate a direct contact. Feel free to forward if it's a better fit for them or the desk.)\n\nReally enjoyed your piece on ICF build speed versus wood frame — you challenged the assumption that stick framing is always the fastest path, which is a point most builders quietly skip.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your piece sparked: in Europe, building in concrete for resilience and durability has been the default for generations, long before anyone framed it as a speed-or-insurability trade-off. That cultural gap feels like the interesting story.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
       "cold_pitch_subject": "One thought on concrete and build speed in LA"
+    },
+    "elections@calmatters.org": {
+      "email": "elections@calmatters.org",
+      "publication": "",
+      "first_seen_at": "2026-06-12T06:22:38+00:00",
+      "touches": [
+        {
+          "n": 1,
+          "type": "cold",
+          "sent_at": "2026-06-12T06:22:38+00:00",
+          "message_id": "19eba7f35d019eec",
+          "thread_id": "19eba7f35d019eec",
+          "subject": "A European angle on your Who's running for insurance commissioner in CA's 2026 electi piece"
+        }
+      ],
+      "next_touch_at": "2026-06-19",
+      "status": "in_cadence",
+      "source_url": "",
+      "source_title": "",
+      "cold_pitch_body": "",
+      "cold_pitch_subject": "A European angle on your Who's running for insurance commissioner in CA's 2026 electi piece"
     }
   },
-  "last_hydrated_at": "2026-06-11T06:14:13.313159+00:00"
+  "last_hydrated_at": "2026-06-12T06:22:47.499825+00:00"
 }
