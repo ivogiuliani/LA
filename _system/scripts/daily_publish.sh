@@ -167,6 +167,24 @@ mkdir -p _archive/social
 find _drafts/social _system/social/posts/reactive -name "*.md" -mtime +7 \
     -exec mv {} _archive/social/ \; 2>/dev/null || true
 
+# Step 3a-bis: rotazione magazzino proposte — tieni solo le 3 reactive
+# IG + 2 X più recenti, archivia le eccedenti (il pannello ne mostra
+# comunque max 3/2: il magazzino deve rispecchiare la vetrina).
+python3 - << 'PRUNE'
+from pathlib import Path
+import shutil
+arch = Path("_archive/social"); arch.mkdir(parents=True, exist_ok=True)
+for pattern, keep in (("-ig-", 3), ("-x-", 2)):
+    files = []
+    for d in (Path("_drafts/social"), Path("_system/social/posts/reactive")):
+        if d.exists():
+            files += [f for f in d.glob("*.md") if pattern in f.name]
+    files.sort(key=lambda f: f.stat().st_mtime, reverse=True)
+    for f in files[keep:]:
+        shutil.move(str(f), str(arch / f.name))
+        print(f"  [rotazione] archiviato {f.name}")
+PRUNE
+
 # Step 3b: generate_social — proposte social del giorno dal radar
 # (max 2 set reactive = 2 IG + 2 X, con immagini auto). NON pubblica:
 # crea solo le card da approvare nel pannello. Non-bloccante.

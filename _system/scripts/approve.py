@@ -988,10 +988,12 @@ def scan_social_drafts():
         if parsed:
             seen.add(f.name)
             drafts.append(parsed)
-    # IG prima (è il canale appena attivato), poi per data discendente
-    drafts.sort(key=lambda x: (0 if ("ig" in x["channel"].lower()
-                                     or "instagram" in x["channel"].lower())
-                               else 1, x["date"]), reverse=False)
+    # Più FRESCHE prima (il cap a 3 mostra la scelta del giorno),
+    # poi IG prima di X (canale appena attivato = priorità).
+    drafts.sort(key=lambda x: x["date"], reverse=True)
+    drafts.sort(key=lambda x: 0 if ("ig" in x["channel"].lower()
+                                    or "instagram" in x["channel"].lower())
+                else 1)
     return drafts
 
 
@@ -1982,23 +1984,28 @@ def build_dashboard():
     # ── Composizione daily-first: il social manager vede i TOP, il
     #    resto sta in un <details> ripiegato. Budget visivo: 3 IG + 2 X.
     def _capped(cards, cap, label):
+        """Cap RIGIDO: si mostrano solo le `cap` proposte più fresche.
+        Le altre restano su disco, invisibili, finché la rotazione
+        della pipeline non le archivia (niente liste infinite da
+        smaltire: il social manager vede solo la scelta del giorno)."""
         if not cards:
             return ('<p style="color:#999;font-size:0.85rem;">'
                     f'Nessuna proposta {label} oggi.</p>')
-        top = "".join(cards[:cap])
-        more = ""
-        if len(cards) > cap:
-            more = (f'<details class="more-cards"><summary>'
-                    f'▸ altre {len(cards) - cap} proposte {label}'
-                    f'</summary>{"".join(cards[cap:])}</details>')
-        return top + more
+        return "".join(cards[:cap])
+
+    def _sub_heading(emoji, title, shown, total):
+        extra = (f'<span style="font-weight:400;color:#b5a88f;'
+                 f'font-size:0.78rem;margin-left:8px;">'
+                 f'(+{total - shown} in magazzino, ruotano da sole)</span>'
+                 if total > shown else '')
+        return (f'<h3 class="channel-sub">{emoji} {title}{extra}</h3>')
 
     social_cards = (
-        '<h3 class="channel-sub">📸 Instagram — scegline 1, scarta il resto'
-        f'<span class="section-count">{len(social_cards_ig)}</span></h3>'
+        _sub_heading("📸", "Instagram — scegline 1, scarta le altre",
+                     min(3, len(social_cards_ig)), len(social_cards_ig))
         + _capped(social_cards_ig, 3, "Instagram")
-        + '<h3 class="channel-sub">𝕏 X — scegline 1'
-        f'<span class="section-count">{len(social_cards_x)}</span></h3>'
+        + _sub_heading("𝕏", "X — scegline 1",
+                       min(2, len(social_cards_x)), len(social_cards_x))
         + _capped(social_cards_x, 2, "X")
     )
 
