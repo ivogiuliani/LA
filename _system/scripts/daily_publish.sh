@@ -143,6 +143,18 @@ log "--- ig_publisher.py $IG_DRY ---"
 python3 _system/scripts/ig_publisher.py $IG_DRY >> "$LOG_FILE" 2>&1 || \
     log "ig_publisher errore non bloccante (continuo)"
 
+# Step 1d-bis: x_publisher — pubblica su X i tweet APPROVATI (status:
+# approved in _drafts/social/), max X_DAILY_CAP/giorno (default 4).
+# Mirror di ig_publisher. Posta SOLO gli approvati (mai i draft), li
+# sposta in social/posts/published/ (niente doppio post). No-op se la
+# coda approvati è vuota. In DRY_RUN fa solo preview. Non-bloccante.
+X_DRY=""
+[ "${DRY_RUN:-0}" = "1" ] && X_DRY="--dry-run"
+log "--- x_publisher.py --dir --status approved $X_DRY ---"
+python3 _system/scripts/x_publisher.py --dir --status approved --publish-live $X_DRY \
+    >> "$LOG_FILE" 2>&1 || \
+    log "x_publisher errore non bloccante (continuo)"
+
 # Step 2: generate_journal
 log "--- generate_journal.py ---"
 python3 _system/scripts/generate_journal.py \

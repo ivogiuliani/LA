@@ -125,6 +125,10 @@ jobs:
           APIFY_API_TOKEN=${{ secrets.APIFY_API_TOKEN }}
           IG_ACCESS_TOKEN=${{ secrets.IG_ACCESS_TOKEN }}
           IG_BUSINESS_ACCOUNT_ID=${{ secrets.IG_BUSINESS_ACCOUNT_ID }}
+          X_API_KEY=${{ secrets.X_API_KEY }}
+          X_API_SECRET=${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN=${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET=${{ secrets.X_ACCESS_TOKEN_SECRET }}
           EOF
           chmod 600 .env
 
@@ -246,6 +250,23 @@ jobs:
           fi
           python3 _system/scripts/ig_publisher.py $IG_FLAG || \
             echo "::warning::ig_publisher non-bloccante fallito"
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      # ───────────────────────────────────────────────────────────
+      # 8c-bis. X publisher — pubblica i tweet APPROVATI (status:
+      #     approved in _drafts/social/, cap X_DAILY_CAP default 4).
+      #     Mirror dell'IG publisher. Senza secrets X esce pulito.
+      # ───────────────────────────────────────────────────────────
+      - name: X publisher (tweet approvati)
+        if: steps.guard.outputs.should_run == 'true' && steps.guard2.outputs.should_send == 'true'
+        run: |
+          X_FLAG=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            X_FLAG="--dry-run"
+          fi
+          python3 _system/scripts/x_publisher.py --dir --status approved --publish-live $X_FLAG || \
+            echo "::warning::x_publisher non-bloccante fallito"
         env:
           PYTHONUNBUFFERED: "1"
 

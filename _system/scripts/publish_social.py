@@ -4,7 +4,7 @@ My Villa — Social Publishing Module
 Handles direct posting to X (Twitter) and Instagram via their APIs.
 
 Credentials are read from .env:
-  X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_SECRET
+  X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET
   IG_ACCESS_TOKEN, IG_BUSINESS_ACCOUNT_ID
 """
 
@@ -29,6 +29,13 @@ def _get_env(key):
     return val
 
 
+def _get_x_access_secret():
+    """X access-token secret. Canonical name is X_ACCESS_TOKEN_SECRET
+    (matches x_publisher.py, .env.example, tweepy). Falls back to the older
+    X_ACCESS_SECRET so existing .env files keep working."""
+    return _get_env("X_ACCESS_TOKEN_SECRET") or _get_env("X_ACCESS_SECRET")
+
+
 # ══════════════════════════════════════════════════════════════════════
 # CREDENTIAL CHECK
 # ══════════════════════════════════════════════════════════════════════
@@ -39,7 +46,7 @@ def check_credentials():
         _get_env("X_API_KEY"),
         _get_env("X_API_SECRET"),
         _get_env("X_ACCESS_TOKEN"),
-        _get_env("X_ACCESS_SECRET"),
+        _get_x_access_secret(),
     ])
     ig_ok = all([
         _get_env("IG_ACCESS_TOKEN"),
@@ -121,7 +128,7 @@ def publish_to_x(text):
     consumer_key = _get_env("X_API_KEY")
     consumer_secret = _get_env("X_API_SECRET")
     access_token = _get_env("X_ACCESS_TOKEN")
-    access_secret = _get_env("X_ACCESS_SECRET")
+    access_secret = _get_x_access_secret()
 
     if not all([consumer_key, consumer_secret, access_token, access_secret]):
         return {
@@ -137,7 +144,7 @@ def publish_to_x(text):
                 "   X_API_KEY=your_api_key\n"
                 "   X_API_SECRET=your_api_secret\n"
                 "   X_ACCESS_TOKEN=your_access_token\n"
-                "   X_ACCESS_SECRET=your_access_secret\n"
+                "   X_ACCESS_TOKEN_SECRET=your_access_token_secret\n"
                 "5. Restart the review server"
             ),
         }
