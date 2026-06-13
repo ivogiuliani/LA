@@ -21,6 +21,23 @@ SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
 
 
+def load_dotenv():
+    """Load .env into os.environ (only vars not already set). Called at the
+    start of the public entry points so credentials added to .env after the
+    review server started are picked up without needing a restart."""
+    env_file = ROOT_DIR / ".env"
+    if not env_file.exists():
+        return
+    for line in env_file.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, _, v = line.partition("=")
+        k, v = k.strip(), v.strip()
+        if v and (k not in os.environ or not os.environ[k]):
+            os.environ[k] = v
+
+
 def _get_env(key):
     """Get env var, treating placeholder values as empty."""
     val = os.environ.get(key, "").strip()
@@ -42,6 +59,7 @@ def _get_x_access_secret():
 
 def check_credentials():
     """Return dict with platform availability."""
+    load_dotenv()
     x_ok = all([
         _get_env("X_API_KEY"),
         _get_env("X_API_SECRET"),
@@ -125,6 +143,7 @@ def _oauth1_header(method, url, params, consumer_key, consumer_secret,
 
 def publish_to_x(text):
     """Post a tweet using X API v2. Returns dict with ok, tweet_id, url."""
+    load_dotenv()
     consumer_key = _get_env("X_API_KEY")
     consumer_secret = _get_env("X_API_SECRET")
     access_token = _get_env("X_ACCESS_TOKEN")
