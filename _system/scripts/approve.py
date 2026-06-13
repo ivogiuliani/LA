@@ -2322,7 +2322,8 @@ def build_dashboard():
                 if v["platform"] == "x" and v["reply_url"]:
                     actions_section = (
                         f'<div class="card-actions">'
-                        f'  <button class="btn btn-viral-reply" onclick="openViralReplyX(this)">Reply on X</button>'
+                        f'  <button class="btn btn-publish-social" data-url="{_esc(v["url"])}" onclick="publishXReply(this)" title="Pubblica la reply su X via API (cap X_REPLY_DAILY_CAP/giorno)">🚀 Reply on X</button>'
+                        f'  <button class="btn btn-viral-reply" onclick="openViralReplyX(this)" title="Apri X col testo precompilato (manuale)">Reply manually</button>'
                         f'  <button class="btn btn-copy-pitch" onclick="copyViralReply(this)">Copy reply</button>'
                         f'  <a class="btn btn-copy-open" href="{_esc(v["url"])}" target="_blank" rel="noreferrer">Open tweet</a>'
                         f'  <button class="btn btn-reject" onclick="skipViral(this)">Skip</button>'
@@ -2775,7 +2776,8 @@ def build_dashboard():
               </div>
               <textarea class="viral-reply-editor" data-platform="x" oninput="updateViralCharCount(this)">{_esc(_tweet_body)}</textarea>
               <div class="card-actions">
-                <button class="btn btn-viral-reply" onclick="openViralReplyX(this)">Reply on X</button>
+                <button class="btn btn-publish-social" data-url="{_esc(url)}" onclick="publishXReply(this)" title="Pubblica la reply su X via API (cap X_REPLY_DAILY_CAP/giorno)">🚀 Reply on X</button>
+                <button class="btn btn-viral-reply" onclick="openViralReplyX(this)" title="Apri X col testo precompilato (manuale)">Reply manually</button>
                 <button class="btn btn-copy-pitch" onclick="copyViralReply(this)">Copy reply</button>
                 <a class="btn btn-copy-open" href="{_esc(url)}" target="_blank" rel="noreferrer">Open tweet</a>
               </div>
@@ -5921,6 +5923,50 @@ function publishRedditComment(btn) {{
   }});
 }}
 
+/* ── Viral: reply on X via API (in_reply_to) ────── */
+function publishXReply(btn) {{
+  const card = btn.closest('.card');
+  const textarea = card.querySelector('.viral-reply-editor');
+  if (!textarea || !textarea.value.trim()) {{ showToast('Reply vuota'); return; }}
+  if (textarea.value.trim().length > 280) {{ showToast('Reply oltre 280 caratteri'); return; }}
+  if (!confirm('Pubblicare questa reply su X dall’account @myvilla_la?')) return;
+  const buttons = card.querySelectorAll('.btn');
+  buttons.forEach(b => b.disabled = true);
+  const orig = btn.textContent;
+  btn.textContent = '⏳ Pubblico…';
+  fetch('/api/x-reply', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{url: btn.dataset.url, text: textarea.value}})
+  }})
+  .then(r => r.json())
+  .then(d => {{
+    if (d.ok) {{
+      btn.textContent = '✓ Pubblicato';
+      showToast(d.message || 'Reply live su X');
+      if (d.comment_url) {{
+        const link = document.createElement('a');
+        link.href = d.comment_url; link.target = '_blank';
+        link.textContent = '↗ vedi reply';
+        link.className = 'btn btn-copy-open';
+        btn.after(link);
+      }}
+      card.style.opacity = '0.55';
+    }} else {{
+      buttons.forEach(b => b.disabled = false);
+      btn.textContent = orig;
+      alert(d.needs_setup
+        ? 'Credenziali X non configurate (X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET in .env).\\nGuida: _system/docs/x_setup.md'
+        : 'Errore: ' + (d.error || 'sconosciuto'));
+    }}
+  }})
+  .catch(e => {{
+    buttons.forEach(b => b.disabled = false);
+    btn.textContent = orig;
+    alert('Errore di rete: ' + e);
+  }});
+}}
+
 function copyViralReply(btn) {{
   const card = btn.closest('.card');
   const textarea = card.querySelector('.viral-reply-editor');
@@ -8053,6 +8099,10 @@ class ReviewHandler(BaseHTTPRequestHandler):
             self._handle_reddit_comment(
                 data.get("url", ""), data.get("text", ""))
             return
+        if parsed.path == "/api/x-reply":
+            self._handle_x_reply(
+                data.get("url", ""), data.get("text", ""))
+            return
         if parsed.path == "/api/generate-ig-companion":
             self._handle_generate_ig_companion(
                 data.get("file", ""),
@@ -9632,6 +9682,78 @@ class ReviewHandler(BaseHTTPRequestHandler):
         else:
             status = 400 if result.get("needs_setup") else 502
             self._send_json(result, status)
+
+    def _handle_x_reply(self, url, text):
+        """Posta una reply approvata a un tweet virale via X API (OAuth1,
+        x_publisher.post_tweet con in_reply_to). Dopo il successo marca
+        l'URL gestito così il radar non lo ripropone. Cap prudenziale
+        separato (X_REPLY_DAILY_CAP, default 5) — gli account X nuovi
+        vengono limitati se commentano troppo."""
+        text = (text or "").strip()
+        if not url or not text:
+            self._send_json({"ok": False, "error": "url o testo mancante"}, 400)
+            return
+        m = re.search(r"/status/(\d+)", url)
+        if not m:
+            self._send_json({"ok": False,
+                             "error": "tweet id non estraibile dall'URL"}, 400)
+            return
+        if len(text) > 280:
+            self._send_json({"ok": False,
+                             "error": f"reply {len(text)} > 280 caratteri"}, 400)
+            return
+        tweet_id = m.group(1)
+        try:
+            sys.path.insert(0, str(SCRIPT_DIR))
+            import x_publisher
+            try:
+                x_publisher._credentials()
+            except RuntimeError:
+                self._send_json({"ok": False, "needs_setup": True,
+                                 "error": "Credenziali X non configurate"}, 400)
+                return
+            try:
+                cap = int(os.environ.get("X_REPLY_DAILY_CAP", "5") or "5")
+            except ValueError:
+                cap = 5
+            log_path = SYSTEM_DIR / "history" / "x_reply_log.json"
+            today = datetime.now().strftime("%Y-%m-%d")
+            entries = []
+            if log_path.exists():
+                try:
+                    entries = json.loads(log_path.read_text())
+                except Exception:  # noqa: BLE001
+                    entries = []
+            if sum(1 for e in entries if e.get("date") == today) >= cap:
+                self._send_json({"ok": False,
+                                 "error": f"cap reply giornaliero raggiunto "
+                                          f"({cap}) — alza X_REPLY_DAILY_CAP"}, 429)
+                return
+            ok, info = x_publisher.post_tweet(text, reply_to=tweet_id)
+        except Exception as e:  # noqa: BLE001
+            self._send_json({"ok": False,
+                             "error": f"{type(e).__name__}: {e}"}, 500)
+            return
+        if ok:
+            entries.append({"date": today, "in_reply_to": tweet_id,
+                            "id": info.get("id"), "url": info.get("url")})
+            try:
+                log_path.parent.mkdir(parents=True, exist_ok=True)
+                log_path.write_text(json.dumps(entries, indent=2,
+                                               ensure_ascii=False))
+            except Exception:  # noqa: BLE001
+                pass
+            try:
+                self._mark_url_dismissed_quiet(
+                    url, note=f"x reply: {info.get('url', '')}")
+            except Exception:  # noqa: BLE001
+                pass
+            self._send_json({"ok": True, "message": "Reply pubblicata su X",
+                             "comment_url": info.get("url")})
+        else:
+            self._send_json({"ok": False,
+                             "error": "X API: "
+                                      + json.dumps(info.get("error"))[:200]}, 502)
 
     def _mark_url_dismissed_quiet(self, url, note=""):
         """Aggiunge l'URL a previously_reported.json (user_dismissed)

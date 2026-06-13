@@ -175,9 +175,13 @@ def whoami(verbose=True):
     return None
 
 
-def post_tweet(text):
-    """POST /2/tweets. Returns (ok, info) where info has id/url or error."""
-    code, data = _request("POST", "tweets", body={"text": text}, timeout=45)
+def post_tweet(text, reply_to=None):
+    """POST /2/tweets. reply_to: optional tweet id — posts a reply to that
+    tweet instead of a standalone post. Returns (ok, info) with id/url or error."""
+    body = {"text": text}
+    if reply_to:
+        body["reply"] = {"in_reply_to_tweet_id": str(reply_to)}
+    code, data = _request("POST", "tweets", body=body, timeout=45)
     if code in (200, 201) and "data" in data:
         tid = data["data"].get("id", "")
         return True, {"id": tid,
