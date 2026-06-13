@@ -3079,6 +3079,36 @@
       "action_type": "user_dismissed",
       "url": "https://davisvanguard.org/2026/06/fire-resistant-housing-los-angeles/",
       "note": "auto-published journal: icf-adu-los-angeles-type-i-fire-resistance"
+    },
+    {
+      "date_first_reported": "2026-06-13",
+      "source": "user_dismissed",
+      "title": "‘Resilience is a global responsibility’: Commissioner Lara moves to safeguard Ca",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2026/release021-2026.cfm",
+      "note": "auto-sent pitch to vigfeedback@sos.ca.gov"
+    },
+    {
+      "date_first_reported": "2026-06-13",
+      "source": "user_dismissed",
+      "title": "Momentum continues to build under Insurance Commissioner Ricardo Lara’s Sustaina",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0102-alerts/2026/Momentum-continues-to-build-under-Insura.cfm",
+      "note": "auto-sent pitch to vigfeedback@sos.ca.gov"
+    },
+    {
+      "date_first_reported": "2026-06-13",
+      "source": "user_dismissed",
+      "title": "Attorney General Bonta Announces California DOJ’S Affordability Response Team",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-announces-california-doj%E2%80%99s-affordability-response-team",
+      "note": "auto-sent pitch to vigfeedback@sos.ca.gov"
     }
   ],
   "reported": [

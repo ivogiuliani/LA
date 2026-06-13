@@ -1436,9 +1436,17 @@
           "message_id": "19e9b9109577ce4f",
           "thread_id": "19e9b9109577ce4f",
           "subject": "One thought after reading your insurance voter guide"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-13T07:26:34+00:00",
+          "message_id": "19ebfe019f858f17",
+          "thread_id": "19ebfe019f858f17",
+          "subject": "Re: One thought after reading your insurance voter guide"
         }
       ],
-      "next_touch_at": "2026-06-13",
+      "next_touch_at": "2026-06-27",
       "status": "in_cadence",
       "source_url": "https://laist.com/news/politics/voter-guides/2026-election-california-primary-insurance-commissioner-next",
       "source_title": "What to know as California chooses its next insurance watchdog amid wildfire crisis | LAist",
@@ -1457,9 +1465,17 @@
           "message_id": "19e9b910adf9461f",
           "thread_id": "19e9b910adf9461f",
           "subject": "One thought after reading your surplus lines coverage"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-13T07:26:30+00:00",
+          "message_id": "19ebfe008e33f310",
+          "thread_id": "19ebfe008e33f310",
+          "subject": "Re: One thought after reading your surplus lines coverage"
         }
       ],
-      "next_touch_at": "2026-06-13",
+      "next_touch_at": "2026-06-27",
       "status": "in_cadence",
       "source_url": "https://beinsure.com/news/california-reviews-wildfire-deductibles-in-surplus-homeowners-insurance-policies/",
       "source_title": "California reviews wildfire deductibles in surplus homeowners insurance policies",
@@ -1478,9 +1494,17 @@
           "message_id": "19e9b913b73ad6fe",
           "thread_id": "19e9b913b73ad6fe",
           "subject": "A European angle on your Can California boost wildfire prevention with less cash? A n piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-13T07:26:25+00:00",
+          "message_id": "19ebfdff63753d8a",
+          "thread_id": "19ebfdff63753d8a",
+          "subject": "Re: A European angle on your Can California boost wildfire prevention with less cash? A n piece"
         }
       ],
-      "next_touch_at": "2026-06-13",
+      "next_touch_at": "2026-06-27",
       "status": "in_cadence",
       "source_url": "",
       "source_title": "",
@@ -1520,10 +1544,34 @@
           "message_id": "19eb0391c842f436",
           "thread_id": "19eb0391c842f436",
           "subject": "A European angle on the commissioner candidate statements"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-13T07:26:20+00:00",
+          "message_id": "19ebfdfe08aff002",
+          "thread_id": "19ebfdfe08aff002",
+          "subject": "One thought on Commissioner Lara's decades-ahead framing"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-13T07:26:20+00:00",
+          "message_id": "19ebfdfe2e6cb936",
+          "thread_id": "19ebfdfe2e6cb936",
+          "subject": "A European angle on Lara's Sustainable Insurance Strategy"
+        },
+        {
+          "n": 4,
+          "type": "extra",
+          "sent_at": "2026-06-13T07:26:21+00:00",
+          "message_id": "19ebfdfe55add1ab",
+          "thread_id": "19ebfdfe55add1ab",
+          "subject": "A resilience angle on the DOJ affordability team"
         }
       ],
-      "next_touch_at": "2026-06-17",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://voterguide.sos.ca.gov/candidates/insurance-commissioner-candidate-statements.htm",
       "source_title": "Insurance Commissioner Candidate Statements | Official Voter Information Guide | California Secretary of State",
       "cold_pitch_body": "Hi Voterguide team,\n\n(Writing to the Voterguide newsroom directly — this is meant for whichever desk is closest to the topic below. Feel free to forward as appropriate.)\n\nThe candidate statements make for a revealing read — they show how many competing visions are now circling the same wildfire insurance crisis, from single-payer to market reform, without much consensus on what makes a home insurable.\n\nA quick introduction: My Villa brings European construction resilience and Italian livability to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista. In Europe, resilience has been default construction practice for generations.\n\nOne thought worth following: whichever model wins, the resilience LA is debating has been normal Mediterranean practice for generations. That cultural lag feels like the real story.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
@@ -1633,7 +1681,28 @@
       "source_title": "",
       "cold_pitch_body": "",
       "cold_pitch_subject": "A European angle on your Who's running for insurance commissioner in CA's 2026 electi piece"
+    },
+    "thevanguard@davisvanguard.org": {
+      "email": "thevanguard@davisvanguard.org",
+      "publication": "",
+      "first_seen_at": "2026-06-13T07:26:19+00:00",
+      "touches": [
+        {
+          "n": 1,
+          "type": "cold",
+          "sent_at": "2026-06-13T07:26:19+00:00",
+          "message_id": "19ebfdfdc6dd22b3",
+          "thread_id": "19ebfdfdc6dd22b3",
+          "subject": "A European angle on your LA Project Offers Blueprint for Resilient Housing Amid Wildf piece"
+        }
+      ],
+      "next_touch_at": "2026-06-20",
+      "status": "in_cadence",
+      "source_url": "",
+      "source_title": "",
+      "cold_pitch_body": "",
+      "cold_pitch_subject": "A European angle on your LA Project Offers Blueprint for Resilient Housing Amid Wildf piece"
     }
   },
-  "last_hydrated_at": "2026-06-12T06:22:47.499825+00:00"
+  "last_hydrated_at": "2026-06-13T07:26:22.206331+00:00"
 }
