@@ -37,7 +37,7 @@ try:
         _sys.path.insert(0, str(SCRIPT_DIR))
     from model_resolver import resolve as _resolve_model
 except Exception:  # noqa: BLE001
-    def _resolve_model(tier, _fb={"writer": "claude-fable-5",
+    def _resolve_model(tier, _fb={"writer": "claude-opus-4-8",
                                   "heavy": "claude-opus-4-8",
                                   "balanced": "claude-sonnet-4-6",
                                   "cheap": "claude-haiku-4-5"}):

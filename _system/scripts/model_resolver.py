@@ -66,16 +66,48 @@ TIERS: dict[str, list[str]] = {
     "cheap": ["haiku"],
 }
 
-# Fallback finale se API e cache sono entrambe indisponibili
-# (id verificati validi al 2026-06-10).
-FALLBACKS: dict[str, str] = {
-    "writer": "claude-fable-5",
-    "heavy": "claude-opus-4-8",
-    "balanced": "claude-sonnet-4-6",
-    "cheap": "claude-haiku-4-5",
+# ── SOSPENSIONE TEMPORANEA MODELLI ──────────────────────────────────
+# Famiglie/id temporaneamente NON operativi lato Anthropic. Esclusi da
+# TUTTA la risoluzione (discovery, cache E fallback): il tier ripiega
+# automaticamente sulla famiglia successiva.
+#   >>> PER RIATTIVARE: togliere la voce da SUSPENDED_FAMILIES. <<<
+# 2026-06-13 (Ivo): Fable 5 sospeso → "writer" ripiega su Opus 4.8
+#   ("heavy" era già opus). Rimuovere "fable" appena Fable 5 torna live.
+SUSPENDED_FAMILIES: set[str] = {"fable"}
+SUSPENDED_IDS: set[str] = set()
+
+# Miglior id "di sicurezza" per famiglia, usato quando API e cache sono
+# entrambe indisponibili (id verificati validi al 2026-06-10).
+FAMILY_FALLBACK: dict[str, str] = {
+    "fable": "claude-fable-5",
+    "opus": "claude-opus-4-8",
+    "sonnet": "claude-sonnet-4-6",
+    "haiku": "claude-haiku-4-5",
 }
 
-KNOWN_FAMILIES = {"fable", "opus", "sonnet", "haiku"}
+KNOWN_FAMILIES = set(FAMILY_FALLBACK)
+
+
+def _is_suspended(model_id: str) -> bool:
+    """True se l'id (o la sua famiglia) è temporaneamente sospeso."""
+    if model_id in SUSPENDED_IDS:
+        return True
+    m = _ID_RE.match(model_id or "")
+    return bool(m and m.group("family") in SUSPENDED_FAMILIES)
+
+
+def _tier_fallback(tier: str) -> str:
+    """Fallback del tier che salta le famiglie sospese."""
+    for fam in TIERS[tier]:
+        if fam not in SUSPENDED_FAMILIES and fam in FAMILY_FALLBACK:
+            return FAMILY_FALLBACK[fam]
+    # caso-limite: tutte le famiglie del tier sospese → la preferita
+    return FAMILY_FALLBACK.get(TIERS[tier][0], "claude-opus-4-8")
+
+
+# Fallback finale per tier (suspension-aware). Interfaccia invariata:
+# il resto del modulo continua a leggere FALLBACKS[tier].
+FALLBACKS: dict[str, str] = {tier: _tier_fallback(tier) for tier in TIERS}
 
 # minor = max 2 cifre: senza il limite, lo snapshot datato senza minor
 # (claude-opus-4-20250514) veniva parsato come minor=20250514 e
@@ -162,11 +194,16 @@ def _best_of_family(model_ids: list[str], family: str) -> str | None:
 
 
 def _resolve_all(model_ids: list[str]) -> dict[str, str]:
+    # Anche se /v1/models elencasse un modello sospeso (sospensione
+    # lato server = id presente ma inutilizzabile), lo scartiamo qui.
+    live_ids = [m for m in model_ids if not _is_suspended(m)]
     out = {}
     for tier, families in TIERS.items():
         chosen = None
         for fam in families:
-            chosen = _best_of_family(model_ids, fam)
+            if fam in SUSPENDED_FAMILIES:
+                continue
+            chosen = _best_of_family(live_ids, fam)
             if chosen:
                 break
         out[tier] = chosen or FALLBACKS[tier]
@@ -178,14 +215,23 @@ def _get_resolution(force_refresh: bool = False) -> dict[str, str]:
     cache = _load_cache()
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    if not force_refresh and cache.get("date") == today and cache.get("resolution"):
-        return cache["resolution"]
+    # Una cache è valida solo se NON contiene modelli ora sospesi: una
+    # risoluzione salvata ieri con Fable, dopo la sospensione, va
+    # ricalcolata anche se la data è di oggi. Difesa indipendente dal
+    # refresh manuale (il cloud non lancia --refresh).
+    cached = cache.get("resolution") or {}
+    cache_clean = bool(cached) and not any(
+        _is_suspended(m) for m in cached.values())
+
+    if not force_refresh and cache.get("date") == today and cache_clean:
+        return cached
 
     models = _fetch_models()
     if models is None:
-        # API giù: usa la cache anche se vecchia, altrimenti fallback.
-        if cache.get("resolution"):
-            return cache["resolution"]
+        # API giù: usa la cache solo se "pulita", altrimenti fallback
+        # (FALLBACKS è già suspension-aware).
+        if cache_clean:
+            return cached
         return dict(FALLBACKS)
 
     model_ids = [m.get("id", "") for m in models]
