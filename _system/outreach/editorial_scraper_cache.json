@@ -127,12 +127,13 @@
     }
   },
   "davisvanguard.org": {
-    "cached_at": 1777785454.0155342,
+    "cached_at": 1781335362.5369558,
     "result": {
       "email": "info@davisvanguard.org",
       "source": "article_scraped",
-      "path": "/2026/05/san-jose-fire-resistant-adu/",
-      "score": 11
+      "path": "/2026/06/fire-resistant-housing-los-angeles/",
+      "score": 11,
+      "in_mailto": true
     }
   },
   "lrecompanies.com": {
@@ -755,6 +756,14 @@
   },
   "einnews.com": {
     "cached_at": 1781249128.117274,
+    "result": null
+  },
+  "programbusiness.com": {
+    "cached_at": 1781335376.1937711,
+    "result": null
+  },
+  "thealligoodgroup.com": {
+    "cached_at": 1781335383.804016,
     "result": null
   }
 }

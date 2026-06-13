@@ -1,0 +1,62 @@
+{
+  "slug": "icf-adu-los-angeles-type-i-fire-resistance",
+  "title": "Fire-Resistant ADU in Los Angeles: The Type I Concrete Blueprint",
+  "subtitle": "A single accessory dwelling unit shows how non-combustible structure, not exterior treatment, is becoming the unit of measure in LA's fire-prone neighborhoods.",
+  "section": "market",
+  "tag_label": "LA Luxury Market",
+  "meta_description": "Can a small build prove a fire-resistant home model for Los Angeles? A new ICF ADU built to Type I standards offers a tested blueprint — here's what it signals.",
+  "meta_keywords": "fire resistant home California, ICF home builder California, concrete home builder Los Angeles, Type I fire-resistance, insurable home California, accessory dwelling unit Los Angeles",
+  "sources": [
+    {
+      "name": "Davis Vanguard",
+      "title": "LA Project Offers Blueprint for Resilient Housing Amid Wildfire Threat",
+      "url": "https://davisvanguard.org/2026/06/fire-resistant-housing-los-angeles/",
+      "type": "article",
+      "excerpt": "Reports that Builtech Construction completed what may be LA's first ICF-based ADU built to Type I fire-resistance standards, framing insulated concrete forms as a blueprint for resilient housing."
+    }
+  ],
+  "key_data": [
+    {
+      "number": "Type I",
+      "label": "Fire-resistance class\nfor LA's first known ICF ADU"
+    },
+    {
+      "number": "3",
+      "label": "Mitigation layers recognized\nunder Safer from Wildfires"
+    }
+  ],
+  "our_perspective": "At My Villa, what interests us in this ADU is its scale. A small footprint cannot hide behind finishes or square footage — it has to make its case in the wall itself. That is the same logic we start from. An insulated concrete form is not a feature added to a house; it is the house, the thermal mass, and the fire barrier in one decision. We design every villa around a reinforced concrete shell for exactly that reason — the same family of material that DGU executed at the Kimbell Art Museum, where the concrete is the architecture rather than a frame to be clad. When the smallest building on a lot reaches Type I, it sets a reference the main house can no longer ignore.",
+  "body_html": "<p class=\"reveal\">A single small building in Los Angeles is being read as a model for something much larger. According to <a href=\"https://davisvanguard.org/2026/06/fire-resistant-housing-los-angeles/\">Davis Vanguard</a>, Builtech Construction has completed what may be the city's first accessory dwelling unit built with insulated concrete forms to Type I fire-resistance standards. The publication frames the project not as a one-off curiosity but as a \"blueprint for resilient housing\" in a region where wildfire exposure now shapes both code and coverage.</p>\n\n<p class=\"reveal\">The significance is less about the unit's size than about its classification. Type I is a designation usually reserved for institutional and high-rise construction — buildings whose structural materials, not just their cladding, are non-combustible. Applying that standard to a backyard dwelling reverses the usual hierarchy, where the smallest structures are built to the lightest spec.</p>\n\n<h2 class=\"reveal\">Why a small build carries outsized weight</h2>\n\n<p class=\"reveal\">In California, fire-resistant construction has largely meant treating the exterior of an otherwise combustible building — Class A roofing, ignition-resistant cladding, ember-resistant vents. That work satisfies Chapter 7A of the California Building Code, which governs exterior wildfire exposure in Fire Hazard Severity Zones. Type I construction is a different proposition: it concerns the structural materials themselves. Insulated concrete forms — a continuous reinforced-concrete core poured between rigid insulation — deliver a non-combustible structure rather than a protected one.</p>\n\n<p class=\"reveal\">That distinction matters to the people who decide whether a home is insurable. California's Safer from Wildfires framework, administered by the California Department of Insurance, requires insurers to recognize mitigation across three layers — structure, parcel, and community — and to offer discounts for measures adopted. A building whose envelope is inherently non-combustible meets the structure layer at its source rather than through add-ons that age, weather, or get removed in a future renovation.</p>\n\n<div class=\"key-data\">\n<p><strong>Type I</strong> — fire-resistance class achieved by LA's first known ICF-based ADU (Davis Vanguard, 2026)</p>\n<p><strong>3 layers</strong> — structure, parcel, and community mitigation recognized under California's Safer from Wildfires framework (CDI)</p>\n</div>\n\n<h2 class=\"reveal\">What it signals for the LA market</h2>\n\n<p class=\"reveal\">An ADU is an unusually honest test case. There is no luxury square footage to dilute the question, no sweeping facade to distract from the assembly. The structure either is non-combustible or it is not, and at this scale the answer is visible. That clarity is precisely why the project reads as a blueprint: it demonstrates that Type I construction is buildable at residential scale and residential budgets, not only in towers.</p>\n\n<p class=\"pullquote\">When the smallest building on a lot is built to the strictest fire-resistance class, it quietly resets expectations for everything around it.</p>\n\n<p class=\"reveal\">For owners weighing a rebuild or a new build in fire-exposed parts of Los Angeles, the implication is straightforward. The market is beginning to distinguish between a home that has been made fire-resistant and a home that was built non-combustible. As insurers narrow their appetite and price increasingly on the structure layer, that distinction moves from architectural preference to underwriting input — and a backyard unit has just shown it can be done.</p>\n\n<h2 class=\"reveal\">The road ahead</h2>\n\n<p class=\"reveal\">If a single ADU can reach Type I, the question facing larger projects is no longer whether non-combustible structure is achievable, but why the primary residence would settle for less. Expect the conversation in LA's fire zones to keep migrating from treatments applied to a frame toward the material of the frame itself — and for the smallest buildings, paradoxically, to keep setting the pace.</p>",
+  "excerpt": "Davis Vanguard reports that Builtech Construction completed what may be LA's first ICF-based accessory dwelling unit built to Type I fire-resistance standards. The small project reframes a large question: the difference between a home made fire-resistant and one built non-combustible.",
+  "image_prompt": "Architectural photography of a small modern concrete accessory dwelling unit in a Los Angeles backyard, exposed board-formed reinforced concrete walls, late afternoon warm muted light, dry Mediterranean landscaping with olive and lavender, clean minimal lines, no people, editorial quality",
+  "topic_tags": [
+    "icf-adu",
+    "type-i-construction"
+  ],
+  "data_points_cited": [
+    "California's first known ICF Type I residential project (Builtech, 2026)",
+    "Safer from Wildfires regulation recognizes mitigation across structure, parcel, community layers (CDI)"
+  ],
+  "read_time_min": 6,
+  "hero_image": {
+    "local_path": "/Users/ivogiuliani/Code/myvilla-la/blog/assets/img/icf-adu-los-angeles-type-i-fire-resistance-hero.webp",
+    "web_path": "assets/img/icf-adu-los-angeles-type-i-fire-resistance-hero.webp",
+    "photo_id": "src-0",
+    "author_name": "Davis Vanguard",
+    "author_url": "https://davisvanguard.org/2026/06/fire-resistant-housing-los-angeles/",
+    "unsplash_url": "https://davisvanguard.org/2026/06/fire-resistant-housing-los-angeles/",
+    "alt_description": "LA Project Offers Blueprint for Resilient Housing Amid Wildfire Threat - Davis Vanguard",
+    "color": "#3e2f2b",
+    "source": "cited_source",
+    "origin": "source"
+  },
+  "_date": "2026-06-13",
+  "_section_id": "market",
+  "_section_name": "LA Luxury Market",
+  "_source_item": {
+    "title": "LA Project Offers Blueprint for Resilient Housing Amid Wildfire Threat - Davis Vanguard",
+    "url": "https://davisvanguard.org/2026/06/fire-resistant-housing-los-angeles/",
+    "publication": "davisvanguard.org",
+    "cluster": "luxury_insurable_newbuild"
+  }
+}

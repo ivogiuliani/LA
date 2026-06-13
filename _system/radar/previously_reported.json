@@ -3059,6 +3059,26 @@
       "action_type": "user_dismissed",
       "url": "https://d5mag.com/tuscany-aesthetics-meet-californias-mountains-in-the-new-stone-villa/",
       "note": "auto-sent pitch to queued:leonor.gomes@d5mag.com"
+    },
+    {
+      "date_first_reported": "2026-06-13",
+      "source": "user_dismissed",
+      "title": "Touring a $44,000,000 All Concrete Malibu Mansion With Insane Ocean Views",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/JeremyWilsdh6v/status/2065559373028479475",
+      "note": "auto-published journal: all-concrete-malibu-mansion-44m-listing-2026"
+    },
+    {
+      "date_first_reported": "2026-06-13",
+      "source": "user_dismissed",
+      "title": "LA Project Offers Blueprint for Resilient Housing Amid Wildfire Threat",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://davisvanguard.org/2026/06/fire-resistant-housing-los-angeles/",
+      "note": "auto-published journal: icf-adu-los-angeles-type-i-fire-resistance"
     }
   ],
   "reported": [
@@ -3101,6 +3121,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.instagram.com/p/DZVZEV5Ci4B/",
       "note": "auto-skip AI: personal lifestyle/World Oceans Day post, commercial angle would feel intrusive"
+    },
+    {
+      "date_first_reported": "2026-06-13",
+      "source": "ai_skip",
+      "title": "@nice1959: Author: @nice1959 | Text: You should fact check or at least use some common sens...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/nice1959/status/2063359151531577616",
+      "note": "auto-skip AI: Politically charged framing ('liberal lie') — engaging invites partisan fights that hurt the brand."
     }
   ]
 }
