@@ -399,3 +399,32 @@ instagram:
   # 30 like vale più di uno generico con 500.
   min_likes: 30
   min_comments: 5
+
+  # ── Engagement targets (Apify profili) — aggiunto 2026-06-13 ──
+  # Account STRATEGICI dove un commento UMANO (mai automatico) porta
+  # traffico al profilo @myvilla.la. Ogni mattina il radar prende il
+  # post più recente di questi account e ti prepara una bozza di
+  # commento; tu la pubblichi a mano dal telefono (5 minuti).
+  # NON passano dal filtro viralità: conta il PUBBLICO dell'account,
+  # non i like del singolo post.
+  #
+  # >>> CURALI TU <<< Il valore non è commentare i mega-account
+  # (commento sepolto fra migliaia) ma quelli di MEDIA dimensione con
+  # pubblico = tuoi clienti: realtor di lusso di Malibu/Beverly Hills,
+  # studi di architettura LA, pagine di design/lifestyle locali. Quelli
+  # sotto sono solo un punto di partenza reale — aggiungi gli @-handle
+  # della tua nicchia che conosci (max ~15 per restare nel budget Apify).
+  engagement_targets:
+    # Design / architettura (grandi, ma su Reel il commento si vede)
+    - dezeen
+    - dwell
+    - archdaily
+    - designmilk
+    # Real estate di lusso / lifestyle HNW (pubblico = acquirenti)
+    - mansionglobal
+    - robbreport
+    # ↑ AGGIUNGI QUI: realtor di lusso LA, studi di architettura,
+    #   pagine design locali che conosci (es. @nome.studio, @realtor…).
+  engagement_posts_per_account: 4   # post recenti scaricati per account
+  engagement_max: 6                 # max target/giorno (il pannello ne
+                                    # mostra 5; l'AI-skip scarta gli off-topic)

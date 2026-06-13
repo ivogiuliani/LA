@@ -1262,6 +1262,110 @@ def instagram_viral_scan(config, lookback_days=7):
     return results
 
 
+def instagram_engagement_scan(config, lookback_days=7, known_urls=None):
+    """Post recenti di account STRATEGICI (architetti, realtor di lusso,
+    pagine design) dove un commento UMANO porta traffico al profilo
+    @myvilla.la. Flusso assistito: la bozza si pubblica a mano.
+
+    A differenza di instagram_viral_scan NON filtra per viralità: conta
+    il PUBBLICO dell'account, non i like del singolo post. Tiene 1 post
+    (il più recente nel lookback) per account, max engagement_max.
+    Attore profili apify~instagram-scraper (directUrls), stesso di
+    partner_scraper. Config: radar-keywords.yml → instagram.engagement_targets.
+    """
+    token = os.environ.get("APIFY_API_TOKEN", "").strip()
+    if not token:
+        print("  [IG-engage] Skipped — APIFY_API_TOKEN non configurato")
+        return []
+    ig_cfg = (config or {}).get("instagram") or {}
+    targets = ig_cfg.get("engagement_targets") or []
+    handles = []
+    for t in targets:
+        h = str(t or "").strip().lstrip("@").rstrip("/").split("/")[-1].strip()
+        if h:
+            handles.append(h)
+    if not handles:
+        return []
+    per_acct = int(ig_cfg.get("engagement_posts_per_account", 3))
+    max_targets = int(ig_cfg.get("engagement_max", 5))
+    known = set(known_urls or [])
+
+    run_url = ("https://api.apify.com/v2/acts/apify~instagram-scraper"
+               f"/run-sync-get-dataset-items?token={token}")
+    payload = {
+        "directUrls": [f"https://www.instagram.com/{h}/" for h in handles],
+        "resultsType": "posts",
+        "resultsLimit": per_acct,
+        "addParentData": False,
+    }
+    try:
+        resp = requests.post(run_url, json=payload, timeout=300)
+        resp.raise_for_status()
+        posts = resp.json()
+    except Exception as e:
+        status = getattr(getattr(e, "response", None), "status_code", "?")
+        print(f"  [IG-engage] Apify error: {type(e).__name__} (HTTP {status})")
+        if status in (401, 402, 403):
+            print("  [IG-engage] token/crediti Apify KO — console.apify.com")
+        return []
+    if not isinstance(posts, list):
+        print("  [IG-engage] risposta inattesa dall'attore")
+        return []
+
+    cutoff = datetime.utcnow() - timedelta(days=lookback_days)
+    today = datetime.utcnow().strftime("%Y-%m-%d")
+    by_owner = {}  # owner → [item, ...] (post freschi dell'account)
+    for post in posts:
+        if post.get("error"):
+            continue
+        url = post.get("url") or ""
+        caption = (post.get("caption") or "").strip()
+        if not url or not caption or url in known:
+            continue
+        ts = post.get("timestamp") or ""
+        try:
+            pd = datetime.fromisoformat(ts.replace("Z", ""))
+            if pd < cutoff:
+                continue
+        except (ValueError, TypeError):
+            continue  # senza data affidabile non sappiamo se è "fresco"
+        owner = (post.get("ownerUsername") or "?").lower()
+        likes = int(post.get("likesCount") or 0)
+        comments = int(post.get("commentsCount") or 0)
+        item = {
+            "source": "instagram",
+            "cluster": "instagram_engagement",
+            "engagement_target": True,
+            "query": f"@{owner}",
+            "title": f"@{owner}: {caption[:90]}",
+            "url": url,
+            "snippet": caption[:300],
+            "publication": f"Instagram @{owner}",
+            "date": ts,
+            "engagement": {
+                "likes": likes,
+                "replies": comments,
+                "virality_score": compute_virality_score(
+                    likes, 0, comments, 0,
+                    pd.strftime("%Y-%m-%d"), today),
+            },
+        }
+        by_owner.setdefault(owner, []).append(item)
+
+    # Max 2 post più recenti per account (no spam su un solo profilo, ma
+    # se l'ultimo è off-topic — es. dezeen sui Mondiali — il penultimo dà
+    # una seconda chance). L'AI-skip a valle scarta i non pertinenti.
+    cand = []
+    for owner, lst in by_owner.items():
+        lst.sort(key=lambda c: c.get("date") or "", reverse=True)
+        cand.extend(lst[:2])
+    items = sorted(cand, key=lambda c: c.get("date") or "",
+                   reverse=True)[:max_targets]
+    print(f"  [IG-engage] {len(items)} account target con post recente "
+          f"(su {len(handles)} monitorati)")
+    return items
+
+
 def grok_x_search(api_key, config, lookback_days=7):
     """Search X/Twitter via Grok Responses API with x_search tool."""
     if not api_key:
@@ -2376,12 +2480,18 @@ def main():
         print("3. RSS — skipped")
 
     # 4b. Instagram virali (Apify hashtag scan)
+    ig_engage_results = []
     if not getattr(args, "skip_instagram", False):
         print("4b. Instagram hashtag (Apify)...")
         ig_results = instagram_viral_scan(config, lookback_days=args.lookback)
         all_results.extend(ig_results)
+        # 4c. Account strategici dove commentare a mano (scan profili).
+        # Tenuti SEPARATI: non passano dal filtro viralità (vedi sotto).
+        print("4c. Instagram engagement targets (Apify profili)...")
+        ig_engage_results = instagram_engagement_scan(
+            config, lookback_days=args.lookback, known_urls=known_urls)
     else:
-        print("4b. Instagram — skipped")
+        print("4b/4c. Instagram — skipped")
 
     # 4. Grok/X
     if not args.skip_grok:
@@ -2481,6 +2591,17 @@ def main():
     # Runs against ALL results (qualified + watchlist + skipped) because a tweet
     # may be virally interesting even if its content score is low.
     viral = _filter_viral_opportunities(unique_results, known_urls=known_urls)
+
+    # Engagement targets: post di account strategici dove commentare a
+    # mano. NON passano dal filtro viralità (conta il pubblico, non i
+    # like). PREPEND così finiscono nei primi 5 card visibili del
+    # pannello (è il "compito del giorno" che Ivo ha chiesto). Stessa
+    # rail dei virali → bozza commento nel report + card. Dedup per URL.
+    if ig_engage_results:
+        viral_urls_now = {v.get("url") for v in viral if v.get("url")}
+        fresh_targets = [it for it in ig_engage_results
+                         if it.get("url") and it["url"] not in viral_urls_now]
+        viral = fresh_targets + viral
 
     # Early signals: on-topic but below viral engagement threshold. Good for
     # monitoring — threads that could grow, small accounts worth watching.

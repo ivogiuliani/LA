@@ -1691,6 +1691,7 @@ def scan_radar_opportunities():
             "reply_skip_reason": reply.get("skip_reason", ""),
             "reply_char_count": reply.get("char_count", 0),
             "reply_tone": reply.get("tone", ""),
+            "engagement_target": bool(item.get("engagement_target")),
         }
 
     # Viral opportunities — high-engagement X/Reddit posts for public reply
@@ -2238,9 +2239,14 @@ def build_dashboard():
         for v in radar["viral"]:
             if v.get("reply_skip"):
                 continue  # auto-eliminati: inutile proporli (vedi report)
-            platform_icon = "𝕏" if v["platform"] == "x" else "🔥"
-            platform_label = "X" if v["platform"] == "x" else "Reddit"
-            platform_class = "badge-tweet" if v["platform"] == "x" else "badge-reddit"
+            # Etichetta per piattaforma (3-way: prima IG cadeva nel ramo
+            # "else" e veniva mostrato come "Reddit").
+            if v["platform"] == "x":
+                platform_icon, platform_label, platform_class = "𝕏", "X", "badge-tweet"
+            elif v["platform"] == "instagram":
+                platform_icon, platform_label, platform_class = "📷", "Instagram", "badge-ig"
+            else:
+                platform_icon, platform_label, platform_class = "🔥", "Reddit", "badge-reddit"
 
             # Metrics bar
             metrics_parts = []
@@ -2333,7 +2339,7 @@ def build_dashboard():
           <div class="card-body">
             <div class="card-header">
               <span class="badge {platform_class}">{platform_icon} {platform_label}</span>
-              <span class="badge badge-virality {vs_class}">{vs_icon} Virality {vs}</span>
+              {'<span class="badge badge-target">🎯 Account strategico</span>' if v.get("engagement_target") else f'<span class="badge badge-virality {vs_class}">{vs_icon} Virality {vs}</span>'}
               <span class="news-pub">{_esc(v['author'] or v['title'][:40])}</span>
               {f'<span class="news-date">{_esc(v["date"])}</span>' if v['date'] else ''}
             </div>
@@ -3286,6 +3292,10 @@ def build_dashboard():
   }}
   .badge-ig {{
     background: linear-gradient(135deg, #833AB4, #E1306C, #F77737);
+    color: #fff;
+  }}
+  .badge-target {{
+    background: #b8860b;
     color: #fff;
   }}
   .badge-email {{
