@@ -1692,6 +1692,8 @@ def scan_radar_opportunities():
             "reply_char_count": reply.get("char_count", 0),
             "reply_tone": reply.get("tone", ""),
             "engagement_target": bool(item.get("engagement_target")),
+            "lead_type": (reply.get("lead_type") or "").lower(),
+            "lead_why": reply.get("why", ""),
         }
 
     # Viral opportunities — high-engagement X/Reddit posts for public reply
@@ -2248,6 +2250,19 @@ def build_dashboard():
             else:
                 platform_icon, platform_label, platform_class = "🔥", "Reddit", "badge-reddit"
 
+            # Lead-type badge: PERCHÉ questo post porta traffico di qualità
+            # (compratore / partner / brand). Il "why" finisce nel tooltip.
+            _lt = v.get("lead_type", "")
+            _why = _esc(v.get("lead_why", ""))
+            if _lt == "buyer":
+                lead_badge = f'<span class="badge badge-buyer" title="{_why}">💰 Compratore</span>'
+            elif _lt == "partner":
+                lead_badge = f'<span class="badge badge-biz" title="{_why}">🤝 Partner</span>'
+            elif _lt == "brand":
+                lead_badge = f'<span class="badge badge-brandlead" title="{_why}">✦ Brand</span>'
+            else:
+                lead_badge = ""
+
             # Metrics bar
             metrics_parts = []
             if v["likes"]:
@@ -2339,6 +2354,7 @@ def build_dashboard():
           <div class="card-body">
             <div class="card-header">
               <span class="badge {platform_class}">{platform_icon} {platform_label}</span>
+              {lead_badge}
               {'<span class="badge badge-target">🎯 Account strategico</span>' if v.get("engagement_target") else f'<span class="badge badge-virality {vs_class}">{vs_icon} Virality {vs}</span>'}
               <span class="news-pub">{_esc(v['author'] or v['title'][:40])}</span>
               {f'<span class="news-date">{_esc(v["date"])}</span>' if v['date'] else ''}
@@ -3296,6 +3312,18 @@ def build_dashboard():
   }}
   .badge-target {{
     background: #b8860b;
+    color: #fff;
+  }}
+  .badge-buyer {{
+    background: #1f7a4d;
+    color: #fff;
+  }}
+  .badge-biz {{
+    background: #2d6cb5;
+    color: #fff;
+  }}
+  .badge-brandlead {{
+    background: #6b5b4f;
     color: #fff;
   }}
   .badge-email {{

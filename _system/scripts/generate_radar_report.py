@@ -1148,8 +1148,12 @@ CRITICAL VOICE RULES for replies:
 - Never emoji-spam (at most one relevant emoji if truly additive).
 - Lead with a DATA POINT, a CONTRARIAN OBSERVATION, or a TECHNICAL NUANCE \
 that adds to the conversation.
-- If the post is drama/rage/political → return body="SKIP" and skip_reason \
-explaining why engagement would hurt the brand.
+- QUALIFY before writing: only engage where a comment plausibly reaches LA \
+luxury-home BUYERS or a useful PARTNER (luxury realtor / architect / designer \
+/ developer / builder), or is clearly on-topic for our niche. If it's \
+drama/rage/political, off-topic, generic design-fan content with no \
+buyer/partner overlap, or low value → body="SKIP" with skip_reason. Prefer \
+FEW high-value replies over volume.
 
 APPROVED VOCABULARY:
 - "reinforced concrete" / "ICF" / "non-combustible" / "fire-resilient"
@@ -1208,21 +1212,26 @@ def generate_viral_reply_drafts(viral_items, model=_HEAVY_MODEL):
             },
         })
 
-    prompt = f"""Generate a public reply draft for each of these {len(items_desc)} high-engagement social posts.
+    prompt = f"""You are the ENGAGEMENT FILTER + reply writer for My Villa, which builds luxury reinforced-concrete villas in Los Angeles. Goal: QUALITY traffic only — reach potential BUYERS and build relationships with useful PARTNERS. We want FEW high-value comments, not volume.
 
-Platform rules:
+STEP 1 — QUALIFY each post. Set "lead_type":
+- "buyer": commenting here plausibly reaches ultra-high-net-worth people building / buying / rebuilding luxury homes in our geographies (Malibu, Beverly Hills, Bel Air, Brentwood, Calabasas, Pacific Palisades, Hidden Hills, Montecito) — e.g. luxury listings, trophy properties, high-end LA architecture, fire-resilient/insurable luxury homes, HNW post-fire rebuilds.
+- "partner": the author or audience is rich in people we'd want a business relationship with — luxury real-estate agents/brokers, residential architects, interior designers, high-end developers & custom builders, landscape architects serving LA luxury.
+- "brand": clearly on-topic for our niche (luxury architecture / exposed concrete / fire-resilience) and good for visibility, even if not directly buyer/partner.
+- Otherwise → "body":"SKIP". SKIP generic design-fan content with no buyer/partner overlap, off-topic, consumer/DIY/budget home content, non-LA with no relevance, drama/rage/politics, competitors, influencer fluff. When in doubt, SKIP.
+
+STEP 2 — for QUALIFIED posts only, write the reply. Platform rules:
 - "x": a reply tweet — punchy, ≤200 chars.
-- "instagram": a COMMENT under the post — warmer and more conversational
-  than X, can be slightly longer (≤220 chars), NO hashtags in comments,
-  never salesy: add genuine value or a sharp observation; at most a soft
-  reference to our perspective (we build reinforced-concrete villas in LA).
+- "instagram": a COMMENT under the post — warmer, conversational, ≤220 chars, NO hashtags, never salesy: add genuine value or a sharp observation; at most a soft reference to our perspective (we build reinforced-concrete villas in LA). For "partner" posts, write peer-to-peer (professional respect), not as a vendor.
 - "reddit": a comment in subreddit register — substantive, no marketing.
 
 For each item, output a JSON object:
 {{
   "index": 0,
-  "body": "Your reply text (≤200 chars) OR 'SKIP'",
-  "skip_reason": "Only if body is SKIP — e.g. 'political drama', 'off-topic rant'",
+  "lead_type": "buyer | partner | brand",
+  "why": "≤8 words: why this is quality traffic (e.g. 'Malibu luxury buyers in audience')",
+  "body": "Your reply text OR 'SKIP'",
+  "skip_reason": "Only if body is SKIP — e.g. 'design-fan audience, no buyers', 'off-topic'",
   "char_count": 180,
   "tone": "one of: technical, contrarian, data-led, conversational"
 }}
@@ -1262,6 +1271,8 @@ Return ONLY a valid JSON array of {len(items_desc)} objects, no markdown fences.
                     "skip_reason": draft.get("skip_reason", "") if is_skip else "",
                     "char_count": len(body) if not is_skip else 0,
                     "tone": draft.get("tone", ""),
+                    "lead_type": draft.get("lead_type", "") if not is_skip else "",
+                    "why": draft.get("why", "") if not is_skip else "",
                 }
         print(f"  [ViralReply] Generated {len(drafts)} reply drafts "
               f"({sum(1 for d in drafts if (d.get('body','') or '').upper() == 'SKIP')} skipped)")

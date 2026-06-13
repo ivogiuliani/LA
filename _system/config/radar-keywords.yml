@@ -387,13 +387,16 @@ scoring:
 # Budget: 6 hashtag × 25 post ≈ 150 risultati/giorno ≈ $10-12/mese
 # (attore apify~instagram-scraper, ~$2.3/1000 risultati).
 instagram:
+  # Pesati su COMPRATORI/geografia (dove postano agenti e acquirenti di
+  # lusso), non su appassionati di design. Il qualificatore a valle
+  # etichetta comunque ogni post buyer/partner/brand o lo scarta.
   hashtags:
     - MalibuRealEstate
     - LuxuryRealEstateLA
     - BeverlyHillsRealEstate
-    - ConcreteArchitecture
-    - ItalianVilla
-    - LosAngelesArchitecture
+    - BelAirRealEstate
+    - MalibuLuxuryHomes
+    - ConcreteArchitecture   # unico tag "brand/design" tenuto
   results_per_hashtag: 25
   # Soglie "on-topic relaxed" (come per X): un post di nicchia con
   # 30 like vale più di uno generico con 500.
@@ -414,17 +417,25 @@ instagram:
   # studi di architettura LA, pagine di design/lifestyle locali. Quelli
   # sotto sono solo un punto di partenza reale — aggiungi gli @-handle
   # della tua nicchia che conosci (max ~15 per restare nel budget Apify).
+  # Ritarato 2026-06-13: l'obiettivo è TRAFFICO DI QUALITÀ = compratori
+  # HNW + partner (realtor, architetti, developer), NON appassionati di
+  # design. Gli account qui sotto sono realtor/broker di lusso LA: il
+  # loro pubblico SONO i compratori, e loro stessi sono partner/referral.
+  # ⚠️ VERIFICA gli handle (un handle errato non rompe nulla: l'attore
+  #    semplicemente non restituisce post) e AGGIUNGI i nomi che conosci.
   engagement_targets:
-    # Design / architettura (grandi, ma su Reel il commento si vede)
-    - dezeen
-    - dwell
-    - archdaily
-    - designmilk
-    # Real estate di lusso / lifestyle HNW (pubblico = acquirenti)
+    # Broker / agenti di lusso LA (pubblico = compratori; loro = partner)
+    - theagencyre          # The Agency (Umansky) — broker lusso LA
+    - aaronkirman          # Aaron Kirman — top agent lusso LA
+    - thealtmanbrothers    # The Altman Brothers — Douglas Elliman LA
+    - hiltonhyland         # Hilton & Hyland — Beverly Hills
+    # Media real estate di lusso (pubblico = compratori/HNW)
     - mansionglobal
-    - robbreport
-    # ↑ AGGIUNGI QUI: realtor di lusso LA, studi di architettura,
-    #   pagine design locali che conosci (es. @nome.studio, @realtor…).
+    - dirt                 # Dirt — celebrity & luxury RE LA
+    # ↑ AGGIUNGI QUI gli account della TUA nicchia che conosci:
+    #   altri realtor di Malibu/BH, studi di architettura residenziale
+    #   LA, developer/builder di lusso, interior designer high-end.
+    #   Sono questi (media dimensione, pubblico = clienti) a rendere.
   engagement_posts_per_account: 4   # post recenti scaricati per account
   engagement_max: 6                 # max target/giorno (il pannello ne
                                     # mostra 5; l'AI-skip scarta gli off-topic)
