@@ -878,6 +878,23 @@ def _social_source_dirs():
     ]
 
 
+def _reddit_submission_allowlist():
+    """Allowlist subreddit per le submission (radar-keywords.yml →
+    reddit.submission_subreddits). Robusto: se yaml/file non disponibili
+    ritorna un default sensato, così il <select> non resta mai vuoto."""
+    fallback = ["fatFIRE", "RealEstate", "homebuilding",
+                "RichPeoplePF", "LuxuryRealEstate"]
+    try:
+        import yaml  # locale: yaml non è importato a livello modulo
+        cfg = yaml.safe_load(
+            (SYSTEM_DIR / "config" / "radar-keywords.yml").read_text(
+                encoding="utf-8"))
+        subs = (cfg.get("reddit", {}) or {}).get("submission_subreddits") or []
+        return subs or fallback
+    except Exception:  # noqa: BLE001
+        return fallback
+
+
 def find_social_source(filename: str):
     """Trova il file di un draft social in QUALUNQUE sorgente.
     → Path | None. I companion .ig.md vivono in blog/."""
@@ -960,6 +977,7 @@ def _parse_social_file(f):
     if not score:
         score = 13 if f.name.endswith(".ig.md") else 10
 
+    is_reddit = channel.strip().lower().startswith("reddit")
     return {
         "file": f.name,
         "channel": channel,
@@ -968,10 +986,14 @@ def _parse_social_file(f):
         "date": frontmatter.get("date",
                                 frontmatter.get("generated_at", ""))[:10],
         "char_count": frontmatter.get("char_count", str(len(body))),
-        "body": body[:500],
+        # Reddit self-post: il corpo serve INTERO (la submission lo posta
+        # as-is). Per X/IG basta l'anteprima a 500 char.
+        "body": body if is_reddit else body[:500],
         "image_url": _social_image_preview(frontmatter),
         "journal_slug": frontmatter.get("journal_slug", ""),
         "article_url": frontmatter.get("article_url", ""),
+        "subreddit": frontmatter.get("subreddit", ""),
+        "title": frontmatter.get("title", ""),
     }
 
 
@@ -1941,9 +1963,57 @@ def build_dashboard():
     # Build social cards
     social_cards_ig = []   # card IG (in ordine di scan: fresche prima)
     social_cards_x = []    # card X
+    social_cards_reddit = []  # card Reddit (self-post articoli, submission)
+    reddit_allow = _reddit_submission_allowlist()
     social_cards = ""      # (legacy var — composta più sotto con i cap)
     for d in social:
         ch = d["channel"].lower()
+        if "reddit" in ch:
+            # Self-post di un nostro articolo (submission): card dedicata con
+            # select subreddit + titolo + corpo. Niente "approva → coda": la
+            # submission si pubblica solo con click esplicito (panel-only).
+            r_title = d.get("title", "") or ""
+            r_sub = (d.get("subreddit", "") or "").strip()
+            r_body = d.get("body", "") or ""
+            opts, seen_sub = [], False
+            for s in reddit_allow:
+                sel = " selected" if s.lower() == r_sub.lower() else ""
+                seen_sub = seen_sub or bool(sel)
+                opts.append(f'<option value="{_esc(s)}"{sel}>r/{_esc(s)}</option>')
+            if r_sub and not seen_sub:
+                opts.insert(0, f'<option value="{_esc(r_sub)}" selected>'
+                               f'r/{_esc(r_sub)} (fuori allowlist)</option>')
+            _lbl = ("display:block;font-size:0.72rem;text-transform:uppercase;"
+                    "letter-spacing:.05em;color:#b5a88f;margin:10px 0 3px;")
+            _fld = ("width:100%;padding:8px 10px;border:1px solid #e0d6c4;"
+                    "border-radius:7px;font-size:0.9rem;background:#fffaf6;"
+                    "box-sizing:border-box;")
+            sub_select = (f'<select class="reddit-sub-select" style="{_fld}">'
+                          + "".join(opts) + '</select>')
+            _rcard = f"""
+        <div class="card" id="card-social-{_esc(d['file'])}" data-file="{_esc(d['file'])}" data-type="social" data-channel="reddit">
+          <div class="card-status-stripe"></div>
+          <div class="card-body">
+            <div class="card-header">
+              <span class="badge badge-reddit">Reddit</span>
+              <span class="badge badge-type">self-post articolo</span>
+            </div>
+            <label style="{_lbl}">Subreddit</label>
+            {sub_select}
+            <label style="{_lbl}">Titolo · <span class="reddit-title-count">{len(r_title)}</span>/300</label>
+            <input class="reddit-title-input" type="text" maxlength="300" value="{_esc(r_title)}" oninput="updateRedditTitleCount(this)" style="{_fld}">
+            <label style="{_lbl}">Corpo · self-post · il link va NEL testo (no link nudo)</label>
+            <textarea class="card-post-editor reddit-body-editor" data-field="body" style="{_fld}min-height:170px;font-family:Georgia,serif;line-height:1.6;resize:vertical;">{_esc(r_body)}</textarea>
+            <div class="card-meta"><span class="meta-date">{_esc(d['date'])}</span></div>
+            <div class="card-actions">
+              <button class="btn btn-publish-social" onclick="publishRedditPost('{_esc_js(d['file'])}', this)" title="Pubblica il self-post via API ufficiale. Account nuovo: aspettati rimozioni finché non c'è karma.">🚀 Pubblica su Reddit</button>
+              <button class="btn btn-edit" onclick="saveSocialDraft('{_esc_js(d['file'])}', this)">💾 Salva corpo</button>
+              <button class="btn btn-reject" onclick="doAction('reject', '{_esc_js(d['file'])}', 'social', this)">🗑 Scarta</button>
+            </div>
+          </div>
+        </div>"""
+            social_cards_reddit.append(_rcard)
+            continue
         if "x" in ch or "twitter" in ch:
             channel_label = "X"
             channel_class = "badge-x"
@@ -2041,6 +2111,10 @@ def build_dashboard():
         + _sub_heading("𝕏", "X — scegline 1",
                        min(2, len(social_cards_x)), len(social_cards_x))
         + _capped(social_cards_x, 2, "X")
+        + (_sub_heading("🔥", "Reddit — self-post dei nostri articoli (approvi tu)",
+                        min(2, len(social_cards_reddit)), len(social_cards_reddit))
+           + _capped(social_cards_reddit, 2, "Reddit")
+           if social_cards_reddit else "")
     )
 
     # ── Editorial IG cards (brand-foundation pipeline) ────────────────
@@ -2323,6 +2397,7 @@ def build_dashboard():
                     actions_section = (
                         f'<div class="card-actions">'
                         f'  <button class="btn btn-publish-social" data-url="{_esc(v["url"])}" onclick="publishXReply(this)" title="Pubblica la reply su X via API (cap X_REPLY_DAILY_CAP/giorno)">🚀 Reply on X</button>'
+                        f'  <button class="btn btn-publish-social" data-url="{_esc(v["url"])}" onclick="publishXQuote(this)" title="Quote del post su X via API — funziona anche se le reply sono ristrette">💬 Quote on X</button>'
                         f'  <button class="btn btn-viral-reply" onclick="openViralReplyX(this)" title="Apri X col testo precompilato (manuale)">Reply manually</button>'
                         f'  <button class="btn btn-copy-pitch" onclick="copyViralReply(this)">Copy reply</button>'
                         f'  <a class="btn btn-copy-open" href="{_esc(v["url"])}" target="_blank" rel="noreferrer">Open tweet</a>'
@@ -2777,6 +2852,7 @@ def build_dashboard():
               <textarea class="viral-reply-editor" data-platform="x" oninput="updateViralCharCount(this)">{_esc(_tweet_body)}</textarea>
               <div class="card-actions">
                 <button class="btn btn-publish-social" data-url="{_esc(url)}" onclick="publishXReply(this)" title="Pubblica la reply su X via API (cap X_REPLY_DAILY_CAP/giorno)">🚀 Reply on X</button>
+                <button class="btn btn-publish-social" data-url="{_esc(url)}" onclick="publishXQuote(this)" title="Quote del post su X via API — funziona anche se le reply sono ristrette">💬 Quote on X</button>
                 <button class="btn btn-viral-reply" onclick="openViralReplyX(this)" title="Apri X col testo precompilato (manuale)">Reply manually</button>
                 <button class="btn btn-copy-pitch" onclick="copyViralReply(this)">Copy reply</button>
                 <a class="btn btn-copy-open" href="{_esc(url)}" target="_blank" rel="noreferrer">Open tweet</a>
@@ -5685,6 +5761,69 @@ function publishSocial(file, platform, btn) {{
   }});
 }}
 
+/* ── Reddit: pubblica un self-post (submission) di un nostro articolo ── */
+function updateRedditTitleCount(input) {{
+  const card = input.closest('.card');
+  const span = card.querySelector('.reddit-title-count');
+  if (span) span.textContent = input.value.length;
+}}
+
+function publishRedditPost(file, btn) {{
+  const card = btn.closest('.card');
+  const sub = (card.querySelector('.reddit-sub-select') || {{}}).value || '';
+  const title = (card.querySelector('.reddit-title-input') || {{}}).value || '';
+  const body = (card.querySelector('.reddit-body-editor') || {{}}).value || '';
+  const subT = sub.trim(), titleT = title.trim(), bodyT = body.trim();
+  if (!subT) {{ showToast('Scegli un subreddit'); return; }}
+  if (!titleT) {{ showToast('Titolo mancante'); return; }}
+  if (!bodyT) {{ showToast('Corpo mancante'); return; }}
+  if (!confirm('Pubblicare questo self-post su r/' + subT + " con l'account My Villa?\\n\\nReddit è severo con l'autopromozione: assicurati che il post porti valore reale alla community.")) return;
+
+  const origHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Pubblico...';
+  card.querySelectorAll('.publish-result').forEach(el => el.remove());
+
+  fetch('/api/reddit-submit', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{file: file, subreddit: subT, title: titleT, text: bodyT}})
+  }})
+  .then(r => r.json())
+  .then(d => {{
+    btn.disabled = false;
+    btn.innerHTML = origHTML;
+    const res = document.createElement('div');
+    res.className = 'publish-result';
+    if (d.ok) {{
+      res.className += ' success';
+      let msg = d.message || 'Pubblicato su Reddit';
+      if (d.post_url) msg += ' <a href="' + d.post_url + '" target="_blank">Apri il post &rarr;</a>';
+      res.innerHTML = msg;
+      card.classList.add('approved');
+      const actions = card.querySelector('.card-actions');
+      const label = document.createElement('span');
+      label.className = 'status-label approved';
+      label.textContent = 'Pubblicato \\u2713';
+      actions.innerHTML = '';
+      actions.appendChild(label);
+    }} else if (d.needs_setup) {{
+      res.className += ' error';
+      res.innerHTML = (d.error || 'Credenziali Reddit non configurate') +
+        '<div class="setup-instructions">Setup (3 min): reddit.com/prefs/apps → create app (script) → in .env REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USERNAME, REDDIT_PASSWORD.\\nGuida: _system/docs/reddit_setup.md</div>';
+    }} else {{
+      res.className += ' error';
+      res.textContent = d.error || 'Errore sconosciuto';
+    }}
+    card.querySelector('.card-body').appendChild(res);
+  }})
+  .catch(err => {{
+    btn.disabled = false;
+    btn.innerHTML = origHTML;
+    showToast('Network error: ' + err.message);
+  }});
+}}
+
 /* ── Social: copy text + open platform ─────────── */
 function copyAndOpen(platform, btn) {{
   const card = btn.closest('.card');
@@ -5948,6 +6087,50 @@ function publishXReply(btn) {{
         const link = document.createElement('a');
         link.href = d.comment_url; link.target = '_blank';
         link.textContent = '↗ vedi reply';
+        link.className = 'btn btn-copy-open';
+        btn.after(link);
+      }}
+      card.style.opacity = '0.55';
+    }} else {{
+      buttons.forEach(b => b.disabled = false);
+      btn.textContent = orig;
+      alert(d.needs_setup
+        ? 'Credenziali X non configurate (X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET in .env).\\nGuida: _system/docs/x_setup.md'
+        : 'Errore: ' + (d.error || 'sconosciuto'));
+    }}
+  }})
+  .catch(e => {{
+    buttons.forEach(b => b.disabled = false);
+    btn.textContent = orig;
+    alert('Errore di rete: ' + e);
+  }});
+}}
+
+/* ── Viral: quote tweet on X via API (quote_tweet_id) ─ */
+function publishXQuote(btn) {{
+  const card = btn.closest('.card');
+  const textarea = card.querySelector('.viral-reply-editor');
+  if (!textarea || !textarea.value.trim()) {{ showToast('Testo vuoto'); return; }}
+  if (textarea.value.trim().length > 280) {{ showToast('Oltre 280 caratteri'); return; }}
+  if (!confirm('Pubblicare una quote di questo post da @myvilla_la?')) return;
+  const buttons = card.querySelectorAll('.btn');
+  buttons.forEach(b => b.disabled = true);
+  const orig = btn.textContent;
+  btn.textContent = '⏳ Pubblico…';
+  fetch('/api/x-quote', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{url: btn.dataset.url, text: textarea.value}})
+  }})
+  .then(r => r.json())
+  .then(d => {{
+    if (d.ok) {{
+      btn.textContent = '✓ Pubblicato';
+      showToast(d.message || 'Quote live su X');
+      if (d.comment_url) {{
+        const link = document.createElement('a');
+        link.href = d.comment_url; link.target = '_blank';
+        link.textContent = '↗ vedi quote';
         link.className = 'btn btn-copy-open';
         btn.after(link);
       }}
@@ -8099,8 +8282,17 @@ class ReviewHandler(BaseHTTPRequestHandler):
             self._handle_reddit_comment(
                 data.get("url", ""), data.get("text", ""))
             return
+        if parsed.path == "/api/reddit-submit":
+            self._handle_reddit_submit(
+                data.get("file", ""), data.get("subreddit", ""),
+                data.get("title", ""), data.get("text", ""))
+            return
         if parsed.path == "/api/x-reply":
             self._handle_x_reply(
+                data.get("url", ""), data.get("text", ""))
+            return
+        if parsed.path == "/api/x-quote":
+            self._handle_x_quote(
                 data.get("url", ""), data.get("text", ""))
             return
         if parsed.path == "/api/generate-ig-companion":
@@ -9683,12 +9875,59 @@ class ReviewHandler(BaseHTTPRequestHandler):
             status = 400 if result.get("needs_setup") else 502
             self._send_json(result, status)
 
+    def _handle_reddit_submit(self, filename, subreddit, title, text):
+        """Pubblica un self-post (un nostro articolo) su Reddit via API
+        ufficiale (reddit_client.submit_self). Dopo il successo sposta il
+        draft in social/posts/published/ — fuori dalle source dir di scan —
+        così il pannello non lo ripropone."""
+        filename = (filename or "").strip()
+        subreddit = (subreddit or "").strip()
+        title = (title or "").strip()
+        text = (text or "").strip()
+        if not subreddit or not title or not text:
+            self._send_json({"ok": False,
+                             "error": "subreddit, titolo o corpo mancante"}, 400)
+            return
+        try:
+            sys.path.insert(0, str(SCRIPT_DIR))
+            import reddit_client
+            result = reddit_client.submit_self(subreddit, title, text)
+        except Exception as e:  # noqa: BLE001
+            self._send_json({"ok": False,
+                             "error": f"{type(e).__name__}: {e}"}, 500)
+            return
+
+        if result.get("ok"):
+            try:
+                src = find_social_source(filename) or (
+                    DRAFTS_DIR / "social" / filename)
+                if filename and src and src.exists():
+                    pub_dir = SYSTEM_DIR / "social" / "posts" / "published"
+                    pub_dir.mkdir(parents=True, exist_ok=True)
+                    shutil.move(str(src), str(pub_dir / Path(filename).name))
+                    print(f"  Reddit submission → published: {filename}")
+            except Exception as e:  # noqa: BLE001
+                print(f"  (reddit submit) mark-published non riuscito: {e}")
+            self._send_json(result)
+        else:
+            status = 400 if result.get("needs_setup") else 502
+            self._send_json(result, status)
+
     def _handle_x_reply(self, url, text):
-        """Posta una reply approvata a un tweet virale via X API (OAuth1,
-        x_publisher.post_tweet con in_reply_to). Dopo il successo marca
-        l'URL gestito così il radar non lo ripropone. Cap prudenziale
-        separato (X_REPLY_DAILY_CAP, default 5) — gli account X nuovi
-        vengono limitati se commentano troppo."""
+        """Reply a un tweet virale via X API. Vedi _x_engage."""
+        self._x_engage(url, text, quote=False)
+
+    def _handle_x_quote(self, url, text):
+        """Quote tweet di un post virale via X API — non soggetta al filtro
+        'chi può rispondere' dell'autore. Vedi _x_engage."""
+        self._x_engage(url, text, quote=True)
+
+    def _x_engage(self, url, text, *, quote):
+        """Posta una reply o una quote a un tweet virale via X API (OAuth1,
+        x_publisher.post_tweet). Dopo il successo marca l'URL gestito così il
+        radar non lo ripropone. Cap prudenziale X_REPLY_DAILY_CAP (default 5)
+        — gli account X nuovi vengono limitati se interagiscono troppo."""
+        action = "quote" if quote else "reply"
         text = (text or "").strip()
         if not url or not text:
             self._send_json({"ok": False, "error": "url o testo mancante"}, 400)
@@ -9700,7 +9939,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
             return
         if len(text) > 280:
             self._send_json({"ok": False,
-                             "error": f"reply {len(text)} > 280 caratteri"}, 400)
+                             "error": f"{action} {len(text)} > 280 caratteri"}, 400)
             return
         tweet_id = m.group(1)
         try:
@@ -9726,17 +9965,21 @@ class ReviewHandler(BaseHTTPRequestHandler):
                     entries = []
             if sum(1 for e in entries if e.get("date") == today) >= cap:
                 self._send_json({"ok": False,
-                                 "error": f"cap reply giornaliero raggiunto "
+                                 "error": f"cap giornaliero raggiunto "
                                           f"({cap}) — alza X_REPLY_DAILY_CAP"}, 429)
                 return
-            ok, info = x_publisher.post_tweet(text, reply_to=tweet_id)
+            if quote:
+                ok, info = x_publisher.post_tweet(text, quote_of=tweet_id)
+            else:
+                ok, info = x_publisher.post_tweet(text, reply_to=tweet_id)
         except Exception as e:  # noqa: BLE001
             self._send_json({"ok": False,
                              "error": f"{type(e).__name__}: {e}"}, 500)
             return
         if ok:
-            entries.append({"date": today, "in_reply_to": tweet_id,
-                            "id": info.get("id"), "url": info.get("url")})
+            entries.append({"date": today, "action": action,
+                            "target": tweet_id, "id": info.get("id"),
+                            "url": info.get("url")})
             try:
                 log_path.parent.mkdir(parents=True, exist_ok=True)
                 log_path.write_text(json.dumps(entries, indent=2,
@@ -9745,15 +9988,35 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 pass
             try:
                 self._mark_url_dismissed_quiet(
-                    url, note=f"x reply: {info.get('url', '')}")
+                    url, note=f"x {action}: {info.get('url', '')}")
             except Exception:  # noqa: BLE001
                 pass
-            self._send_json({"ok": True, "message": "Reply pubblicata su X",
+            label = "Quote" if quote else "Reply"
+            self._send_json({"ok": True,
+                             "message": f"{label} pubblicata su X",
                              "comment_url": info.get("url")})
         else:
-            self._send_json({"ok": False,
-                             "error": "X API: "
-                                      + json.dumps(info.get("error"))[:200]}, 502)
+            err = info.get("error") if isinstance(info, dict) else None
+            code = info.get("status") if isinstance(info, dict) else None
+            detail = ""
+            if isinstance(err, dict):
+                detail = err.get("detail") or err.get("title") or ""
+            low = (detail or "").lower()
+            if code == 403 and ("not been mentioned" in low
+                                or "not allowed" in low):
+                msg = ("L'autore ha limitato chi può rispondere a questo post "
+                       "— @myvilla_la non può replicare. Usa 'Quote on X' "
+                       "(non soggetta al limite) o scegli un altro post.")
+            elif code == 403:
+                msg = f"Operazione non consentita da X (403): {detail or err}"
+            elif code == 429:
+                msg = "Rate limit X raggiunto — riprova più tardi."
+            elif "duplicate" in low:
+                msg = "X rifiuta un testo identico a uno già pubblicato."
+            else:
+                msg = (f"X API {code}: "
+                       f"{detail or (json.dumps(err)[:200] if err else '')}")
+            self._send_json({"ok": False, "error": msg}, 502)
 
     def _mark_url_dismissed_quiet(self, url, note=""):
         """Aggiunge l'URL a previously_reported.json (user_dismissed)

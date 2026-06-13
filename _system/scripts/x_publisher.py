@@ -175,12 +175,15 @@ def whoami(verbose=True):
     return None
 
 
-def post_tweet(text, reply_to=None):
-    """POST /2/tweets. reply_to: optional tweet id — posts a reply to that
-    tweet instead of a standalone post. Returns (ok, info) with id/url or error."""
+def post_tweet(text, reply_to=None, quote_of=None):
+    """POST /2/tweets. reply_to: reply to that tweet id. quote_of: quote that
+    tweet id (a quote tweet — NOT subject to the target's 'who can reply'
+    setting). Returns (ok, info) with id/url or error."""
     body = {"text": text}
     if reply_to:
         body["reply"] = {"in_reply_to_tweet_id": str(reply_to)}
+    if quote_of:
+        body["quote_tweet_id"] = str(quote_of)
     code, data = _request("POST", "tweets", body=body, timeout=45)
     if code in (200, 201) and "data" in data:
         tid = data["data"].get("id", "")
