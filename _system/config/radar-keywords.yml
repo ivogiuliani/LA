@@ -423,19 +423,21 @@ instagram:
   # loro pubblico SONO i compratori, e loro stessi sono partner/referral.
   # ⚠️ VERIFICA gli handle (un handle errato non rompe nulla: l'attore
   #    semplicemente non restituisce post) e AGGIUNGI i nomi che conosci.
+  # Handle VERIFICATI 2026-06-13 via attore Apify (restituiscono post).
   engagement_targets:
     # Broker / agenti di lusso LA (pubblico = compratori; loro = partner)
-    - theagencyre          # The Agency (Umansky) — broker lusso LA
-    - aaronkirman          # Aaron Kirman — top agent lusso LA
-    - thealtmanbrothers    # The Altman Brothers — Douglas Elliman LA
-    - hiltonhyland         # Hilton & Hyland — Beverly Hills
+    - theagencyre          # The Agency (Umansky) — broker lusso LA ✓
+    - aaronkirman          # Aaron Kirman — top agent lusso LA ✓
+    - thealtmanbrothers    # The Altman Brothers — Douglas Elliman LA ✓
+    - douglaselliman       # Douglas Elliman — arm lusso ✓
     # Media real estate di lusso (pubblico = compratori/HNW)
-    - mansionglobal
-    - dirt                 # Dirt — celebrity & luxury RE LA
-    # ↑ AGGIUNGI QUI gli account della TUA nicchia che conosci:
-    #   altri realtor di Malibu/BH, studi di architettura residenziale
-    #   LA, developer/builder di lusso, interior designer high-end.
-    #   Sono questi (media dimensione, pubblico = clienti) a rendere.
+    - mansionglobal        # Mansion Global ✓
+    # ↑ AGGIUNGI QUI gli account della TUA nicchia che conosci (verifica
+    #   l'handle esatto dall'URL del profilo): altri realtor di Malibu/BH,
+    #   studi di architettura residenziale LA, developer/builder di lusso,
+    #   interior designer high-end. Sono questi (media dimensione, pubblico
+    #   = clienti reali) a portare il traffico migliore.
+    # Scartati perché l'handle non restituiva post: hiltonhyland, dirt.
   engagement_posts_per_account: 4   # post recenti scaricati per account
   engagement_max: 6                 # max target/giorno (il pannello ne
                                     # mostra 5; l'AI-skip scarta gli off-topic)
