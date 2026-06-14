@@ -2272,6 +2272,31 @@ def main(argv=None):
             except Exception as e:  # noqa: BLE001
                 print(f"  ~ companion IG: {type(e).__name__} (non fatale)")
 
+    # Companion X (Twitter) automatico — mirror dell'IG: crea
+    # blog/<slug>.x.md (tweet ≤280 con link all'articolo). Chiude la
+    # falla per cui gli articoli uscivano su IG ma non su X. Non-fatale.
+    if published and not args.dry_run:
+        for p_ in published:
+            slug = p_.get("slug", "")
+            sidecar = BLOG_DIR / f"{slug}.json"
+            companion = BLOG_DIR / f"{slug}.x.md"
+            if not slug or not sidecar.exists() or companion.exists():
+                continue
+            try:
+                r = subprocess.run(
+                    [sys.executable,
+                     str(SCRIPT_DIR / "generate_x_companion.py"),
+                     "--article", str(sidecar),
+                     "--output", str(companion)],
+                    capture_output=True, text=True, timeout=120,
+                )
+                if r.returncode == 0:
+                    print(f"  ✓ companion X: {companion.name}")
+                else:
+                    print(f"  ~ companion X fallito per {slug} (non fatale)")
+            except Exception as e:  # noqa: BLE001
+                print(f"  ~ companion X: {type(e).__name__} (non fatale)")
+
     # Rebuild indices and push if at least one article moved (or dry run for preview).
     pushed_sha = ""
     if published and not args.dry_run:

@@ -899,7 +899,7 @@ def find_social_source(filename: str):
     """Trova il file di un draft social in QUALUNQUE sorgente.
     → Path | None. I companion .ig.md vivono in blog/."""
     name = Path(filename).name
-    if name.endswith(".ig.md"):
+    if name.endswith((".ig.md", ".x.md")):   # companion IG/X → blog/
         cand = BLOG_DIR / name
         return cand if cand.exists() else None
     for d in _social_source_dirs():
@@ -961,10 +961,12 @@ def _parse_social_file(f):
             pass
 
     channel = frontmatter.get("channel", frontmatter.get("platform", ""))
-    if f.name.endswith(".ig.md"):
-        channel = channel or "ig"
+    is_companion = f.name.endswith((".ig.md", ".x.md"))
+    if not channel:
+        channel = "ig" if f.name.endswith(".ig.md") else \
+            "x" if f.name.endswith(".x.md") else ""
     post_type = frontmatter.get("type", "")
-    if f.name.endswith(".ig.md") and not post_type:
+    if is_companion and not post_type:
         post_type = "journal_companion"
 
     # Rilevanza: score del radar se presente; i companion (annuncio di
@@ -975,7 +977,7 @@ def _parse_social_file(f):
     except (TypeError, ValueError):
         score = 0
     if not score:
-        score = 13 if f.name.endswith(".ig.md") else 10
+        score = 13 if is_companion else 10
 
     is_reddit = channel.strip().lower().startswith("reddit")
     return {
@@ -1013,14 +1015,15 @@ def scan_social_drafts():
             if parsed:
                 seen.add(f.name)
                 drafts.append(parsed)
-    # Companion IG degli articoli live
-    for f in sorted(BLOG_DIR.glob("*.ig.md")):
-        if f.name in seen:
-            continue
-        parsed = _parse_social_file(f)
-        if parsed:
-            seen.add(f.name)
-            drafts.append(parsed)
+    # Companion IG/X degli articoli live (blog/*.ig.md, blog/*.x.md)
+    for pattern in ("*.ig.md", "*.x.md"):
+        for f in sorted(BLOG_DIR.glob(pattern)):
+            if f.name in seen:
+                continue
+            parsed = _parse_social_file(f)
+            if parsed:
+                seen.add(f.name)
+                drafts.append(parsed)
     # RILEVANZA prima (score del radar, "scegli tu i più rilevanti"),
     # freschezza come spareggio, IG prioritario su X.
     drafts.sort(key=lambda x: (x.get("score", 0), x["date"]), reverse=True)
@@ -8846,10 +8849,13 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 return
 
             approved_dir.mkdir(parents=True, exist_ok=True)
-            if filename.endswith(".ig.md"):
-                # Companion di un articolo: il file vive in blog/ (fa
-                # parte dell'articolo) → si COPIA in coda come post IG
-                # e si marca l'originale, senza spostarlo.
+            if filename.endswith((".ig.md", ".x.md")):
+                # Companion di un articolo (IG o X): il file vive in blog/
+                # (fa parte dell'articolo) → si COPIA in coda come post del
+                # canale giusto e si marca l'originale, senza spostarlo.
+                is_x = filename.endswith(".x.md")
+                ch = "x" if is_x else "ig"
+                ext = ".x.md" if is_x else ".ig.md"
                 raw = src.read_text(encoding="utf-8", errors="replace")
                 m = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)", raw, re.DOTALL)
                 fm_text = m.group(1) if m else ""
@@ -8859,9 +8865,10 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 else:
                     fm_text = re.sub(r"status:.*", "status: approved", fm_text)
                 if "channel:" not in fm_text:
-                    fm_text = "channel: ig\n" + fm_text
-                dst = approved_dir / (Path(filename).stem.replace(".ig", "")
-                                      + "-companion.md")
+                    fm_text = f"channel: {ch}\n" + fm_text
+                stem = Path(filename).name[:-len(ext)]
+                suffix = "-x-companion.md" if is_x else "-companion.md"
+                dst = approved_dir / (stem + suffix)
                 dst.write_text(f"---\n{fm_text}\n---\n\n{body_txt}\n",
                                encoding="utf-8")
                 # marca l'originale così non viene riproposto
