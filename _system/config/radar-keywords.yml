@@ -368,15 +368,37 @@ twitter:
     - "#MediterraneanHome"
     - "#LAarchitecture"
   search_queries:
-    - "luxury home builder Malibu"
-    - "custom home Beverly Hills"
-    - "fire resistant luxury home California"
-    - "insurable home California"
-    - "concrete home California"
-    - "ICF construction California"
-    - "Italian villa California builder"
-    - "Mediterranean home California"
-    - "California fire insurance crisis home"
+    # Allargate 2026-06-14: prima erano tutte "builder/home/insurance" →
+    # uscivano solo annunci di venditori. Ora coprono i mondi che il TARGET
+    # (chi vuole costruire/possedere a LA) legge davvero, per avere più
+    # conversazioni su cui intervenire. Ogni query = 1 chiamata Grok x_search;
+    # ~20 query stanno nel tetto radar (25 min). Trim/aggiungi a piacere.
+    # ── Mercato / compra-vendita (ridotto: non più l'unico tema) ──
+    - "Malibu luxury real estate 2026"
+    - "Los Angeles luxury home market trends"
+    # ── Design & architettura ──
+    - "Los Angeles residential architecture"
+    - "modern villa design California"
+    - "concrete house architecture"
+    - "Italian Mediterranean villa design"
+    - "interior design luxury home Los Angeles"
+    - "custom home architect Los Angeles"
+    # ── Costruzione & materiali fire-resilient (core brand) ──
+    - "building a fire resistant home California"
+    - "reinforced concrete home California"
+    - "rebuilding home after wildfire California"
+    # ── Assicurazioni post-incendio (voce del proprietario, non del broker) ──
+    - "California home insurance wildfire 2026"
+    - "FAIR Plan California homeowner"
+    - "home insurance non-renewal California fire"
+    - "insuring a home in a fire zone California"
+    # ── Malibu & lifestyle locale ──
+    - "living in Malibu California"
+    - "Pacific Palisades rebuild community"
+    - "Los Angeles luxury lifestyle"
+    # ── Notizie lifestyle / cultura del lusso ──
+    - "California luxury living trends 2026"
+    - "Los Angeles luxury home lifestyle"
 
 
 # ── Scoring ──
