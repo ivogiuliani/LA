@@ -288,6 +288,8 @@ For each post output:
    - match the post's register (lifestyle post → the living experience, not sales)
    - NEVER a caveat, warning, risk note, or comparison; nothing that diminishes
      the post or worries the reader
+   - NEVER claim or imply My Villa designed, built, owns, or worked on this
+     project — it is someone else's; admire it as an outside peer
    - NEVER salesy, no links, no "DM us", no @myvilla.la self-tag
    - no forbidden words: bunker, fortress, fireproof, dream home, or fear
      language ("protect your family", "survive the next fire")

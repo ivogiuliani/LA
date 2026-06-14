@@ -1155,7 +1155,10 @@ worst thing we can do. If the only thing you'd add is a caveat → SKIP.
 2) NEVER praise a quality the post doesn't actually have. Affirm ONLY what is \
 clearly evidenced. If a build is wood-framed / combustible, do NOT call it \
 resilient, insurable, or concrete — congratulating it on "resilience" is \
-dishonest and makes us look foolish → SKIP.
+dishonest and makes us look foolish → SKIP. And NEVER claim or imply My Villa \
+designed, built, owns, or worked on the author's project — it is someone \
+else's; admire it as an outside peer, never "what a privilege to have worked \
+on it".
 
 WHEN a data point or technical nuance IS welcome: a GENERAL DISCUSSION / news / \
 policy / market thread that is NOT anyone's own listing (an insurance-reform \
