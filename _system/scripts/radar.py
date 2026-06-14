@@ -946,6 +946,16 @@ VIRAL_TOPIC_KEYWORDS = [
     # --- Permitting / rebuild logistics ---
     "rebuild permit", "palisades permit", "la dbs", "la building permit",
     "fire rebuild permit", "lacbs", "rebuild timeline",
+
+    # --- Design / architecture / lifestyle (allargato 2026-06-14) ---
+    # Intercetta le conversazioni del target oltre il puro rebuild/vendita:
+    # architettura residenziale, design della casa, lifestyle Malibu/LA.
+    # Ancorati a casa/architettura/Malibu; blacklist off-geo + qualificatore
+    # tengono fuori il rumore generico non-californiano.
+    "residential architecture", "home architecture", "architectural design",
+    "home design", "house design", "modern home design", "contemporary home",
+    "home renovation", "home tour", "luxury living", "design build",
+    "living in malibu", "malibu lifestyle", "malibu home", "hancock park home",
 ]
 
 # Disqualifying terms — a post containing any of these is almost certainly
