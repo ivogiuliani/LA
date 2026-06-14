@@ -9722,6 +9722,25 @@ class ReviewHandler(BaseHTTPRequestHandler):
         if platform in ("x", "twitter"):
             result = publish_to_x(text)
         elif platform in ("instagram", "ig"):
+            # The dashboard JS doesn't send image_url, but IG feed posts
+            # require a public image. Resolve it from the draft frontmatter
+            # (image: path or journal_slug → hero) into the public
+            # https://myvilla.la/... URL via the same helper the card uses.
+            if not image_url:
+                src = find_social_source(filename)
+                if src and src.exists():
+                    try:
+                        raw = src.read_text(encoding="utf-8", errors="replace")
+                        fm = {}
+                        m = re.match(r"^---\s*\n(.*?)\n---\s*\n", raw, re.DOTALL)
+                        if m:
+                            for line in m.group(1).splitlines():
+                                kv = line.split(":", 1)
+                                if len(kv) == 2:
+                                    fm[kv[0].strip()] = kv[1].strip().strip('"').strip("'")
+                        image_url = _social_image_preview(fm)
+                    except Exception:
+                        image_url = ""
             result = publish_to_instagram(text, image_url=image_url or None)
         else:
             self._send_json(
