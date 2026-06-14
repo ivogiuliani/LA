@@ -427,17 +427,44 @@ scoring:
 # Budget: 6 hashtag × 25 post ≈ 150 risultati/giorno ≈ $10-12/mese
 # (attore apify~instagram-scraper, ~$2.3/1000 risultati).
 instagram:
-  # Pesati su COMPRATORI/geografia (dove postano agenti e acquirenti di
-  # lusso), non su appassionati di design. Il qualificatore a valle
-  # etichetta comunque ogni post buyer/partner/brand o lo scarta.
+  # Copertura ALLARGATA (2026-06-14): non solo annunci immobiliari, ma
+  # tutte le conversazioni che il target — chi vuole COSTRUIRE/ricostruire
+  # una villa di lusso a LA — legge e commenta. 6 aree: compra/vendita,
+  # design/architettura, ricostruzione/assicurazioni post-incendio,
+  # tipologia villa, lifestyle/Malibu. Lo scorer a valle (ig_viral_radar.py)
+  # valuta ogni post sulla domanda: "il target lo leggerebbe e My Villa
+  # può aggiungere un commento informato e gradito?" — non solo "è un
+  # annuncio?". Cura tu la lista: aggiungi/togli hashtag liberamente.
   hashtags:
+    # ── Compra/vendita (real estate di lusso LA) ──
     - MalibuRealEstate
     - LuxuryRealEstateLA
     - BeverlyHillsRealEstate
     - BelAirRealEstate
-    - MalibuLuxuryHomes
-    - ConcreteArchitecture   # unico tag "brand/design" tenuto
-  results_per_hashtag: 25
+    - LuxuryHomesLA
+    # ── Design / architettura ──
+    - LosAngelesArchitecture
+    - ConcreteArchitecture
+    - ModernArchitecture
+    - CaliforniaArchitecture
+    - CustomHome
+    - LuxuryInteriors
+    # ── Ricostruzione / assicurazioni post-incendio ──
+    - WildfireRebuild
+    - FireResistantHome
+    - RebuildLA
+    - CaliforniaWildfire
+    # ── Tipologia villa italiana/mediterranea ──
+    - ItalianVilla
+    - MediterraneanHome
+    # ── Lifestyle / Malibu ──
+    - MalibuLifestyle
+    - MalibuLife
+    - CaliforniaLiving
+    - CoastalLiving
+  # 18/hashtag × 22 hashtag ≈ 400 post/run; il pre-filtro engagement+
+  # keyword taglia la maggior parte prima dello scoring Claude.
+  results_per_hashtag: 18
   # Soglie "on-topic relaxed" (come per X): un post di nicchia con
   # 30 like vale più di uno generico con 500.
   min_likes: 30

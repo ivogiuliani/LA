@@ -2495,8 +2495,10 @@ def build_dashboard():
             "architecture_appreciation": "🏛 Architettura",
             "material_insight": "🧱 Materiali",
             "fire_insurance_insight": "🔥 Fire/Insurance",
+            "rebuild_recovery": "🏗 Ricostruzione",
             "market_observation": "📈 Mercato",
             "design_dialogue": "✏️ Design",
+            "lifestyle_resonance": "🌅 Lifestyle",
         }
         _ig_list = []
         for o in _ig_ops:

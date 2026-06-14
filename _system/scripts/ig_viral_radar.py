@@ -75,17 +75,37 @@ DEFAULT_MAX_AGE_DAYS = 21
 DEFAULT_MIN_RELEVANCE = 6
 SCORING_MODEL = "claude-haiku-4-5"
 
-# Niche keyword anchors for the cheap pre-filter (any hit → send to Claude)
+# Niche keyword anchors for the cheap pre-filter (any hit → send to Claude).
+# Broadened 2026-06-14 to cover all 6 conversation areas the target reads:
+# real estate, design/architecture, fire/insurance/rebuild, villa typology,
+# lifestyle/Malibu, coastal living.
 NICHE_KEYWORDS = (
+    # architecture / construction / materials
     "concrete", "calcestruzzo", "cemento", "reinforced", "architect",
     "architettura", "architecture", "villa", "modernist", "modern home",
-    "luxury home", "luxury real estate", "mansion", "estate", "new build",
-    "new construction", "custom home", "fire", "wildfire", "ember",
-    "insurance", "insurable", "fair plan", "resilient", "resilience",
-    "rebuild", "malibu", "beverly hills", "bel air", "pacific palisades",
-    "brentwood", "calabasas", "montecito", "courtyard", "facade", "stucco",
-    "italian", "mediterranean", "tadao", "ando", "brutalist", "minimalist",
-    "design", "interior", "listing", "for sale", "real estate", "property",
+    "custom home", "new build", "new construction", "build", "builder",
+    "construction", "renovation", "remodel", "courtyard", "facade", "stucco",
+    "tadao", "ando", "brutalist", "minimalist", "design", "designer",
+    "interior", "interiors", "structural", "steel", "glass", "timber",
+    # luxury real estate / market
+    "luxury home", "luxury real estate", "mansion", "estate", "compound",
+    "listing", "for sale", "just sold", "real estate", "property", "realtor",
+    "price per", "median", "market", "investment", "asset",
+    # fire / insurance / rebuild
+    "fire", "wildfire", "ember", "insurance", "insurable", "fair plan",
+    "resilient", "resilience", "rebuild", "rebuilding", "hardening",
+    "defensible", "non-combustible", "fire-resistant", "fire safe",
+    "palisades", "altadena", "eaton",
+    # villa typology / italian-mediterranean
+    "italian", "mediterranean", "tuscan", "courtyard", "pergola", "loggia",
+    # geography
+    "malibu", "beverly hills", "bel air", "pacific palisades", "brentwood",
+    "calabasas", "montecito", "los angeles", "westside", "trousdale",
+    "hollywood hills", "santa monica",
+    # lifestyle / coastal living (target audience signals)
+    "lifestyle", "coastal", "beachfront", "oceanfront", "canyon view",
+    "indoor outdoor", "wellness", "sustainable living", "dream home",
+    "home tour", "where i live", "california living", "luxury living",
 )
 
 
@@ -195,26 +215,48 @@ def passes_prefilter(p: dict, min_likes: int, min_comments: int,
 # ── Claude: relevance + comment in one call ──────────────────────────
 
 SYSTEM_PROMPT = """\
-You evaluate Instagram posts as engagement opportunities for My Villa
-(@myvilla.la), a luxury reinforced-concrete villa company in Los Angeles.
-My Villa's expertise: Italian villa typology, exposed reinforced concrete,
-fire-resilient / climate-responsive design, the California insurability
-crisis, and luxury Westside real estate (Malibu, Beverly Hills, Bel Air).
+You find Instagram engagement opportunities for My Villa (@myvilla.la), a
+luxury reinforced-concrete villa company in Los Angeles.
+
+THE AUDIENCE WE CARE ABOUT: ultra-high-net-worth people who are planning to
+BUILD, REBUILD, or BUY a luxury home on the LA Westside (Malibu, Beverly
+Hills, Bel Air, Pacific Palisades, Brentwood, Calabasas). They follow and
+comment on a WIDE range of content, not just listings:
+  • buying/selling luxury LA homes & the market
+  • architecture & design (modern, concrete, Italian/Mediterranean, interiors)
+  • fire resilience, the California insurance crisis, post-wildfire rebuilding
+  • the Malibu / coastal / canyon lifestyle, home tours, "where I live"
+  • design culture, materials, craftsmanship
+
+My Villa's voice can add value across ALL of these — not only real-estate
+listings. Score the post on this question: "Would our target audience read
+and engage with this, AND can My Villa contribute an informed, welcome
+comment?" A beautiful Malibu lifestyle reel, a post-fire rebuild story, an
+architecture appreciation post, or a market-trend post can ALL be high
+relevance — relevance is NOT limited to homes for sale.
 
 For each post decide:
 1) relevance 0-10 — how naturally could My Villa add an INFORMED, welcome
-   comment? HIGH: luxury LA homes, modern/concrete architecture, fire or
-   insurance pain, rebuild/new-construction, Italian/Mediterranean design.
-   LOW: generic lifestyle, pets, selfies, unrelated products, spam, giveaways.
+   comment that THIS audience would value?
+   HIGH (7-10): luxury LA homes/market, modern/concrete/Italian architecture,
+     fire-resilience or insurance/rebuild, design & materials, evocative
+     Malibu/coastal-living content where a thoughtful design observation fits.
+   MEDIUM (5-6): tangentially on-theme (general luxury lifestyle, interiors,
+     California living) where a genuine comment is still possible.
+   LOW (0-4): pets, selfies, food, fashion, unrelated products, spam,
+     giveaways, crypto, anything where a My Villa comment would feel random.
 2) angle — one of: "architecture_appreciation", "material_insight",
-   "fire_insurance_insight", "market_observation", "design_dialogue", "skip".
+   "fire_insurance_insight", "rebuild_recovery", "market_observation",
+   "design_dialogue", "lifestyle_resonance", "skip".
 3) comment — a SHORT Instagram comment (max ~150 chars) in My Villa's voice:
-   - genuinely additive, community-native, architecturally informed
+   - genuinely additive, community-native, informed by architecture/design
+   - match the post's register: for a lifestyle/coastal post, lead with the
+     living experience (light, indoor-outdoor, materials) not a sales angle
    - NEVER salesy, no links, no "DM us", no @myvilla.la self-tag
    - no forbidden words: bunker, fortress, fireproof, dream home, or fear
      language ("protect your family", "survive the next fire")
    - English. Sound like a knowledgeable peer, not an ad.
-   If relevance < 4 or angle is "skip", set comment to "" and explain in
+   If relevance < 5 or angle is "skip", set comment to "" and explain in
    skip_reason.
 
 skip_reason MUST be ONE short clause, max 12 words. Do not elaborate.
