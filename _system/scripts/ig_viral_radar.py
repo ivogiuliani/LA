@@ -15,8 +15,14 @@ Pipeline:
   1. Scrape configured hashtags via Apify (apify~instagram-hashtag-scraper)
   2. Heuristic pre-filter (engagement threshold + on-niche keywords) — cheap,
      keeps Claude spend low
-  3. Claude Haiku scores each survivor 0-10 for relevance AND, in the same
-     call, drafts a comment + classifies the engagement angle
+  3. Claude Haiku (VISION) scores each survivor 0-10 for relevance AND, in the
+     same call, drafts a comment + classifies the engagement angle. The post
+     IMAGE is sent with the caption so judgement is on what's actually built,
+     not the seller's pitch. Two hard brand rules: we comment on others' posts
+     ONLY as a positive peer — never critical/cautionary (don't scare a
+     seller's buyers), and never praise a quality the post doesn't have (don't
+     congratulate a visibly wood-framed build as fire-resilient/concrete). When
+     we can't be honestly positive AND on-brand → skip.
   4. Download thumbnails for the dashboard
   5. Dedup against history (already-surfaced shortcodes never reappear)
   6. Write _system/social/viral/ig_viral_<YYYY-MM-DD>.json + update the
@@ -216,78 +222,131 @@ def passes_prefilter(p: dict, min_likes: int, min_comments: int,
 
 SYSTEM_PROMPT = """\
 You find Instagram engagement opportunities for My Villa (@myvilla.la), a
-luxury reinforced-concrete villa company in Los Angeles.
+luxury reinforced-CONCRETE villa company in Los Angeles. We build and stand
+for fire-resilient, insurable, concrete construction and serious design.
 
-THE AUDIENCE WE CARE ABOUT: ultra-high-net-worth people who are planning to
-BUILD, REBUILD, or BUY a luxury home on the LA Westside (Malibu, Beverly
-Hills, Bel Air, Pacific Palisades, Brentwood, Calabasas). They follow and
-comment on a WIDE range of content, not just listings:
-  • buying/selling luxury LA homes & the market
-  • architecture & design (modern, concrete, Italian/Mediterranean, interiors)
-  • fire resilience, the California insurance crisis, post-wildfire rebuilding
-  • the Malibu / coastal / canyon lifestyle, home tours, "where I live"
-  • design culture, materials, craftsmanship
+You are shown each post's IMAGE and its caption. Judge BOTH — the image tells
+you what is actually being built or sold; the caption is just the seller's pitch.
 
-My Villa's voice can add value across ALL of these — not only real-estate
-listings. Score the post on this question: "Would our target audience read
-and engage with this, AND can My Villa contribute an informed, welcome
-comment?" A beautiful Malibu lifestyle reel, a post-fire rebuild story, an
-architecture appreciation post, or a market-trend post can ALL be high
-relevance — relevance is NOT limited to homes for sale.
+WHO WE WANT TO REACH: ultra-high-net-worth people planning to BUILD, REBUILD,
+or BUY a luxury home on the LA Westside (Malibu, Beverly Hills, Bel Air,
+Pacific Palisades, Brentwood, Calabasas). They follow listings, architecture &
+design, the fire/insurance/rebuild conversation, and the coastal lifestyle.
 
-For each post decide:
-1) relevance 0-10 — how naturally could My Villa add an INFORMED, welcome
-   comment that THIS audience would value?
-   HIGH (7-10): luxury LA homes/market, modern/concrete/Italian architecture,
-     fire-resilience or insurance/rebuild, design & materials, evocative
-     Malibu/coastal-living content where a thoughtful design observation fits.
-   MEDIUM (5-6): tangentially on-theme (general luxury lifestyle, interiors,
-     California living) where a genuine comment is still possible.
-   LOW (0-4): pets, selfies, food, fashion, unrelated products, spam,
-     giveaways, crypto, anything where a My Villa comment would feel random.
+HOW WE COMMENT — read this twice. We comment on someone else's post ONLY as a
+GENEROUS, POSITIVE PEER, and ONLY when we can say something TRUE and aligned
+with what My Villa stands for. Two HARD rules. Breaking either makes us look
+bad and can damage the other account — that is far worse than staying silent:
+
+  RULE 1 — NEVER critical, cautionary, or doubt-casting. Especially on a
+  seller's / agent's / builder's post. Do NOT raise risks, concerns, "the one
+  thing I'd watch", Zone-0 / defensible-space / clearance / framing /
+  insurability / underwriting caveats — nothing that could scare their buyers
+  or imply their property is deficient in ANY way (insurability, build quality,
+  fire risk, value). We never create doubt about someone else's home. If the
+  only substantive thing we could add is a caveat or a "but" → SKIP.
+
+  RULE 2 — NEVER praise a quality the post does not actually have. Affirm ONLY
+  what you can VERIFY in the image or caption. If the building is visibly
+  WOOD-FRAMED (timber studs, plywood/OSB sheathing, stick framing) do NOT call
+  it fire-resilient, insurable, resilient, or concrete — that is dishonest and
+  makes us look foolish. Praising a combustible, hard-to-insure build for
+  "resilience" mocks our own message → SKIP. Same for generic / low-quality
+  work: if there is nothing genuinely admirable, do not invent it → SKIP.
+
+WE HAVE A REAL OPPORTUNITY ONLY IF we can honestly affirm something ALIGNED
+with My Villa — at least one of:
+  • genuine architectural / design quality that is actually visible in the image
+  • concrete / masonry / ICF / steel / non-combustible construction that is
+    actually evident in the image or explicitly stated in the caption
+  • a project that genuinely prioritizes insurability / fire resilience
+  • OR a warm, NON-critical note on a shared theme (great design, the coastal
+    living experience, the rebuild as a collective effort) that praises the
+    post without judging anyone's specific property.
+If none of these is honestly available, it is NOT an opportunity → SKIP.
+
+For each post output:
+1) relevance 0-10 = how well can My Villa leave an HONEST, POSITIVE, on-brand
+   comment here? A post can be perfectly on-topic and still score LOW if the
+   only honest comment would be a caveat, or if praising it would mean claiming
+   qualities it does not have (e.g. a visibly wood-framed rebuild).
+   HIGH (7-10): we can sincerely admire real design quality, or recognize real
+     concrete / non-combustible / insurable construction, and add an informed,
+     welcome, positive note.
+   MEDIUM (5-6): a genuine, positive, non-critical comment is possible on a
+     shared theme without over-claiming.
+   LOW (0-4): we'd have to criticize or caveat; OR praise something we cannot
+     verify / that contradicts our values (wood-frame sold as resilient); OR
+     it's off-niche / spam / giveaway / generic.
+   DEFAULT TO LOW WHEN UNSURE — a skipped post costs nothing; a tone-deaf or
+   dishonest comment costs reputation and can hurt the other account.
 2) angle — one of: "architecture_appreciation", "material_insight",
    "fire_insurance_insight", "rebuild_recovery", "market_observation",
    "design_dialogue", "lifestyle_resonance", "skip".
 3) comment — a SHORT Instagram comment (max ~150 chars) in My Villa's voice:
-   - genuinely additive, community-native, informed by architecture/design
-   - match the post's register: for a lifestyle/coastal post, lead with the
-     living experience (light, indoor-outdoor, materials) not a sales angle
+   - warm, specific, peer-to-peer; praise ONLY what is genuinely there
+   - match the post's register (lifestyle post → the living experience, not sales)
+   - NEVER a caveat, warning, risk note, or comparison; nothing that diminishes
+     the post or worries the reader
    - NEVER salesy, no links, no "DM us", no @myvilla.la self-tag
    - no forbidden words: bunker, fortress, fireproof, dream home, or fear
      language ("protect your family", "survive the next fire")
-   - English. Sound like a knowledgeable peer, not an ad.
-   If relevance < 5 or angle is "skip", set comment to "" and explain in
-   skip_reason.
+   - English. A gracious, knowledgeable peer — not an ad, not a critic.
+   If relevance < 5 or angle is "skip", set comment to "" and give skip_reason.
 
 skip_reason MUST be ONE short clause, max 12 words. Do not elaborate.
 
-Output ONLY compact JSON on a single line:
+Output ONLY the JSON object — no prose before or after, no code fences, one line:
 {"relevance": <int>, "angle": "<...>", "comment": "<...>", "skip_reason": "<short or empty>"}
 """
 
 
-def score_and_comment(post: dict, model: str = SCORING_MODEL) -> dict | None:
+def score_and_comment(post: dict, model: str = SCORING_MODEL,
+                      img_bytes: bytes | None = None,
+                      img_media_type: str = "image/jpeg") -> dict | None:
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
         return None
     cap = (post.get("caption") or "").strip()
-    user = (
-        f"Hashtag found under: #{post.get('source_hashtag','')}\n"
-        f"Author: @{post.get('owner','')}\n"
-        f"Likes: {post.get('likes')}  Comments: {post.get('comments')}\n"
-        f"Location: {post.get('location','')}\n"
-        f"Caption:\n\"\"\"\n{cap[:700]}\n\"\"\"\n\n"
-        f"Evaluate as a My Villa comment opportunity."
-    )
+    lines = [
+        f"Hashtag found under: #{post.get('source_hashtag','')}",
+        f"Author: @{post.get('owner','')}",
+        f"Likes: {post.get('likes')}  Comments: {post.get('comments')}",
+        f"Location: {post.get('location','')}",
+        f"Caption:\n\"\"\"\n{cap[:700]}\n\"\"\"",
+        "",
+    ]
+    if img_bytes:
+        # The image is the decisive signal for RULE 2 (don't praise wood as
+        # concrete/fire-resilient) — tell the model to read it, not the pitch.
+        lines.append(
+            "The attached image is THIS post's actual photo. Judge the real "
+            "construction and design quality from it — e.g. visible wood/timber "
+            "framing & plywood sheathing vs concrete/masonry/steel. The caption "
+            "is the seller's pitch; trust your eyes over the words.")
+    lines.append("Evaluate as a My Villa comment opportunity.")
+    user_text = "\n".join(lines)
+
+    content = []
+    if img_bytes:
+        import base64
+        content.append({"type": "image", "source": {
+            "type": "base64", "media_type": img_media_type,
+            "data": base64.standard_b64encode(img_bytes).decode()}})
+    content.append({"type": "text", "text": user_text})
+
     try:
         client = anthropic.Anthropic(api_key=api_key)
         resp = client.messages.create(
             model=model, max_tokens=400, system=SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": user}], timeout=30)
+            messages=[{"role": "user", "content": content}], timeout=45)
         text = resp.content[0].text.strip()
-        if text.startswith("```"):
-            text = re.sub(r"^```(?:json)?\n?", "", text)
-            text = re.sub(r"\n?```$", "", text).strip()
+        # Vision responses sometimes fence the JSON and/or append prose
+        # ("**Why:** …") despite the single-line instruction. Extract the
+        # outermost {...} object before parsing so that never trips us up.
+        a, b = text.find("{"), text.rfind("}")
+        if a != -1 and b > a:
+            text = text[a:b + 1]
         r = json.loads(text)
         return {
             "relevance": max(0, min(10, int(r.get("relevance", 0)))),
@@ -300,21 +359,43 @@ def score_and_comment(post: dict, model: str = SCORING_MODEL) -> dict | None:
                 "skip_reason": f"scorer error: {type(e).__name__}"}
 
 
-# ── Thumbnails ───────────────────────────────────────────────────────
+# ── Images (vision scoring + dashboard thumbnails) ───────────────────
 
-def download_thumb(post: dict) -> str | None:
-    url = post.get("image_url")
+def _sniff_media_type(data: bytes) -> str:
+    """Anthropic accepts jpeg/png/webp/gif. IG is almost always jpeg."""
+    if data[:3] == b"\xff\xd8\xff":
+        return "image/jpeg"
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        return "image/png"
+    if data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        return "image/webp"
+    if data[:6] in (b"GIF87a", b"GIF89a"):
+        return "image/gif"
+    return "image/jpeg"
+
+
+def fetch_image_bytes(url: str | None, timeout: int = 20):
+    """→ (bytes, media_type) | (None, None). Fetched ONCE per scored post and
+    reused for both the vision call and the keeper's dashboard thumbnail."""
     if not url:
-        return None
-    THUMBS_DIR.mkdir(parents=True, exist_ok=True)
-    dst = THUMBS_DIR / f"{post['shortcode']}.jpg"
-    if dst.exists() and dst.stat().st_size > 1024:
-        return str(dst.relative_to(ROOT_DIR))
+        return None, None
     try:
         req = urllib.request.Request(
             url, headers={"User-Agent": "Mozilla/5.0 (MyVilla viral radar)"})
-        with urllib.request.urlopen(req, timeout=30) as r:
-            dst.write_bytes(r.read())
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            data = r.read()
+        if not data or len(data) < 512:
+            return None, None
+        return data, _sniff_media_type(data)
+    except Exception:
+        return None, None
+
+
+def save_thumb_bytes(shortcode: str, data: bytes) -> str | None:
+    try:
+        THUMBS_DIR.mkdir(parents=True, exist_ok=True)
+        dst = THUMBS_DIR / f"{shortcode}.jpg"
+        dst.write_bytes(data)
         return str(dst.relative_to(ROOT_DIR))
     except Exception:
         return None
@@ -399,28 +480,31 @@ def main():
     print(f"\n  {len(shaped)} posts pass pre-filter "
           f"({len(seen_now)} unique scraped, {len(seen)} already seen)")
 
-    # 3. Score + comment
-    print(f"  Scoring with {SCORING_MODEL}…")
+    # 3. Score + comment (VISION). The post image is fetched once and reused
+    #    for the keeper's thumbnail, so the honesty rule "don't praise a
+    #    wood-frame build as concrete/fire-resilient" is judged on what's
+    #    actually built, not on the seller's caption.
+    print(f"  Scoring with {SCORING_MODEL} (vision)…")
     kept = []
     for s in shaped:
-        r = score_and_comment(s)
+        img_bytes, media_type = fetch_image_bytes(s.get("image_url"))
+        r = score_and_comment(s, img_bytes=img_bytes,
+                              img_media_type=media_type or "image/jpeg")
         if not r:
             continue
         s.update({"relevance_score": r["relevance"], "angle": r["angle"],
                   "comment": r["comment"], "skip_reason": r["skip_reason"]})
         if r["relevance"] >= args.min_relevance and r["comment"]:
+            if not args.dry_run and img_bytes:
+                s["local_thumbnail"] = save_thumb_bytes(s["shortcode"], img_bytes)
             kept.append(s)
+            vflag = "" if img_bytes else "  ⚠no-img(text-only)"
             print(f"    {r['relevance']:2d}/10 [{r['angle']:22}] @{s['owner'][:18]:18} "
-                  f"{s['caption_excerpt'][:40]}")
+                  f"{s['caption_excerpt'][:40]}{vflag}")
+        time.sleep(0.1)
 
     kept.sort(key=lambda x: (-(x["relevance_score"] or 0),
                              -(x["likes"] or 0), -(x["comments"] or 0)))
-
-    # 4. Thumbnails (only for keepers)
-    if not args.dry_run:
-        for s in kept:
-            s["local_thumbnail"] = download_thumb(s)
-            time.sleep(0.15)
 
     # 5. Persist + update seen
     out = {
