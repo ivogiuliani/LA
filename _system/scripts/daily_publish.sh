@@ -251,6 +251,20 @@ else
     log "--- generate_social.py — SKIP (radar non disponibile) ---"
 fi
 
+# Step 3c: ig_viral_radar — scopre post IG virali altrui in nicchia e
+# prepara un commento pronto (copia-incolla) per ognuno. NON dipende dal
+# radar (usa Apify direttamente). NON auto-pubblica nulla: produce solo
+# opportunità da consultare nel pannello (sezione "📷 Instagram —
+# Commenti a post virali"). Salta se il token Apify manca. Non-bloccante.
+if grep -q "^APIFY_API_TOKEN=" .env 2>/dev/null; then
+    log "--- ig_viral_radar.py (commenti a post virali IG) ---"
+    run_with_timeout 600 python3 _system/scripts/ig_viral_radar.py \
+        --min-relevance 5 >> "$LOG_FILE" 2>&1 || \
+        log "ig_viral_radar errore non bloccante (continuo)"
+else
+    log "--- ig_viral_radar.py — SKIP (APIFY_API_TOKEN assente) ---"
+fi
+
 # Step 4: feature_pitch — non-bloccante
 log "--- feature_pitch.py $FP_DRY ---"
 python3 _system/scripts/feature_pitch.py $FP_DRY >> "$LOG_FILE" 2>&1 || \
