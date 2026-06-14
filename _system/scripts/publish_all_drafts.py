@@ -2272,30 +2272,34 @@ def main(argv=None):
             except Exception as e:  # noqa: BLE001
                 print(f"  ~ companion IG: {type(e).__name__} (non fatale)")
 
-    # Companion X (Twitter) automatico — mirror dell'IG: crea
-    # blog/<slug>.x.md (tweet ≤280 con link all'articolo). Chiude la
-    # falla per cui gli articoli uscivano su IG ma non su X. Non-fatale.
-    if published and not args.dry_run:
-        for p_ in published:
-            slug = p_.get("slug", "")
-            sidecar = BLOG_DIR / f"{slug}.json"
-            companion = BLOG_DIR / f"{slug}.x.md"
-            if not slug or not sidecar.exists() or companion.exists():
+    # Self-healing companion sweep — GARANZIA "c'è sempre tutto": ogni
+    # articolo pubblicato di RECENTE (≤7g, la stessa finestra di freschezza
+    # del pannello) deve avere ENTRAMBI i companion, .ig.md e .x.md. Genera
+    # i mancanti — copre i nuovi articoli, le generazioni fallite e la
+    # transizione; oltre i 7g non serve (il pannello li filtrerebbe). Gira
+    # su entrambi i rail (è in publish_all_drafts, Mac + Actions).
+    if not args.dry_run:
+        import time as _t
+        _cutoff = _t.time() - 7 * 86400
+        for _sidecar in sorted(BLOG_DIR.glob("*.json")):
+            _slug = _sidecar.stem
+            _html = BLOG_DIR / f"{_slug}.html"
+            if not _html.exists() or _html.stat().st_mtime < _cutoff:
                 continue
-            try:
-                r = subprocess.run(
-                    [sys.executable,
-                     str(SCRIPT_DIR / "generate_x_companion.py"),
-                     "--article", str(sidecar),
-                     "--output", str(companion)],
-                    capture_output=True, text=True, timeout=120,
-                )
-                if r.returncode == 0:
-                    print(f"  ✓ companion X: {companion.name}")
-                else:
-                    print(f"  ~ companion X fallito per {slug} (non fatale)")
-            except Exception as e:  # noqa: BLE001
-                print(f"  ~ companion X: {type(e).__name__} (non fatale)")
+            for _ext, _script in ((".ig.md", "generate_ig_companion.py"),
+                                  (".x.md", "generate_x_companion.py")):
+                _comp = BLOG_DIR / f"{_slug}{_ext}"
+                if _comp.exists():
+                    continue
+                try:
+                    subprocess.run(
+                        [sys.executable, str(SCRIPT_DIR / _script),
+                         "--article", str(_sidecar), "--output", str(_comp)],
+                        capture_output=True, text=True, timeout=120)
+                    if _comp.exists():
+                        print(f"  ✓ companion ripristinato: {_comp.name}")
+                except Exception:  # noqa: BLE001
+                    pass
 
     # Rebuild indices and push if at least one article moved (or dry run for preview).
     pushed_sha = ""
