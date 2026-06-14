@@ -233,6 +233,15 @@ def _move_to_published(path: Path, fm: dict, body: str,
     dest = PUBLISHED_DIR / path.name
     dest.write_text(new_raw, encoding="utf-8")
     path.unlink()
+    # Ledger condiviso: il pannello e lo sweep self-healing non riproporranno
+    # questo contenuto (companion → chiave slug, reattivi → fingerprint testo).
+    try:
+        import social_ledger
+        social_ledger.record(_channel(fm), text=body,
+                             slug=fm.get("journal_slug"),
+                             url=result.get("url", ""), note="ig_publisher")
+    except Exception:  # noqa: BLE001
+        pass
     return dest
 
 

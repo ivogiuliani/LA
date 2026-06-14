@@ -2286,11 +2286,23 @@ def main(argv=None):
             _html = BLOG_DIR / f"{_slug}.html"
             if not _html.exists() or _html.stat().st_mtime < _cutoff:
                 continue
-            for _ext, _script in ((".ig.md", "generate_ig_companion.py"),
-                                  (".x.md", "generate_x_companion.py")):
+            for _ext, _script, _ch in (
+                    (".ig.md", "generate_ig_companion.py", "ig"),
+                    (".x.md", "generate_x_companion.py", "x")):
                 _comp = BLOG_DIR / f"{_slug}{_ext}"
                 if _comp.exists():
                     continue
+                # Già pubblicato (companion spostato fuori da blog/ dopo il
+                # publish)? NON rigenerarlo: tornerebbe nel pannello come bozza
+                # e X lo rifiuterebbe come duplicato. Il ledger lo ricorda per
+                # slug+canale anche dopo lo spostamento — rompe il loop alla
+                # fonte ed evita una chiamata Anthropic sprecata.
+                try:
+                    import social_ledger
+                    if social_ledger.is_published(_ch, slug=_slug):
+                        continue
+                except Exception:  # noqa: BLE001
+                    pass
                 try:
                     subprocess.run(
                         [sys.executable, str(SCRIPT_DIR / _script),

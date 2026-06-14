@@ -202,7 +202,13 @@ def publish_to_x(text):
                 detail = errors[0].get("message", detail)
         except json.JSONDecodeError:
             detail = error_body[:200]
-        return {"ok": False, "error": f"X API error ({e.code}): {detail}"}
+        out = {"ok": False, "error": f"X API error ({e.code}): {detail}"}
+        # 403 "duplicate content" means the tweet is ALREADY live on X. For
+        # our queue that's proof-of-published, not a failure to retry — flag
+        # it so the panel clears the card instead of looping on it forever.
+        if e.code == 403 and "duplicate" in detail.lower():
+            out["duplicate"] = True
+        return out
     except Exception as e:
         return {"ok": False, "error": f"Network error: {e}"}
 

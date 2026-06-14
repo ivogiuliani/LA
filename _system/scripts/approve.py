@@ -979,6 +979,19 @@ def _parse_social_file(f):
     if not score:
         score = 13 if is_companion else 10
 
+    # Già pubblicato? Un companion che lo sweep self-healing ha rigenerato (o
+    # un post il cui contenuto è già live) NON deve riapparire nel pannello:
+    # X rifiuterebbe il duplicato e l'utente vedrebbe solo un errore rosso. Il
+    # ledger lo ricorda anche dopo che il file sorgente è stato spostato o
+    # rigenerato — chiave slug+canale (regge le riscritture) o fingerprint.
+    journal_slug = frontmatter.get("journal_slug", "")
+    try:
+        import social_ledger
+        if social_ledger.is_published(channel, text=body, slug=journal_slug):
+            return None
+    except Exception:  # noqa: BLE001 — il ledger non deve mai bloccare lo scan
+        pass
+
     is_reddit = channel.strip().lower().startswith("reddit")
     return {
         "file": f.name,
@@ -992,7 +1005,7 @@ def _parse_social_file(f):
         # as-is). Per X/IG basta l'anteprima a 500 char.
         "body": body if is_reddit else body[:500],
         "image_url": _social_image_preview(frontmatter),
-        "journal_slug": frontmatter.get("journal_slug", ""),
+        "journal_slug": journal_slug,
         "article_url": frontmatter.get("article_url", ""),
         "subreddit": frontmatter.get("subreddit", ""),
         "title": frontmatter.get("title", ""),
@@ -9721,28 +9734,34 @@ class ReviewHandler(BaseHTTPRequestHandler):
 
         platform = platform.lower().strip()
 
+        # Leggi una volta il frontmatter del draft: serve journal_slug (chiave
+        # ledger "già pubblicato", stabile alle rigenerazioni del companion) e,
+        # per IG, l'immagine pubblica (il JS del pannello non la manda).
+        src = find_social_source(filename)
+        fm = {}
+        if src and src.exists():
+            try:
+                raw = src.read_text(encoding="utf-8", errors="replace")
+                m = re.match(r"^---\s*\n(.*?)\n---\s*\n", raw, re.DOTALL)
+                if m:
+                    for line in m.group(1).splitlines():
+                        kv = line.split(":", 1)
+                        if len(kv) == 2:
+                            fm[kv[0].strip()] = kv[1].strip().strip('"').strip("'")
+            except Exception:  # noqa: BLE001
+                fm = {}
+        slug = fm.get("journal_slug", "")
+
         if platform in ("x", "twitter"):
+            ledger_channel = "x"
             result = publish_to_x(text)
         elif platform in ("instagram", "ig"):
-            # The dashboard JS doesn't send image_url, but IG feed posts
-            # require a public image. Resolve it from the draft frontmatter
-            # (image: path or journal_slug → hero) into the public
-            # https://myvilla.la/... URL via the same helper the card uses.
+            ledger_channel = "ig"
+            # IG feed posts require a public image; resolve it from the draft
+            # frontmatter (image: path or journal_slug → hero) when the JS
+            # didn't send one.
             if not image_url:
-                src = find_social_source(filename)
-                if src and src.exists():
-                    try:
-                        raw = src.read_text(encoding="utf-8", errors="replace")
-                        fm = {}
-                        m = re.match(r"^---\s*\n(.*?)\n---\s*\n", raw, re.DOTALL)
-                        if m:
-                            for line in m.group(1).splitlines():
-                                kv = line.split(":", 1)
-                                if len(kv) == 2:
-                                    fm[kv[0].strip()] = kv[1].strip().strip('"').strip("'")
-                        image_url = _social_image_preview(fm)
-                    except Exception:
-                        image_url = ""
+                image_url = _social_image_preview(fm)
             result = publish_to_instagram(text, image_url=image_url or None)
         else:
             self._send_json(
@@ -9751,14 +9770,41 @@ class ReviewHandler(BaseHTTPRequestHandler):
             )
             return
 
-        if result.get("ok"):
-            # Move to approved after successful publish
-            src = find_social_source(filename) or (DRAFTS_DIR / "social" / filename)
+        # Un 403 "duplicate content" da X significa che il post è GIÀ live:
+        # trattalo come pubblicato (togli la card + registra nel ledger)
+        # invece di un errore rosso su cui l'utente ciclerebbe all'infinito.
+        already_live = bool(result.get("duplicate"))
+
+        if result.get("ok") or already_live:
+            # Registra nel ledger così non riappare — neanche se lo sweep
+            # self-healing rigenera il companion dopo che l'abbiamo spostato.
+            try:
+                import social_ledger
+                social_ledger.record(
+                    ledger_channel, text=text, slug=slug,
+                    url=result.get("url", ""),
+                    note="duplicate-on-x" if already_live else "panel-publish",
+                )
+            except Exception:  # noqa: BLE001
+                pass
+            # Sposta il draft fuori dalle sorgenti di scan.
+            move_src = src or (DRAFTS_DIR / "social" / filename)
             approved_dir = SYSTEM_DIR / "social" / "posts" / "approved"
             approved_dir.mkdir(parents=True, exist_ok=True)
-            if src.exists():
-                shutil.move(str(src), str(approved_dir / filename))
-                print(f"  Published & approved: {filename} -> {platform}")
+            if move_src.exists():
+                shutil.move(str(move_src), str(approved_dir / filename))
+                verb = "già live (duplicate)" if already_live else "pubblicato"
+                print(f"  {verb} & rimosso dalla coda: {filename} -> {platform}")
+
+        if already_live and not result.get("ok"):
+            # Non è un fallimento: è già fatto. Risposta verde, niente rosso.
+            self._send_json({
+                "ok": True,
+                "duplicate": True,
+                "message": "Già pubblicato su X — rimosso dalla coda.",
+                "url": result.get("url", ""),
+            }, 200)
+            return
 
         status = 200 if result.get("ok") else (400 if result.get("needs_setup") else 500)
         self._send_json(result, status)

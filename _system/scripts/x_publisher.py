@@ -271,6 +271,14 @@ def _mark_published(path, fm, body, info):
         path.unlink()
     _append_log({"date": datetime.now().strftime("%Y-%m-%d"),
                  "id": info["id"], "url": info["url"], "draft": path.name})
+    # Ledger condiviso: il pannello e lo sweep self-healing non riproporranno
+    # questo contenuto (companion → chiave slug, reattivi → fingerprint testo).
+    try:
+        import social_ledger
+        social_ledger.record("x", text=body, slug=fm.get("journal_slug"),
+                             url=info.get("url", ""), note="x_publisher")
+    except Exception:  # noqa: BLE001
+        pass
 
 
 def publish_text(text, *, live, draft=None):
