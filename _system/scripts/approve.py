@@ -1926,6 +1926,7 @@ def build_dashboard():
               <button class="btn btn-approve" onclick="doAction('approve', '{_esc_js(d['file'])}', 'journal', this)">📝 Pubblica journal</button>
               <button class="btn btn-approve-ig btn-disabled" disabled
                       title="Da attivare quando l'account Instagram sarà configurato. Per ora il caption resta nel draft.">📷 Pubblica IG</button>
+              <button class="btn btn-reddit-gen" onclick="generateRedditPost('{_esc_js(d['file'])}', this)" title="Genera un self-post Reddit di questo articolo → compare nella sezione Reddit per l'approvazione (cap submission a parte)">🔥 Self-post Reddit</button>
               <button class="btn btn-reject" onclick="doAction('reject', '{_esc_js(d['file'])}', 'journal', this)">Cancella</button>
             </div>
           </div>
@@ -2000,6 +2001,8 @@ def build_dashboard():
             </div>
             <label style="{_lbl}">Subreddit</label>
             {sub_select}
+            <label style="{_lbl}">Flair <button type="button" class="reddit-flair-load" onclick="loadRedditFlairs(this)" style="font-size:0.7rem;padding:1px 7px;margin-left:6px;border:1px solid #e0d6c4;border-radius:6px;background:#fff;cursor:pointer;">↻ carica</button></label>
+            <select class="reddit-flair-select" style="{_fld}"><option value="">— nessuna flair —</option></select>
             <label style="{_lbl}">Titolo · <span class="reddit-title-count">{len(r_title)}</span>/300</label>
             <input class="reddit-title-input" type="text" maxlength="300" value="{_esc(r_title)}" oninput="updateRedditTitleCount(this)" style="{_fld}">
             <label style="{_lbl}">Corpo · self-post · il link va NEL testo (no link nudo)</label>
@@ -3693,6 +3696,7 @@ def build_dashboard():
   }}
   .btn-mini:disabled {{ opacity: 0.5; cursor: wait; }}
   .btn-ig-generate {{ background: rgba(176,48,96,0.12); }}
+  .btn-reddit-gen {{ background: rgba(255,69,0,0.10); }}
 
   /* ── Radar News cards ─────────────────────────────── */
   .section-subtitle {{
@@ -5773,6 +5777,8 @@ function publishRedditPost(file, btn) {{
   const sub = (card.querySelector('.reddit-sub-select') || {{}}).value || '';
   const title = (card.querySelector('.reddit-title-input') || {{}}).value || '';
   const body = (card.querySelector('.reddit-body-editor') || {{}}).value || '';
+  const flairEl = card.querySelector('.reddit-flair-select');
+  const flairId = flairEl ? flairEl.value : '';
   const subT = sub.trim(), titleT = title.trim(), bodyT = body.trim();
   if (!subT) {{ showToast('Scegli un subreddit'); return; }}
   if (!titleT) {{ showToast('Titolo mancante'); return; }}
@@ -5787,7 +5793,7 @@ function publishRedditPost(file, btn) {{
   fetch('/api/reddit-submit', {{
     method: 'POST',
     headers: {{'Content-Type': 'application/json'}},
-    body: JSON.stringify({{file: file, subreddit: subT, title: titleT, text: bodyT}})
+    body: JSON.stringify({{file: file, subreddit: subT, title: titleT, text: bodyT, flair_id: flairId}})
   }})
   .then(r => r.json())
   .then(d => {{
@@ -5820,6 +5826,67 @@ function publishRedditPost(file, btn) {{
   .catch(err => {{
     btn.disabled = false;
     btn.innerHTML = origHTML;
+    showToast('Network error: ' + err.message);
+  }});
+}}
+
+/* ── Reddit: carica i flair disponibili del subreddit selezionato ── */
+function loadRedditFlairs(btn) {{
+  const card = btn.closest('.card');
+  const subEl = card.querySelector('.reddit-sub-select');
+  const sub = (subEl ? subEl.value : '').trim();
+  if (!sub) {{ showToast('Scegli prima un subreddit'); return; }}
+  const sel = card.querySelector('.reddit-flair-select');
+  const orig = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '…';
+  fetch('/api/reddit-flairs', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{subreddit: sub}})
+  }})
+  .then(r => r.json())
+  .then(d => {{
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    if (!d.ok) {{ showToast(d.error || 'Errore nel caricare i flair'); return; }}
+    const flairs = d.flairs || [];
+    sel.innerHTML = '<option value="">— nessuna flair —</option>';
+    flairs.forEach(f => {{
+      const o = document.createElement('option');
+      o.value = f.id;
+      o.textContent = f.text || f.id;
+      sel.appendChild(o);
+    }});
+    showToast(flairs.length ? (flairs.length + ' flair caricate') : 'Questo subreddit non espone flair');
+  }})
+  .catch(err => {{
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    showToast('Network error: ' + err.message);
+  }});
+}}
+
+/* ── Reddit: genera un self-post da un articolo (dalla card journal) ── */
+function generateRedditPost(file, btn) {{
+  const orig = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Genero...';
+  fetch('/api/generate-reddit-post', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{file: file}})
+  }})
+  .then(r => r.json())
+  .then(d => {{
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    showToast(d.ok ? (d.message || 'Self-post Reddit creato — ricarica per vederlo nella sezione Reddit')
+                   : ('Errore: ' + (d.error || 'sconosciuto')));
+  }})
+  .catch(err => {{
+    btn.disabled = false;
+    btn.innerHTML = orig;
     showToast('Network error: ' + err.message);
   }});
 }}
@@ -8285,7 +8352,14 @@ class ReviewHandler(BaseHTTPRequestHandler):
         if parsed.path == "/api/reddit-submit":
             self._handle_reddit_submit(
                 data.get("file", ""), data.get("subreddit", ""),
-                data.get("title", ""), data.get("text", ""))
+                data.get("title", ""), data.get("text", ""),
+                data.get("flair_id", ""))
+            return
+        if parsed.path == "/api/reddit-flairs":
+            self._handle_reddit_flairs(data.get("subreddit", ""))
+            return
+        if parsed.path == "/api/generate-reddit-post":
+            self._handle_generate_reddit_post(data.get("file", ""))
             return
         if parsed.path == "/api/x-reply":
             self._handle_x_reply(
@@ -9875,7 +9949,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
             status = 400 if result.get("needs_setup") else 502
             self._send_json(result, status)
 
-    def _handle_reddit_submit(self, filename, subreddit, title, text):
+    def _handle_reddit_submit(self, filename, subreddit, title, text, flair_id=""):
         """Pubblica un self-post (un nostro articolo) su Reddit via API
         ufficiale (reddit_client.submit_self). Dopo il successo sposta il
         draft in social/posts/published/ — fuori dalle source dir di scan —
@@ -9891,7 +9965,8 @@ class ReviewHandler(BaseHTTPRequestHandler):
         try:
             sys.path.insert(0, str(SCRIPT_DIR))
             import reddit_client
-            result = reddit_client.submit_self(subreddit, title, text)
+            result = reddit_client.submit_self(
+                subreddit, title, text, flair_id=(flair_id or "").strip())
         except Exception as e:  # noqa: BLE001
             self._send_json({"ok": False,
                              "error": f"{type(e).__name__}: {e}"}, 500)
@@ -9912,6 +9987,76 @@ class ReviewHandler(BaseHTTPRequestHandler):
         else:
             status = 400 if result.get("needs_setup") else 502
             self._send_json(result, status)
+
+    def _handle_reddit_flairs(self, subreddit):
+        """Ritorna i flair disponibili per i post di un subreddit, per
+        popolare il <select> della card (reddit_client.get_link_flairs)."""
+        subreddit = (subreddit or "").strip()
+        if not subreddit:
+            self._send_json({"ok": False, "error": "subreddit mancante"}, 400)
+            return
+        try:
+            sys.path.insert(0, str(SCRIPT_DIR))
+            import reddit_client
+            result = reddit_client.get_link_flairs(subreddit)
+        except Exception as e:  # noqa: BLE001
+            self._send_json({"ok": False,
+                             "error": f"{type(e).__name__}: {e}"}, 500)
+            return
+        status = (200 if result.get("ok")
+                  else (400 if result.get("needs_setup") else 502))
+        self._send_json(result, status)
+
+    def _handle_generate_reddit_post(self, filename):
+        """Genera on-demand un self-post Reddit da un articolo Journal
+        (sidecar _drafts/journal/<stem>.json) → draft in _drafts/social/,
+        che compare nella sezione Reddit del pannello. On-demand e opt-in:
+        NON gira allo startup (a differenza dei companion IG)."""
+        filename = (filename or "").strip()
+        if not filename:
+            self._send_json({"ok": False, "error": "missing 'file'"}, 400)
+            return
+        safe = Path(filename).name
+        stem = (safe[:-5] if (safe.endswith(".json") or safe.endswith(".html"))
+                else Path(safe).stem)
+        article_json = DRAFTS_DIR / "journal" / f"{stem}.json"
+        if not article_json.exists():
+            self._send_json(
+                {"ok": False,
+                 "error": f"sidecar non trovato: {article_json.name}"}, 404)
+            return
+        try:
+            sys.path.insert(0, str(SCRIPT_DIR))
+            import generate_social as gs
+            article = json.loads(article_json.read_text(encoding="utf-8"))
+            if not article.get("slug"):
+                article["slug"] = stem
+            allowlist = gs.load_submission_allowlist()
+            posts = gs.generate_reddit_posts([article], allowlist)
+            if not posts:
+                self._send_json({"ok": False, "error":
+                    "il generatore non ha prodotto un self-post adatto "
+                    "(articolo poco adatto a Reddit o nessun subreddit "
+                    "dell'allowlist combacia)"}, 200)
+                return
+            rp = posts[0]
+            if not rp.get("slug"):
+                rp["slug"] = stem
+            today = datetime.now().strftime("%Y-%m-%d")
+            p = gs.save_reddit_draft(rp, today, DRAFTS_DIR / "social")
+            if not p:
+                self._send_json({"ok": False,
+                                 "error": "save_reddit_draft: campi mancanti"}, 500)
+                return
+            self._send_json({
+                "ok": True,
+                "subreddit": rp.get("subreddit"),
+                "file": p.name,
+                "message": f"Self-post per r/{rp.get('subreddit')} creato — "
+                           f"ricarica per vederlo nella sezione Reddit"})
+        except Exception as e:  # noqa: BLE001
+            self._send_json({"ok": False,
+                             "error": f"{type(e).__name__}: {e}"}, 500)
 
     def _handle_x_reply(self, url, text):
         """Reply a un tweet virale via X API. Vedi _x_engage."""

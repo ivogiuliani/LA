@@ -281,6 +281,44 @@ Return a JSON array:
 Return ONLY valid JSON, no markdown fences."""
 
 
+REDDIT_SUBMISSION_PROMPT = """\
+Draft a Reddit SELF-POST for each Journal article below, to share it in a \
+relevant subreddit. ALL text in English.
+
+Reddit is hostile to brand self-promotion. Each post MUST read like a \
+knowledgeable person contributing to a discussion — NOT marketing. Rules:
+- Pick the single best-fit subreddit for each article from THIS allowlist \
+ONLY: {allowlist}. If none fits well, set "subreddit": "" (it gets skipped).
+- TITLE: specific, discussion- or curiosity-driven, no clickbait, no \
+hashtags, no emoji, max 280 chars. Subs like fatFIRE / RealEstate / \
+homebuilding reward "here's what I learned / what I'd do" framing or a \
+genuine question.
+- BODY (self-post, markdown allowed): 120-250 words. LEAD with real \
+value/insight tied to the article's key data — do NOT open with the brand. \
+Write in first person plural as My Villa ("we", "at My Villa we…") only where \
+natural. Mention the article link ONCE, contextually, near the end: \
+"full write-up: https://myvilla.la/blog/{{slug}}.html". No hashtags. No salesy \
+CTA. Close with a question that invites discussion.
+- NEVER name any individual founder or person.
+- If the article is purely visual eye-candy with no discussion hook, prefer \
+"subreddit": "" — that belongs on Instagram, not Reddit.
+
+Articles:
+{articles_json}
+
+Return a JSON array (one object per GOOD-FIT article; omit poor fits entirely):
+[
+  {{
+    "index": 0,
+    "slug": "article-slug",
+    "subreddit": "fatFIRE",
+    "title": "Title without hashtags or emoji",
+    "body": "Value-first self-post body with the link contextual near the end."
+  }}
+]
+Return ONLY valid JSON, no markdown fences."""
+
+
 def generate_reactive_posts(items, model=_HEAVY_MODEL):
     """Generate reactive social posts from radar signals."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -360,6 +398,66 @@ def generate_companion_posts(articles, model=_HEAVY_MODEL):
         return []
 
 
+def _norm_sr(name):
+    """'r/fatFIRE' / ' FatFIRE ' → 'fatfire' (per il match con l'allowlist)."""
+    return (name or "").strip().removeprefix("r/").removeprefix("/r/").lower()
+
+
+def generate_reddit_posts(articles, allowlist, model=_HEAVY_MODEL):
+    """Genera self-post Reddit per gli articoli Journal, mirati all'allowlist
+    submission. → lista di {index, slug, subreddit, title, body}.
+
+    Solo i fit con subreddit IN allowlist e con titolo+corpo non vuoti
+    sopravvivono (il modello può restituire subreddit:"" per scartare i
+    pezzi puramente visivi, che su Reddit non hanno appiglio)."""
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
+        print("  [Reddit] No valid API key — skipping generation")
+        return []
+    if not allowlist:
+        print("  [Reddit] Nessun submission_subreddits in config — skip")
+        return []
+
+    client = anthropic.Anthropic(api_key=api_key)
+    articles_json = json.dumps([{
+        "index": i,
+        "slug": a.get("slug", ""),
+        "title": a.get("title", ""),
+        "excerpt": a.get("excerpt", ""),
+        "section": a.get("section", ""),
+        "key_data": a.get("key_data", []),
+    } for i, a in enumerate(articles)], indent=2)
+
+    prompt = REDDIT_SUBMISSION_PROMPT.format(
+        allowlist=", ".join(allowlist), articles_json=articles_json)
+
+    try:
+        response = client.messages.create(
+            model=model,
+            max_tokens=8192,
+            system=SOCIAL_SYSTEM_PROMPT,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        text = response.content[0].text.strip()
+        if text.startswith("```"):
+            text = re.sub(r'^```json?\n?', '', text)
+            text = re.sub(r'\n?```$', '', text)
+        posts = json.loads(text)
+    except Exception as e:  # noqa: BLE001
+        print(f"  [Reddit] Error: {e}")
+        return []
+
+    allow = {_norm_sr(s) for s in allowlist}
+    kept = [p for p in posts
+            if _norm_sr(p.get("subreddit")) in allow
+            and (p.get("title") or "").strip()
+            and (p.get("body") or "").strip()]
+    skipped = len(posts) - len(kept)
+    print(f"  [Reddit] Generated {len(kept)} submission draft(s)"
+          + (f" ({skipped} scartati/poco-fit)" if skipped else ""))
+    return kept
+
+
 # ══════════════════════════════════════════════════════════════════════
 # OUTPUT (Markdown with YAML frontmatter)
 # ══════════════════════════════════════════════════════════════════════
@@ -425,15 +523,20 @@ def attach_ig_image(item, slug):
 
 
 def save_post(post, post_type, date_str, output_dir, index,
-              image=None, source_url=None, radar_score=None):
-    """Save a social post as Markdown with YAML frontmatter."""
+              image=None, source_url=None, radar_score=None,
+              channels=("x", "instagram")):
+    """Save a social post as Markdown with YAML frontmatter.
+
+    `channels` filtra quali canali scrivere (default X+IG = comportamento
+    storico, invariato). Reddit ha un formato proprio (titolo + subreddit)
+    → vedi save_reddit_draft."""
     output_dir.mkdir(parents=True, exist_ok=True)
 
     slug = post.get("slug", f"post-{index}")
 
     # X/Twitter post
     x_content = post.get("x_post", "")
-    if x_content:
+    if x_content and "x" in channels:
         x_path = output_dir / f"{date_str}-x-{slug}.md"
         score_line = f"radar_score: {radar_score}\n" if radar_score else ""
         x_md = f"""---
@@ -453,7 +556,7 @@ char_count: {len(x_content)}
 
     # Instagram post
     ig_content = post.get("ig_caption", "")
-    if ig_content:
+    if ig_content and ("instagram" in channels or "ig" in channels):
         ig_path = output_dir / f"{date_str}-ig-{slug}.md"
         img_line = f"image: {image}\n" if image else ""
         url_line = f"url: {source_url}\n" if source_url else ""
@@ -475,9 +578,51 @@ status: draft
     return x_content, ig_content
 
 
+def save_reddit_draft(post, date_str, output_dir, radar_score=None):
+    """Scrive un draft self-post Reddit: _drafts/social/{date}-reddit-{slug}.md.
+    Frontmatter: channel/subreddit/title/status; il body è il corpo del post.
+    Il titolo è JSON-encoded (può contenere ':' → scalare YAML quotato)."""
+    slug = post.get("slug") or "post"
+    subreddit = (post.get("subreddit") or "").strip()
+    title = (post.get("title") or "").strip()
+    body = (post.get("body") or "").strip()
+    if not subreddit or not title or not body:
+        return None
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    path = output_dir / f"{date_str}-reddit-{slug}.md"
+    sc_line = f"radar_score: {radar_score}\n" if radar_score else ""
+    md = (
+        "---\n"
+        "channel: reddit\n"
+        "type: submission\n"
+        f"date: {date_str}\n"
+        f"slug: {slug}\n"
+        f"subreddit: {subreddit}\n"
+        f"title: {json.dumps(title, ensure_ascii=False)}\n"
+        "status: draft\n"
+        f"{sc_line}"
+        f"char_count: {len(body)}\n"
+        "---\n\n"
+        f"{body}\n"
+    )
+    path.write_text(md, encoding="utf-8")
+    return path
+
+
 # ══════════════════════════════════════════════════════════════════════
 # MAIN
 # ══════════════════════════════════════════════════════════════════════
+
+def load_submission_allowlist():
+    """Allowlist subreddit per le submission (radar-keywords.yml →
+    reddit.submission_subreddits). Vuota = nessuna submission generata."""
+    try:
+        cfg = load_yaml(CONFIG_DIR / "radar-keywords.yml")
+        return (cfg.get("reddit", {}) or {}).get("submission_subreddits", []) or []
+    except Exception:  # noqa: BLE001
+        return []
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -497,7 +642,14 @@ def main():
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--ledger", default=None,
                         help="Path to content_ledger.json")
+    parser.add_argument("--channels", default="x,instagram",
+                        help="Canali da generare, csv (default: x,instagram). "
+                             "Aggiungi 'reddit' per i self-post degli articoli "
+                             "(richiede --articles).")
     args = parser.parse_args()
+
+    channels = {c.strip().lower() for c in (args.channels or "").split(",")
+                if c.strip()} or {"x", "instagram"}
 
     today = datetime.now().strftime("%Y-%m-%d")
     print(f"\nMy Villa — Social Post Generator")
@@ -547,7 +699,8 @@ def main():
                     save_post(post, "reactive", today, output_dir, idx,
                               image=ig_img, source_url=item.get("url"),
                               radar_score=(item.get("ai_score")
-                                           or item.get("preliminary_score")))
+                                           or item.get("preliminary_score")),
+                              channels=channels)
                 else:
                     x = post.get("x_post", "")
                     print(f"  [X] ({len(x)} chars) {x[:80]}...")
@@ -570,8 +723,28 @@ def main():
 
             for i, post in enumerate(posts):
                 if not args.dry_run:
-                    save_post(post, "companion", today, output_dir, i)
+                    save_post(post, "companion", today, output_dir, i,
+                              channels=channels)
                 all_posts.append(post)
+
+            # Reddit self-posts (submission) — additivo, solo se 'reddit' è
+            # tra i canali. Su account nuovo aspettarsi rimozioni: prima si
+            # costruisce karma coi commenti (vedi reddit_setup.md).
+            if "reddit" in channels:
+                allowlist = load_submission_allowlist()
+                reddit_posts = generate_reddit_posts(articles, allowlist,
+                                                     model=args.model)
+                for rp in reddit_posts:
+                    idx = rp.get("index", 0)
+                    if not rp.get("slug") and 0 <= idx < len(articles):
+                        rp["slug"] = articles[idx].get("slug", f"post-{idx}")
+                    if args.dry_run:
+                        print(f"  [Reddit] r/{rp.get('subreddit')} — "
+                              f"{(rp.get('title') or '')[:70]}")
+                    else:
+                        p = save_reddit_draft(rp, today, output_dir)
+                        if p:
+                            print(f"  [Reddit] draft → {p.name}")
 
     # Update ledger
     if not args.dry_run and all_posts:

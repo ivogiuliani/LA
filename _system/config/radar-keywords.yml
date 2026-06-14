@@ -317,6 +317,24 @@ reddit:
     - "contemporary villa California"
     - "California architect home"
 
+  # ── Submission allowlist (NOSTRI articoli, self-post) ──────────────
+  # ⚠️ DIVERSA dalla lista `subreddits` qui sopra (che è per ASCOLTO +
+  # commenti). Postare nostri articoli è la cosa più ban-prone su Reddit:
+  # qui SOLO i sub "discussione" che tollerano un self-post di valore
+  # (link nel corpo, contestualizzato — mai link nudo). I sub immagine/
+  # arte (architecture, InteriorDesign, ArchitecturePorn, DesignPorn,
+  # midcenturymodern, brutalism...) e i Q&A (Insurance, AskEngineers,
+  # HomeImprovement) NON vanno qui: nei primi il blogspam di brand viene
+  # rimosso da AutoModerator, nei secondi si partecipa commentando.
+  # NB account nuovo/poco karma: aspettarsi rimozioni finché non c'è
+  # storia — è normale, prima si costruisce karma con i commenti.
+  submission_subreddits:
+    - "fatFIRE"            # discussione wealth: writeup "ho costruito..." ok
+    - "RealEstate"         # grande sub discussione; self-post di expertise
+    - "homebuilding"       # build writeup + lezioni apprese, molto in tema
+    - "RichPeoplePF"       # nicchia wealth, più piccolo/severo: usare cautela
+    - "LuxuryRealEstate"   # bassa moderazione: l'unico dove un link-post regge
+
 
 # ── X/Twitter Sources ──
 twitter:

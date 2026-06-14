@@ -1,0 +1,62 @@
+{
+  "slug": "wildfire-rebuild-tracker-california-permits-2026",
+  "title": "California Wildfire Rebuild Tracker: Permits, Cost & Code in 2026",
+  "subtitle": "A new aggregator pulls permit counts, rebuild costs, and 2026 code changes into one view — and the data points to where material choice decides outcomes.",
+  "section": "permits",
+  "tag_label": "Permits & Policy",
+  "meta_description": "Wondering how California wildfire rebuild permits and costs are tracking in 2026? A new tracker consolidates permit counts, code changes, and insurance data in one place.",
+  "meta_keywords": "California wildfire rebuild tracker, fire-resistant home California, 2026 WUI Code, Palisades rebuild permits, Altadena rebuild cost, insurable home California, custom home Los Angeles",
+  "sources": [
+    {
+      "name": "Western Wildfire Defense",
+      "title": "California Wildfire Building Code & Insurance Tracker",
+      "url": "https://western-wildfire-defense.com/tracker/california/",
+      "type": "article",
+      "excerpt": "Aggregates recent reporting on rebuild progress, permit counts, and rebuild-cost trends across Pacific Palisades, Altadena, and Malibu, with attention to insurance and 2026 WUI Code compliance."
+    }
+  ],
+  "key_data": [
+    {
+      "number": "3",
+      "label": "Fire zones consolidated\nPalisades, Altadena, Malibu"
+    },
+    {
+      "number": "2026",
+      "label": "First full year of the\nCalifornia WUI Code"
+    }
+  ],
+  "our_perspective": "We watch trackers like this for a specific reason: they make rebuild decisions legible side by side. When permit counts, cost-per-square-foot ranges, and code milestones sit on one page, the question stops being \"how fast can I rebuild?\" and becomes \"what am I rebuilding into?\" Two homes can clear the same permit on the same street and arrive at opposite insurability outcomes, depending entirely on the assembly behind the drywall. We build in reinforced concrete — the material DGU has executed for the Kimbell Art Museum and Palazzo Grassi — because the structural decision is the one a tracker cannot reverse later. Everything downstream, from premiums to resale, inherits that first choice.",
+  "body_html": "<p class=\"reveal\">A new resource has emerged for owners and operators trying to make sense of California's rebuild landscape: a consolidated <a href=\"https://western-wildfire-defense.com/tracker/california/\">California Wildfire Building Code &amp; Insurance Tracker</a> from Western Wildfire Defense. Rather than scatter the story across municipal portals and news clippings, the tracker pulls recent reporting on rebuild progress, permit counts, and cost trends across Pacific Palisades, Altadena, and Malibu into a single view — explicitly cross-referencing insurance developments and compliance with the 2026 California WUI Code.</p>\n\n<p class=\"reveal\">The premise is simple but overdue. Rebuild data in California has lived in fragments: one agency tracks permits, another tracks insurance filings, a third tracks code adoption. The tracker's value is in the assembly itself — putting those threads next to one another so a decision-maker can read them together.</p>\n\n<h2 class=\"reveal\">Why aggregation matters now</h2>\n\n<p class=\"reveal\">According to the <a href=\"https://western-wildfire-defense.com/tracker/california/\">Western Wildfire Defense tracker</a>, the resource organizes recent coverage of three of the most-watched fire-affected geographies — Pacific Palisades, Altadena, and Malibu — around three intertwined variables: how many homes are actually moving through permitting, what those rebuilds cost, and whether they comply with the building-code regime that now governs new construction in Fire Hazard Severity Zones.</p>\n\n<div class=\"key-data\">\n<p><strong>3 fire zones</strong> — Palisades, Altadena, and Malibu reporting consolidated in one view, per the Western Wildfire Defense tracker.</p>\n<p><strong>2026</strong> — the first full operating year in which new builds in designated fire zones are governed by the updated California WUI Code.</p>\n</div>\n\n<p class=\"reveal\">That third variable is the one most likely to surprise owners reading the tracker for the first time. Permit velocity and cost-per-square-foot dominate the headlines, but the code-compliance column is where the two converge. A rebuild that satisfies the 2026 code on paper can still vary enormously in how it satisfies it — and that variation shows up later in insurability, not in the permit file.</p>\n\n<h2 class=\"reveal\">What it means for the LA market</h2>\n\n<p class=\"reveal\">For the Westside and coastal markets, a tracker like this quietly reframes the rebuild conversation. The early phase of any recovery is dominated by pace — who is back, how fast, at what cost. But as the <a href=\"https://western-wildfire-defense.com/tracker/california/\">tracker</a> juxtaposes permit data against insurance and code developments, the more durable question comes into focus: not how quickly a home is rebuilt, but what kind of home the data describes once it is finished.</p>\n\n<p class=\"pullquote\">Two homes can clear the same permit on the same street and arrive at opposite insurability outcomes.</p>\n\n<p class=\"reveal\">For high-value owners commissioning new construction — whether on a cleared lot or an undeveloped parcel — the lesson is that permit counts and rebuild costs are lagging indicators of decisions made far upstream. The compliance pathway chosen at the design stage determines whether a finished home reads to an underwriter as a routine risk or an exceptional one. A tracker can show you the market's average. It cannot make the average decision for you.</p>\n\n<p class=\"reveal\">The most useful way to read an aggregator like this, then, is not as a scoreboard but as a map of consequences. Each permit represents a structure whose material logic is now fixed for its lifetime — and the cost and insurance columns beside it are, in part, the downstream price of that logic.</p>\n\n<h2 class=\"reveal\">The signal in the noise</h2>\n\n<p class=\"reveal\">As California enters its first full year under the updated WUI Code, expect more resources like this to surface — and expect the smartest owners to read past the permit-velocity headline. The tracker's real contribution is that it forces three numbers that are usually discussed separately into the same frame, where their relationship becomes visible. That relationship, once seen, is hard to unsee.</p>",
+  "excerpt": "A new Western Wildfire Defense tracker consolidates rebuild permit counts, cost trends, and 2026 WUI Code compliance across Palisades, Altadena, and Malibu. The value isn't the scoreboard — it's seeing how pace, cost, and code converge on a single upstream decision.",
+  "image_prompt": "Architectural photography, muted warm tones: an overhead view of a reinforced concrete home under construction on a hillside lot in fire-affected California, exposed structural slab and walls catching late-afternoon light, surrounding cleared terrain, no people, calm and precise atmosphere.",
+  "topic_tags": [
+    "california-rebuild-tracker",
+    "wui-code-2026"
+  ],
+  "data_points_cited": [
+    "Western Wildfire Defense California Wildfire Building Code & Insurance Tracker consolidating Palisades, Altadena, and Malibu rebuild data",
+    "2026 as first full operating year under the updated California WUI Code for Fire Hazard Severity Zones"
+  ],
+  "read_time_min": 6,
+  "hero_image": {
+    "local_path": "/Users/ivogiuliani/Code/myvilla-la/blog/assets/img/wildfire-rebuild-tracker-california-permits-2026-hero.png",
+    "web_path": "assets/img/wildfire-rebuild-tracker-california-permits-2026-hero.png",
+    "photo_id": "src-0",
+    "author_name": "Western Wildfire Defense",
+    "author_url": "https://western-wildfire-defense.com/tracker/california/",
+    "unsplash_url": "https://western-wildfire-defense.com/tracker/california/",
+    "alt_description": "California Wildfire Building Code & Insurance Tracker",
+    "color": "#3e2f2b",
+    "source": "cited_source",
+    "origin": "source"
+  },
+  "_date": "2026-06-14",
+  "_section_id": "permits",
+  "_section_name": "Permits & Policy",
+  "_source_item": {
+    "title": "California Wildfire Building Code & Insurance Tracker",
+    "url": "https://western-wildfire-defense.com/tracker/california/",
+    "publication": "western-wildfire-defense.com",
+    "cluster": "rebuild_direct"
+  }
+}
