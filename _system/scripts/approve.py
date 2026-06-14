@@ -10149,9 +10149,20 @@ class ReviewHandler(BaseHTTPRequestHandler):
             low = (detail or "").lower()
             if code == 403 and ("not been mentioned" in low
                                 or "not allowed" in low):
-                msg = ("L'autore ha limitato chi può rispondere a questo post "
-                       "— @myvilla_la non può replicare. Usa 'Quote on X' "
-                       "(non soggetta al limite) o scegli un altro post.")
+                if quote:
+                    msg = ("X ha bloccato la quote. Causa probabile: non "
+                           "l'autore ma l'età dell'account — @myvilla_la è "
+                           "nuovo/freddo e X limita i nuovi account dal "
+                           "quotare/rispondere a sconosciuti (anti-spam). Si "
+                           "sblocca col tempo (età + follower + engagement; "
+                           "la verifica accelera). Per ora: 'Copy reply' e "
+                           "pubblica a mano.")
+                else:
+                    msg = ("X ha bloccato la reply: o l'autore ha ristretto le "
+                           "risposte, o (più probabile per un account nuovo) X "
+                           "limita @myvilla_la dal rispondere a sconosciuti "
+                           "finché non si scalda. Prova 'Copy reply' + manuale "
+                           "o un altro post.")
             elif code == 403:
                 msg = f"Operazione non consentita da X (403): {detail or err}"
             elif code == 429:
