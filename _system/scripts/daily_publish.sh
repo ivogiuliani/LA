@@ -33,6 +33,14 @@ cd "$PROJECT_ROOT" || exit 1
 # sleep del Mac — launchd esegue l'intervallo perso appena sveglio.
 TARGET_HOUR=8
 
+# Tetto di tempo per il radar. Una singola API lenta (es. x.ai/Grok che
+# manda dati col contagocce oltre il read-timeout per-richiesta, o rete
+# degradata con decine di chiamate) può tenere il radar appeso per ORE e
+# bloccare TUTTA la pipeline prima della digest — è quello che è successo
+# il 14/06 (report non arrivato). Oltre il tetto il radar viene ucciso e
+# si prosegue: la digest deve partire comunque.
+RADAR_MAX_SECONDS="${RADAR_MAX_SECONDS:-1500}"  # 25 min
+
 TODAY="$(date +%Y-%m-%d)"
 CURRENT_HOUR="$(date +%-H)"
 RADAR_FILE="_system/radar/reports/radar_${TODAY}.json"
@@ -45,6 +53,23 @@ mkdir -p "$LOG_DIR"
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
+}
+
+# Esegue un comando con un tetto di tempo (macOS non ha `timeout`).
+# Alla scadenza: SIGTERM, poi SIGKILL dopo 8s. La verifica del file
+# prodotto a valle decide se proseguire o saltare gli step dipendenti.
+run_with_timeout() {
+    local secs="$1"; shift
+    "$@" &
+    local cmd_pid=$!
+    ( sleep "$secs"; kill -TERM "$cmd_pid" 2>/dev/null
+      sleep 8; kill -KILL "$cmd_pid" 2>/dev/null ) &
+    local watch_pid=$!
+    wait "$cmd_pid" 2>/dev/null
+    local rc=$?
+    kill -TERM "$watch_pid" 2>/dev/null   # disarma il watchdog
+    wait "$watch_pid" 2>/dev/null
+    return $rc
 }
 
 # ── No-op #1: troppo presto (silenzioso) ───────────────────────────
@@ -94,25 +119,36 @@ if [ "$REMOTE_MARKER" = "$TODAY" ] || [ "$LOCAL_MARKER" = "$TODAY" ]; then
     exit 0
 fi
 
-# Step 1: radar di oggi. Se manca lo lanciamo noi (auto-sufficiente).
+# Step 1: radar di oggi. Se manca lo lanciamo noi (auto-sufficiente),
+# con tetto di tempo. Se non lo produce (timeout/rete) NON usciamo:
+# proseguiamo saltando solo gli step che dipendono dal radar — la
+# digest e l'outreach devono partire comunque.
+RADAR_OK=1
 if [ ! -f "$RADAR_FILE" ]; then
-    log "Radar di oggi non trovato — lancio radar.py..."
-    python3 _system/scripts/radar.py >> "$LOG_FILE" 2>&1
+    log "Radar di oggi non trovato — lancio radar.py (tetto ${RADAR_MAX_SECONDS}s)..."
+    run_with_timeout "$RADAR_MAX_SECONDS" python3 _system/scripts/radar.py >> "$LOG_FILE" 2>&1
     RADAR_EXIT=$?
     log "radar.py exit code: $RADAR_EXIT"
     if [ ! -f "$RADAR_FILE" ]; then
-        log "radar.py non ha prodotto $RADAR_FILE — skip pipeline."
-        log "=== daily_publish END (radar failed) ==="
-        exit 1
+        RADAR_OK=0
+        log "⚠ radar non ha prodotto $RADAR_FILE (timeout o rete)."
+        log "  Proseguo SENZA gli step che dipendono dal radar; digest e"
+        log "  outreach partono comunque (un radar appeso non deve più"
+        log "  bloccare il report giornaliero)."
     fi
 fi
-log "Radar trovato: $RADAR_FILE ($(stat -f '%z' "$RADAR_FILE") bytes)"
+[ "$RADAR_OK" = "1" ] && \
+    log "Radar trovato: $RADAR_FILE ($(stat -f '%z' "$RADAR_FILE") bytes)"
 
 # Step 1b: generate_radar_report — draft pitch + contatti editoriali +
-# dashboard HTML. Non-bloccante.
-log "--- generate_radar_report.py (draft + contatti + dashboard) ---"
-python3 _system/scripts/generate_radar_report.py --radar "$RADAR_FILE" \
-    >> "$LOG_FILE" 2>&1 || log "generate_radar_report errore non bloccante (continuo)"
+# dashboard HTML. Non-bloccante. Dipende dal radar.
+if [ "$RADAR_OK" = "1" ]; then
+    log "--- generate_radar_report.py (draft + contatti + dashboard) ---"
+    python3 _system/scripts/generate_radar_report.py --radar "$RADAR_FILE" \
+        >> "$LOG_FILE" 2>&1 || log "generate_radar_report errore non bloccante (continuo)"
+else
+    log "--- generate_radar_report.py — SKIP (radar non disponibile) ---"
+fi
 
 # Step 1c: reply_monitor — rileva risposte e bounce dei giornalisti.
 # GAP storico: non era schedulato da NESSUNA parte → bounce/risposte
@@ -155,15 +191,21 @@ python3 _system/scripts/x_publisher.py --dir --status approved --publish-live $X
     >> "$LOG_FILE" 2>&1 || \
     log "x_publisher errore non bloccante (continuo)"
 
-# Step 2: generate_journal
-log "--- generate_journal.py ---"
-python3 _system/scripts/generate_journal.py \
-    --radar "$RADAR_FILE" \
-    --min-score 14 \
-    --max-articles 3 \
-    >> "$LOG_FILE" 2>&1
-GEN_EXIT=$?
-log "generate_journal.py exit code: $GEN_EXIT"
+# Step 2: generate_journal — dipende dal radar. Se saltato, GEN_EXIT=0
+# (non è un fallimento: la digest può comunque chiudere con successo).
+GEN_EXIT=0
+if [ "$RADAR_OK" = "1" ]; then
+    log "--- generate_journal.py ---"
+    python3 _system/scripts/generate_journal.py \
+        --radar "$RADAR_FILE" \
+        --min-score 14 \
+        --max-articles 3 \
+        >> "$LOG_FILE" 2>&1
+    GEN_EXIT=$?
+    log "generate_journal.py exit code: $GEN_EXIT"
+else
+    log "--- generate_journal.py — SKIP (radar non disponibile) ---"
+fi
 
 # Step 3: publish_all_drafts (gestisce coda vuota senza problemi)
 log "--- publish_all_drafts.py $DRY_FLAGS ---"
@@ -199,11 +241,15 @@ PRUNE
 
 # Step 3b: generate_social — proposte social del giorno dal radar
 # (max 2 set reactive = 2 IG + 2 X, con immagini auto). NON pubblica:
-# crea solo le card da approvare nel pannello. Non-bloccante.
-log "--- generate_social.py (proposte del giorno) ---"
-python3 _system/scripts/generate_social.py --radar "$RADAR_FILE" \
-    --max-posts 2 >> "$LOG_FILE" 2>&1 || \
-    log "generate_social errore non bloccante (continuo)"
+# crea solo le card da approvare nel pannello. Dipende dal radar.
+if [ "$RADAR_OK" = "1" ]; then
+    log "--- generate_social.py (proposte del giorno) ---"
+    python3 _system/scripts/generate_social.py --radar "$RADAR_FILE" \
+        --max-posts 2 >> "$LOG_FILE" 2>&1 || \
+        log "generate_social errore non bloccante (continuo)"
+else
+    log "--- generate_social.py — SKIP (radar non disponibile) ---"
+fi
 
 # Step 4: feature_pitch — non-bloccante
 log "--- feature_pitch.py $FP_DRY ---"
@@ -232,6 +278,8 @@ if [ $GEN_EXIT -eq 0 ] && [ $PUB_EXIT -eq 0 ]; then
     if [ "${DRY_RUN:-0}" = "1" ]; then
         log "=== daily_publish END (dry-run) ==="
     else
+        [ "$RADAR_OK" = "0" ] && \
+            log "Nota: radar saltato (timeout/rete); digest e outreach inviati comunque."
         log "=== daily_publish END ==="
     fi
     exit 0
