@@ -1030,6 +1030,36 @@ def scan_social_drafts():
     return drafts
 
 
+def scan_ig_viral():
+    """Read _system/social/viral/ig_viral_latest.json — Instagram posts by
+    others flagged as comment opportunities (produced by ig_viral_radar.py).
+    Filters out anything the user already dismissed. Returns a list sorted by
+    relevance desc (the radar already sorts, but we re-sort defensively)."""
+    latest = SYSTEM_DIR / "social" / "viral" / "ig_viral_latest.json"
+    if not latest.exists():
+        return {"date": None, "opportunities": []}
+    try:
+        data = json.loads(latest.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {"date": None, "opportunities": []}
+
+    # Dismissed ledger (per-shortcode)
+    dismissed_file = SYSTEM_DIR / "social" / "viral" / "dismissed.json"
+    dismissed = set()
+    if dismissed_file.exists():
+        try:
+            dismissed = set(json.loads(dismissed_file.read_text()).keys())
+        except (json.JSONDecodeError, OSError):
+            dismissed = set()
+
+    ops = [o for o in data.get("opportunities", [])
+           if o.get("shortcode") not in dismissed]
+    ops.sort(key=lambda o: (-(o.get("relevance_score") or 0),
+                            -(o.get("likes") or 0),
+                            -(o.get("comments") or 0)))
+    return {"date": data.get("date"), "opportunities": ops}
+
+
 def scan_editorial_drafts():
     """Scan _drafts/social_editorial/*.md — the IG editorial pipeline (separate
     from reactive social posts in _drafts/social/). Uses PyYAML for richer
@@ -1828,6 +1858,7 @@ def build_dashboard():
     published = scan_published_articles()
     social = scan_social_drafts()
     editorial = scan_editorial_drafts()
+    ig_viral = scan_ig_viral()
     radar = scan_radar_opportunities()
     # API health banner — rendered above the header so failures of any
     # radar-source API (CSE, Gemini, xAI…) are immediately visible without
@@ -2452,6 +2483,74 @@ def build_dashboard():
             viral_cards += (f'<details class="more-cards"><summary>'
                             f'▸ altri {len(_viral_list) - 5} post virali'
                             f'</summary>{"".join(_viral_list[5:])}</details>')
+
+    # ── Instagram viral comment opportunities (ig_viral_radar.py) ──────
+    ig_viral_cards = ""
+    _ig_ops = (ig_viral or {}).get("opportunities", [])
+    if _ig_ops:
+        ANGLE_LABEL = {
+            "architecture_appreciation": "🏛 Architettura",
+            "material_insight": "🧱 Materiali",
+            "fire_insurance_insight": "🔥 Fire/Insurance",
+            "market_observation": "📈 Mercato",
+            "design_dialogue": "✏️ Design",
+        }
+        _ig_list = []
+        for o in _ig_ops:
+            sc = o.get("shortcode", "")
+            rel = o.get("relevance_score") or 0
+            rel_class = ("virality-hot" if rel >= 8
+                         else "virality-rising" if rel >= 6
+                         else "virality-warm")
+            angle = ANGLE_LABEL.get(o.get("angle", ""), o.get("angle", ""))
+            likes = o.get("likes")
+            likes_str = f'♥{likes}' if likes is not None else '♥—'
+            metrics = f'{likes_str} · 💬{o.get("comments", 0)}'
+            if o.get("source_hashtag"):
+                metrics += f' · #{_esc(o["source_hashtag"])}'
+            thumb = o.get("local_thumbnail")
+            thumb_html = ""
+            if thumb:
+                thumb_html = (f'<img class="ig-viral-thumb" '
+                              f'src="/{_esc(thumb)}" alt="" loading="lazy">')
+            comment = o.get("comment", "")
+            _ig_list.append(f"""
+        <div class="card viral-card ig-viral-card" data-shortcode="{_esc(sc)}">
+          <div class="card-status-stripe"></div>
+          <div class="card-body">
+            <div class="card-header">
+              <span class="badge badge-ig">📷 Instagram</span>
+              <span class="badge badge-virality {rel_class}">⭐ {rel}/10</span>
+              <span class="badge badge-angle">{angle}</span>
+              <span class="news-pub">@{_esc(o.get('owner',''))}</span>
+            </div>
+            <div class="ig-viral-body">
+              {thumb_html}
+              <div class="ig-viral-text">
+                <div class="ig-viral-metrics">{metrics}</div>
+                <p class="viral-content">{_esc(o.get('caption_excerpt',''))}</p>
+              </div>
+            </div>
+            <div class="viral-reply-wrap">
+              <div class="viral-reply-label">
+                <span class="pitch-label">💬 Commento suggerito</span>
+                <span class="reply-char-count">{len(comment)} caratteri</span>
+              </div>
+              <textarea class="viral-reply-editor ig-viral-comment"
+                        oninput="updateIgViralCharCount(this)">{_esc(comment)}</textarea>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-copy-pitch" onclick="copyIgViralComment(this)">📋 Copia commento</button>
+              <a class="btn btn-viral-reply" href="{_esc(o.get('url',''))}" target="_blank" rel="noreferrer">🔗 Apri post</a>
+              <button class="btn btn-reject" onclick="dismissIgViral(this, '{_esc_js(sc)}')">Scarta</button>
+            </div>
+          </div>
+        </div>""")
+        ig_viral_cards = "".join(_ig_list[:6])
+        if len(_ig_list) > 6:
+            ig_viral_cards += (f'<details class="more-cards"><summary>'
+                               f'▸ altre {len(_ig_list) - 6} opportunità'
+                               f'</summary>{"".join(_ig_list[6:])}</details>')
 
     # ── Early signals cards — on-topic, low engagement, no auto-reply ──
     if radar and radar.get("early"):
@@ -4127,6 +4226,45 @@ def build_dashboard():
 
   .section-replies .section-heading {{ color: var(--terracotta); }}
 
+  /* ── Instagram viral comment section ──────────────────── */
+  .section-ig-viral .section-heading {{ color: var(--terracotta); }}
+  .ig-viral-card {{ border-left: 3px solid var(--terracotta); }}
+  .ig-viral-body {{
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+    margin: 0.5rem 0;
+  }}
+  .ig-viral-thumb {{
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: var(--sand-white);
+  }}
+  .ig-viral-text {{ flex: 1; min-width: 0; }}
+  .ig-viral-metrics {{
+    font-size: 0.78rem;
+    color: var(--olive);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.02em;
+  }}
+  .badge-angle {{
+    background: rgba(194,113,79,0.14);
+    color: var(--terracotta);
+    border: 1px solid rgba(194,113,79,0.3);
+  }}
+  .ig-viral-comment {{
+    min-height: 4.5em;
+    border-color: rgba(194,113,79,0.35);
+  }}
+  @media (max-width: 560px) {{
+    .ig-viral-body {{ flex-direction: column; }}
+    .ig-viral-thumb {{ width: 100%; height: 180px; }}
+  }}
+
   /* ── Editorial IG section ───────────────────────────── */
   .section-editorial .section-heading {{ color: var(--olive); }}
   .editorial-toolbar {{
@@ -5485,6 +5623,14 @@ def build_dashboard():
   ''' if radar and radar.get("viral") else ''}
 
   {f'''
+  <div class="section section-ig-viral">
+    <h2 class="section-heading">📷 Instagram — Commenti a post virali<span class="section-count">{len(_ig_ops)}</span></h2>
+    <p class="section-subtitle">Post Instagram di altri ad alto engagement nella nicchia My Villa (real estate LA, architettura, cemento, fire/insurance, ville italiane). Il commento è già pronto in voce My Villa: <strong>📋 copia → 🔗 apri il post → incolla su Instagram → "Scarta"</strong> per segnarlo fatto. Aggiorna con <code>python3 _system/scripts/ig_viral_radar.py</code>.</p>
+    {ig_viral_cards}
+  </div>
+  ''' if _ig_ops else ''}
+
+  {f'''
   <div class="section section-replies">
     <h2 class="section-heading">↩️ Risposte giornalisti<span class="section-count">{len(reply_drafts)}</span></h2>
     <p class="section-subtitle">Giornalisti che hanno risposto — UNICA parte email che resta manuale (il resto è automatico). Rivedi e invia: press kit o call con Paolo.</p>
@@ -6295,6 +6441,51 @@ function skipViral(btn) {{
     actions.innerHTML = '<span class="status-label rejected">Skipped</span>';
   }}
   showToast('Skipped — reload page to restore');
+}}
+
+/* ── Instagram viral comments ─────────────────── */
+function updateIgViralCharCount(textarea) {{
+  const card = textarea.closest('.ig-viral-card');
+  if (!card) return;
+  const cc = card.querySelector('.reply-char-count');
+  if (cc) cc.textContent = textarea.value.length + ' caratteri';
+}}
+
+function copyIgViralComment(btn) {{
+  const card = btn.closest('.ig-viral-card');
+  const ta = card.querySelector('.ig-viral-comment');
+  if (!ta) return;
+  navigator.clipboard.writeText(ta.value).then(() => {{
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copiato';
+    btn.classList.add('copied');
+    showToast('Commento copiato — apri il post e incolla');
+    setTimeout(() => {{ btn.textContent = orig; btn.classList.remove('copied'); }}, 2200);
+  }}).catch(() => showToast('Copia non riuscita'));
+}}
+
+function dismissIgViral(btn, shortcode) {{
+  const card = btn.closest('.ig-viral-card');
+  btn.disabled = true;
+  fetch('/api/ig-viral/dismiss', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{shortcode: shortcode}})
+  }})
+  .then(r => r.json())
+  .then(resp => {{
+    if (resp.ok) {{
+      card.style.transition = 'opacity 0.3s, transform 0.3s';
+      card.style.opacity = '0';
+      card.style.transform = 'scale(0.98)';
+      setTimeout(() => card.remove(), 320);
+      showToast('Scartato — non riapparirà');
+    }} else {{
+      btn.disabled = false;
+      showToast('Errore: ' + (resp.error || 'unknown'));
+    }}
+  }})
+  .catch(e => {{ btn.disabled = false; showToast('Errore: ' + e.message); }});
 }}
 
 /* ── Radar News: permanent dismiss ──────────────
@@ -8240,7 +8431,8 @@ class ReviewHandler(BaseHTTPRequestHandler):
 
         elif (parsed.path.startswith("/blog/assets/") or parsed.path.startswith("/assets/")
               or parsed.path.startswith("/img/")
-              or parsed.path.startswith("/_system/social/partner_cache/")):
+              or parsed.path.startswith("/_system/social/partner_cache/")
+              or parsed.path.startswith("/_system/social/viral/")):
             # Static asset passthrough so previews can load hero images etc.
             rel = parsed.path.lstrip("/")
             root = (SYSTEM_DIR.parent).resolve()
@@ -8344,6 +8536,9 @@ class ReviewHandler(BaseHTTPRequestHandler):
             return
         if parsed.path == "/api/dismiss-radar-item":
             self._handle_dismiss_radar_item(data.get("url", ""))
+            return
+        if parsed.path == "/api/ig-viral/dismiss":
+            self._handle_ig_viral_dismiss(data.get("shortcode", ""))
             return
         if parsed.path == "/api/reddit-comment":
             self._handle_reddit_comment(
@@ -10196,6 +10391,28 @@ class ReviewHandler(BaseHTTPRequestHandler):
         dedup_path.write_text(
             json.dumps(data, indent=2, ensure_ascii=False),
             encoding="utf-8")
+
+    def _handle_ig_viral_dismiss(self, shortcode):
+        """Mark an Instagram viral comment opportunity as handled/dismissed.
+
+        Writes the shortcode into _system/social/viral/dismissed.json so
+        scan_ig_viral() filters it out on the next render. Idempotent and
+        reversible (edit the JSON to restore)."""
+        shortcode = (shortcode or "").strip()
+        if not shortcode:
+            self._send_json({"ok": False, "error": "missing 'shortcode'"}, 400)
+            return
+        dismissed_path = SYSTEM_DIR / "social" / "viral" / "dismissed.json"
+        try:
+            dismissed_path.parent.mkdir(parents=True, exist_ok=True)
+            data = {}
+            if dismissed_path.exists():
+                data = json.loads(dismissed_path.read_text(encoding="utf-8"))
+            data[shortcode] = {"dismissed_at": datetime.now().isoformat(timespec="seconds")}
+            dismissed_path.write_text(json.dumps(data, indent=2))
+            self._send_json({"ok": True, "shortcode": shortcode})
+        except Exception as e:
+            self._send_json({"ok": False, "error": f"{type(e).__name__}: {e}"}, 500)
 
     def _handle_dismiss_radar_item(self, url):
         """Permanently dismiss a Radar News item by URL.
