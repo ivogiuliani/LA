@@ -824,12 +824,13 @@
           "subject": "Re: A European angle on your FAIR Plan piece"
         }
       ],
-      "next_touch_at": "2026-06-15",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://www.santacruzsentinel.com/2026/05/24/california-fair-plan-rates-going-up-29-in-late-2026/",
       "source_title": "California FAIR Plan rates going up 29.1% in late 2026 – Santa Cruz Sentinel",
       "cold_pitch_body": "Hi Santacruzsentinel team,\n\n(Writing to the Santacruzsentinel newsroom rather than Pat directly — we couldn't locate a direct contact. Feel free to forward if it's a better fit for them or the desk.)\n\nLoved seeing your FAIR Plan reporting picked up in the Sentinel with the Altadena imagery. Pairing the rate-hike numbers with that specific street made the abstraction land in a way pure policy coverage rarely does.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista. In Europe, resilience has been default construction practice for generations.\n\nOne thought your piece sparked: what California is now codifying through WUI rules and pricing into FAIR Plan premiums has been normal Mediterranean practice since long before insurability became a topic here. That cultural lag feels like the interesting story.\n\nWould you be interested in receiving more material, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
-      "cold_pitch_subject": "A European angle on your FAIR Plan piece"
+      "cold_pitch_subject": "A European angle on your FAIR Plan piece",
+      "exhausted_reason": "author_rescue → upgraded to pmaio@scng.com"
     },
     "info@newhousebuilder.com": {
       "email": "info@newhousebuilder.com",
@@ -851,10 +852,18 @@
           "message_id": "19e8246c4c27dfe9",
           "thread_id": "19e8246c4c27dfe9",
           "subject": "Re: A European angle on your ICF pros and cons piece"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-15T06:39:32+00:00",
+          "message_id": "19eca01c1162c118",
+          "thread_id": "19eca01c1162c118",
+          "subject": "Re: A European angle on your ICF pros and cons piece"
         }
       ],
-      "next_touch_at": "2026-06-15",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://newhousebuilder.com/insulated-concrete-forms/",
       "source_title": "Insulated Concrete Forms (ICF): 12 Essential Pros & Cons",
       "cold_pitch_body": "Hi Newhousebuilder team,\n\n(Writing to the Newhousebuilder newsroom rather than Bethany directly — we couldn't locate a direct contact. Feel free to forward if it's a better fit for them or the desk.)\n\nReally enjoyed your ICF breakdown. It is one of the few pieces that treats the material honestly on both sides rather than as a pure upsell, and the Jenkins Design Build framing grounds it in actual luxury practice rather than spec-sheet abstractions.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your piece sparked: what the US custom market is now discovering through ICF has been default Mediterranean practice for generations, just expressed differently. The cultural translation is, we think, the interesting story.\n\nWould you be interested in receiving more material from our side, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
@@ -1078,10 +1087,18 @@
           "message_id": "19e828d08c995ca8",
           "thread_id": "19e828d08c995ca8",
           "subject": "A European angle on your insurance crisis piece"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-15T06:39:22+00:00",
+          "message_id": "19eca019a4640c2e",
+          "thread_id": "19eca019a4640c2e",
+          "subject": "Re: A European angle on the Washington IBHS program"
         }
       ],
-      "next_touch_at": "2026-06-15",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://insurancenewsnet.com/oarticle/wildfire-designation-program-aims-to-help-washington-homeowners-keep-insurance",
       "source_title": "Wildfire designation program aims to help Washington homeowners keep insurance - Insurance News | InsuranceNewsNet",
       "cold_pitch_body": "Hi Insurance News Net team,\n\n(Writing to the Insurance News Net newsroom directly — this is meant for whichever desk is closest to the topic below. Feel free to forward as appropriate.)\n\nReally appreciated the piece on Washington's IBHS Wildfire Prepared Home rollout, particularly the detail on the three-year designation cycle and annual photo verification. That mitigation is treated as an ongoing relationship with the carrier, not a one-time stamp, is the part most coverage misses.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your piece sparked: what IBHS is now formalizing as a maintained designation has been default Mediterranean construction practice for generations, built in from day one rather than verified annually. The cultural gap feels like the real story.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
@@ -1734,7 +1751,31 @@
       "source_title": "",
       "cold_pitch_body": "",
       "cold_pitch_subject": "A European angle on your LA Project Offers Blueprint for Resilient Housing Amid Wildf piece"
+    },
+    "pmaio@scng.com": {
+      "email": "pmaio@scng.com",
+      "publication": "santacruzsentinel.com",
+      "first_seen_at": "2026-06-15T06:39:39+00:00",
+      "touches": [
+        {
+          "n": 1,
+          "type": "cold_rescued",
+          "sent_at": "2026-06-15T06:39:39+00:00",
+          "message_id": "19eca01ddb7e60c8",
+          "thread_id": "19eca01ddb7e60c8",
+          "subject": "A European angle on your California FAIR Plan rates going up 29.1% in late 2026 – San piece"
+        }
+      ],
+      "next_touch_at": "2026-06-22",
+      "status": "in_cadence",
+      "source_url": "https://www.santacruzsentinel.com/2026/05/24/california-fair-plan-rates-going-up-29-in-late-2026/",
+      "source_title": "California FAIR Plan rates going up 29.1% in late 2026 – Santa Cruz Sentinel",
+      "cold_pitch_body": "",
+      "cold_pitch_subject": "A European angle on your California FAIR Plan rates going up 29.1% in late 2026 – San piece",
+      "rescued_from": "newsroom@santacruzsentinel.com",
+      "rescue_source": "byline_mailto",
+      "rescue_confidence": "high"
     }
   },
-  "last_hydrated_at": "2026-06-14T08:00:38.080089+00:00"
+  "last_hydrated_at": "2026-06-15T06:39:17.320961+00:00"
 }
