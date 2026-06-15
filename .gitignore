@@ -39,3 +39,6 @@ vid.zip
 # Cache giornaliera del model resolver (rigenerata ad ogni run, per-macchina)
 _system/config/.model_cache.json
 _system/social/viral/_raw_latest.json
+
+# Log del pannello (servizio sempre attivo) — non versionare
+_system/logs/panel.log

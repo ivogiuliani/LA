@@ -1635,6 +1635,16 @@ def scan_radar_opportunities():
         pub = item.get("publication", "") or item.get("source", "")
         url = item.get("url", "")
 
+        # I post SOCIAL (X/Reddit/IG) NON entrano in Radar News: si
+        # gestiscono SOLO nella sezione "Commenti ai post virali" (dove
+        # rispondi). Elimina il doppione — un post qualificato + virale
+        # appariva in DUE sezioni — e tiene Radar News = articoli web
+        # (auto-pitch giornalisti, puramente informativo).
+        if (item.get("source") or "").lower() in (
+                "grok_x", "x", "twitter", "reddit", "instagram") \
+                or "x/twitter" in (pub or "").lower():
+            continue
+
         # Reach lookup (publications → monthly readers, X/Reddit → followers)
         reach_millions = _lookup_publication_reach(pub, url, item=item)
         reach_label = _format_reach(reach_millions)
@@ -5664,28 +5674,21 @@ def build_dashboard():
   {f'''
   <div class="section section-collapsed" data-section="radar-news">
     <h2 class="section-heading" onclick="toggleSection(this)">
-      📰 Radar News (informativo)<span class="section-count">{len(radar["news"])}</span>
+      📰 Uscito in automatico — consultazione<span class="section-count">{len(radar["news"])}</span>
       <span class="collapse-toggle">▸ expand</span>
     </h2>
-    <p class="section-subtitle">Le opportunità qualificate di oggi. <strong>I pitch email partono in automatico</strong> (cap 20/giorno) — questa sezione serve solo per consultazione o invii manuali extra.</p>
+    <p class="section-subtitle"><strong>Nessuna azione richiesta.</strong> Articoli e pitch ai giornalisti partiti da soli oggi (cap 20/giorno). Solo articoli web — i post social si gestiscono sopra, in "Commenti ai post virali".</p>
     <div class="section-body">
       {news_cards}
     </div>
   </div>
   ''' if radar and radar.get("news") else ''}
 
-  {f'''
-  <div class="section section-collapsed" data-section="early">
-    <h2 class="section-heading" onclick="toggleSection(this)">
-      🌱 Early Signals<span class="section-count">{len(radar["early"])}</span>
-      <span class="collapse-toggle">▸ expand</span>
-    </h2>
-    <p class="section-subtitle">On-topic posts with low engagement — worth watching, not worth replying yet.</p>
-    <div class="section-body">
-      {early_cards}
-    </div>
-  </div>
-  ''' if radar and radar.get("early") else ''}
+  <!-- Early Signals rimossi (2026-06-15): post a basso engagement, solo
+       informativi e spesso fuori tema. Non si perde nulla: un post che
+       cresce viene riscoperto dal radar e riappare nella sezione virali,
+       dove si può sfruttare con una risposta. -->
+  {''}
 
   {f'''
   <div class="section section-editorial section-collapsed" data-section="partner">
