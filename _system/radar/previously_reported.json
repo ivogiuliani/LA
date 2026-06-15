@@ -3129,6 +3129,36 @@
       "action_type": "user_dismissed",
       "url": "https://western-wildfire-defense.com/tracker/california/",
       "note": "auto-published journal: wildfire-rebuild-tracker-california-permits-2026"
+    },
+    {
+      "date_first_reported": "2026-06-15",
+      "source": "user_dismissed",
+      "title": "How Should High-Value California Homeowners Prepare an Insurance Submission After a Non-Renewal?",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.whins.com/how-should-high-value-california-homeowners-prepare-an-insurance-submission-after-a-non-renewal/",
+      "note": "auto-published journal: insurance-submission-after-non-renewal-california"
+    },
+    {
+      "date_first_reported": "2026-06-15",
+      "source": "user_dismissed",
+      "title": "AAA and Travelers File Major Home Insurance Rate Hikes in California",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://youngdouglasinsurance.com/blogs/southern-california-news/aaa-and-travelers-file-major-home-insurance-rate-hikes-in-california",
+      "note": "auto-published journal: aaa-travelers-rate-hikes-california-insurable-luxury-homes"
+    },
+    {
+      "date_first_reported": "2026-06-15",
+      "source": "user_dismissed",
+      "title": "California's Home Insurance Crisis: Premiums Skyrocketing [Updated 2026]",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.coveragecat.com/insurance-types/home/california-home-premiums-rising",
+      "note": "auto-published journal: california-home-insurance-premiums-2026-construction-variable"
     }
   ],
   "reported": [
@@ -3241,6 +3271,156 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/ChrisMcGra5986/status/2065566804466950587",
       "note": "auto-skip AI: Budget homeowner, no luxury buyer overlap"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@theagencyre: Set in the prestigious Lake Wilcox community and backing onto the water, this custom 5+2 b",
+      "score": null,
+      "cluster": "instagram_engagement",
+      "action_type": "user_dismissed",
+      "url": "https://www.instagram.com/p/DZibiq_AQrZ/",
+      "note": "auto-skip AI: Lake Wilcox (Ontario), outside our geography"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@mansionglobal: Whether you’re looking to breathe life into your living space, want to give a gift to your",
+      "score": null,
+      "cluster": "instagram_engagement",
+      "action_type": "user_dismissed",
+      "url": "https://www.instagram.com/p/DZiAKSHE2hl/",
+      "note": "auto-skip AI: Boutique product promo, no buyer/partner overlap"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@douglaselliman: Brand New Coconut Grove Penthouse with Private 40-Foot Pool 💙\n\nPROPERTY DETAILS\n5 Grove Is",
+      "score": null,
+      "cluster": "instagram_engagement",
+      "action_type": "user_dismissed",
+      "url": "https://www.instagram.com/p/DZfZ6SIDej3/",
+      "note": "auto-skip AI: Florida penthouse, not LA luxury market"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@mansionglobal: Here's your chance to live like James Bond—and for a discount too.\n\nA French Riviera villa",
+      "score": null,
+      "cluster": "instagram_engagement",
+      "action_type": "user_dismissed",
+      "url": "https://www.instagram.com/p/DZfKY_1NpQx/",
+      "note": "auto-skip AI: European celebrity listing, off-geography"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@R2D2zen: Author: @R2D2zen | Text: Someone lost $818.000 on Switzerland to win by 2 or mor...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/R2D2zen/status/2066066117295030426",
+      "note": "auto-skip AI: Polymarket gambling drama, off-topic"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@RamsNFL: Author: @RamsNFL | Text: Our Rams Rookie tour continues with @HabitatLA in Pacif...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/RamsNFL/status/2065516767058018344",
+      "note": "auto-skip AI: Sports charity PR, not buyer/partner reach"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@digitalbuzzfab: Author: @digitalbuzzfab | Text: Luego de México tuvimos que hacer un flash SideQ...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/digitalbuzzfab/status/2065934660325060896",
+      "note": "auto-skip AI: Influencer travel post, no buyer/partner value"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@Baba86458: Author: @Baba86458 | Text: AC room la concrete house la nee thunguva . எங்களை போ...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Baba86458/status/2065812104746250751",
+      "note": "auto-skip AI: Personal joke in Tamil, no relevance"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@BarbaraLundqui7: Author: @BarbaraLundqui7 | Text: YES ABSOLUTELY!!👍 Everyone who voted for Bianca...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/BarbaraLundqui7/status/2065372860219355221",
+      "note": "auto-skip AI: Partisan political rant, off-limits"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@QueenEmyB1: **Author: @QueenEmyB1 | Text: This will be all suburbs. They want single family...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/QueenEmyB1/status/2064041761983631839",
+      "note": "auto-skip AI: Political conspiracy framing, drama risk"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@brentcrude67496: Author: @brentcrude67496 | Text: Oh wait it gets better! He used proceeds from t...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/brentcrude67496/status/2064840392894562808",
+      "note": "auto-skip AI: Personal drama thread, no value"
+    },
+    {
+      "date_first_reported": "2026-06-14",
+      "source": "ai_skip",
+      "title": "@ImaDOGEyGirl: Author: @ImaDOGEyGirl | Text: I will refrain from pointing out how ignorant your...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/ImaDOGEyGirl/status/2065824230906937791",
+      "note": "auto-skip AI: Partisan insurance argument, drama"
+    },
+    {
+      "date_first_reported": "2026-06-15",
+      "source": "ai_skip",
+      "title": "@R2D2zen: Author: @R2D2zen | Text: Someone lost $818.000 on Switzerland to win by 2 or mor...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/R2D2zen/status/2066066117295030426",
+      "note": "auto-skip AI: off-topic gambling meme, no buyer overlap"
+    },
+    {
+      "date_first_reported": "2026-06-15",
+      "source": "ai_skip",
+      "title": "@BarbaraLundqui7: Author: @BarbaraLundqui7 | Text: YES ABSOLUTELY!!👍 Everyone who voted for Bianca...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/BarbaraLundqui7/status/2065372860219355221",
+      "note": "auto-skip AI: politics/drama, off-brand"
+    },
+    {
+      "date_first_reported": "2026-06-15",
+      "source": "ai_skip",
+      "title": "@brentcrude67496: Author: @brentcrude67496 | Text: Oh wait it gets better! He used proceeds from t...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/brentcrude67496/status/2064840392894562808",
+      "note": "auto-skip AI: drama, no buyer/partner overlap"
     }
   ]
 }

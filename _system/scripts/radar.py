@@ -657,77 +657,90 @@ def brave_search(api_key, clusters, lookback_days=7, query_cap=30):
 
 
 def reddit_search(config, lookback_days=7):
-    """Search Reddit via JSON API (no auth required)."""
-    subreddits = config.get("reddit", {}).get("subreddits", [])
-    search_keywords = config.get("reddit", {}).get("search_keywords", [])
+    """Discover relevant Reddit threads via Brave (site:reddit.com).
 
-    if not subreddits or not search_keywords:
-        print("  [Reddit] Skipped — no config")
+    Reddit ha chiuso gli endpoint JSON pubblici (403 anche su old.reddit,
+    verificato 2026-06-14) e la Data API è gated dalla Responsible Builder
+    Policy 2025 ai soli casi di moderazione → niente accesso diretto per
+    noi. Brave indicizza Reddit: lo usiamo per scoprire i thread su cui
+    vale la pena commentare. Si pubblica a mano dal pannello (tasto
+    "Reply manually": copia il commento già pronto + apre il thread).
+
+    Brave non fornisce engagement (upvotes/commenti): gli item Reddit
+    passano come opportunità in base al SOLO filtro tema, non alla soglia
+    di engagement (vedi _filter_viral_opportunities).
+    """
+    keywords = config.get("reddit", {}).get("search_keywords", [])
+    if not keywords:
+        print("  [Reddit] Skipped — no search_keywords in config")
         return []
 
+    api_key = os.environ.get("BRAVE_API_KEY", "").strip()
+    if not api_key:
+        print("  [Reddit] Skipped — serve BRAVE_API_KEY (Reddit JSON = 403; "
+              "discovery via Brave site:reddit.com)")
+        return []
+
+    # Budget Brave: il credito gratuito è $5/mese (~1000 query) e il radar
+    # ne usa già ~30/giorno per i cluster → resta poco margine. Default basso
+    # (3/run) per stare sotto il free tier; alza brave_query_cap in
+    # radar-keywords.yml solo con un piano Brave a pagamento.
+    cap = int(config.get("reddit", {}).get("brave_query_cap", 3))
     results = []
-    headers = {"User-Agent": "MyVillaRadar/2.0 (research bot)"}
-    time_filter = "month" if lookback_days > 7 else "week"
+    seen = set()
+    for keyword in keywords[:cap]:
+        try:
+            r = requests.get(
+                "https://api.search.brave.com/res/v1/web/search",
+                params={"q": f"site:reddit.com {keyword}", "count": 10},
+                headers={"X-Subscription-Token": api_key,
+                         "Accept": "application/json"},
+                timeout=12)
+            if r.status_code != 200:
+                print(f"  [Reddit/Brave] HTTP {r.status_code} su '{keyword}'")
+                time.sleep(1)
+                continue
+            web = (r.json().get("web") or {}).get("results") or []
+        except Exception as e:  # noqa: BLE001
+            print(f"  [Reddit/Brave] Errore '{keyword}': {e}")
+            time.sleep(1)
+            continue
 
-    for subreddit in subreddits:
-        for keyword in search_keywords[:4]:  # Limit per subreddit
-            try:
-                url = f"https://www.reddit.com/r/{subreddit}/search.json"
-                resp = requests.get(url, params={
-                    "q": keyword,
-                    "sort": "new",
-                    "t": time_filter,
-                    "limit": 10,
-                    "restrict_sr": "true",
-                }, headers=headers, timeout=10)
-                resp.raise_for_status()
-                data = resp.json()
+        for x in web:
+            url = x.get("url", "") or ""
+            m = re.search(r"reddit\.com/r/([^/]+)/comments/", url, re.I)
+            if not m:  # solo thread di commenti (no profili/sub/listing)
+                continue
+            canon = url.split("?")[0].split("#")[0]
+            if canon in seen:
+                continue
+            seen.add(canon)
+            title = re.sub(r"<[^>]+>", "", x.get("title", "") or "").strip()
+            # Brave formatta i titoli come "r/<sub> on Reddit: <titolo>" → pulisci
+            title = re.sub(r"^r/[^:]+ on Reddit:\s*", "", title, flags=re.I).strip()
+            # salta thread rimossi/cancellati: niente da commentare
+            if not title or "removed by moderator" in title.lower() \
+                    or re.search(r"\[\s*(removed|deleted)\s*\]", title, re.I):
+                continue
+            snippet = re.sub(r"<[^>]+>", "",
+                             x.get("description", "") or "")[:500].strip()
+            results.append({
+                "source": "reddit",
+                "cluster": "reddit",
+                "query": keyword,
+                "title": title,
+                "url": canon,
+                "snippet": snippet,
+                "publication": f"r/{m.group(1)}",
+                "author": "",
+                "date": x.get("age", "") or x.get("page_age", "") or "",
+                "discovery": "brave",
+                "engagement": {},  # Brave non dà upvotes/commenti
+            })
+        time.sleep(1)  # Brave free tier: 1 qps
 
-                for post in data.get("data", {}).get("children", []):
-                    d = post.get("data", {})
-                    if d.get("score", 0) < 5:
-                        continue
-                    created_ts = d.get("created_utc", 0)
-                    post_date_iso = datetime.fromtimestamp(created_ts).isoformat() if created_ts else ""
-                    post_date_short = post_date_iso[:10] if post_date_iso else ""
-
-                    upvotes = d.get("score", 0)
-                    num_comments = d.get("num_comments", 0)
-
-                    virality = compute_virality_score(
-                        likes=upvotes,
-                        retweets=0,
-                        replies=num_comments,
-                        views=0,
-                        post_date=post_date_short,
-                        today=datetime.now().strftime("%Y-%m-%d"),
-                        platform="reddit",
-                    )
-
-                    results.append({
-                        "source": "reddit",
-                        "cluster": "reddit",
-                        "query": keyword,
-                        "title": d.get("title", ""),
-                        "url": f"https://reddit.com{d.get('permalink', '')}",
-                        "snippet": d.get("selftext", "")[:500],
-                        "publication": f"r/{subreddit}",
-                        "author": f"u/{d.get('author', 'unknown')}",
-                        "date": post_date_iso,
-                        "engagement": {
-                            "score": upvotes,
-                            "num_comments": num_comments,
-                            "upvote_ratio": d.get("upvote_ratio", 0),
-                            "awards": d.get("total_awards_received", 0),
-                            "virality_score": virality,
-                            "subreddit_subscribers": d.get("subreddit_subscribers", 0),
-                        },
-                    })
-                time.sleep(2)  # Reddit rate limit
-            except Exception as e:
-                print(f"  [Reddit] Error r/{subreddit} '{keyword}': {e}")
-
-    print(f"  [Reddit] {len(results)} posts found")
+    print(f"  [Reddit] {len(results)} thread trovati via Brave "
+          f"({len(keywords[:cap])} query)")
     return results
 
 
@@ -1089,7 +1102,11 @@ def _filter_viral_opportunities(all_results, known_urls=None):
                 rejected_thresh += 1
                 continue
         elif source == "reddit":
-            if eng.get("score", 0) < 5 and eng.get("num_comments", 0) < 3:
+            # Item da Brave (discovery web) non hanno engagement: si tengono
+            # in base al SOLO filtro tema (la rilevanza la fa il filtro +
+            # l'occhio umano nel pannello). Quelli CON engagement (se un
+            # domani torna l'accesso API) restano soggetti alla soglia.
+            if eng and eng.get("score", 0) < 5 and eng.get("num_comments", 0) < 3:
                 rejected_thresh += 1
                 continue
         elif source == "instagram":

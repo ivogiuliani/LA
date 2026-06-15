@@ -3,14 +3,15 @@ channel: x
 type: journal_companion
 journal_slug: all-concrete-malibu-mansion-44m-listing-2026
 article_url: https://myvilla.la/blog/all-concrete-malibu-mansion-44m-listing-2026.html
-generated_at: 2026-06-14T10:51:18
-char_count: 271
+generated_at: 2026-06-15T08:39:06
+char_count: 275
 hashtags:
   - ReinforcedConcrete
-  - LosAngeles
+  - Malibu
+  - LuxuryHomes
 status: draft
 ---
 
-A $44M Malibu listing is marketing its concrete structure as a headline feature — same line as the ocean views. That's a shift in what coastal buyers consider value.
+A $44M Malibu listing leads with concrete construction — not views, not finishes. When the structure becomes the headline, that's a market signal worth reading.
 https://myvilla.la/blog/all-concrete-malibu-mansion-44m-listing-2026.html
-#ReinforcedConcrete #LosAngeles
+#ReinforcedConcrete #Malibu #LuxuryHomes
