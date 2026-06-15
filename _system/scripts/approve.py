@@ -2455,10 +2455,15 @@ def build_dashboard():
                         f'</div>'
                     )
                 elif v["platform"] == "reddit":
-                    # Reddit: pubblicazione DIRETTA via API ufficiale
+                    # Reddit: flusso assistito MANUALE. La Data API è chiusa ai
+                    # nostri use-case dalla Responsible Builder Policy 2025
+                    # (gate "valid moderation use case") → niente posting via
+                    # API; publishRedditComment resta dormiente in panchina.
+                    # "Reply manually" copia il commento e apre il thread:
+                    # incolli e pubblichi a mano (più sicuro su account nuovo).
                     actions_section = (
                         f'<div class="card-actions">'
-                        f'  <button class="btn btn-publish-social" data-url="{_esc(v["url"])}" onclick="publishRedditComment(this)" title="Pubblica il commento su Reddit via API (cap 5/giorno)">🚀 Commenta su Reddit</button>'
+                        f'  <button class="btn btn-viral-reply" onclick="openViralReplyReddit(this)" title="Copia il commento e apre il thread: incolla e pubblica a mano">Reply manually</button>'
                         f'  <a class="btn btn-copy-open" href="{_esc(v["url"])}" target="_blank" rel="noreferrer">Apri thread</a>'
                         f'  <button class="btn btn-copy-pitch" onclick="copyViralReply(this)">Copy</button>'
                         f'  <button class="btn btn-reject" onclick="skipViral(this)">Skip</button>'
@@ -6269,6 +6274,28 @@ function openViralReplyX(btn) {{
     }}
   }})
   .catch(err => showToast('Errore rete: ' + err.message));
+}}
+
+/* ── Viral: reply su Reddit (manuale: copia il commento + apre il thread).
+   Reddit non ha un compose-intent come X, quindi copiamo il testo negli
+   appunti e apriamo il thread: l'utente incolla e pubblica a mano. ── */
+function openViralReplyReddit(btn) {{
+  const card = btn.closest('.card');
+  const textarea = card.querySelector('.viral-reply-editor');
+  if (!textarea) return;
+  const text = textarea.value.trim();
+  if (!text) {{ showToast('Commento vuoto'); return; }}
+  const openLink = card.querySelector('.btn-copy-open');
+  const url = openLink ? openLink.href : '';
+  const go = () => {{
+    showToast('Commento copiato — incollalo nel thread e pubblica');
+    if (url) window.open(url, '_blank');
+  }};
+  navigator.clipboard.writeText(text).then(go).catch(() => {{
+    textarea.select();
+    try {{ document.execCommand('copy'); }} catch (e) {{}}
+    go();
+  }});
 }}
 
 /* ── Viral: copy reply text ────────────────────── */
