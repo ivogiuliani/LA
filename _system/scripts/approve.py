@@ -2134,6 +2134,7 @@ def build_dashboard():
               <button class="btn btn-approve" onclick="doAction('approve', '{_esc_js(d['file'])}', 'social', this)" title="Mette in coda: esce in automatico col cap giornaliero">✅ Approva → coda (auto)</button>
               <button class="btn btn-publish-social" data-platform="{pub_platform}" onclick="publishSocial('{_esc_js(d['file'])}', '{pub_platform}', this)" title="Pubblica adesso via API, bypassando la coda">{pub_icon} Pubblica subito</button>
               <button class="btn btn-edit" onclick="saveSocialDraft('{_esc_js(d['file'])}', this)">💾 Salva</button>
+              <button class="btn btn-edit" onclick="openImagePicker('{_esc_js(d['file'])}', this)" title="Cambia immagine — picker Unsplash orientato allo stile golden-hour delle guidelines">🖼 Immagine</button>
               <button class="btn btn-opus" onclick="openReviseModal('{_esc_js(d['file'])}', 'social', this)">Revise</button>
               <button class="btn btn-copy-open" onclick="copyAndOpen('{pub_platform}', this)">{copy_label}</button>
               <button class="btn btn-reject" onclick="doAction('reject', '{_esc_js(d['file'])}', 'social', this)">🗑 Scarta</button>
@@ -7523,6 +7524,7 @@ function openImagePicker(file, btn) {{
   const card = btn.closest('.card');
   currentImagePicker.file = file;
   currentImagePicker.card = card;
+  currentImagePicker.type = (card && card.dataset && card.dataset.type) || 'journal';
   currentImagePicker.candidates = [];
   currentImagePicker.selectedIndex = -1;
   document.getElementById('image-picker-query').value = '';
@@ -7549,7 +7551,7 @@ function searchImages() {{
     headers: {{'Content-Type': 'application/json'}},
     body: JSON.stringify({{
       file: currentImagePicker.file,
-      type: 'journal',
+      type: currentImagePicker.type || 'journal',
       query: q,
     }})
   }})
@@ -7672,7 +7674,7 @@ function confirmImageSelection() {{
     headers: {{'Content-Type': 'application/json'}},
     body: JSON.stringify({{
       file: currentImagePicker.file,
-      type: 'journal',
+      type: currentImagePicker.type || 'journal',
       candidate: candidate,
     }})
   }})
@@ -7683,7 +7685,20 @@ function confirmImageSelection() {{
       btn.disabled = false;
       return;
     }}
-    showToast('Immagine salvata: by ' + (resp.hero_image && resp.hero_image.author_name));
+    // Aggiorna l'anteprima della card social senza ricaricare la pagina.
+    if (resp.image_url && currentImagePicker.card) {{
+      const bust = resp.image_url + '?t=' + Date.now();
+      const prev = currentImagePicker.card.querySelector('.social-img-preview img');
+      if (prev) {{
+        prev.src = bust;
+      }} else {{
+        const miss = currentImagePicker.card.querySelector('.social-img-missing');
+        if (miss) miss.outerHTML = '<div class="social-img-preview"><img src="' +
+          bust + '" alt="" loading="lazy"></div>';
+      }}
+    }}
+    const by = resp.hero_image && resp.hero_image.author_name;
+    showToast('Immagine salvata' + (by ? ': by ' + by : ''));
     closeModal('image-picker-modal');
   }})
   .catch(err => {{
@@ -9339,9 +9354,45 @@ class ReviewHandler(BaseHTTPRequestHandler):
     # ── /api/fetch_images ───────────────────────────────────────────
     def _handle_fetch_images(self, filename, content_type, query):
         """Return a list of Unsplash candidate images for the given draft."""
+        if content_type == "social":
+            # Post social: query da titolo/slug + linguaggio fotografico
+            # delle guidelines (golden hour, minimal…). Candidati Unsplash.
+            md_path = find_social_source(filename)
+            if not md_path or not md_path.exists():
+                self._send_json({"ok": False,
+                                 "error": f"File not found: {filename}"}, 404)
+                return
+            fm = {}
+            _mm = re.match(r"^---\s*\n(.*?)\n---\s*\n",
+                           md_path.read_text(encoding="utf-8"), re.DOTALL)
+            if _mm:
+                for _ln in _mm.group(1).splitlines():
+                    _kv = _ln.split(":", 1)
+                    if len(_kv) == 2:
+                        fm[_kv[0].strip()] = _kv[1].strip().strip('"').strip("'")
+            q = (query or "").strip() or fm.get("title") \
+                or (fm.get("journal_slug", "").replace("-", " ")) \
+                or "italian villa architecture los angeles"
+            try:
+                from social_guidelines import IMAGE_STYLE_HINT
+            except Exception:  # noqa: BLE001
+                IMAGE_STYLE_HINT = ""
+            q_full = f"{q} {IMAGE_STYLE_HINT}".strip()
+            try:
+                from image_picker import fetch_candidates
+            except ImportError as e:
+                self._send_json({"ok": False,
+                                 "error": f"image_picker unavailable: {e}"}, 500)
+                return
+            cands = fetch_candidates(
+                q_full, count=9,
+                fallback_queries=[q, "los angeles concrete villa golden hour"])
+            self._send_json({"ok": True, "query_used": q_full,
+                             "candidates": cands})
+            return
         if content_type != "journal":
             self._send_json(
-                {"ok": False, "error": "Image picker only supports journal drafts"},
+                {"ok": False, "error": "Image picker supports journal/social only"},
                 400,
             )
             return
@@ -9448,9 +9499,62 @@ class ReviewHandler(BaseHTTPRequestHandler):
     # ── /api/select_image ───────────────────────────────────────────
     def _handle_select_image(self, filename, content_type, candidate):
         """Download the chosen candidate and persist it into the sidecar JSON."""
+        if content_type == "social":
+            if not isinstance(candidate, dict) or not candidate.get("full_url"):
+                self._send_json({"ok": False, "error": "Invalid candidate"}, 400)
+                return
+            md_path = find_social_source(filename)
+            if not md_path or not md_path.exists():
+                self._send_json({"ok": False,
+                                 "error": f"File not found: {filename}"}, 404)
+                return
+            raw = md_path.read_text(encoding="utf-8")
+            _mm = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)", raw, re.DOTALL)
+            fm_text = _mm.group(1) if _mm else ""
+            body = (_mm.group(2).strip() if _mm else raw.strip())
+            fmd = {}
+            for _ln in fm_text.splitlines():
+                _kv = _ln.split(":", 1)
+                if len(_kv) == 2:
+                    fmd[_kv[0].strip()] = _kv[1].strip().strip('"').strip("'")
+            slug = fmd.get("journal_slug") or fmd.get("slug") or md_path.name
+            for _suf in (".ig.md", ".x.md", ".md"):
+                if slug.endswith(_suf):
+                    slug = slug[:-len(_suf)]
+            slug = re.sub(r"[^a-z0-9-]+", "-", slug.lower()).strip("-") or "social"
+            try:
+                from image_picker import download_candidate
+            except ImportError as e:
+                self._send_json({"ok": False,
+                                 "error": f"image_picker unavailable: {e}"}, 500)
+                return
+            hero = download_candidate(candidate, slug, ROOT_DIR / "img" / "social")
+            if not hero or not hero.get("local_path"):
+                self._send_json({"ok": False,
+                                 "error": "Failed to download image"}, 500)
+                return
+            rel = Path(hero["local_path"]).resolve().relative_to(ROOT_DIR).as_posix()
+            new_lines, saw = [], False
+            for _ln in fm_text.splitlines():
+                if _ln.strip().startswith("image:"):
+                    new_lines.append(f"image: {rel}")
+                    saw = True
+                else:
+                    new_lines.append(_ln)
+            if not saw:
+                new_lines.append(f"image: {rel}")
+            md_path.write_text(
+                "---\n" + "\n".join(new_lines) + "\n---\n\n" + body + "\n",
+                encoding="utf-8")
+            print(f"  Image selected for social {md_path.name} → {rel}")
+            self._send_json({"ok": True,
+                             "hero_image": {"local_path": rel,
+                                            "author_name": hero.get("author_name", "")},
+                             "image_url": f"https://myvilla.la/{rel}"})
+            return
         if content_type != "journal":
             self._send_json(
-                {"ok": False, "error": "Image picker only supports journal drafts"},
+                {"ok": False, "error": "Image picker supports journal/social only"},
                 400,
             )
             return
