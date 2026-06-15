@@ -41,6 +41,11 @@ except Exception:  # noqa: BLE001
                                   "balanced": "claude-sonnet-4-6",
                                   "cheap": "claude-haiku-4-5"}):
         return _fb.get(tier, "claude-sonnet-4-6")
+# Linee guida social ufficiali (tono di voce + obiettivo) — fonte unica.
+try:
+    from social_guidelines import VOICE_RULES, IMAGE_STYLE_HINT
+except Exception:  # noqa: BLE001
+    VOICE_RULES, IMAGE_STYLE_HINT = "", ""
 _HEAVY_MODEL = _resolve_model("heavy")
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
@@ -220,7 +225,9 @@ FORBIDDEN: bunker, fortress, dream home, anti-fire, "protect your family", \
 "survive the next fire"
 
 TONE: Informed, editorial, sharp. Like a market analyst who happens to \
-build houses. Never salesy, never breathless."""
+build houses. Never salesy, never breathless.
+
+""" + VOICE_RULES
 
 
 REACTIVE_PROMPT = """\
@@ -541,6 +548,10 @@ def attach_ig_image(item, slug):
         q = ((item or {}).get("title")
              or " ".join((item or {}).get("topic_tags") or [])
              or "italian villa architecture los angeles")
+        # Orienta lo stock verso il linguaggio fotografico delle guidelines
+        # (golden hour, minimal, simmetrico). Controllo vero = umano.
+        if IMAGE_STYLE_HINT:
+            q = f"{q} {IMAGE_STYLE_HINT}"
         if fetch_hero_image(query=q, slug=slug, out_dir=IMG_SOCIAL_DIR):
             got = _found()
             if got:

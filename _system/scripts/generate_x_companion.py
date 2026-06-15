@@ -41,6 +41,10 @@ except Exception:  # noqa: BLE001
                                   "balanced": "claude-sonnet-4-6",
                                   "cheap": "claude-haiku-4-5"}):
         return _fb.get(tier, "claude-sonnet-4-6")
+try:
+    from social_guidelines import VOICE_RULES
+except Exception:  # noqa: BLE001
+    VOICE_RULES = ""
 _BALANCED_MODEL = _resolve_model("balanced")
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
@@ -88,7 +92,9 @@ no emojis.
 #LuxuryHomes. Never use #fireproof / #bunker / #investment.
 
 OUTPUT FORMAT (strict): return ONLY the tweet text (with the link and \
-the hashtags inline), nothing else. No preamble, no quotes."""
+the hashtags inline), nothing else. No preamble, no quotes.
+
+""" + VOICE_RULES
 
 
 def _build_user_prompt(meta, article_url):

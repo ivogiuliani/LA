@@ -68,6 +68,10 @@ except Exception:  # noqa: BLE001
                                   "balanced": "claude-sonnet-4-6",
                                   "cheap": "claude-haiku-4-5"}):
         return _fb.get(tier, "claude-sonnet-4-6")
+try:
+    from social_guidelines import VOICE_RULES
+except Exception:  # noqa: BLE001
+    VOICE_RULES = ""
 _BALANCED_MODEL = _resolve_model("balanced")
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
@@ -126,7 +130,9 @@ defaults and pick ones that match the article topic: #MyVilla \
 
 OUTPUT FORMAT (strict):
 Return only the caption + hashtag line, separated by ONE blank line. \
-No preamble, no explanation, no quotes around the text."""
+No preamble, no explanation, no quotes around the text.
+
+""" + VOICE_RULES
 
 
 def _build_user_prompt(article_meta):
