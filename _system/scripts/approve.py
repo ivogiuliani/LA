@@ -6238,17 +6238,37 @@ function openViralReplyX(btn) {{
     showToast('Original tweet URL missing');
     return;
   }}
-  const m = openLink.href.match(/\\/status\\/(\\d+)/);
-  if (!m) {{
-    showToast('Could not parse tweet id from URL');
-    window.open(openLink.href, '_blank');
-    return;
+  const postUrl = openLink.href;
+  const m = postUrl.match(/\\/status\\/(\\d+)/);
+  if (m) {{
+    window.open('https://x.com/intent/tweet?in_reply_to=' + m[1] +
+                '&text=' + encodeURIComponent(text), '_blank');
+  }} else {{
+    window.open(postUrl, '_blank');
   }}
-  const tweetId = m[1];
-  const url = 'https://x.com/intent/tweet?in_reply_to=' + tweetId +
-              '&text=' + encodeURIComponent(text);
-  window.open(url, '_blank');
-  showToast('Opening X reply compose...');
+  // Rispondendo a mano lo trattiamo come PUBBLICATO: archivia il post
+  // (previously_reported → user_dismissed) così non viene riproposto né
+  // nel pannello né nei radar futuri, e togli la card. Stesso effetto di
+  // una pubblicazione automatica.
+  showToast('Apro X — archivio questo post...');
+  fetch('/api/dismiss-radar-item', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{url: postUrl}})
+  }})
+  .then(r => r.json())
+  .then(resp => {{
+    if (resp.ok) {{
+      card.style.transition = 'opacity 0.3s, transform 0.3s';
+      card.style.opacity = '0';
+      card.style.transform = 'scale(0.98)';
+      setTimeout(() => {{ if (card.parentNode) card.parentNode.removeChild(card); }}, 320);
+      showToast('Risposto a mano — archiviato, non riapparirà.');
+    }} else {{
+      showToast('Archiviazione fallita: ' + (resp.error || 'sconosciuto'));
+    }}
+  }})
+  .catch(err => showToast('Errore rete: ' + err.message));
 }}
 
 /* ── Viral: copy reply text ────────────────────── */
