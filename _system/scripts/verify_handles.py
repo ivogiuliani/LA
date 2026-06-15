@@ -36,9 +36,10 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 SYSTEM_DIR = SCRIPT_DIR.parent
 CONFIG_FILE = SYSTEM_DIR / "config" / "source_handles.yml"
 
-# IG/X handles: 1–30 chars of [A-Za-z0-9_.]; we also tolerate a trailing dot/
-# punctuation the model sometimes appends and strip it during normalisation.
-_HANDLE_RE = re.compile(r"@(?P<h>[A-Za-z0-9_][A-Za-z0-9_.]{0,39})")
+# IG/X handles: start and end with [A-Za-z0-9_], dots only internal (a real
+# handle never ends with a dot) — so a sentence period right after a handle
+# ("@transsolar.") stays as punctuation instead of being eaten into the match.
+_HANDLE_RE = re.compile(r"@(?P<h>[A-Za-z0-9_](?:[A-Za-z0-9_.]{0,38}[A-Za-z0-9_])?)")
 
 # Connector words/punctuation that introduce an attribution; removed together
 # with the handle so the sentence still reads ("reported by @x" -> "reported").

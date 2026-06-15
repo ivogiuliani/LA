@@ -40,6 +40,20 @@ verified:
   - dezeen
   - archdaily
   - curbed
+  # My Villa operational partners — configured in editorial-calendar.yml
+  # (partner_echo) and scraped daily by partner_scraper.py, so these are
+  # confirmed real (each has a live partner_cache/<handle>.json).
+  - buromilan                     # BUROMILAN — structural engineering
+  - dgu_baja                      # DGU — concrete construction
+  - transsolar_klimaengineering   # Transsolar — climate engineering
+  - its__vision                   # IT'S Architecture — design lead
+  # LA luxury brokers / RE media — radar engagement_targets the team
+  # curated and confirmed (✓ in radar-keywords.yml; scraper returns posts).
+  - theagencyre                   # The Agency
+  - aaronkirman                   # Aaron Kirman
+  - thealtmanbrothers             # The Altman Brothers
+  - douglaselliman                # Douglas Elliman
+  - mansionglobal                 # Mansion Global
 
 # Source-name → verified handle, so generators can credit a known publication
 # with its REAL handle instead of guessing. Names are matched case- and
@@ -65,6 +79,21 @@ sources:
   "Dezeen": dezeen
   "ArchDaily": archdaily
   "Curbed": curbed
+  "Mansion Global": mansionglobal
+  # Partners (so a credit by name resolves to the real handle).
+  "BUROMILAN": buromilan
+  "Buro Milan": buromilan
+  "DGU": dgu_baja
+  "Transsolar": transsolar_klimaengineering
+  "Transsolar KlimaEngineering": transsolar_klimaengineering
+  "IT'S Architecture": its__vision
+  "ITS Architecture": its__vision
+  # Brokers (mostly tagged on their own posts, but resolve by name too).
+  "The Agency": theagencyre
+  "Aaron Kirman": aaronkirman
+  "The Altman Brothers": thealtmanbrothers
+  "Altman Brothers": thealtmanbrothers
+  "Douglas Elliman": douglaselliman
 
 # NOTE for the operator: partner accounts (DGU, Transsolar, BUROMILAN) and
 # niche trade outlets (HousingWire, Insurance Business, etc.) are intentionally
