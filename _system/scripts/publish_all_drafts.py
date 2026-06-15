@@ -10,8 +10,9 @@ The journal pipeline used to be:
     "Pubblica" in the dashboard for each one → blog/.
 This script collapses the manual step: every draft that passes link
 validation is moved to blog/, the indices are rebuilt, the change is
-auto-pushed to GitHub, and a single summary email goes to ivolo@me.com
-listing what was published with live URLs.
+auto-pushed to GitHub, and a single summary email goes to the team
+(Ivo Giuliani + Giana Osman + Paolo Mezzalama) listing what was
+published with live URLs.
 
 Failure modes (per article):
   - Broken links (validate_links flags them) → article STAYS in
@@ -52,7 +53,12 @@ DRAFTS_DIR = ROOT_DIR / "_drafts" / "journal"
 BLOG_DIR = ROOT_DIR / "blog"
 SOCIAL_APPROVED = SYSTEM_DIR / "social" / "posts" / "approved"
 
-DEFAULT_RECIPIENT = "ivolo@me.com"
+# Destinatari della digest quotidiana (team). Stringa comma-separated →
+# diventa l'header "To" (un solo invio, un solo conteggio rate-limit).
+# Aggiunti Giana Osman e Paolo Mezzalama (its.vision) il 2026-06-15.
+DEFAULT_RECIPIENT = ("ivolo@me.com, "
+                     "giana.osman@its.vision, "
+                     "paolo.mezzalama@its.vision")
 SITE_BASE = "https://myvilla.la"
 
 
