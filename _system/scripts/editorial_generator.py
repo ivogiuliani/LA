@@ -620,6 +620,22 @@ def validate_generated_post(post: dict, config: dict) -> dict:
         return {"ok": False, "errors": errors, "warnings": warnings}
 
     caption = _strip_hashtag_tail(post.get("caption", "") or "")
+
+    # ── Strip invented @handles (e.g. @eaaorg) before persisting ──
+    # The generators were tagging non-existent/wrong source accounts; keep only
+    # our own + operator-verified handles, drop the rest. Mutate post so the
+    # written draft is clean.
+    try:
+        from verify_handles import sanitize as _vh_sanitize
+        _clean, _removed = _vh_sanitize(caption)
+        if _removed:
+            caption = _clean
+            post["caption"] = caption
+            warnings.append("stripped unverified @handles: "
+                            + ", ".join("@" + r for r in _removed))
+    except Exception:  # noqa: BLE001
+        pass
+
     hashtags = post.get("hashtags") or []
 
     # ── Caption length ──

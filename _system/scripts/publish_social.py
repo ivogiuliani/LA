@@ -53,6 +53,21 @@ def _get_x_access_secret():
     return _get_env("X_ACCESS_TOKEN_SECRET") or _get_env("X_ACCESS_SECRET")
 
 
+def _strip_unverified_handles(text):
+    """Last gate before publishing: remove @mentions that aren't ours or
+    operator-verified (the generators sometimes invent source handles like
+    @eaaorg). Best-effort — never blocks a publish."""
+    try:
+        from verify_handles import sanitize
+        clean, removed = sanitize(text)
+        if removed:
+            print(f"  [handles] stripped unverified: "
+                  f"{', '.join('@' + r for r in removed)}")
+        return clean
+    except Exception:  # noqa: BLE001
+        return text
+
+
 # ══════════════════════════════════════════════════════════════════════
 # CREDENTIAL CHECK
 # ══════════════════════════════════════════════════════════════════════
@@ -148,6 +163,8 @@ def publish_to_x(text):
     consumer_secret = _get_env("X_API_SECRET")
     access_token = _get_env("X_ACCESS_TOKEN")
     access_secret = _get_x_access_secret()
+
+    text = _strip_unverified_handles(text)
 
     if not all([consumer_key, consumer_secret, access_token, access_secret]):
         return {
@@ -261,6 +278,8 @@ def publish_to_instagram(caption, image_url=None):
         caption = sanitize_founder_name(caption)
     except Exception:  # noqa: BLE001 — mai bloccare il publish per questo
         pass
+    # Rimuovi @handle non verificati (es. @eaaorg inventato dal generatore).
+    caption = _strip_unverified_handles(caption)
     # Limite caption Instagram: 2200 caratteri.
     if len(caption) > 2200:
         caption = caption[:2197].rstrip() + "…"

@@ -1,0 +1,72 @@
+# ──────────────────────────────────────────────────────────────────────
+# My Villa — VERIFIED social handles (the ONLY @-mentions allowed to go live)
+#
+# Why this file exists: the LLM was inventing Instagram handles when crediting
+# a source (e.g. "@eaaorg"), tagging non-existent or wrong accounts. Existence
+# alone can't prove a handle is the RIGHT account, so we don't guess: an
+# @-mention is published ONLY if the handle (or its source name) is listed
+# here. Everything else is stripped and the source is named in plain text.
+#
+# verify_handles.py loads this. To allow tagging a new source:
+#   1. Open the source's Instagram profile and CONFIRM the exact @username.
+#   2. Add it below (handle WITHOUT the @). Add name aliases under `sources:`
+#      so the generators can resolve "Los Angeles Times" → latimes.
+# Only add a handle you have personally confirmed points to the real author.
+# ──────────────────────────────────────────────────────────────────────
+
+# Our own accounts — always allowed.
+own:
+  - myvilla.la
+  - myvilla_la
+  - paolomezzalama
+
+# Verified handles, grouped only for readability. Keep handles lowercase,
+# without the leading @. (IG handles are case-insensitive.)
+verified:
+  # Major outlets — well-established, stable handles.
+  - latimes
+  - sfchronicle
+  - nytimes
+  - wsj
+  - forbes
+  - cbsnews
+  - bbcnews
+  - bloomberg
+  - robbreport
+  - therealdeal
+  # Architecture / design press.
+  - archdigest
+  - dwell
+  - dezeen
+  - archdaily
+  - curbed
+
+# Source-name → verified handle, so generators can credit a known publication
+# with its REAL handle instead of guessing. Names are matched case- and
+# punctuation-insensitively (e.g. "The L.A. Times" → latimes).
+sources:
+  "Los Angeles Times": latimes
+  "LA Times": latimes
+  "San Francisco Chronicle": sfchronicle
+  "The New York Times": nytimes
+  "New York Times": nytimes
+  "Wall Street Journal": wsj
+  "The Wall Street Journal": wsj
+  "Forbes": forbes
+  "CBS News": cbsnews
+  "BBC": bbcnews
+  "BBC News": bbcnews
+  "Bloomberg": bloomberg
+  "Robb Report": robbreport
+  "The Real Deal": therealdeal
+  "Architectural Digest": archdigest
+  "AD": archdigest
+  "Dwell": dwell
+  "Dezeen": dezeen
+  "ArchDaily": archdaily
+  "Curbed": curbed
+
+# NOTE for the operator: partner accounts (DGU, Transsolar, BUROMILAN) and
+# niche trade outlets (HousingWire, Insurance Business, etc.) are intentionally
+# NOT seeded — confirm each real handle on Instagram, then add it above. Until
+# then they are referred to by plain name (never tagged with a guessed handle).

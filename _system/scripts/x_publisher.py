@@ -285,6 +285,17 @@ def publish_text(text, *, live, draft=None):
     """Preview (default) or really post one tweet. Returns True on success
     (a successful preview counts as success)."""
     text = text.strip()
+    # Strip @mentions that aren't ours or operator-verified — the generators
+    # sometimes invent source handles (e.g. @eaaorg). Best-effort.
+    try:
+        from verify_handles import sanitize
+        cleaned, removed = sanitize(text)
+        if removed:
+            print(f"  [handles] stripped unverified: "
+                  f"{', '.join('@' + r for r in removed)}")
+            text = cleaned.strip()
+    except Exception:  # noqa: BLE001
+        pass
     n = len(text)
     flag = "" if n <= TWEET_MAX else f"  ⚠ {n} chars > {TWEET_MAX}"
     print(f"  tweet ({n} chars){flag}:")

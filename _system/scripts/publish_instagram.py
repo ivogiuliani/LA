@@ -156,11 +156,26 @@ def check_token(verbose: bool = True) -> bool:
         return False
 
 
+def _strip_unverified_handles(text):
+    """Remove @mentions that aren't ours or operator-verified (the generators
+    sometimes invent source handles like @eaaorg). Best-effort."""
+    try:
+        from verify_handles import sanitize
+        clean, removed = sanitize(text)
+        if removed:
+            print(f"  [handles] stripped unverified: "
+                  f"{', '.join('@' + r for r in removed)}")
+        return clean
+    except Exception:  # noqa: BLE001
+        return text
+
+
 def api_publish_image(image_url: str, caption: str,
                       timeout_s: int = 120) -> dict:
     """Create a media container for image_url + caption, wait for it to be
     ready, then publish. Returns {'media_id':…, 'permalink':…}."""
     token, ig_id = _ig_credentials()
+    caption = _strip_unverified_handles(caption)
 
     # 1. Create container
     container = _api_post(f"{ig_id}/media", {
@@ -315,8 +330,10 @@ def split_caption_and_hashtags(body: str):
     last line that starts with # (after a blank line)."""
     parts = body.rstrip().split("\n\n")
     if len(parts) >= 2 and parts[-1].lstrip().startswith("#"):
-        return "\n\n".join(parts[:-1]).strip(), parts[-1].strip()
-    return body.strip(), ""
+        caption, tail = "\n\n".join(parts[:-1]).strip(), parts[-1].strip()
+    else:
+        caption, tail = body.strip(), ""
+    return _strip_unverified_handles(caption), tail
 
 
 # ══════════════════════════════════════════════════════════════════════

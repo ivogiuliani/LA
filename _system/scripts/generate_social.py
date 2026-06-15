@@ -198,21 +198,23 @@ BRAND VOICE:
 
 HASHTAG RULES:
 - X/Twitter: 2-3 hashtags at the END of the tweet, after the main text.
-  Include the source publication handle (e.g. @RobbReport, @LAist, \
-  @TheRealDeal) as a mention at the start or inline when citing them.
 - Instagram: 8-12 hashtags at the end, mixing:
   • Brand: #MyVilla #MyVillaLA
   • Topic: relevant to the content (#ReinforcedConcrete, #LuxuryHomes, etc.)
   • Location: #LosAngeles #LA #HancockPark (when applicable)
-  • Source: tag the source publication's IG handle inline (e.g. @robbreport)
-  • People: mention relevant people by handle when known
 
-MENTION RULES:
-- Always @mention the source publication when citing their reporting
-- If a person is named in the article and has a known social handle, \
-  @mention them
-- Known handles: @RobbReport, @TheRealDeal, @LAist, @latimes, \
-  @sfchronicle, @WSJ, @BBCNews
+MENTION RULES — STRICT. A wrong @tag links to a stranger or a dead account \
+and embarrasses us, so we never guess:
+- NEVER invent, guess, or approximate an @username. Do not turn a publication \
+  name into a handle on your own (e.g. do NOT write "@eaaorg").
+- Credit the source by its PLAIN NAME (e.g. "per Robb Report", "a Los Angeles \
+  Times analysis") — NOT an @handle — UNLESS a verified handle is provided for \
+  that item in its `source_handle` field.
+- If `source_handle` is non-empty, you MAY @mention it, exactly as given. \
+  If it is empty, use the plain publication name and NO @handle.
+- The only always-safe handle is @paolomezzalama (our founder), and only when \
+  directly attributing a quote to him.
+- Never @mention a named person unless their handle is explicitly given to you.
 
 FORBIDDEN: bunker, fortress, dream home, anti-fire, "protect your family", \
 "survive the next fire"
@@ -227,14 +229,16 @@ Generate social posts for these radar opportunities. ALL posts MUST be in Englis
 For each item, create:
 1. An X/Twitter post (max 280 chars):
    - Lead with the most striking data point or finding
-   - @mention the source publication inline (e.g. "per @RobbReport, ...")
+   - Credit the source by NAME (e.g. "per Robb Report, ..."); use its @handle
+     ONLY if the item's `source_handle` is non-empty — never invent one
    - End with 2-3 relevant hashtags (#FireResilient #LosAngeles etc.)
    - If a Journal article exists, include the link
    - Tone: sharp, editorial, data-led. Never salesy.
 
 2. An Instagram caption:
    - First 125 chars must hook (visible before "more")
-   - @mention the source publication inline in the body
+   - Credit the source by NAME in the body; use its @handle ONLY if the item's
+     `source_handle` is non-empty — never invent or guess a handle
    - End with 8-12 hashtags mixing:
      • Brand: #MyVilla #MyVillaLA
      • Topic: #ReinforcedConcrete #FireResilient #LuxuryHomes etc.
@@ -249,8 +253,8 @@ Return a JSON array:
 [
   {{
     "index": 0,
-    "x_post": "Tweet text with @source and #hashtags (max 280 chars)",
-    "ig_caption": "Instagram caption with @source inline and 8-12 #hashtags at end",
+    "x_post": "Tweet text (max 280 chars); credit the source by name, or its verified @handle ONLY if source_handle is provided — never invent one; end with #hashtags",
+    "ig_caption": "Instagram caption; credit the source by name (verified @handle only if source_handle is provided), 8-12 #hashtags at end",
     "topic_tags": ["tag1", "tag2"]
   }}
 ]
@@ -272,8 +276,8 @@ Return a JSON array:
   {{
     "index": 0,
     "slug": "article-slug",
-    "x_post": "Tweet (max 280 chars). Include link: myvilla.la/blog/{{slug}}.html. @mention source if citing. End with 2-3 hashtags.",
-    "ig_caption": "Instagram caption. @mention sources inline. Link in bio. End with 8-12 hashtags mixing #MyVilla #MyVillaLA + topic + location tags.",
+    "x_post": "Tweet (max 280 chars). Include link: myvilla.la/blog/{{slug}}.html. Credit any source by name (verified @handle only if provided; never invent). End with 2-3 hashtags.",
+    "ig_caption": "Instagram caption. Credit any source by name (verified @handle only if provided; never invent). Link in bio. End with 8-12 hashtags mixing #MyVilla #MyVillaLA + topic + location tags.",
     "topic_tags": ["tag1", "tag2"]
   }}
 ]
@@ -319,6 +323,31 @@ Return a JSON array (one object per GOOD-FIT article; omit poor fits entirely):
 Return ONLY valid JSON, no markdown fences."""
 
 
+def _verified_source_handle(publication):
+    """Verified @handle for a known publication, else '' — so the model can
+    credit it correctly instead of guessing (and gets nothing to guess with
+    when the source is unknown)."""
+    try:
+        from verify_handles import resolve_source
+        return resolve_source(publication) or ""
+    except Exception:  # noqa: BLE001
+        return ""
+
+
+def _sanitize_posts(posts):
+    """Strip any @handle the model invented despite instructions (last net
+    before these drafts reach the panel/queue)."""
+    try:
+        from verify_handles import sanitize
+        for p in posts:
+            for k in ("x_post", "ig_caption"):
+                if p.get(k):
+                    p[k], _ = sanitize(p[k])
+    except Exception:  # noqa: BLE001
+        pass
+    return posts
+
+
 def generate_reactive_posts(items, model=_HEAVY_MODEL):
     """Generate reactive social posts from radar signals."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -333,6 +362,8 @@ def generate_reactive_posts(items, model=_HEAVY_MODEL):
         "title": item.get("title", ""),
         "url": item.get("url", ""),
         "publication": item.get("publication", ""),
+        # Verified handle (or "" → the model must use the plain name, never guess)
+        "source_handle": _verified_source_handle(item.get("publication", "")),
         "snippet": item.get("snippet", "")[:200],
         "summary": item.get("summary", ""),
         "score": item.get("ai_score", item.get("preliminary_score", 0)),
@@ -352,7 +383,7 @@ def generate_reactive_posts(items, model=_HEAVY_MODEL):
         if text.startswith("```"):
             text = re.sub(r'^```json?\n?', '', text)
             text = re.sub(r'\n?```$', '', text)
-        posts = json.loads(text)
+        posts = _sanitize_posts(json.loads(text))
         print(f"  [Social] Generated {len(posts)} reactive posts")
         return posts
     except Exception as e:
