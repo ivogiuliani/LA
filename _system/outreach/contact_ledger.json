@@ -1572,9 +1572,17 @@
           "message_id": "19eab09121500b61",
           "thread_id": "19eab09121500b61",
           "subject": "A European angle on your wildfire deductibles piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-16T06:22:37+00:00",
+          "message_id": "19ecf189fa25b07b",
+          "thread_id": "19ecf189fa25b07b",
+          "subject": "Re: A European angle on your wildfire deductibles piece"
         }
       ],
-      "next_touch_at": "2026-06-16",
+      "next_touch_at": "2026-06-30",
       "status": "in_cadence",
       "source_url": "https://www.washingtonpost.com/weather/2026/06/05/some-california-homeowners-now-face-wildfire-deductibles-why-thats-problem/",
       "source_title": "Some California homeowners now face ‘wildfire deductibles.’ Why that’s a problem. - The Washington Post",
@@ -1777,5 +1785,5 @@
       "rescue_confidence": "high"
     }
   },
-  "last_hydrated_at": "2026-06-15T06:39:17.320961+00:00"
+  "last_hydrated_at": "2026-06-16T06:22:33.239321+00:00"
 }
