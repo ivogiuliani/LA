@@ -2319,6 +2319,18 @@ def main(argv=None):
                 except Exception:  # noqa: BLE001
                     pass
 
+    # Garantisce un'immagine (anteprima) a OGNI post IG che ne è privo —
+    # golden-hour Unsplash, stile guidelines. Così nel pannello ogni post
+    # Instagram mostra già l'immagine scelta dal sistema, pronta per la
+    # revisione. Idempotente (skip se già a posto). Gira su entrambi i rail.
+    if not args.dry_run:
+        try:
+            subprocess.run(
+                [sys.executable, str(SCRIPT_DIR / "ensure_ig_images.py")],
+                capture_output=True, text=True, timeout=240)
+        except Exception:  # noqa: BLE001
+            pass
+
     # Rebuild indices and push if at least one article moved (or dry run for preview).
     pushed_sha = ""
     if published and not args.dry_run:
