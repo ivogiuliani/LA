@@ -1,0 +1,65 @@
+{
+  "slug": "fire-resistant-home-cost-california-burn-probability-roi",
+  "title": "Fire-Resistant Home Cost in California: Burn Probability and ROI",
+  "subtitle": "Why the same mitigation dollar pays back differently depending on where your parcel sits on the map.",
+  "section": "materials",
+  "tag_label": "Materials & Construction",
+  "meta_description": "How much does fire-resistant home cost in California in 2026? County burn probability decides whether $1,100 ember vents or a $15K Class A roof pays back faster.",
+  "meta_keywords": "fire resistant home California, fire resistant home cost, California insurance reform 2026, burn probability, ember vents, Class A roof, WUI Code, insurable home California",
+  "sources": [
+    {
+      "name": "Smart Tech Invest",
+      "title": "California Insurance Reform Is Coming in 2026: How Your County's Burn Probability Determines Whether $1,100 Ember Vents or a $15K Class A Roof Pays Back Faster",
+      "url": "https://smarttechinvest.com/wildfirecost/blog/california-insurance-reform-2026-county-burn-probability-ember-vents-class-a-roof-payback",
+      "type": "article",
+      "excerpt": "Analysis linking county-level burn probability to ROI on individual mitigation measures under 2026 California insurance reforms."
+    }
+  ],
+  "key_data": [
+    {
+      "number": "$1,100",
+      "label": "Indicative cost of\nember-resistant vents"
+    },
+    {
+      "number": "$15K",
+      "label": "Indicative cost of a\nClass A roof upgrade"
+    },
+    {
+      "number": "3 layers",
+      "label": "Mitigation recognized\nunder Safer from Wildfires"
+    }
+  ],
+  "our_perspective": "We find the burn-probability framing useful precisely because it exposes a limit. Measure-by-measure ROI treats a house as a collection of parts you can sequence — vents this year, a roof the next. But the parts interact, and the weakest one sets the ceiling on what an insurer will credit. When we build with an insulated concrete shell, ember vents and a Class A roof are not line items chosen against a payback clock — they fall out of a single non-combustible envelope. Transsolar's climate modeling then ties that envelope to ventilation and energy performance, so resilience and comfort are engineered together rather than bolted on. The map still matters. But it changes what your dollar buys, not whether the structure has to be sound first.",
+  "body_html": "<p class=\"reveal\">A new analysis published by <a href=\"https://smarttechinvest.com/wildfirecost/blog/california-insurance-reform-2026-county-burn-probability-ember-vents-class-a-roof-payback\">Smart Tech Invest</a> reframes a question most California homeowners ask backwards. Rather than asking which wildfire upgrade is cheapest, the piece asks which upgrade pays back fastest — and argues the answer depends almost entirely on where your parcel sits. Under the 2026 insurance reforms now taking hold, the same dollar spent on roughly $1,100 of ember-resistant vents or a $15,000 Class A roof produces very different returns depending on a county's modeled burn probability. The map, in other words, is doing the math.</p>\n\n<h2 class=\"reveal\">The data behind the payback</h2>\n<p class=\"reveal\">The logic is straightforward once stated. Premium credits scale with assessed risk: in a high-burn-probability area, an upgrade that meaningfully lowers ignition likelihood earns a larger absolute discount than the identical upgrade in a low-risk zone. So a measure with a fixed cost can have a payback period that swings by years across county lines.</p>\n<p class=\"reveal\">That sits on top of California's Safer from Wildfires regulation, which requires insurers to recognize mitigation across three layers — the structure itself, the immediate parcel, and the surrounding community. Vents and roofing live in the structure layer, the most heavily weighted of the three because, per federal post-fire studies, ember intrusion is the dominant pathway by which homes ignite in the wildland-urban interface.</p>\n<div class=\"key-data\">\n<p><strong>$1,100</strong> — indicative cost of ember-resistant vents</p>\n<p><strong>$15,000</strong> — indicative cost of a Class A roof upgrade</p>\n<p><strong>3 layers</strong> — mitigation recognized under Safer from Wildfires (structure, parcel, community)</p>\n</div>\n<p class=\"reveal\">The takeaway from the source is not that one measure beats another universally. It is that the cheapest measure and the fastest-paying measure are rarely the same — and that burn probability is the variable that decides which is which.</p>\n\n<h2 class=\"reveal\">What it means for the LA market</h2>\n<p class=\"reveal\">For Los Angeles buyers in Malibu, the Westside, and the canyon markets, this granularity cuts two ways. The encouraging read is that mitigation is now a measurable financial instrument, not a vague gesture toward safety — there is a number attached to each move. The harder read is that piecemeal retrofitting on an existing wood-framed home produces uneven, sometimes disappointing returns, because the building's underlying combustibility caps how much credit any single upgrade can unlock.</p>\n<p class=\"reveal\">A Class A roof on a structure whose walls, eaves, and framing remain combustible improves one exposure while leaving others intact. Underwriters see the whole envelope, not the best part of it. That is why the burn-probability framing, valuable as it is, ultimately points past the question of which retrofit to buy — and toward the question of what the structure is made of in the first place.</p>\n\n<p class=\"reveal\">As 2026 progresses through its first full year under the updated WUI rules, expect more carriers to publish location-sensitive credit schedules. The homeowner who treats wildfire hardening as a sequence of disconnected purchases will keep chasing payback curves. The one who starts from a non-combustible whole will find the map changes the size of the reward — not whether the reward exists.</p>",
+  "excerpt": "A new analysis ties California's 2026 insurance reforms to county burn probability — arguing the same $1,100 ember vents or $15K Class A roof pay back at very different speeds depending on where your parcel sits.",
+  "image_prompt": "Architectural photography of a minimal concrete villa roofline meeting a fire-rated soffit and vent detail, warm muted afternoon light, California hillside in soft focus background, editorial tone, shallow depth of field",
+  "topic_tags": [
+    "fire-resistant-home-cost",
+    "burn-probability-roi"
+  ],
+  "data_points_cited": [
+    "$1,100 indicative cost of ember-resistant vents per Smart Tech Invest (2026)",
+    "$15,000 indicative cost of a Class A roof upgrade per Smart Tech Invest (2026)",
+    "Safer from Wildfires recognizes mitigation across three layers: structure, parcel, community (CDI)"
+  ],
+  "read_time_min": 6,
+  "hero_image": {
+    "local_path": "/Users/ivogiuliani/Code/myvilla-la/blog/assets/img/fire-resistant-home-cost-california-burn-probability-roi-hero.jpg",
+    "web_path": "assets/img/fire-resistant-home-cost-california-burn-probability-roi-hero.jpg",
+    "photo_id": "tOsnob01kM4",
+    "author_name": "Silas Lundquist",
+    "author_url": "https://unsplash.com/@silaslundquist?utm_source=myvilla&utm_medium=referral",
+    "unsplash_url": "https://unsplash.com/photos/a-modern-building-stands-against-a-mountain-backdrop-tOsnob01kM4?utm_source=myvilla&utm_medium=referral",
+    "alt_description": "A modern building stands against a mountain backdrop.",
+    "color": "#0c2626"
+  },
+  "_date": "2026-06-16",
+  "_section_id": "materials",
+  "_section_name": "Materials & Construction",
+  "_source_item": {
+    "title": "California Insurance Reform Is Coming in 2026: How Your County's Burn Probability Determines Whether $1,100 Ember Vents or a $15K Class A Roof Pays Back Faster",
+    "url": "https://smarttechinvest.com/wildfirecost/blog/california-insurance-reform-2026-county-burn-probability-ember-vents-class-a-roof-payback",
+    "publication": "smarttechinvest.com",
+    "cluster": "materials_construction"
+  }
+}

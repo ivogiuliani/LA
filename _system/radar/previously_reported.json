@@ -3159,6 +3159,26 @@
       "action_type": "user_dismissed",
       "url": "https://www.coveragecat.com/insurance-types/home/california-home-premiums-rising",
       "note": "auto-published journal: california-home-insurance-premiums-2026-construction-variable"
+    },
+    {
+      "date_first_reported": "2026-06-16",
+      "source": "user_dismissed",
+      "title": "California Insurance Reform Is Coming in 2026: How Your County's Burn Probability Determines Whether $1,100 Ember Vents or a $15K Class A Roof Pays Back Faster",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://smarttechinvest.com/wildfirecost/blog/california-insurance-reform-2026-county-burn-probability-ember-vents-class-a-roof-payback",
+      "note": "auto-published journal: fire-resistant-home-cost-california-burn-probability-roi"
+    },
+    {
+      "date_first_reported": "2026-06-16",
+      "source": "user_dismissed",
+      "title": "Late financier, philanthropist's Bel Air estate hits market at $65M",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2026/06/15/john-and-joan-hotchkins-bel-air-home-hits-market/",
+      "note": "auto-published journal: bel-air-luxury-estate-65m-villa-cresta-construction-value"
     }
   ],
   "reported": [
@@ -3421,6 +3441,36 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/brentcrude67496/status/2064840392894562808",
       "note": "auto-skip AI: drama, no buyer/partner overlap"
+    },
+    {
+      "date_first_reported": "2026-06-16",
+      "source": "ai_skip",
+      "title": "@BarbaraLundqui7: Author: @BarbaraLundqui7 | Text: YES ABSOLUTELY!!👍 Everyone who voted for Bianca...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/BarbaraLundqui7/status/2065372860219355221",
+      "note": "auto-skip AI: politics/drama, off-topic"
+    },
+    {
+      "date_first_reported": "2026-06-16",
+      "source": "ai_skip",
+      "title": "@OrmesherKelly: Author: @OrmesherKelly | Text: A lot of homeowners did not have insurance becaus...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/OrmesherKelly/status/2066235928805527627",
+      "note": "auto-skip AI: combative reply-thread, no value"
+    },
+    {
+      "date_first_reported": "2026-06-16",
+      "source": "ai_skip",
+      "title": "@ImaDOGEyGirl: Author: @ImaDOGEyGirl | Text: I will refrain from pointing out how ignorant your...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/ImaDOGEyGirl/status/2065824230906937791",
+      "note": "auto-skip AI: drama/politics, no buyer-partner overlap"
     }
   ]
 }

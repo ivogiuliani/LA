@@ -382,7 +382,7 @@
     "result": null
   },
   "latentinsure.com": {
-    "cached_at": 1780306215.046365,
+    "cached_at": 1781590775.5195441,
     "result": null
   },
   "theunion.com": {
@@ -784,6 +784,10 @@
   },
   "cappuccinoinsurance.com": {
     "cached_at": 1781505334.7217028,
+    "result": null
+  },
+  "smarttechinvest.com": {
+    "cached_at": 1781590770.7143402,
     "result": null
   }
 }

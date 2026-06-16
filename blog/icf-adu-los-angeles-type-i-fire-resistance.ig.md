@@ -3,8 +3,8 @@ channel: ig
 type: journal_companion
 journal_slug: icf-adu-los-angeles-type-i-fire-resistance
 article_url: https://myvilla.la/blog/icf-adu-los-angeles-type-i-fire-resistance.html
-generated_at: 2026-06-14T10:51:29
-char_count: 215
+generated_at: 2026-06-16T08:22:21
+char_count: 224
 hashtags:
   - MyVilla
   - MyVillaLA
@@ -16,6 +16,6 @@ hashtags:
 status: draft
 ---
 
-The smallest build can set the largest precedent. Builtech's ICF ADU, completed to Type I fire-resistance standards, reframes the question from "how do we treat surfaces" to "what are we building with." Link in bio.
+An ADU built to Type I fire-resistance standards using insulated concrete forms — not a coating, not a treatment. The structure itself is the protection. That shift in thinking matters for every LA neighborhood. Link in bio.
 
 #MyVilla #MyVillaLA #ReinforcedConcrete #FireResistantHome #LosAngelesArchitecture #ItalianVilla #LuxuryHomeLA
