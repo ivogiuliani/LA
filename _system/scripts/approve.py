@@ -3347,6 +3347,86 @@ def build_dashboard():
     except Exception as _e:  # noqa: BLE001 — la strip non deve rompere la pagina
         ig_queue_strip = ""
 
+    # Pipeline di pubblicazione: la LISTA dei post APPROVATI in attesa di
+    # uscire (non solo il numero). Il social manager vede cosa è in coda,
+    # con anteprima immagine e quando esce (cap 1/canale al giorno).
+    def _publish_pipeline_section():
+        appr = SYSTEM_DIR / "social" / "posts" / "approved"
+        if not appr.exists():
+            return ""
+        fm_re = re.compile(r"^---\s*\n(.*?)\n---\s*\n(.*)", re.DOTALL)
+        rows_ig, rows_x = [], []
+        # mtime ascendente = ordine di uscita (ig_publisher pubblica i più vecchi prima)
+        for f in sorted(appr.glob("*.md"), key=lambda p: p.stat().st_mtime):
+            try:
+                raw = f.read_text(encoding="utf-8", errors="replace")
+            except OSError:
+                continue
+            m = fm_re.match(raw)
+            fm, body = {}, raw
+            if m:
+                for ln in m.group(1).splitlines():
+                    kv = ln.split(":", 1)
+                    if len(kv) == 2:
+                        fm[kv[0].strip()] = kv[1].strip().strip('"').strip("'")
+                body = m.group(2).strip()
+            chh = str(fm.get("channel", fm.get("platform", ""))).lower()
+            chh = "ig" if chh in ("ig", "instagram") else \
+                  "x" if chh in ("x", "twitter") else "?"
+            if chh == "?":
+                continue
+            target = rows_ig if chh == "ig" else rows_x
+            pos = len(target) + 1
+            when = "oggi/domani" if pos == 1 else f"~tra {pos} giorni"
+            img = _social_image_preview(fm) if chh == "ig" else ""
+            if img:
+                thumb = (f'<img src="{_esc(img)}" alt="" loading="lazy" '
+                         f'style="width:56px;height:56px;object-fit:cover;'
+                         f'border-radius:6px;flex:none;">')
+            elif chh == "ig":
+                thumb = ('<span style="width:56px;height:56px;border-radius:6px;'
+                         'background:#f0e3d0;display:flex;align-items:center;'
+                         'justify-content:center;flex:none;">⚠</span>')
+            else:
+                thumb = ('<span style="width:56px;height:56px;border-radius:6px;'
+                         'background:var(--charcoal);color:#fff;display:flex;'
+                         'align-items:center;justify-content:center;flex:none;">𝕏</span>')
+            snippet = _esc(re.sub(r"\s+", " ", body)[:150])
+            badge = ('<span class="badge badge-ig">📷 IG</span>' if chh == "ig"
+                     else '<span class="badge badge-tweet">𝕏 X</span>')
+            target.append(
+                f'<div style="display:flex;gap:0.7rem;align-items:center;'
+                f'padding:0.55rem 0;border-bottom:1px solid #eee3cf;">{thumb}'
+                f'<div style="flex:1;min-width:0;">{badge} '
+                f'<span style="color:#8a8378;font-size:0.74rem;">esce {when}</span>'
+                f'<div style="font-size:0.86rem;color:#3a3a3a;margin-top:2px;">'
+                f'{snippet}…</div></div></div>')
+        if not rows_ig and not rows_x:
+            return ""
+        inner = ""
+        if rows_ig:
+            inner += (f'<div style="font-weight:600;margin:0.4rem 0 0.2rem;">'
+                      f'📷 Instagram <span style="color:#999;">({len(rows_ig)})</span></div>'
+                      + "".join(rows_ig))
+        if rows_x:
+            inner += (f'<div style="font-weight:600;margin:0.7rem 0 0.2rem;">'
+                      f'𝕏 X <span style="color:#999;">({len(rows_x)})</span></div>'
+                      + "".join(rows_x))
+        return (
+            '<div class="section">'
+            '<h2 class="section-heading">🚀 In coda di pubblicazione'
+            f'<span class="section-count">{len(rows_ig) + len(rows_x)}</span></h2>'
+            '<p class="section-subtitle">Post <strong>approvati</strong> in attesa '
+            'di uscire — pubblicati in automatico, 1 per canale al giorno (i più '
+            'vecchi prima). Niente da fare: escono da soli. Per anticiparne uno usa '
+            '"🚀 Pubblica subito" sulla sua card.</p>'
+            f'{inner}</div>')
+
+    try:
+        publish_pipeline_strip = _publish_pipeline_section()
+    except Exception:  # noqa: BLE001
+        publish_pipeline_strip = ""
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5647,6 +5727,8 @@ def build_dashboard():
   '''}
 
   {ig_queue_strip}
+
+  {publish_pipeline_strip}
 
   {f'''
   <div class="section">
