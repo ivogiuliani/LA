@@ -1205,6 +1205,33 @@ rebuild, implying resilience/concrete → dishonest praise. SKIP.
 """
 
 
+def _gemini_complete(prompt: str, model: str = "gemini-2.5-flash") -> str:
+    """Fallback LLM via Gemini quando Anthropic è giù/senza crediti
+    (resilienza: un provider down non deve azzerare i commenti virali).
+    → testo della risposta, '' su errore/chiave assente."""
+    key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not key:
+        return ""
+    import urllib.request as _u
+    url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+           f"{model}:generateContent?key={key}")
+    body = json.dumps({
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {"temperature": 0.7, "maxOutputTokens": 4096},
+    }).encode("utf-8")
+    req = _u.Request(url, data=body,
+                     headers={"Content-Type": "application/json"}, method="POST")
+    try:
+        with _u.urlopen(req, timeout=60) as r:
+            d = json.load(r)
+        parts = (d.get("candidates", [{}])[0]
+                 .get("content", {}).get("parts", []))
+        return "".join(p.get("text", "") for p in parts).strip()
+    except Exception as e:  # noqa: BLE001
+        print(f"  [Gemini-fallback] error: {type(e).__name__}")
+        return ""
+
+
 def generate_viral_reply_drafts(viral_items, model=_HEAVY_MODEL):
     """Generate reply drafts for viral social posts.
 
@@ -1273,13 +1300,24 @@ Items:
 Return ONLY a valid JSON array of {len(items_desc)} objects, no markdown fences."""
 
     try:
-        response = client.messages.create(
-            model=model,
-            max_tokens=4096,
-            system=VIRAL_REPLY_SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        response_text = response.content[0].text.strip()
+        try:
+            response = client.messages.create(
+                model=model,
+                max_tokens=4096,
+                system=VIRAL_REPLY_SYSTEM_PROMPT,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            response_text = response.content[0].text.strip()
+        except Exception as _ae:  # noqa: BLE001
+            # Anthropic giù/senza crediti → fallback Gemini.
+            print(f"  [ViralReply] Anthropic non disponibile "
+                  f"({type(_ae).__name__}) → fallback Gemini")
+            response_text = _gemini_complete(
+                VIRAL_REPLY_SYSTEM_PROMPT + "\n\n" + prompt)
+            if not response_text:
+                print("  [ViralReply] anche Gemini non disponibile — "
+                      "nessun commento generato")
+                return viral_items
         if response_text.startswith("```"):
             response_text = re.sub(r"^```(?:json)?\s*\n?", "", response_text)
             response_text = re.sub(r"\n?```\s*$", "", response_text)
