@@ -909,24 +909,29 @@ def find_social_source(filename: str):
     return None
 
 
-def _social_image_preview(frontmatter: dict) -> str:
-    """URL pubblico dell'immagine del post (stessa logica di
-    ig_publisher._resolve_image_url, versione preview)."""
+def _social_image_preview(frontmatter: dict, local: bool = False) -> str:
+    """URL dell'immagine del post.
+    - local=False (default): URL pubblico myvilla.la — per la PUBBLICAZIONE
+      (IG/X richiedono un URL raggiungibile da internet).
+    - local=True: path relativo servito dal PANNELLO stesso (passthrough
+      statico /blog/assets/, /img/…) — per l'ANTEPRIMA: si vede SUBITO dal
+      file locale, senza dipendere dal deploy su GitHub Pages (che ha un
+      ritardo di minuti → era la causa delle anteprime vuote)."""
+    base = "" if local else "https://myvilla.la"
     img = str(frontmatter.get("image") or "").strip()
     if img.startswith(("http://", "https://")):
         return img
     if img:
-        local = ROOT_DIR / img.lstrip("/")
-        if local.exists():
-            return f"https://myvilla.la/{local.relative_to(ROOT_DIR).as_posix()}"
+        loc = ROOT_DIR / img.lstrip("/")
+        if loc.exists():
+            return f"{base}/{loc.relative_to(ROOT_DIR).as_posix()}"
         return ""
     slug = str(frontmatter.get("journal_slug") or "").strip()
     if slug:
         for ext in ("jpg", "jpeg", "png", "webp"):
             cand = BLOG_DIR / "assets" / "img" / f"{slug}-hero.{ext}"
             if cand.exists():
-                return (f"https://myvilla.la/"
-                        f"{cand.relative_to(ROOT_DIR).as_posix()}")
+                return f"{base}/{cand.relative_to(ROOT_DIR).as_posix()}"
     return ""
 
 
@@ -1004,7 +1009,7 @@ def _parse_social_file(f):
         # Reddit self-post: il corpo serve INTERO (la submission lo posta
         # as-is). Per X/IG basta l'anteprima a 500 char.
         "body": body if is_reddit else body[:500],
-        "image_url": _social_image_preview(frontmatter),
+        "image_url": _social_image_preview(frontmatter, local=True),
         "journal_slug": journal_slug,
         "article_url": frontmatter.get("article_url", ""),
         "subreddit": frontmatter.get("subreddit", ""),
@@ -3378,7 +3383,7 @@ def build_dashboard():
             target = rows_ig if chh == "ig" else rows_x
             pos = len(target) + 1
             when = "oggi/domani" if pos == 1 else f"~tra {pos} giorni"
-            img = _social_image_preview(fm) if chh == "ig" else ""
+            img = _social_image_preview(fm, local=True) if chh == "ig" else ""
             if img:
                 thumb = (f'<img src="{_esc(img)}" alt="" loading="lazy" '
                          f'style="width:56px;height:56px;object-fit:cover;'
@@ -9695,7 +9700,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
             self._send_json({"ok": True,
                              "hero_image": {"local_path": rel,
                                             "author_name": hero.get("author_name", "")},
-                             "image_url": f"https://myvilla.la/{rel}"})
+                             "image_url": f"/{rel}"})  # locale → anteprima subito
             return
         if content_type != "journal":
             self._send_json(
