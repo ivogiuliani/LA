@@ -31,6 +31,7 @@ import mimetypes
 import sys
 from dataclasses import dataclass
 from email.mime.base import MIMEBase
+from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email import encoders
@@ -227,6 +228,7 @@ class GmailClient:
         in_reply_to: str | None = None,
         references: str | None = None,
         attachments: list[Path] | None = None,
+        inline_images: dict[str, Path] | None = None,
     ) -> dict[str, Any]:
         """
         Send an email. Returns the Gmail API response dict with `id` (the
@@ -248,6 +250,11 @@ class GmailClient:
                             the same value.
         attachments       : list of Paths to attach. MIME type is
                             auto-detected from the file extension.
+        inline_images     : map of {content_id: Path} for images referenced
+                            from the HTML body via <img src="cid:CONTENT_ID">.
+                            Embedded inline (Content-Disposition: inline) inside
+                            a multipart/related part so they render in the body,
+                            not as download attachments. Requires html_body.
 
         The caller is responsible for:
         - Appending the signature (see send_email.compose_body)
@@ -269,12 +276,23 @@ class GmailClient:
         #   3. No HTML, but attachments present → MIMEMultipart("mixed")
         #      with plain body + attached files.
         attachments = attachments or []
+        inline_images = inline_images or {}
         if html_body:
             outer: MIMEText | MIMEMultipart = MIMEMultipart("mixed")
             alt = MIMEMultipart("alternative")
             alt.attach(MIMEText(body, "plain", _charset="utf-8"))
             alt.attach(MIMEText(html_body, "html", _charset="utf-8"))
-            outer.attach(alt)
+            if inline_images:
+                # multipart/related: the alternative (text+html) is the root,
+                # the images follow with a Content-ID so <img src="cid:…">
+                # resolves and renders in the body (not as an attachment).
+                related = MIMEMultipart("related")
+                related.attach(alt)
+                for cid, path in inline_images.items():
+                    self._attach_inline_image(related, cid, path)
+                outer.attach(related)
+            else:
+                outer.attach(alt)
             for path in attachments:
                 self._attach_file(outer, path)
             msg = outer
@@ -328,6 +346,21 @@ class GmailClient:
             "Content-Disposition", "attachment", filename=path.name,
         )
         msg.attach(part)
+
+    @staticmethod
+    def _attach_inline_image(msg: MIMEMultipart, cid: str, path: Path) -> None:
+        """Attach one image INLINE (Content-ID = cid), referenced from the
+        HTML body via <img src="cid:cid">. Renders in the body rather than as
+        a download attachment."""
+        if not path.exists():
+            raise FileNotFoundError(f"Inline image not found: {path}")
+        ctype, _ = mimetypes.guess_type(str(path))
+        subtype = (ctype.split("/", 1)[1]
+                   if ctype and ctype.startswith("image/") else "jpeg")
+        img = MIMEImage(path.read_bytes(), _subtype=subtype)
+        img.add_header("Content-ID", f"<{cid}>")
+        img.add_header("Content-Disposition", "inline", filename=path.name)
+        msg.attach(img)
 
     def list_recent(
         self, *, query: str = "", max_results: int = 20

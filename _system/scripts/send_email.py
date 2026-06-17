@@ -192,6 +192,7 @@ def send_raw(
     in_reply_to: str | None = None,
     references: str | None = None,
     attachments: list[Path] | None = None,
+    inline_images: dict[str, Path] | None = None,
     kind: str = "outreach",
 ) -> SendResult:
     """
@@ -354,6 +355,7 @@ def send_raw(
             in_reply_to=in_reply_to,
             references=references,
             attachments=resolved_attachments or None,
+            inline_images=inline_images or None,
         )
         result = SendResult(
             ok=True,
