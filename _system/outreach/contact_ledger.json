@@ -1211,10 +1211,18 @@
           "message_id": "19e8c37fcc537272",
           "thread_id": "19e8c37fcc537272",
           "subject": "A European angle on your 2026 Election Results for California Insurance Commissioner  piece"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-17T06:29:01+00:00",
+          "message_id": "19ed444d7b521940",
+          "thread_id": "19ed444d7b521940",
+          "subject": "Re: A European angle on your Who’s Running for California Insurance Commissioner? 2026 Pr piece"
         }
       ],
-      "next_touch_at": "2026-06-17",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "",
       "source_title": "",
       "cold_pitch_body": "",
@@ -1785,5 +1793,5 @@
       "rescue_confidence": "high"
     }
   },
-  "last_hydrated_at": "2026-06-16T06:22:33.239321+00:00"
+  "last_hydrated_at": "2026-06-17T06:29:00.901870+00:00"
 }
