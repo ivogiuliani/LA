@@ -301,6 +301,9 @@ jobs:
             python3 _system/scripts/generate_social.py --radar "$RADAR_FILE" --max-posts 2 || \
               echo "::warning::generate_social non-bloccante fallito"
           fi
+          # Evergreen (brand-awareness dal sito) — non dipende dal radar.
+          python3 _system/scripts/generate_evergreen.py || \
+            echo "::warning::generate_evergreen non-bloccante fallito"
         env:
           PYTHONUNBUFFERED: "1"
 

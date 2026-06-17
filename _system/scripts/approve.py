@@ -1030,7 +1030,7 @@ def scan_social_drafts():
             if f.name in seen:
                 continue
             parsed = _parse_social_file(f)
-            if parsed:
+            if parsed and parsed.get("type") != "evergreen":
                 seen.add(f.name)
                 drafts.append(parsed)
     # Companion IG/X degli articoli live (blog/*.ig.md, blog/*.x.md)
@@ -1039,7 +1039,7 @@ def scan_social_drafts():
             if f.name in seen:
                 continue
             parsed = _parse_social_file(f)
-            if parsed:
+            if parsed and parsed.get("type") != "evergreen":
                 seen.add(f.name)
                 drafts.append(parsed)
     # RILEVANZA prima (score del radar, "scegli tu i più rilevanti"),
@@ -1049,6 +1049,25 @@ def scan_social_drafts():
                                     or "instagram" in x["channel"].lower())
                 else 1)
     return drafts
+
+
+def scan_evergreen():
+    """Proposte EVERGREEN (flusso brand-awareness dal sito, generate da
+    generate_evergreen.py) in _drafts/social/. Separate dai post derivati
+    dal journal: type == 'evergreen'. Più recenti prima."""
+    out, seen = [], set()
+    for d in _social_source_dirs():
+        if not d.exists():
+            continue
+        for f in sorted(d.glob("*.md")):
+            if f.name in seen:
+                continue
+            parsed = _parse_social_file(f)
+            if parsed and parsed.get("type") == "evergreen":
+                seen.add(f.name)
+                out.append(parsed)
+    out.sort(key=lambda x: x.get("date", ""), reverse=True)
+    return out
 
 
 def scan_ig_viral():
@@ -1888,6 +1907,7 @@ def build_dashboard():
     journal = scan_journal_drafts()
     published = scan_published_articles()
     social = scan_social_drafts()
+    evergreen = scan_evergreen()
     editorial = scan_editorial_drafts()
     ig_viral = scan_ig_viral()
     radar = scan_radar_opportunities()
@@ -3453,6 +3473,39 @@ def build_dashboard():
     except Exception:  # noqa: BLE001
         publish_pipeline_strip = ""
 
+    # ── Card evergreen (flusso brand dal sito). Card IG compatte che
+    #    riusano gli handler social esistenti (approve/publish/save/
+    #    image-picker/skip), keyed sul file. ──
+    evergreen_cards = ""
+    for d in evergreen:
+        _img = d.get("image_url") or ""
+        _m = re.search(r"-evergreen-([a-z_]+)\.md$", d.get("file", ""))
+        _topic = _m.group(1).replace("_", " ") if _m else "evergreen"
+        _body = d.get("body", "")
+        _imghtml = (f'<div class="social-img-preview"><img src="{_esc(_img)}" '
+                    f'alt="" loading="lazy"></div>' if _img else "")
+        evergreen_cards += f"""
+        <div class="card" id="card-social-{_esc(d['file'])}" data-file="{_esc(d['file'])}" data-type="social" data-channel="instagram">
+          <div class="card-status-stripe"></div>
+          <div class="card-body">
+            <div class="card-header">
+              <span class="badge badge-ig">📷 IG</span>
+              <span class="badge badge-evergreen">✨ {_esc(_topic)}</span>
+              {f'<span class="news-date">{_esc(d["date"])}</span>' if d.get("date") else ''}
+            </div>
+            {_imghtml}
+            <textarea class="card-post-editor" data-field="body" oninput="updateSocialCharCount(this)">{_esc(_body)}</textarea>
+            <div class="card-meta"><span class="meta-chars"><span class="char-count-live">{len(_body)}</span> chars</span></div>
+            <div class="card-actions">
+              <button class="btn btn-approve" onclick="doAction('approve', '{_esc_js(d['file'])}', 'social', this)" title="Mette in coda (auto 1/giorno)">✅ Approva → coda</button>
+              <button class="btn btn-publish-social" data-platform="instagram" onclick="publishSocial('{_esc_js(d['file'])}', 'instagram', this)" title="Pubblica adesso via API">📷 Pubblica subito</button>
+              <button class="btn btn-edit" onclick="saveSocialDraft('{_esc_js(d['file'])}', this)">💾 Salva</button>
+              <button class="btn btn-edit" onclick="openImagePicker('{_esc_js(d['file'])}', this)" title="Cambia immagine">🖼 Immagine</button>
+              <button class="btn btn-reject" onclick="doAction('reject', '{_esc_js(d['file'])}', 'social', this)">🗑 Scarta</button>
+            </div>
+          </div>
+        </div>"""
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3636,6 +3689,10 @@ def build_dashboard():
   }}
   .badge-buyer {{
     background: #1f7a4d;
+    color: #fff;
+  }}
+  .badge-evergreen {{
+    background: #5c6b4f;
     color: #fff;
   }}
   .badge-biz {{
@@ -5751,6 +5808,14 @@ def build_dashboard():
     <p class="section-subtitle">Nessuna proposta in attesa. I generatori (radar reattivo, companion articoli, partner) ne produrranno con la prossima pipeline.</p>
   </div>
   '''}
+
+  {f'''
+  <div class="section">
+    <h2 class="section-heading">✨ Evergreen dal sito<span class="section-count">{len(evergreen)}</span></h2>
+    <p class="section-subtitle"><strong>Nuovo flusso</strong>: post di brand-awareness costruiti dai temi del sito (non dalle notizie). Proposte da rivedere/approvare — testo e immagine modificabili. Ruotano sui 9 topic con immagini originali. Si gestiscono come gli altri social: "✅ Approva → coda" o "🚀 Pubblica subito".</p>
+    {evergreen_cards}
+  </div>
+  ''' if evergreen else ''}
 
   {ig_queue_strip}
 

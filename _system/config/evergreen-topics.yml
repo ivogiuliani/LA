@@ -1,0 +1,129 @@
+# My Villa — Evergreen content topics (dal sito myvilla.la)
+# Fonte: _system/knowledge/site_content.md. Usato da generate_evergreen.py.
+# Flusso evergreen di brand-awareness, separato dai post derivati dal journal.
+# 9 topic confermati da Ivo (2026-06-17). Rotazione con anti-ripetizione.
+#
+# Per ogni topic:
+#   name    — titolo leggibile
+#   brief   — di cosa parla (contesto per l'LLM, dal sito)
+#   angles  — sotto-angoli per variare i post nel tempo
+#   images  — stem di immagini ORIGINALI del sito (img/<stem>.{webp,jpg,png})
+
+topics:
+  - key: vision
+    name: "Italian Soul · Californian Body"
+    brief: >
+      The manifesto: Italian warmth meets Californian ease. Villas built to
+      last centuries, not decades — architecture as a permanent asset, not a
+      product. Homes you feel, not just own.
+    angles:
+      - "Permanence: built to last centuries, not decades"
+      - "Italian warmth meets Californian ease — what it feels like"
+      - "A home is architecture, not a product"
+    images: [hero, external, biophilic, courtyard]
+
+  - key: courtyard
+    name: "The Courtyard"
+    brief: >
+      Courtyard villas organized around an interior void — an open sky framed
+      by concrete walls. Cross-ventilation (Transsolar) brings comfort without
+      mechanical cooling. The courtyard as the heart of domestic life.
+    angles:
+      - "An open sky framed by concrete — the heart of the house"
+      - "Cross-ventilation: comfort without air conditioning"
+      - "A private world within — indoor-outdoor living"
+    images: [courtyard, courtyard-interior, biophilic-design, biophilic]
+
+  - key: interiors
+    name: "Light, Proportion, Material"
+    brief: >
+      Interiors as a composition of light, proportion and material. Concrete,
+      wood and glass in dialogue. Natural light traces time across concrete
+      surfaces. Spaces designed for living, not for displaying.
+    angles:
+      - "Light traces the hours across concrete"
+      - "Concrete, wood, glass — a quiet dialogue"
+      - "Rooms for living, not for displaying"
+    images: [int-terracotta-surface, int-window-detail, living-room, dining, int-warm-workspace, int-luxury-living]
+
+  - key: typologies
+    name: "The Four Typologies"
+    brief: >
+      Four foundational archetypes — Courtyard, L, Deconstructed, Hill House —
+      each a proven starting point, fully customizable to site and lifestyle.
+      A starting point, not a limit.
+    angles:
+      - "Four archetypes, infinite homes"
+      - "Hill House: architecture that steps with the terrain"
+      - "A starting point, not a limit — shaped around how you live"
+    images: [external, courtyard, hero, structural, facade-cream]
+
+  - key: craft
+    name: "Material & Craft"
+    brief: >
+      Personalization: five concrete facade tones, sculptural column profiles
+      (rounded, square, fluted), and 40+ interior finishes — terrazzo, green
+      marble, walnut, bronze, artisan tiles. Italian craft, Californian living.
+      No two villas alike.
+    angles:
+      - "Five concrete tones, one architectural form"
+      - "Every column is a design statement"
+      - "Terrazzo, green marble, bronze — Italian craft up close"
+      - "Forty finishes — no two villas alike"
+    images: [facade-cream, facade-sage, facade-terracotta, col-rounded, col-square, col-fluted, int-green-marble, int-green-terrazzo, int-walnut-wood, int-bronze-faucet, int-terrazzo-floor, int-reeded-glass, mood-sage, mood-terracotta]
+
+  - key: concrete
+    name: "Museum-Grade Concrete"
+    brief: >
+      Every villa is crafted in architectural concrete by DGU, the firm behind
+      Palazzo Grassi & Punta della Dogana (Tadao Ando), the Kimbell Art Museum
+      (Renzo Piano), Aman Venice, and now Aman Amanvari. The same concrete as
+      the world's most enduring cultural buildings — now a home.
+    angles:
+      - "The concrete behind Palazzo Grassi — now a home"
+      - "Kimbell, Punta della Dogana, Amanvari: the same hands"
+      - "Material permanence: built like a museum"
+    images: [palazzo-grassi, punta-dogana, kimbell, amanvari-01, amanvari-02, material-permanence, tectonics, int-palazzo-interior]
+
+  - key: resilience
+    name: "Fire-Resilient by Design"
+    brief: >
+      ICF reinforced concrete: non-combustible by structure, not by coating.
+      Built to withstand fire and to be insured — natively meeting all 12
+      Safer from Wildfires measures, the 2026 WUI Code, and IBHS WPH+. Numbers
+      only as supporting data (e.g. 12/12 measures, 4+ hour wall rating).
+    angles:
+      - "Non-combustible by structure, not by coating"
+      - "Built to withstand fire — and to be insured"
+      - "The structure itself is the fire barrier"
+    images: [resilient, resilience-climate, structural, tectonics, external]
+
+  - key: bioclimatic
+    name: "Bioclimatic Living"
+    brief: >
+      Cool without air conditioning: thermal mass, cross-ventilation, green
+      roofs, passive shading. Energy independence and 2–3 day off-grid
+      autonomy. A calmer, self-sufficient home that works even when the grid
+      doesn't.
+    angles:
+      - "Cool without air conditioning"
+      - "A house that works even when the grid doesn't"
+      - "Thermal mass and cross-ventilation — comfort by design"
+    images: [resilience-energy, resilience-climate, biophilic, mood-sage, courtyard, pool]
+
+  - key: los_angeles
+    name: "A Slower Los Angeles"
+    brief: >
+      A slower, more authentic Los Angeles — green, quiet, lived-in. Villas in
+      Malibu, Pacific Palisades, Topanga as a way of living, not a real-estate
+      product: a desirable, sophisticated lifestyle immersed in nature.
+    angles:
+      - "A slower Los Angeles — green, quiet, lived-in"
+      - "The villa as a way of living, not a product"
+      - "Nature woven into the architecture, not outside the window"
+    images: [external, hero, pool, int-sculptural-poolside, int-green-lounge, biophilic]
+
+# Quanti post evergreen proporre al giorno (proposte, non pubblicazione)
+posts_per_day: 3
+# Non riproporre lo stesso topic entro N giorni (varietà)
+topic_cooldown_days: 5

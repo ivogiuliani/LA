@@ -265,6 +265,14 @@ else
     log "--- ig_viral_radar.py — SKIP (APIFY_API_TOKEN assente) ---"
 fi
 
+# Step 3d: generate_evergreen — flusso brand-awareness dal SITO (3
+# proposte/giorno dai topic del sito + immagini originali). NON dipende
+# dal radar, NON pubblica: solo proposte da approvare nel pannello
+# (sezione "✨ Evergreen dal sito"). LLM con fallback Gemini. Non-bloccante.
+log "--- generate_evergreen.py (proposte evergreen dal sito) ---"
+python3 _system/scripts/generate_evergreen.py >> "$LOG_FILE" 2>&1 || \
+    log "generate_evergreen errore non bloccante (continuo)"
+
 # Step 4: feature_pitch — non-bloccante
 log "--- feature_pitch.py $FP_DRY ---"
 python3 _system/scripts/feature_pitch.py $FP_DRY >> "$LOG_FILE" 2>&1 || \
