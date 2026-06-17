@@ -3394,13 +3394,23 @@ def build_dashboard():
             snippet = _esc(re.sub(r"\s+", " ", body)[:150])
             badge = ('<span class="badge badge-ig">📷 IG</span>' if chh == "ig"
                      else '<span class="badge badge-tweet">𝕏 X</span>')
+            fname = _esc_js(f.name)
+            actions = (
+                '<div style="display:flex;flex-direction:column;gap:4px;flex:none;">'
+                f'<button class="btn btn-publish-social" style="padding:3px 9px;'
+                f'font-size:0.72rem;" onclick="publishQueueItem(\'{fname}\', this)" '
+                f'title="Pubblica subito, salta il cap giornaliero">🚀 Ora</button>'
+                f'<button class="btn btn-reject" style="padding:3px 9px;'
+                f'font-size:0.72rem;" onclick="removeQueueItem(\'{fname}\', this)" '
+                f'title="Togli dalla coda (→ archivio)">🗑</button>'
+                '</div>')
             target.append(
                 f'<div style="display:flex;gap:0.7rem;align-items:center;'
                 f'padding:0.55rem 0;border-bottom:1px solid #eee3cf;">{thumb}'
                 f'<div style="flex:1;min-width:0;">{badge} '
                 f'<span style="color:#8a8378;font-size:0.74rem;">esce {when}</span>'
                 f'<div style="font-size:0.86rem;color:#3a3a3a;margin-top:2px;">'
-                f'{snippet}…</div></div></div>')
+                f'{snippet}…</div></div>{actions}</div>')
         if not rows_ig and not rows_x:
             return ""
         inner = ""
@@ -5955,6 +5965,55 @@ function doAction(action, file, type, btn) {{
     buttons.forEach(b => b.disabled = false);
     showToast('Network error: ' + err.message);
   }});
+}}
+
+/* ── Pipeline coda: pubblica ora / rimuovi ─────── */
+function publishQueueItem(file, btn) {{
+  btn.disabled = true;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner"></span>';
+  fetch('/api/queue_publish', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{file: file, type: 'social'}})
+  }})
+  .then(r => r.json())
+  .then(d => {{
+    const rowEl = btn.closest('div[style*="border-bottom"]');
+    if (d.ok || d.duplicate) {{
+      let m = 'Pubblicato' + (d.duplicate ? ' (era già live)' : '');
+      if (d.url) m += ' — ' + d.url;
+      showToast(m);
+      if (rowEl) {{ rowEl.style.opacity = '0.35'; setTimeout(() => rowEl.remove(), 700); }}
+    }} else {{
+      btn.disabled = false; btn.innerHTML = orig;
+      showToast('Errore: ' + (d.error || 'sconosciuto'));
+    }}
+  }})
+  .catch(err => {{ btn.disabled = false; btn.innerHTML = orig;
+    showToast('Errore rete: ' + err.message); }});
+}}
+
+function removeQueueItem(file, btn) {{
+  if (!confirm('Togliere questo post dalla coda di pubblicazione?')) return;
+  btn.disabled = true;
+  fetch('/api/queue_remove', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{file: file, type: 'social'}})
+  }})
+  .then(r => r.json())
+  .then(d => {{
+    if (d.ok) {{
+      const rowEl = btn.closest('div[style*="border-bottom"]');
+      if (rowEl) {{ rowEl.style.opacity = '0'; setTimeout(() => rowEl.remove(), 300); }}
+      showToast('Rimosso dalla coda.');
+    }} else {{
+      btn.disabled = false;
+      showToast('Errore: ' + (d.error || 'sconosciuto'));
+    }}
+  }})
+  .catch(err => {{ btn.disabled = false; showToast('Errore rete: ' + err.message); }});
 }}
 
 /* ── Social: publish directly to X/Instagram ───── */
@@ -8848,6 +8907,10 @@ class ReviewHandler(BaseHTTPRequestHandler):
             )
         elif parsed.path == "/api/social_credentials":
             self._handle_social_credentials()
+        elif parsed.path == "/api/queue_publish":
+            self._handle_queue_publish(safe_name)
+        elif parsed.path == "/api/queue_remove":
+            self._handle_queue_remove(safe_name)
         else:
             self._send_json({"ok": False, "error": "Unknown endpoint"}, 404)
 
@@ -10044,6 +10107,43 @@ class ReviewHandler(BaseHTTPRequestHandler):
 
         status = 200 if result.get("ok") else (400 if result.get("needs_setup") else 500)
         self._send_json(result, status)
+
+    # ── /api/queue_publish ──────────────────────────────────────────
+    def _handle_queue_publish(self, filename):
+        """Pubblica ORA un post APPROVATO già in coda (bypassa il cap
+        giornaliero). Usato dal pulsante 'Pubblica ora' della pipeline."""
+        path = SYSTEM_DIR / "social" / "posts" / "approved" / Path(filename).name
+        if not path.exists():
+            self._send_json({"ok": False,
+                             "error": f"Non in coda: {filename}"}, 404)
+            return
+        try:
+            import ig_publisher
+            result = ig_publisher.publish_file(path)
+        except Exception as e:  # noqa: BLE001
+            self._send_json({"ok": False, "error": f"publish error: {e}"}, 500)
+            return
+        ok = result.get("ok") or result.get("duplicate")
+        status = 200 if ok else (400 if result.get("needs_setup") else 500)
+        self._send_json(result, status)
+
+    # ── /api/queue_remove ───────────────────────────────────────────
+    def _handle_queue_remove(self, filename):
+        """Toglie un post dalla coda di pubblicazione (sposta in
+        _archive/social, non distrugge)."""
+        path = SYSTEM_DIR / "social" / "posts" / "approved" / Path(filename).name
+        if not path.exists():
+            self._send_json({"ok": False,
+                             "error": f"Non in coda: {filename}"}, 404)
+            return
+        try:
+            arch = ROOT_DIR / "_archive" / "social"
+            arch.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(path), str(arch / path.name))
+            print(f"  Rimosso dalla coda: {path.name} -> _archive/social/")
+            self._send_json({"ok": True, "message": "Rimosso dalla coda."})
+        except Exception as e:  # noqa: BLE001
+            self._send_json({"ok": False, "error": f"remove error: {e}"}, 500)
 
     # ── /api/social_credentials ──────────────────────────────────────
     def _handle_social_credentials(self):

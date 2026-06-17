@@ -434,6 +434,54 @@ def run(*, dry_run: bool = False, cap: int | None = None) -> dict:
             "pending": remaining}
 
 
+def publish_file(path, *, dry_run: bool = False) -> dict:
+    """Pubblica UN singolo post approvato ORA (bypassando il cap), usato
+    dal pulsante 'Pubblica ora' della coda nel pannello. Riusa la stessa
+    logica di run() (immagine, caption, publish, move→published). → dict."""
+    _load_dotenv()
+    path = Path(path)
+    parsed = _parse_post(path)
+    if not parsed:
+        return {"ok": False, "error": "file non leggibile/parsabile"}
+    fm, body = parsed
+    ch = _channel(fm)
+    if ch == "ig":
+        image_url, note = _resolve_image_url(fm)
+        if not image_url:
+            return {"ok": False, "error": f"immagine mancante: {note}"}
+        caption = _build_caption(fm, body)
+        if dry_run:
+            return {"ok": True, "dry_run": True, "image": image_url}
+        if not _wait_image_live(image_url):
+            return {"ok": False,
+                    "error": f"immagine non raggiungibile: {image_url}"}
+        from publish_social import publish_to_instagram
+        result = publish_to_instagram(caption, image_url=image_url)
+    elif ch == "x":
+        if dry_run:
+            return {"ok": True, "dry_run": True}
+        from publish_social import publish_to_x
+        try:
+            from send_email import sanitize_founder_name
+        except Exception:  # noqa: BLE001
+            def sanitize_founder_name(t):
+                return t
+        result = publish_to_x(sanitize_founder_name(body.strip())[:280])
+    else:
+        return {"ok": False, "error": f"canale non gestito: {ch or '?'}"}
+
+    if result.get("ok") or result.get("duplicate"):
+        try:
+            dest = _move_to_published(path, fm, body, result)
+            moved = dest.name
+        except Exception:  # noqa: BLE001
+            moved = path.name
+        return {"ok": True, "url": result.get("url", ""),
+                "duplicate": bool(result.get("duplicate")), "file": moved}
+    return {"ok": False, "error": result.get("error", "errore di pubblicazione"),
+            "needs_setup": bool(result.get("needs_setup"))}
+
+
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(description="Publisher Instagram (fase 1)")
     p.add_argument("--dry-run", action="store_true")
