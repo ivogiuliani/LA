@@ -1,25 +1,7 @@
 month: 2026-07
-generated_at: '2026-04-29T01:46:33'
-slot_count: 14
+generated_at: '2026-06-17T15:20:35'
+slot_count: 5
 slots:
-- date: '2026-07-01'
-  day: wednesday
-  time: 09:00
-  timezone: America/Los_Angeles
-  pillar: archetype
-  pillar_name: Archetypes
-  format: carousel
-  caption_target_chars: 250
-  visual_hint: historical b/w photo or rendered drawing for slide 1; references for
-    slides 2-5; MyVilla render for slide 6
-  status: planned
-  slug: archetype-fireplace
-  sub_topic: Fireplace
-  archetype_definition: Domestic anchor — the gravitational centre of the room
-  archetype_masters:
-  - Cini Boeri — Casa Rotonda, La Maddalena, 1966
-  - Carlo Scarpa — Villa Il Palazzetto, Monselice, 1970
-  slides: 6
 - date: '2026-07-02'
   day: thursday
   time: 09:00
@@ -37,78 +19,7 @@ slots:
     Every villa's load path, seismic detail, and reinforced-concrete frame is engineered
     by their team — the same discipline they refined across 90+ projects with Renzo
     Piano.
-- date: '2026-07-06'
-  day: monday
-  time: 09:00
-  timezone: America/Los_Angeles
-  pillar: vision
-  pillar_name: Vision
-  format: single_image_or_quote_card
-  caption_target_chars: 220
-  visual_hint: render or moodboard with strong horizon line; concrete tones
-  status: planned
-  slug: why-la-needs-villas-not-lightweight-construction
-  sub_topic: Why LA needs villas, not lightweight construction
-- date: '2026-07-08'
-  day: wednesday
-  time: 09:00
-  timezone: America/Los_Angeles
-  pillar: system
-  pillar_name: System
-  format: single_image_or_carousel
-  caption_target_chars: 220
-  visual_hint: concrete texture detail OR structural diagram OR moodboard tone palette
-  status: planned
-  slug: on-site-mobile-concrete-plants-why-we-produce-lo
-  sub_topic: On-site mobile concrete plants — why we produce locally
 - date: '2026-07-09'
-  day: thursday
-  time: 09:00
-  timezone: America/Los_Angeles
-  pillar: partner_echo
-  pillar_name: Partner Echo
-  format: single_image_or_carousel_first_frame
-  caption_target_chars: 200
-  visual_hint: borrowed from partner; first frame if carousel
-  status: planned_pending_scrape
-  slug: partner-dgu_baja
-  partner_handle: dgu_baja
-  partner_focus: concrete construction
-  partner_role_in_myvilla: DGU is My Villa's concrete construction partner. They mix
-    and place every cubic meter of our reinforced concrete on-site in California —
-    the same crews that delivered Palazzo Grassi, Punta della Dogana, Aman Venice,
-    and the Kimbell Art Museum expansion.
-- date: '2026-07-13'
-  day: monday
-  time: 09:00
-  timezone: America/Los_Angeles
-  pillar: vision
-  pillar_name: Vision
-  format: single_image_or_quote_card
-  caption_target_chars: 220
-  visual_hint: render or moodboard with strong horizon line; concrete tones
-  status: planned
-  slug: italian-soul-californian-body-what-it-really-mea
-  sub_topic: Italian Soul, Californian Body — what it really means
-- date: '2026-07-15'
-  day: wednesday
-  time: 09:00
-  timezone: America/Los_Angeles
-  pillar: archetype
-  pillar_name: Archetypes
-  format: carousel
-  caption_target_chars: 250
-  visual_hint: historical b/w photo or rendered drawing for slide 1; references for
-    slides 2-5; MyVilla render for slide 6
-  status: planned
-  slug: archetype-window
-  sub_topic: Window
-  archetype_definition: Framed view — landscape as composition, light as material
-  archetype_masters:
-  - Umberto Riva — Casa Bottero, Milano, 1966
-  - Giancarlo De Carlo — Ca' Romanino, Urbino, 1967
-  slides: 6
-- date: '2026-07-16'
   day: thursday
   time: 09:00
   timezone: America/Los_Angeles
@@ -125,31 +36,7 @@ slots:
     design the passive ventilation, daylight, and thermal-mass behaviour of every
     villa so that comfort under California sun is engineered, not hoped for. Same
     studio that worked with Piano, SANAA, Foster.
-- date: '2026-07-20'
-  day: monday
-  time: 09:00
-  timezone: America/Los_Angeles
-  pillar: vision
-  pillar_name: Vision
-  format: single_image_or_quote_card
-  caption_target_chars: 220
-  visual_hint: render or moodboard with strong horizon line; concrete tones
-  status: planned
-  slug: resilience-as-continuity-not-as-fear
-  sub_topic: Resilience as continuity, not as fear
-- date: '2026-07-22'
-  day: wednesday
-  time: 09:00
-  timezone: America/Los_Angeles
-  pillar: system
-  pillar_name: System
-  format: single_image_or_carousel
-  caption_target_chars: 220
-  visual_hint: concrete texture detail OR structural diagram OR moodboard tone palette
-  status: planned
-  slug: concrete-tones-the-moodboard
-  sub_topic: Concrete tones — the moodboard
-- date: '2026-07-23'
+- date: '2026-07-16'
   day: thursday
   time: 09:00
   timezone: America/Los_Angeles
@@ -166,38 +53,7 @@ slots:
     Paris. Every typology, proportion, and architectural decision starts on their
     drawing boards — the same practice behind Piazza dei Cinquecento, Termini Station,
     and the FOROF centre.
-- date: '2026-07-27'
-  day: monday
-  time: 09:00
-  timezone: America/Los_Angeles
-  pillar: vision
-  pillar_name: Vision
-  format: single_image_or_quote_card
-  caption_target_chars: 220
-  visual_hint: render or moodboard with strong horizon line; concrete tones
-  status: planned
-  slug: the-villa-as-a-cultural-artefact
-  sub_topic: The villa as a cultural artefact
-- date: '2026-07-29'
-  day: wednesday
-  time: 09:00
-  timezone: America/Los_Angeles
-  pillar: archetype
-  pillar_name: Archetypes
-  format: carousel
-  caption_target_chars: 250
-  visual_hint: historical b/w photo or rendered drawing for slide 1; references for
-    slides 2-5; MyVilla render for slide 6
-  status: planned
-  slug: archetype-living-green-roof
-  sub_topic: Living Green Roof
-  archetype_definition: The roof as fifth facade and ecosystem — landscape continued
-    upward
-  archetype_masters:
-  - Adalberto Libera — Casa Malaparte, Capri, 1937
-  - Vico Magistretti — Casa Arosio, Arenzano, 1959
-  slides: 6
-- date: '2026-07-30'
+- date: '2026-07-23'
   day: thursday
   time: 09:00
   timezone: America/Los_Angeles
@@ -214,3 +70,20 @@ slots:
     Every villa's load path, seismic detail, and reinforced-concrete frame is engineered
     by their team — the same discipline they refined across 90+ projects with Renzo
     Piano.
+- date: '2026-07-30'
+  day: thursday
+  time: 09:00
+  timezone: America/Los_Angeles
+  pillar: partner_echo
+  pillar_name: Partner Echo
+  format: single_image_or_carousel_first_frame
+  caption_target_chars: 200
+  visual_hint: borrowed from partner; first frame if carousel
+  status: planned_pending_scrape
+  slug: partner-dgu_baja
+  partner_handle: dgu_baja
+  partner_focus: concrete construction
+  partner_role_in_myvilla: DGU is My Villa's concrete construction partner. They mix
+    and place every cubic meter of our reinforced concrete on-site in California —
+    the same crews that delivered Palazzo Grassi, Punta della Dogana, Aman Venice,
+    and the Kimbell Art Museum expansion.

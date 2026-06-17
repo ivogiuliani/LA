@@ -308,6 +308,26 @@ jobs:
           PYTHONUNBUFFERED: "1"
 
       # ───────────────────────────────────────────────────────────
+      # 9a-bis. Social digest — email a Ivo+Giana con l'abstract di
+      #     TUTTI i contenuti social del pannello (proposte da approvare
+      #     + evergreen + commenti ai post virali IG/X + coda). Gira
+      #     DOPO la generazione social così fotografa i contenuti
+      #     freschi. Solo formattazione (niente LLM). Idempotente: una
+      #     volta/giorno (marker su data). Non-bloccante.
+      # ───────────────────────────────────────────────────────────
+      - name: Social digest (abstract a Ivo+Giana)
+        if: steps.guard.outputs.should_run == 'true' && steps.guard2.outputs.should_send == 'true'
+        run: |
+          SD_FLAG=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            SD_FLAG="--dry-run"
+          fi
+          python3 _system/scripts/social_digest.py $SD_FLAG || \
+            echo "::warning::social_digest non-bloccante fallito"
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      # ───────────────────────────────────────────────────────────
       # 9b. Feature pitch — proponi a 1-2 testate locali/giorno un
       #     articolo su My Villa (self-contained, non-bloccante).
       # ───────────────────────────────────────────────────────────

@@ -186,6 +186,8 @@ python3 _system/scripts/ig_publisher.py $IG_DRY >> "$LOG_FILE" 2>&1 || \
 # coda approvati è vuota. In DRY_RUN fa solo preview. Non-bloccante.
 X_DRY=""
 [ "${DRY_RUN:-0}" = "1" ] && X_DRY="--dry-run"
+SD_DRY=""
+[ "${DRY_RUN:-0}" = "1" ] && SD_DRY="--dry-run"
 log "--- x_publisher.py --dir --status approved $X_DRY ---"
 python3 _system/scripts/x_publisher.py --dir --status approved --publish-live $X_DRY \
     >> "$LOG_FILE" 2>&1 || \
@@ -272,6 +274,16 @@ fi
 log "--- generate_evergreen.py (proposte evergreen dal sito) ---"
 python3 _system/scripts/generate_evergreen.py >> "$LOG_FILE" 2>&1 || \
     log "generate_evergreen errore non bloccante (continuo)"
+
+# Step 3e: social_digest — email quotidiana a Ivo+Giana con l'abstract di
+# TUTTI i contenuti social del pannello (proposte da approvare + evergreen +
+# commenti ai post virali IG/X + coda di pubblicazione). Gira DOPO la
+# generazione social (3c/3d) così fotografa i contenuti freschi. Solo
+# formattazione, niente LLM. Idempotente: una volta/giorno (marker su data).
+# Non-bloccante.
+log "--- social_digest.py (abstract social a Ivo+Giana) $SD_DRY ---"
+python3 _system/scripts/social_digest.py $SD_DRY >> "$LOG_FILE" 2>&1 || \
+    log "social_digest errore non bloccante (continuo)"
 
 # Step 4: feature_pitch — non-bloccante
 log "--- feature_pitch.py $FP_DRY ---"
