@@ -1579,6 +1579,31 @@ def _resolve_gemini_redirect(url, fallback_title=""):
         return url, fallback_title
 
 
+def _is_gemini_meta_answer(text: str) -> bool:
+    """True se la risposta Gemini è una SINTESI conversazionale invece di
+    contenuto reale di articoli — da scartare. Tipico quando le fonti web
+    (CSE/Brave) sono giù e Gemini resta l'unica fonte: restituisce
+    preamboli tipo 'Here are four articles…' o 'I was unable to find…'
+    (e cita domini a caso, es. listing immobiliari) → card-spazzatura."""
+    head = (text or "").strip().lower()[:170]
+    if not head:
+        return True
+    signals = (
+        "i was unable", "i could not find", "i couldn't find",
+        "i am unable", "i'm unable", "i was not able", "i did not find",
+        "i don't have", "i do not have", "unfortunately, i",
+        "i found the following", "based on my search", "here are the",
+        "no recent articles", "no articles were", "i have found",
+        "i wasn't able", "as an ai",
+    )
+    if any(s in head for s in signals):
+        return True
+    # "Here are N articles" / "Here is a summary of … articles"
+    if re.search(r"\bhere (are|is)\b.{0,55}\barticles?\b", head):
+        return True
+    return False
+
+
 def gemini_search(api_key, config, lookback_days=7):
     """Use Gemini 2.5-flash with Google Search Grounding."""
     if not api_key:
@@ -1681,6 +1706,14 @@ def gemini_search(api_key, config, lookback_days=7):
             for part in candidate.get("content", {}).get("parts", []):
                 text_content += part.get("text", "")
 
+            # FILTRO anti-spazzatura: scarta le risposte-sintesi di Gemini
+            # ('Here are N articles…', 'I was unable to find…'). Non sono
+            # articoli reali e i loro grounding chunk sono spesso domini a
+            # caso (listing immobiliari) → niente pitch, niente card.
+            if _is_gemini_meta_answer(text_content):
+                print(f"  [Gemini] '{cluster}': sintesi senza articoli reali — scartata")
+                time.sleep(2)
+                continue
             if chunks:
                 for chunk in chunks:
                     web = chunk.get("web", {})
@@ -1700,17 +1733,9 @@ def gemini_search(api_key, config, lookback_days=7):
                         "publication": title.split(" - ")[-1] if " - " in title else title[:40],
                         "date": "",
                     })
-            else:
-                results.append({
-                    "source": "gemini",
-                    "cluster": cluster,
-                    "query": prompt_text[:80],
-                    "title": f"Gemini summary — {cluster}",
-                    "url": "",
-                    "snippet": text_content[:400],
-                    "publication": "Gemini Search",
-                    "date": "",
-                })
+            # Nessun grounding chunk = nessuna fonte reale: niente da
+            # aggiungere (prima si creava una card 'Gemini summary' fittizia
+            # con URL vuoto — spazzatura, ora eliminata).
             time.sleep(2)
         except Exception as e:
             # Niente eccezione raw: l'URL Gemini contiene ?key=... (leak)
