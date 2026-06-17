@@ -2109,14 +2109,25 @@ def build_dashboard():
             copy_label = "Copy"
 
         img_url = d.get("image_url") or ""
-        img_block = (
-            f'<div class="social-img-preview"><img src="{_esc(img_url)}" '
-            f'alt="" loading="lazy"></div>' if img_url else
-            ('<div class="social-img-missing">⚠ Nessuna immagine — il '
-             'publisher IG la richiede (aggiungi <code>image:</code> nel '
-             'frontmatter o verrà saltato)</div>'
-             if pub_platform == "instagram" else "")
-        )
+        if pub_platform == "instagram":
+            # IG: l'immagine viene ALLEGATA al post → anteprima reale.
+            img_block = (
+                f'<div class="social-img-preview"><img src="{_esc(img_url)}" '
+                f'alt="" loading="lazy"></div>' if img_url else
+                '<div class="social-img-missing">⚠ Nessuna immagine — il '
+                'publisher IG la richiede (aggiungi <code>image:</code> nel '
+                'frontmatter o verrà saltato)</div>')
+        elif pub_platform == "x" and img_url:
+            # X: NON alleghiamo immagine. Il tweet include il link e X mostra
+            # da solo la card dell'articolo. L'anteprima qui è indicativa.
+            img_block = (
+                f'<div class="social-img-preview"><img src="{_esc(img_url)}" '
+                f'alt="" loading="lazy"></div>'
+                '<div style="font-size:0.73rem;color:#8a8378;margin:-2px 0 5px;">'
+                "↗ Anteprima del link — su X esce la card dell'articolo "
+                "(immagine presa dall'articolo, non allegata a parte).</div>")
+        else:
+            img_block = ""
         art_link = (f'<a href="{_esc(d.get("article_url",""))}" '
                     f'target="_blank" style="font-size:0.78rem;">↗ articolo</a>'
                     if d.get("article_url") else "")
@@ -2139,7 +2150,7 @@ def build_dashboard():
               <button class="btn btn-approve" onclick="doAction('approve', '{_esc_js(d['file'])}', 'social', this)" title="Mette in coda: esce in automatico col cap giornaliero">✅ Approva → coda (auto)</button>
               <button class="btn btn-publish-social" data-platform="{pub_platform}" onclick="publishSocial('{_esc_js(d['file'])}', '{pub_platform}', this)" title="Pubblica adesso via API, bypassando la coda">{pub_icon} Pubblica subito</button>
               <button class="btn btn-edit" onclick="saveSocialDraft('{_esc_js(d['file'])}', this)">💾 Salva</button>
-              <button class="btn btn-edit" onclick="openImagePicker('{_esc_js(d['file'])}', this)" title="Cambia immagine — picker Unsplash orientato allo stile golden-hour delle guidelines">🖼 Immagine</button>
+              {'<button class="btn btn-edit" onclick="openImagePicker(' + chr(39) + _esc_js(d['file']) + chr(39) + ', this)" title="Cambia immagine (Instagram) — picker Unsplash stile golden-hour">🖼 Immagine</button>' if pub_platform == "instagram" else ''}
               <button class="btn btn-opus" onclick="openReviseModal('{_esc_js(d['file'])}', 'social', this)">Revise</button>
               <button class="btn btn-copy-open" onclick="copyAndOpen('{pub_platform}', this)">{copy_label}</button>
               <button class="btn btn-reject" onclick="doAction('reject', '{_esc_js(d['file'])}', 'social', this)">🗑 Scarta</button>
