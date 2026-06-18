@@ -3179,6 +3179,16 @@
       "action_type": "user_dismissed",
       "url": "https://therealdeal.com/la/2026/06/15/john-and-joan-hotchkins-bel-air-home-hits-market/",
       "note": "auto-published journal: bel-air-luxury-estate-65m-villa-cresta-construction-value"
+    },
+    {
+      "date_first_reported": "2026-06-18",
+      "source": "user_dismissed",
+      "title": "Traditional Home Insurance Is Collapsing. Here's What Could Fill the Gap",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/ai-assisted-parametric-insurance-climate-change",
+      "note": "auto-published journal: parametric-insurance-california-luxury-home"
     }
   ],
   "reported": [
@@ -3471,6 +3481,106 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/ImaDOGEyGirl/status/2065824230906937791",
       "note": "auto-skip AI: drama/politics, no buyer-partner overlap"
+    },
+    {
+      "date_first_reported": "2026-06-18",
+      "source": "ai_skip",
+      "title": "@accesskardash: Author: @accesskardash | Text: Khloé Kardashian no Nobu durante o lançamento da...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/accesskardash/status/2067383854474612783",
+      "note": "auto-skip AI: celebrity fragrance launch, no design/build hook"
+    },
+    {
+      "date_first_reported": "2026-06-18",
+      "source": "ai_skip",
+      "title": "@accesskardash: Author: @accesskardash | Text: Kris Jenner e Colten Pausen no Nobu durante o lan...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/accesskardash/status/2067384666701566381",
+      "note": "auto-skip AI: celebrity event post, no relevant hook"
+    },
+    {
+      "date_first_reported": "2026-06-18",
+      "source": "ai_skip",
+      "title": "@RamsNFL: Author: @RamsNFL | Text: Our Rams Rookie tour continues with @HabitatLA in Pacif...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/RamsNFL/status/2065516767058018344",
+      "note": "auto-skip AI: charity/sports post, opportunistic to comment"
+    },
+    {
+      "date_first_reported": "2026-06-18",
+      "source": "ai_skip",
+      "title": "@accesskardash: Author: @accesskardash | Text: Kris Jenner no Nobu durante o lançamento da fragr...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/accesskardash/status/2067391026096975911",
+      "note": "auto-skip AI: celebrity event post, no relevant hook"
+    },
+    {
+      "date_first_reported": "2026-06-18",
+      "source": "ai_skip",
+      "title": "@accesskardash: Author: @accesskardash | Text: Khloé Kardashian e Annie Sharp no Nobu durante o...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/accesskardash/status/2067383587985334421",
+      "note": "auto-skip AI: celebrity event post, no relevant hook"
+    },
+    {
+      "date_first_reported": "2026-06-18",
+      "source": "ai_skip",
+      "title": "@accesskardash: Author: @accesskardash | Text: Khloé Kardashian e Kris Jenner no Nobu durante o...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/accesskardash/status/2067383925203165694",
+      "note": "auto-skip AI: celebrity event post, no relevant hook"
+    },
+    {
+      "date_first_reported": "2026-06-18",
+      "source": "ai_skip",
+      "title": "@LisaShouse99354: Author: @LisaShouse99354 | Text: This is not enough. @CAgovernor    Gavin should...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/LisaShouse99354/status/2067032788185067791",
+      "note": "auto-skip AI: political rant, off-topic"
+    },
+    {
+      "date_first_reported": "2026-06-18",
+      "source": "ai_skip",
+      "title": "@BarbaraLundqui7: Author: @BarbaraLundqui7 | Text: YES ABSOLUTELY!!👍 \nEveryone who voted for Bianc...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/BarbaraLundqui7/status/2065372860219355221",
+      "note": "auto-skip AI: political/election rant, off-topic"
+    },
+    {
+      "date_first_reported": "2026-06-18",
+      "source": "ai_skip",
+      "title": "@mizsmartass: Author: @mizsmartass | Text: What TF do you think the California Fair plan is???...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/mizsmartass/status/2065810382510567666",
+      "note": "auto-skip AI: combative reply thread, drama"
+    },
+    {
+      "date_first_reported": "2026-06-18",
+      "source": "ai_skip",
+      "title": "@ImaDOGEyGirl: Author: @ImaDOGEyGirl | Text: I will refrain from pointing out how ignorant your...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/ImaDOGEyGirl/status/2065824230906937791",
+      "note": "auto-skip AI: politicized argument, no buyer/partner overlap"
     }
   ]
 }
