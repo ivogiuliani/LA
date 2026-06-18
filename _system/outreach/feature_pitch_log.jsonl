@@ -81,3 +81,13 @@
 {"domain": "bhcourier.com", "outlet": "Beverly Hills Courier", "status": "no_email", "logged_at": "2026-06-17T06:29:45+00:00"}
 {"domain": "toacorn.com", "outlet": "The Acorn", "status": "no_email", "logged_at": "2026-06-17T06:29:45+00:00"}
 {"domain": "montecitojournal.net", "outlet": "Montecito Journal", "status": "no_email", "logged_at": "2026-06-17T06:29:45+00:00"}
+{"domain": "luxesource.com", "outlet": "Luxe Interiors + Design (California)", "status": "no_email", "logged_at": "2026-06-18T06:43:08+00:00"}
+{"domain": "modernluxury.com", "outlet": "Modern Luxury Los Angeles", "status": "no_email", "logged_at": "2026-06-18T06:43:08+00:00"}
+{"domain": "laconfidentialmag.com", "outlet": "LA Confidential", "status": "no_email", "logged_at": "2026-06-18T06:43:18+00:00"}
+{"domain": "hauteresidence.com", "outlet": "Haute Residence", "status": "no_email", "logged_at": "2026-06-18T06:43:32+00:00"}
+{"domain": "lamag.com", "outlet": "Los Angeles Magazine", "status": "no_email", "logged_at": "2026-06-18T06:43:34+00:00"}
+{"domain": "malibutimes.com", "outlet": "The Malibu Times", "status": "no_email", "logged_at": "2026-06-18T06:43:56+00:00"}
+{"domain": "bhcourier.com", "outlet": "Beverly Hills Courier", "status": "no_email", "logged_at": "2026-06-18T06:44:09+00:00"}
+{"domain": "palipost.com", "outlet": "Palisadian-Post", "to": "mypost@palipost.com", "status": "queued_review", "subject": "A Palisades rebuild story: European concrete, Italian living", "logged_at": "2026-06-18T06:44:15+00:00"}
+{"domain": "toacorn.com", "outlet": "The Acorn", "status": "no_email", "logged_at": "2026-06-18T06:44:41+00:00"}
+{"domain": "montecitojournal.net", "outlet": "Montecito Journal", "status": "no_email", "logged_at": "2026-06-18T06:44:43+00:00"}
