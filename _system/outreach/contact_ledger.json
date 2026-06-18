@@ -1675,9 +1675,17 @@
           "message_id": "19eb550ec3b4e1ca",
           "thread_id": "19eb550ec3b4e1ca",
           "subject": "One thought after your wildfire prevention piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-18T06:40:40+00:00",
+          "message_id": "19ed975de0996fbe",
+          "thread_id": "19ed975de0996fbe",
+          "subject": "Re: One thought after your wildfire prevention piece"
         }
       ],
-      "next_touch_at": "2026-06-18",
+      "next_touch_at": "2026-07-02",
       "status": "in_cadence",
       "source_url": "https://fireandsafetyjournalamericas.com/california-wildfire-prevention/",
       "source_title": "California wildfire prevention projects fast-tracked",
@@ -1717,9 +1725,17 @@
           "message_id": "19eb551091398e50",
           "thread_id": "19eb551091398e50",
           "subject": "One thought on concrete and build speed in LA"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-18T06:40:45+00:00",
+          "message_id": "19ed975f19ce5e0b",
+          "thread_id": "19ed975f19ce5e0b",
+          "subject": "Re: One thought on concrete and build speed in LA"
         }
       ],
-      "next_touch_at": "2026-06-18",
+      "next_touch_at": "2026-07-02",
       "status": "in_cadence",
       "source_url": "https://www.carbondaleconstruction.ca/post/how-much-faster-can-an-icf-home-be-built-compared-to-a-standard-home",
       "source_title": "How Much Faster Can an ICF Home Be Built Compared to a Standard Home?",
@@ -1793,5 +1809,5 @@
       "rescue_confidence": "high"
     }
   },
-  "last_hydrated_at": "2026-06-17T06:29:00.901870+00:00"
+  "last_hydrated_at": "2026-06-18T06:40:36.802110+00:00"
 }
