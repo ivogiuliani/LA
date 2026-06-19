@@ -3189,6 +3189,36 @@
       "action_type": "user_dismissed",
       "url": "https://www.architecturaldigest.com/story/ai-assisted-parametric-insurance-climate-change",
       "note": "auto-published journal: parametric-insurance-california-luxury-home"
+    },
+    {
+      "date_first_reported": "2026-06-19",
+      "source": "user_dismissed",
+      "title": "California's home insurance crisis is spreading beyond wildfire country",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/KZagaris/status/2067643368734343412",
+      "note": "auto-published journal: california-insurance-crisis-beyond-wildfire-zones-2026"
+    },
+    {
+      "date_first_reported": "2026-06-19",
+      "source": "user_dismissed",
+      "title": "Five new mansions hit market in elite Hidden Hills asking up to $40M",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2026/06/17/five-new-mansions-hit-market-in-elite-hidden-hills-near-l-a/",
+      "note": "auto-published journal: hidden-hills-spec-mansions-40m-2026"
+    },
+    {
+      "date_first_reported": "2026-06-19",
+      "source": "user_dismissed",
+      "title": "200,000+ non-renewals/cancellations statewide in 2024 alone",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/GPAbroker/status/2066925106354344377",
+      "note": "auto-published journal: california-non-renewals-2024-construction-variable"
     }
   ],
   "reported": [
@@ -3581,6 +3611,56 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/ImaDOGEyGirl/status/2065824230906937791",
       "note": "auto-skip AI: politicized argument, no buyer/partner overlap"
+    },
+    {
+      "date_first_reported": "2026-06-19",
+      "source": "ai_skip",
+      "title": "@Dr_TheHistories: Author: @Dr_TheHistories | Text: Actor Steve McQueen's 1952 Chevrolet pickup cam...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Dr_TheHistories/status/2067691482476405028",
+      "note": "auto-skip AI: off-topic, no buyer/partner overlap"
+    },
+    {
+      "date_first_reported": "2026-06-19",
+      "source": "ai_skip",
+      "title": "@BelAves: Author: @BelAves | Text: I would like to live in Malibu.  Though I am decently p...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/BelAves/status/2067750068497924361",
+      "note": "auto-skip AI: off-topic musing, no buyers/partners"
+    },
+    {
+      "date_first_reported": "2026-06-19",
+      "source": "ai_skip",
+      "title": "@OrmesherKelly: Author: @OrmesherKelly | Text: A lot of homeowners did not have insurance becaus...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/OrmesherKelly/status/2066235928805527627",
+      "note": "auto-skip AI: drama/politics, low reach"
+    },
+    {
+      "date_first_reported": "2026-06-19",
+      "source": "ai_skip",
+      "title": "@ImaDOGEyGirl: Author: @ImaDOGEyGirl | Text: I will refrain from pointing out how ignorant your...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/ImaDOGEyGirl/status/2065824230906937791",
+      "note": "auto-skip AI: drama/politics, no buyer reach"
+    },
+    {
+      "date_first_reported": "2026-06-19",
+      "source": "ai_skip",
+      "title": "@BarbaraLundqui7: Author: @BarbaraLundqui7 | Text: YES ABSOLUTELY!!👍 Everyone who voted for Bianca...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/BarbaraLundqui7/status/2065372860219355221",
+      "note": "auto-skip AI: politics/drama, no relevance"
     }
   ]
 }
