@@ -1783,9 +1783,17 @@
           "message_id": "19ebfdfdc6dd22b3",
           "thread_id": "19ebfdfdc6dd22b3",
           "subject": "A European angle on your LA Project Offers Blueprint for Resilient Housing Amid Wildf piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-20T08:32:44+00:00",
+          "message_id": "19ee4292f5598796",
+          "thread_id": "19ee4292f5598796",
+          "subject": "Re: A European angle on your LA Project Offers Blueprint for Resilient Housing Amid Wildf piece"
         }
       ],
-      "next_touch_at": "2026-06-20",
+      "next_touch_at": "2026-07-04",
       "status": "in_cadence",
       "source_url": "",
       "source_title": "",
@@ -1817,5 +1825,5 @@
       "rescue_confidence": "high"
     }
   },
-  "last_hydrated_at": "2026-06-19T06:26:35.733524+00:00"
+  "last_hydrated_at": "2026-06-20T08:32:40.652084+00:00"
 }

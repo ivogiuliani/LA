@@ -3219,6 +3219,46 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/GPAbroker/status/2066925106354344377",
       "note": "auto-published journal: california-non-renewals-2024-construction-variable"
+    },
+    {
+      "date_first_reported": "2026-06-20",
+      "source": "user_dismissed",
+      "title": "Los Angeles' first fire-resistant home cost just $410,000 to build",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/californiapost/status/2067406040270766284",
+      "note": "auto-published journal: fire-resistant-home-cost-california-410k-three-hour-rating"
+    },
+    {
+      "date_first_reported": "2026-06-20",
+      "source": "user_dismissed",
+      "title": "LA's first fire-resistant home can withstand blazes for hours",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://nypost.com/2026/06/17/real-estate/las-first-fire-resistant-home-can-withstand-blazes-for-hours/",
+      "note": "auto-published journal: fire-resistant-home-cost-california-410k-three-hour-rating"
+    },
+    {
+      "date_first_reported": "2026-06-20",
+      "source": "user_dismissed",
+      "title": "Webinar: The Evolution of the California Homeowners Insurance Market in the Face of Growing Wildfire Risk",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/MichaelWWara/status/2067621873991774348",
+      "note": "auto-published journal: california-fire-insurance-market-evolution-2026"
+    },
+    {
+      "date_first_reported": "2026-06-20",
+      "source": "user_dismissed",
+      "title": "@CDInews: Free webinar on residential insurance with FAIR Plan, CEA, and FEMA experts",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/CDInews/status/2066970789967192554",
+      "note": "auto-published journal: california-insurance-webinar-fair-plan-2026"
     }
   ],
   "reported": [
@@ -3661,6 +3701,56 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/BarbaraLundqui7/status/2065372860219355221",
       "note": "auto-skip AI: politics/drama, no relevance"
+    },
+    {
+      "date_first_reported": "2026-06-20",
+      "source": "ai_skip",
+      "title": "@accesskardash: Author: @accesskardash | Text: Khloé Kardashian, Justine Marjan e Melissa Hurkma...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/accesskardash/status/2068030499197501686",
+      "note": "auto-skip AI: celebrity fluff, no buyer/partner overlap"
+    },
+    {
+      "date_first_reported": "2026-06-20",
+      "source": "ai_skip",
+      "title": "@felinemisaki: Author: @felinemisaki | Text: Who here in socal ? \n\nThousand Oaks , Ca \n\nAgoura...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/felinemisaki/status/2068110849634607381",
+      "note": "auto-skip AI: generic location roll-call, no overlap"
+    },
+    {
+      "date_first_reported": "2026-06-20",
+      "source": "ai_skip",
+      "title": "@lori3549412250: Author: @lori3549412250 | Text: These people fuck around with money SO much it's...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/lori3549412250/status/2067708352579227879",
+      "note": "auto-skip AI: politics/rage, off-brand"
+    },
+    {
+      "date_first_reported": "2026-06-20",
+      "source": "ai_skip",
+      "title": "@OrmesherKelly: Author: @OrmesherKelly | Text: A lot of homeowners did not have insurance becaus...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/OrmesherKelly/status/2066235928805527627",
+      "note": "auto-skip AI: combative reply, low value"
+    },
+    {
+      "date_first_reported": "2026-06-20",
+      "source": "ai_skip",
+      "title": "@ImaDOGEyGirl: Author: @ImaDOGEyGirl | Text: I will refrain from pointing out how ignorant your...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/ImaDOGEyGirl/status/2065824230906937791",
+      "note": "auto-skip AI: politicized insurance rant, off-brand"
     }
   ]
 }
