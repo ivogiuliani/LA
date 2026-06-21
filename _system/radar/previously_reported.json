@@ -3259,6 +3259,36 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/CDInews/status/2066970789967192554",
       "note": "auto-published journal: california-insurance-webinar-fair-plan-2026"
+    },
+    {
+      "date_first_reported": "2026-06-21",
+      "source": "user_dismissed",
+      "title": "Los Angeles' first fire-resistant home costs just $410K to build",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/californiapost/status/2067343251992924256",
+      "note": "auto-published journal: fire-resistant-home-cost-california-410k-build"
+    },
+    {
+      "date_first_reported": "2026-06-21",
+      "source": "user_dismissed",
+      "title": "California home insurance prices set to increase 16% in 2026",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/nypost/status/2066607340556529812",
+      "note": "auto-published journal: california-fire-insurance-16-percent-2026-fire-resistant-home"
+    },
+    {
+      "date_first_reported": "2026-06-21",
+      "source": "user_dismissed",
+      "title": "Los Angeles' first fire-resistant home costs just $410K to build",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/NYCEMSwatch/status/2067344115402940911",
+      "note": "auto-published journal: fire-resistant-home-cost-california-410k-build-analysis"
     }
   ],
   "reported": [
@@ -3751,6 +3781,66 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/ImaDOGEyGirl/status/2065824230906937791",
       "note": "auto-skip AI: politicized insurance rant, off-brand"
+    },
+    {
+      "date_first_reported": "2026-06-21",
+      "source": "ai_skip",
+      "title": "@janninereid1: Author: @janninereid1 | Text: In 2016, during an interview on Australia’s 60 Min...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/janninereid1/status/2068134357202854167",
+      "note": "auto-skip AI: drama/politics, no buyers"
+    },
+    {
+      "date_first_reported": "2026-06-21",
+      "source": "ai_skip",
+      "title": "@californiapost: Author: @californiapost | Text: Altadena residents fight back against shocking w...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/californiapost/status/2067627015860084989",
+      "note": "auto-skip AI: rage-bait framing, low value"
+    },
+    {
+      "date_first_reported": "2026-06-21",
+      "source": "ai_skip",
+      "title": "@californiapost: Author: @californiapost | Text: Altadena quietly reveals shocking wildfire rebui...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/californiapost/status/2067425871523144146",
+      "note": "auto-skip AI: duplicate rage framing, low value"
+    },
+    {
+      "date_first_reported": "2026-06-21",
+      "source": "ai_skip",
+      "title": "@MissJilianne: Author: @MissJilianne | Text: I asked her why she’s parking in a charging stall...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/MissJilianne/status/2067047921603002765",
+      "note": "auto-skip AI: off-topic anecdote, no relevance"
+    },
+    {
+      "date_first_reported": "2026-06-21",
+      "source": "ai_skip",
+      "title": "@lori3549412250: Author: @lori3549412250 | Text: These people fuck around with money SO much it's...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/lori3549412250/status/2067708352579227879",
+      "note": "auto-skip AI: politics/rage, no buyers"
+    },
+    {
+      "date_first_reported": "2026-06-21",
+      "source": "ai_skip",
+      "title": "@ZacharyKane19: Author: @ZacharyKane19 | Text: Lives in Malibu, bitches about California, now th...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/ZacharyKane19/status/2067227987490291847",
+      "note": "auto-skip AI: politics/drama, no buyers"
     }
   ]
 }
