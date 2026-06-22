@@ -7,6 +7,9 @@ secrets/
 # Drafts and generated artifacts
 _drafts/
 _archive/
+# Immagini evergreen Unsplash: generate per-rail dai topic (come i _drafts),
+# riviste sul pannello locale — non versionare (eviterebbe divergenze tra rail).
+img/social/evergreen/
 _system/history/
 _system/radar/reports/*.json
 _system/radar/reports/*.html

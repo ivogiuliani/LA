@@ -43,9 +43,9 @@ except Exception:  # noqa: BLE001
         return _fb.get(tier, "claude-sonnet-4-6")
 # Linee guida social ufficiali (tono di voce + obiettivo) — fonte unica.
 try:
-    from social_guidelines import VOICE_RULES, IMAGE_STYLE_HINT
+    from social_guidelines import VOICE_RULES, IMAGE_STYLE_HINT, X_SCOPE
 except Exception:  # noqa: BLE001
-    VOICE_RULES, IMAGE_STYLE_HINT = "", ""
+    VOICE_RULES, IMAGE_STYLE_HINT, X_SCOPE = "", "", ""
 _HEAVY_MODEL = _resolve_model("heavy")
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
@@ -227,7 +227,13 @@ FORBIDDEN: bunker, fortress, dream home, anti-fire, "protect your family", \
 TONE: Informed, editorial, sharp. Like a market analyst who happens to \
 build houses. Never salesy, never breathless.
 
-""" + VOICE_RULES
+CHANNEL SPLIT — IMPORTANT:
+- The X/Twitter post (the `x_post` field) MUST obey the "X/TWITTER — SCOPE" \
+rules below: ONLY the build / certify / permit / insure expertise angle.
+- The Instagram caption (the `ig_caption` field) is NOT bound by that scope — \
+it stays broad brand-awareness / lifestyle per the SOCIAL GUIDELINES above.
+
+""" + VOICE_RULES + "\n\n" + X_SCOPE
 
 
 REACTIVE_PROMPT = """\

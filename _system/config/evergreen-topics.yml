@@ -4,10 +4,16 @@
 # 9 topic confermati da Ivo (2026-06-17). Rotazione con anti-ripetizione.
 #
 # Per ogni topic:
-#   name    — titolo leggibile
-#   brief   — di cosa parla (contesto per l'LLM, dal sito)
-#   angles  — sotto-angoli per variare i post nel tempo
-#   images  — stem di immagini ORIGINALI del sito (img/<stem>.{webp,jpg,png})
+#   name          — titolo leggibile
+#   brief         — di cosa parla (contesto per l'LLM, dal sito)
+#   angles        — sotto-angoli per variare i post nel tempo
+#   image_queries — query Unsplash ON-BRAND (alta qualità, niente immagini del
+#                   sito ormai esaurite). generate_evergreen ne ruota una per
+#                   giorno + le altre come fallback. Estetica: cemento armato,
+#                   golden hour, minimalismo MK27/Tadao Ando/Aman, mediterraneo;
+#                   MAI persone/volti. (richiesta Ivo 2026-06-22)
+#   images        — stem di immagini originali del sito: usate SOLO come
+#                   ultimo fallback se Unsplash non risponde.
 
 topics:
   - key: vision
@@ -20,6 +26,11 @@ topics:
       - "Permanence: built to last centuries, not decades"
       - "Italian warmth meets Californian ease — what it feels like"
       - "A home is architecture, not a product"
+    image_queries:
+      - "minimalist concrete villa golden hour exterior"
+      - "modern Mediterranean villa architecture sunset"
+      - "Tadao Ando concrete house exterior light"
+      - "luxury concrete home hillside dusk no people"
     images: [hero, external, biophilic, courtyard]
 
   - key: courtyard
@@ -32,6 +43,11 @@ topics:
       - "An open sky framed by concrete — the heart of the house"
       - "Cross-ventilation: comfort without air conditioning"
       - "A private world within — indoor-outdoor living"
+    image_queries:
+      - "concrete courtyard open sky minimalist architecture"
+      - "interior courtyard modern villa shade"
+      - "Mediterranean courtyard architecture water"
+      - "Aman resort courtyard concrete calm"
     images: [courtyard, courtyard-interior, biophilic-design, biophilic]
 
   - key: interiors
@@ -44,6 +60,11 @@ topics:
       - "Light traces the hours across concrete"
       - "Concrete, wood, glass — a quiet dialogue"
       - "Rooms for living, not for displaying"
+    image_queries:
+      - "minimalist concrete interior natural light"
+      - "concrete and wood living room large windows"
+      - "architectural interior light shadow concrete calm"
+      - "modern villa interior minimalist warm"
     images: [int-terracotta-surface, int-window-detail, living-room, dining, int-warm-workspace, int-luxury-living]
 
   - key: typologies
@@ -56,6 +77,11 @@ topics:
       - "Four archetypes, infinite homes"
       - "Hill House: architecture that steps with the terrain"
       - "A starting point, not a limit — shaped around how you live"
+    image_queries:
+      - "modern villa hillside architecture terraces"
+      - "contemporary concrete house geometric exterior"
+      - "minimalist residential architecture hillside golden hour"
+      - "stepped modern home landscape no people"
     images: [external, courtyard, hero, structural, facade-cream]
 
   - key: craft
@@ -70,6 +96,11 @@ topics:
       - "Every column is a design statement"
       - "Terrazzo, green marble, bronze — Italian craft up close"
       - "Forty finishes — no two villas alike"
+    image_queries:
+      - "terrazzo surface texture detail design"
+      - "green marble interior detail luxury"
+      - "bronze fixture minimalist interior detail"
+      - "architectural material palette concrete texture macro"
     images: [facade-cream, facade-sage, facade-terracotta, col-rounded, col-square, col-fluted, int-green-marble, int-green-terrazzo, int-walnut-wood, int-bronze-faucet, int-terrazzo-floor, int-reeded-glass, mood-sage, mood-terracotta]
 
   - key: concrete
@@ -83,6 +114,11 @@ topics:
       - "The concrete behind Palazzo Grassi — now a home"
       - "Kimbell, Punta della Dogana, Amanvari: the same hands"
       - "Material permanence: built like a museum"
+    image_queries:
+      - "exposed concrete architecture museum interior"
+      - "Tadao Ando concrete wall light"
+      - "minimalist concrete gallery architecture"
+      - "architectural board-formed concrete texture light"
     images: [palazzo-grassi, punta-dogana, kimbell, amanvari-01, amanvari-02, material-permanence, tectonics, int-palazzo-interior]
 
   - key: resilience
@@ -96,6 +132,11 @@ topics:
       - "Non-combustible by structure, not by coating"
       - "Built to withstand fire — and to be insured"
       - "The structure itself is the fire barrier"
+    image_queries:
+      - "solid concrete villa exterior modern strong"
+      - "reinforced concrete architecture facade clean"
+      - "minimalist concrete home structure golden hour"
+      - "monolithic concrete house exterior dusk"
     images: [resilient, resilience-climate, structural, tectonics, external]
 
   - key: bioclimatic
@@ -109,6 +150,11 @@ topics:
       - "Cool without air conditioning"
       - "A house that works even when the grid doesn't"
       - "Thermal mass and cross-ventilation — comfort by design"
+    image_queries:
+      - "green roof modern architecture sustainable"
+      - "passive house courtyard natural ventilation"
+      - "concrete house garden golden hour calm"
+      - "sustainable villa landscape greenery architecture"
     images: [resilience-energy, resilience-climate, biophilic, mood-sage, courtyard, pool]
 
   - key: los_angeles
@@ -121,9 +167,16 @@ topics:
       - "A slower Los Angeles — green, quiet, lived-in"
       - "The villa as a way of living, not a product"
       - "Nature woven into the architecture, not outside the window"
+    image_queries:
+      - "Los Angeles hills modern villa nature"
+      - "Malibu modern home landscape greenery"
+      - "California Mediterranean garden architecture golden hour"
+      - "Topanga canyon modern house greenery no people"
     images: [external, hero, pool, int-sculptural-poolside, int-green-lounge, biophilic]
 
 # Quanti post evergreen proporre al giorno (proposte, non pubblicazione)
 posts_per_day: 3
 # Non riproporre lo stesso topic entro N giorni (varietà)
 topic_cooldown_days: 5
+# Cartella per le immagini stock evergreen (Unsplash), separata da img/ del sito
+image_out_dir: "img/social/evergreen"

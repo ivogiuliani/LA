@@ -48,6 +48,10 @@ try:
     from social_guidelines import VOICE_RULES
 except Exception:  # noqa: BLE001
     VOICE_RULES = ""
+try:
+    import image_picker  # Unsplash on-brand per gli evergreen (no foto del sito)
+except Exception:  # noqa: BLE001
+    image_picker = None
 
 
 def _load_dotenv():
@@ -141,9 +145,10 @@ def _parse_fm(path: Path):
 
 
 def _recent(days: int):
-    """→ (topic_set, image_set) usati negli ultimi `days` giorni."""
+    """→ (topic_set, image_set, photo_id_set) usati negli ultimi `days` giorni.
+    photo_id serve a non riproporre la STESSA foto Unsplash a giorni vicini."""
     cutoff = datetime.now() - timedelta(days=days)
-    topics, images = set(), set()
+    topics, images, photo_ids = set(), set(), set()
     for d in (OUT_DIR, ARCHIVE, SYSTEM_DIR / "social" / "posts" / "approved",
               SYSTEM_DIR / "social" / "posts" / "published"):
         if not d.exists():
@@ -162,7 +167,46 @@ def _recent(days: int):
                 topics.add(fm["topic"])
             if fm.get("image"):
                 images.add(fm["image"])
-    return topics, images
+            if fm.get("image_photo_id"):
+                photo_ids.add(fm["image_photo_id"])
+    return topics, images, photo_ids
+
+
+def _pick_unsplash_image(topic, slug, used_ids, day_idx, out_dir,
+                         download=True):
+    """Immagine Unsplash ON-BRAND per il topic (alta qualità, NON dal sito).
+    Ruota le query per giorno (varietà) e scarta le foto già usate di recente
+    (photo_id). → (web_path_relativo_a_ROOT, photo_id, credit) o ('', '', '').
+    In dry-run (download=False) non scarica: ritorna solo l'anteprima query."""
+    if image_picker is None:
+        return "", "", ""
+    queries = topic.get("image_queries") or []
+    if not queries:
+        return "", "", ""
+    primary = queries[day_idx % len(queries)]
+    if not download:
+        return f"unsplash? «{primary}»", "", ""
+    fallbacks = [q for q in queries if q != primary]
+    try:
+        cands = image_picker.fetch_candidates(
+            primary, count=12, orientation="squarish",
+            fallback_queries=fallbacks)
+    except Exception as e:  # noqa: BLE001
+        print(f"  [evergreen] Unsplash fetch error: {type(e).__name__}")
+        return "", "", ""
+    if not cands:
+        return "", "", ""
+    chosen = next((c for c in cands if c.get("photo_id") not in used_ids), None)
+    if not chosen:  # tutte già usate di recente: meglio ripetere che restare vuoti
+        chosen = cands[0]
+    meta = image_picker.download_candidate(chosen, slug, ROOT_DIR / out_dir)
+    if not meta or not meta.get("local_path"):
+        return "", "", ""
+    try:
+        rel = Path(meta["local_path"]).resolve().relative_to(ROOT_DIR).as_posix()
+    except ValueError:
+        rel = f"{out_dir.rstrip('/')}/{slug}-hero.jpg"
+    return rel, meta.get("photo_id", ""), meta.get("author_name", "")
 
 
 def _find_image(stems, used_images):
@@ -193,12 +237,13 @@ def _slugify(s):
     return re.sub(r"[^a-z0-9]+", "-", (s or "").lower()).strip("-")[:48]
 
 
-def generate(count=None, dry_run=False):
+def generate(count=None, dry_run=False, no_unsplash=False):
     _load_dotenv()
     cfg = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
     topics = cfg.get("topics", []) or []
     count = count or int(cfg.get("posts_per_day", 3))
     cooldown = int(cfg.get("topic_cooldown_days", 5))
+    image_out_dir = cfg.get("image_out_dir", "img/social/evergreen")
     today = datetime.now().strftime("%Y-%m-%d")
 
     # Idempotenza: se le proposte evergreen di oggi esistono già, stop.
@@ -210,7 +255,7 @@ def generate(count=None, dry_run=False):
               f"presenti — skip")
         return existing_today
 
-    recent_topics, recent_images = _recent(cooldown)
+    recent_topics, recent_images, recent_photo_ids = _recent(cooldown)
     # Ordina i topic: prima quelli NON usati di recente (varietà).
     fresh = [t for t in topics if t.get("key") not in recent_topics]
     stale = [t for t in topics if t.get("key") in recent_topics]
@@ -232,11 +277,28 @@ def generate(count=None, dry_run=False):
             print(f"  [evergreen] '{t.get('key')}': LLM non disponibile — skip")
             continue
         body, tags = _split_caption(text)
-        img = _find_image(t.get("images") or [], recent_images)
-        recent_images.add(img)
         hashtags = re.findall(r"#([A-Za-z0-9_]+)", tags)
         slug = _slugify(angle) or t.get("key")
-        fname = f"{today}-ig-evergreen-{t.get('key')}.md"
+        img_slug = f"{today}-ig-evergreen-{t.get('key')}"
+        fname = f"{img_slug}.md"
+        # Immagine: PRIMA Unsplash on-brand (alta qualità, niente foto del
+        # sito ormai esaurite); se non disponibile, ripiega sugli stem del sito.
+        photo_id, credit = "", ""
+        img = ""
+        if not no_unsplash:
+            img, photo_id, credit = _pick_unsplash_image(
+                t, img_slug, recent_photo_ids, day_idx, image_out_dir,
+                download=not dry_run)
+        if not img or img.startswith("unsplash? "):
+            stem_img = _find_image(t.get("images") or [], recent_images)
+            if img.startswith("unsplash? "):  # dry-run: mostra entrambe
+                img = f"{img}  (fallback: {stem_img or '—'})"
+            else:
+                img = stem_img
+        if img and not img.startswith("unsplash? "):
+            recent_images.add(img)
+        if photo_id:
+            recent_photo_ids.add(photo_id)
         if dry_run:
             print(f"\n  ── [{t.get('key')}] {angle}")
             print(f"     img: {img}")
@@ -248,6 +310,10 @@ def generate(count=None, dry_run=False):
               f"topic: {t.get('key')}", f"angle: {angle}",
               f"image: {img}" if img else "image:",
               f"date: {today}", f"char_count: {len(body)}"]
+        if photo_id:
+            fm.append(f"image_photo_id: {photo_id}")
+        if credit:
+            fm.append(f"image_credit: {credit}")
         if hashtags:
             fm.append("hashtags:")
             fm += [f"  - {h}" for h in hashtags]
@@ -266,8 +332,11 @@ def main(argv=None):
     p = argparse.ArgumentParser(description="Evergreen IG proposals dal sito")
     p.add_argument("--count", type=int, default=None)
     p.add_argument("--dry-run", action="store_true")
+    p.add_argument("--no-unsplash", action="store_true",
+                   help="non scaricare da Unsplash (usa solo gli stem del sito)")
     args = p.parse_args(argv)
-    generate(count=args.count, dry_run=args.dry_run)
+    generate(count=args.count, dry_run=args.dry_run,
+             no_unsplash=args.no_unsplash)
     return 0
 
 

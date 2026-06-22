@@ -2213,25 +2213,42 @@ def build_dashboard():
                     f'Nessuna proposta {label} oggi.</p>')
         return "".join(cards[:cap])
 
-    def _sub_heading(emoji, title, shown, total):
-        extra = (f'<span style="font-weight:400;color:#b5a88f;'
-                 f'font-size:0.78rem;margin-left:8px;">'
-                 f'(+{total - shown} in magazzino, ruotano da sole)</span>'
-                 if total > shown else '')
-        return (f'<h3 class="channel-sub">{emoji} {title}{extra}</h3>')
+    def _social_section(cards, cap, emoji, title, subtitle, extra_html=""):
+        """Una <section> INDIPENDENTE per UN solo canale. Niente più
+        sub-heading IG/X/Reddit mescolati nella stessa sezione: ogni
+        categoria ha la sua sezione (richiesta utente: non alternare X e
+        Instagram). Sezione vuota → stringa vuota (non si mostra)."""
+        if not cards:
+            return ""
+        warehouse = (f' <span style="font-weight:400;color:#b5a88f;'
+                     f'font-size:0.78rem;">(+{len(cards) - cap} in magazzino, '
+                     f'ruotano da sole)</span>' if len(cards) > cap else '')
+        return (
+            '<div class="section">'
+            f'<h2 class="section-heading">{emoji} {title}'
+            f'<span class="section-count">{len(cards)}</span></h2>'
+            f'{extra_html}'
+            f'<p class="section-subtitle">{subtitle}{warehouse}</p>'
+            f'{_capped(cards, cap, title)}'
+            '</div>'
+        )
 
-    social_cards = (
-        _sub_heading("📸", "Instagram — scegline 1, scarta le altre",
-                     min(3, len(social_cards_ig)), len(social_cards_ig))
-        + _capped(social_cards_ig, 3, "Instagram")
-        + _sub_heading("𝕏", "X — scegline 1",
-                       min(2, len(social_cards_x)), len(social_cards_x))
-        + _capped(social_cards_x, 2, "X")
-        + (_sub_heading("🔥", "Reddit — self-post dei nostri articoli (approvi tu)",
-                        min(2, len(social_cards_reddit)), len(social_cards_reddit))
-           + _capped(social_cards_reddit, 2, "Reddit")
-           if social_cards_reddit else "")
-    )
+    # Sezioni social separate per canale (composte qui, emesse più sotto).
+    _platforms_status = ('<div class="social-platforms-status" '
+                         'id="social-platforms-status"></div>')
+    section_social_ig = _social_section(
+        social_cards_ig, 3, "📸", "Instagram — da approvare",
+        'Post reattivi sui temi del giorno. Scegline 1, scarta gli altri. '
+        '"✅ Approva → coda" = pubblicazione automatica (1/giorno); '
+        '"🚀 Pubblica subito" salta la coda. I reattivi richiedono un\'immagine.',
+        extra_html=_platforms_status)
+    section_social_x = _social_section(
+        social_cards_x, 2, "𝕏", "X — da approvare",
+        'Voce da esperti: come COSTRUIRE, CERTIFICARE e ottenere PERMESSI per '
+        'una casa resiliente e assicurabile a Los Angeles. Scegline 1.')
+    section_social_reddit = _social_section(
+        social_cards_reddit, 2, "🔥", "Reddit — self-post dei nostri articoli",
+        "Self-post dei nostri articoli su Reddit (approvi tu).")
 
     # ── Editorial IG cards (brand-foundation pipeline) ────────────────
     editorial_cards = ""
@@ -2415,7 +2432,11 @@ def build_dashboard():
     import urllib.parse as _urlparse
 
     news_cards = ""
-    viral_cards = ""
+    # Commenti ai post virali, separati per piattaforma (sezioni distinte).
+    viral_cards_x = ""
+    viral_cards_ig = ""
+    viral_cards_reddit = ""
+    _viral_x, _viral_ig, _viral_reddit = [], [], []
     early_cards = ""
 
     if radar and radar.get("viral"):
@@ -2427,7 +2448,7 @@ def build_dashboard():
                 return f"{n/1_000:.1f}K" if n < 10_000 else f"{n//1000}K"
             return str(n)
 
-        _viral_list = []
+        _viral_x, _viral_ig, _viral_reddit = [], [], []
         for v in radar["viral"]:
             if v.get("reply_skip"):
                 continue  # auto-eliminati: inutile proporli (vedi report)
@@ -2545,7 +2566,7 @@ def build_dashboard():
                         f'</div>'
                     )
 
-            _viral_list.append(f"""
+            _vcard = f"""
         <div class="card viral-card" data-virality="{vs}" data-platform="{v['platform']}">
           <div class="card-status-stripe"></div>
           <div class="card-body">
@@ -2561,15 +2582,25 @@ def build_dashboard():
             {reply_section}
             {actions_section}
           </div>
-        </div>""")
+        </div>"""
+            (_viral_x if v["platform"] == "x"
+             else _viral_ig if v["platform"] == "instagram"
+             else _viral_reddit).append(_vcard)
 
-        # Daily-first: 5 commenti visibili (i più virali — la lista è
-        # già ordinata per virality), il resto ripiegato.
-        viral_cards = "".join(_viral_list[:5])
-        if len(_viral_list) > 5:
-            viral_cards += (f'<details class="more-cards"><summary>'
-                            f'▸ altri {len(_viral_list) - 5} post virali'
-                            f'</summary>{"".join(_viral_list[5:])}</details>')
+        # Daily-first: per ogni piattaforma 5 commenti visibili (i più
+        # virali — già ordinati per virality), il resto ripiegato.
+        def _cap_viral(cards, label):
+            if not cards:
+                return ""
+            html = "".join(cards[:5])
+            if len(cards) > 5:
+                html += (f'<details class="more-cards"><summary>'
+                         f'▸ altri {len(cards) - 5} commenti {label}'
+                         f'</summary>{"".join(cards[5:])}</details>')
+            return html
+        viral_cards_x = _cap_viral(_viral_x, "X")
+        viral_cards_ig = _cap_viral(_viral_ig, "Instagram")
+        viral_cards_reddit = _cap_viral(_viral_reddit, "Reddit")
 
     # ── Instagram viral comment opportunities (ig_viral_radar.py) ──────
     ig_viral_cards = ""
@@ -5814,47 +5845,55 @@ def build_dashboard():
 <div class="main">
   {empty_msg}
 
-  {f'''
-  <div class="section">
-    <h2 class="section-heading">📱 Social — da approvare<span class="section-count">{len(social)}</span></h2>
-    <div class="social-platforms-status" id="social-platforms-status"></div>
-    <p class="section-subtitle"><strong>Il flusso quotidiano:</strong> "✅ Approva → coda" mette il post in coda di pubblicazione automatica (Instagram: 1 al giorno; X: 1 al giorno — cap configurabili). "🚀 Pubblica subito" salta la coda e posta ora via API. I companion degli articoli hanno già la hero; i post reattivi Instagram richiedono una immagine.</p>
-    {social_cards}
-  </div>
-  ''' if social else '''
-  <div class="section">
-    <h2 class="section-heading">📱 Social — da approvare<span class="section-count">0</span></h2>
-    <p class="section-subtitle">Nessuna proposta in attesa. I generatori (radar reattivo, companion articoli, partner) ne produrranno con la prossima pipeline.</p>
-  </div>
-  '''}
+  {section_social_ig}
 
   {f'''
   <div class="section">
     <h2 class="section-heading">✨ Evergreen dal sito<span class="section-count">{len(evergreen)}</span></h2>
-    <p class="section-subtitle"><strong>Nuovo flusso</strong>: post di brand-awareness costruiti dai temi del sito (non dalle notizie). Proposte da rivedere/approvare — testo e immagine modificabili. Ruotano sui 9 topic con immagini originali. Si gestiscono come gli altri social: "✅ Approva → coda" o "🚀 Pubblica subito".</p>
+    <p class="section-subtitle"><strong>Brand-awareness dai temi del sito</strong> (non dalle notizie). Proposte da rivedere/approvare — testo e immagine modificabili. Immagini di alta qualità on-brand. Si gestiscono come gli altri social: "✅ Approva → coda" o "🚀 Pubblica subito".</p>
     {evergreen_cards}
   </div>
   ''' if evergreen else ''}
+
+  {section_social_x}
+
+  {section_social_reddit}
+
+  {'' if (social_cards_ig or social_cards_x or social_cards_reddit or evergreen) else '''
+  <div class="section">
+    <h2 class="section-heading">📱 Social — da approvare<span class="section-count">0</span></h2>
+    <p class="section-subtitle">Nessuna proposta in attesa. I generatori (radar reattivo, evergreen, partner) ne produrranno con la prossima pipeline.</p>
+  </div>
+  '''}
 
   {ig_queue_strip}
 
   {publish_pipeline_strip}
 
   {f'''
-  <div class="section">
-    <h2 class="section-heading">🔥 Commenti ai post virali<span class="section-count">{len(radar["viral"])}</span></h2>
-    <p class="section-subtitle">Post ad alto engagement dove un commento My Villa aggiunge valore. <strong>Flusso assistito</strong> (le API Meta non permettono di commentare post altrui): 📋 copia il testo → apri il post → incolla → poi "Scarta" per segnarlo come fatto.</p>
-    {viral_cards}
-  </div>
-  ''' if radar and radar.get("viral") else ''}
-
-  {f'''
   <div class="section section-ig-viral">
-    <h2 class="section-heading">📷 Instagram — Commenti a post virali<span class="section-count">{len(_ig_ops)}</span></h2>
-    <p class="section-subtitle">Post Instagram di altri ad alto engagement nella nicchia My Villa (real estate LA, architettura, cemento, fire/insurance, ville italiane). Il commento è già pronto in voce My Villa: <strong>📋 copia → 🔗 apri il post → incolla su Instagram → "Scarta"</strong> per segnarlo fatto. Aggiorna con <code>python3 _system/scripts/ig_viral_radar.py</code>.</p>
+    <h2 class="section-heading">📷 Instagram — commenti ai post virali<span class="section-count">{len(_viral_ig) + len(_ig_ops)}</span></h2>
+    <p class="section-subtitle">Post Instagram di altri ad alto engagement nella nicchia My Villa (real estate LA, architettura, cemento, fire/insurance, ville italiane). Commento già pronto in voce My Villa: <strong>📋 copia → 🔗 apri il post → incolla → "Scarta"</strong>. Aggiorna con <code>python3 _system/scripts/ig_viral_radar.py</code>.</p>
+    {viral_cards_ig}
     {ig_viral_cards}
   </div>
-  ''' if _ig_ops else ''}
+  ''' if (viral_cards_ig or _ig_ops) else ''}
+
+  {f'''
+  <div class="section">
+    <h2 class="section-heading">𝕏 X — commenti ai post virali<span class="section-count">{len(_viral_x)}</span></h2>
+    <p class="section-subtitle">Post X ad alto engagement sui temi del giorno (costruire / certificare / permessi / assicurazione a LA). <strong>Flusso assistito</strong>: la reply è già pronta in voce My Villa — 📋 copia → apri il post → incolla → "Skip" per segnarlo fatto (o "🚀 Reply on X" via API).</p>
+    {viral_cards_x}
+  </div>
+  ''' if viral_cards_x else ''}
+
+  {f'''
+  <div class="section">
+    <h2 class="section-heading">🔥 Reddit — commenti ai post virali<span class="section-count">{len(_viral_reddit)}</span></h2>
+    <p class="section-subtitle">Thread Reddit pertinenti al target. Commento assistito (no API): 📋 copia → apri il thread → incolla → "Skip".</p>
+    {viral_cards_reddit}
+  </div>
+  ''' if viral_cards_reddit else ''}
 
   {f'''
   <div class="section section-replies">
