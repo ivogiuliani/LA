@@ -1124,10 +1124,18 @@
           "message_id": "19ea5d93ca44f1e4",
           "thread_id": "19ea5d93ca44f1e4",
           "subject": "Re: A different idea of the resilient luxury home for the Westside"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-22T10:37:41+00:00",
+          "message_id": "19eeee84b751391c",
+          "thread_id": "19eeee84b751391c",
+          "subject": "Re: A different idea of the resilient luxury home for the Westside"
         }
       ],
-      "next_touch_at": "2026-06-22",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "",
       "source_title": "",
       "cold_pitch_body": "",
@@ -1153,10 +1161,18 @@
           "message_id": "19ea5d9405fda96c",
           "thread_id": "19ea5d9405fda96c",
           "subject": "Re: A European angle on your Wyoming Company Uses High-Tech AI Sprinklers To Save Homes F piece"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-22T10:37:47+00:00",
+          "message_id": "19eeee86512e24ea",
+          "thread_id": "19eeee86512e24ea",
+          "subject": "Re: A European angle on your Wyoming Company Uses High-Tech AI Sprinklers To Save Homes F piece"
         }
       ],
-      "next_touch_at": "2026-06-22",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "",
       "source_title": "",
       "cold_pitch_body": "",
@@ -1182,10 +1198,18 @@
           "message_id": "19ea5d94439e05d2",
           "thread_id": "19ea5d94439e05d2",
           "subject": "Re: A European angle on your Carbon Beach rebuild piece"
+        },
+        {
+          "n": 3,
+          "type": "founder_call",
+          "sent_at": "2026-06-22T10:37:50+00:00",
+          "message_id": "19eeee871c5b844f",
+          "thread_id": "19eeee871c5b844f",
+          "subject": "Re: A European angle on your Carbon Beach rebuild piece"
         }
       ],
-      "next_touch_at": "2026-06-22",
-      "status": "in_cadence",
+      "next_touch_at": null,
+      "status": "exhausted",
       "source_url": "https://shenrealty.com/malibu-real-estate-blog/carbon-beach-malibu-inside-billionaire-s-beach/",
       "source_title": "Carbon Beach Malibu: Inside Billionaire's Beach | Malibu Blog | Riviera Living | Shen Schulz",
       "cold_pitch_body": "Hi Shenrealty team,\n\n(Writing to the Shenrealty newsroom rather than Bodhi directly — we couldn't locate a direct contact. Feel free to forward if it's a better fit for them or the desk.)\n\nReally enjoyed your Carbon Beach piece. You did something most Malibu coverage avoids: putting real rebuild numbers on the page, the $10 to $18 million all-in above land, and what that actually buys today.\n\nA quick hello from our side: at My Villa, we bring European construction resilience and the Italian way of living to homes in Los Angeles, designed in exposed reinforced concrete, cemento a vista.\n\nOne thought your piece sparked: at those budgets, the question is what makes a rebuild insurable and durable, and the resilience now demanded here has been default Mediterranean practice for generations. That cultural gap feels like the interesting story.\n\nWould you be interested in receiving more material on what we are doing, or in setting up a short call with our founder Paolo?\n\nBest,\nLisa Monelli\nMy Villa Media Team\ninfo@myvilla.la · myvilla.la",
@@ -1812,9 +1836,17 @@
           "message_id": "19eca01ddb7e60c8",
           "thread_id": "19eca01ddb7e60c8",
           "subject": "A European angle on your California FAIR Plan rates going up 29.1% in late 2026 – San piece"
+        },
+        {
+          "n": 2,
+          "type": "data",
+          "sent_at": "2026-06-22T10:37:45+00:00",
+          "message_id": "19eeee8584dbafda",
+          "thread_id": "19eeee8584dbafda",
+          "subject": "Re: A European angle on your California FAIR Plan rates going up 29.1% in late 2026 – San piece"
         }
       ],
-      "next_touch_at": "2026-06-22",
+      "next_touch_at": "2026-07-06",
       "status": "in_cadence",
       "source_url": "https://www.santacruzsentinel.com/2026/05/24/california-fair-plan-rates-going-up-29-in-late-2026/",
       "source_title": "California FAIR Plan rates going up 29.1% in late 2026 – Santa Cruz Sentinel",
@@ -1825,5 +1857,5 @@
       "rescue_confidence": "high"
     }
   },
-  "last_hydrated_at": "2026-06-21T08:58:25.057914+00:00"
+  "last_hydrated_at": "2026-06-22T10:37:35.006191+00:00"
 }

@@ -3289,6 +3289,16 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/NYCEMSwatch/status/2067344115402940911",
       "note": "auto-published journal: fire-resistant-home-cost-california-410k-build-analysis"
+    },
+    {
+      "date_first_reported": "2026-06-22",
+      "source": "user_dismissed",
+      "title": "An L.A. Power Couple's Bel Air Home With a Private Vineyard Lists for $65 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/hotchkis-villa-cresta-estate-los-angeles-bel-air-1238361768/",
+      "note": "auto-published journal: tuscan-estate-bel-air-65-million-italian-villa-california"
     }
   ],
   "reported": [
@@ -3841,6 +3851,26 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/ZacharyKane19/status/2067227987490291847",
       "note": "auto-skip AI: politics/drama, no buyers"
+    },
+    {
+      "date_first_reported": "2026-06-22",
+      "source": "ai_skip",
+      "title": "@rsch4274: Author: @rsch4274 | Text: Now do the Pacific Palisades? You know where all those...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/rsch4274/status/2068792546961007083",
+      "note": "auto-skip AI: political rage thread, no buyers/partners"
+    },
+    {
+      "date_first_reported": "2026-06-22",
+      "source": "ai_skip",
+      "title": "@loveandhatela: Author: @loveandhatela | Text: the first day of Summer! (in the northern hemisph...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/loveandhatela/status/2068733146653430244",
+      "note": "auto-skip AI: casual fan post, no buyer/partner overlap"
     }
   ]
 }
