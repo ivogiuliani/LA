@@ -1,0 +1,6 @@
+# Log append-only di stato outreach. I due rail (Mac launchd + GitHub Actions)
+# possono appendere righe diverse lo stesso giorno: con il merge "union" git
+# tiene le righe di ENTRAMBE le parti invece di generare un conflitto che
+# blocca il rebase (era una delle cause della doppia digest 21-22/6 → marker
+# non pushato). I consumatori deduplicano già per data/url: righe doppie innocue.
+*.jsonl merge=union

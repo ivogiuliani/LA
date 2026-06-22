@@ -174,6 +174,19 @@ def _run_update_script(script_name: str) -> bool:
         return False
 
 
+def _abort_stuck_rebase(g) -> None:
+    """Un rebase appeso (.git/rebase-merge da un pull --rebase interrotto)
+    blocca OGNI pull/push: il marker non raggiunge origin → doppia digest
+    dall'altro rail. Lo abortiamo prima di ritentare. `g` è il runner git.
+    È la stessa auto-guarigione di daily_publish.sh, qui per il push intra-run."""
+    try:
+        if (ROOT_DIR / ".git" / "rebase-merge").exists() or \
+           (ROOT_DIR / ".git" / "rebase-apply").exists():
+            g(["rebase", "--abort"], timeout=15)
+    except Exception:  # noqa: BLE001
+        pass
+
+
 def _git_autopush(commit_msg: str) -> tuple[bool, str]:
     """Mirror of approve.py's _git_autopush logic. Returns (ok, sha).
 
@@ -204,6 +217,7 @@ def _git_autopush(commit_msg: str) -> tuple[bool, str]:
         if p.returncode != 0:
             # Remote ahead (altro rail ha pushato): riallinea e ritenta.
             print("  [autopush] push rifiutato — pull --rebase e retry...")
+            _abort_stuck_rebase(_g)  # sblocca un eventuale rebase appeso
             r = _g(["pull", "--rebase", "--autostash", "origin", "main"],
                    timeout=60)
             if r.returncode != 0:
@@ -261,11 +275,20 @@ def _push_marker_now() -> None:
                timeout=15)
         if c.returncode != 0:
             return  # nothing staged (marker unchanged) — fine
-        p = _g(["push", "origin", "main"], timeout=45)
-        if p.returncode != 0:
+        pushed = _g(["push", "origin", "main"], timeout=45).returncode == 0
+        # Self-heal + retry FINCHÉ il marker non è davvero su origin: è la
+        # garanzia che l'altro rail veda il claim e NON invii una 2a digest.
+        for _ in range(3):
+            if pushed:
+                break
+            _abort_stuck_rebase(_g)  # un rebase appeso bloccherebbe pull+push
             _g(["pull", "--rebase", "--autostash", "origin", "main"], timeout=45)
-            _g(["push", "origin", "main"], timeout=45)
-        print("  [guard] marker digest pushato (anti-race)")
+            pushed = _g(["push", "origin", "main"], timeout=45).returncode == 0
+        if pushed:
+            print("  [guard] marker digest pushato su origin (anti-race)")
+        else:
+            print("  [guard] ⚠ marker NON arrivato su origin — rischio 2a "
+                  "digest dall'altro rail (verificare git)")
     except Exception as e:  # noqa: BLE001
         print(f"  [guard] push marker fallito (non fatale): {e}")
 

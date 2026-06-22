@@ -97,16 +97,24 @@ log "=== daily_publish START ==="
 log "PWD: $(pwd)"
 log "Python: $(which python3) ($(python3 --version 2>&1))"
 
-# ── Sync + cross-rail guard ────────────────────────────────────────
-# 1) pull --rebase --autostash: l'autostash è ESSENZIALE — i run
-#    precedenti possono lasciare file di stato modificati (cache
-#    scraper ecc.) e senza autostash il pull fallisce, il marker
-#    resta stale e si rischia la doppia digest (successo il 1/6).
-# 2) Il marker viene letto ANCHE da origin/main via git show: immune
-#    a qualunque problema del working tree locale.
+# ── Self-heal git + Sync + cross-rail guard ────────────────────────
+# CAUSA RADICE della doppia digest (21-22/6): un rebase rimasto APPESO da un
+# run precedente (.git/rebase-merge, da un pull --rebase interrotto su un
+# conflitto di file di stato) blocca OGNI pull/push successivo → il marker
+# .last_digest_date non raggiunge più origin → l'altro rail (cloud) invia una
+# SECONDA digest. Lo abortiamo subito, tornando a uno stato pulito.
+if [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
+    log "  ⚠ rebase git appeso da un run precedente — git rebase --abort"
+    git rebase --abort >> "$LOG_FILE" 2>&1 || rm -rf .git/rebase-merge .git/rebase-apply
+fi
+# pull --rebase --autostash: l'autostash è ESSENZIALE — i run precedenti
+# lasciano file di stato modificati e senza autostash il pull fallisce.
+# Il marker viene letto ANCHE da origin/main via git show (sotto): immune
+# a problemi del working tree locale.
 log "git pull --rebase --autostash per sincronizzare lo stato..."
 if ! git pull --rebase --autostash origin main >> "$LOG_FILE" 2>&1; then
-    log "  ⚠ git pull fallito — leggo comunque il marker da origin"
+    log "  ⚠ git pull fallito — abort rebase + fetch del marker da origin"
+    git rebase --abort >> "$LOG_FILE" 2>&1 || true
     git fetch origin main >> "$LOG_FILE" 2>&1 || log "  ⚠ anche il fetch è fallito (offline?)"
 fi
 

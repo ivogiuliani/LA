@@ -16,10 +16,13 @@ on:
     # trigger, basta che UNO parta. La guard cross-rail (.last_digest_date)
     # + la concorrenza serializzata garantiscono che SOLO il primo che
     # gira faccia il lavoro; gli altri vedono il marker e skippano.
-    # CEST = UTC+2 (estate): mira a far girare entro mattina anche col
-    # ritardo GitHub.
-    - cron: "47 4 * * *"    # 04:47 UTC ~ 06:47 CEST (anche +4h → mattina)
-    - cron: "17 6 * * *"    # 06:17 UTC ~ 08:17 CEST
+    # CEST = UTC+2 (estate). Il Mac (launchd) è il rail PRIMARIO e gira alle
+    # ~08:00 CEST: questi trigger partono DOPO la sua finestra, così il cloud
+    # è un vero FALLBACK (se il Mac ha girato, vede il marker e skippa; se il
+    # Mac era spento, copre lui). Niente più trigger PRIMA delle 08:00 CEST
+    # (preempivano il Mac). Più trigger perché il cron free di GitHub
+    # ritarda/salta spesso: basta che UNO parta.
+    - cron: "17 6 * * *"    # 06:17 UTC ~ 08:17 CEST (subito dopo il Mac)
     - cron: "17 8 * * *"    # 08:17 UTC ~ 10:17 CEST
     - cron: "17 10 * * *"   # 10:17 UTC ~ 12:17 CEST (rete di sicurezza)
     # (minuti "spaiati" per evitare i picchi di contesa del top-of-hour)
