@@ -25,6 +25,13 @@
 
 set -uo pipefail
 
+# Git SEMPRE non-interattivo: un prompt credenziali / pager / editor di
+# rebase appenderebbe la pipeline a tempo indefinito (è un altro modo in
+# cui un git "si inceppa"). Forziamo no-prompt + no-pager.
+export GIT_TERMINAL_PROMPT=0
+export GIT_PAGER=cat
+export GIT_EDITOR=true
+
 PROJECT_ROOT="/Users/ivogiuliani/Code/myvilla-la"
 cd "$PROJECT_ROOT" || exit 1
 
@@ -48,6 +55,7 @@ LOG_DIR="_system/logs"
 LOG_FILE="${LOG_DIR}/daily_publish_${TODAY}.log"
 LOCK_FILE="${LOG_DIR}/.daily_publish.lock"
 MARKER_FILE="_system/outreach/.last_digest_date"
+GIT_HEAL_EVENT=0   # 1 se in questo poll abbiamo ripulito un git a metà
 
 mkdir -p "$LOG_DIR"
 
@@ -72,6 +80,54 @@ run_with_timeout() {
     return $rc
 }
 
+# Vero se git è NEL MEZZO di un'operazione (rebase/merge appeso). È solo
+# uno stat su .git — nessuna rete — quindi è cheap abbastanza da girare
+# anche nel percorso di no-op.
+git_mid_operation() {
+    [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ] || [ -f .git/MERGE_HEAD ]
+}
+
+# ── Git self-heal: ripulisce uno stato git a metà (rebase/merge appeso) ──
+# Un rebase rimasto APPESO (.git/rebase-merge da un pull --rebase
+# interrotto, o un processo git ucciso dal watchdog run_with_timeout)
+# blocca OGNI pull/push successivo: il marker .last_digest_date non
+# raggiunge più origin → l'altro rail invia una 2ª digest E rigenera lo
+# stesso articolo con uno slug diverso (split-brain, incidente 06-22).
+# Questa funzione gira SOTTO IL LOCK (una sola istanza locale): qualunque
+# dir rebase presente è perciò ORFANA di un run morto, quindi è sicuro
+# abortirla. Preferiamo `git rebase --abort` (ripristina lo stato
+# pre-rebase); se fallisce, HEAD conserva comunque il lavoro committato e
+# rimuoviamo a mano le dir di controllo. Mai distruttiva sul contenuto.
+heal_git_state() {
+    if ! git_mid_operation; then
+        # Nessuna operazione a metà: ripulisci solo un puntatore REBASE_HEAD
+        # orfano (innocuo, ma fa rumore in .git).
+        [ -f .git/REBASE_HEAD ] && rm -f .git/REBASE_HEAD
+        return 0
+    fi
+    if [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
+        local rdir=".git/rebase-merge"
+        [ -d .git/rebase-apply ] && rdir=".git/rebase-apply"
+        local mt age_min="?"
+        mt="$(stat -f %m "$rdir" 2>/dev/null || stat -c %Y "$rdir" 2>/dev/null)"
+        [ -n "$mt" ] && age_min=$(( ( $(date +%s) - mt ) / 60 ))
+        log "  ⚠ GIT SELF-HEAL: rebase appeso (~${age_min} min) da un run precedente — git rebase --abort"
+        if run_with_timeout 30 git rebase --abort >> "$LOG_FILE" 2>&1; then
+            log "    ✓ rebase --abort riuscito — working tree ripristinato"
+        else
+            log "    ⚠ rebase --abort fallito — rimuovo $rdir + REBASE_HEAD a mano (HEAD conserva il lavoro)"
+            rm -rf .git/rebase-merge .git/rebase-apply
+            rm -f .git/REBASE_HEAD
+        fi
+        GIT_HEAL_EVENT=1
+    fi
+    if [ -f .git/MERGE_HEAD ]; then
+        log "  ⚠ GIT SELF-HEAL: merge appeso — git merge --abort"
+        run_with_timeout 30 git merge --abort >> "$LOG_FILE" 2>&1 || rm -f .git/MERGE_HEAD
+        GIT_HEAL_EVENT=1
+    fi
+}
+
 # ── No-op #1: troppo presto (silenzioso) ───────────────────────────
 if [ "$CURRENT_HOUR" -lt "$TARGET_HOUR" ]; then
     exit 0
@@ -83,7 +139,16 @@ fi
 # prossimo poll. È sicuro ritentare: radar esistente viene riusato,
 # journal ha i cooldown, i pitch hanno il dedup URL, la digest ha il
 # marker cross-rail.
-if [ -f "$LOG_FILE" ] && grep -q "=== daily_publish END ===" "$LOG_FILE"; then
+#
+# ECCEZIONE CRITICA (root cause del blocco di ~23h del 06-22): se git è a
+# metà di un'operazione (rebase/merge appeso), NON usciamo qui. Altrimenti
+# la pulizia (sotto il lock, allo START) non viene MAI raggiunta finché
+# l'END resta nel log di OGGI → i push restano bloccati fino al log fresco
+# di domani. Lasciando passare questo poll, heal_git_state ripulisce entro
+# 30 min e i push si sbloccano. git_mid_operation è solo uno stat su .git:
+# il no-op resta cheap come deve.
+if [ -f "$LOG_FILE" ] && grep -q "=== daily_publish END ===" "$LOG_FILE" \
+   && ! git_mid_operation; then
     exit 0
 fi
 
@@ -100,28 +165,40 @@ log "Python: $(which python3) ($(python3 --version 2>&1))"
 # ── Self-heal git + Sync + cross-rail guard ────────────────────────
 # CAUSA RADICE della doppia digest (21-22/6): un rebase rimasto APPESO da un
 # run precedente (.git/rebase-merge, da un pull --rebase interrotto su un
-# conflitto di file di stato) blocca OGNI pull/push successivo → il marker
-# .last_digest_date non raggiunge più origin → l'altro rail (cloud) invia una
-# SECONDA digest. Lo abortiamo subito, tornando a uno stato pulito.
-if [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
-    log "  ⚠ rebase git appeso da un run precedente — git rebase --abort"
-    git rebase --abort >> "$LOG_FILE" 2>&1 || rm -rf .git/rebase-merge .git/rebase-apply
-fi
-# pull --rebase --autostash: l'autostash è ESSENZIALE — i run precedenti
-# lasciano file di stato modificati e senza autostash il pull fallisce.
-# Il marker viene letto ANCHE da origin/main via git show (sotto): immune
-# a problemi del working tree locale.
+# conflitto di file di stato, o da un git ucciso dal watchdog) blocca OGNI
+# pull/push successivo → il marker .last_digest_date non raggiunge più
+# origin → l'altro rail (cloud) invia una SECONDA digest e rigenera lo
+# stesso articolo. heal_git_state torna a uno stato pulito (vedi sopra).
+heal_git_state
+# pull --rebase --autostash NON-INTERATTIVO e con TETTO DI TEMPO: l'autostash
+# è ESSENZIALE (i run precedenti lasciano file di stato modificati, senza
+# autostash il pull fallisce); il timeout impedisce che una rete col
+# contagocce appenda la pipeline. Su fallimento/timeout: self-heal (abort
+# di un eventuale rebase lasciato a metà dal kill) + fetch, così il marker
+# resta leggibile da origin/main via git show (immune al working tree).
 log "git pull --rebase --autostash per sincronizzare lo stato..."
-if ! git pull --rebase --autostash origin main >> "$LOG_FILE" 2>&1; then
-    log "  ⚠ git pull fallito — abort rebase + fetch del marker da origin"
-    git rebase --abort >> "$LOG_FILE" 2>&1 || true
-    git fetch origin main >> "$LOG_FILE" 2>&1 || log "  ⚠ anche il fetch è fallito (offline?)"
+if ! run_with_timeout 120 git pull --rebase --autostash origin main >> "$LOG_FILE" 2>&1; then
+    log "  ⚠ git pull fallito/timeout — self-heal + fetch del marker da origin"
+    heal_git_state
+    run_with_timeout 60 git fetch origin main >> "$LOG_FILE" 2>&1 || \
+        log "  ⚠ anche il fetch è fallito (offline?)"
 fi
 
 REMOTE_MARKER="$(git show "origin/main:${MARKER_FILE}" 2>/dev/null | tr -d '[:space:]')"
 LOCAL_MARKER="$(cat "$MARKER_FILE" 2>/dev/null | tr -d '[:space:]')"
 if [ "$REMOTE_MARKER" = "$TODAY" ] || [ "$LOCAL_MARKER" = "$TODAY" ]; then
     log "Digest di oggi già inviato dall'altro rail (marker=$TODAY) — skip."
+    # Se un run precedente aveva lasciato commit NON pushati (push bloccato
+    # da un rebase appeso, ora risolto da heal_git_state), portiamoli su
+    # origin adesso: niente force, è un fast-forward dopo il pull --rebase
+    # qui sopra. Così lo stato locale non resta orfano. Non fatale.
+    if [ -n "$(git log origin/main..HEAD --oneline 2>/dev/null)" ]; then
+        log "  commit locali in attesa → git push origin main (fast-forward, no force)"
+        run_with_timeout 60 git push origin main >> "$LOG_FILE" 2>&1 || \
+            log "  ⚠ push dei commit in attesa fallito (riproverà il prossimo run)"
+    fi
+    [ "$GIT_HEAL_EVENT" = "1" ] && \
+        log "Nota: git self-heal eseguito in questo poll — push sbloccati."
     # Riga canonica così i poll successivi diventano no-op silenziosi.
     log "=== daily_publish END ==="
     exit 0
@@ -309,8 +386,18 @@ if [ "${DRY_RUN:-0}" != "1" ]; then
         git add -A >> "$LOG_FILE" 2>&1
         git commit -m "Daily pipeline state ${TODAY} (post-run) [skip ci]" \
             >> "$LOG_FILE" 2>&1 || true
-        git push origin main >> "$LOG_FILE" 2>&1 || \
-            log "  ⚠ push stato finale fallito (il prossimo run farà pull --autostash)"
+        # Push resiliente a un origin avanzato (l'altro rail ha pushato
+        # durante il run): su rifiuto/timeout NON forziamo — self-heal +
+        # pull --rebase --autostash (fast-forward dei nostri commit sopra
+        # origin) e ritentiamo. Mai force-push: non clobberiamo il cloud.
+        if ! run_with_timeout 90 git push origin main >> "$LOG_FILE" 2>&1; then
+            log "  ⚠ push stato finale rifiutato/timeout — self-heal + pull --rebase + retry"
+            heal_git_state
+            run_with_timeout 90 git pull --rebase --autostash origin main >> "$LOG_FILE" 2>&1 || \
+                heal_git_state
+            run_with_timeout 90 git push origin main >> "$LOG_FILE" 2>&1 || \
+                log "  ⚠ push stato finale ancora fallito (il prossimo run farà pull --autostash)"
+        fi
     fi
 fi
 
@@ -322,6 +409,8 @@ if [ $GEN_EXIT -eq 0 ] && [ $PUB_EXIT -eq 0 ]; then
     else
         [ "$RADAR_OK" = "0" ] && \
             log "Nota: radar saltato (timeout/rete); digest e outreach inviati comunque."
+        [ "$GIT_HEAL_EVENT" = "1" ] && \
+            log "Nota: git self-heal eseguito (rebase/merge appeso ripulito) — push sbloccati."
         log "=== daily_publish END ==="
     fi
     exit 0
