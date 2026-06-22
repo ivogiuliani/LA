@@ -2252,38 +2252,19 @@ def main(argv=None):
             errors.append(r)
         print()
 
-    # Companion Instagram automatico per ogni articolo appena
-    # pubblicato: crea blog/<slug>.ig.md (proposta nel pannello, con
-    # hero dell'articolo già risolta). Non-fatale.
-    if published and not args.dry_run:
-        for p_ in published:
-            slug = p_.get("slug", "")
-            sidecar = BLOG_DIR / f"{slug}.json"
-            companion = BLOG_DIR / f"{slug}.ig.md"
-            if not slug or not sidecar.exists() or companion.exists():
-                continue
-            try:
-                r = subprocess.run(
-                    [sys.executable,
-                     str(SCRIPT_DIR / "generate_ig_companion.py"),
-                     "--article", str(sidecar),
-                     "--output", str(companion)],
-                    capture_output=True, text=True, timeout=120,
-                )
-                if r.returncode == 0:
-                    print(f"  ✓ companion IG: {companion.name}")
-                else:
-                    print(f"  ~ companion IG fallito per {slug} "
-                          f"(non fatale)")
-            except Exception as e:  # noqa: BLE001
-                print(f"  ~ companion IG: {type(e).__name__} (non fatale)")
+    # Companion Instagram dal journal: DISATTIVATI su richiesta dell'utente
+    # (poco utili alla pagina IG, che ora vive di evergreen + reattivi). Non
+    # creiamo più blog/<slug>.ig.md alla pubblicazione di un articolo. X resta
+    # invariato (il companion .x.md è gestito dallo sweep self-healing sotto).
+    # Per riattivare: ripristinare la generazione di .ig.md qui e nello sweep.
 
     # Self-healing companion sweep — GARANZIA "c'è sempre tutto": ogni
     # articolo pubblicato di RECENTE (≤7g, la stessa finestra di freschezza
-    # del pannello) deve avere ENTRAMBI i companion, .ig.md e .x.md. Genera
-    # i mancanti — copre i nuovi articoli, le generazioni fallite e la
-    # transizione; oltre i 7g non serve (il pannello li filtrerebbe). Gira
-    # su entrambi i rail (è in publish_all_drafts, Mac + Actions).
+    # del pannello) deve avere il companion .x.md. Genera i mancanti — copre
+    # i nuovi articoli, le generazioni fallite e la transizione; oltre i 7g
+    # non serve (il pannello li filtrerebbe). Gira su entrambi i rail.
+    # NB: il companion .ig.md (IG dal journal) è DISATTIVATO su richiesta —
+    # vedi nota sopra; lo sweep ora copre solo X.
     if not args.dry_run:
         import time as _t
         _cutoff = _t.time() - 7 * 86400
@@ -2293,8 +2274,7 @@ def main(argv=None):
             if not _html.exists() or _html.stat().st_mtime < _cutoff:
                 continue
             for _ext, _script, _ch in (
-                    (".ig.md", "generate_ig_companion.py", "ig"),
-                    (".x.md", "generate_x_companion.py", "x")):
+                    (".x.md", "generate_x_companion.py", "x"),):
                 _comp = BLOG_DIR / f"{_slug}{_ext}"
                 if _comp.exists():
                     continue

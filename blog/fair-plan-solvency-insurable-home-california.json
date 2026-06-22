@@ -1,0 +1,61 @@
+{
+  "slug": "fair-plan-solvency-insurable-home-california",
+  "title": "FAIR Plan Solvency in California: When Homeowners Walk Away",
+  "subtitle": "A widely shared account of a mountain home forced onto the FAIR Plan — and a decision to drop coverage entirely.",
+  "section": "materials",
+  "tag_label": "Materials & Construction",
+  "meta_description": "Worried the FAIR Plan is too costly and may not pay out? Here is what the residual market's strain means for California homeowners — and the construction variable behind it.",
+  "meta_keywords": "FAIR Plan California, insurable home California, fire resistant home California, California fire insurance solution home, FAIR Plan alternative luxury home, reinforced concrete home Los Angeles",
+  "sources": [
+    {
+      "name": "X / @NewsieOne",
+      "title": "On a friend forced onto the FAIR Plan for a mountain home",
+      "url": "https://x.com/NewsieOne/status/2067040411810725948",
+      "type": "x",
+      "excerpt": "A first-person account of a paid-off mountain home pushed onto the FAIR Plan, where the owner concludes the coverage is too expensive and uncertain to keep — and decides to go uninsured."
+    }
+  ],
+  "key_data": [
+    {
+      "number": "29%",
+      "label": "FAIR Plan residential\nrate increase approved for 2026"
+    },
+    {
+      "number": "$0",
+      "label": "Coverage chosen by an owner\nrather than pay FAIR premiums"
+    }
+  ],
+  "our_perspective": "We keep coming back to the moment a homeowner does the math and concludes that paying for coverage is no longer rational. That calculation is not really about the FAIR Plan; it is about a building that the residual market reads as a near-certain claim. A non-combustible envelope changes the inputs to that math. Reinforced concrete — the system DGU has executed on buildings like the Kimbell Art Museum — does not promise a cheaper premium so much as it gives an insurer a structure worth pricing in the first place. When the wall is the fire barrier, the question shifts from whether to insure to who wants to. That is a quieter advantage than a discount, and a more durable one.",
+  "body_html": "<p class=\"reveal\">A widely circulated post on <a href=\"https://x.com/NewsieOne/status/2067040411810725948\">X</a> this week captured a decision that is becoming less unusual in California's high-fire geographies. The author described a friend whose paid-off mountain home was forced onto the FAIR Plan — the state's insurer of last resort — and who, after weighing the cost against the coverage, chose not to insure the property at all. The reasoning was blunt: the FAIR Plan is expensive, it may not make a homeowner whole after a loss, and if everything around the house burns, the owner would not want to rebuild there anyway.</p>\n\n<p class=\"reveal\">It is an anecdote, not a dataset. But it names a pressure point that statewide numbers now confirm.</p>\n\n<h2 class=\"reveal\">The residual market under strain</h2>\n\n<p class=\"reveal\">The FAIR Plan was designed as a temporary backstop, not a destination. Yet as admitted carriers have retreated from fire-exposed zones, it has absorbed a concentrated and growing book of the riskiest inventory in the state. In 2024 alone, California saw more than <span class=\"source-citation\">200,000 home insurance non-renewals and cancellations statewide</span>, with State Farm accounting for roughly 72,000 of those policies — a migration that funnels homeowners toward the residual market by default.</p>\n\n<div class=\"key-data\">\n<p><strong>29%</strong> — residential rate increase approved for the California FAIR Plan, effective in 2026 <span class=\"source-citation\">(SF Chronicle)</span>.</p>\n<p><strong>200,000+</strong> — non-renewals and cancellations across California in 2024 <span class=\"source-citation\">(broker filings via X)</span>.</p>\n</div>\n\n<p class=\"reveal\">The cost side is moving fast. California regulators approved a roughly 29% residential rate increase for the FAIR Plan, taking effect in 2026. For a homeowner already paying a premium that feels punitive, a near-30% jump tests the logic of staying covered at all — particularly when the FAIR Plan's basic coverage and questions about its capitalization leave owners uncertain they would be made whole after a total loss. The post's author was not alone in asking whether the program is solvent; that question has been raised by analysts watching the plan's exposure concentrate.</p>\n\n<h2 class=\"reveal\">What going bare means for the market</h2>\n\n<p class=\"reveal\">When a homeowner with a paid-off property elects to carry no coverage, the decision is rational at the individual level and corrosive at the market level. It removes a premium-paying participant from the pool, signals that the price of risk has outrun the value of protection, and — for properties that still carry a mortgage — is simply not available. In Los Angeles County's fire-exposed luxury corridors, where replacement costs run into eight figures, going uninsured is rarely an option a lender will permit.</p>\n\n<p class=\"reveal\">That leaves the more telling variable hiding in plain sight: the building. The FAIR Plan, like every admitted carrier, prices a structure on how it is likely to behave when embers arrive. A combustible envelope on a ridgeline reads, to an underwriter, as a probable claim. The homeowner in this story did the only math available to her given the house she had. The more consequential math happens earlier — at the wall, the roofline, and the first five feet of ground — where what gets built decides which insurance conversations are even possible.</p>\n\n<p class=\"reveal\">California's <span class=\"source-citation\">Safer from Wildfires</span> framework, which recognizes mitigation across three layers — structure, parcel, and community — exists precisely because carriers want a way to distinguish a hardened building from a vulnerable one. The residual market's strain does not erase that distinction; it sharpens it.</p>\n\n<p class=\"pullquote\">The decision to go uninsured is rational at the individual level and corrosive at the market level — and it starts with the building.</p>\n\n<p class=\"reveal\">As the FAIR Plan's costs climb and its role expands beyond what it was built for, the homeowners who keep a real choice will be the ones whose buildings give an underwriter something to price. The structures that read as near-certain losses will keep pushing their owners toward the same arithmetic the mountain-house owner ran — and toward the same answer.</p>",
+  "excerpt": "A viral post described a friend forced onto the FAIR Plan who decided not to insure her mountain home at all. With a 29% FAIR rate hike approved for 2026, that calculation is spreading — and it traces back to the building itself.",
+  "image_prompt": "Architectural photography of a reinforced concrete villa on a California hillside at dusk, muted warm tones, low sun raking across board-formed concrete walls, dry chaparral landscape in the background, calm and permanent mood, no people",
+  "topic_tags": [
+    "fair-plan-solvency",
+    "insurable-home-california"
+  ],
+  "data_points_cited": [
+    "California FAIR Plan approved 29% residential rate increase (SF Chronicle)",
+    "200,000+ California home insurance non-renewals and cancellations statewide in 2024 (@GPAbroker, X)",
+    "~72,000 State Farm policies non-renewed in California in 2024, including ~30,000 homeowners and 42,000 apartment/commercial accounts (@GPAbroker, X)"
+  ],
+  "read_time_min": 6,
+  "hero_image": {
+    "local_path": "/Users/ivogiuliani/Code/myvilla-la/blog/assets/img/fair-plan-solvency-insurable-home-california-hero.jpg",
+    "web_path": "assets/img/fair-plan-solvency-insurable-home-california-hero.jpg",
+    "photo_id": "QAHzvxyszjE",
+    "author_name": "Michala Li",
+    "author_url": "https://unsplash.com/@michalali?utm_source=myvilla&utm_medium=referral",
+    "unsplash_url": "https://unsplash.com/photos/a-house-sitting-on-top-of-a-cliff-next-to-the-ocean-QAHzvxyszjE?utm_source=myvilla&utm_medium=referral",
+    "alt_description": "a house sitting on top of a cliff next to the ocean",
+    "color": "#264073"
+  },
+  "_date": "2026-06-22",
+  "_section_id": "materials",
+  "_section_name": "Materials & Construction",
+  "_source_item": {
+    "title": "@NewsieOne: Author: @NewsieOne | Text: My friend's mountain house got forced onto FAIR. FAIR...",
+    "url": "https://x.com/NewsieOne/status/2067040411810725948",
+    "publication": "X/Twitter",
+    "cluster": "twitter"
+  }
+}

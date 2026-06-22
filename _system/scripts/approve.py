@@ -1017,6 +1017,23 @@ def _parse_social_file(f):
     }
 
 
+def _is_ig_journal_companion(parsed: dict) -> bool:
+    """True se è un companion Instagram derivato da un articolo del journal
+    (annuncio del tipo "nuovo articolo, link in bio").
+
+    DISATTIVATI dal flusso Instagram su richiesta dell'utente: poco utili
+    alla pagina IG, che ora vive di contenuti evergreen (dal sito) + eventuali
+    reattivi. Vengono esclusi dalle proposte (pannello + digest) e non più
+    generati (vedi auto_generate_ig_companions e publish_all_drafts). X NON è
+    toccato: i companion .x.md continuano a essere generati e proposti.
+    Riattivabile rimuovendo questa esclusione + riabilitando la generazione."""
+    fname = str(parsed.get("file", ""))
+    if fname.endswith(".ig.md"):   # i .ig.md sono per definizione companion IG
+        return True
+    ch = str(parsed.get("channel", "")).lower()
+    return ch in ("ig", "instagram") and parsed.get("type") == "journal_companion"
+
+
 def scan_social_drafts():
     """Tutti i draft social in attesa di approvazione, da TUTTE le
     sorgenti: legacy _drafts/social, posts/reactive (generatori),
@@ -1030,7 +1047,8 @@ def scan_social_drafts():
             if f.name in seen:
                 continue
             parsed = _parse_social_file(f)
-            if parsed and parsed.get("type") != "evergreen":
+            if parsed and parsed.get("type") != "evergreen" \
+                    and not _is_ig_journal_companion(parsed):
                 seen.add(f.name)
                 drafts.append(parsed)
     # Companion IG/X degli articoli live (blog/*.ig.md, blog/*.x.md)
@@ -1039,7 +1057,8 @@ def scan_social_drafts():
             if f.name in seen:
                 continue
             parsed = _parse_social_file(f)
-            if parsed and parsed.get("type") != "evergreen":
+            if parsed and parsed.get("type") != "evergreen" \
+                    and not _is_ig_journal_companion(parsed):
                 seen.add(f.name)
                 drafts.append(parsed)
     # RILEVANZA prima (score del radar, "scegli tu i più rilevanti"),
@@ -11641,10 +11660,12 @@ def main():
                   f"(per-type thresholds: journal=14d, social=1d, replies=14d).")
         print()
 
-    # Auto-generate IG companions for journal drafts that don't have one
-    # yet. The operator should never have to click "Genera" — the IG
-    # preview is always pre-populated by the time the dashboard loads.
-    if not args.no_auto_ig:
+    # IG companions dal journal: DISATTIVATI su richiesta dell'utente — poco
+    # utili alla pagina Instagram, che ora vive di contenuti evergreen (dal
+    # sito) + eventuali reattivi. La funzione auto_generate_ig_companions()
+    # resta in codice per un'eventuale riattivazione futura; X non è toccato
+    # (i companion .x.md continuano nel daily). Vedi _is_ig_journal_companion.
+    if False and not args.no_auto_ig:  # DISATTIVATO (vedi nota sopra)
         print("  Auto-generating missing IG companions...")
         ig_summary = auto_generate_ig_companions()
         if not ig_summary:

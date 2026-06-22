@@ -3299,6 +3299,15 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/hotchkis-villa-cresta-estate-los-angeles-bel-air-1238361768/",
       "note": "auto-published journal: tuscan-estate-bel-air-65-million-italian-villa-california"
+    },
+    {
+      "date_first_reported": "2026-06-22",
+      "source": "user_dismissed",
+      "title": "",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/smo841603557184/status/2067376523913712114"
     }
   ],
   "reported": [
