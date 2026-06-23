@@ -286,7 +286,7 @@ if [ "$RADAR_OK" = "1" ]; then
     python3 _system/scripts/generate_journal.py \
         --radar "$RADAR_FILE" \
         --min-score 14 \
-        --max-articles 3 \
+        --max-articles 1 \
         >> "$LOG_FILE" 2>&1
     GEN_EXIT=$?
     log "generate_journal.py exit code: $GEN_EXIT"

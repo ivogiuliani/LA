@@ -5,6 +5,10 @@
 User-agent: *
 Allow: /
 Disallow: /old/
+# /v2/ è lo STAGING del redesign "Quiet Permanence" (in review dopo il
+# rollback a v1): duplica l'intero blog → bloccato per non indicizzare
+# contenuti doppi finché non diventa il sito live.
+Disallow: /v2/
 
 # Explicitly allow AI crawlers for AI search visibility
 User-agent: GPTBot

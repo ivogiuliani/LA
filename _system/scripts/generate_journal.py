@@ -362,6 +362,24 @@ def is_in_cooldown(ledger, today_str):
     return blocked
 
 
+def _saturated_keywords(journal_config):
+    """Keyword 'core' già SATURE in blog/ (≥ cap articoli che le trattano):
+    non vanno generati altri articoli su queste — è la cannibalizzazione che
+    l'audit SEO ha trovato (decine di pagine per la stessa query). Conta dai
+    SLUG in blog/ (ground truth del live). → set di keyword sature (lowercase)."""
+    caps = journal_config.get("keyword_caps") or {}
+    if not caps:
+        return set()
+    slugs = [p.stem.lower() for p in BLOG_DIR.glob("*.html")] \
+        if BLOG_DIR.exists() else []
+    saturated = set()
+    for kw, cap in caps.items():
+        token = str(kw).lower().replace(" ", "-")
+        if sum(1 for s in slugs if token in s) >= int(cap):
+            saturated.add(str(kw).lower().replace("-", " "))
+    return saturated
+
+
 def filter_candidates(radar_data, ledger, journal_config, max_articles=2, min_score_override=None):
     """Filter radar results by journal criteria."""
     # `is not None` (non `or`): --min-score 0 è falsy e veniva ignorato.
@@ -372,6 +390,10 @@ def filter_candidates(radar_data, ledger, journal_config, max_articles=2, min_sc
 
     qualified = radar_data.get("qualified", [])
     candidates = []
+    saturated_kw = _saturated_keywords(journal_config)
+    if saturated_kw:
+        print(f"  [Filter] Keyword sature (cap raggiunto, niente nuovi "
+              f"articoli): {', '.join(sorted(saturated_kw))}")
 
     for item in qualified:
         score = item.get("ai_score", item.get("preliminary_score", 0))
@@ -400,6 +422,15 @@ def filter_candidates(radar_data, ledger, journal_config, max_articles=2, min_sc
         if is_dup:
             print(f"  [Filter] Skipped (duplicate topic): {cand_title[:60]}")
             print(f"             conflicts with: {conflict[:60]}")
+            continue
+
+        # Anti-cannibalizzazione: se la keyword core del candidato è già
+        # satura in blog/, NON aggiungere un'altra pagina che compete per la
+        # stessa query (la copertura commerciale viene dalle pillar dedicate).
+        _t = cand_title.lower()
+        _hit = next((kw for kw in saturated_kw if kw in _t), None)
+        if _hit:
+            print(f"  [Filter] Skipped (keyword satura '{_hit}'): {cand_title[:55]}")
             continue
 
         # Attach the resolved section so the diversity pass below can
@@ -1933,6 +1964,8 @@ def main():
                         help="Generate but don't save")
     parser.add_argument("--ledger", default=None,
                         help="Path to journal_ledger.json")
+    parser.add_argument("--ignore-cadence", action="store_true",
+                        help="Genera anche fuori dai publish_weekdays (test/forzatura)")
     args = parser.parse_args()
 
     today = datetime.now().strftime("%Y-%m-%d")
@@ -1941,6 +1974,21 @@ def main():
 
     # Load configs
     journal_config = load_journal_config()
+
+    # ── Cadenza (pivot SEO 2026-06): il journal gira solo nei publish_weekdays
+    # (default lun/mer/ven). Un dominio nuovo non deve sfornare news ogni
+    # giorno (segnale "scaled content"): 2-3 evergreen/settimana. --ignore-cadence
+    # forza (test). Il radar/social restano comunque quotidiani.
+    pub_days = (journal_config.get("journal_criteria", {}) or {}).get("publish_weekdays")
+    if pub_days and not args.ignore_cadence:
+        wd = datetime.now().weekday()
+        if wd not in pub_days:
+            names = ["lun", "mar", "mer", "gio", "ven", "sab", "dom"]
+            print(f"  [cadence] Oggi è {names[wd]}: non è un giorno di "
+                  f"pubblicazione journal (publish_weekdays={pub_days}). "
+                  f"Skip — ora 2-3 evergreen/settimana. (--ignore-cadence per forzare)")
+            return
+
     brand_voice = load_yaml(CONFIG_DIR / "brand-voice.yml")
 
     # Load 'Our Perspective' knowledge base (project PDF + site content).

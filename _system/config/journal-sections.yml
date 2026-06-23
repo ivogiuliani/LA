@@ -58,8 +58,30 @@ sections:
 journal_criteria:
   min_score: 14
   min_sources: 1
-  max_articles_per_day: 3
-  max_articles_per_week: 12
+  max_articles_per_day: 1          # PIVOT SEO 2026-06: meno volume, più evergreen
+  max_articles_per_week: 3
+  # Cadenza: il journal gira SOLO questi giorni (0=lun … 6=dom). Un dominio
+  # nuovo NON deve sfornare news quotidiane (è il segnale "scaled content" che
+  # Google penalizza): 2-3 analisi evergreen/settimana valgono di più. I due
+  # rail rispettano il gate (controllo in generate_journal.main()).
+  publish_weekdays: [0, 2, 4]      # lunedì, mercoledì, venerdì
+
+# ── Anti-cannibalizzazione (audit SEO 2026-06) ──
+# Decine di articoli competevano per le stesse query ("insurable home" ×14,
+# "wildfire" ×17, "fair plan" ×9) mentre le keyword commerciali ad alta
+# intenzione restavano scoperte. Cap per keyword "core": se in blog/ ci sono
+# già ≥ cap articoli che la trattano, NON se ne generano altri (il candidato
+# viene scartato in filter_candidates). Le keyword commerciali sotto-coperte
+# non hanno cap → spazio per crescere; la loro copertura viene dalle PILLAR.
+keyword_caps:
+  "insurable home": 6
+  "fair plan": 4
+  "fire insurance": 5
+  "wildfire": 6
+  "ibhs": 4
+  "non-renewal": 3
+  "state farm": 3
+  "fair-plan": 4
 
 # ── Dedup Cooldowns ──
 cooldowns:
