@@ -2668,23 +2668,25 @@ select.cta-input option { color: var(--espresso); background: var(--cream); }
 .cta-success .ok-ring svg path { fill: none; stroke: var(--tuscan-gold); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .cta-success h3 { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--cream); }
 .cta-success p { margin-top: 10px; font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.6); max-width: 380px; }
+/* Email alternative — prominent outlined secondary action */
 .cta-alt {
-  margin-bottom: 38px;
+  display: inline-flex; align-items: center; gap: 10px;
+  margin: 6px auto 40px;
+  padding: 13px 26px;
+  border: 1px solid var(--tuscan-gold);
+  border-radius: 4px;
+  background: rgba(196,162,101,0.07);
   font-family: var(--sans);
-  font-size: 13px;
-  text-align: center;
-  color: rgba(255,255,255,0.55);
+  font-size: 14px; letter-spacing: 0.02em;
+  color: var(--cream); text-decoration: none;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
 }
-.cta-alt a {
-  color: var(--warm-sand); text-decoration: none;
-  border-bottom: 1px solid rgba(212,184,150,0.45);
-  padding-bottom: 1px;
-  transition: color 0.25s, border-color 0.25s;
-}
-.cta-alt a:hover { color: var(--white); border-color: var(--white); }
+.cta-alt:hover { background: rgba(196,162,101,0.16); transform: translateY(-1px); }
+.cta-alt svg { fill: none; stroke: var(--tuscan-gold); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.cta-alt strong { color: var(--tuscan-gold); font-weight: 600; white-space: nowrap; }
 
-/* Anchor landings clear the fixed nav */
-section[id] { scroll-margin-top: 64px; }
+/* Anchor landings clear the fixed nav (mobile nav stacks taller) */
+section[id], #briefing { scroll-margin-top: 96px; }
 
 /* ── Sticky mobile CTA (shown ≤640px after the hero, hidden near the form) ── */
 .sticky-cta {
@@ -3970,12 +3972,14 @@ section[id] { scroll-margin-top: 64px; }
     <div class="cta-title reveal">MY VILLA</div>
     <div class="cta-tagline reveal reveal-delay-1">Italian Soul &middot; <span style="color:var(--sky-mist)">Californian Body</span></div>
     <div class="cta-line reveal reveal-delay-1"></div>
-    <div class="cta-heading reveal reveal-delay-2">Request a Private Briefing</div>
+    <div class="cta-heading reveal reveal-delay-2" id="briefing">Request a Private Briefing</div>
     <div class="cta-sub reveal reveal-delay-2">
       We'd love to show you the system. A tailored conversation about your site, your vision, your My Villa.
     </div>
-    <div class="cta-scarcity reveal reveal-delay-2"><strong>Limited commissions per year — two remaining for 2026.</strong></div>
-    <div class="cta-alt reveal reveal-delay-2">Prefer email? Write to <a href="mailto:info@myvilla.la">info@myvilla.la</a></div>
+    <a class="cta-alt reveal reveal-delay-2" href="mailto:info@myvilla.la">
+      <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5 L12 13 L20.5 6.5"/></svg>
+      <span>Prefer email? Write to <strong>info@myvilla.la</strong></span>
+    </a>
     <div class="cta-form-wrap reveal reveal-delay-3">
       <form class="cta-form" id="contactForm" onsubmit="handleSubmit(event)" aria-label="Request a private briefing">
         <input type="text" class="cta-input" placeholder="First Name" required aria-label="First Name" name="first_name" autocomplete="given-name">
@@ -4020,7 +4024,7 @@ section[id] { scroll-margin-top: 64px; }
 </main>
 
 <!-- Sticky mobile CTA (≤640px, appears after the hero, hides near the form) -->
-<a href="#contact" class="sticky-cta" id="stickyCta">Request a Private Briefing</a>
+<a href="#briefing" class="sticky-cta" id="stickyCta">Request a Private Briefing</a>
 
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer class="footer" role="contentinfo">
@@ -4229,8 +4233,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       still = (Math.abs(y - lastY) < 1) ? still + 1 : 0;
       lastY = y;
       if (still >= 8) {                                  // scroll has stopped
+        // Resting position respects scroll-margin-top (target sits ~76px
+        // below the viewport top, under the fixed nav). Off-target only if
+        // the target drifted above the nav or far below where it should be.
         const off = target.getBoundingClientRect().top;
-        if (Math.abs(off) > 8 && fixes < 3) {            // landed off-target
+        if ((off < -8 || off > 140) && fixes < 3) {      // landed off-target
           fixes++; still = 0;
           target.scrollIntoView({ block: 'start' });     // instant re-snap
         } else {
