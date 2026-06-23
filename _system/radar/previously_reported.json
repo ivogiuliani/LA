@@ -3880,6 +3880,36 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/loveandhatela/status/2068733146653430244",
       "note": "auto-skip AI: casual fan post, no buyer/partner overlap"
+    },
+    {
+      "date_first_reported": "2026-06-23",
+      "source": "ai_skip",
+      "title": "@c14israel: Author: @c14israel | Text: Two Israelis Killed in Los Angeles-Area Car Crash Two...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/c14israel/status/2069014283946459397",
+      "note": "auto-skip AI: tragedy/news, off-topic"
+    },
+    {
+      "date_first_reported": "2026-06-23",
+      "source": "ai_skip",
+      "title": "@californiapost: Author: @californiapost | Text: Los Angeles' first fire-resistant home costs jus...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/californiapost/status/2067342687884255368",
+      "note": "auto-skip AI: duplicate of higher-reach post 3"
+    },
+    {
+      "date_first_reported": "2026-06-23",
+      "source": "ai_skip",
+      "title": "@vrishtidesigns: Author: @vrishtidesigns | Text: Curves, height, light, and luxury—everything com...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/vrishtidesigns/status/2067472461898351056",
+      "note": "auto-skip AI: generic design fluff, no buyer/partner overlap"
     }
   ]
 }
