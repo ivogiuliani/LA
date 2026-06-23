@@ -191,6 +191,45 @@ def main():
     print(f"  Blog articles:   {len(articles)}")
     print(f"  Total URLs:      {len(all_entries)}")
 
+    # ── IndexNow: notify Bing/Yandex/Seznam instantly on every publish ──
+    # (Google does not support IndexNow — submit the sitemap in Search
+    # Console for Google. This covers the engines that DO support it.)
+    submit_indexnow([e["loc"] for e in all_entries])
+
+
+# IndexNow key — the matching key file `<KEY>.txt` lives at the site root and
+# must contain exactly this string (that is how IndexNow verifies ownership).
+INDEXNOW_KEY = "7f1fb51f07e43e0f66ff0ff5a261826d"
+
+
+def submit_indexnow(urls: list[str]) -> None:
+    """POST the URL list to IndexNow. Fully graceful: never raises, never
+    blocks the publish pipeline. Disable with env MYVILLA_INDEXNOW=0."""
+    import os
+    if os.environ.get("MYVILLA_INDEXNOW", "1") == "0":
+        print("  IndexNow: skipped (MYVILLA_INDEXNOW=0)")
+        return
+    import json as _json
+    import urllib.request
+    host = BASE_URL.replace("https://", "").replace("http://", "").rstrip("/")
+    payload = {
+        "host": host,
+        "key": INDEXNOW_KEY,
+        "keyLocation": f"{BASE_URL}/{INDEXNOW_KEY}.txt",
+        "urlList": urls[:10000],
+    }
+    try:
+        req = urllib.request.Request(
+            "https://api.indexnow.org/indexnow",
+            data=_json.dumps(payload).encode("utf-8"),
+            headers={"Content-Type": "application/json; charset=utf-8"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            print(f"  IndexNow: submitted {len(payload['urlList'])} URLs (HTTP {resp.status})")
+    except Exception as e:  # network/DNS/HTTP — never fatal
+        print(f"  IndexNow: skipped ({type(e).__name__}: {e})")
+
 
 if __name__ == "__main__":
     main()

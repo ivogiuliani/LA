@@ -50,7 +50,7 @@
 <link rel="apple-touch-icon" href="img/logos/apple-touch-icon.png">
 
 <!-- Preload critical resources -->
-<link rel="preload" as="image" href="img/hero.png">
+<link rel="preload" as="image" href="img/hero.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -395,6 +395,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .seo-kw.light { color: var(--white); }
 .seo-kw.dark { color: var(--espresso); }
+/* Visible keyword line inside the hero H1 (SEO: keyword in H1, not sr-only) */
+.hero-h1-kw {
+  display: block;
+  font-family: var(--sans);
+  font-size: clamp(11px, 1.2vw, 13px);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  opacity: 0.5;
+  margin-top: 16px;
+}
 .divider {
   width: 60px; height: 1px;
   background: var(--tuscan-gold);
@@ -3060,8 +3072,7 @@ section[id], #briefing { scroll-margin-top: 96px; }
   <img class="hero-fallback" src="img/hero.webp" alt="My Villa Garden" style="display:none;">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1 class="hero-title reveal"><span aria-hidden="true">MY VILLA</span><span class="sr-only">Italian-Designed Luxury Villas in Los Angeles</span></h1>
-    <p class="seo-kw light reveal" style="margin-top:0; margin-bottom:8px;">Italian-Designed Luxury Villas in Los Angeles</p>
+    <h1 class="hero-title reveal">MY VILLA<span class="hero-h1-kw">Italian-Designed, Fire-Resilient Luxury Villas in Los Angeles</span></h1>
     <div class="hero-payoff reveal reveal-delay-1">Italian Soul &middot; <span style="color:var(--sky-mist)">Californian Body</span></div>
     <div class="hero-line reveal reveal-delay-2"></div>
     <div class="hero-sub reveal reveal-delay-3">Luxury villas built to last centuries, not decades.</div>
