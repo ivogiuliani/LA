@@ -3919,17 +3919,57 @@
       "cluster": "twitter",
       "action_type": "user_dismissed",
       "url": "https://x.com/CortesSteve/status/2069529704537673737",
-      "note": "auto-skip AI: drama/politics, no buyer/partner overlap"
+      "note": "auto-skip AI: political rage thread, brand-unsafe"
     },
     {
       "date_first_reported": "2026-06-24",
       "source": "ai_skip",
-      "title": "@DenverDayv: Author: @DenverDayv | Text: And look at the Palisades fire on California. That w...",
+      "title": "@joelpollak: Author: @joelpollak | Text: Pacific Palisades rebuild is underway as LA Mayor Ka...",
       "score": null,
       "cluster": "twitter",
       "action_type": "user_dismissed",
-      "url": "https://x.com/DenverDayv/status/2069387570375713008",
-      "note": "auto-skip AI: tiny reach, political blame, no overlap"
+      "url": "https://x.com/joelpollak/status/2069569502723940451",
+      "note": "auto-skip AI: politicized news framing, brand-unsafe"
+    },
+    {
+      "date_first_reported": "2026-06-24",
+      "source": "ai_skip",
+      "title": "@juliagulia1995: Author: @juliagulia1995 | Text: If LA could get some of that USAID money for a r...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/juliagulia1995/status/2069565601887252791",
+      "note": "auto-skip AI: political rant, tiny reach"
+    },
+    {
+      "date_first_reported": "2026-06-24",
+      "source": "ai_skip",
+      "title": "@californiapost: Author: @californiapost | Text: Altadena quietly reveals shocking wildfire rebui...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/californiapost/status/2067425871523144146",
+      "note": "auto-skip AI: contentious local politics, brand-unsafe"
+    },
+    {
+      "date_first_reported": "2026-06-24",
+      "source": "ai_skip",
+      "title": "@RheinAmacher: Author: @RheinAmacher | Text: Should have used that money to rebuild the Pacific...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/RheinAmacher/status/2069442136232337499",
+      "note": "auto-skip AI: off-topic political fragment"
+    },
+    {
+      "date_first_reported": "2026-06-24",
+      "source": "ai_skip",
+      "title": "@robinsbinder: Author: @robinsbinder | Text: Nobody needs almost 7k a month just to live, ffs....",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/robinsbinder/status/2069471710387081404",
+      "note": "auto-skip AI: off-topic drama"
     },
     {
       "date_first_reported": "2026-06-24",
@@ -3939,7 +3979,17 @@
       "cluster": "twitter",
       "action_type": "user_dismissed",
       "url": "https://x.com/vrishtidesigns/status/2067472461898351056",
-      "note": "auto-skip AI: generic design-fan render, no buyer/partner overlap"
+      "note": "auto-skip AI: not LA, design-fan content"
+    },
+    {
+      "date_first_reported": "2026-06-24",
+      "source": "ai_skip",
+      "title": "@OrmesherKelly: Author: @OrmesherKelly | Text: A lot of homeowners did not have insurance becaus...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/OrmesherKelly/status/2066235928805527627",
+      "note": "auto-skip AI: low engagement, combative thread"
     }
   ]
 }

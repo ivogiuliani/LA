@@ -64,6 +64,12 @@ STATIC_ENTRIES = [
         "priority": "0.9",
     },
     {
+        "loc": f"{BASE_URL}/pacific-palisades-rebuild.html",
+        "lastmod": date.today().isoformat(),
+        "changefreq": "monthly",
+        "priority": "0.9",
+    },
+    {
         "loc": f"{BASE_URL}/privacy.html",
         "lastmod": "2026-03-03",
         "changefreq": "yearly",
