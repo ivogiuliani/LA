@@ -2728,31 +2728,54 @@ section[id], #briefing { scroll-margin-top: 96px; }
    ══════════════════════════════════════════ */
 .footer {
   background: var(--offblack);
-  padding: 30px var(--side-pad);
-  padding-bottom: max(30px, env(safe-area-inset-bottom));
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 24px;
+  padding: 56px var(--side-pad);
+  padding-bottom: max(32px, env(safe-area-inset-bottom));
 }
-.footer-brand-wrap { display: flex; align-items: baseline; gap: 12px; flex-shrink: 0; }
+.footer-inner { max-width: 1280px; margin: 0 auto; }
+.footer-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 40px; flex-wrap: wrap;
+}
+.footer-brand-wrap { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; }
 .footer-brand {
   font-family: var(--serif);
-  font-size: 16px; font-weight: 400;
-  letter-spacing: 0.2em; color: #FFFFFF;
+  font-size: 20px; font-weight: 400;
+  letter-spacing: 0.22em; color: #FFFFFF;
 }
 .footer-brand-payoff {
   font-family: var(--sans);
-  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
 }
-.footer-copy {
-  font-size: 12px; color: rgba(255,255,255,0.5);
+.footer-links {
+  display: flex; flex-wrap: wrap;
+  gap: 14px 28px; max-width: 760px;
+  justify-content: flex-end;
 }
-.footer-links { display: flex; gap: 24px; flex-shrink: 0; flex-wrap: wrap; }
 .footer-links a {
-  font-size: 13px; color: #FFFFFF; opacity: 0.8;
-  letter-spacing: 0.05em; transition: color 0.3s, opacity 0.3s;
+  font-size: 13px; color: #FFFFFF; opacity: 0.78;
+  letter-spacing: 0.04em; transition: color 0.3s, opacity 0.3s;
 }
 .footer-links a:hover { color: var(--pacific-blue); opacity: 1; }
+.footer-bottom {
+  margin-top: 40px; padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.45); white-space: nowrap; }
+.footer-legal { display: flex; gap: 22px; flex-wrap: wrap; }
+.footer-legal a {
+  font-size: 12px; color: rgba(255,255,255,0.55);
+  letter-spacing: 0.04em; transition: color 0.3s;
+}
+.footer-legal a:hover { color: #FFFFFF; }
+@media (max-width: 700px) {
+  .footer { padding-top: 44px; }
+  .footer-top { flex-direction: column; gap: 26px; }
+  .footer-links { justify-content: flex-start; max-width: none; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
 
 /* ══════════════════════════════════════════
    TEXT BACKDROP — tight behind text blocks
@@ -4042,20 +4065,29 @@ section[id], #briefing { scroll-margin-top: 96px; }
 
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer class="footer" role="contentinfo">
-  <div class="footer-brand-wrap">
-    <div class="footer-brand">MY VILLA</div>
-    <div class="footer-brand-payoff">Italian Soul &middot; Californian Body</div>
-  </div>
-  <div class="footer-copy">© 2026 My Villa</div>
-  <div class="footer-links">
-    <a href="mailto:info@myvilla.la">info@myvilla.la</a>
-    <a href="italian-villa-california-builder.html">Italian Villa Builder</a>
-    <a href="icf-concrete-home-builder-los-angeles.html">Concrete Homes</a>
-    <a href="beverly-hills-custom-home.html">Beverly Hills</a>
-    <a href="pacific-palisades-rebuild.html">Palisades Rebuild</a>
-    <a href="malibu-custom-home-builder.html">Malibu</a>
-    <a href="team.html">Studio</a>
-    <a href="privacy.html">Privacy Policy</a>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand-wrap">
+        <div class="footer-brand">MY VILLA</div>
+        <div class="footer-brand-payoff">Italian Soul &middot; Californian Body</div>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="italian-villa-california-builder.html">Italian Villa Builder</a>
+        <a href="icf-concrete-home-builder-los-angeles.html">Concrete Homes</a>
+        <a href="beverly-hills-custom-home.html">Beverly Hills</a>
+        <a href="pacific-palisades-rebuild.html">Palisades Rebuild</a>
+        <a href="malibu-custom-home-builder.html">Malibu</a>
+        <a href="blog/">Journal</a>
+        <a href="team.html">Studio</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 My Villa</span>
+      <div class="footer-legal">
+        <a href="mailto:info@myvilla.la">info@myvilla.la</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
   </div>
 </footer>
 
