@@ -3308,6 +3308,16 @@
       "cluster": null,
       "action_type": "user_dismissed",
       "url": "https://x.com/smo841603557184/status/2067376523913712114"
+    },
+    {
+      "date_first_reported": "2026-06-25",
+      "source": "user_dismissed",
+      "title": "Rockstar Energy Founder Russ Savage Just Listed 5 Homes for a Combined $297 Mill",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/russ-savage-selling-297-million-trophy-homes-1238379044/",
+      "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
     }
   ],
   "reported": [
@@ -3990,6 +4000,26 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/OrmesherKelly/status/2066235928805527627",
       "note": "auto-skip AI: low engagement, combative thread"
+    },
+    {
+      "date_first_reported": "2026-06-25",
+      "source": "ai_skip",
+      "title": "@robinsbinder: Author: @robinsbinder | Text: Nobody needs almost 7k a month just to live, ffs....",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/robinsbinder/status/2069471710387081404",
+      "note": "auto-skip AI: drama/rant, no buyers or partners"
+    },
+    {
+      "date_first_reported": "2026-06-25",
+      "source": "ai_skip",
+      "title": "@vrishtidesigns: Author: @vrishtidesigns | Text: Moody tones, warm lighting, rich textures, and t...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/vrishtidesigns/status/2067829000081494298",
+      "note": "auto-skip AI: generic interior render, no LA buyer overlap"
     }
   ]
 }
