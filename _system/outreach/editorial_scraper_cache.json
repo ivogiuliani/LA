@@ -242,12 +242,13 @@
     "result": null
   },
   "latimes.com": {
-    "cached_at": 1778563579.7512,
+    "cached_at": 1782454456.1681721,
     "result": {
       "email": "tips@latimes.com",
       "source": "article_scraped",
       "path": "/tips",
-      "score": 20
+      "score": 20,
+      "in_mailto": true
     }
   },
   "theguardian.com": {

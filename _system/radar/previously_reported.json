@@ -3318,6 +3318,16 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/russ-savage-selling-297-million-trophy-homes-1238379044/",
       "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-06-26",
+      "source": "user_dismissed",
+      "title": "Navigating Home Insurance in California's Changing Market — July 14 webinar",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/NSDCRealtors/status/2069088319271542981",
+      "note": "auto-published journal: california-home-insurance-webinar-cdi-cal-fire"
     }
   ],
   "reported": [
@@ -4020,6 +4030,26 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/vrishtidesigns/status/2067829000081494298",
       "note": "auto-skip AI: generic interior render, no LA buyer overlap"
+    },
+    {
+      "date_first_reported": "2026-06-26",
+      "source": "ai_skip",
+      "title": "@mrjaggers1812: Author: @mrjaggers1812 | Text: They fled for their lives in 2001.  Twenty-five...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/mrjaggers1812/status/2070275488158040187",
+      "note": "auto-skip AI: political rage, no buyers/partners"
+    },
+    {
+      "date_first_reported": "2026-06-26",
+      "source": "ai_skip",
+      "title": "@JMP_CPA: Author: @JMP_CPA | Text: Grew up in Pacific Palisades, spent 50 beautiful years...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/JMP_CPA/status/2069596245526474927",
+      "note": "auto-skip AI: personal note, no buyer/partner reach"
     }
   ]
 }
