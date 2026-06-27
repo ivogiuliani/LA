@@ -4070,6 +4070,16 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/JMP_CPA/status/2069596245526474927",
       "note": "auto-skip AI: personal note, no buyer/partner reach"
+    },
+    {
+      "date_first_reported": "2026-06-27",
+      "source": "ai_skip",
+      "title": "@PumpkinGroup: Author: @PumpkinGroup | Text: Arsonist pledges to rebuild home gutted in fire ju...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/PumpkinGroup/status/2068806378949361899",
+      "note": "auto-skip AI: drama/crime, no buyers or partners"
     }
   ]
 }
