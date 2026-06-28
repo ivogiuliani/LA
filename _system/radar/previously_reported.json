@@ -4080,6 +4080,46 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/PumpkinGroup/status/2068806378949361899",
       "note": "auto-skip AI: drama/crime, no buyers or partners"
+    },
+    {
+      "date_first_reported": "2026-06-28",
+      "source": "ai_skip",
+      "title": "@douglaselliman: James Bond-Inspired Mansion Lists for $85M 💫\n\nPROPERTY DETAILS \n16121 Quiet Vista Circle\nD",
+      "score": null,
+      "cluster": "instagram_engagement",
+      "action_type": "user_dismissed",
+      "url": "https://www.instagram.com/p/DaDGIz4D516/",
+      "note": "auto-skip AI: Florida property, no LA buyer/partner overlap"
+    },
+    {
+      "date_first_reported": "2026-06-28",
+      "source": "ai_skip",
+      "title": "@douglaselliman: Private Westhampton Estate Overlooking Golf Course 🏌️‍♀️\n\nPROPERTY DETAILS \n171 Oneck Lane",
+      "score": null,
+      "cluster": "instagram_engagement",
+      "action_type": "user_dismissed",
+      "url": "https://www.instagram.com/p/DaAhSApnDZ5/",
+      "note": "auto-skip AI: New York property, no LA overlap"
+    },
+    {
+      "date_first_reported": "2026-06-28",
+      "source": "ai_skip",
+      "title": "@MrSausageGet: Author: @MrSausageGet | Text: Saturday, July 4\nFirst starting location:\n9am \n604...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/MrSausageGet/status/2070984064950030761",
+      "note": "auto-skip AI: Off-topic event, no buyer/partner overlap"
+    },
+    {
+      "date_first_reported": "2026-06-28",
+      "source": "ai_skip",
+      "title": "@FXDLMax: Author: @FXDLMax | Text: When you live in California on a Mt top, 7 miles from t...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/FXDLMax/status/2069849940600529280",
+      "note": "auto-skip AI: Tiny reach, off-niche rant, no buyer fit"
     }
   ]
 }
