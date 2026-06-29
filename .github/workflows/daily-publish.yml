@@ -225,16 +225,22 @@ jobs:
       #     re-check lo vede e salta gli step irreversibili (invii).
       #     Chiude la finestra di race locale↔cloud.
       # ───────────────────────────────────────────────────────────
-      - name: Re-check cross-rail marker (anti-race)
+      - name: Re-check cross-rail (marker + send-log) anti-doppione
         id: guard2
         if: steps.guard.outputs.should_run == 'true'
         run: |
           TODAY=$(date -u +%Y-%m-%d)
           git fetch origin main --quiet 2>/dev/null || true
           REMOTE=$(git show origin/main:_system/outreach/.last_digest_date 2>/dev/null | tr -d '[:space:]' || true)
-          if [ "${{ github.event.inputs.dry_run }}" != "true" ] && [ "$REMOTE" = "$TODAY" ]; then
+          # SECONDO segnale, indipendente dal marker: il send_log committato
+          # registra ogni invio. Se contiene una digest journal di OGGI, il Mac
+          # (rail PRIMARIO) ha già spedito → NON rimandiamo. Doppia sicurezza
+          # contro il doppio invio: regge anche se il marker non fosse propagato.
+          # Il cloud invia SOLO se il Mac NON ha inviato oggi (vero fallback).
+          DIGEST_SENT=$(git show origin/main:_system/outreach/send_log.jsonl 2>/dev/null | grep '"journal_digest"' | grep -c "$TODAY" || true)
+          if [ "${{ github.event.inputs.dry_run }}" != "true" ] && { [ "$REMOTE" = "$TODAY" ] || [ "${DIGEST_SENT:-0}" -ge 1 ]; }; then
             echo "should_send=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Il rail locale ha pubblicato durante questo run (marker=$TODAY) — salto publish/outreach."
+            echo "::notice::Il Mac ha già pubblicato/inviato oggi (marker=$REMOTE, digest_log=$DIGEST_SENT) — salto invii (anti-doppione)."
           else
             echo "should_send=true" >> "$GITHUB_OUTPUT"
           fi
