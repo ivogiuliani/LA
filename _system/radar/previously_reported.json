@@ -3348,6 +3348,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.latimes.com/world-nation/story/2026-06-24/venezuela-earthquake-staggering-destruction-is-urgent-warning-for-california",
       "note": "auto-sent pitch to ron.lin@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-06-29",
+      "source": "user_dismissed",
+      "title": "@JulieChangRE on hillside homes and FAIR Plan-only insurance",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/JulieChangRE/status/2070888991508037798",
+      "note": "auto-published journal: fair-plan-only-home-insurance-california-underinsured-luxury"
     }
   ],
   "reported": [
@@ -4120,6 +4130,16 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/FXDLMax/status/2069849940600529280",
       "note": "auto-skip AI: Tiny reach, off-niche rant, no buyer fit"
+    },
+    {
+      "date_first_reported": "2026-06-29",
+      "source": "ai_skip",
+      "title": "@FXDLMax: Author: @FXDLMax | Text: When you live in California on a Mt top, 7 miles from t...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/FXDLMax/status/2069849940600529280",
+      "note": "auto-skip AI: off-topic, no buyer/partner overlap"
     }
   ]
 }
