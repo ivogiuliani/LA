@@ -65,6 +65,16 @@
       ],
       "last_bounced_at": "2026-06-11T06:14:07+00:00",
       "reason": "550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For mo"
+    },
+    "caprxqu9ohhrnwfrehy-narqckhnxmna58munr8exqzavok8zrw@mail.gmail.com": {
+      "first_bounced_at": "2026-06-29T11:32:38+00:00",
+      "bounce_count": 1,
+      "source_threads": [
+        "19f1326f62f653fa"
+      ],
+      "last_bounced_at": "2026-06-29T11:32:38+00:00",
+      "reason": "554 5.2.2 mailbox full; STOREDRV.Deliver.Exception:QuotaExceededException.MapiExceptionStorageShutoffQuotaExceeded; Failed to process message due to a permanent exc",
+      "also_sent_to": "tips@laist.com"
     }
   }
 }

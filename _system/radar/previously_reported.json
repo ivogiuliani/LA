@@ -4140,6 +4140,26 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/FXDLMax/status/2069849940600529280",
       "note": "auto-skip AI: off-topic, no buyer/partner overlap"
+    },
+    {
+      "date_first_reported": "2026-06-30",
+      "source": "ai_skip",
+      "title": "@MiddleEast_24: Author: @MiddleEast_24 | Text: Beverly Hills Rabbi Pini Dunner is warning that p...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/MiddleEast_24/status/2071730435898388804",
+      "note": "auto-skip AI: Off-topic, political/drama content"
+    },
+    {
+      "date_first_reported": "2026-06-30",
+      "source": "ai_skip",
+      "title": "@patriotlady47: Author: @patriotlady47 | Text: ALL LEGISLATURE MUST LIVE in CA 4 Yrs Pay 4 FRAUD...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/patriotlady47/status/2071062516432822334",
+      "note": "auto-skip AI: Off-topic, political/drama content"
     }
   ]
 }
