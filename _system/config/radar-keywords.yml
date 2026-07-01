@@ -294,28 +294,36 @@ reddit:
     - "Insurance"
     - "AskEngineers"
     - "HomeImprovement"
+  # Cap Brave per il discovery Reddit. reddit_search RUOTA la finestra per
+  # giorno (fix 2026-07-01), quindi con la lista interlacciata qui sotto ogni
+  # giorno esce un mix bilanciato (architettura + villa + assicurazioni +
+  # geografia) e nel giro di pochi giorni si coprono TUTTE le keyword.
+  brave_query_cap: 4
   search_keywords:
-    # ── Insurance / commercial (existing) ──
-    - "luxury home California fire"
-    - "fire resistant luxury home"
-    - "insurable home California"
-    - "reinforced concrete house"
-    - "ICF home build"
-    - "California insurance crisis luxury"
-    # ── Italian / Mediterranean villa typology ──
-    - "Italian villa California"
-    - "Mediterranean home California"
-    # ── Geographic ──
-    - "custom home builder Malibu"
-    - "custom home Beverly Hills"
-    # ── Architecture-focused (added 2026-05-04 to rebalance away from insurance bias) ──
-    - "concrete architecture home"
-    - "brutalist house design"
-    - "modernist house Los Angeles"
-    - "mid-century modern California"
-    - "Spanish revival home"
-    - "contemporary villa California"
-    - "California architect home"
+    # INTERLACCIATE 2026-07-01 (architettura / villa / assicurazioni /
+    # geografia si ALTERNANO): prima erano raggruppate con le insurance in
+    # testa → col cap basso uscivano SOLO thread di incendi/assicurazioni e mai
+    # architettura. ⚠️ Non raggruppare per tema: spezza la rotazione bilanciata.
+    - "Los Angeles residential architecture"      # architettura
+    - "Italian villa California"                  # villa/tipologia
+    - "insurable luxury home California"          # assicurazioni
+    - "custom home builder Malibu"                # geografia
+    - "exposed concrete house design"             # architettura/materiali
+    - "Mediterranean villa California"            # villa/tipologia
+    - "fire resistant luxury home"                # incendi/assicurazioni
+    - "modernist house Los Angeles"               # architettura
+    - "custom home Beverly Hills"                 # geografia
+    - "reinforced concrete home"                  # materiali (core brand)
+    - "contemporary villa California"             # architettura/villa
+    - "California home insurance crisis luxury"   # assicurazioni
+    - "concrete architecture home"                # architettura
+    - "Bel Air custom home"                       # geografia
+    - "mid-century modern California home"        # architettura
+    - "ICF home build California"                 # materiali
+    - "Spanish revival home California"           # architettura/tipologia
+    - "luxury home rebuild Pacific Palisades"     # rebuild/geografia
+    - "brutalist house design"                    # architettura
+    - "California architect custom home"          # architettura/partner
 
   # ── Submission allowlist (NOSTRI articoli, self-post) ──────────────
   # ⚠️ DIVERSA dalla lista `subreddits` qui sopra (che è per ASCOLTO +
@@ -376,8 +384,11 @@ twitter:
     # ── Mercato / compra-vendita (ridotto: non più l'unico tema) ──
     - "Malibu luxury real estate 2026"
     - "Los Angeles luxury home market trends"
-    # ── Design & architettura ──
+    # ── Design & architettura (rinforzato 2026-07-01: entrare dal vivo nelle
+    #    conversazioni di architettura di lusso di LA, non solo assicurazioni) ──
     - "Los Angeles residential architecture"
+    - "luxury architecture Los Angeles"
+    - "exposed concrete home architecture"
     - "modern villa design California"
     - "modern concrete home design California"
     - "Italian Mediterranean villa design"

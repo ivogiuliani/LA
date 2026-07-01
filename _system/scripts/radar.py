@@ -686,9 +686,25 @@ def reddit_search(config, lookback_days=7):
     # (3/run) per stare sotto il free tier; alza brave_query_cap in
     # radar-keywords.yml solo con un piano Brave a pagamento.
     cap = int(config.get("reddit", {}).get("brave_query_cap", 3))
+    # Rotazione giornaliera (fix 2026-07-01): con un cap basso (free tier Brave)
+    # interrogare SEMPRE le prime `cap` keyword faceva uscire solo i primi temi
+    # — tutti insurance/incendi — e MAI architettura/design. Ruotiamo la
+    # finestra per giorno dell'anno così ogni tema esce a turno (come le query
+    # evergreen). La lista in radar-keywords.yml è interlacciata
+    # (insurance / architettura / villa) → anche una finestra piccola resta
+    # bilanciata e nel giro di pochi giorni copre tutti i temi.
+    if keywords and 0 < cap < len(keywords):
+        from datetime import date as _date
+        start = _date.today().timetuple().tm_yday % len(keywords)
+        rotated = keywords[start:] + keywords[:start]
+        todays = rotated[:cap]
+    else:
+        todays = keywords[:cap]
+    print(f"  [Reddit] keyword di oggi ({len(todays)}/{len(keywords)}): "
+          f"{', '.join(todays)}")
     results = []
     seen = set()
-    for keyword in keywords[:cap]:
+    for keyword in todays:
         try:
             r = requests.get(
                 "https://api.search.brave.com/res/v1/web/search",

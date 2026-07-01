@@ -1217,7 +1217,10 @@ def _gemini_complete(prompt: str, model: str = "gemini-2.5-flash") -> str:
            f"{model}:generateContent?key={key}")
     body = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.7, "maxOutputTokens": 4096},
+        # 8192: il fallback deve poter restituire l'INTERO array JSON di ~20
+        # bozze di risposta senza troncare (una risposta troncata = parse fail =
+        # risposte virali vuote nel pannello, il bug segnalato il 2026-07-01).
+        "generationConfig": {"temperature": 0.7, "maxOutputTokens": 8192},
     }).encode("utf-8")
     req = _u.Request(url, data=body,
                      headers={"Content-Type": "application/json"}, method="POST")
@@ -1273,8 +1276,8 @@ def generate_viral_reply_drafts(viral_items, model=_HEAVY_MODEL):
 STEP 1 — QUALIFY each post. Set "lead_type":
 - "buyer": commenting here plausibly reaches ultra-high-net-worth people building / buying / rebuilding luxury homes in our geographies (Malibu, Beverly Hills, Bel Air, Brentwood, Calabasas, Pacific Palisades, Hidden Hills, Montecito) — e.g. luxury listings, trophy properties, high-end LA architecture, fire-resilient/insurable luxury homes, HNW post-fire rebuilds.
 - "partner": the author or audience is rich in people we'd want a business relationship with — luxury real-estate agents/brokers, residential architects, interior designers, high-end developers & custom builders, landscape architects serving LA luxury.
-- "brand": clearly on-topic for our niche (luxury architecture / exposed concrete / fire-resilience) and good for visibility, even if not directly buyer/partner.
-- Otherwise → "body":"SKIP". SKIP generic design-fan content with no buyer/partner overlap, off-topic, consumer/DIY/budget home content, non-LA with no relevance, drama/rage/politics, competitors, influencer fluff. When in doubt, SKIP.
+- "brand": on-topic for OUR world — LUXURY ARCHITECTURE & DESIGN (especially LA / California, Mediterranean & Italian villa typology, exposed or reinforced concrete, museum-grade residential design, materials & craft) OR fire-resilience / insurability. Entering these architecture & design conversations as a knowledgeable, generous peer is EXACTLY what we want, even with no direct buyer/partner in the audience. This is a first-class reason to engage, not a fallback.
+- Otherwise → "body":"SKIP". SKIP: off-topic, consumer / DIY / budget-home content, generic non-LA design fandom with no luxury or architecture substance, drama / rage / politics, competitors, influencer fluff. Do NOT skip a genuine luxury-architecture or design post just because no buyer is obvious — that IS on-brand ("brand"). When in doubt on a GENUINE luxury-architecture / design conversation, KEEP it; otherwise SKIP.
 
 STEP 2 — for QUALIFIED posts only, write the reply. Platform rules:
 - "x": a reply tweet — warm, human, ≤200 chars.
