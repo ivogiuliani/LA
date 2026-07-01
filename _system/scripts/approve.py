@@ -8933,6 +8933,25 @@ class ReviewHandler(BaseHTTPRequestHandler):
             return
         parsed = urlparse(self.path)
 
+        # ── Shared-mode safety gate ──────────────────────────────────
+        # When the panel is exposed to a non-owner operator (the public
+        # server instance runs with PANEL_MODE=shared), owner-only and
+        # destructive actions are refused server-side. Default
+        # (PANEL_MODE unset / "full", e.g. Ivo's local Mac) leaves the
+        # panel unchanged. The client also hides these controls, but
+        # THIS is the real boundary — never trust the client.
+        if os.environ.get("PANEL_MODE", "full").strip().lower() == "shared":
+            _owner_only = {
+                "/api/send-email", "/api/send-reply", "/api/redraft-reply",
+                "/api/scan-replies", "/api/unpublish",
+            }
+            if parsed.path in _owner_only:
+                self._send_json(
+                    {"ok": False,
+                     "error": "Azione riservata al titolare (modalità condivisa)."},
+                    403)
+                return
+
         # Read body
         content_length = int(self.headers.get("Content-Length", 0))
         raw = self.rfile.read(content_length)
