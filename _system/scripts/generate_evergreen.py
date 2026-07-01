@@ -52,6 +52,10 @@ try:
     import image_picker  # Unsplash on-brand per gli evergreen (no foto del sito)
 except Exception:  # noqa: BLE001
     image_picker = None
+try:
+    import brand_grade  # grade caldo golden-hour on-brand (adatta lo stock)
+except Exception:  # noqa: BLE001
+    brand_grade = None
 
 
 def _load_dotenv():
@@ -172,41 +176,84 @@ def _recent(days: int):
     return topics, images, photo_ids
 
 
-def _pick_unsplash_image(topic, slug, used_ids, day_idx, out_dir,
-                         download=True):
-    """Immagine Unsplash ON-BRAND per il topic (alta qualità, NON dal sito).
-    Ruota le query per giorno (varietà) e scarta le foto già usate di recente
-    (photo_id). → (web_path_relativo_a_ROOT, photo_id, credit) o ('', '', '').
-    In dry-run (download=False) non scarica: ritorna solo l'anteprima query."""
+def _pick_unsplash_options(topic, slug, used_ids, day_idx, out_dir, n=3,
+                           download=True):
+    """Fino a `n` immagini Unsplash ON-BRAND per il topic (alta qualità, NON
+    dal sito), SCARICATE e GRADATE in stile golden-hour (brand_grade) così lo
+    stock parla il linguaggio visivo My Villa. La PRIMA è la preselezionata;
+    le altre sono alternative che l'utente può scegliere dal pannello.
+    Ruota le query per giorno e preferisce foto non usate di recente
+    (photo_id), riempiendo con photo_id DISTINTI. → lista di dict
+    {"p": web_path_rel, "id": photo_id, "by": credit}. In dry-run
+    (download=False) non scarica: ritorna [{"p": "unsplash? «query»"}]."""
     if image_picker is None:
-        return "", "", ""
+        return []
     queries = topic.get("image_queries") or []
     if not queries:
-        return "", "", ""
+        return []
     primary = queries[day_idx % len(queries)]
     if not download:
-        return f"unsplash? «{primary}»", "", ""
+        return [{"p": f"unsplash? «{primary}»", "id": "", "by": ""}]
     fallbacks = [q for q in queries if q != primary]
-    try:
-        cands = image_picker.fetch_candidates(
-            primary, count=12, orientation="squarish",
-            fallback_queries=fallbacks)
-    except Exception as e:  # noqa: BLE001
-        print(f"  [evergreen] Unsplash fetch error: {type(e).__name__}")
-        return "", "", ""
+    # fetch_candidates si ferma alla PRIMA query non vuota → una query stretta
+    # (es. «Mediterranean courtyard water») può rendere 1 solo risultato e
+    # lasciarci senza alternative. Qui aggreghiamo su primary + fallback,
+    # dedup per photo_id, finché abbiamo abbastanza candidati "freschi".
+    cands, seen_pid = [], set()
+    for q in [primary] + fallbacks:
+        if not q:
+            continue
+        try:
+            batch = image_picker.fetch_candidates(
+                q, count=12, orientation="squarish")
+        except Exception as e:  # noqa: BLE001
+            print(f"  [evergreen] Unsplash fetch error ({q!r}): "
+                  f"{type(e).__name__}")
+            batch = []
+        for c in batch:
+            pid = c.get("photo_id") or ""
+            if pid and pid in seen_pid:
+                continue
+            if pid:
+                seen_pid.add(pid)
+            cands.append(c)
+        # Basta appena abbiamo n candidati non usati di recente.
+        if sum(1 for c in cands if c.get("photo_id") not in used_ids) >= n:
+            break
     if not cands:
-        return "", "", ""
-    chosen = next((c for c in cands if c.get("photo_id") not in used_ids), None)
-    if not chosen:  # tutte già usate di recente: meglio ripetere che restare vuoti
-        chosen = cands[0]
-    meta = image_picker.download_candidate(chosen, slug, ROOT_DIR / out_dir)
-    if not meta or not meta.get("local_path"):
-        return "", "", ""
-    try:
-        rel = Path(meta["local_path"]).resolve().relative_to(ROOT_DIR).as_posix()
-    except ValueError:
-        rel = f"{out_dir.rstrip('/')}/{slug}-hero.jpg"
-    return rel, meta.get("photo_id", ""), meta.get("author_name", "")
+        return []
+    # Prima le foto non usate di recente (varietà), poi le altre per riempire
+    # fino a n mantenendo i photo_id DISTINTI (mai 2 opzioni uguali).
+    fresh = [c for c in cands if c.get("photo_id") not in used_ids]
+    rest = [c for c in cands if c.get("photo_id") in used_ids]
+    ordered = fresh + rest
+    # suffissi di file distinti per le opzioni: -hero, -b-hero, -c-hero…
+    suffixes = ["", "-b", "-c", "-d", "-e"]
+    options, seen = [], set()
+    for c in ordered:
+        pid = c.get("photo_id") or ""
+        if pid and pid in seen:
+            continue
+        idx = len(options)
+        sub_slug = f"{slug}{suffixes[idx]}" if idx < len(suffixes) \
+            else f"{slug}-{idx}"
+        meta = image_picker.download_candidate(c, sub_slug, ROOT_DIR / out_dir)
+        if not meta or not meta.get("local_path"):
+            continue
+        local = meta["local_path"]
+        if brand_grade is not None:
+            brand_grade.grade_file(local)  # golden-hour on-brand, in place
+        try:
+            rel = Path(local).resolve().relative_to(ROOT_DIR).as_posix()
+        except ValueError:
+            rel = f"{out_dir.rstrip('/')}/{sub_slug}-hero.jpg"
+        if pid:
+            seen.add(pid)
+        options.append({"p": rel, "id": pid,
+                        "by": meta.get("author_name", "")})
+        if len(options) >= n:
+            break
+    return options
 
 
 def _find_image(stems, used_images):
@@ -285,10 +332,15 @@ def generate(count=None, dry_run=False, no_unsplash=False):
         # sito ormai esaurite); se non disponibile, ripiega sugli stem del sito.
         photo_id, credit = "", ""
         img = ""
+        options = []
         if not no_unsplash:
-            img, photo_id, credit = _pick_unsplash_image(
+            options = _pick_unsplash_options(
                 t, img_slug, recent_photo_ids, day_idx, image_out_dir,
                 download=not dry_run)
+        if options:
+            img = options[0]["p"]
+            photo_id = options[0].get("id", "")
+            credit = options[0].get("by", "")
         if not img or img.startswith("unsplash? "):
             stem_img = _find_image(t.get("images") or [], recent_images)
             if img.startswith("unsplash? "):  # dry-run: mostra entrambe
@@ -297,8 +349,11 @@ def generate(count=None, dry_run=False, no_unsplash=False):
                 img = stem_img
         if img and not img.startswith("unsplash? "):
             recent_images.add(img)
-        if photo_id:
-            recent_photo_ids.add(photo_id)
+        # Tutte le foto scelte (non solo la preselezionata) non vanno
+        # riproposte nei prossimi giorni.
+        for _o in options:
+            if _o.get("id"):
+                recent_photo_ids.add(_o["id"])
         if dry_run:
             print(f"\n  ── [{t.get('key')}] {angle}")
             print(f"     img: {img}")
@@ -314,6 +369,16 @@ def generate(count=None, dry_run=False, no_unsplash=False):
             fm.append(f"image_photo_id: {photo_id}")
         if credit:
             fm.append(f"image_credit: {credit}")
+        # 3 opzioni immagine (preselezionata + alternative) per il selettore
+        # del pannello. JSON su UNA riga: è YAML valido e resta leggibile dal
+        # parser naïve del pannello (che fa json.loads del valore).
+        real_opts = [o for o in options
+                     if not str(o.get("p", "")).startswith("unsplash? ")]
+        if len(real_opts) >= 2:
+            fm.append("image_options: " + json.dumps(
+                [{"p": o["p"], "id": o.get("id", ""), "by": o.get("by", "")}
+                 for o in real_opts],
+                ensure_ascii=False, separators=(",", ":")))
         if hashtags:
             fm.append("hashtags:")
             fm += [f"  - {h}" for h in hashtags]

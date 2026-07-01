@@ -997,6 +997,28 @@ def _parse_social_file(f):
     except Exception:  # noqa: BLE001 — il ledger non deve mai bloccare lo scan
         pass
 
+    # Opzioni immagine (evergreen): JSON su una riga → lista di alternative
+    # per il selettore del pannello (preselezionata + 2 alternative). Ognuna
+    # con una preview locale servita dal pannello. Vuoto per i post senza
+    # opzioni (retro-compatibile con i post a immagine singola).
+    image_options = []
+    opts_raw = str(frontmatter.get("image_options") or "").strip()
+    if opts_raw:
+        try:
+            for o in json.loads(opts_raw):
+                p = str(o.get("p", "")).strip()
+                if not p:
+                    continue
+                exists = (ROOT_DIR / p.lstrip("/")).exists()
+                image_options.append({
+                    "p": p,
+                    "url": f"/{p.lstrip('/')}" if exists else "",
+                    "by": str(o.get("by", "")),
+                    "id": str(o.get("id", "")),
+                })
+        except Exception:  # noqa: BLE001 — un JSON rotto non deve bloccare lo scan
+            image_options = []
+
     is_reddit = channel.strip().lower().startswith("reddit")
     return {
         "file": f.name,
@@ -1010,6 +1032,8 @@ def _parse_social_file(f):
         # as-is). Per X/IG basta l'anteprima a 500 char.
         "body": body if is_reddit else body[:500],
         "image_url": _social_image_preview(frontmatter, local=True),
+        "image_raw": str(frontmatter.get("image") or "").strip(),
+        "image_options": image_options,
         "journal_slug": journal_slug,
         "article_url": frontmatter.get("article_url", ""),
         "subreddit": frontmatter.get("subreddit", ""),
@@ -3529,11 +3553,38 @@ def build_dashboard():
     evergreen_cards = ""
     for d in evergreen:
         _img = d.get("image_url") or ""
+        _opts = d.get("image_options") or []
+        _raw = d.get("image_raw") or ""
         _m = re.search(r"-evergreen-([a-z_]+)\.md$", d.get("file", ""))
         _topic = _m.group(1).replace("_", " ") if _m else "evergreen"
         _body = d.get("body", "")
-        _imghtml = (f'<div class="social-img-preview"><img src="{_esc(_img)}" '
-                    f'alt="" loading="lazy"></div>' if _img else "")
+        _fj = _esc_js(d['file'])
+        if len(_opts) >= 2:
+            # Preview grande = opzione selezionata (match su image_raw), poi la
+            # striscia di miniature cliccabili: 1 preselezionata + alternative.
+            _sel_url = _img
+            _thumbs = ""
+            for _i, _o in enumerate(_opts):
+                _is_sel = (_o["p"] == _raw) or (not _raw and _i == 0)
+                if _is_sel and _o.get("url"):
+                    _sel_url = _o["url"]
+                _by = _o.get("by", "")
+                _cls = "evg-thumb selected" if _is_sel else "evg-thumb"
+                _ttl = f"Opzione {_i + 1}" + (f" · {_by}" if _by else "")
+                _thumbs += (
+                    f'<img src="{_esc(_o.get("url", ""))}" class="{_cls}" '
+                    f'loading="lazy" title="{_esc(_ttl)}" '
+                    f'onclick="selectEvergreenImage(\'{_fj}\', {_i}, this)">')
+            _imghtml = (
+                f'<div class="social-img-preview evg-main">'
+                f'<img src="{_esc(_sel_url)}" alt="" loading="lazy"></div>'
+                f'<div class="evg-choose-hint">Scegli l’immagine — '
+                f'1 preselezionata + {len(_opts) - 1} alternative '
+                f'(stile golden-hour):</div>'
+                f'<div class="evg-thumbs">{_thumbs}</div>')
+        else:
+            _imghtml = (f'<div class="social-img-preview"><img src="{_esc(_img)}" '
+                        f'alt="" loading="lazy"></div>' if _img else "")
         evergreen_cards += f"""
         <div class="card" id="card-social-{_esc(d['file'])}" data-file="{_esc(d['file'])}" data-type="social" data-channel="instagram">
           <div class="card-status-stripe"></div>
@@ -5353,6 +5404,11 @@ def build_dashboard():
   .more-cards summary:hover {{ color: #1a1a2e; }}
   .social-img-preview img {{ max-width: 280px; max-height: 180px; border-radius: 6px; margin: 6px 0; object-fit: cover; border: 1px solid #e3d9c8; }}
   .social-img-missing {{ font-size: 0.78rem; color: #a85d3f; background: #fdf3ee; border: 1px dashed #d9a08a; border-radius: 5px; padding: 5px 9px; margin: 6px 0; }}
+  .evg-choose-hint {{ font-size: 0.74rem; color: #8a8378; margin: 8px 0 4px; }}
+  .evg-thumbs {{ display: flex; gap: 8px; margin: 2px 0 8px; flex-wrap: wrap; }}
+  .evg-thumb {{ width: 84px; height: 84px; object-fit: cover; border-radius: 7px; cursor: pointer; border: 2px solid transparent; opacity: 0.72; transition: opacity .15s, border-color .15s, transform .15s; }}
+  .evg-thumb:hover {{ opacity: 1; transform: translateY(-1px); }}
+  .evg-thumb.selected {{ border-color: var(--terracotta); opacity: 1; box-shadow: 0 2px 8px rgba(194,113,79,.35); }}
   .btn-publish-social {{
     background: #1a1a2e;
     color: #fff;
@@ -7472,6 +7528,38 @@ function saveSocialDraft(file, btn) {{
   }});
 }}
 
+/* ── Evergreen: scegli tra le immagini proposte (1 + alternative) ── */
+function selectEvergreenImage(file, index, el) {{
+  const card = el.closest('.card');
+  const thumbs = card.querySelectorAll('.evg-thumb');
+  const prevSel = card.querySelector('.evg-thumb.selected');
+  // Feedback ottimistico immediato (rollback se il server fallisce).
+  thumbs.forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+  fetch('/api/select_evergreen_image', {{
+    method: 'POST',
+    headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{file: file, index: index}})
+  }})
+  .then(r => r.json())
+  .then(data => {{
+    if (data.ok) {{
+      const main = card.querySelector('.evg-main img');
+      if (main && data.image_url) main.src = data.image_url + '?t=' + Date.now();
+      showToast('Immagine ' + (index + 1) + ' selezionata');
+    }} else {{
+      thumbs.forEach(t => t.classList.remove('selected'));
+      if (prevSel) prevSel.classList.add('selected');
+      showToast('Errore: ' + (data.error || 'sconosciuto'));
+    }}
+  }})
+  .catch(err => {{
+    thumbs.forEach(t => t.classList.remove('selected'));
+    if (prevSel) prevSel.classList.add('selected');
+    showToast('Errore di rete: ' + err.message);
+  }});
+}}
+
 /* ── Journal: edit modal ───────────────────────── */
 let currentJournalEdit = {{file: null, data: null, card: null}};
 
@@ -8939,6 +9027,10 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 data.get("body", ""),
             )
             return
+        if parsed.path == "/api/select_evergreen_image":
+            self._handle_select_evergreen_image(
+                data.get("file", ""), data.get("index", 0))
+            return
 
         # ── Editorial IG endpoints (Phase 1 — draft-only) ─────────────
         # These intentionally bypass the journal/social file/type
@@ -10150,6 +10242,78 @@ class ReviewHandler(BaseHTTPRequestHandler):
             self._send_json({"ok": True, "revised": text})
         except Exception as e:
             self._send_json({"ok": False, "error": f"Opus error: {e}"}, 500)
+
+    # ── /api/select_evergreen_image ──────────────────────────────────
+    def _handle_select_evergreen_image(self, filename, index):
+        """Evergreen: l'utente sceglie una delle immagini proposte
+        (preselezionata + alternative). Riscrive image:/image_photo_id/
+        image_credit nel frontmatter del draft con l'opzione scelta. Le
+        immagini sono già scaricate e gradate in locale → nessun download,
+        nessuna chiamata di rete. Il publisher userà image: come sempre."""
+        try:
+            index = int(index)
+        except (TypeError, ValueError):
+            self._send_json({"ok": False, "error": "index non valido"}, 400)
+            return
+        src = find_social_source(filename)
+        if not src or not src.exists():
+            self._send_json({"ok": False, "error": f"Non trovato: {filename}"}, 404)
+            return
+        raw = src.read_text(encoding="utf-8", errors="replace")
+        m = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)", raw, re.DOTALL)
+        if not m:
+            self._send_json({"ok": False, "error": "Frontmatter mancante"}, 400)
+            return
+        fm_text, body = m.group(1), m.group(2)
+        # Leggi image_options (JSON su una riga).
+        options = []
+        for line in fm_text.splitlines():
+            kv = line.split(":", 1)
+            if len(kv) == 2 and kv[0].strip() == "image_options":
+                try:
+                    options = json.loads(kv[1].strip())
+                except Exception:  # noqa: BLE001
+                    options = []
+                break
+        if not options or index < 0 or index >= len(options):
+            self._send_json({"ok": False, "error": "Opzione non disponibile"}, 400)
+            return
+        chosen = options[index]
+        new_path = str(chosen.get("p", "")).strip()
+        if not new_path or not (ROOT_DIR / new_path.lstrip("/")).exists():
+            self._send_json({"ok": False,
+                             "error": "Immagine scelta non trovata su disco"}, 404)
+            return
+        new_id = str(chosen.get("id", ""))
+        new_by = str(chosen.get("by", ""))
+        # Riscrivi image:/image_photo_id/image_credit (o aggiungile se assenti).
+        out = []
+        saw = {"image": False, "image_photo_id": False, "image_credit": False}
+        for ln in fm_text.splitlines():
+            key = ln.split(":", 1)[0].strip()
+            if key == "image":
+                out.append(f"image: {new_path}")
+                saw["image"] = True
+            elif key == "image_photo_id":
+                out.append(f"image_photo_id: {new_id}" if new_id else ln)
+                saw["image_photo_id"] = True
+            elif key == "image_credit":
+                out.append(f"image_credit: {new_by}" if new_by else ln)
+                saw["image_credit"] = True
+            else:
+                out.append(ln)
+        if not saw["image"]:
+            out.append(f"image: {new_path}")
+        if new_id and not saw["image_photo_id"]:
+            out.append(f"image_photo_id: {new_id}")
+        if new_by and not saw["image_credit"]:
+            out.append(f"image_credit: {new_by}")
+        src.write_text("---\n" + "\n".join(out) + "\n---\n" + body,
+                       encoding="utf-8")
+        print(f"  [evergreen] immagine {index + 1} scelta per {filename} "
+              f"→ {new_path}")
+        self._send_json({"ok": True, "index": index,
+                         "image_url": f"/{new_path.lstrip('/')}"})
 
     # ── /api/publish_social ──────────────────────────────────────────
     def _handle_publish_social(self, filename, content_type, platform, text, image_url):
