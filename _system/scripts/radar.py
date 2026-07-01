@@ -276,27 +276,50 @@ def api_health_check(timeout=10):
                 "env_var": env_var,
             }
             continue
-        try:
-            result = fn(key, timeout)
-            # `_ping_google_cse` may return (None, reason) for skip
-            if result is None or result[0] is None:
-                detail = result[1] if result else "skipped"
-                out[name] = {
-                    "status": "skip", "detail": detail, "env_var": env_var,
-                }
+        # Un singolo ping può andare in TIMEOUT / blip di rete transitorio
+        # (es. Brave lento su un ping → badge rosso ingannevole anche con
+        # l'API perfettamente operativa: capitato l'1/7/2026). Ritentiamo UNA
+        # volta con timeout più ampio SOLO sugli errori transitori (timeout /
+        # URLError di rete). Gli errori VERI (401/403/429) le ping fn li
+        # catturano dentro e ritornano (False, "HTTP …") → nessun retry inutile;
+        # un HTTPError propagato NON viene ritentato.
+        import socket as _socket
+        from urllib.error import URLError as _URLError, HTTPError as _HTTPError
+        result, last_exc = None, None
+        for _attempt in range(2):
+            try:
+                result = fn(key, timeout if _attempt == 0 else timeout + 10)
+                last_exc = None
+                break
+            except _HTTPError as e:          # errore HTTP reale → non ritentare
+                last_exc = e
+                break
+            except (_socket.timeout, TimeoutError, _URLError) as e:  # transitorio
+                last_exc = e
                 continue
-            ok, detail = result
-            out[name] = {
-                "status": "ok" if ok else "fail",
-                "detail": detail,
-                "env_var": env_var,
-            }
-        except Exception as e:  # noqa: BLE001 — network/parse/etc.
+            except Exception as e:  # noqa: BLE001 — parse/altro → non ritentare
+                last_exc = e
+                break
+        if last_exc is not None:
             out[name] = {
                 "status": "fail",
-                "detail": f"{type(e).__name__}: {str(e)[:120]}",
+                "detail": f"{type(last_exc).__name__}: {str(last_exc)[:120]}",
                 "env_var": env_var,
             }
+            continue
+        # `_ping_google_cse` may return (None, reason) for skip
+        if result is None or result[0] is None:
+            detail = result[1] if result else "skipped"
+            out[name] = {
+                "status": "skip", "detail": detail, "env_var": env_var,
+            }
+            continue
+        ok, detail = result
+        out[name] = {
+            "status": "ok" if ok else "fail",
+            "detail": detail,
+            "env_var": env_var,
+        }
     return out
 
 
