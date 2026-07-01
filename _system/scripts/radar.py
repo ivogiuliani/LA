@@ -679,8 +679,100 @@ def brave_search(api_key, clusters, lookback_days=7, query_cap=30):
     return results
 
 
+def _reddit_via_gemini(keywords, seen, lookback_days=7, max_items=12):
+    """Fallback discovery Reddit via Gemini + Google Search grounding, per
+    quando Brave è a quota 0 / giù (l'abbonamento Brave fermo NON deve azzerare
+    il discovery Reddit — fix 2026-07-01). Usa SOLO gli URL REALI dei grounding
+    chunk (reddit.com/r/<sub>/comments/…): mai URL inventati da un LLM.
+    Ritorna item nello stesso formato di reddit_search (discovery='gemini')."""
+    key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not key or not keywords:
+        return []
+    endpoint = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+                f"gemini-2.5-flash:generateContent?key={key}")
+    out = []
+    for keyword in keywords:
+        if len(out) >= max_items:
+            break
+        prompt = (
+            f"Search Google for ACTIVE Reddit discussion threads about: "
+            f"{keyword}. Focus on Los Angeles / California luxury homes, "
+            f"residential architecture, design, building, materials, or home "
+            f"insurance. Prefer real reddit.com thread pages "
+            f"(reddit.com/r/<sub>/comments/...). For each, give the thread "
+            f"title and its reddit.com URL.")
+        try:
+            resp = requests.post(
+                endpoint,
+                headers={"Content-Type": "application/json"},
+                json={
+                    "contents": [{"parts": [{"text": prompt}]}],
+                    "tools": [{"google_search": {}}],
+                    "generation_config": {"temperature": 0,
+                                          "max_output_tokens": 2048},
+                },
+                timeout=45)
+            resp.raise_for_status()
+            data = resp.json()
+        except Exception as e:  # noqa: BLE001 — l'URL contiene ?key= (no leak)
+            status = getattr(getattr(e, "response", None), "status_code", "?")
+            print(f"  [Reddit/Gemini] errore '{keyword}': "
+                  f"{type(e).__name__} (HTTP {status})")
+            continue
+        cands = data.get("candidates", [])
+        if not cands:
+            continue
+        cand = cands[0]
+        text_content = "".join(
+            p.get("text", "")
+            for p in cand.get("content", {}).get("parts", []))
+        chunks = cand.get("groundingMetadata", {}).get("groundingChunks", [])
+        for chunk in chunks:
+            web = chunk.get("web", {})
+            uri = web.get("uri", "")
+            if not uri:
+                continue
+            real_url, real_title = _resolve_gemini_redirect(
+                uri, web.get("title", ""))
+            m = re.search(r"reddit\.com/r/([^/]+)/comments/",
+                          real_url or "", re.I)
+            if not m:  # non è un thread reddit reale → scarta (mai inventati)
+                continue
+            canon = real_url.split("?")[0].split("#")[0]
+            if canon in seen:
+                continue
+            seen.add(canon)
+            title = re.sub(r"^r/[^:]+ on Reddit:\s*", "",
+                           (real_title or "").strip(), flags=re.I).strip()
+            # La risoluzione del redirect può cadere sulla pagina anti-bot di
+            # Reddit ("Please wait…") o restare vuota → ricava un titolo
+            # leggibile dallo SLUG dell'URL (…/comments/<id>/<slug>/).
+            low = title.lower()
+            if (not title or "please wait" in low or low in ("reddit", "reddit -")
+                    or low.startswith("reddit -")):
+                sm = re.search(r"/comments/[^/]+/([^/]+)", canon)
+                title = (sm.group(1).replace("_", " ").strip().capitalize()
+                         if sm else "")
+            if not title or re.search(r"\[\s*(removed|deleted)\s*\]",
+                                      title, re.I):
+                continue
+            out.append({
+                "source": "reddit", "cluster": "reddit", "query": keyword,
+                "title": title, "url": canon,
+                "snippet": text_content[:400].strip(),
+                "publication": f"r/{m.group(1)}", "author": "",
+                "date": "", "discovery": "gemini", "engagement": {},
+            })
+            if len(out) >= max_items:
+                break
+        time.sleep(1)
+    print(f"  [Reddit/Gemini] {len(out)} thread trovati (fallback grounding)")
+    return out
+
+
 def reddit_search(config, lookback_days=7):
-    """Discover relevant Reddit threads via Brave (site:reddit.com).
+    """Discover relevant Reddit threads via Brave (site:reddit.com), con
+    FALLBACK su Gemini + Google Search grounding se Brave è a quota 0 / giù.
 
     Reddit ha chiuso gli endpoint JSON pubblici (403 anche su old.reddit,
     verificato 2026-06-14) e la Data API è gated dalla Responsible Builder
@@ -698,24 +790,14 @@ def reddit_search(config, lookback_days=7):
         print("  [Reddit] Skipped — no search_keywords in config")
         return []
 
-    api_key = os.environ.get("BRAVE_API_KEY", "").strip()
-    if not api_key:
-        print("  [Reddit] Skipped — serve BRAVE_API_KEY (Reddit JSON = 403; "
-              "discovery via Brave site:reddit.com)")
-        return []
-
-    # Budget Brave: il credito gratuito è $5/mese (~1000 query) e il radar
-    # ne usa già ~30/giorno per i cluster → resta poco margine. Default basso
-    # (3/run) per stare sotto il free tier; alza brave_query_cap in
-    # radar-keywords.yml solo con un piano Brave a pagamento.
-    cap = int(config.get("reddit", {}).get("brave_query_cap", 3))
-    # Rotazione giornaliera (fix 2026-07-01): con un cap basso (free tier Brave)
-    # interrogare SEMPRE le prime `cap` keyword faceva uscire solo i primi temi
-    # — tutti insurance/incendi — e MAI architettura/design. Ruotiamo la
-    # finestra per giorno dell'anno così ogni tema esce a turno (come le query
-    # evergreen). La lista in radar-keywords.yml è interlacciata
+    # Budget Brave: il radar usa già ~30 query/giorno per i cluster. Cap basso
+    # + ROTAZIONE giornaliera (fix 2026-07-01): interrogare SEMPRE le prime
+    # `cap` keyword faceva uscire solo i primi temi (tutti insurance) e MAI
+    # architettura/design. Ruotiamo la finestra per giorno dell'anno (come le
+    # query evergreen); la lista in radar-keywords.yml è interlacciata
     # (insurance / architettura / villa) → anche una finestra piccola resta
     # bilanciata e nel giro di pochi giorni copre tutti i temi.
+    cap = int(config.get("reddit", {}).get("brave_query_cap", 3))
     if keywords and 0 < cap < len(keywords):
         from datetime import date as _date
         start = _date.today().timetuple().tm_yday % len(keywords)
@@ -727,7 +809,13 @@ def reddit_search(config, lookback_days=7):
           f"{', '.join(todays)}")
     results = []
     seen = set()
-    for keyword in todays:
+
+    # Discovery primaria: Brave (site:reddit.com). Se la chiave manca o Brave è
+    # a quota 0, il loop resta vuoto e si passa al fallback Gemini più sotto.
+    api_key = os.environ.get("BRAVE_API_KEY", "").strip()
+    if not api_key:
+        print("  [Reddit] BRAVE_API_KEY assente → passo al fallback Gemini")
+    for keyword in (todays if api_key else []):
         try:
             r = requests.get(
                 "https://api.search.brave.com/res/v1/web/search",
@@ -778,8 +866,20 @@ def reddit_search(config, lookback_days=7):
             })
         time.sleep(1)  # Brave free tier: 1 qps
 
-    print(f"  [Reddit] {len(results)} thread trovati via Brave "
-          f"({len(keywords[:cap])} query)")
+    if api_key:
+        print(f"  [Reddit] {len(results)} thread via Brave ({len(todays)} query)")
+
+    # Fallback Gemini + Google Search grounding: quando Brave manca / è a quota
+    # 0 / rende poco, peschiamo altri thread da URL REALI (mai inventati). Non
+    # gira quando Brave lavora bene (soglia 5) → nessun costo extra.
+    if len(results) < 5:
+        results.extend(_reddit_via_gemini(todays, seen,
+                                          lookback_days=lookback_days))
+
+    n_brave = sum(1 for r in results if r.get("discovery") == "brave")
+    n_gem = sum(1 for r in results if r.get("discovery") == "gemini")
+    print(f"  [Reddit] TOTALE {len(results)} thread "
+          f"(brave={n_brave}, gemini={n_gem})")
     return results
 
 
