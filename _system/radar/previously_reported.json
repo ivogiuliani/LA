@@ -4160,6 +4160,66 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/patriotlady47/status/2071062516432822334",
       "note": "auto-skip AI: Off-topic, political/drama content"
+    },
+    {
+      "date_first_reported": "2026-07-01",
+      "source": "ai_skip",
+      "title": "@YWNReporter: Author: @YWNReporter | Text: REBBI RESCUED: A rebbi was rescued after a frighten...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/YWNReporter/status/2071979083353698771",
+      "note": "auto-skip AI: news/rescue story, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-01",
+      "source": "ai_skip",
+      "title": "@SteveWiesnerSMB: Author: @SteveWiesnerSMB | Text: Had a very interesting talk w/ a good friend ab...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/SteveWiesnerSMB/status/2070674524677488895",
+      "note": "auto-skip AI: general wealth chatter, no clear angle"
+    },
+    {
+      "date_first_reported": "2026-07-01",
+      "source": "ai_skip",
+      "title": "@kathy34600: Author: @kathy34600 | Text: Every dollar put into a Nigerian's gas tank is a dol...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/kathy34600/status/2071657039923950006",
+      "note": "auto-skip AI: political rage, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-01",
+      "source": "ai_skip",
+      "title": "@sg_malibu: Author: @sg_malibu | Text: Try these two Southern California churches. Strong le...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/sg_malibu/status/2072074081101656179",
+      "note": "auto-skip AI: church/community, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-01",
+      "source": "ai_skip",
+      "title": "@CONTEMPORIST: Author: @CONTEMPORIST | Text: A Modern Forest Home Designed with Glass, Wood, an...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/CONTEMPORIST/status/2071364699602788444",
+      "note": "auto-skip AI: non-LA generic design fan content"
+    },
+    {
+      "date_first_reported": "2026-07-01",
+      "source": "ai_skip",
+      "title": "Is Woodside area insurable?",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/BayAreaRealEstate/comments/1kqcblp/is_woodside_area_insurable/",
+      "note": "auto-skip AI: non-LA, minimal buyer overlap"
     }
   ]
 }
