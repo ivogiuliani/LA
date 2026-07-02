@@ -4220,6 +4220,116 @@
       "action_type": "user_dismissed",
       "url": "https://www.reddit.com/r/BayAreaRealEstate/comments/1kqcblp/is_woodside_area_insurable/",
       "note": "auto-skip AI: non-LA, minimal buyer overlap"
+    },
+    {
+      "date_first_reported": "2026-07-01",
+      "source": "ai_skip",
+      "title": "@DailySignal: Author: @DailySignal | Text: The Pacific Palisades fire tragedy was totally prev...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/DailySignal/status/2072016065136119845",
+      "note": "auto-skip AI: political rage bait, off-brand"
+    },
+    {
+      "date_first_reported": "2026-07-01",
+      "source": "ai_skip",
+      "title": "@sg_malibu: Author: @sg_malibu | Text: Try these two Southern California churches. Strong le...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/sg_malibu/status/2072074081101656179",
+      "note": "auto-skip AI: off-topic, no buyers/partners"
+    },
+    {
+      "date_first_reported": "2026-07-01",
+      "source": "ai_skip",
+      "title": "@patriotlady47: Author: @patriotlady47 | Text: ALL LEGISLATURE MUST LIVE in CA 4 Yrs Pay 4 FRAUD...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/patriotlady47/status/2071062516432822334",
+      "note": "auto-skip AI: politics/drama, off-brand"
+    },
+    {
+      "date_first_reported": "2026-07-01",
+      "source": "ai_skip",
+      "title": "@Manyswx5: Author: @Manyswx5 | Text: @Erin_Murphy @agentemurph gorgeous woman! Blonde from...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Manyswx5/status/2070696803499167830",
+      "note": "auto-skip AI: drama, no buyer/partner value"
+    },
+    {
+      "date_first_reported": "2026-07-01",
+      "source": "ai_skip",
+      "title": "Is Woodside area insurable?",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/BayAreaRealEstate/comments/1kqcblp/is_woodside_area_insurable/",
+      "note": "auto-skip AI: non-LA, outside our market"
+    },
+    {
+      "date_first_reported": "2026-07-02",
+      "source": "ai_skip",
+      "title": "How much do custom home builders make",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/Homebuilding/comments/1obj334/how_much_do_custom_home_builders_make/",
+      "note": "auto-skip AI: off-topic builder-earnings discussion"
+    },
+    {
+      "date_first_reported": "2026-07-02",
+      "source": "ai_skip",
+      "title": "Adam's New House",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/AdamCarolla/comments/1p0safm/adams_new_house/",
+      "note": "auto-skip AI: drama/mockery thread, off-brand"
+    },
+    {
+      "date_first_reported": "2026-07-02",
+      "source": "ai_skip",
+      "title": "Advice for Narrow Mediterranean Villa",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/floorplan/comments/1dwvhrs/advice_for_narrow_mediterranean_villa/",
+      "note": "auto-skip AI: small DIY floorplan, no luxury/LA relevance"
+    },
+    {
+      "date_first_reported": "2026-07-02",
+      "source": "ai_skip",
+      "title": "This Mediterranean villa is done 💕",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/TheSimsBuilding/comments/17cjiot/this_mediterranean_villa_is_done/",
+      "note": "auto-skip AI: video-game build, no real audience"
+    },
+    {
+      "date_first_reported": "2026-07-02",
+      "source": "ai_skip",
+      "title": "Mediterranean Style Villa",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/Minecraftbuilds/comments/17xfybg/mediterranean_style_villa/",
+      "note": "auto-skip AI: video-game build, no real audience"
+    },
+    {
+      "date_first_reported": "2026-07-02",
+      "source": "ai_skip",
+      "title": "Custom home builders",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/Spokane/comments/1mt0fsz/custom_home_builders/",
+      "note": "auto-skip AI: out of geography, no LA luxury relevance"
     }
   ]
 }
