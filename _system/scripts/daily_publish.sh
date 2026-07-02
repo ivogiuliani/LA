@@ -32,7 +32,9 @@ export GIT_TERMINAL_PROMPT=0
 export GIT_PAGER=cat
 export GIT_EDITOR=true
 
-PROJECT_ROOT="/Users/ivogiuliani/Code/myvilla-la"
+# Override per il rail server (systemd setta MYVILLA_ROOT=/opt/myvilla/LA);
+# default = runtime storico del Mac, così il launchd resta compatibile.
+PROJECT_ROOT="${MYVILLA_ROOT:-/Users/ivogiuliani/Code/myvilla-la}"
 cd "$PROJECT_ROOT" || exit 1
 
 # Ora-target: la pipeline gira solo a partire da questa ora locale.
