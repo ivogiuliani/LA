@@ -293,6 +293,24 @@ def generate(count=None, dry_run=False, no_unsplash=False):
     image_out_dir = cfg.get("image_out_dir", "img/social/evergreen")
     today = datetime.now().strftime("%Y-%m-%d")
 
+    # Le opzioni immagine viaggiano in git (pannello condiviso sul server):
+    # per non gonfiare il repo si tengono solo gli ultimi 7 giorni. Le più
+    # vecchie sono già state pubblicate (l'immagine scelta è copiata in
+    # img/social/ dal publisher) o scadute col draft; le cancellazioni le
+    # committa il daily_publish con git add -A.
+    _img_dir = ROOT_DIR / image_out_dir
+    if _img_dir.exists() and not dry_run:
+        for _old in _img_dir.glob("*.jpg"):
+            _m = re.match(r"^(\d{4}-\d{2}-\d{2})-", _old.name)
+            if not _m:
+                continue
+            try:
+                if datetime.now() - datetime.strptime(
+                        _m.group(1), "%Y-%m-%d") > timedelta(days=7):
+                    _old.unlink()
+            except (ValueError, OSError):
+                pass
+
     # Idempotenza: se le proposte evergreen di oggi esistono già, stop.
     existing_today = [f for f in OUT_DIR.glob("*evergreen*.md")
                       if (_parse_fm(f).get("date") or "")[:10] == today] \

@@ -5,11 +5,15 @@
 secrets/
 
 # Drafts and generated artifacts
-_drafts/
+# _drafts/social e img/social/evergreen viaggiano in GIT dal 2026-07-02:
+# il pannello condiviso sul server (content.myvilla.la) deve vedere le
+# proposte social/evergreen e le 3 opzioni immagine (pruning a 7 giorni
+# in generate_evergreen.py). Il resto di _drafts (journal, email_replies)
+# resta locale: bozze articolo e risposte stampa NON vanno nel repo
+# pubblico.
+_drafts/*
+!_drafts/social/
 _archive/
-# Immagini evergreen Unsplash: generate per-rail dai topic (come i _drafts),
-# riviste sul pannello locale — non versionare (eviterebbe divergenze tra rail).
-img/social/evergreen/
 # Cache derivata dei follow-up: si rigenera dal send_log.jsonl (fonte di
 # verità). Era TRACCIATA e in JSON → conflitti di rebase irrisolvibili quando
 # i due rail la modificavano in parallelo (causa della doppia digest). Locale
@@ -19,7 +23,12 @@ _system/history/
 _system/radar/reports/*.json
 _system/radar/reports/*.html
 _system/radar/reports/*.md
-_system/social/posts/
+# ...eccetto l'estratto sanitizzato per il pannello condiviso: solo la
+# sezione viral (post pubblici + bozza risposta), niente contatti stampa.
+!_system/radar/reports/*.panel.json
+# _system/social/posts/ è TRACCIATO dal 2026-07-02: la coda "Approva →
+# coda" fatta dalla SMM sul server deve arrivare al publisher delle 8:00
+# sul Mac (e viceversa). Contenuti pubblici, nessun dato sensibile.
 _system/content_system.log
 
 # Python

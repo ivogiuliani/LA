@@ -18,7 +18,7 @@ import re
 import sys
 import argparse
 import html
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import yaml
@@ -2455,6 +2455,35 @@ def main():
         print(f"  [Persist] Updated {radar_path.name}")
     except Exception as e:
         print(f"  [Persist] Warning: could not update {radar_path.name}: {e}")
+
+    # Estratto PUBBLICO per il pannello condiviso (content.myvilla.la):
+    # SOLO viral_opportunities (post pubblici + bozza risposta), perché il
+    # json completo contiene contatti stampa e il repo è pubblico — quello
+    # resta fuori da git (.gitignore), questo viene committato e il pannello
+    # lo usa come fallback (scan_radar_opportunities). Pruning a 7 giorni:
+    # le cancellazioni le committa il daily_publish con git add -A.
+    try:
+        panel_path = radar_path.with_name(f"radar_{date_str}.panel.json")
+        with open(panel_path, "w") as f:
+            json.dump({
+                "date": radar_data.get("date", date_str),
+                "generated_at": radar_data.get("generated_at", ""),
+                "viral_opportunities":
+                    radar_data.get("viral_opportunities", []) or [],
+            }, f, indent=2, ensure_ascii=False)
+        for old in radar_path.parent.glob("radar_*.panel.json"):
+            m = re.match(r"^radar_(\d{4}-\d{2}-\d{2})\.panel\.json$", old.name)
+            if not m:
+                continue
+            try:
+                if datetime.now() - datetime.strptime(
+                        m.group(1), "%Y-%m-%d") > timedelta(days=7):
+                    old.unlink()
+            except (ValueError, OSError):
+                pass
+        print(f"  [Persist] Panel extract: {panel_path.name}")
+    except Exception as e:
+        print(f"  [Persist] Warning: panel extract failed: {e}")
 
     # Render HTML
     print("\nRendering HTML dashboard...")

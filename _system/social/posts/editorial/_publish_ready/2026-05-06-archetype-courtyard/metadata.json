@@ -1,0 +1,41 @@
+{
+  "draft_file": "2026-05-06-ig-editorial-archetype-courtyard.md",
+  "package_built_at": "2026-04-28T23:07:38",
+  "publish_target": {
+    "platform": "instagram",
+    "account": "@myvilla.la",
+    "scheduled_date": "2026-05-06",
+    "scheduled_time": "09:00",
+    "timezone": "America/Los_Angeles"
+  },
+  "post": {
+    "pillar": "archetype",
+    "sub_topic": "Courtyard",
+    "format": "carousel",
+    "char_count": 187,
+    "hashtags": [
+      "MyVilla",
+      "MyVillaLA",
+      "ReinforcedConcrete",
+      "CourtyardHouse",
+      "ArchitecturalHeritage",
+      "LosAngelesArchitecture"
+    ],
+    "image_filename": "courtyard.webp",
+    "image_alt": "Six-slide carousel exploring the courtyard archetype from Ponti to My Villa, rendered in editorial graphic style.",
+    "topic_tags": [
+      "archetype",
+      "courtyard",
+      "italian-masters",
+      "carousel"
+    ]
+  },
+  "publishing_mode": "STUB",
+  "instructions": [
+    "Open the package folder in Files app on iPhone (iCloud Drive).",
+    "Copy caption.txt content (long-press → Copy All).",
+    "Open Instagram app → New post → upload image.<ext> (or carousel/* for carousel).",
+    "Paste caption. Verify hashtags. Tap Share.",
+    "After publishing, run: python3 _system/scripts/publish_instagram.py --mark-published <draft>"
+  ]
+}

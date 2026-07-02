@@ -1,0 +1,42 @@
+{
+  "draft_file": "2026-05-04-ig-editorial-two-millennia-of-villa-typology-adaptability-per.md",
+  "package_built_at": "2026-04-28T23:17:47",
+  "publish_target": {
+    "platform": "instagram",
+    "account": "@myvilla.la",
+    "scheduled_date": "2026-05-04",
+    "scheduled_time": "09:00",
+    "timezone": "America/Los_Angeles"
+  },
+  "post": {
+    "pillar": "vision",
+    "sub_topic": "Two millennia of villa typology — adaptability + permanence",
+    "format": "single_image_or_quote_card",
+    "char_count": 225,
+    "hashtags": [
+      "MyVilla",
+      "MyVillaLA",
+      "ReinforcedConcrete",
+      "VillaTypology",
+      "ArchitecturalPermanence",
+      "LosAngelesArchitecture"
+    ],
+    "image_filename": "facade-cream.webp",
+    "image_alt": "Quote card — architectural text on a minimal background referencing the Italian villa typology and its relevance to Los Angeles.",
+    "topic_tags": [
+      "vision",
+      "villa-typology",
+      "permanence",
+      "adaptability",
+      "two-millennia"
+    ]
+  },
+  "publishing_mode": "STUB",
+  "instructions": [
+    "Open the package folder in Files app on iPhone (iCloud Drive).",
+    "Copy caption.txt content (long-press → Copy All).",
+    "Open Instagram app → New post → upload image.<ext> (or carousel/* for carousel).",
+    "Paste caption. Verify hashtags. Tap Share.",
+    "After publishing, run: python3 _system/scripts/publish_instagram.py --mark-published <draft>"
+  ]
+}

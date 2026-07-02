@@ -248,6 +248,12 @@ def load_dotenv():
 
 load_dotenv()
 
+# Modalità condivisa (istanza esposta alla SMM su content.myvilla.la):
+# oltre al gate server-side in do_POST, il pannello non renderizza le
+# sezioni riservate al titolare (email stampa, risposte giornalisti) e
+# nasconde i bottoni di unpublish. Default "full" = pannello invariato.
+IS_SHARED = os.environ.get("PANEL_MODE", "full").strip().lower() == "shared"
+
 # Make sibling scripts importable for re-rendering on save
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
@@ -1641,6 +1647,20 @@ def scan_radar_opportunities():
         key=lambda p: p.stat().st_mtime,
         reverse=True,
     )
+    if not candidates:
+        # Multi-postazione: sul server condiviso il json completo non c'è
+        # (resta locale — contiene contatti stampa e il repo è pubblico).
+        # La pipeline committa un estratto sanitizzato radar_<data>.panel.json
+        # con la sola sezione viral_opportunities: basta per le sezioni
+        # "commenti ai post virali". Vedi generate_radar_report.py.
+        candidates = sorted(
+            [
+                f for f in reports_dir.glob("radar_*.panel.json")
+                if re.match(r"^radar_\d{4}-\d{2}-\d{2}\.panel\.json$", f.name)
+            ],
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )
     if not candidates:
         return None
 
@@ -3606,6 +3626,18 @@ def build_dashboard():
             </div>
           </div>
         </div>"""
+
+    # Banner + CSS della modalità condivisa (solo istanza SMM): spiega cosa
+    # è disattivato e nasconde i bottoni unpublish delle card pubblicate.
+    shared_banner = (
+        '<style>button[onclick^="unpublishArticle"]{display:none !important;}'
+        '</style>'
+        '<div style="background:#FFF4E5;border:1px solid #E8C9A0;color:#7A5A2E;'
+        'padding:.55rem .9rem;border-radius:8px;margin:0 0 1rem;'
+        'font-size:.85rem;">👥 <strong>Modalità condivisa</strong> — curation '
+        'social attiva. Email stampa, risposte ai giornalisti e rimozione '
+        'articoli sono riservate al titolare.</div>'
+    ) if IS_SHARED else ''
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -5881,19 +5913,19 @@ def build_dashboard():
 <body>
 
 {api_health_banner}
-
+{shared_banner}
 <div class="header">
   <h1>My <span>Villa</span> &mdash; Content Review</h1>
   <div class="subtitle">{today}</div>
   <div class="counts">
-    {f'<div class="count-pill count-reply"><strong>{len(reply_drafts)}</strong>&ensp;↩️ Replies</div>' if reply_drafts else ''}
+    {f'<div class="count-pill count-reply"><strong>{len(reply_drafts)}</strong>&ensp;↩️ Replies</div>' if reply_drafts and not IS_SHARED else ''}
     {f'<div class="count-pill count-viral"><strong>{len(radar["viral"])}</strong>&ensp;🔥 Viral</div>' if radar and radar.get("viral") else ''}
-    {f'<div class="count-pill"><strong>{len(radar["news"])}</strong>&ensp;📰 News</div>' if radar and radar.get("news") else ''}
-    {f'<div class="count-pill count-pitch"><strong>{len(radar["emails"])}</strong>&ensp;✉️ Email Ready</div>' if radar and radar.get("emails") else ''}
+    {f'<div class="count-pill"><strong>{len(radar["news"])}</strong>&ensp;📰 News</div>' if radar and radar.get("news") and not IS_SHARED else ''}
+    {f'<div class="count-pill count-pitch"><strong>{len(radar["emails"])}</strong>&ensp;✉️ Email Ready</div>' if radar and radar.get("emails") and not IS_SHARED else ''}
     {f'<div class="count-pill count-early"><strong>{len(radar["early"])}</strong>&ensp;🌱 Early</div>' if radar and radar.get("early") else ''}
     <div class="count-pill"><strong>{len(journal)}</strong>&ensp;📝 Articles</div>
     <div class="count-pill"><strong>{len(social)}</strong>&ensp;📱 Social</div>
-    <button class="count-pill count-scan" onclick="scanRepliesNow(this)" title="Poll Gmail for new journalist replies and re-draft">🔄 Scan replies</button>
+    {'' if IS_SHARED else '''<button class="count-pill count-scan" onclick="scanRepliesNow(this)" title="Poll Gmail for new journalist replies and re-draft">🔄 Scan replies</button>'''}
   </div>
   {f'<div class="radar-meta">Latest radar: <strong>{radar["date"]}</strong> · <a href="/radar">Open full dashboard</a></div>' if radar else ''}
 </div>
@@ -5957,7 +5989,7 @@ def build_dashboard():
     <p class="section-subtitle">Giornalisti che hanno risposto — UNICA parte email che resta manuale (il resto è automatico). Rivedi e invia: press kit o call con Paolo.</p>
     {reply_cards}
   </div>
-  ''' if reply_drafts else ''}
+  ''' if reply_drafts and not IS_SHARED else ''}
 
   {f'''
   <div class="section section-collapsed" data-section="radar-news">
@@ -5970,7 +6002,7 @@ def build_dashboard():
       {news_cards}
     </div>
   </div>
-  ''' if radar and radar.get("news") else ''}
+  ''' if radar and radar.get("news") and not IS_SHARED else ''}
 
   <!-- Early Signals rimossi (2026-06-15): post a basso engagement, solo
        informativi e spesso fuori tema. Non si perde nulla: un post che

@@ -1,0 +1,43 @@
+{
+  "draft_file": "2026-05-21-ig-editorial-partner-transsolar_klimaengineering.md",
+  "package_built_at": "2026-04-29T01:11:45",
+  "publish_target": {
+    "platform": "instagram",
+    "account": "@myvilla.la",
+    "scheduled_date": "2026-05-21",
+    "scheduled_time": "09:00",
+    "timezone": "America/Los_Angeles"
+  },
+  "post": {
+    "pillar": "partner_echo",
+    "sub_topic": "",
+    "format": "single_image_or_carousel_first_frame",
+    "char_count": 252,
+    "hashtags": [
+      "MyVilla",
+      "MyVillaLA",
+      "ReinforcedConcrete",
+      "ClimateEngineering",
+      "ThermalMass",
+      "PassiveDesign"
+    ],
+    "image_filename": "DTPt1Poklza.jpg",
+    "image_alt": "Abstract diagram of radiant cooling and thermal-mass flow in a concrete villa cross-section.",
+    "topic_tags": [
+      "partner_echo",
+      "transsolar",
+      "climate_engineering",
+      "thermal_comfort"
+    ],
+    "partner_handle": "transsolar_klimaengineering"
+  },
+  "publishing_mode": "STUB",
+  "instructions": [
+    "Open the package folder in Files app on iPhone (iCloud Drive).",
+    "Copy caption.txt content (long-press → Copy All).",
+    "Open Instagram app → New post → upload image.<ext> (or carousel/* for carousel).",
+    "Verify partner handle is mentioned with @ in caption.",
+    "Paste caption. Verify hashtags. Tap Share.",
+    "After publishing, run: python3 _system/scripts/publish_instagram.py --mark-published <draft>"
+  ]
+}

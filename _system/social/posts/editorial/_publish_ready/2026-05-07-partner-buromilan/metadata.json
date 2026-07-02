@@ -1,0 +1,43 @@
+{
+  "draft_file": "2026-05-07-ig-editorial-partner-buromilan.md",
+  "package_built_at": "2026-04-28T23:21:41",
+  "publish_target": {
+    "platform": "instagram",
+    "account": "@myvilla.la",
+    "scheduled_date": "2026-05-07",
+    "scheduled_time": "09:00",
+    "timezone": "America/Los_Angeles"
+  },
+  "post": {
+    "pillar": "partner_echo",
+    "sub_topic": "",
+    "format": "single_image_or_carousel_first_frame",
+    "char_count": 164,
+    "hashtags": [
+      "MyVilla",
+      "MyVillaLA",
+      "ReinforcedConcrete",
+      "StructuralEngineering",
+      "Permanence",
+      "ItalianSoul"
+    ],
+    "image_filename": "hero.webp",
+    "image_alt": "Abstract close-up of reinforced concrete formwork detail, evoking structural precision and material permanence.",
+    "topic_tags": [
+      "partner_echo",
+      "buromilan",
+      "structural_engineering",
+      "stub_partner_echo"
+    ],
+    "partner_handle": "buromilan"
+  },
+  "publishing_mode": "STUB",
+  "instructions": [
+    "Open the package folder in Files app on iPhone (iCloud Drive).",
+    "Copy caption.txt content (long-press → Copy All).",
+    "Open Instagram app → New post → upload image.<ext> (or carousel/* for carousel).",
+    "Verify partner handle is mentioned with @ in caption.",
+    "Paste caption. Verify hashtags. Tap Share.",
+    "After publishing, run: python3 _system/scripts/publish_instagram.py --mark-published <draft>"
+  ]
+}
