@@ -4330,6 +4330,56 @@
       "action_type": "user_dismissed",
       "url": "https://www.reddit.com/r/Spokane/comments/1mt0fsz/custom_home_builders/",
       "note": "auto-skip AI: out of geography, no LA luxury relevance"
+    },
+    {
+      "date_first_reported": "2026-07-03",
+      "source": "ai_skip",
+      "title": "@RatchetReactVid: Author: @RatchetReactVid | Text: Lisa Hochstein and Joanna Krupa walking the str...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/RatchetReactVid/status/2072804624990388680",
+      "note": "auto-skip AI: celebrity gossip, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-03",
+      "source": "ai_skip",
+      "title": "@accesskardash: Author: @accesskardash | Text: Kourtney Kardashian recentemente com admiradores...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/accesskardash/status/2072754879232151559",
+      "note": "auto-skip AI: celebrity paparazzi, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-03",
+      "source": "ai_skip",
+      "title": "@phantomloxx: Author: @phantomloxx | Text: AYO HE LIVES AT 24255 PACIFIC COAST HWY, MALIBU, CA...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/phantomloxx/status/2072721526332305851",
+      "note": "auto-skip AI: harassment/doxxing, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-03",
+      "source": "ai_skip",
+      "title": "This Mediterranean villa is done 💕",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/TheSimsBuilding/comments/17cjiot/this_mediterranean_villa_is_done/",
+      "note": "auto-skip AI: Sims video-game build, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-03",
+      "source": "ai_skip",
+      "title": "Compact house… but make it a mediterranean villa ! 😄",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/HouseFlipper/comments/1lxvdj8/compact_house_but_make_it_a_mediterranean_villa/",
+      "note": "auto-skip AI: House Flipper game build, off-topic"
     }
   ]
 }
