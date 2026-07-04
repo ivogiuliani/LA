@@ -4380,6 +4380,36 @@
       "action_type": "user_dismissed",
       "url": "https://www.reddit.com/r/HouseFlipper/comments/1lxvdj8/compact_house_but_make_it_a_mediterranean_villa/",
       "note": "auto-skip AI: House Flipper game build, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-04",
+      "source": "ai_skip",
+      "title": "Beverly Hills Mansions",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/RHOBH/comments/1ia5l70/beverly_hills_mansions/",
+      "note": "auto-skip AI: TV fan chatter, no architecture substance"
+    },
+    {
+      "date_first_reported": "2026-07-04",
+      "source": "ai_skip",
+      "title": "This Mediterranean villa is done 💕",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/TheSimsBuilding/comments/17cjiot/this_mediterranean_villa_is_done/",
+      "note": "auto-skip AI: Video-game build, no luxury/architecture substance"
+    },
+    {
+      "date_first_reported": "2026-07-04",
+      "source": "ai_skip",
+      "title": "Compact house… but make it a mediterranean villa ! 😄",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/HouseFlipper/comments/1lxvdj8/compact_house_but_make_it_a_mediterranean_villa/",
+      "note": "auto-skip AI: Video-game build, no real architecture"
     }
   ]
 }
