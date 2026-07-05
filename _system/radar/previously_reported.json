@@ -4410,6 +4410,56 @@
       "action_type": "user_dismissed",
       "url": "https://www.reddit.com/r/HouseFlipper/comments/1lxvdj8/compact_house_but_make_it_a_mediterranean_villa/",
       "note": "auto-skip AI: Video-game build, no real architecture"
+    },
+    {
+      "date_first_reported": "2026-07-05",
+      "source": "ai_skip",
+      "title": "@MaxHackney8: Author: @MaxHackney8 | Text: Nevada live highlights 🎥 -Name: Max Hackney -Gradua...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/MaxHackney8/status/2073205166292234474",
+      "note": "auto-skip AI: off-topic, HS basketball recruiting"
+    },
+    {
+      "date_first_reported": "2026-07-05",
+      "source": "ai_skip",
+      "title": "@grpwins: Author: @grpwins | Text: Even before the fires Malibu was very overrated. Just a...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/grpwins/status/2072266411188072896",
+      "note": "auto-skip AI: contrarian bait, no upside"
+    },
+    {
+      "date_first_reported": "2026-07-05",
+      "source": "ai_skip",
+      "title": "Anyone here gone through a full-on luxury home construction? Need some real talk.",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/HomeImprovement/comments/1mqgrjk/anyone_here_gone_through_a_fullon_luxury_home/",
+      "note": "auto-skip AI: budget-fantasy DIY thread, no buyers"
+    },
+    {
+      "date_first_reported": "2026-07-05",
+      "source": "ai_skip",
+      "title": "Beverly Hills Mansions",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/RHOBH/comments/1ia5l70/beverly_hills_mansions/",
+      "note": "auto-skip AI: reality-TV fandom, no substance"
+    },
+    {
+      "date_first_reported": "2026-07-05",
+      "source": "ai_skip",
+      "title": "Vintage Plan Day - The Beverly Hills home of famed operatic tenor Lauritz Melchior, with detached guest house",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/floorplan/comments/120ojyl/vintage_plan_day_the_beverly_hills_home_of_famed/",
+      "note": "auto-skip AI: vintage plan/McMansion snark thread"
     }
   ]
 }
