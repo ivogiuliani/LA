@@ -3358,6 +3358,16 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/JulieChangRE/status/2070888991508037798",
       "note": "auto-published journal: fair-plan-only-home-insurance-california-underinsured-luxury"
+    },
+    {
+      "date_first_reported": "2026-07-06",
+      "source": "user_dismissed",
+      "title": "Dr. Phil's Former 'Mediterranean Villa' Is Renting for $65,000 Per Month — Literally Located in Beverly Hills, 90210",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://entertainmentnow.com/celebrity-homes/dr-phil-former-beverly-hills-mansion-rent/",
+      "note": "auto-published journal: mediterranean-villa-beverly-hills-concrete-value"
     }
   ],
   "reported": [
@@ -4460,6 +4470,46 @@
       "action_type": "user_dismissed",
       "url": "https://www.reddit.com/r/floorplan/comments/120ojyl/vintage_plan_day_the_beverly_hills_home_of_famed/",
       "note": "auto-skip AI: vintage plan/McMansion snark thread"
+    },
+    {
+      "date_first_reported": "2026-07-06",
+      "source": "ai_skip",
+      "title": "Anyone here gone through a full-on luxury home construction? Need some real talk.",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/HomeImprovement/comments/1mqgrjk/anyone_here_gone_through_a_fullon_luxury_home/",
+      "note": "auto-skip AI: consumer fantasy, no buyers/partners"
+    },
+    {
+      "date_first_reported": "2026-07-06",
+      "source": "ai_skip",
+      "title": "Beverly Hills Mansions",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/RHOBH/comments/1ia5l70/beverly_hills_mansions/",
+      "note": "auto-skip AI: reality-TV fandom, no architecture substance"
+    },
+    {
+      "date_first_reported": "2026-07-06",
+      "source": "ai_skip",
+      "title": "Vintage Plan Day - The Beverly Hills home of famed operatic tenor Lauritz Melchior, with detached guest house",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/floorplan/comments/120ojyl/vintage_plan_day_the_beverly_hills_home_of_famed/",
+      "note": "auto-skip AI: vintage floorplan curiosity, no fit"
+    },
+    {
+      "date_first_reported": "2026-07-06",
+      "source": "ai_skip",
+      "title": "Aesthetic Villa in LA with a great view and great pool",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/LARentals/comments/1sg2v3m/aesthetic_villa_in_la_with_a_great_view_and_great/",
+      "note": "auto-skip AI: vacation rental search, not a buyer/partner"
     }
   ]
 }
