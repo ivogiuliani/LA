@@ -254,6 +254,13 @@ load_dotenv()
 # nasconde i bottoni di unpublish. Default "full" = pannello invariato.
 IS_SHARED = os.environ.get("PANEL_MODE", "full").strip().lower() == "shared"
 
+# Canali dismessi il 2026-07-06 (decisione Ivo): niente più contenuti
+# Instagram (né produzione né engagement) e niente Reddit. Il codice dei
+# canali resta nel repo, dormiente; questi flag nascondono la UI e
+# chiudono gli endpoint di generazione. Rimettere True per riattivare.
+IG_ENABLED = False
+REDDIT_ENABLED = False
+
 # Make sibling scripts importable for re-rendering on save
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
@@ -2049,6 +2056,18 @@ def build_dashboard():
                 f'</div>'
             )
 
+        if not IG_ENABLED:
+            ig_companion_block = ""  # canale IG dismesso 2026-07-06
+
+        # Bottone Reddit self-post: solo se il canale è attivo.
+        reddit_gen_btn = ""
+        if REDDIT_ENABLED:
+            reddit_gen_btn = (
+                '<button class="btn btn-reddit-gen" '
+                f"onclick=\"generateRedditPost('{_esc_js(d['file'])}', this)\" "
+                'title="Genera un self-post Reddit di questo articolo">'
+                '🔥 Self-post Reddit</button>')
+
         journal_cards += f"""
         <div class="card" id="card-journal-{_esc(d['file'])}" data-file="{_esc(d['file'])}" data-type="journal">
           <div class="card-status-stripe"></div>
@@ -2069,9 +2088,7 @@ def build_dashboard():
               <button class="btn btn-image" onclick="openImagePicker('{_esc_js(d['file'])}', this)">Scegli immagine</button>
               <button class="btn btn-opus" onclick="openReviseModal('{_esc_js(d['file'])}', 'journal', this)">Revise</button>
               <button class="btn btn-approve" onclick="doAction('approve', '{_esc_js(d['file'])}', 'journal', this)">📝 Pubblica journal</button>
-              <button class="btn btn-approve-ig btn-disabled" disabled
-                      title="Da attivare quando l'account Instagram sarà configurato. Per ora il caption resta nel draft.">📷 Pubblica IG</button>
-              <button class="btn btn-reddit-gen" onclick="generateRedditPost('{_esc_js(d['file'])}', this)" title="Genera un self-post Reddit di questo articolo → compare nella sezione Reddit per l'approvazione (cap submission a parte)">🔥 Self-post Reddit</button>
+              {reddit_gen_btn}
               <button class="btn btn-reject" onclick="doAction('reject', '{_esc_js(d['file'])}', 'journal', this)">Cancella</button>
             </div>
           </div>
@@ -5941,7 +5958,7 @@ def build_dashboard():
     <p class="section-subtitle"><strong>Brand-awareness dai temi del sito</strong> (non dalle notizie). Proposte da rivedere/approvare — testo e immagine modificabili. Immagini di alta qualità on-brand. Si gestiscono come gli altri social: "✅ Approva → coda" o "🚀 Pubblica subito".</p>
     {evergreen_cards}
   </div>
-  ''' if evergreen else ''}
+  ''' if evergreen and IG_ENABLED else ''}
 
   {section_social_x}
 
@@ -5965,7 +5982,7 @@ def build_dashboard():
     {viral_cards_ig}
     {ig_viral_cards}
   </div>
-  ''' if (viral_cards_ig or _ig_ops) else ''}
+  ''' if (viral_cards_ig or _ig_ops) and IG_ENABLED else ''}
 
   {f'''
   <div class="section">
@@ -5981,7 +5998,7 @@ def build_dashboard():
     <p class="section-subtitle">Thread Reddit pertinenti al target. Commento assistito (no API): 📋 copia → apri il thread → incolla → "Skip".</p>
     {viral_cards_reddit}
   </div>
-  ''' if viral_cards_reddit else ''}
+  ''' if viral_cards_reddit and REDDIT_ENABLED else ''}
 
   {f'''
   <div class="section section-replies">
@@ -6030,7 +6047,7 @@ def build_dashboard():
     </div>
     {editorial_cards}
   </div>
-  ''' if editorial else f'''
+  ''' if editorial and IG_ENABLED else f'''
   <div class="section section-editorial section-collapsed" data-section="editorial-empty">
     <h2 class="section-heading" onclick="toggleSection(this)">
       📆 Editorial Calendar (Instagram)<span class="section-count">0</span>
@@ -6048,7 +6065,7 @@ def build_dashboard():
       </div>
     </div>
   </div>
-  '''}
+  ''' if IG_ENABLED else ''}
 
   {"" if total == 0 else f'''
   <div class="section">
@@ -8983,6 +9000,25 @@ class ReviewHandler(BaseHTTPRequestHandler):
                      "error": "Azione riservata al titolare (modalità condivisa)."},
                     403)
                 return
+
+        # ── Canali dismessi (2026-07-06) ─────────────────────────────
+        # UI nascosta E endpoint chiusi: niente nuova generazione IG né
+        # azioni Reddit, anche da client vecchi/cache. 410 Gone.
+        if not REDDIT_ENABLED and parsed.path in {
+                "/api/reddit-submit", "/api/reddit-flairs",
+                "/api/generate-reddit-post", "/api/reddit-comment"}:
+            self._send_json(
+                {"ok": False, "error": "Canale Reddit dismesso (2026-07-06)."},
+                410)
+            return
+        if not IG_ENABLED and parsed.path in {
+                "/api/generate-ig-companion", "/api/save-ig-companion",
+                "/api/editorial/plan-month", "/api/editorial/generate",
+                "/api/editorial/regenerate", "/api/editorial/build-package"}:
+            self._send_json(
+                {"ok": False, "error": "Canale Instagram dismesso (2026-07-06)."},
+                410)
+            return
 
         # Read body
         content_length = int(self.headers.get("Content-Length", 0))

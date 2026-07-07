@@ -49,10 +49,12 @@ clusters:
       - "ultra high net worth homebuilder California"
 
   # ── Cluster B: Materials & Fire-Resilient Construction ──
+  #   (priority 1→2 il 2026-07-06: design-first 70/30 — resta il
+  #   differenziatore tecnico, non più il cluster guida)
   materials_construction:
     id: "B"
     label: "Materials & Construction"
-    priority: 1
+    priority: 2
     keywords:
       - "reinforced concrete home California"
       - "concrete home Malibu"
@@ -66,10 +68,12 @@ clusters:
       - "defensible space luxury home California"
 
   # ── Cluster C: Insurance & Regulation (Statewide) ──
+  #   (priority 1→2 il 2026-07-06: design-first 70/30 — le news normative
+  #   pure erano diventate dominanti; restano in scope come expertise)
   insurance_regulation:
     id: "C"
     label: "Insurance & Regulation"
-    priority: 1
+    priority: 2
     keywords:
       - "California home insurance crisis 2026"
       - "California FAIR Plan luxury home"
@@ -145,10 +149,11 @@ clusters:
       - "low carbon concrete construction"
 
   # ── Cluster F: Concrete / Museum-Grade Architecture ──
+  #   (priority 2→1 il 2026-07-06: design-first — è il nostro terreno)
   concrete_architecture:
     id: "F"
     label: "Concrete Architecture"
-    priority: 2
+    priority: 1
     keywords:
       - "reinforced concrete villa design"
       - "Tadao Ando residential concrete"
@@ -158,6 +163,33 @@ clusters:
       - "Renzo Piano residential concrete"
       - "Palazzo Grassi restoration concrete"
       - "Kimbell Art Museum concrete"
+      - "board-formed concrete house"
+      - "concrete house residential design 2026"
+
+  # ── Cluster I: Avant-Garde Residential Design (AGGIUNTO 2026-07-06) ──
+  #   Il cluster GUIDA del riposizionamento design-first: progetti
+  #   residenziali d'avanguardia, architetti d'autore, critica e premi.
+  #   My Villa deve poter commentare questo mondo da pari, non solo
+  #   presidiare assicurazioni e normativa.
+  avantgarde_design:
+    id: "I"
+    label: "Avant-Garde Residential Design"
+    priority: 1
+    keywords:
+      - "avant-garde residential architecture"
+      - "residential architecture Los Angeles 2026"
+      - "AD100 architect Los Angeles"
+      - "case study house Los Angeles"
+      - "minimalist villa architecture"
+      - "residential architecture award 2026"
+      - "AIA design award residential California"
+      - "signature architect home California"
+      - "architectural criticism residential design"
+      - "new house design Architectural Digest"
+      - "modern villa design architect"
+      - "luxury home design trends architects 2026"
+      - "hillside house design Los Angeles"
+      - "indoor outdoor living architecture California"
 
   # ── Cluster G: Rebuild (SECONDARY — news value only) ──
   #   Palisades/Altadena rebuild coverage kept in scope for PR / news hooks.
@@ -271,6 +303,8 @@ target_domains:
 
 
 # ── Reddit Sources ──
+# ⚠️ CANALE DISMESSO 2026-07-06 (decisione Ivo): il radar non chiama più
+# reddit_search — questa sezione resta solo per un'eventuale riattivazione.
 reddit:
   subreddits:
     # ── Wealth / luxury market ──
@@ -384,8 +418,9 @@ twitter:
     # ── Mercato / compra-vendita (ridotto: non più l'unico tema) ──
     - "Malibu luxury real estate 2026"
     - "Los Angeles luxury home market trends"
-    # ── Design & architettura (rinforzato 2026-07-01: entrare dal vivo nelle
-    #    conversazioni di architettura di lusso di LA, non solo assicurazioni) ──
+    # ── Design & architettura (rinforzato 2026-07-01; DOMINANTE dal
+    #    2026-07-06: voce architetto-critico, più conversazioni di design
+    #    d'avanguardia su cui intervenire da pari) ──
     - "Los Angeles residential architecture"
     - "luxury architecture Los Angeles"
     - "exposed concrete home architecture"
@@ -394,6 +429,12 @@ twitter:
     - "Italian Mediterranean villa design"
     - "interior design luxury home Los Angeles"
     - "custom home architect Los Angeles"
+    - "avant-garde house design"
+    - "brutalist house design"
+    - "Tadao Ando architecture"
+    - "case study house architecture"
+    - "residential architecture award"
+    - "minimalist house architecture design"
     # ── Costruzione & materiali fire-resilient (core brand) ──
     - "building a fire resistant home California"
     - "reinforced concrete home California"
@@ -403,13 +444,10 @@ twitter:
     - "FAIR Plan California homeowner"
     - "home insurance non-renewal California fire"
     - "insuring a home in a fire zone California"
-    # ── Malibu & lifestyle locale ──
+    # ── Malibu & lifestyle locale (ridotto 2026-07-06 per far posto al
+    #    design senza sforare il tetto ~20 query) ──
     - "living in Malibu California"
     - "Pacific Palisades rebuild home"
-    - "Los Angeles luxury lifestyle"
-    # ── Notizie lifestyle / cultura del lusso ──
-    - "California luxury living trends 2026"
-    - "Los Angeles luxury home lifestyle"
 
 
 # ── Scoring ──
@@ -432,6 +470,9 @@ scoring:
     priority_2: 1
     priority_3: 0
 
+# ⚠️ CANALE DISMESSO 2026-07-06 (decisione Ivo: niente più IG, né
+# produzione né engagement). Lo step ig_viral_radar è stato tolto dalla
+# pipeline; la sezione resta per un'eventuale riattivazione.
 # ── Instagram viral discovery (Apify) — aggiunto 2026-06-12 ──
 # Scan giornaliero degli hashtag di nicchia per trovare post virali
 # da commentare (flusso assistito: il commento si pubblica a mano).

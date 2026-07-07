@@ -250,17 +250,11 @@ jobs:
       #     giornaliero, default 1). Senza secrets Meta esce pulito.
       #     Prima del publish così la digest riporta l'esito.
       # ───────────────────────────────────────────────────────────
-      - name: Instagram publisher (post approvati)
-        if: steps.guard.outputs.should_run == 'true' && steps.guard2.outputs.should_send == 'true'
-        run: |
-          IG_FLAG=""
-          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
-            IG_FLAG="--dry-run"
-          fi
-          python3 _system/scripts/ig_publisher.py $IG_FLAG || \
-            echo "::warning::ig_publisher non-bloccante fallito"
-        env:
-          PYTHONUNBUFFERED: "1"
+      # Instagram publisher: CANALE DISMESSO 2026-07-06 (decisione Ivo —
+      # niente più contenuti IG). Step rimosso; script dormiente nel repo.
+      - name: Instagram publisher (canale dismesso 2026-07-06)
+        if: ${{ false }}
+        run: echo "skip - canale IG dismesso"
 
       # ───────────────────────────────────────────────────────────
       # 8c-bis. X publisher — pubblica i tweet APPROVATI (status:
@@ -307,12 +301,11 @@ jobs:
           TODAY=$(date -u +%Y-%m-%d)
           RADAR_FILE="_system/radar/reports/radar_${TODAY}.json"
           if [ -f "$RADAR_FILE" ]; then
-            python3 _system/scripts/generate_social.py --radar "$RADAR_FILE" --max-posts 2 || \
+            # SOLO X dal 2026-07-06: canale Instagram dismesso (con lui
+            # anche l'evergreen, che era IG-only).
+            python3 _system/scripts/generate_social.py --radar "$RADAR_FILE" --max-posts 2 --channels x || \
               echo "::warning::generate_social non-bloccante fallito"
           fi
-          # Evergreen (brand-awareness dal sito) — non dipende dal radar.
-          python3 _system/scripts/generate_evergreen.py || \
-            echo "::warning::generate_evergreen non-bloccante fallito"
         env:
           PYTHONUNBUFFERED: "1"
 

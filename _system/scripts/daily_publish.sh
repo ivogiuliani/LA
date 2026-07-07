@@ -256,15 +256,11 @@ if [ "${DRY_RUN:-0}" = "1" ]; then
     FP_DRY="--dry-run"
 fi
 
-# Step 1d: ig_publisher — pubblica su Instagram i post APPROVATI da
-# Ivo (max IG_DAILY_CAP/giorno, default 1 — ramp account nuovo).
-# Gira PRIMA di publish_all_drafts così la digest riporta l'esito.
-# Senza credenziali Meta esce pulito (fase pre-setup). Non-bloccante.
-IG_DRY=""
-[ "${DRY_RUN:-0}" = "1" ] && IG_DRY="--dry-run"
-log "--- ig_publisher.py $IG_DRY ---"
-python3 _system/scripts/ig_publisher.py $IG_DRY >> "$LOG_FILE" 2>&1 || \
-    log "ig_publisher errore non bloccante (continuo)"
+# Step 1d: ig_publisher — CANALE DISMESSO 2026-07-06 (decisione Ivo:
+# niente più contenuti Instagram, né produzione né engagement). Lo script
+# resta nel repo, dormiente; il refresh settimanale del token IG continua
+# (account vivo, riattivabile). Per riaccendere: ripristinare questo step.
+log "--- ig_publisher.py — SKIP (canale IG dismesso 2026-07-06) ---"
 
 # Step 1d-bis: x_publisher — pubblica su X i tweet APPROVATI (status:
 # approved in _drafts/social/), max X_DAILY_CAP/giorno (default 4).
@@ -328,39 +324,26 @@ for pattern, keep in (("-ig-", 3), ("-x-", 2)):
         print(f"  [rotazione] archiviato {f.name}")
 PRUNE
 
-# Step 3b: generate_social — proposte social del giorno dal radar
-# (max 2 set reactive = 2 IG + 2 X, con immagini auto). NON pubblica:
-# crea solo le card da approvare nel pannello. Dipende dal radar.
+# Step 3b: generate_social — proposte social del giorno dal radar.
+# SOLO X dal 2026-07-06 (--channels x): il canale Instagram è dismesso.
+# NON pubblica: crea solo le card da approvare nel pannello.
 if [ "$RADAR_OK" = "1" ]; then
-    log "--- generate_social.py (proposte del giorno) ---"
+    log "--- generate_social.py (proposte X del giorno) ---"
     python3 _system/scripts/generate_social.py --radar "$RADAR_FILE" \
-        --max-posts 2 >> "$LOG_FILE" 2>&1 || \
+        --max-posts 2 --channels x >> "$LOG_FILE" 2>&1 || \
         log "generate_social errore non bloccante (continuo)"
 else
     log "--- generate_social.py — SKIP (radar non disponibile) ---"
 fi
 
-# Step 3c: ig_viral_radar — scopre post IG virali altrui in nicchia e
-# prepara un commento pronto (copia-incolla) per ognuno. NON dipende dal
-# radar (usa Apify direttamente). NON auto-pubblica nulla: produce solo
-# opportunità da consultare nel pannello (sezione "📷 Instagram —
-# Commenti a post virali"). Salta se il token Apify manca. Non-bloccante.
-if grep -q "^APIFY_API_TOKEN=" .env 2>/dev/null; then
-    log "--- ig_viral_radar.py (commenti a post virali IG) ---"
-    run_with_timeout 600 python3 _system/scripts/ig_viral_radar.py \
-        --min-relevance 5 >> "$LOG_FILE" 2>&1 || \
-        log "ig_viral_radar errore non bloccante (continuo)"
-else
-    log "--- ig_viral_radar.py — SKIP (APIFY_API_TOKEN assente) ---"
-fi
+# Step 3c: ig_viral_radar — CANALE DISMESSO 2026-07-06 (con tutto IG:
+# anche l'engagement sui post virali altrui). Script dormiente nel repo;
+# risparmio: ~$10-12/mese di Apify. Per riaccendere: ripristinare lo step.
+log "--- ig_viral_radar.py — SKIP (canale IG dismesso 2026-07-06) ---"
 
-# Step 3d: generate_evergreen — flusso brand-awareness dal SITO (3
-# proposte/giorno dai topic del sito + immagini originali). NON dipende
-# dal radar, NON pubblica: solo proposte da approvare nel pannello
-# (sezione "✨ Evergreen dal sito"). LLM con fallback Gemini. Non-bloccante.
-log "--- generate_evergreen.py (proposte evergreen dal sito) ---"
-python3 _system/scripts/generate_evergreen.py >> "$LOG_FILE" 2>&1 || \
-    log "generate_evergreen errore non bloccante (continuo)"
+# Step 3d: generate_evergreen — CANALE DISMESSO 2026-07-06 (evergreen
+# era solo Instagram). Script + grading immagini dormienti nel repo.
+log "--- generate_evergreen.py — SKIP (canale IG dismesso 2026-07-06) ---"
 
 # Step 3e: social_digest — email quotidiana a Ivo+Giana con l'abstract di
 # TUTTI i contenuti social del pannello (proposte da approvare + evergreen +

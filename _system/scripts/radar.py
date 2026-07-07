@@ -2146,44 +2146,58 @@ def preliminary_score(result):
 # ══════════════════════════════════════════════════════════════════════
 
 SCORING_SYSTEM_PROMPT = """\
-You are the My Villa Engagement Radar scoring engine. My Villa designs \
-INSURABLE luxury reinforced-concrete villas for the Los Angeles market \
-(Italian-villa typology, 2026 California WUI Code compliant, IBHS Wildfire \
-Prepared Home Plus certified).
+You are the My Villa Engagement Radar scoring engine. My Villa is a \
+DESIGN-LED architecture studio building museum-grade, insurable luxury \
+reinforced-concrete villas in Los Angeles (Italian-villa typology, Tadao \
+Ando lineage, DGU pedigree: Palazzo Grassi / Aman / Kimbell; 2026 \
+California WUI Code compliant, IBHS Wildfire Prepared Home Plus certified).
 
-STRATEGIC PRIORITY ORDER (per content_strategy.md):
-  PRIMARY target buyer = UHNW commissioning or rebuilding in Malibu / \
-  Beverly Hills / Bel Air / Hidden Hills / Calabasas — who wants the home \
-  to stay INSURABLE and physically RESILIENT through future fire cycles.
-  NOT the primary target = pure "fire-victim rebuild help at any price" \
-  stories. Those remain IN SCOPE for PR/backlinks but must NOT outrank \
-  luxury-insurability-newbuild stories.
+STRATEGIC PRIORITY ORDER (repositioned 2026-07-06 — design-first):
+  DOMINANT cluster (~70% of qualified items) = LA LUXURY ARCHITECTURE & \
+  DESIGN: avant-garde residential projects, notable architects and their \
+  work, materials and craft, design criticism and awards, Italian/ \
+  Mediterranean villa typology, museum-grade residential design. We must \
+  read as skilled architects able to comment on the avant-garde design \
+  of our field — not only as technical experts.
+  SECONDARY differentiator (~30%) = the technical expertise that makes \
+  serious design buildable and insurable in LA: insurance / FAIR Plan / \
+  IBHS / WUI Code, reinforced-concrete fire-resilient construction.
+  NOT the target = pure "fire-victim rebuild help at any price" stories. \
+  Those remain IN SCOPE for PR/backlinks but must NOT outrank design or \
+  luxury-insurability stories.
 
 Score each item on 0-25 across 5 dimensions (0-5 each):
 
-1. RELEVANCE — Does the item directly intersect our PRIMARY commercial \
-   clusters: (a) California insurance / FAIR Plan / IBHS / Mercury / WUI \
-   Code; (b) reinforced-concrete / ICF / Class-A / fire-resilient NEW \
-   construction; (c) Italian/Mediterranean villa typology in LA; \
-   (d) UHNW luxury newbuild in tier-1/2 LA geographies?
-   Give 5 if it hits the primary commercial intent clearly; 3 if it's \
-   adjacent (design/architecture only, no insurance/material angle); \
-   1 if it's rebuild-news without a luxury or insurance hook.
+1. RELEVANCE — Give 5 if the item clearly hits EITHER: \
+   (a) DESIGN: luxury residential architecture & avant-garde design — \
+   LA/California first, or nationally influential work an LA studio \
+   should have an opinion on (notable projects, architects, materials, \
+   typology, criticism, awards, museum-grade residential); OR \
+   (b) TECHNICAL-WITH-LUXURY: California insurance / WUI Code / \
+   reinforced-concrete fire-resilient construction WITH a luxury or \
+   design angle. \
+   Give 3 if technical/regulatory news WITHOUT a luxury or design angle, \
+   or generic luxury real-estate market news with no architecture in it. \
+   Give 1 if it's rebuild-news without a luxury, design or insurance hook.
 
 2. RECENCY — Last 48h = 5; last 7 days = 3; older = 1.
 
 3. ENGAGEMENT — Traction (comments/shares, or high-profile outlet).
 
-4. AUDIENCE FIT — Robb Report / Mansion Global / WSJ / Bloomberg / \
-   Architectural Digest reader = 5. Dezeen / Dwell / The Real Deal = 3. \
-   General news = 2. Reddit subreddit = depends on sub (fatFIRE/LuxuryRE = 4).
+4. AUDIENCE FIT — Architectural Digest / Dezeen / ArchDaily / Dwell / \
+   Robb Report / Mansion Global / WSJ / Bloomberg reader = 5. \
+   The Real Deal / Curbed / LA Times real estate = 4. General news = 2.
 
-5. DIALOGUE OPENNESS — Reddit question in a wealthy sub = 5; finished \
-   news article = 2. For news articles, consider: does it leave a \
-   technical/commercial question we can answer in the Journal?
+5. DIALOGUE OPENNESS — Does it invite an architect's commentary — a \
+   design conversation we can join on X or answer in the Journal with a \
+   point of view (on typology, proportion, material, light, craft) or \
+   with technical/commercial substance? Open design debate = 5; finished \
+   news article with no angle for us = 2.
 
-BIAS: when a story is about Palisades or Altadena WITHOUT a luxury \
-or insurance-reform angle, cap total at 14 (watchlist, not qualified).
+BIAS: when a story is about Palisades or Altadena WITHOUT a luxury, \
+design or insurance-reform angle, cap total at 14 (watchlist, not \
+qualified). Do NOT down-score a story for being "design only": design \
+IS the primary cluster now.
 
 Return a JSON array. For each item include:
 - "index": original item index
@@ -2194,8 +2208,10 @@ Return a JSON array. For each item include:
 - "summary": 1-sentence summary of what this is about (REQUIRED for every item, \
   including low-score ones — it is displayed in Early Signals cards)
 - "engagement_angle": a short actionable note. Required for EVERY item:
-  * For score >= 15 (qualified): how My Villa could engage — favor angles that \
-    connect the news back to insurability, material choice, or Italian-villa typology.
+  * For score >= 15 (qualified): how My Villa could engage — favor an \
+    architect's point of view first (what makes the design notable: typology, \
+    proportion, material, light, craft), then insurability/material substance \
+    where it strengthens the take.
   * For score 12-14 (watchlist): what to monitor, or which thread could grow \
     into a qualified opportunity.
   * For score < 12 (early signals / skip): a one-line "why this is worth \
@@ -2654,13 +2670,10 @@ def main():
     else:
         print("1b. Brave Search — skipped")
 
-    # 2. Reddit
-    if not args.skip_reddit:
-        print("2. Reddit JSON feeds...")
-        reddit_results = reddit_search(config, lookback_days=args.lookback)
-        all_results.extend(reddit_results)
-    else:
-        print("2. Reddit — skipped")
+    # 2. Reddit — CANALE DISMESSO (decisione Ivo 2026-07-06): niente più
+    # engagement/submission Reddit. reddit_search() e _reddit_via_gemini()
+    # restano nel codice, dormienti, per un'eventuale riattivazione.
+    print("2. Reddit — canale dismesso (2026-07-06)")
 
     # 3. RSS
     if not args.skip_rss:

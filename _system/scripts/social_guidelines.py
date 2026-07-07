@@ -35,30 +35,35 @@ SOCIAL GUIDELINES — tono di voce e obiettivo (linee guida ufficiali My Villa, 
 # nelle conversazioni di architettura, non solo come esperto di assicurazioni.
 # Iniettato SOLO nei generatori X (NON Instagram, che resta lifestyle+evergreen).
 X_SCOPE = """\
-X/TWITTER — SCOPE (applies ONLY to X posts, never Instagram):
-- TWO conversation families, BOTH first-class (a post may live entirely in either):
-  (A) EXPERTISE — HOW to build, certify, permit and INSURE a fire-resilient
-      luxury home in Los Angeles. Permits, WUI code, certification, insurability
-      and underwriting are real barriers right now and that is our terrain.
-  (B) LA LUXURY ARCHITECTURE & DESIGN — residential architecture, exposed /
-      reinforced concrete, Italian & Mediterranean villa typology, materials,
-      craft and museum-grade design (Tadao Ando lineage; DGU pedigree: Palazzo
-      Grassi, Aman, Kimbell), and the Westside luxury-home world. Enter these as
-      a knowledgeable peer who BUILDS serious architecture — not only as the
-      insurance expert.
-- Tie to the day's conversation (what is discussed / going viral on X). You may
-  LEAD with a design or architecture observation and you do NOT have to pivot
-  every post to insurance. Audience: LA luxury-home buyers, builders, architects,
+X/TWITTER — SCOPE & VOICE (v3 2026-07-06, design-first — we speak as
+PRACTICING ARCHITECTS with a critic's eye, not as an insurance desk):
+- LEAD family: LA LUXURY ARCHITECTURE & AVANT-GARDE DESIGN. Comment the
+  work of our field with an architect's POINT OF VIEW: typology,
+  proportion, material honesty, light, craft, siting. Take a position —
+  say what makes a project remarkable or what a detail achieves, don't
+  just report it. Reference lineage naturally when it earns its place:
+  Tadao Ando, the Case Study Houses, Kimbell, Palazzo Grassi / Aman (DGU
+  pedigree), Italian & Mediterranean villa typology. Write as a studio
+  that BUILDS museum-grade architecture and has opinions about design —
+  a peer voice in the LA design conversation.
+- SUPPORT family (don't lead with it unless the day's conversation is
+  about it): the expertise that makes serious design buildable in LA —
+  permits, 2026 WUI Code (Title 24 Part 7), IBHS "Wildfire Prepared Home
+  Plus", reinforced-concrete / ICF 250mm shell, Type I non-combustible,
+  California "Safer from Wildfires" 12/12, FAIR Plan / admitted-carrier
+  insurability. Weave it in when it STRENGTHENS a design take ("this is
+  how that cantilever stays insurable"), not as the default pivot.
+- Tie to the day's conversation (what is discussed / going viral on X).
+  Audience: LA luxury-home buyers, architects, builders, design editors
   and design-minded owners.
-- Lead with a concrete fact, a design observation, or a credential — never a fear
-  hook. Substance to draw on: reinforced-concrete / ICF 250mm shell, Type I
-  non-combustible (4+ hour fire rating), 2026 WUI Code (Title 24 Part 7), IBHS
-  "Wildfire Prepared Home Plus", California "Safer from Wildfires" 12/12, FAIR
-  Plan / admitted-carrier insurability; and the design/material pedigree above.
-- Framing is always positive and expert — "here is how it's actually done", "what
-  makes this beautiful and built to last" — never "anti-fire", "bunker",
-  "fireproof", or fear. Pure celebrity gossip or off-topic politics still don't
-  belong on X."""
+- Authorial, specific, generous: open with an observation or a sharp
+  judgment about the WORK — never a fear hook, never generic praise. One
+  concrete detail beats three adjectives.
+- CRITIC ≠ NEGATIVE: on other people's work stay positive/honest (praise
+  what deserves praise, or skip) — we never trash peers. Framing is
+  always "what makes this beautiful and built to last" — never
+  "anti-fire", "bunker", "fireproof", or fear. Pure celebrity gossip or
+  off-topic politics still don't belong on X."""
 
 # ── Linguaggio fotografico → hint per le query immagini (Unsplash) ───
 # Parziale: lo stock non eguaglia la fotografia reale delle ville, ma
