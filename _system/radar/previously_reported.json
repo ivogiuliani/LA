@@ -4510,6 +4510,76 @@
       "action_type": "user_dismissed",
       "url": "https://www.reddit.com/r/LARentals/comments/1sg2v3m/aesthetic_villa_in_la_with_a_great_view_and_great/",
       "note": "auto-skip AI: vacation rental search, not a buyer/partner"
+    },
+    {
+      "date_first_reported": "2026-07-07",
+      "source": "ai_skip",
+      "title": "@freeboostpromo: Author: @freeboostpromo | Text: There is something so fun about a mystery that m...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/freeboostpromo/status/2073900479843643834",
+      "note": "auto-skip AI: off-topic book promo"
+    },
+    {
+      "date_first_reported": "2026-07-07",
+      "source": "ai_skip",
+      "title": "Anyone here gone through a full-on luxury home construction? Need some real talk.",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/HomeImprovement/comments/1mqgrjk/anyone_here_gone_through_a_fullon_luxury_home/",
+      "note": "auto-skip AI: aspirational fantasy, no buyers/partners"
+    },
+    {
+      "date_first_reported": "2026-07-07",
+      "source": "ai_skip",
+      "title": "Beverly Hills Construction Project",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/Construction/comments/1cp9pxd/beverly_hills_construction_project/",
+      "note": "auto-skip AI: thin post, no design substance"
+    },
+    {
+      "date_first_reported": "2026-07-07",
+      "source": "ai_skip",
+      "title": "Beverly Hills Mansions",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/RHOBH/comments/1ia5l70/beverly_hills_mansions/",
+      "note": "auto-skip AI: reality-TV fandom, no luxury substance"
+    },
+    {
+      "date_first_reported": "2026-07-07",
+      "source": "ai_skip",
+      "title": "Vintage Plan Day - The Beverly Hills home of famed operatic tenor Lauritz Melchior, with detached guest house",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/floorplan/comments/120ojyl/vintage_plan_day_the_beverly_hills_home_of_famed/",
+      "note": "auto-skip AI: McMansion sub, no luxury design substance"
+    },
+    {
+      "date_first_reported": "2026-07-07",
+      "source": "ai_skip",
+      "title": "Mesh Wi-Fi recommendation for reinforced concrete home",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/HomeNetworking/comments/1q4glay/mesh_wifi_recommendation_for_reinforced_concrete/",
+      "note": "auto-skip AI: wifi/networking, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-07",
+      "source": "ai_skip",
+      "title": "Aesthetic Villa in LA with a great view and great pool",
+      "score": null,
+      "cluster": "reddit",
+      "action_type": "user_dismissed",
+      "url": "https://www.reddit.com/r/LARentals/comments/1sg2v3m/aesthetic_villa_in_la_with_a_great_view_and_great/",
+      "note": "auto-skip AI: short-term villa rental request, not buyers"
     }
   ]
 }

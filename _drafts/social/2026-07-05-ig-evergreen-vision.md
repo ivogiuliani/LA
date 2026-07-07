@@ -19,7 +19,6 @@ hashtags:
   - SlowLiving
 status: draft
 ---
-
 Some things are built to sell. Others are built to outlast you. Concrete, silence, shade — a home that ages like the hills around it, not like a listing.
 
 #MyVilla #MyVillaLA #ItalianSoul #CalifornianBody #BuiltToLast #LosAngeles #SlowLiving
