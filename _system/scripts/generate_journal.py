@@ -1025,7 +1025,16 @@ def generate_article(item, section_id, section_name, brand_voice, blocked,
             text = re.sub(r'^```json?\n?', '', text)
             text = re.sub(r'\n?```$', '', text)
 
-        article = json.loads(text)
+        try:
+            article = json.loads(text)
+        except json.JSONDecodeError:
+            # Modelli "chiacchieroni" / risposte multi-blocco: preambolo
+            # prima del JSON o note accodate dopo ("Extra data"). Estrai
+            # il PRIMO oggetto JSON valido e ignora il resto.
+            start = text.find("{")
+            if start < 0:
+                raise
+            article, _end = json.JSONDecoder().raw_decode(text[start:])
         # Sanitizza lo slug PRIMA di qualunque uso come filename/URL:
         # uno slug LLM con '/', '..', spazi o maiuscole causava path
         # traversal / FileNotFoundError / canonical URL rotti.
