@@ -458,7 +458,7 @@ def score_relevance_with_claude(post: dict, model: str = CLAUDE_SCORING_MODEL) -
             messages=[{"role": "user", "content": user_prompt}],
             timeout=CLAUDE_SCORING_TIMEOUT,
         )
-        text = resp.content[0].text.strip()
+        text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text").strip()
         if text.startswith("```"):
             text = text.split("```")[1]
             if text.startswith("json"):

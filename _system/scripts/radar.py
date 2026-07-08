@@ -2270,7 +2270,7 @@ def ai_score_batch(results, model=_BALANCED_MODEL):
                     "content": f"Score these {len(batch)} items:\n\n{items_text}",
                 }],
             )
-            response_text = response.content[0].text.strip()
+            response_text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
             if getattr(response, "stop_reason", None) == "max_tokens":
                 print(f"  [AI Score] batch troncato a max_tokens — "
                       f"possibile perdita parziale")
@@ -2683,19 +2683,11 @@ def main():
     else:
         print("3. RSS — skipped")
 
-    # 4b. Instagram virali (Apify hashtag scan)
+    # 4b/4c. Instagram — CANALE DISMESSO (decisione Ivo 2026-07-07):
+    # niente più scan Apify (hashtag né profili) — davano solo 403 a vuoto
+    # e costi. Le funzioni restano dormienti per un'eventuale riattivazione.
     ig_engage_results = []
-    if not getattr(args, "skip_instagram", False):
-        print("4b. Instagram hashtag (Apify)...")
-        ig_results = instagram_viral_scan(config, lookback_days=args.lookback)
-        all_results.extend(ig_results)
-        # 4c. Account strategici dove commentare a mano (scan profili).
-        # Tenuti SEPARATI: non passano dal filtro viralità (vedi sotto).
-        print("4c. Instagram engagement targets (Apify profili)...")
-        ig_engage_results = instagram_engagement_scan(
-            config, lookback_days=args.lookback, known_urls=known_urls)
-    else:
-        print("4b/4c. Instagram — skipped")
+    print("4b/4c. Instagram — canale dismesso (2026-07-07)")
 
     # 4. Grok/X
     if not args.skip_grok:

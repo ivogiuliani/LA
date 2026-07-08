@@ -321,7 +321,7 @@ Return format (strict JSON, no markdown):
                 max_tokens=1024,
                 messages=[{"role": "user", "content": prompt}],
             )
-            text = response.content[0].text.strip()
+            text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
             # Strip code fences if present
             if text.startswith("```"):
                 text = re.sub(r"^```(?:json)?\s*\n?", "", text)
@@ -967,7 +967,7 @@ Return ONLY valid JSON, no markdown fences."""
             system=DRAFT_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": prompt}],
         )
-        response_text = response.content[0].text.strip()
+        response_text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
         # Strip markdown code fences if present
         if response_text.startswith("```"):
             response_text = re.sub(r"^```(?:json)?\s*\n?", "", response_text)
@@ -1310,7 +1310,7 @@ Return ONLY a valid JSON array of {len(items_desc)} objects, no markdown fences.
                 system=VIRAL_REPLY_SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": prompt}],
             )
-            response_text = response.content[0].text.strip()
+            response_text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
         except Exception as _ae:  # noqa: BLE001
             # Anthropic giù/senza crediti → fallback Gemini.
             print(f"  [ViralReply] Anthropic non disponibile "

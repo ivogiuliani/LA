@@ -1018,7 +1018,7 @@ def generate_article(item, section_id, section_name, brand_voice, blocked,
             print("  [Generate] ABORT: output troncato a max_tokens — "
                   "articolo troppo lungo, alzare max_tokens o accorciare il brief")
             return None
-        text = response.content[0].text.strip()
+        text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
 
         # Handle potential markdown fences
         if text.startswith("```"):

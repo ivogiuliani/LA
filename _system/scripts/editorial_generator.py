@@ -1049,7 +1049,7 @@ def generate_post_for_slot(slot, config, brand_voice, model=DEFAULT_MODEL,
                 system=EDITORIAL_SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": user_prompt}],
             )
-            text = response.content[0].text.strip()
+            text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
             if text.startswith("```"):
                 text = re.sub(r"^```(?:json)?\n?", "", text)
                 text = re.sub(r"\n?```$", "", text)

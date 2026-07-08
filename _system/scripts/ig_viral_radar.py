@@ -342,7 +342,7 @@ def score_and_comment(post: dict, model: str = SCORING_MODEL,
         resp = client.messages.create(
             model=model, max_tokens=400, system=SYSTEM_PROMPT,
             messages=[{"role": "user", "content": content}], timeout=45)
-        text = resp.content[0].text.strip()
+        text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text").strip()
         # Vision responses sometimes fence the JSON and/or append prose
         # ("**Why:** …") despite the single-line instruction. Extract the
         # outermost {...} object before parsing so that never trips us up.

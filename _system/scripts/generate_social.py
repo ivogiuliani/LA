@@ -392,7 +392,7 @@ def generate_reactive_posts(items, model=_HEAVY_MODEL):
             system=SOCIAL_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": prompt}],
         )
-        text = response.content[0].text.strip()
+        text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
         if text.startswith("```"):
             text = re.sub(r'^```json?\n?', '', text)
             text = re.sub(r'\n?```$', '', text)
@@ -430,7 +430,7 @@ def generate_companion_posts(articles, model=_HEAVY_MODEL):
             system=SOCIAL_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": prompt}],
         )
-        text = response.content[0].text.strip()
+        text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
         if text.startswith("```"):
             text = re.sub(r'^```json?\n?', '', text)
             text = re.sub(r'\n?```$', '', text)
@@ -482,7 +482,7 @@ def generate_reddit_posts(articles, allowlist, model=_HEAVY_MODEL):
             system=SOCIAL_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": prompt}],
         )
-        text = response.content[0].text.strip()
+        text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
         if text.startswith("```"):
             text = re.sub(r'^```json?\n?', '', text)
             text = re.sub(r'\n?```$', '', text)

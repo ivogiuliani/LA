@@ -256,7 +256,7 @@ def ai_validate(text, content_type="general", model=_BALANCED_MODEL):
             max_tokens=1024,
             messages=[{"role": "user", "content": prompt}],
         )
-        result_text = response.content[0].text.strip()
+        result_text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
         if result_text.startswith("```"):
             result_text = re.sub(r'^```json?\n?', '', result_text)
             result_text = re.sub(r'\n?```$', '', result_text)
