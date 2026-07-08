@@ -1,0 +1,211 @@
+{
+  "date": "2026-07-08",
+  "generated_at": "2026-07-08T08:13:29.178259",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "residential architecture award",
+      "title": "@Architizer: Author: @Architizer | Text: #ArchitizerAwards\n\nStarted as a design-build project...",
+      "url": "https://x.com/Architizer/status/2073708681435209940",
+      "snippet": "Author: @Architizer | Text: #ArchitizerAwards\n\nStarted as a design-build project with architecture students, this house evolved through the act of building, giving the team room to test new construction methods and refine the design on site.\n\n📍 Terence Bay, Canada\nProject by: Peter Braithwaite Studio\nDetails: | URL: https://x.com/Architizer/status/2073708681435209940 | Date: 2026-07-05 | Likes: 98 | Retweets: 15 | Replies: 1 | Views: 6492 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-05",
+      "author": "@Architizer",
+      "engagement": {
+        "score": 133,
+        "likes": 98,
+        "retweets": 15,
+        "replies": 1,
+        "views": 6492,
+        "author_followers": 0,
+        "virality_score": 31
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 7,
+      "ai_score": 7,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Love that the design refined itself on site — building as a way of thinking. The craft that comes out of that hands-on iteration really shows here.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 147,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "Design-build architecture, learning conversation"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "FAIR Plan California homeowner",
+      "title": "@10News: Author: @10News | Text: A Vista homeowner's insurance premium jumped from $900 t...",
+      "url": "https://x.com/10News/status/2072840367834030175",
+      "snippet": "Author: @10News | Text: A Vista homeowner's insurance premium jumped from $900 to $4,000 after being dropped by Farmer's Insurance and placed on California's FAIR Plan — with another rate hike of up to 50% expected in October. | URL: https://x.com/10News/status/2072840367834030175 | Date: 2026-07-03 | Likes: 58 | Retweets: 22 | Replies: 35 | Views: 12879 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-03",
+      "author": "@10News",
+      "engagement": {
+        "score": 277,
+        "likes": 58,
+        "retweets": 22,
+        "replies": 35,
+        "views": 12879,
+        "author_followers": 0,
+        "virality_score": 22
+      },
+      "_strategy_tier": 6,
+      "_strategy_priority": 1,
+      "preliminary_score": 13,
+      "ai_score": 13,
+      "action_type": "watchlist",
+      "author_name": "",
+      "viral_reply": {
+        "body": "The FAIR Plan squeeze is real. Worth noting non-combustible assemblies and verified WPH Plus measures can move underwriting outcomes — a lever that's underused in this debate.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 175,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "General CA insurance-crisis thread"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "living in Malibu California",
+      "title": "@Heather_Horton: Author: @Heather_Horton | Text: “The only way to make sense out of change is to...",
+      "url": "https://x.com/Heather_Horton/status/2074591458955596078",
+      "snippet": "Author: @Heather_Horton | Text: “The only way to make sense out of change is to plunge into it, move with it, and join the dance.” ~Alan Watts “The Chameleon”, oil on panel, 30”x30”, private collection, Malibu, CA. 🔴 | URL: https://x.com/Heather_Horton/status/2074591458955596078 | Date: 2026-07-07 | Likes: 9 | Retweets: 1 | Replies: 0 | Views: 174 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-07",
+      "author": "@Heather_Horton",
+      "engagement": {
+        "score": 11,
+        "likes": 9,
+        "retweets": 1,
+        "replies": 0,
+        "views": 174,
+        "author_followers": 0,
+        "virality_score": 20
+      },
+      "_strategy_tier": 1,
+      "_strategy_priority": 2,
+      "preliminary_score": 10,
+      "ai_score": 10,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Beautiful piece — that Watts line and the stillness in the panel really sit together. Malibu's the right home for it.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 117,
+        "tone": "appreciative",
+        "lead_type": "buyer",
+        "why": "Malibu fine-art collector audience"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "modern villa design California",
+      "title": "@OneKindesign: Author: @OneKindesign | Text: Luxury contemporary home in California offers brea...",
+      "url": "https://x.com/OneKindesign/status/2072783123532685716",
+      "snippet": "Author: @OneKindesign | Text: Luxury contemporary home in California offers breathtaking valley views \nhttps://onekindesign.com/luxury-contemporary-home/ | URL: https://x.com/OneKindesign/status/2072783123532685716 | Date: 2026-07-02 | Likes: 22 | Retweets: 4 | Replies: 0 | Views: 895 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-02",
+      "author": "@OneKindesign",
+      "engagement": {
+        "score": 30,
+        "likes": 22,
+        "retweets": 4,
+        "replies": 0,
+        "views": 895,
+        "author_followers": 0,
+        "virality_score": 13
+      },
+      "_strategy_tier": 6,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Those valley views paired with the clean contemporary massing is a lovely match — the glazing really lets the landscape do the talking.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 135,
+        "tone": "appreciative",
+        "lead_type": "buyer",
+        "why": "CA luxury contemporary home, buyer audience"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "building a fire resistant home California",
+      "title": "@zaggrim: Author: @zaggrim | Text: Considering how the CA govt likes to leave their water...",
+      "url": "https://x.com/zaggrim/status/2072936275145810392",
+      "snippet": "Author: @zaggrim | Text: Considering how the CA govt likes to leave their water reservoirs at like 5% capacity, sprinkler systems will likely fail. If they are smart, the people rebuilding will use stone, concrete, carbonized wood siding or some other fire retardant materials. | URL: https://x.com/zaggrim/status/2072936275145810392 | Date: 2026-07-03 | Likes: 0 | Retweets: 0 | Replies: 0 | Views: 9 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-03",
+      "author": "@zaggrim",
+      "engagement": {
+        "score": 5,
+        "likes": 5,
+        "retweets": 0,
+        "replies": 0,
+        "views": 9,
+        "author_followers": 0,
+        "virality_score": 5
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Agreed on material choice mattering more than sprinklers. Reinforced concrete and non-combustible assemblies carry the load when water and power can't be relied on.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 164,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "General fire-resilient materials discussion"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "FAIR Plan California homeowner",
+      "title": "@realmatt_re: Author: @realmatt_re | Text: Your \"fixed\" mortgage payment is a lie - especially...",
+      "url": "https://x.com/realmatt_re/status/2069122159130341682",
+      "snippet": "Author: @realmatt_re | Text: Your \"fixed\" mortgage payment is a lie - especially in California. Avg homeowner insurance premiums are up 84% since 2020. The CA FAIR plan is at near 700k policies alone and is raising rates ~30% in October. Home ownership cost overall has far outpaced inflation... | URL: https://x.com/realmatt_re/status/2069122159130341682 | Date: 2026-06-22 | Likes: 6 | Retweets: 3 | Replies: 3 | Views: 398 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-06-22",
+      "author": "@realmatt_re",
+      "engagement": {
+        "score": 27,
+        "likes": 6,
+        "retweets": 3,
+        "replies": 3,
+        "views": 398,
+        "author_followers": 0,
+        "virality_score": 3
+      },
+      "_strategy_tier": 6,
+      "_strategy_priority": 1,
+      "preliminary_score": 10,
+      "ai_score": 10,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "The insurance line is the real story in ownership cost now. Non-combustible construction is one of the few variables an owner can actually change to improve underwriting.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 170,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "General CA insurance-cost market thread"
+      }
+    }
+  ]
+}

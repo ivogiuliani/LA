@@ -4580,6 +4580,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.reddit.com/r/LARentals/comments/1sg2v3m/aesthetic_villa_in_la_with_a_great_view_and_great/",
       "note": "auto-skip AI: short-term villa rental request, not buyers"
+    },
+    {
+      "date_first_reported": "2026-07-08",
+      "source": "ai_skip",
+      "title": "@HennigMarkus11: Author: @HennigMarkus11 | Text: He's waiting for permission from CA bureaucrats...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/HennigMarkus11/status/2073921461849293009",
+      "note": "auto-skip AI: political rage framing, not substantive"
     }
   ]
 }
