@@ -2118,7 +2118,8 @@ def build_dashboard():
           </div>
           <div class="published-row-actions">
             <a class="btn btn-mini" href="{_esc(public_url)}" target="_blank" rel="noreferrer" title="Apri pagina live">↗ Live</a>
-            <a class="btn btn-mini" href="/preview?file={_esc(p['file'])}&edit=1" target="_blank" title="Modifica inline">✏ Modifica</a>
+            <a class="btn btn-mini" href="/preview?file={_esc(p['file'])}&edit=1" target="_blank" title="Modifica il testo nell'editor inline">✏ Testo</a>
+            <button class="btn btn-mini" onclick="openImagePicker('{_esc_js(p['file'])}', this)" title="Cambia l'immagine hero (picker Unsplash) — va live in ~1 min">🖼 Immagine</button>
             <button class="btn btn-mini btn-mini-danger" onclick="unpublishArticle('{_esc_js(p['file'])}', this)" title="Rimuove dal sito (sposta in archivio)">🗑 Rimuovi</button>
           </div>
         </div>"""
@@ -4018,6 +4019,19 @@ def build_dashboard():
     transition: background 0.15s;
   }}
   .published-row:hover {{ background: #faf6f0; }}
+  .published-filter {{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.55rem 0.85rem;
+    margin: 0.25rem 0 1rem;
+    border: 1px solid rgba(0,0,0,0.14);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    background: #fff;
+  }}
+  .published-filter:focus {{ outline: none; border-color: var(--terracotta); }}
+  #published-manage-list {{ max-height: 60vh; overflow-y: auto; }}
   .published-row-main {{
     flex: 1;
     min-width: 0;
@@ -6072,15 +6086,17 @@ def build_dashboard():
     <h2 class="section-heading">📝 Journal Articles<span class="section-count">{len(journal)}</span></h2>
     {journal_cards if journal else '<p style="color:#999; font-size:0.9rem;">No journal drafts pending.</p>'}
   </div>
+  '''}
 
-  <div class="section">
-    <h2 class="section-heading" onclick="togglePublishedSection(this)" style="cursor:pointer; user-select:none;">📚 Published Articles<span class="section-count">{len(published)}</span><span id="published-toggle-icon" style="float:right; font-size:0.7em; color:#999;">▾ click per espandere</span></h2>
-    <div id="published-list" style="display:none;">
-      <p class="section-subtitle" style="margin-bottom: 1rem;">Articoli già live su myvilla.la. Click "↗ Live" per vedere la pagina, "✏ Modifica" per editare inline, "🗑 Rimuovi" per togliere dal sito (sposta in <code>_archive/blog/journal/</code>).</p>
-      {published_rows if published else '<p style="color:#999; font-size:0.9rem;">No published articles yet.</p>'}
+  {'' if IS_SHARED else f'''
+  <div class="section" id="published-manage">
+    <h2 class="section-heading">🌐 Articoli pubblicati sul sito<span class="section-count">{len(published)}</span></h2>
+    <p class="section-subtitle">Tutti gli articoli live su myvilla.la, generati in automatico. <strong>↗ Live</strong> apre la pagina · <strong>✏ Testo</strong> apre l'editor inline · <strong>🖼 Immagine</strong> cambia la hero (picker Unsplash) · <strong>🗑 Rimuovi</strong> toglie dal sito (in <code>_archive/blog/journal/</code>). Le modifiche vanno online in ~1 minuto (commit+push automatico).</p>
+    <input type="text" class="published-filter" id="published-filter" placeholder="🔎 Filtra per titolo…" oninput="filterPublished(this.value)" autocomplete="off">
+    <div id="published-manage-list">
+      {published_rows if published else '<p style="color:#999; font-size:0.9rem;">Nessun articolo pubblicato ancora.</p>'}
     </div>
   </div>
-
   '''}
 </div>
 
@@ -6841,6 +6857,21 @@ function togglePublishedSection(heading) {{
   const isHidden = list.style.display === 'none';
   list.style.display = isHidden ? '' : 'none';
   if (icon) icon.textContent = isHidden ? '▴ click per chiudere' : '▾ click per espandere';
+}}
+
+/* Filtro client-side della lista articoli pubblicati (per titolo). */
+function filterPublished(q) {{
+  q = (q || '').toLowerCase().trim();
+  let shown = 0;
+  document.querySelectorAll('#published-manage-list .published-row').forEach(row => {{
+    const el = row.querySelector('.published-row-title');
+    const t = (el ? el.textContent : '').toLowerCase();
+    const match = !q || t.indexOf(q) !== -1;
+    row.style.display = match ? '' : 'none';
+    if (match) shown++;
+  }});
+  const cnt = document.querySelector('#published-manage .section-count');
+  if (cnt) cnt.setAttribute('data-filtered', shown);
 }}
 
 /* ── Published Articles: remove from the live site ─────────
@@ -9768,6 +9799,11 @@ class ReviewHandler(BaseHTTPRequestHandler):
                     new_html = render_article_html(data, date_str)
                     html_path.write_text(new_html, encoding="utf-8")
                     print(f"  Saved & re-rendered: {html_path.name}")
+                    # Articolo GIÀ pubblicato → committa+pusha (va live in
+                    # ~1 min). Sui draft in _drafts/journal NON pusha (il
+                    # publish avviene con "Pubblica journal").
+                    if html_path.parent == BLOG_DIR:
+                        _git_autopush(f"Edit published article: {html_path.stem}")
                 except Exception as render_err:
                     print(f"  Warning: failed to re-render HTML: {render_err}")
                     self._send_json(
@@ -9863,6 +9899,14 @@ class ReviewHandler(BaseHTTPRequestHandler):
             json_path = DRAFTS_DIR / "journal" / filename
             if not json_path.suffix == ".json":
                 json_path = json_path.with_suffix(".json")
+            if not json_path.exists():
+                # Fallback a blog/ così il picker funziona anche sugli
+                # articoli GIÀ PUBBLICATI (stesso pattern di save_draft).
+                _bj = (BLOG_DIR / Path(filename).name)
+                if _bj.suffix != ".json":
+                    _bj = _bj.with_suffix(".json")
+                if _bj.exists():
+                    json_path = _bj
             if not json_path.exists():
                 self._send_json(
                     {"ok": False, "error": f"Sidecar not found: {json_path.name}"},
@@ -10032,11 +10076,20 @@ class ReviewHandler(BaseHTTPRequestHandler):
             if not json_path.suffix == ".json":
                 json_path = json_path.with_suffix(".json")
             if not json_path.exists():
+                # Fallback a blog/ per cambiare l'immagine di un articolo
+                # GIÀ PUBBLICATO (stesso pattern di save_draft).
+                _bj = (BLOG_DIR / Path(filename).name)
+                if _bj.suffix != ".json":
+                    _bj = _bj.with_suffix(".json")
+                if _bj.exists():
+                    json_path = _bj
+            if not json_path.exists():
                 self._send_json(
                     {"ok": False, "error": f"Sidecar not found: {json_path.name}"},
                     404,
                 )
                 return
+            is_published = (json_path.parent == BLOG_DIR)
 
             sidecar = json.loads(json_path.read_text(encoding="utf-8"))
             slug = sidecar.get("slug") or json_path.stem
@@ -10105,6 +10158,11 @@ class ReviewHandler(BaseHTTPRequestHandler):
                     500,
                 )
                 return
+
+            # Articolo GIÀ pubblicato → committa+pusha così la nuova hero
+            # va live sul sito in ~1 minuto (best-effort, come unpublish).
+            if is_published:
+                _git_autopush(f"Update hero image: {json_path.stem}")
 
             self._send_json({"ok": True, "hero_image": hero})
         except Exception as e:
