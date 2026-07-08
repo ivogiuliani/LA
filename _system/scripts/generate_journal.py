@@ -945,7 +945,16 @@ def verify_sources_live(article, item=None, strict=True):
 
     results = _validate_links_live(urls)
     status_by_url = {r["url"]: r for r in results}
-    broken_urls = {r["url"] for r in results if not r["ok"]}
+    # 401/403/999 = paywall o anti-bot (WSJ, Mansion Global, LinkedIn…):
+    # la pagina ESISTE, è solo protetta — citarla è legittimo (2026-07-08:
+    # un 401 di Mansion Global abortiva l'articolo del giorno). Morto
+    # davvero = 404/410/DNS/timeout, che restano "not ok".
+    _soft_codes = ("401", "403", "999")
+    broken_urls = {
+        r["url"] for r in results
+        if not r["ok"]
+        and not any(c in str(r.get("reason") or "") for c in _soft_codes)
+    }
 
     primary_url = ""
     if item is not None:
