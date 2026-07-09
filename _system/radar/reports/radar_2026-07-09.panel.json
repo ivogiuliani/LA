@@ -1,0 +1,205 @@
+{
+  "date": "2026-07-09",
+  "generated_at": "2026-07-09T08:12:16.802807",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Pacific Palisades rebuild home",
+      "title": "@MattSeedorff: **Author: @MattSeedorff | Text: WATCH: Tuesday marks 18 months since the Palisad...",
+      "url": "https://x.com/MattSeedorff/status/2074732944133136653",
+      "snippet": "**Author: @MattSeedorff | Text: WATCH: Tuesday marks 18 months since the Palisades Fire destroyed nearly 6,000 homes. Rebuilding is underway, but only 28 properties have been cleared for families to move back in. Construction is picking up across Pacific Palisades, yet many residents say the recovery is moving far slower than expected. | URL: https://x.com/MattSeedorff/status/2074732944133136653 | Date: 2026-07-08 | Likes: 89 | Retweets: 17 | Replies: 5 | Views: 7301 | Author followers: 0**  \n**",
+      "publication": "X/Twitter",
+      "date": "2026-07-08",
+      "author": "@MattSeedorff",
+      "engagement": {
+        "score": 148,
+        "likes": 89,
+        "retweets": 17,
+        "replies": 5,
+        "views": 7301,
+        "author_followers": 0,
+        "virality_score": 43
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 2,
+      "preliminary_score": 8,
+      "ai_score": 14,
+      "ai_scores": {
+        "relevance": 1,
+        "recency": 5,
+        "engagement": 3,
+        "audience_fit": 2,
+        "dialogue": 3
+      },
+      "action_type": "watchlist",
+      "summary": "X post/video marking 18 months since the Palisades Fire, noting only 28 rebuild properties cleared for move-in.",
+      "engagement_angle": "Bias-capped: Palisades rebuild-pace story lacks design/insurance angle; watch for pivot toward fire-resilient rebuild standards.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "18 months in and only 28 cleared — the pace is sobering. Non-combustible assemblies and cleaner underwriting are a big part of getting families home faster.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 156,
+        "tone": "data-led",
+        "lead_type": "buyer",
+        "why": "Palisades post-fire rebuild audience"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "FAIR Plan California homeowner",
+      "title": "@10News: Author: @10News | Text: A Vista homeowner's insurance premium jumped from $900 t...",
+      "url": "https://x.com/10News/status/2072840367834030175",
+      "snippet": "Author: @10News | Text: A Vista homeowner's insurance premium jumped from $900 to $4,000 after being dropped by Farmer's Insurance and placed on California's FAIR Plan — with another rate hike of up to 50% expected in October. | URL: https://x.com/10News/status/2072840367834030175 | Date: 2026-07-03 | Likes: 59 | Retweets: 22 | Replies: 35 | Views: 12889 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-03",
+      "author": "@10News",
+      "engagement": {
+        "score": 278,
+        "likes": 59,
+        "retweets": 22,
+        "replies": 35,
+        "views": 12889,
+        "author_followers": 0,
+        "virality_score": 22
+      },
+      "_strategy_tier": 6,
+      "_strategy_priority": 1,
+      "preliminary_score": 13,
+      "ai_score": 14,
+      "ai_scores": {
+        "relevance": 3,
+        "recency": 3,
+        "engagement": 3,
+        "audience_fit": 2,
+        "dialogue": 3
+      },
+      "action_type": "watchlist",
+      "summary": "X post on a Vista, CA homeowner's insurance premium quadrupling after being dropped and moved to the FAIR Plan.",
+      "engagement_angle": "Monitor for a design-linked follow-up (e.g., how concrete construction lowers FAIR Plan premiums) before engaging.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "FAIR Plan sticker shock is hitting hard. Verified non-combustible construction and WPH Plus are among the few levers that actually move underwriting the right way.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 163,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "CA insurability/FAIR Plan discussion"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "living in Malibu California",
+      "title": "@mattsutaaki: Author: @mattsutaaki | Text: Malibu, CA 2015 | URL: https://x.com/mattsutaaki/st...",
+      "url": "https://x.com/mattsutaaki/status/2074903829884330046",
+      "snippet": "Author: @mattsutaaki | Text: Malibu, CA 2015 | URL: https://x.com/mattsutaaki/status/2074903829884330046 | Date: 2026-07-08 | Likes: 12 | Retweets: 1 | Replies: 0 | Views: 271 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-08",
+      "author": "@mattsutaaki",
+      "engagement": {
+        "score": 14,
+        "likes": 12,
+        "retweets": 1,
+        "replies": 0,
+        "views": 271,
+        "author_followers": 0,
+        "virality_score": 22
+      },
+      "_strategy_tier": 1,
+      "_strategy_priority": 2,
+      "preliminary_score": 10,
+      "ai_score": 9,
+      "ai_scores": {
+        "relevance": 1,
+        "recency": 5,
+        "engagement": 1,
+        "audience_fit": 1,
+        "dialogue": 1
+      },
+      "action_type": "skip",
+      "summary": "Low-engagement personal photo post captioned 'Malibu, CA 2015'.",
+      "engagement_angle": "No substantive content; skip.",
+      "viral_reply": {
+        "body": "Malibu in 2015 — that coastline never gets old. Beautiful frame.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 64,
+        "tone": "appreciative",
+        "lead_type": "buyer",
+        "why": "Malibu luxury property imagery"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "residential architecture award",
+      "title": "@Architizer: Author: @Architizer | Text: #ArchitizerAwards\n\nStarted as a design-build project...",
+      "url": "https://x.com/Architizer/status/2073708681435209940",
+      "snippet": "Author: @Architizer | Text: #ArchitizerAwards\n\nStarted as a design-build project with architecture students, this house evolved through the act of building, giving the team room to test new construction methods and refine the design on site.\n\n📍 Terence Bay, Canada\nProject by: Peter Braithwaite Studio\nDetails: | URL: https://x.com/Architizer/status/2073708681435209940 | Date: 2026-07-05 | Likes: 98 | Retweets: 16 | Replies: 1 | Views: 6530 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-05",
+      "author": "@Architizer",
+      "engagement": {
+        "score": 135,
+        "likes": 98,
+        "retweets": 16,
+        "replies": 1,
+        "views": 6530,
+        "author_followers": 0,
+        "virality_score": 19
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 7,
+      "ai_score": 7,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Love builds that evolve on site — refining the design through the act of building gives such honest, considered detailing. Congrats to the team.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 144,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "Architecture award, design substance"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "modern villa design California",
+      "title": "@OneKindesign: Author: @OneKindesign | Text: Luxury contemporary home in California offers brea...",
+      "url": "https://x.com/OneKindesign/status/2072783123532685716",
+      "snippet": "Author: @OneKindesign | Text: Luxury contemporary home in California offers breathtaking valley views \nhttps://onekindesign.com/luxury-contemporary-home/ | URL: https://x.com/OneKindesign/status/2072783123532685716 | Date: 2026-07-02 | Likes: 22 | Retweets: 4 | Replies: 0 | Views: 897 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-02",
+      "author": "@OneKindesign",
+      "engagement": {
+        "score": 30,
+        "likes": 22,
+        "retweets": 4,
+        "replies": 0,
+        "views": 897,
+        "author_followers": 0,
+        "virality_score": 3
+      },
+      "_strategy_tier": 6,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Those valley views are stunning — the contemporary massing really lets the landscape do the talking. Lovely home.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 113,
+        "tone": "appreciative",
+        "lead_type": "buyer",
+        "why": "CA luxury contemporary home audience"
+      }
+    }
+  ]
+}

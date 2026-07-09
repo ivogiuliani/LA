@@ -27,13 +27,13 @@
       "ai_score": 7,
       "action_type": "skip",
       "viral_reply": {
-        "body": "Love that the design refined itself on site — building as a way of thinking. The craft that comes out of that hands-on iteration really shows here.",
+        "body": "Love that the design evolved on site — building as a way of thinking. The way it meets that coastal landscape is really sensitive work.",
         "skip": false,
         "skip_reason": "",
-        "char_count": 147,
+        "char_count": 135,
         "tone": "appreciative",
         "lead_type": "brand",
-        "why": "Design-build architecture, learning conversation"
+        "why": "Design-build architecture, but combustible wood house"
       }
     },
     {
@@ -62,47 +62,13 @@
       "action_type": "watchlist",
       "author_name": "",
       "viral_reply": {
-        "body": "The FAIR Plan squeeze is real. Worth noting non-combustible assemblies and verified WPH Plus measures can move underwriting outcomes — a lever that's underused in this debate.",
+        "body": "The FAIR Plan strain is real. One under-discussed lever: non-combustible assemblies and WPH Plus hardening measurably improve underwriting outcomes over time.",
         "skip": false,
         "skip_reason": "",
-        "char_count": 175,
+        "char_count": 158,
         "tone": "data-led",
         "lead_type": "brand",
-        "why": "General CA insurance-crisis thread"
-      }
-    },
-    {
-      "source": "grok_x",
-      "cluster": "twitter",
-      "query": "living in Malibu California",
-      "title": "@Heather_Horton: Author: @Heather_Horton | Text: “The only way to make sense out of change is to...",
-      "url": "https://x.com/Heather_Horton/status/2074591458955596078",
-      "snippet": "Author: @Heather_Horton | Text: “The only way to make sense out of change is to plunge into it, move with it, and join the dance.” ~Alan Watts “The Chameleon”, oil on panel, 30”x30”, private collection, Malibu, CA. 🔴 | URL: https://x.com/Heather_Horton/status/2074591458955596078 | Date: 2026-07-07 | Likes: 9 | Retweets: 1 | Replies: 0 | Views: 174 | Author followers: 0",
-      "publication": "X/Twitter",
-      "date": "2026-07-07",
-      "author": "@Heather_Horton",
-      "engagement": {
-        "score": 11,
-        "likes": 9,
-        "retweets": 1,
-        "replies": 0,
-        "views": 174,
-        "author_followers": 0,
-        "virality_score": 20
-      },
-      "_strategy_tier": 1,
-      "_strategy_priority": 2,
-      "preliminary_score": 10,
-      "ai_score": 10,
-      "action_type": "skip",
-      "viral_reply": {
-        "body": "Beautiful piece — that Watts line and the stillness in the panel really sit together. Malibu's the right home for it.",
-        "skip": false,
-        "skip_reason": "",
-        "char_count": 117,
-        "tone": "appreciative",
-        "lead_type": "buyer",
-        "why": "Malibu fine-art collector audience"
+        "why": "General CA insurance thread, not a listing"
       }
     },
     {
@@ -130,13 +96,13 @@
       "ai_score": 6,
       "action_type": "skip",
       "viral_reply": {
-        "body": "Those valley views paired with the clean contemporary massing is a lovely match — the glazing really lets the landscape do the talking.",
+        "body": "Gorgeous siting — the way it opens to those valley views is beautifully composed. Contemporary California living at its best.",
         "skip": false,
         "skip_reason": "",
-        "char_count": 135,
+        "char_count": 125,
         "tone": "appreciative",
         "lead_type": "buyer",
-        "why": "CA luxury contemporary home, buyer audience"
+        "why": "CA luxury contemporary home, HNW audience"
       }
     },
     {
@@ -164,13 +130,13 @@
       "ai_score": 6,
       "action_type": "skip",
       "viral_reply": {
-        "body": "Agreed on material choice mattering more than sprinklers. Reinforced concrete and non-combustible assemblies carry the load when water and power can't be relied on.",
+        "body": "Agreed — material choice is the durable lever. Reinforced concrete and other non-combustible assemblies hold up far better than relying on active systems like sprinklers.",
         "skip": false,
         "skip_reason": "",
-        "char_count": 164,
+        "char_count": 170,
         "tone": "data-led",
         "lead_type": "brand",
-        "why": "General fire-resilient materials discussion"
+        "why": "General rebuild/materials discussion, no listing"
       }
     },
     {
@@ -198,13 +164,13 @@
       "ai_score": 10,
       "action_type": "skip",
       "viral_reply": {
-        "body": "The insurance line is the real story in ownership cost now. Non-combustible construction is one of the few variables an owner can actually change to improve underwriting.",
+        "body": "Real point — carrying cost is the hidden variable. Insurability is increasingly a construction question; non-combustible builds underwrite very differently than the FAIR Plan default.",
         "skip": false,
         "skip_reason": "",
-        "char_count": 170,
+        "char_count": 183,
         "tone": "data-led",
         "lead_type": "brand",
-        "why": "General CA insurance-cost market thread"
+        "why": "General CA insurance/market thread"
       }
     }
   ]

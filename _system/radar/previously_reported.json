@@ -3368,6 +3368,16 @@
       "action_type": "user_dismissed",
       "url": "https://entertainmentnow.com/celebrity-homes/dr-phil-former-beverly-hills-mansion-rent/",
       "note": "auto-published journal: mediterranean-villa-beverly-hills-concrete-value"
+    },
+    {
+      "date_first_reported": "2026-07-09",
+      "source": "user_dismissed",
+      "title": "Oakley Founder’s Steampunk Fortress in Beverly Hills Sells for Nearly $47M",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.mansionglobal.com/articles/oakley-founders-steampunk-fortress-in-beverly-hills-sells-for-nearly-47-million-1eed0de1",
+      "note": "auto-published journal: concrete-column-luxury-home-los-angeles-47m-sale"
     }
   ],
   "reported": [
@@ -4590,6 +4600,16 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/HennigMarkus11/status/2073921461849293009",
       "note": "auto-skip AI: political rage framing, not substantive"
+    },
+    {
+      "date_first_reported": "2026-07-08",
+      "source": "ai_skip",
+      "title": "@Heather_Horton: Author: @Heather_Horton | Text: “The only way to make sense out of change is to...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Heather_Horton/status/2074591458955596078",
+      "note": "auto-skip AI: fine art, not architecture/luxury real estate"
     }
   ]
 }

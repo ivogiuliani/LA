@@ -17,7 +17,7 @@
     }
   },
   "wallpaper.com": {
-    "cached_at": 1777180652.273377,
+    "cached_at": 1783577720.4432454,
     "result": null
   },
   "prnewswire.com": {
@@ -33,7 +33,7 @@
     "result": null
   },
   "archdaily.com": {
-    "cached_at": 1777180700.9807591,
+    "cached_at": 1783577683.10385,
     "result": null
   },
   "malibutimes.com": {
@@ -93,7 +93,7 @@
     }
   },
   "architecturaldigest.com": {
-    "cached_at": 1781764706.967655,
+    "cached_at": 1783577639.651131,
     "result": null
   },
   "dig-in.com": {
@@ -198,12 +198,13 @@
     "result": null
   },
   "forbes.com": {
-    "cached_at": 1778563535.398357,
+    "cached_at": 1783577739.1758406,
     "result": {
       "email": "feedback@forbes.com",
       "source": "article_scraped",
-      "path": "/sites/emmareynolds/2026/05/06/a-400-million-la-home-is-the-most-expensive-ever-listed-in-the-us/",
-      "score": 13
+      "path": "/sites/fredalbert/2026/07/04/americas-top-architects-in-an-east-coast-retreat-las-koning-eizenberg-proves-less-is-more/",
+      "score": 13,
+      "in_mailto": true
     }
   },
   "emberprousa.com": {
@@ -537,7 +538,7 @@
     }
   },
   "globenewswire.com": {
-    "cached_at": 1780392019.7742841,
+    "cached_at": 1783577746.078581,
     "result": null
   },
   "luxesource.com": {
@@ -794,6 +795,74 @@
   },
   "entertainmentnow.com": {
     "cached_at": 1783318582.009369,
+    "result": null
+  },
+  "mansionglobal.com": {
+    "cached_at": 1783497614.9324288,
+    "result": null
+  },
+  "admiddleeast.com": {
+    "cached_at": 1783577693.9426093,
+    "result": null
+  },
+  "interiordesign.net": {
+    "cached_at": 1783577699.6613815,
+    "result": {
+      "email": "halloffame@interiordesign.net",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "constructionspecifier.com": {
+    "cached_at": 1783577737.6991527,
+    "result": null
+  },
+  "elphaformwork.com": {
+    "cached_at": 1783577742.7370462,
+    "result": null
+  },
+  "architizer.com": {
+    "cached_at": 1783577743.2906358,
+    "result": {
+      "email": "editorial@architizer.com",
+      "source": "article_scraped",
+      "path": "/blog/inspiration/collections/best-architecture-firms-in-united-states/",
+      "score": 13,
+      "in_mailto": false
+    }
+  },
+  "travelandleisureasia.com": {
+    "cached_at": 1783577746.4053004,
+    "result": null
+  },
+  "hanodecor.com": {
+    "cached_at": 1783577747.7838445,
+    "result": {
+      "email": "contact@hanodecor.com",
+      "source": "article_scraped",
+      "path": "/blog/brutalist-architecture-houses-residential",
+      "score": 9,
+      "in_mailto": false
+    }
+  },
+  "dailymail.com": {
+    "cached_at": 1783577756.3052988,
+    "result": null
+  },
+  "helencummins.com": {
+    "cached_at": 1783577773.6675544,
+    "result": {
+      "email": "office@helencummins.com",
+      "source": "article_scraped",
+      "path": "/property-for-sale-mallorca-port-d-andratx-villa-sea-view",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "larchmontbuzz.com": {
+    "cached_at": 1783577774.5718777,
     "result": null
   }
 }
