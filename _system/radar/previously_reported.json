@@ -3488,6 +3488,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.helencummins.com/property-for-sale-mallorca-port-d-andratx-villa-sea-view",
       "note": "auto-sent pitch to example@email.com"
+    },
+    {
+      "date_first_reported": "2026-07-10",
+      "source": "user_dismissed",
+      "title": "Liz Gálvez \"reframes\" air conditioning with shade pavilion in Los Angeles",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dezeen.com/2026/07/09/liz-galvez-shade-pavilion-los-angeles-earthen-comforts/",
+      "note": "auto-published journal: passive-cooling-thermal-mass-los-angeles-earthen-pavilion"
     }
   ],
   "reported": [
@@ -4720,6 +4730,36 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/Heather_Horton/status/2074591458955596078",
       "note": "auto-skip AI: fine art, not architecture/luxury real estate"
+    },
+    {
+      "date_first_reported": "2026-07-10",
+      "source": "ai_skip",
+      "title": "@ConstitustionX: Author: @ConstitustionX | Text: 🚨 SHAMELESS SCAM EXPOSED! 🚨 Gavin Newsom isn’t l...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/ConstitustionX/status/2075331635181154352",
+      "note": "auto-skip AI: drama / politics"
+    },
+    {
+      "date_first_reported": "2026-07-10",
+      "source": "ai_skip",
+      "title": "@ArtOfMusic_: Author: @ArtOfMusic_ | Text: Malibu, California resident has a confrontation wit...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/ArtOfMusic_/status/2075266076267753721",
+      "note": "auto-skip AI: off-topic drama"
+    },
+    {
+      "date_first_reported": "2026-07-10",
+      "source": "ai_skip",
+      "title": "@HennigMarkus11: Author: @HennigMarkus11 | Text: He's waiting for permission from CA bureaucrats...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/HennigMarkus11/status/2073921461849293009",
+      "note": "auto-skip AI: politics / no substance"
     }
   ]
 }

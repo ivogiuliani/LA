@@ -75,6 +75,24 @@
       "last_bounced_at": "2026-06-29T11:32:38+00:00",
       "reason": "554 5.2.2 mailbox full; STOREDRV.Deliver.Exception:QuotaExceededException.MapiExceptionStorageShutoffQuotaExceeded; Failed to process message due to a permanent exc",
       "also_sent_to": "tips@laist.com"
+    },
+    "editorial@mansionglobal.com": {
+      "first_bounced_at": "2026-07-09T06:17:42+00:00",
+      "bounce_count": 1,
+      "source_threads": [
+        "19f458656f678a8b"
+      ],
+      "last_bounced_at": "2026-07-09T06:17:42+00:00",
+      "reason": "550 5.1.1 User Unknown"
+    },
+    "example@email.com": {
+      "first_bounced_at": "2026-07-09T06:26:09+00:00",
+      "bounce_count": 1,
+      "source_threads": [
+        "19f4586df7e4585c"
+      ],
+      "last_bounced_at": "2026-07-09T06:26:09+00:00",
+      "reason": "550 Requested action not taken: mailbox unavailable For explanation visit https://postmaster.mail.com/en/case?c=r1601&i=ip&v=209.85.222.172&r=1Mm9du-1xPoTB1dw0-00fH"
     }
   }
 }

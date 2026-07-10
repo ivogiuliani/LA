@@ -1,0 +1,32 @@
+{
+  "thread_id": "19f4586df7e4585c",
+  "outreach_message_id": "19f4586df7e4585c",
+  "outreach_subject": "A European angle on your Contemporary Mediterranean villa with sea views and rental l piece",
+  "outreach_to": "example@email.com",
+  "outreach_sent_at": "2026-07-09T06:18:13+00:00",
+  "replies": [
+    {
+      "thread_id": "19f4586df7e4585c",
+      "gmail_message_id": "19f458e1f9e274c5",
+      "rfc822_message_id": "<6a4f3f01.94d105eb.178fbb.ccc7.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a example@email.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\nUlteriori informazioni: https://postmaster.mail.com/en/case?c=r1601&i=ip&v=209.85.222.172&r=1Mm9du-1xPoTB1dw0-00fHWz\r\n(attenzione: questo link indirizza a un sito di terze parti)\r\n\r\nLa risposta del server remoto è:\r\n550 Requested action not taken: mailbox unavailable For explanation visit https://postmaster.mail.com/en/case?c=r1601&i=ip&v=209.85.222.172&r=1Mm9du-1xPoTB1dw0-00fHWz",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a example@email.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. ULTERIORI INFORMAZIONI Questo link ti indirizzerà",
+      "received_at": "2026-07-09T06:26:09+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "UNREAD",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "19f4586df7e4585c",
+      "outreach_subject": "A European angle on your Contemporary Mediterranean villa with sea views and rental l piece",
+      "outreach_to": "example@email.com",
+      "outreach_sent_at": "2026-07-09T06:18:13+00:00"
+    }
+  ],
+  "last_checked_at": "2026-07-10T06:18:11+00:00"
+}

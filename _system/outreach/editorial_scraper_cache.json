@@ -29,7 +29,7 @@
     "result": null
   },
   "dezeen.com": {
-    "cached_at": 1778044796.77323,
+    "cached_at": 1783664060.871712,
     "result": null
   },
   "archdaily.com": {
@@ -194,7 +194,7 @@
     "result": null
   },
   "liveinsurancenews.com": {
-    "cached_at": 1781072818.08104,
+    "cached_at": 1783664106.4348233,
     "result": null
   },
   "forbes.com": {
@@ -863,6 +863,48 @@
   },
   "larchmontbuzz.com": {
     "cached_at": 1783577774.5718777,
+    "result": null
+  },
+  "hoog.design": {
+    "cached_at": 1783664069.5483198,
+    "result": {
+      "email": "info@hoog.design",
+      "source": "article_scraped",
+      "path": "/en/look-inside/mediterranean-villa-natural-stone-strips",
+      "score": 6,
+      "in_mailto": false
+    }
+  },
+  "wildfiresafetysystems.com": {
+    "cached_at": 1783664086.292025,
+    "result": {
+      "email": "info@wildfiresafetysystems.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 6,
+      "in_mailto": false
+    }
+  },
+  "geramiarchitecture.com": {
+    "cached_at": 1783664106.7195928,
+    "result": {
+      "email": "info@geramiarchitecture.com",
+      "source": "article_scraped",
+      "path": "/project/rana-residence/",
+      "score": 11,
+      "in_mailto": true
+    }
+  },
+  "ruthelia.com": {
+    "cached_at": 1783664113.387708,
+    "result": null
+  },
+  "patriotmaids.com": {
+    "cached_at": 1783664233.9173186,
+    "result": null
+  },
+  "tollbrothers.com": {
+    "cached_at": 1783664240.9561982,
     "result": null
   }
 }
