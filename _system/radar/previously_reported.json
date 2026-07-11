@@ -3578,6 +3578,26 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/",
       "note": "auto-sent pitch to editorial@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-07-11",
+      "source": "user_dismissed",
+      "title": "Venezia Pacifica in Photos",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/gallery/venezia-pacifica-malibu-ca-photos-1238435684/",
+      "note": "auto-sent pitch to queued:demetrius.simms@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-07-11",
+      "source": "user_dismissed",
+      "title": "3 New Beverly Hills Luxury Condos & Residences (2026) | Markets of Tomorrow",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.oftmw.com/markets/beverly-hills-residences/",
+      "note": "auto-sent pitch to media@oftmw.com"
     }
   ],
   "reported": [
@@ -4840,6 +4860,46 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/HennigMarkus11/status/2073921461849293009",
       "note": "auto-skip AI: politics / no substance"
+    },
+    {
+      "date_first_reported": "2026-07-11",
+      "source": "ai_skip",
+      "title": "@dainttycals: Author: @dainttycals | Text: to live in malibu being skinny af going to your mor...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/dainttycals/status/2075668079191756824",
+      "note": "auto-skip AI: lifestyle fluff, no luxury/architecture substance"
+    },
+    {
+      "date_first_reported": "2026-07-11",
+      "source": "ai_skip",
+      "title": "@cutefoid: Author: @cutefoid | Text: I MADE IT FROM MALIBU CALIFORNIA TO CHICAGO AREA ON SI...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/cutefoid/status/2075724133057372581",
+      "note": "auto-skip AI: off-topic, no architecture or buyers"
+    },
+    {
+      "date_first_reported": "2026-07-11",
+      "source": "ai_skip",
+      "title": "@flus_corner: Author: @flus_corner | Text: I'm on my California trip rn and was also in Malibu...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/flus_corner/status/2074341658674831473",
+      "note": "auto-skip AI: tourist fluff, no luxury/architecture substance"
+    },
+    {
+      "date_first_reported": "2026-07-11",
+      "source": "ai_skip",
+      "title": "@HennigMarkus11: Author: @HennigMarkus11 | Text: He's waiting for permission from CA bureaucrats...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/HennigMarkus11/status/2073921461849293009",
+      "note": "auto-skip AI: politics/drama, no architecture substance"
     }
   ]
 }

@@ -61,7 +61,7 @@
     "result": null
   },
   "robbreport.com": {
-    "cached_at": 1781158409.019458,
+    "cached_at": 1783750446.1117954,
     "result": {
       "email": "editorial@robbreport.com",
       "source": "contact_page",
@@ -163,11 +163,11 @@
     "result": null
   },
   "therealdeal.com": {
-    "cached_at": 1781158400.49416,
+    "cached_at": 1783750491.136281,
     "result": {
       "email": "news@therealdeal.com",
       "source": "article_scraped",
-      "path": "/la/2026/06/10/jane-kim-leads-california-insurance-commissioner-race/",
+      "path": "/la/2026/07/09/apartments-proposed-for-pair-of-duplexes-in-beverly-hills/",
       "score": 14,
       "in_mailto": false
     }
@@ -464,7 +464,7 @@
     "result": null
   },
   "yahoo.com": {
-    "cached_at": 1780306191.350589,
+    "cached_at": 1783750489.6542845,
     "result": null
   },
   "oakviewins.com": {
@@ -906,5 +906,27 @@
   "tollbrothers.com": {
     "cached_at": 1783664240.9561982,
     "result": null
+  },
+  "galerie-philia.com": {
+    "cached_at": 1783750442.5485806,
+    "result": null
+  },
+  "pwdecor.com": {
+    "cached_at": 1783750476.190499,
+    "result": null
+  },
+  "hospitalitynet.org": {
+    "cached_at": 1783750480.8041787,
+    "result": null
+  },
+  "oftmw.com": {
+    "cached_at": 1783750490.284229,
+    "result": {
+      "email": "media@oftmw.com",
+      "source": "article_scraped",
+      "path": "/media",
+      "score": 16,
+      "in_mailto": true
+    }
   }
 }
