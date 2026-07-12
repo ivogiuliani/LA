@@ -93,6 +93,20 @@
       ],
       "last_bounced_at": "2026-07-09T06:26:09+00:00",
       "reason": "550 Requested action not taken: mailbox unavailable For explanation visit https://postmaster.mail.com/en/case?c=r1601&i=ip&v=209.85.222.172&r=1Mm9du-1xPoTB1dw0-00fH"
+    },
+    "kiyan@geramiarchitecture.com": {
+      "first_bounced_at": "2026-07-12T11:35:19+00:00",
+      "source_threads": [],
+      "last_bounced_at": "2026-07-12T11:35:19+00:00",
+      "bounce_count": 1,
+      "reason": "opt-out esplicito 2026-07-10: reply 'Not interested. Please remove us from your mailing list.' (Kiyan Gerami, Gerami Architectural Corporation) — NON ricontattare"
+    },
+    "geramiarchitecture@gmail.com": {
+      "first_bounced_at": "2026-07-12T11:35:19+00:00",
+      "source_threads": [],
+      "last_bounced_at": "2026-07-12T11:35:19+00:00",
+      "bounce_count": 1,
+      "reason": "opt-out esplicito 2026-07-10: reply 'Not interested. Please remove us from your mailing list.' (Kiyan Gerami, Gerami Architectural Corporation) — NON ricontattare"
     }
   }
 }
