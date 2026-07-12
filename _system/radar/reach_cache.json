@@ -1,7 +1,9 @@
 {
   "admiddleeast.com": 0.3,
   "airbnb.com": 550.0,
+  "amazingarchitecture.com": 0.5,
   "aol.com": 180.0,
+  "architectureadrenaline.com": 0.1,
   "architizer.com": 3.5,
   "beinsure.com": 0.3,
   "briefglance.com": 0.1,
@@ -124,6 +126,7 @@
   "westsidetoday.com": 0.15,
   "whins.com": 0.05,
   "wildfiresafetysystems.com": 0.05,
+  "worldjournal.com": 3.0,
   "youngdouglasinsurance.com": 0.05,
   "yubanet.com": 0.3
 }

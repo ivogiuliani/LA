@@ -1,0 +1,118 @@
+{
+  "date": "2026-07-12",
+  "generated_at": "2026-07-12T08:12:52.602094",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "interior design luxury home Los Angeles",
+      "title": "@artndesign823: Author: @artndesign823 | Text: The architectural masterpiece that is The Broad M...",
+      "url": "https://x.com/artndesign823/status/2075642627144511719",
+      "snippet": "Author: @artndesign823 | Text: The architectural masterpiece that is The Broad Museum in Los Angeles ✨\n\nDesigned by Diller Scofidio + Renfro, this iconic building showcases the innovative ‘veil and vault’ concept. A massive concrete vault serves as a secure space for art storage, while a stunning porous honeycomb ‘veil’ made of 2,500 fiberglass-reinforced concrete panels envelops it. This veil filters beautiful natural light into column-free galleries, creating a dramatic and glowing exterior.",
+      "publication": "X/Twitter",
+      "date": "2026-07-10",
+      "author": "@artndesign823",
+      "engagement": {
+        "score": 45,
+        "likes": 9,
+        "retweets": 3,
+        "replies": 6,
+        "views": 447,
+        "author_followers": 0,
+        "virality_score": 23
+      },
+      "_strategy_tier": 5,
+      "_strategy_priority": 1,
+      "preliminary_score": 10,
+      "ai_score": 10,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "The veil-and-vault logic is so satisfying — 2,500 fiberglass-reinforced concrete panels doing structure and light at once. One of LA's great concrete buildings.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 160,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "LA concrete architecture, on-brand craft"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "FAIR Plan California homeowner",
+      "title": "@grok: Author: @grok | Text: Spencer Pratt's Pacific Palisades home was non-renewed by...",
+      "url": "https://x.com/grok/status/2074941693229400576",
+      "snippet": "Author: @grok | Text: Spencer Pratt's Pacific Palisades home was non-renewed by private insurers (Farmers cited) before the 2025 fire due to wildfire risk mapping. They qualified for California's FAIR Plan, the state last-resort insurer.\n\nFAIR Plan provides basic fire coverage only (capped ~$3M residential). Their policy paid out around $1M — far short for rebuild costs plus new code requirements like caissons.\n\nInsurers pulled back statewide after billions in wildfire losses; Prop 103 rate rule",
+      "publication": "X/Twitter",
+      "date": "2026-07-08",
+      "author": "@grok",
+      "engagement": {
+        "score": 10,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 2,
+        "views": 26,
+        "author_followers": 0,
+        "virality_score": 8
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 1,
+      "preliminary_score": 10,
+      "ai_score": 10,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "The gap between FAIR Plan caps and real rebuild-to-code costs is the crux. Non-combustible assemblies and better underwriting outcomes are a real lever in that math.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 165,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "Palisades insurance/rebuild math thread"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "home insurance non-renewal California fire",
+      "title": "@QueenEmyB1: Author: @QueenEmyB1 | Text: This will be all suburbs. They want single family ho...",
+      "url": "https://x.com/QueenEmyB1/status/2064041761983631839",
+      "snippet": "Author: @QueenEmyB1 | Text: This will be all suburbs. They want single family homes gone. \n\nWe are all targets. \n\nOur homeowners insurance cancelled us (no claims) effective 6/2. The only fire insurance for CA is the state insurance, the CA Fair Plan.\n\nIt’s expensive. But we had no choice. | URL: https://x.com/QueenEmyB1/status/2064041761983631839 | Date: 2026-06-08 | Likes: 12 | Retweets: 1 | Replies: 3 | Views: 526 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-06-08",
+      "author": "@QueenEmyB1",
+      "engagement": {
+        "score": 29,
+        "likes": 12,
+        "retweets": 1,
+        "replies": 3,
+        "views": 526,
+        "author_followers": 0,
+        "virality_score": 3
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 1,
+      "preliminary_score": 9,
+      "ai_score": 7,
+      "ai_scores": {
+        "relevance": 2,
+        "recency": 1,
+        "engagement": 2,
+        "audience_fit": 1,
+        "dialogue": 1
+      },
+      "action_type": "skip",
+      "summary": "X user claims homeowners insurance was cancelled with no claims and frames it as a conspiracy against single-family homes.",
+      "engagement_angle": "Low-value conspiracy rant; skip, but tone signals consumer anger worth noting re: FAIR Plan narrative.",
+      "cluster_suggested": "insurance_regulation (non-luxury rant)",
+      "viral_reply": {
+        "body": "The statewide non-renewal wave is real and painful. Worth knowing that non-combustible construction and WPH Plus measures do move verified-loss and insurability outcomes over time.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 180,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "CA insurance non-renewal general thread"
+      }
+    }
+  ]
+}

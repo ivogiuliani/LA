@@ -3598,6 +3598,26 @@
       "action_type": "user_dismissed",
       "url": "https://www.oftmw.com/markets/beverly-hills-residences/",
       "note": "auto-sent pitch to media@oftmw.com"
+    },
+    {
+      "date_first_reported": "2026-07-12",
+      "source": "user_dismissed",
+      "title": "Japanese Buildings",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architectureadrenaline.com/japanese-buildings/",
+      "note": "auto-sent pitch to queued:justin.ankus@architectureadrenaline.com"
+    },
+    {
+      "date_first_reported": "2026-07-12",
+      "source": "user_dismissed",
+      "title": "California Dominates America's Luxury Housing Market as San Francisco Home Price",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.edhat.com/california/news/california-dominates-americas-luxury-housing-market-as-san-francisco-home-prices-top-6-6-million/",
+      "note": "auto-sent pitch to queued:kathakali.nandi@edhat.com"
     }
   ],
   "reported": [
@@ -4900,6 +4920,36 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/HennigMarkus11/status/2073921461849293009",
       "note": "auto-skip AI: politics/drama, no architecture substance"
+    },
+    {
+      "date_first_reported": "2026-07-12",
+      "source": "ai_skip",
+      "title": "@KellyMadruga: Author: @KellyMadruga | Text: Talk to your governor since he destroyed thousands...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/KellyMadruga/status/2075443648863535419",
+      "note": "auto-skip AI: politics/rage, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-12",
+      "source": "ai_skip",
+      "title": "@HennigMarkus11: Author: @HennigMarkus11 | Text: He's waiting for permission from CA bureaucrats...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/HennigMarkus11/status/2073921461849293009",
+      "note": "auto-skip AI: politics/rage, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-12",
+      "source": "ai_skip",
+      "title": "@NativeOK149154: Author: @NativeOK149154 | Text: Their homeowners insurance was cancelled (all of...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/NativeOK149154/status/2063338764512968981",
+      "note": "auto-skip AI: drama/politics, off-topic"
     }
   ]
 }

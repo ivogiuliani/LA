@@ -312,7 +312,7 @@
     "result": null
   },
   "aol.com": {
-    "cached_at": 1778736157.1104572,
+    "cached_at": 1783836872.5871406,
     "result": null
   },
   "bankrate.com": {
@@ -692,7 +692,7 @@
     "result": null
   },
   "havenlifestyles.com": {
-    "cached_at": 1780985860.176884,
+    "cached_at": 1783836894.006278,
     "result": null
   },
   "bbc.com": {
@@ -926,6 +926,32 @@
       "source": "article_scraped",
       "path": "/media",
       "score": 16,
+      "in_mailto": true
+    }
+  },
+  "amazingarchitecture.com": {
+    "cached_at": 1783836866.2879858,
+    "result": null
+  },
+  "worldjournal.com": {
+    "cached_at": 1783836876.2791939,
+    "result": null
+  },
+  "architectureadrenaline.com": {
+    "cached_at": 1783836943.9255962,
+    "result": null
+  },
+  "getty.edu": {
+    "cached_at": 1783836951.7386117,
+    "result": null
+  },
+  "edhat.com": {
+    "cached_at": 1783836952.6694398,
+    "result": {
+      "email": "info@edhat.com",
+      "source": "article_scraped",
+      "path": "/california/news/california-dominates-americas-luxury-housing-market-as-san-francisco-home-prices-top-6-6-million/",
+      "score": 11,
       "in_mailto": true
     }
   }
