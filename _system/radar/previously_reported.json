@@ -3628,6 +3628,56 @@
       "action_type": "user_dismissed",
       "url": "https://www.archdaily.com/1042712/muxarabi-house-ana-sawaia-arquitetura",
       "note": "auto-published journal: reinforced-concrete-grid-house-lessons-california"
+    },
+    {
+      "date_first_reported": "2026-07-13",
+      "source": "user_dismissed",
+      "title": "A Cannabis Mogul Just Listed a 75-Acre Private Island in Fiji for $10 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/barry-walker-vawa-island-fiji-1238442294/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-07-13",
+      "source": "user_dismissed",
+      "title": "Concrete Blocks Meet Glass Walls at This $635K Michigan Home - Dwell",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dwell.com/article/dean-house-jackson-hallett-midland-michigan-real-estate-52320d17",
+      "note": "auto-sent pitch to feedback@dwell.com"
+    },
+    {
+      "date_first_reported": "2026-07-13",
+      "source": "user_dismissed",
+      "title": "Los Angeles Home Creates Urban Retreat With Organic Mid-Century Design | Travelb",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://travelbinger.com/los-angeles-home-creates-urban-retreat-with-organic-mid-century-design",
+      "note": "auto-sent pitch to queued:matthias.binder@travelbinger.com"
+    },
+    {
+      "date_first_reported": "2026-07-13",
+      "source": "user_dismissed",
+      "title": "California Homeowners Insurance Costs Still 41% Below National Average, Report S",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/magazines/mag-features/2026/07/13/877085.htm",
+      "note": "auto-sent pitch to newsdesk@insurancejournal.com"
+    },
+    {
+      "date_first_reported": "2026-07-13",
+      "source": "user_dismissed",
+      "title": "California home insurance premiums spike 84% as wildfire risk grows, Stanford re",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://abc7news.com/post/california-home-insurance-premiums-spike-84-wildfire-risk-grows-stanford-researchers-say/19436810/",
+      "note": "auto-sent pitch to abc7eyewitnessnews@abc.com"
     }
   ],
   "reported": [
