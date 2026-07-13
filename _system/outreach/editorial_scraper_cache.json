@@ -230,12 +230,13 @@
     }
   },
   "insurancejournal.com": {
-    "cached_at": 1778563571.423043,
+    "cached_at": 1783923527.356747,
     "result": {
       "email": "newsdesk@insurancejournal.com",
       "source": "article_scraped",
-      "path": "/news/west/2026/05/06/868665.htm",
-      "score": 7
+      "path": "/magazines/mag-features/2026/07/13/877085.htm",
+      "score": 7,
+      "in_mailto": true
     }
   },
   "movoto.com": {
@@ -954,5 +955,41 @@
       "score": 11,
       "in_mailto": true
     }
+  },
+  "dwell.com": {
+    "cached_at": 1783923461.1351736,
+    "result": {
+      "email": "feedback@dwell.com",
+      "source": "article_scraped",
+      "path": "/article/dean-house-jackson-hallett-midland-michigan-real-estate-52320d17",
+      "score": 8,
+      "in_mailto": false
+    }
+  },
+  "yankodesign.com": {
+    "cached_at": 1783923472.8735237,
+    "result": null
+  },
+  "homesandgardens.com": {
+    "cached_at": 1783923493.4666798,
+    "result": null
+  },
+  "travelbinger.com": {
+    "cached_at": 1783923500.6072118,
+    "result": {
+      "email": "info@travelbinger.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 6,
+      "in_mailto": false
+    }
+  },
+  "casaindonesia.com": {
+    "cached_at": 1783923505.5498016,
+    "result": null
+  },
+  "abc7news.com": {
+    "cached_at": 1783923536.334217,
+    "result": null
   }
 }

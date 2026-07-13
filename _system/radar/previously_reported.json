@@ -3618,6 +3618,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.edhat.com/california/news/california-dominates-americas-luxury-housing-market-as-san-francisco-home-prices-top-6-6-million/",
       "note": "auto-sent pitch to queued:kathakali.nandi@edhat.com"
+    },
+    {
+      "date_first_reported": "2026-07-13",
+      "source": "user_dismissed",
+      "title": "Muxarabi House / Ana Sawaia Arquitetura",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.archdaily.com/1042712/muxarabi-house-ana-sawaia-arquitetura",
+      "note": "auto-published journal: reinforced-concrete-grid-house-lessons-california"
     }
   ],
   "reported": [
@@ -4950,6 +4960,36 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/NativeOK149154/status/2063338764512968981",
       "note": "auto-skip AI: drama/politics, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-13",
+      "source": "ai_skip",
+      "title": "@CortesSteve: Author: @CortesSteve | Text: Gavin Newsom + the CA Public Sector Unions = misery...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/CortesSteve/status/2076320928909451364",
+      "note": "auto-skip AI: politics/rage, off-brand"
+    },
+    {
+      "date_first_reported": "2026-07-13",
+      "source": "ai_skip",
+      "title": "@archiscan: Author: @archiscan | Text: Clean lines, warm wood tones, and an effortless flow...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/archiscan/status/2074847031479439406",
+      "note": "auto-skip AI: generic concept, wood-frame, no luxury substance"
+    },
+    {
+      "date_first_reported": "2026-07-13",
+      "source": "ai_skip",
+      "title": "@HennigMarkus11: Author: @HennigMarkus11 | Text: He's waiting for permission from CA bureaucrats...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/HennigMarkus11/status/2073921461849293009",
+      "note": "auto-skip AI: political framing, no architecture substance"
     }
   ]
 }
