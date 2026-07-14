@@ -3678,6 +3678,46 @@
       "action_type": "user_dismissed",
       "url": "https://abc7news.com/post/california-home-insurance-premiums-spike-84-wildfire-risk-grows-stanford-researchers-say/19436810/",
       "note": "auto-sent pitch to abc7eyewitnessnews@abc.com"
+    },
+    {
+      "date_first_reported": "2026-07-14",
+      "source": "user_dismissed",
+      "title": "Anthony Davis Sells 17,000-Square-Foot Bel Air Estate for $32 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/anthony-davis-sells-17000-square-foot-bel-air-estate",
+      "note": "auto-sent pitch to queued:katie.schultz@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-07-14",
+      "source": "user_dismissed",
+      "title": "Building as Sculpture: 5 Unbuilt Museum Projects from the ArchDaily Community | ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.archdaily.com/1054036/building-as-sculpture-5-unbuilt-museum-projects-from-the-archdaily-community",
+      "note": "auto-sent pitch to queued:antonia.piñeiro@archdaily.com"
+    },
+    {
+      "date_first_reported": "2026-07-14",
+      "source": "user_dismissed",
+      "title": "Minimalist villa interior with wood and concrete",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hoog.design/en/look-inside/minimalist-villa-interior-wood-concrete",
+      "note": "auto-sent pitch to info@hoog.design"
+    },
+    {
+      "date_first_reported": "2026-07-14",
+      "source": "user_dismissed",
+      "title": "Modern villa garden with layered planting and lighting",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hoog.design/en/look-inside/modern-villa-garden-layered-planting-lighting",
+      "note": "auto-sent pitch to info@hoog.design"
     }
   ],
   "reported": [
@@ -5040,6 +5080,36 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/HennigMarkus11/status/2073921461849293009",
       "note": "auto-skip AI: political framing, no architecture substance"
+    },
+    {
+      "date_first_reported": "2026-07-14",
+      "source": "ai_skip",
+      "title": "@RogerSunderlin: Author: @RogerSunderlin | Text: What about the palisade wild fire donations \n\nTh...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/RogerSunderlin/status/2076765170651496461",
+      "note": "auto-skip AI: drama / politics, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-14",
+      "source": "ai_skip",
+      "title": "@25YearsAgoLive: Author: @25YearsAgoLive | Text: Actor Tom Green and actress Drew Barrymore get m...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/25YearsAgoLive/status/2074550314384891920",
+      "note": "auto-skip AI: off-topic celebrity nostalgia"
+    },
+    {
+      "date_first_reported": "2026-07-14",
+      "source": "ai_skip",
+      "title": "@flus_corner: Author: @flus_corner | Text: I'm on my California trip rn and was also in Malibu...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/flus_corner/status/2074341658674831473",
+      "note": "auto-skip AI: influencer travel fluff, no architecture"
     }
   ]
 }

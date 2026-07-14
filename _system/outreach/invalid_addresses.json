@@ -107,6 +107,15 @@
       "last_bounced_at": "2026-07-12T11:35:19+00:00",
       "bounce_count": 1,
       "reason": "opt-out esplicito 2026-07-10: reply 'Not interested. Please remove us from your mailing list.' (Kiyan Gerami, Gerami Architectural Corporation) — NON ricontattare"
+    },
+    "feedback@dwell.com": {
+      "first_bounced_at": "2026-07-13T06:20:49+00:00",
+      "bounce_count": 1,
+      "source_threads": [
+        "19f5a22a6271661d"
+      ],
+      "last_bounced_at": "2026-07-13T06:20:49+00:00",
+      "reason": "550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For mo"
     }
   }
 }

@@ -1,0 +1,217 @@
+{
+  "date": "2026-07-14",
+  "generated_at": "2026-07-14T08:12:40.105056",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Los Angeles residential architecture",
+      "title": "@archistar1: Author: @archistar1 | Text: Nordlinger House II, 1957\nBel Air, Los Angeles, Cali...",
+      "url": "https://x.com/archistar1/status/2076661666121433399",
+      "snippet": "Author: @archistar1 | Text: Nordlinger House II, 1957\nBel Air, Los Angeles, California 🇺🇸 USA\n#architects Jones e Emmons \nMid-Century Modern \n#architecture | URL: https://x.com/archistar1/status/2076661666121433399 | Date: 2026-07-13 | Likes: 8 | Retweets: 1 | Replies: 0 | Views: 236 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-13",
+      "author": "@archistar1",
+      "engagement": {
+        "score": 10,
+        "likes": 8,
+        "retweets": 1,
+        "replies": 0,
+        "views": 236,
+        "author_followers": 0,
+        "virality_score": 20
+      },
+      "_strategy_tier": 2,
+      "_strategy_priority": 2,
+      "preliminary_score": 8,
+      "ai_score": 20,
+      "ai_scores": {
+        "relevance": 5,
+        "recency": 5,
+        "engagement": 1,
+        "audience_fit": 4,
+        "dialogue": 5
+      },
+      "action_type": "qualified",
+      "summary": "X post highlighting Nordlinger House II (1957) in Bel Air by mid-century architects Jones and Emmons.",
+      "engagement_angle": "Join the thread with a POV on mid-century Bel Air modernism's influence on today's concrete villa typology and proportion.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "Jones & Emmons at their best — that clean post-and-beam rhythm and the way it sits into the Bel Air hillside is timeless. Lovely to see it shared.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 146,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "Bel Air mid-century architecture post"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "living in Malibu California",
+      "title": "@sothebysrealty: Author: @sothebysrealty | Text: Front-row on the Malibu coast, this mid-century...",
+      "url": "https://x.com/sothebysrealty/status/2075226789002019162",
+      "snippet": "Author: @sothebysrealty | Text: Front-row on the Malibu coast, this mid-century home pairs architectural minimalism with oceanfront living, where a terracotta courtyard leads to sand, surf, and horizon views. \n\nExtraordinary property of the day. https://www.sothebysrealty.com/eng/sales/detail/180-l-1187-cvddpb/27314-pacific-coast-highway-central-malibu-malibu-ca-90265\n\n📹: niceplacela | URL: https://x.com/sothebysrealty/status/2075226789002019162 | Date: 2026-07-09 | Likes: 16 | Retweets: 5 | Rep",
+      "publication": "X/Twitter",
+      "date": "2026-07-09",
+      "author": "@sothebysrealty",
+      "engagement": {
+        "score": 46,
+        "likes": 16,
+        "retweets": 5,
+        "replies": 4,
+        "views": 711,
+        "author_followers": 0,
+        "virality_score": 15
+      },
+      "_strategy_tier": 1,
+      "_strategy_priority": 2,
+      "preliminary_score": 10,
+      "ai_score": 21,
+      "ai_scores": {
+        "relevance": 5,
+        "recency": 3,
+        "engagement": 4,
+        "audience_fit": 5,
+        "dialogue": 4
+      },
+      "action_type": "qualified",
+      "summary": "Sotheby's International Realty listing for a front-row Malibu mid-century home combining architectural minimalism with a terracotta courtyard.",
+      "engagement_angle": "Comment on how the terracotta-courtyard/ocean transition echoes Mediterranean villa proportion and light—an ideal cross-post moment for design POV plus material commentary.",
+      "cluster_suggested": "italian_mediterranean_villa",
+      "author_name": "",
+      "viral_reply": {
+        "body": "Front-row PCH with a terracotta courtyard opening straight to the sand — that mid-century restraint really lets the horizon do the work. Beautiful listing.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 155,
+        "tone": "appreciative",
+        "lead_type": "buyer",
+        "why": "Malibu oceanfront luxury listing"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Los Angeles luxury home market trends",
+      "title": "@j_mann29: Author: @j_mann29 | Text: The Bay Area’s AI wealth boom and limited inventory ar...",
+      "url": "https://x.com/j_mann29/status/2075228325451121148",
+      "snippet": "Author: @j_mann29 | Text: The Bay Area’s AI wealth boom and limited inventory are reshaping how luxury homes are marketed. I analyzed $3M+ deals to see which counties and cities had a greater share of off-market sales than the year prior. https://therealdeal.com/data/san-francisco/2026/san-francisco-leads-bay-area-luxury-private-sales-while-santa-clara-dips/ | URL: https://x.com/j_mann29/status/2075228325451121148 | Date: 2026-07-09 | Likes: 3 | Retweets: 3 | Replies: 0 | Views: 1095 | Author fo",
+      "publication": "X/Twitter",
+      "date": "2026-07-09",
+      "author": "@j_mann29",
+      "engagement": {
+        "score": 9,
+        "likes": 3,
+        "retweets": 3,
+        "replies": 0,
+        "views": 1095,
+        "author_followers": 0,
+        "virality_score": 11
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Great breakdown — the off-market shift tracks with what we see at the top end too. Privacy and speed increasingly outweigh open-market exposure on trophy deals.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 160,
+        "tone": "data-led",
+        "lead_type": "partner",
+        "why": "luxury market-trend analysis, agent audience"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "California home insurance wildfire 2026",
+      "title": "@grok: Author: @grok | Text: Spencer Pratt's Pacific Palisades home was non-renewed by...",
+      "url": "https://x.com/grok/status/2074941693229400576",
+      "snippet": "Author: @grok | Text: Spencer Pratt's Pacific Palisades home was non-renewed by private insurers (Farmers cited) before the 2025 fire due to wildfire risk mapping. They qualified for California's FAIR Plan, the state last-resort insurer. FAIR Plan provides basic fire coverage only (capped ~$3M residential). Their policy paid out around $1M — far short for rebuild costs plus new code requirements like caissons. Insurers pulled back statewide after billions in wildfire losses; Prop 103 rate rules",
+      "publication": "X/Twitter",
+      "date": "2026-07-08",
+      "author": "@grok",
+      "engagement": {
+        "score": 10,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 2,
+        "views": 26,
+        "author_followers": 0,
+        "virality_score": 8
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 1,
+      "preliminary_score": 10,
+      "ai_score": 19,
+      "ai_scores": {
+        "relevance": 5,
+        "recency": 3,
+        "engagement": 4,
+        "audience_fit": 3,
+        "dialogue": 4
+      },
+      "action_type": "qualified",
+      "summary": "Grok post noting Spencer Pratt's Pacific Palisades home was non-renewed by private insurers before the 2025 fire, later covered by the FAIR Plan.",
+      "engagement_angle": "Strong luxury+insurance crossover — use to make the case for reinforced-concrete, IBHS-certified builds as the path to staying insurable in high-value fire zones.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "This is the rebuild math in a nutshell — FAIR Plan caps leave a huge gap once code upgrades like caissons hit. Non-combustible assemblies are one of the few levers on underwriting.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 180,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "Palisades rebuild / insurability discussion"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "FAIR Plan California homeowner",
+      "title": "@10News: Author: @10News | Text: A Vista homeowner's insurance premium jumped from $900 t...",
+      "url": "https://x.com/10News/status/2072840367834030175",
+      "snippet": "Author: @10News | Text: A Vista homeowner's insurance premium jumped from $900 to $4,000 after being dropped by Farmer's Insurance and placed on California's FAIR Plan — with another rate hike of up to 50% expected in October. | URL: https://x.com/10News/status/2072840367834030175 | Date: 2026-07-03 | Likes: 59 | Retweets: 22 | Replies: 35 | Views: 12932 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-03",
+      "author": "@10News",
+      "engagement": {
+        "score": 278,
+        "likes": 59,
+        "retweets": 22,
+        "replies": 35,
+        "views": 12932,
+        "author_followers": 0,
+        "virality_score": 6
+      },
+      "_strategy_tier": 6,
+      "_strategy_priority": 1,
+      "preliminary_score": 13,
+      "ai_score": 13,
+      "ai_scores": {
+        "relevance": 3,
+        "recency": 1,
+        "engagement": 3,
+        "audience_fit": 2,
+        "dialogue": 4
+      },
+      "action_type": "watchlist",
+      "summary": "Vista homeowner's insurance premium quadrupled after being dropped by Farmers and placed on California's FAIR Plan.",
+      "engagement_angle": "Monitor for reform/rate developments; could anchor a piece on insurability advantages of fire-resilient concrete construction.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "These jumps are the new baseline as carriers reprice risk. Worth noting verified non-combustible construction is one of the few factors that measurably moves underwriting the other way.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 185,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "insurance-cost policy thread"
+      }
+    }
+  ]
+}

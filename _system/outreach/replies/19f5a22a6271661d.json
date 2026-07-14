@@ -1,0 +1,31 @@
+{
+  "thread_id": "19f5a22a6271661d",
+  "outreach_message_id": "19f5a22a6271661d",
+  "outreach_subject": "A note on the Dean House concrete and glass",
+  "outreach_to": "feedback@dwell.com",
+  "outreach_sent_at": "2026-07-13T06:20:47+00:00",
+  "replies": [
+    {
+      "thread_id": "19f5a22a6271661d",
+      "gmail_message_id": "19f5a22ad339b22d",
+      "rfc822_message_id": "<6a5483c1.bb11f1ce.25ff31.c6d4.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a feedback@dwell.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\nUlteriori informazioni: https://support.google.com/mail/?p=NoSuchUser\r\n\r\nRisposta:\r\n\r\n550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For more information, go to https://support.google.com/mail/?p=NoSuchUser 98e67ed59e1d1-381296f9c6csor31489458a91.6 - gsmtp",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a feedback@dwell.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. ULTERIORI INFORMAZIONI Risposta: 550 5.1.1 The",
+      "received_at": "2026-07-13T06:20:49+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "19f5a22a6271661d",
+      "outreach_subject": "A note on the Dean House concrete and glass",
+      "outreach_to": "feedback@dwell.com",
+      "outreach_sent_at": "2026-07-13T06:20:47+00:00"
+    }
+  ],
+  "last_checked_at": "2026-07-14T06:15:16+00:00"
+}

@@ -991,5 +991,13 @@
   "abc7news.com": {
     "cached_at": 1783923536.334217,
     "result": null
+  },
+  "vanityfair.com": {
+    "cached_at": 1784009661.9248657,
+    "result": null
+  },
+  "co.uk": {
+    "cached_at": 1784009666.317162,
+    "result": null
   }
 }
