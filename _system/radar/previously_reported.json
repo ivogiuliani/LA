@@ -3728,6 +3728,56 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/aerockrose/status/2076215046385143873",
       "note": "auto-published journal: wildfire-insurance-configuration-trap-california"
+    },
+    {
+      "date_first_reported": "2026-07-15",
+      "source": "user_dismissed",
+      "title": "A Brutalist Marseille Villa Takes Inspiration from Formula 1 and Brazilian Moder",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/a-brutalist-marseille-villa-takes-inspiration-from-formula-1-and-brazilian-modernism",
+      "note": "auto-sent pitch to queued:annabelle.dufraigne@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-07-15",
+      "source": "user_dismissed",
+      "title": "This $11.5 Million St. Regis Penthouse Combines Sleek Italian Design With Sweepi",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/st-regis-penthouse-chicago-1238462387/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-07-15",
+      "source": "user_dismissed",
+      "title": "The Superrich Aren’t Just Buying Mansions—They Want the Entire Block | Hindustan",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hindustantimes.com/world-news/us-news/the-superrich-aren-t-just-buying-mansions-they-want-the-entire-block-101784023207983.html",
+      "note": "auto-sent pitch to eb.solomont@wsj.com"
+    },
+    {
+      "date_first_reported": "2026-07-15",
+      "source": "user_dismissed",
+      "title": "Can a Bernie-Backed Populist Fix California’s Home Insurance Crisis? | Washingto",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://washingtonmonthly.com/2026/07/13/jane-kim-california-home-insurance-crisis/",
+      "note": "auto-sent pitch to queued:kainoa.lowman@washingtonmonthly.com"
+    },
+    {
+      "date_first_reported": "2026-07-15",
+      "source": "user_dismissed",
+      "title": "The Hidden History of Dodi al-Fayed’s Malibu Mansion, From Julie Andrews to Prin",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.elledecor.com/celebrity-style/celebrity-homes/a71921735/dodi-al-fayed-princess-diana-malibu-house/",
+      "note": "auto-sent pitch to staff@elledecor.com"
     }
   ],
   "reported": [
