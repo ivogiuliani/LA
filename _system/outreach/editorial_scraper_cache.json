@@ -999,5 +999,39 @@
   "co.uk": {
     "cached_at": 1784009666.317162,
     "result": null
+  },
+  "architecturalrecord.com": {
+    "cached_at": 1784096126.79859,
+    "result": null
+  },
+  "hindustantimes.com": {
+    "cached_at": 1784096127.5714717,
+    "result": {
+      "email": "editorial@hindustantimes.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 18,
+      "in_mailto": true
+    }
+  },
+  "washingtonmonthly.com": {
+    "cached_at": 1784096148.7558603,
+    "result": {
+      "email": "editors@washingtonmonthly.com",
+      "source": "about_page",
+      "path": "/about",
+      "score": 7,
+      "in_mailto": true
+    }
+  },
+  "elledecor.com": {
+    "cached_at": 1784096154.454342,
+    "result": {
+      "email": "staff@elledecor.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 2,
+      "in_mailto": false
+    }
   }
 }

@@ -1,0 +1,215 @@
+{
+  "date": "2026-07-15",
+  "generated_at": "2026-07-15T08:13:34.727130",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "interior design luxury home Los Angeles",
+      "title": "@artndesign823: Author: @artndesign823 | Text: The architectural masterpiece that is The Broad M...",
+      "url": "https://x.com/artndesign823/status/2075642627144511719",
+      "snippet": "Author: @artndesign823 | Text: The architectural masterpiece that is The Broad Museum in Los Angeles ✨\n\nDesigned by Diller Scofidio + Renfro, this iconic building showcases the innovative ‘veil and vault’ concept. A massive concrete vault serves as a secure space for art storage, while a stunning porous honeycomb ‘veil’ made of 2,500 fiberglass-reinforced concrete panels envelops it. This veil filters beautiful natural light into column-free galleries, creating a dramatic and glowing exterior.",
+      "publication": "X/Twitter",
+      "date": "2026-07-10",
+      "author": "@artndesign823",
+      "engagement": {
+        "score": 46,
+        "likes": 10,
+        "retweets": 3,
+        "replies": 6,
+        "views": 688,
+        "author_followers": 0,
+        "virality_score": 15
+      },
+      "_strategy_tier": 5,
+      "_strategy_priority": 1,
+      "preliminary_score": 10,
+      "ai_score": 19,
+      "ai_scores": {
+        "relevance": 5,
+        "recency": 3,
+        "engagement": 2,
+        "audience_fit": 4,
+        "dialogue": 5
+      },
+      "action_type": "qualified",
+      "summary": "X post celebrating The Broad Museum's Diller Scofidio + Renfro 'veil and vault' architecture.",
+      "engagement_angle": "Prime design-dialogue opening — comment on the veil-and-vault concept's relevance to concrete massing and light control in villa design.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "The veil-and-vault is such a smart move — 2,500 fiberglass-reinforced concrete panels doing structure and daylight at once. That column-free glow never gets old.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 161,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "LA concrete architecture landmark"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Los Angeles luxury home market trends",
+      "title": "@j_mann29: Author: @j_mann29 | Text: The Bay Area’s AI wealth boom and limited inventory ar...",
+      "url": "https://x.com/j_mann29/status/2075228325451121148",
+      "snippet": "Author: @j_mann29 | Text: The Bay Area’s AI wealth boom and limited inventory are reshaping how luxury homes are marketed. I analyzed $3M+ deals to see which counties and cities had a greater share of off-market sales than the year prior. https://therealdeal.com/data/san-francisco/2026/san-francisco-leads-bay-area-luxury-private-sales-while-santa-clara-dips/ | URL: https://x.com/j_mann29/status/2075228325451121148 | Date: 2026-07-09 | Likes: 3 | Retweets: 3 | Replies: 0 | Views: 1099 | Author fo",
+      "publication": "X/Twitter",
+      "date": "2026-07-09",
+      "author": "@j_mann29",
+      "engagement": {
+        "score": 9,
+        "likes": 3,
+        "retweets": 3,
+        "replies": 0,
+        "views": 1099,
+        "author_followers": 0,
+        "virality_score": 11
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Great cut of the data — the off-market share shift says a lot about how discreetly the top tier trades now. Curious if you're seeing the same pattern take hold in SoCal luxury.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 176,
+        "tone": "data-led",
+        "lead_type": "partner",
+        "why": "luxury market analyst, agent audience"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "minimalist house architecture design",
+      "title": "@archiscan: Author: @archiscan | Text: Clean lines, warm wood tones, and an effortless flow...",
+      "url": "https://x.com/archiscan/status/2074847031479439406",
+      "snippet": "Author: @archiscan | Text: Clean lines, warm wood tones, and an effortless flow into nature. This compact home design is a masterclass in minimalism. That central island and seamless deck access are beautiful. 🏠\n\nArchitect: Frank\n#concept #design | URL: https://x.com/archiscan/status/2074847031479439406 | Date: 2026-07-08 | Likes: 168 | Retweets: 21 | Replies: 0 | Views: 6224 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-08",
+      "author": "@archiscan",
+      "engagement": {
+        "score": 210,
+        "likes": 168,
+        "retweets": 21,
+        "replies": 0,
+        "views": 6224,
+        "author_followers": 0,
+        "virality_score": 6
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 8,
+      "ai_score": 18,
+      "ai_scores": {
+        "relevance": 5,
+        "recency": 3,
+        "engagement": 2,
+        "audience_fit": 3,
+        "dialogue": 5
+      },
+      "action_type": "qualified",
+      "summary": "X design account highlights a minimalist compact home with clean lines and seamless indoor-outdoor flow.",
+      "engagement_angle": "Good dialogue opening: respond with a point of view on proportion, material warmth, and light in minimalist residential design.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "That central island anchoring the plan and the deck flowing straight into the landscape — really clean spatial logic. Lovely restraint.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 135,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "minimalist design fan post"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "FAIR Plan California homeowner",
+      "title": "@grok: Author: @grok | Text: Spencer Pratt's Pacific Palisades home was non-renewed by...",
+      "url": "https://x.com/grok/status/2074941693229400576",
+      "snippet": "Author: @grok | Text: Spencer Pratt's Pacific Palisades home was non-renewed by private insurers (Farmers cited) before the 2025 fire due to wildfire risk mapping. They qualified for California's FAIR Plan, the state last-resort insurer. FAIR Plan provides basic fire coverage only (capped ~$3M residential). Their policy paid out around $1M — far short for rebuild costs plus new code requirements like caissons. Insurers pulled back statewide after billions in wildfire losses; Prop 103 rate rules",
+      "publication": "X/Twitter",
+      "date": "2026-07-08",
+      "author": "@grok",
+      "engagement": {
+        "score": 10,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 2,
+        "views": 26,
+        "author_followers": 0,
+        "virality_score": 2
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 1,
+      "preliminary_score": 10,
+      "ai_score": 20,
+      "ai_scores": {
+        "relevance": 4,
+        "recency": 5,
+        "engagement": 4,
+        "audience_fit": 3,
+        "dialogue": 4
+      },
+      "action_type": "qualified",
+      "summary": "Grok post recounts Spencer Pratt's Palisades home being non-renewed by private insurers before the 2025 fire, later on FAIR Plan.",
+      "engagement_angle": "High-profile case study: architect's take on why insurability now dictates design/material choices for high-value LA homes.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "This is the rebuild math in a nutshell — FAIR Plan caps rarely cover new code like caissons. Non-combustible assemblies and cleaner underwriting are a real lever on the shortfall.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 179,
+        "tone": "data-led",
+        "lead_type": "buyer",
+        "why": "Palisades rebuild insurability discussion"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "reinforced concrete home California",
+      "title": "@Debi_Calvet: Author: @Debi_Calvet | Text: When we went under contract for our Florida home, w...",
+      "url": "https://x.com/Debi_Calvet/status/1881879397986431135",
+      "snippet": "Author: @Debi_Calvet | Text: When we went under contract for our Florida home, we had no idea of the state’s strict construction rules. Photos of our exterior walls in reinforced concrete-block masonry stunned us. My native California, which we left last May, could learn so much from Florida. | URL: https://x.com/Debi_Calvet/status/1881879397986431135 | Date: 2025-01-22 | Likes: 9 | Retweets: 0 | Replies: 0 | Views: 142 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2025-01-22",
+      "author": "@Debi_Calvet",
+      "engagement": {
+        "score": 9,
+        "likes": 9,
+        "retweets": 0,
+        "replies": 0,
+        "views": 142,
+        "author_followers": 0,
+        "virality_score": 2
+      },
+      "_strategy_tier": 6,
+      "_strategy_priority": 1,
+      "preliminary_score": 10,
+      "ai_score": 9,
+      "ai_scores": {
+        "relevance": 2,
+        "recency": 1,
+        "engagement": 1,
+        "audience_fit": 2,
+        "dialogue": 2
+      },
+      "action_type": "skip",
+      "summary": "X user recounts strict Florida reinforced concrete-block masonry code requirements for a home purchase.",
+      "engagement_angle": "Off-market (FL not CA) and stale; low relevance to LA luxury design conversation.",
+      "viral_reply": {
+        "body": "Florida's masonry standards really are eye-opening. California's fire exposure makes the same case for non-combustible, reinforced assemblies — the insurability math backs it up too.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 182,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "concrete-masonry vs CA code discussion"
+      }
+    }
+  ]
+}

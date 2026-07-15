@@ -3718,6 +3718,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.hoog.design/en/look-inside/modern-villa-garden-layered-planting-lighting",
       "note": "auto-sent pitch to info@hoog.design"
+    },
+    {
+      "date_first_reported": "2026-07-15",
+      "source": "user_dismissed",
+      "title": "Zurich Insurance CEO Mario Greco on the 'configuration trap' behind wildfire insurance",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/aerockrose/status/2076215046385143873",
+      "note": "auto-published journal: wildfire-insurance-configuration-trap-california"
     }
   ],
   "reported": [
@@ -5110,6 +5120,36 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/flus_corner/status/2074341658674831473",
       "note": "auto-skip AI: influencer travel fluff, no architecture"
+    },
+    {
+      "date_first_reported": "2026-07-15",
+      "source": "ai_skip",
+      "title": "@SinaiLawFirm: Author: @SinaiLawFirm | Text: A few months ago I heard about bill gates daughter...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/SinaiLawFirm/status/2075675958309433495",
+      "note": "auto-skip AI: off-topic drama, no architecture or luxury substance"
+    },
+    {
+      "date_first_reported": "2026-07-15",
+      "source": "ai_skip",
+      "title": "@ArtOfMusic_: Author: @ArtOfMusic_ | Text: Malibu, California resident has a confrontation wit...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/ArtOfMusic_/status/2075266076267753721",
+      "note": "auto-skip AI: drama clip, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-15",
+      "source": "ai_skip",
+      "title": "@CeiliGee: Author: @CeiliGee | Text: For the families and residents of Western North Caroli...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/CeiliGee/status/2075772576668758335",
+      "note": "auto-skip AI: politics/rage, not a design or market discussion"
     }
   ]
 }
