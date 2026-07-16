@@ -3778,6 +3778,66 @@
       "action_type": "user_dismissed",
       "url": "https://www.elledecor.com/celebrity-style/celebrity-homes/a71921735/dodi-al-fayed-princess-diana-malibu-house/",
       "note": "auto-sent pitch to staff@elledecor.com"
+    },
+    {
+      "date_first_reported": "2026-07-16",
+      "source": "user_dismissed",
+      "title": "Dezeen | architecture and design magazine",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dezeen.com/",
+      "note": "auto-sent pitch to queued:josh.niland@dezeen.com"
+    },
+    {
+      "date_first_reported": "2026-07-16",
+      "source": "user_dismissed",
+      "title": "A latrine at Hadrian’s Villa shows how Roman concrete survived for 2,000 years |",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://archaeologymag.com/2026/07/hadrians-villa-roman-concrete-survived/",
+      "note": "auto-sent pitch to ninfo@archaeologymag.com"
+    },
+    {
+      "date_first_reported": "2026-07-16",
+      "source": "user_dismissed",
+      "title": "Jennifer Lopez Is Struggling to Sell Her $50 Million Beverly Hills Mansion",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/jennifer-lopez-house-beverly-hills-1238465602/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-07-16",
+      "source": "user_dismissed",
+      "title": "Jennifer Aniston has turned her Montecito mansion into a home: Property once own",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dailymail.com/tvshowbiz/article-15977861/jennifer-aniston-montecito-mansion-renovation.html",
+      "note": "auto-sent pitch to queued:christine.rendón@dailymail.com"
+    },
+    {
+      "date_first_reported": "2026-07-16",
+      "source": "user_dismissed",
+      "title": "Architecture news and projects | Dezeen",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dezeen.com/architecture/",
+      "note": "auto-sent pitch to editorial@dezeen.com"
+    },
+    {
+      "date_first_reported": "2026-07-16",
+      "source": "user_dismissed",
+      "title": "This Australian House Blends Concrete, Timber and Ocean Views",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.contemporist.com/this-australian-house-blends-concrete-timber-and-ocean-views/",
+      "note": "auto-sent pitch to erin@contemporist.com"
     }
   ],
   "reported": [

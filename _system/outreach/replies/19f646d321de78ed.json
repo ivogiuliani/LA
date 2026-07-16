@@ -1,0 +1,31 @@
+{
+  "thread_id": "19f646d321de78ed",
+  "outreach_message_id": "19f646d321de78ed",
+  "outreach_subject": "One thought on your Malibu mansion history piece",
+  "outreach_to": "staff@elledecor.com",
+  "outreach_sent_at": "2026-07-15T06:18:25+00:00",
+  "replies": [
+    {
+      "thread_id": "19f646d321de78ed",
+      "gmail_message_id": "19f646d3e96fbf58",
+      "rfc822_message_id": "<6a572634.d821a1b4.3203b4.2b14.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a staff@elledecor.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\nUlteriori informazioni: https://aka.ms/EXOSmtpErrors\r\n(attenzione: questo link indirizza a un sito di terze parti)\r\n\r\nLa risposta del server remoto è:\r\n550 5.4.1 Recipient address rejected: Access denied. For more information see https://aka.ms/EXOSmtpErrors [SA2PEPF00001506.namprd04.prod.outlook.com 2026-07-15T06:18:28.295Z 08DEDFF6AF7C1DD6]",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a staff@elledecor.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. ULTERIORI INFORMAZIONI Questo link ti",
+      "received_at": "2026-07-15T06:18:28+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "19f646d321de78ed",
+      "outreach_subject": "One thought on your Malibu mansion history piece",
+      "outreach_to": "staff@elledecor.com",
+      "outreach_sent_at": "2026-07-15T06:18:25+00:00"
+    }
+  ],
+  "last_checked_at": "2026-07-16T06:17:11+00:00"
+}

@@ -93,7 +93,7 @@
     }
   },
   "architecturaldigest.com": {
-    "cached_at": 1783577639.651131,
+    "cached_at": 1784182589.1184845,
     "result": null
   },
   "dig-in.com": {
@@ -849,8 +849,14 @@
     }
   },
   "dailymail.com": {
-    "cached_at": 1783577756.3052988,
-    "result": null
+    "cached_at": 1784182572.6206002,
+    "result": {
+      "email": "tips@dailymail.com",
+      "source": "article_scraped",
+      "path": "/tvshowbiz/article-15977861/jennifer-aniston-montecito-mansion-renovation.html",
+      "score": 20,
+      "in_mailto": true
+    }
   },
   "helencummins.com": {
     "cached_at": 1783577773.6675544,
@@ -1030,6 +1036,26 @@
       "email": "staff@elledecor.com",
       "source": "contact_page",
       "path": "/contact-us",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "archaeologymag.com": {
+    "cached_at": 1784182571.897072,
+    "result": {
+      "email": "ninfo@archaeologymag.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "contemporist.com": {
+    "cached_at": 1784182577.0060482,
+    "result": {
+      "email": "erin@contemporist.com",
+      "source": "contact_page",
+      "path": "/contact",
       "score": 2,
       "in_mailto": false
     }
