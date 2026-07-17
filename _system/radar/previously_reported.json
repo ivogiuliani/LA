@@ -3848,6 +3848,16 @@
       "action_type": "user_dismissed",
       "url": "https://therealdeal.com/la/2026/07/15/aman-beverly-hills-condo-to-break-california-price-record/",
       "note": "auto-published journal: beverly-hills-luxury-condo-record-200m-aman-penthouse"
+    },
+    {
+      "date_first_reported": "2026-07-17",
+      "source": "user_dismissed",
+      "title": "California Rivals Have Starkly Different Plans to Remake Home Insurance",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/news/west/2026/07/17/877855.htm",
+      "note": "auto-sent pitch to lkaufman27@bloomberg.net"
     }
   ],
   "reported": [
