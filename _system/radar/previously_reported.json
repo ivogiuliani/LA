@@ -3838,6 +3838,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.contemporist.com/this-australian-house-blends-concrete-timber-and-ocean-views/",
       "note": "auto-sent pitch to erin@contemporist.com"
+    },
+    {
+      "date_first_reported": "2026-07-17",
+      "source": "user_dismissed",
+      "title": "$200M Aman Beverly Hills penthouse poised to shatter Cali price record",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2026/07/15/aman-beverly-hills-condo-to-break-california-price-record/",
+      "note": "auto-published journal: beverly-hills-luxury-condo-record-200m-aman-penthouse"
     }
   ],
   "reported": [

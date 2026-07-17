@@ -1,0 +1,33 @@
+{
+  "thread_id": "19f699295c3b13e6",
+  "outreach_message_id": "19f699295c3b13e6",
+  "outreach_subject": "The Roman concrete lineage in your Hadrian's Villa piece",
+  "outreach_to": "ninfo@archaeologymag.com",
+  "outreach_sent_at": "2026-07-16T06:17:21+00:00",
+  "replies": [
+    {
+      "thread_id": "19f699295c3b13e6",
+      "gmail_message_id": "19f6992a0a6a16bc",
+      "rfc822_message_id": "<6a587774.4f705d87.35d3c6.4c27.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a ninfo@archaeologymag.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\n\r\n\r\nLa risposta del server remoto è:\r\n550 5.1.1 <ninfo@archaeologymag.com>: Recipient address rejected: User unknown",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a ninfo@archaeologymag.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. La risposta del server remoto è: 550 5.1.1",
+      "received_at": "2026-07-16T06:17:24+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "UNREAD",
+        "IMPORTANT",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "19f699295c3b13e6",
+      "outreach_subject": "The Roman concrete lineage in your Hadrian's Villa piece",
+      "outreach_to": "ninfo@archaeologymag.com",
+      "outreach_sent_at": "2026-07-16T06:17:21+00:00"
+    }
+  ],
+  "last_checked_at": "2026-07-17T06:12:05+00:00"
+}

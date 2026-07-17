@@ -1,0 +1,126 @@
+{
+  "date": "2026-07-17",
+  "generated_at": "2026-07-17T08:09:53.198420",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "interior design luxury home Los Angeles",
+      "title": "@artndesign823: Author: @artndesign823 | Text: Cloudy & windy day at Manhattan Beach Pier in Los...",
+      "url": "https://x.com/artndesign823/status/2077801032277721557",
+      "snippet": "Author: @artndesign823 | Text: Cloudy & windy day at Manhattan Beach Pier in Los Angeles 🌊✨ \n\nTurned the moody ocean vibes into this serene modern living room. \n\nCool grays, flowing textures & coastal calm.\n\nWould you live here?\n\n#InteriorDesign #CoastalDecor #ModernHome #ArtNDesignByLily | URL: https://x.com/artndesign823/status/2077801032277721557 | Date: 2026-07-16 | Likes: 6 | Retweets: 2 | Replies: 1 | Views: 156 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-16",
+      "author": "@artndesign823",
+      "engagement": {
+        "score": 15,
+        "likes": 6,
+        "retweets": 2,
+        "replies": 1,
+        "views": 156,
+        "author_followers": 0,
+        "virality_score": 22
+      },
+      "_strategy_tier": 5,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Those cool grays and layered textures really capture that moody coastal calm — the palette does a lot of quiet work here. Serene.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 129,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "Coastal interior design, on-brand theme"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "home insurance non-renewal California fire",
+      "title": "@NativeOK149154: Author: @NativeOK149154 | Text: Their homeowners insurance was cancelled (all of...",
+      "url": "https://x.com/NativeOK149154/status/2063338764512968981",
+      "snippet": "Author: @NativeOK149154 | Text: Their homeowners insurance was cancelled (all of the Palisades) due to ‘fire risk’. He did get state-Cal Plan insurance. Because in California, every single thing is subject to fraud, there has not been a payout to rebuild. Also, the corrupt politicians stole $100 million dollars of the Fire Aid fundraiser. How do I know more than you? Please don’t go off half-cocked on X, unless you know what you’re talking about. It’s a bad look. | URL: https://x.com/NativeOK149",
+      "publication": "X/Twitter",
+      "date": "2026-06-06",
+      "author": "@NativeOK149154",
+      "engagement": {
+        "score": 7,
+        "likes": 7,
+        "retweets": 0,
+        "replies": 0,
+        "views": 1420,
+        "author_followers": 0,
+        "virality_score": 3
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 1,
+      "preliminary_score": 10,
+      "ai_score": 9,
+      "ai_scores": {
+        "relevance": 2,
+        "recency": 1,
+        "engagement": 2,
+        "audience_fit": 2,
+        "dialogue": 2
+      },
+      "action_type": "skip",
+      "summary": "Anecdote about Palisades homeowner insurance cancellation and shift to state Fair Plan.",
+      "engagement_angle": "Pure rebuild/insurance anecdote with no design or luxury hook; capped per bias rule.",
+      "viral_reply": {
+        "body": "The Cal FAIR Plan bottleneck is real. One lever that shifts underwriting: non-combustible assemblies and verified WPH Plus hardening measurably lower assessed risk.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 164,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "Palisades insurance/fire-risk discussion"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "home insurance non-renewal California fire",
+      "title": "@QueenEmyB1: Author: @QueenEmyB1 | Text: This will be all suburbs. They want single family ho...",
+      "url": "https://x.com/QueenEmyB1/status/2064041761983631839",
+      "snippet": "Author: @QueenEmyB1 | Text: This will be all suburbs. They want single family homes gone. We are all targets. Our homeowners insurance cancelled us (no claims) effective 6/2. The only fire insurance for CA is the state insurance, the CA Fair Plan. It’s expensive. But we had no choice. | URL: https://x.com/QueenEmyB1/status/2064041761983631839 | Date: 2026-06-08 | Likes: 12 | Retweets: 1 | Replies: 3 | Views: 528 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-06-08",
+      "author": "@QueenEmyB1",
+      "engagement": {
+        "score": 29,
+        "likes": 12,
+        "retweets": 1,
+        "replies": 3,
+        "views": 528,
+        "author_followers": 0,
+        "virality_score": 3
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 1,
+      "preliminary_score": 9,
+      "ai_score": 8,
+      "ai_scores": {
+        "relevance": 1,
+        "recency": 1,
+        "engagement": 2,
+        "audience_fit": 2,
+        "dialogue": 2
+      },
+      "action_type": "skip",
+      "summary": "General complaint about suburban homeowners insurance cancellations, no claims involved.",
+      "engagement_angle": "Generic grievance thread; low relevance to design/insurability narrative, skip.",
+      "viral_reply": {
+        "body": "The non-renewal wave is brutal. Worth noting insurers weigh construction type — non-combustible, fire-resilient builds tend to underwrite better than the market average right now.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 179,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "General CA insurance-cancellation thread"
+      }
+    }
+  ]
+}

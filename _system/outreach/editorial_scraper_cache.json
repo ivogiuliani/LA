@@ -799,7 +799,7 @@
     "result": null
   },
   "mansionglobal.com": {
-    "cached_at": 1783497614.9324288,
+    "cached_at": 1784268681.7309747,
     "result": null
   },
   "admiddleeast.com": {
@@ -1059,5 +1059,9 @@
       "score": 2,
       "in_mailto": false
     }
+  },
+  "luxurylaunches.com": {
+    "cached_at": 1784268663.2213032,
+    "result": null
   }
 }

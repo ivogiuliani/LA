@@ -125,6 +125,15 @@
       ],
       "last_bounced_at": "2026-07-15T06:18:28+00:00",
       "reason": "550 5.4.1 Recipient address rejected: Access denied. For more information see https://aka.ms/EXOSmtpErrors [SA2PEPF00001506.namprd04.prod.outlook.com 2026-07-15T06:"
+    },
+    "ninfo@archaeologymag.com": {
+      "first_bounced_at": "2026-07-16T06:17:24+00:00",
+      "bounce_count": 1,
+      "source_threads": [
+        "19f699295c3b13e6"
+      ],
+      "last_bounced_at": "2026-07-16T06:17:24+00:00",
+      "reason": "550 5.1.1 <ninfo@archaeologymag.com>: Recipient address rejected: User unknown"
     }
   }
 }
