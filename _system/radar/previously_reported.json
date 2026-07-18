@@ -3858,6 +3858,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.insurancejournal.com/news/west/2026/07/17/877855.htm",
       "note": "auto-sent pitch to lkaufman27@bloomberg.net"
+    },
+    {
+      "date_first_reported": "2026-07-18",
+      "source": "user_dismissed",
+      "title": "A Circular House in Malibu With Mountain and Ocean Views Lists for $5 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/malibu-water-tower-house-for-sale-1238472357/",
+      "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
     }
   ],
   "reported": [
@@ -5280,6 +5290,26 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/CeiliGee/status/2075772576668758335",
       "note": "auto-skip AI: politics/rage, not a design or market discussion"
+    },
+    {
+      "date_first_reported": "2026-07-18",
+      "source": "ai_skip",
+      "title": "@kendallsjbrs: Author: @kendallsjbrs | Text: NEW | Kendall Jenner and Jacob Elordi spotted this...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/kendallsjbrs/status/2078252434976014437",
+      "note": "auto-skip AI: celebrity gossip, no design/buyer substance"
+    },
+    {
+      "date_first_reported": "2026-07-18",
+      "source": "ai_skip",
+      "title": "@freeboostpromo: Author: @freeboostpromo | Text: A gorgeous Malibu estate, a dangerous mystery, a...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/freeboostpromo/status/2077746572830326960",
+      "note": "auto-skip AI: book ad, off-topic"
     }
   ]
 }

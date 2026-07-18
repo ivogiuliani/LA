@@ -1,0 +1,170 @@
+{
+  "date": "2026-07-18",
+  "generated_at": "2026-07-18T08:09:24.677203",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "home insurance non-renewal California fire",
+      "title": "@ChopraUSA: Author: @ChopraUSA | Text: Many homeowners working to rebuild from the LA fires...",
+      "url": "https://x.com/ChopraUSA/status/2077795900513247650",
+      "snippet": "Author: @ChopraUSA | Text: Many homeowners working to rebuild from the LA fires have been unable to access their insurance funds, since their payment gets held up by their mortgage company. California is warning mortgage companies to end improper withholding of funds for rebuilding. | URL: https://x.com/ChopraUSA/status/2077795900513247650 | Date: 2026-07-16 | Likes: 49 | Retweets: 18 | Replies: 12 | Views: 8153 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-16",
+      "author": "@ChopraUSA",
+      "engagement": {
+        "score": 145,
+        "likes": 49,
+        "retweets": 18,
+        "replies": 12,
+        "views": 8153,
+        "author_followers": 0,
+        "virality_score": 31
+      },
+      "_strategy_tier": 5,
+      "_strategy_priority": 1,
+      "preliminary_score": 11,
+      "ai_score": 14,
+      "ai_scores": {
+        "relevance": 1,
+        "recency": 5,
+        "engagement": 3,
+        "audience_fit": 2,
+        "dialogue": 3
+      },
+      "action_type": "watchlist",
+      "summary": "Claim that LA fire rebuild homeowners can't access insurance funds due to mortgage company holdups.",
+      "engagement_angle": "Palisades rebuild-without-design-angle story capped per bias rule; monitor if it develops an insurability/reform hook.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "Good to see pressure on this — cash-flow delays stall so many rebuilds. Non-combustible assemblies also help on the underwriting side once funds finally clear.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 159,
+        "tone": "data-led",
+        "lead_type": "buyer",
+        "why": "LA fire rebuild policy thread"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "interior design luxury home Los Angeles",
+      "title": "@artndesign823: Author: @artndesign823 | Text: A cloudy & windy day at Manhattan Beach Pier in L...",
+      "url": "https://x.com/artndesign823/status/2078183791764689406",
+      "snippet": "Author: @artndesign823 | Text: A cloudy & windy day at Manhattan Beach Pier in Los Angeles!🌊✨ \n\nTransformed the moody ocean vibes into a serene and modern living room. \n\nCool grays, flowing textures, and a sense of coastal tranquility.\n\n#InteriorDesign #ModernHome #CoastalDecor #ArtNDesignByLily | URL: https://x.com/artndesign823/status/2078183791764689406 | Date: 2026-07-17 | Likes: 8 | Retweets: 1 | Replies: 3 | Views: 242 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-17",
+      "author": "@artndesign823",
+      "engagement": {
+        "score": 25,
+        "likes": 8,
+        "retweets": 1,
+        "replies": 3,
+        "views": 242,
+        "author_followers": 0,
+        "virality_score": 26
+      },
+      "_strategy_tier": 5,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Lovely translation of that moody coastline into the room — the cool grays and flowing textures really carry the calm. Nicely done.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 130,
+        "tone": "peer",
+        "lead_type": "partner",
+        "why": "LA interior designer, tiny reach"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Malibu luxury real estate 2026",
+      "title": "@realtordotcom: Author: @realtordotcom | Text: While her California real estate portfolio includ...",
+      "url": "https://x.com/realtordotcom/status/2077147380961448250",
+      "snippet": "Author: @realtordotcom | Text: While her California real estate portfolio includes a $70.4 million Malibu home and a $20 million Hidden Hills estate, Kim Kardashian is making summer memories at her Idaho lake house.\n\nRead: https://www.realtor.com/news/celebrity-real-estate/kim-kardashian-lewis-hamilton-kids-idaho-lake-home-instagram/?CID=soc_twitter_fy27_realtordotcom_social_soc_fy27_consumer | URL: https://x.com/realtordotcom/status/2077147380961448250 | Date: 2026-07-14 | Likes: 4 | Retweets:",
+      "publication": "X/Twitter",
+      "date": "2026-07-14",
+      "author": "@realtordotcom",
+      "engagement": {
+        "score": 6,
+        "likes": 4,
+        "retweets": 1,
+        "replies": 0,
+        "views": 1156,
+        "author_followers": 0,
+        "virality_score": 10
+      },
+      "_strategy_tier": 1,
+      "_strategy_priority": 2,
+      "preliminary_score": 10,
+      "ai_score": 11,
+      "ai_scores": {
+        "relevance": 1,
+        "recency": 3,
+        "engagement": 4,
+        "audience_fit": 2,
+        "dialogue": 1
+      },
+      "action_type": "skip",
+      "summary": "Realtor.com post highlights Kim Kardashian's Malibu and Hidden Hills real estate amid summer travel.",
+      "engagement_angle": "Celebrity real estate mention with no architecture angle; low strategic value.",
+      "viral_reply": {
+        "body": "That Malibu-to-Hidden Hills range is a fascinating spread of California typologies — the trophy market really is its own world.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 127,
+        "tone": "conversational",
+        "lead_type": "buyer",
+        "why": "Malibu/Hidden Hills luxury real estate audience"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "FAIR Plan California homeowner",
+      "title": "@10News: Author: @10News | Text: A Vista homeowner's insurance premium jumped from $900 t...",
+      "url": "https://x.com/10News/status/2072840367834030175",
+      "snippet": "Author: @10News | Text: A Vista homeowner's insurance premium jumped from $900 to $4,000 after being dropped by Farmer's Insurance and placed on California's FAIR Plan — with another rate hike of up to 50% expected in October. | URL: https://x.com/10News/status/2072840367834030175 | Date: 2026-07-03 | Likes: 58 | Retweets: 22 | Replies: 35 | Views: 12941 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-03",
+      "author": "@10News",
+      "engagement": {
+        "score": 277,
+        "likes": 58,
+        "retweets": 22,
+        "replies": 35,
+        "views": 12941,
+        "author_followers": 0,
+        "virality_score": 6
+      },
+      "_strategy_tier": 6,
+      "_strategy_priority": 1,
+      "preliminary_score": 13,
+      "ai_score": 11,
+      "ai_scores": {
+        "relevance": 3,
+        "recency": 1,
+        "engagement": 2,
+        "audience_fit": 2,
+        "dialogue": 3
+      },
+      "action_type": "skip",
+      "summary": "Vista homeowner's insurance premium quadrupled after being dropped and placed on California's FAIR Plan.",
+      "engagement_angle": "Low urgency signal; track if FAIR Plan rate stories spike near wildfire season for reform-angle opportunity.",
+      "viral_reply": {
+        "body": "These jumps are hitting everyone. Worth noting IBHS WPH Plus and non-combustible construction can measurably improve insurability — one of the few real levers homeowners have.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 175,
+        "tone": "data-led",
+        "lead_type": "buyer",
+        "why": "CA insurance/FAIR Plan discussion thread"
+      }
+    }
+  ]
+}
