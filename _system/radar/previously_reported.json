@@ -5310,6 +5310,16 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/freeboostpromo/status/2077746572830326960",
       "note": "auto-skip AI: book ad, off-topic"
+    },
+    {
+      "date_first_reported": "2026-07-19",
+      "source": "ai_skip",
+      "title": "@artndesign823: Author: @artndesign823 | Text: Happy Weekend! 🏝️\n\nManhattan Beach, Los Angeles |...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/artndesign823/status/2078564890969846085",
+      "note": "auto-skip AI: no image detail or luxury substance"
     }
   ]
 }
