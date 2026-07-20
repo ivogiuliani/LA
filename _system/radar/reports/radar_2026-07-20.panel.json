@@ -1,0 +1,142 @@
+{
+  "date": "2026-07-20",
+  "generated_at": "2026-07-20T08:08:57.868304",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Pacific Palisades rebuild home",
+      "title": "@therossg: Author: @therossg | Text: If you can overcome all the red tape to rebuild your h...",
+      "url": "https://x.com/therossg/status/2078395871205495179",
+      "snippet": "Author: @therossg | Text: If you can overcome all the red tape to rebuild your home in Pacific Palisades, LADWP will delay you going home. We demand changes now! | URL: https://x.com/therossg/status/2078395871205495179 | Date: 2026-07-18 | Likes: 109 | Retweets: 17 | Replies: 3 | Views: 4115 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-18",
+      "author": "@therossg",
+      "engagement": {
+        "score": 158,
+        "likes": 109,
+        "retweets": 17,
+        "replies": 3,
+        "views": 4115,
+        "author_followers": 0,
+        "virality_score": 31
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 2,
+      "preliminary_score": 7,
+      "ai_score": 7,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "The utility timeline is the hidden critical path on Palisades rebuilds — permitting is only half the battle. Hope the pressure moves the needle for you.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 152,
+        "tone": "conversational",
+        "lead_type": "buyer",
+        "why": "Palisades HNW rebuild frustration"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Los Angeles residential architecture",
+      "title": "@OneKindesign: Author: @OneKindesign | Text: Luxurious hillside home boasts jaw-dropping views...",
+      "url": "https://x.com/OneKindesign/status/2078715965865378072",
+      "snippet": "Author: @OneKindesign | Text: Luxurious hillside home boasts jaw-dropping views over the LA Skyline https://onekindesign.com/luxurious-hillside-home-california/ | URL: https://x.com/OneKindesign/status/2078715965865378072 | Date: 2026-07-19 | Likes: 9 | Retweets: 5 | Replies: 0 | Views: 1058 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-19",
+      "author": "@OneKindesign",
+      "engagement": {
+        "score": 19,
+        "likes": 9,
+        "retweets": 5,
+        "replies": 0,
+        "views": 1058,
+        "author_followers": 0,
+        "virality_score": 27
+      },
+      "_strategy_tier": 5,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "That skyline frontage is doing a lot of work — the way the living volume opens straight to the view is beautifully sited. Gorgeous hillside home.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 145,
+        "tone": "appreciative",
+        "lead_type": "buyer",
+        "why": "luxury LA hillside home, buyer audience"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "interior design luxury home Los Angeles",
+      "title": "@artndesign823: Author: @artndesign823 | Text: Happy Weekend! 🏝️\n\nManhattan Beach, Los Angeles |...",
+      "url": "https://x.com/artndesign823/status/2078564890969846085",
+      "snippet": "Author: @artndesign823 | Text: Happy Weekend! 🏝️\n\nManhattan Beach, Los Angeles | URL: https://x.com/artndesign823/status/2078564890969846085 | Date: 2026-07-18 | Likes: 12 | Retweets: 2 | Replies: 4 | Views: 196 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-18",
+      "author": "@artndesign823",
+      "engagement": {
+        "score": 36,
+        "likes": 12,
+        "retweets": 2,
+        "replies": 4,
+        "views": 196,
+        "author_followers": 0,
+        "virality_score": 21
+      },
+      "_strategy_tier": 5,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Manhattan Beach light is unbeatable this time of year — that coastal-modern feel really lands. Happy weekend to you too.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 120,
+        "tone": "appreciative",
+        "lead_type": "buyer",
+        "why": "Manhattan Beach luxury design imagery"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "minimalist house architecture design",
+      "title": "@Interior_es: Author: @Interior_es | Text: Archive: Designed by #3DMArchitecture, this house e...",
+      "url": "https://x.com/Interior_es/status/2078570503321821277",
+      "snippet": "Author: @Interior_es | Text: Archive: Designed by #3DMArchitecture, this house emerges as a contemporary home where light, shadow, a monochromatic palette and curved forms engage in dialogue with the timeless aesthetics of Maltese architecture.\n-> Photography: Matthew Farrugia\n-> https://interioresminimalistas.com/2026/07/18/archivo-twentyfour-el-atractivo-atemporal-del-minimalismo-3dm-architecture/ | URL: https://x.com/Interior_es/status/2078570503321821277 | Date: 2026-07-18 | Likes: 18 | Retw",
+      "publication": "X/Twitter",
+      "date": "2026-07-18",
+      "author": "@Interior_es",
+      "engagement": {
+        "score": 20,
+        "likes": 18,
+        "retweets": 1,
+        "replies": 0,
+        "views": 831,
+        "author_followers": 0,
+        "virality_score": 19
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 5,
+      "ai_score": 5,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "The dialogue between curved forms and that monochrome palette is so well handled — light and shadow become the material here. Lovely Maltese reference.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 151,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "luxury architecture, villa typology"
+      }
+    }
+  ]
+}

@@ -3868,6 +3868,16 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/homes-for-sale/malibu-water-tower-house-for-sale-1238472357/",
       "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-07-20",
+      "source": "user_dismissed",
+      "title": "The Anderson House (1958), LA — Organic Modernism by W. Earl Wear",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/interiorsuckerr/status/2078727033337610375",
+      "note": "auto-published journal: organic-modernism-craftsmanship-anderson-house-la"
     }
   ],
   "reported": [
@@ -5320,6 +5330,66 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/artndesign823/status/2078564890969846085",
       "note": "auto-skip AI: no image detail or luxury substance"
+    },
+    {
+      "date_first_reported": "2026-07-20",
+      "source": "ai_skip",
+      "title": "@jedimarkus77: Author: @jedimarkus77 | Text: Speaking of Pepperdine (Malibu, California), anyon...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/jedimarkus77/status/2078823080424571330",
+      "note": "auto-skip AI: off-topic parenting/school question"
+    },
+    {
+      "date_first_reported": "2026-07-20",
+      "source": "ai_skip",
+      "title": "@Ron4California: Author: @Ron4California | Text: Fair. Just doesn’t make much sense. \nBig law is...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Ron4California/status/2078680381637964084",
+      "note": "auto-skip AI: politics/drama, off-brand"
+    },
+    {
+      "date_first_reported": "2026-07-20",
+      "source": "ai_skip",
+      "title": "@Farule138119: Author: @Farule138119 | Text: 1000% yes I think it’s time you just marry me now...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Farule138119/status/2078872869166297287",
+      "note": "auto-skip AI: off-topic personal chatter"
+    },
+    {
+      "date_first_reported": "2026-07-20",
+      "source": "ai_skip",
+      "title": "@freeboostpromo: Author: @freeboostpromo | Text: A gorgeous Malibu estate, a dangerous mystery, a...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/freeboostpromo/status/2077746572830326960",
+      "note": "auto-skip AI: fiction/book promo, not architecture"
+    },
+    {
+      "date_first_reported": "2026-07-20",
+      "source": "ai_skip",
+      "title": "@SchoolofVenus: Author: @SchoolofVenus | Text: I used to live in her hood, couple blocks from he...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/SchoolofVenus/status/2078923920263237775",
+      "note": "auto-skip AI: celebrity gossip, no design substance"
+    },
+    {
+      "date_first_reported": "2026-07-20",
+      "source": "ai_skip",
+      "title": "@thedianhanson: **No posts found matching the exact criteria.**\n\nI searched X using multiple key...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/thedianhanson/status/2077281956509982809",
+      "note": "auto-skip AI: no actual post content"
     }
   ]
 }
