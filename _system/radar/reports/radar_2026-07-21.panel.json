@@ -1,0 +1,161 @@
+{
+  "date": "2026-07-21",
+  "generated_at": "2026-07-21T08:09:46.854418",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "living in Malibu California",
+      "title": "@luusssso: Author: @luusssso | Text: The Segel House by architect John Lautner \n\nMalibu, Ca...",
+      "url": "https://x.com/luusssso/status/2079266520685752746",
+      "snippet": "Author: @luusssso | Text: The Segel House by architect John Lautner \n\nMalibu, California (1979) | URL: https://x.com/luusssso/status/2079266520685752746 | Date: 2026-07-20 | Likes: 700 | Retweets: 51 | Replies: 10 | Views: 41614 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-20",
+      "author": "@luusssso",
+      "engagement": {
+        "score": 852,
+        "likes": 700,
+        "retweets": 51,
+        "replies": 10,
+        "views": 41614,
+        "author_followers": 0,
+        "virality_score": 57
+      },
+      "_strategy_tier": 1,
+      "_strategy_priority": 2,
+      "preliminary_score": 13,
+      "ai_score": 22,
+      "ai_scores": {
+        "relevance": 5,
+        "recency": 5,
+        "engagement": 4,
+        "audience_fit": 3,
+        "dialogue": 5
+      },
+      "action_type": "qualified",
+      "summary": "X post spotlighting John Lautner's 1979 Segel House in Malibu, a landmark avant-garde concrete residence.",
+      "engagement_angle": "Join the thread with an architect's take on Lautner's cantilevered concrete forms and how that lineage informs museum-grade fire-resilient villas today.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "Lautner at his best — that concrete roofline dissolving into the Malibu light is pure sculpture. The Segel House never stops teaching.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 134,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "Iconic Malibu Lautner architecture post"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Pacific Palisades rebuild home",
+      "title": "@therossg: Author: @therossg | Text: If you can overcome all the red tape to rebuild your h...",
+      "url": "https://x.com/therossg/status/2078395871205495179",
+      "snippet": "Author: @therossg | Text: If you can overcome all the red tape to rebuild your home in Pacific Palisades, LADWP will delay you going home. We demand changes now! | URL: https://x.com/therossg/status/2078395871205495179 | Date: 2026-07-18 | Likes: 109 | Retweets: 17 | Replies: 3 | Views: 4122 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-18",
+      "author": "@therossg",
+      "engagement": {
+        "score": 158,
+        "likes": 109,
+        "retweets": 17,
+        "replies": 3,
+        "views": 4122,
+        "author_followers": 0,
+        "virality_score": 31
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 2,
+      "preliminary_score": 7,
+      "ai_score": 7,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "The utility timeline is the hidden bottleneck no one budgets for. Getting people home faster has to be part of the rebuild conversation — you're right to push.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 159,
+        "tone": "conversational",
+        "lead_type": "buyer",
+        "why": "Palisades post-fire rebuild frustration"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "interior design luxury home Los Angeles",
+      "title": "@artndesign823: Author: @artndesign823 | Text: A cloudy & windy day at Manhattan Beach Pier in L...",
+      "url": "https://x.com/artndesign823/status/2078183791764689406",
+      "snippet": "Author: @artndesign823 | Text: A cloudy & windy day at Manhattan Beach Pier in Los Angeles!🌊✨ \n\nTransformed the moody ocean vibes into a serene and modern living room. \n\nCool grays, flowing textures, and a sense of coastal tranquility.\n\n#InteriorDesign #ModernHome #CoastalDecor #ArtNDesignByLily | URL: https://x.com/artndesign823/status/2078183791764689406 | Date: 2026-07-17 | Likes: 8 | Retweets: 1 | Replies: 3 | Views: 596 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-17",
+      "author": "@artndesign823",
+      "engagement": {
+        "score": 25,
+        "likes": 8,
+        "retweets": 1,
+        "replies": 3,
+        "views": 596,
+        "author_followers": 0,
+        "virality_score": 12
+      },
+      "_strategy_tier": 5,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "The moody coastal palette translates beautifully — those cool grays and flowing textures really carry the ocean mood indoors. Lovely restraint.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 143,
+        "tone": "peer",
+        "lead_type": "partner",
+        "why": "LA interior designer, potential partner"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "reinforced concrete home California",
+      "title": "@Debi_Calvet: Author: @Debi_Calvet | Text: When we went under contract for our Florida home, w...",
+      "url": "https://x.com/Debi_Calvet/status/1878873636880421213",
+      "snippet": "Author: @Debi_Calvet | Text: When we went under contract for our Florida home, we had no idea of the state’s strict construction rules. Photos of our exterior walls in reinforced concrete-block masonry stunned us. My native California, which we left last May, could learn so much from Florida. | URL: https://x.com/Debi_Calvet/status/1878873636880421213 | Date: 2025-01-22 | Likes: 9 | Retweets: 0 | Replies: 0 | Views: 142 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2025-01-22",
+      "author": "@Debi_Calvet",
+      "engagement": {
+        "score": 9,
+        "likes": 9,
+        "retweets": 0,
+        "replies": 0,
+        "views": 142,
+        "author_followers": 0,
+        "virality_score": 2
+      },
+      "_strategy_tier": 6,
+      "_strategy_priority": 1,
+      "preliminary_score": 10,
+      "ai_score": 8,
+      "ai_scores": {
+        "relevance": 2,
+        "recency": 1,
+        "engagement": 1,
+        "audience_fit": 2,
+        "dialogue": 2
+      },
+      "action_type": "skip",
+      "summary": "Homeowner recounts learning about Florida's strict reinforced concrete-block masonry construction rules.",
+      "engagement_angle": "Off-state and dated; low priority but reinforced-masonry topic is materially adjacent to our work.",
+      "viral_reply": {
+        "body": "Florida's masonry standards are a real case study — non-combustible assemblies measurably shift both loss outcomes and underwriting. California has a lot to learn here.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 168,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "General concrete-code / insurability discussion"
+      }
+    }
+  ]
+}

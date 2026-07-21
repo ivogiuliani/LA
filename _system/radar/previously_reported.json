@@ -3878,6 +3878,16 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/interiorsuckerr/status/2078727033337610375",
       "note": "auto-published journal: organic-modernism-craftsmanship-anderson-house-la"
+    },
+    {
+      "date_first_reported": "2026-07-21",
+      "source": "user_dismissed",
+      "title": "De Jonghe Residence Restoration / Michel Architects",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.archdaily.com/1181271/de-jonghe-residence-restoration-michel-architects",
+      "note": "auto-sent pitch to queued:susanna.moreira@archdaily.com"
     }
   ],
   "reported": [
@@ -5390,6 +5400,26 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/thedianhanson/status/2077281956509982809",
       "note": "auto-skip AI: no actual post content"
+    },
+    {
+      "date_first_reported": "2026-07-21",
+      "source": "ai_skip",
+      "title": "@artndesign823: Author: @artndesign823 | Text: Happy Weekend! 🏝️\n\nManhattan Beach, Los Angeles |...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/artndesign823/status/2078564890969846085",
+      "note": "auto-skip AI: no architecture substance, generic post"
+    },
+    {
+      "date_first_reported": "2026-07-21",
+      "source": "ai_skip",
+      "title": "@BillySullivan7: Author: @BillySullivan7 | Text: The average home price in US is $370,000–$400,00...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/BillySullivan7/status/2079216942146044309",
+      "note": "auto-skip AI: off-topic celebrity trivia, no luxury design"
     }
   ]
 }
