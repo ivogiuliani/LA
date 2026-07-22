@@ -1,0 +1,62 @@
+{
+  "slug": "concrete-villa-color-le-corbusier-singapore",
+  "title": "Concrete Villa Design: The Color Lesson From a Pink House",
+  "subtitle": "A Le Corbusier-inspired villa in Singapore's jungle shows how pigment and mass can work as one architectural gesture.",
+  "section": "concrete_arch",
+  "tag_label": "Concrete Architecture",
+  "meta_description": "Can a concrete villa design use color as structure, not decoration? A candy-pink Le Corbusier-inspired house in Singapore proves pigment and mass are one gesture.",
+  "meta_keywords": "concrete villa design, Le Corbusier villa, colored concrete, Mediterranean villa California, custom home Los Angeles, reinforced concrete home, biophilic architecture",
+  "sources": [
+    {
+      "name": "Architectural Digest",
+      "title": "Le Corbusier Inspired This Candy Pink Villa Nestled in Singapore's Jungle",
+      "url": "https://www.architecturaldigest.com/story/le-corbusier-inspired-this-candy-pink-villa-nestled-in-singapores-jungle",
+      "type": "article",
+      "excerpt": "AD feature on a Le Corbusier-inspired pink modernist villa in Singapore's jungle, furnished with Noguchi lamps and Max Lamb chairs."
+    }
+  ],
+  "key_data": [
+    {
+      "number": "1",
+      "label": "Pigment and structure\ntreated as a single gesture"
+    },
+    {
+      "number": "5",
+      "label": "Facade tones offered\nas integral color, not paint"
+    }
+  ],
+  "our_perspective": "What interests us in this house is that the color is not applied — it belongs to the material. We think about facade tone the same way: at My Villa, our five signature tones are integral to the concrete, chosen at the mix rather than brushed on afterward. That distinction matters more than it looks. A painted surface is a maintenance liability that fades, chalks, and has to be redone; a pigmented reinforced-concrete wall carries its color as long as it carries the load. It is the same logic DGU brought to the fair-faced surfaces of the Kimbell Art Museum — the finish and the structure are one decision, made once. Color, in this typology, is not the last layer. It is part of the wall.",
+  "body_html": "<p class=\"reveal\">Architectural Digest has published a feature on a Le Corbusier-inspired villa set into the jungle outside Singapore — a candy-pink modernist house where, per the magazine, monkeys circle the pool and the interiors are furnished with Noguchi lamps and Max Lamb chairs. The story frames the home as an exercise in ultrarefined restraint wrapped in an unmistakably bold exterior color. <a href=\"https://www.architecturaldigest.com/story/le-corbusier-inspired-this-candy-pink-villa-nestled-in-singapores-jungle\">According to Architectural Digest</a>, the villa draws its formal language from Le Corbusier while pushing his palette toward something warmer and more theatrical. What reads at first as a decorative choice is, on closer inspection, a structural one — and that is the more interesting part of the story.</p>\n\n<h2 class=\"reveal\">Color as a material decision, not a finish</h2>\n<p class=\"reveal\">Le Corbusier is often remembered for raw concrete, but color was central to his thinking. His <em>Polychromie Architecturale</em> — the architectural color system he first codified in 1931 and expanded in 1959 — treated pigment as a spatial tool that could advance or recede a wall, not as surface ornament. The Singapore villa sits squarely in that lineage: its pink is a compositional element that shapes how the volume reads against the green of the jungle, as <a href=\"https://www.architecturaldigest.com/story/le-corbusier-inspired-this-candy-pink-villa-nestled-in-singapores-jungle\">the Architectural Digest feature</a> makes clear through its indoor-outdoor framing.</p>\n<p class=\"reveal\">The distinction the house draws out is between paint and pigment. A painted concrete surface is a two-material system — the wall and its coating — where the coating is the weak link: it weathers, chalks, and requires periodic recoating. Integral pigment, mixed into the concrete before it is cast, behaves as one material. The color does not sit on the wall; it is the wall. For a house in a humid, high-UV environment surrounded by jungle, that difference is the difference between a facade that ages gracefully and one that becomes a maintenance schedule.</p>\n<div class=\"key-data\">\n<p><strong>Le Corbusier's Polychromie Architecturale (1931, expanded 1959):</strong> color codified as an architectural instrument — a way to shape volume and depth, not to decorate a completed surface.</p>\n</div>\n\n<h2 class=\"reveal\">What it signals for the LA market</h2>\n<p class=\"reveal\">Los Angeles has a long, confident relationship with color on residential architecture — from the saturated stucco of Spanish Revival to the pastel Deco of the mid-century Westside. But most of that color is applied: stucco tinted or painted over a combustible frame. The Singapore villa points at a different model that is quietly relevant here. As buyers move toward non-combustible construction in Fire Hazard Severity Zones, the question of how a concrete house looks becomes unavoidable — and the answer cannot be to spray a wood-house finish onto a masonry envelope.</p>\n<p class=\"pullquote\">A painted wall is a decision you remake every decade. A pigmented wall is a decision you make once.</p>\n<p class=\"reveal\">Integral-color concrete resolves that tension. It lets a house read as warm, specific, and site-responsive — terracotta against chaparral, sand against a canyon wall — without importing the upkeep cycle of a coated facade. For a market increasingly willing to build in masonry for resilience reasons, color is the design vocabulary that makes that material feel like home rather than like infrastructure.</p>\n\n<p class=\"reveal\">The pink villa in Singapore is a small, precise argument: that the boldest exterior gesture and the most durable one can be the same gesture. As California's luxury market reconciles resilient construction with genuine architectural warmth, that lesson — color chosen at the mix, not the brush — is one worth carrying west.</p>",
+  "excerpt": "A Le Corbusier-inspired pink villa in Singapore's jungle, featured by Architectural Digest, shows how color can be a structural decision rather than a surface finish — a lesson for LA's move toward warm, resilient concrete homes.",
+  "image_prompt": "Architectural photography, a warm terracotta-pigmented reinforced concrete villa nestled at the edge of dense green tropical foliage, integral colored concrete facade catching soft afternoon light, modernist volumes with clean geometry, muted warm tones, subtle shadow play across the textured concrete surface, no people",
+  "topic_tags": [
+    "colored-concrete",
+    "villa-design"
+  ],
+  "data_points_cited": [
+    "Le Corbusier Polychromie Architecturale codified 1931 and expanded 1959",
+    "Integral pigment concrete as a single-material system versus painted two-material system"
+  ],
+  "read_time_min": 6,
+  "hero_image": {
+    "local_path": "/opt/myvilla/LA/blog/assets/img/concrete-villa-color-le-corbusier-singapore-hero.jpg",
+    "web_path": "assets/img/concrete-villa-color-le-corbusier-singapore-hero.jpg",
+    "photo_id": "src-0",
+    "author_name": "Architectural Digest",
+    "author_url": "https://www.architecturaldigest.com/story/le-corbusier-inspired-this-candy-pink-villa-nestled-in-singapores-jungle",
+    "unsplash_url": "https://www.architecturaldigest.com/story/le-corbusier-inspired-this-candy-pink-villa-nestled-in-singapores-jungle",
+    "alt_description": "Le Corbusier Inspired This Candy Pink Villa Nestled in Singapore's Jungle",
+    "color": "#3e2f2b",
+    "source": "cited_source",
+    "origin": "source"
+  },
+  "_date": "2026-07-22",
+  "_section_id": "concrete_arch",
+  "_section_name": "Concrete Architecture",
+  "_source_item": {
+    "title": "Le Corbusier Inspired This Candy Pink Villa Nestled in Singapore's Jungle",
+    "url": "https://www.architecturaldigest.com/story/le-corbusier-inspired-this-candy-pink-villa-nestled-in-singapores-jungle",
+    "publication": "Architectural Digest",
+    "cluster": "architecture_blogs"
+  }
+}

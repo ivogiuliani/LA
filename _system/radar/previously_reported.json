@@ -3888,6 +3888,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.archdaily.com/1181271/de-jonghe-residence-restoration-michel-architects",
       "note": "auto-sent pitch to queued:susanna.moreira@archdaily.com"
+    },
+    {
+      "date_first_reported": "2026-07-22",
+      "source": "user_dismissed",
+      "title": "Le Corbusier Inspired This Candy Pink Villa Nestled in Singapore's Jungle",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/le-corbusier-inspired-this-candy-pink-villa-nestled-in-singapores-jungle",
+      "note": "auto-published journal: concrete-villa-color-le-corbusier-singapore"
     }
   ],
   "reported": [
@@ -5420,6 +5430,66 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/BillySullivan7/status/2079216942146044309",
       "note": "auto-skip AI: off-topic celebrity trivia, no luxury design"
+    },
+    {
+      "date_first_reported": "2026-07-22",
+      "source": "ai_skip",
+      "title": "@maxdubler: Author: @maxdubler | Text: I spent a lot of time in Malibu in my prior career as...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/maxdubler/status/2079654117056876756",
+      "note": "auto-skip AI: off-topic lifestyle gripe, no design substance"
+    },
+    {
+      "date_first_reported": "2026-07-22",
+      "source": "ai_skip",
+      "title": "@Freya_TBL: Author: @Freya_TBL | Text: 🏛️✨ Golden elegance in a Mediterranean villa.\nFreya l...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Freya_TBL/status/2078221937243718134",
+      "note": "auto-skip AI: AI-generated influencer content, no real architecture"
+    },
+    {
+      "date_first_reported": "2026-07-22",
+      "source": "ai_skip",
+      "title": "@AOKinred: Author: @AOKinred | Text: This is not suppose to be AI. Happened in Malibu Calif...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/AOKinred/status/2079663945111986310",
+      "note": "auto-skip AI: unclear content, negligible reach"
+    },
+    {
+      "date_first_reported": "2026-07-22",
+      "source": "ai_skip",
+      "title": "@its_Joe_Friday: Author: @its_Joe_Friday | Text: If you live in Malibu you can afford to get your...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/its_Joe_Friday/status/2079661250989232515",
+      "note": "auto-skip AI: off-topic daydream, negligible reach"
+    },
+    {
+      "date_first_reported": "2026-07-22",
+      "source": "ai_skip",
+      "title": "@RealCLSilver: Author: @RealCLSilver | Text: He probably thinks he's the model on rebuilding ho...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/RealCLSilver/status/2079705450765832328",
+      "note": "auto-skip AI: politics/drama, off-brand"
+    },
+    {
+      "date_first_reported": "2026-07-22",
+      "source": "ai_skip",
+      "title": "@Wejolyn: Author: @Wejolyn | Text: Yes, first they wipe out the city/area (via wars, fake...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Wejolyn/status/2079644964745814437",
+      "note": "auto-skip AI: conspiracy/politics, off-brand"
     }
   ]
 }

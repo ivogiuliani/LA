@@ -1,0 +1,230 @@
+{
+  "date": "2026-07-22",
+  "generated_at": "2026-07-22T08:08:19.593196",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Malibu luxury real estate 2026",
+      "title": "@WSJ: Author: @WSJ | Text: One of the most desirable, celebrity-packed coastal stretch...",
+      "url": "https://x.com/WSJ/status/2079630364402991565",
+      "snippet": "Author: @WSJ | Text: One of the most desirable, celebrity-packed coastal stretches of California has a glut of luxury homes on the market. https://www.wsj.com/real-estate/malibu-california-real-estate-market-f21be7ae?mod=e2tw | URL: https://x.com/WSJ/status/2079630364402991565 | Date: 2026-07-21 | Likes: 61 | Retweets: 9 | Replies: 15 | Views: 81688 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-21",
+      "author": "@WSJ",
+      "engagement": {
+        "score": 154,
+        "likes": 61,
+        "retweets": 9,
+        "replies": 15,
+        "views": 81688,
+        "author_followers": 0,
+        "virality_score": 55
+      },
+      "_strategy_tier": 1,
+      "_strategy_priority": 2,
+      "preliminary_score": 12,
+      "ai_score": 20,
+      "ai_scores": {
+        "relevance": 3,
+        "recency": 5,
+        "engagement": 4,
+        "audience_fit": 5,
+        "dialogue": 3
+      },
+      "action_type": "qualified",
+      "summary": "WSJ reports a glut of luxury homes on the Malibu coast amid softening demand.",
+      "engagement_angle": "Reframe as a design/insurability story: distinguish museum-grade, WUI-compliant concrete villas from the oversupplied legacy stock driving the glut.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "Malibu's high end always corrects slower than the rest of the market. Trophy inventory sits, but the truly rare frontage parcels still clear. Interesting stretch to watch.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 171,
+        "tone": "data-led",
+        "lead_type": "buyer",
+        "why": "Malibu luxury market thread"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "home insurance non-renewal California fire",
+      "title": "@ChopraUSA: Author: @ChopraUSA | Text: Many homeowners working to rebuild from the LA fires...",
+      "url": "https://x.com/ChopraUSA/status/2077795900513247650",
+      "snippet": "Author: @ChopraUSA | Text: Many homeowners working to rebuild from the LA fires have been unable to access their insurance funds, since their payment gets held up by their mortgage company. California is warning mortgage companies to end improper withholding of funds for rebuilding. | URL: https://x.com/ChopraUSA/status/2077795900513247650 | Date: 2026-07-16 | Likes: 50 | Retweets: 18 | Replies: 12 | Views: 8587 | Author followers: N/A",
+      "publication": "X/Twitter",
+      "date": "2026-07-16",
+      "author": "@ChopraUSA",
+      "engagement": {
+        "score": 146,
+        "likes": 50,
+        "retweets": 18,
+        "replies": 12,
+        "views": 8587,
+        "author_followers": 0,
+        "virality_score": 20
+      },
+      "_strategy_tier": 5,
+      "_strategy_priority": 1,
+      "preliminary_score": 11,
+      "ai_score": 13,
+      "ai_scores": {
+        "relevance": 3,
+        "recency": 3,
+        "engagement": 2,
+        "audience_fit": 2,
+        "dialogue": 3
+      },
+      "action_type": "watchlist",
+      "summary": "Complaint that LA fire rebuild insurance payouts are being held up by mortgage companies.",
+      "engagement_angle": "Track if this becomes a broader insurance-reform story; could tie to insurability of rebuilt luxury homes.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "This bottleneck has stalled so many rebuilds. Good to see pressure on servicers — releasing funds on verified milestones is exactly what keeps families from stalling out.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 170,
+        "tone": "data-led",
+        "lead_type": "buyer",
+        "why": "LA fire rebuild policy thread"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Los Angeles residential architecture",
+      "title": "@OneKindesign: Author: @OneKindesign | Text: Luxurious hillside home boasts jaw-dropping views...",
+      "url": "https://x.com/OneKindesign/status/2078715965865378072",
+      "snippet": "Author: @OneKindesign | Text: Luxurious hillside home boasts jaw-dropping views over the LA Skyline \nhttps://onekindesign.com/luxurious-hillside-home-california/ | URL: https://x.com/OneKindesign/status/2078715965865378072 | Date: 2026-07-19 | Likes: 10 | Retweets: 5 | Replies: 0 | Views: 1120 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-19",
+      "author": "@OneKindesign",
+      "engagement": {
+        "score": 20,
+        "likes": 10,
+        "retweets": 5,
+        "replies": 0,
+        "views": 1120,
+        "author_followers": 0,
+        "virality_score": 20
+      },
+      "_strategy_tier": 5,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Those skyline views deserve exactly this kind of glazing and clean massing — the way the volumes step down the hillside is beautifully handled.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 143,
+        "tone": "appreciative",
+        "lead_type": "buyer",
+        "why": "Luxury LA hillside home feature"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Pacific Palisades rebuild home",
+      "title": "@therossg: Author: @therossg | Text: If you can overcome all the red tape to rebuild your h...",
+      "url": "https://x.com/therossg/status/2078395871205495179",
+      "snippet": "Author: @therossg | Text: If you can overcome all the red tape to rebuild your home in Pacific Palisades, LADWP will delay you going home. We demand changes now! | URL: https://x.com/therossg/status/2078395871205495179 | Date: 2026-07-18 | Likes: 109 | Retweets: 17 | Replies: 3 | Views: 4138 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-18",
+      "author": "@therossg",
+      "engagement": {
+        "score": 158,
+        "likes": 109,
+        "retweets": 17,
+        "replies": 3,
+        "views": 4138,
+        "author_followers": 0,
+        "virality_score": 19
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 2,
+      "preliminary_score": 7,
+      "ai_score": 7,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "The permitting and utility delays are the real drag on Palisades rebuilds right now — the will to rebuild is there, the pipeline just needs to move. Hope you're home soon.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 171,
+        "tone": "conversational",
+        "lead_type": "buyer",
+        "why": "Palisades rebuild frustration, HNW audience"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Pacific Palisades rebuild home",
+      "title": "@dillonliam: Author: @dillonliam | Text: Rebuilding in Pacific Palisades and Altadena from th...",
+      "url": "https://x.com/dillonliam/status/2079244608962539938",
+      "snippet": "Author: @dillonliam | Text: Rebuilding in Pacific Palisades and Altadena from the 2025 LA wildfires is close or at to some milestones, per @politico's tracker: * 148 completed homes * Almost half of the 9,900 properties with destroyed homes have filed permits to rebuild | URL: https://x.com/dillonliam/status/2079244608962539938 | Date: 2026-07-20 | Likes: 3 | Retweets: 2 | Replies: 2 | Views: 1251 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-20",
+      "author": "@dillonliam",
+      "engagement": {
+        "score": 17,
+        "likes": 3,
+        "retweets": 2,
+        "replies": 2,
+        "views": 1251,
+        "author_followers": 0,
+        "virality_score": 19
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 3,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Half of destroyed lots already permitted is real momentum. Completions will accelerate as designs settle — non-combustible assemblies also tend to move faster through underwriting on the back end.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 196,
+        "tone": "data-led",
+        "lead_type": "buyer",
+        "why": "Palisades/Altadena rebuild tracker"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "minimalist house architecture design",
+      "title": "@Interior_es: Author: @Interior_es | Text: Archive: Designed by #3DMArchitecture, this house e...",
+      "url": "https://x.com/Interior_es/status/2078570503321821277",
+      "snippet": "Author: @Interior_es | Text: Archive: Designed by #3DMArchitecture, this house emerges as a contemporary home where light, shadow, a monochromatic palette and curved forms engage in dialogue with the timeless aesthetics of Maltese architecture.\n-> Photography: Matthew Farrugia\n-> https://interioresminimalistas.com/2026/07/18/archivo-twentyfour-el-atractivo-atemporal-del-minimalismo-3dm-architecture/ | URL: https://x.com/Interior_es/status/2078570503321821277 | Date: 2026-07-18 | Likes: 18 | Retw",
+      "publication": "X/Twitter",
+      "date": "2026-07-18",
+      "author": "@Interior_es",
+      "engagement": {
+        "score": 20,
+        "likes": 18,
+        "retweets": 1,
+        "replies": 0,
+        "views": 871,
+        "author_followers": 0,
+        "virality_score": 12
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 5,
+      "ai_score": 5,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Lovely dialogue between the curved forms and that monochrome palette — the way light and shadow do the work here is really disciplined. Beautiful nod to Maltese vernacular.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 172,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "Mediterranean-adjacent minimalist architecture"
+      }
+    }
+  ]
+}
