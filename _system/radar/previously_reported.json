@@ -3898,6 +3898,26 @@
       "action_type": "user_dismissed",
       "url": "https://www.architecturaldigest.com/story/le-corbusier-inspired-this-candy-pink-villa-nestled-in-singapores-jungle",
       "note": "auto-published journal: concrete-villa-color-le-corbusier-singapore"
+    },
+    {
+      "date_first_reported": "2026-07-22",
+      "source": "user_dismissed",
+      "title": "The 11 Most Beautiful Places in America",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/gallery/the-most-beautiful-places-in-america",
+      "note": "auto-sent pitch to queued:amelia.mularz@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-07-22",
+      "source": "user_dismissed",
+      "title": "A Cofounder of the Ruby Beets Boutique Listed Her East Hampton Home for $5 Milli",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/ruby-beets-modern-hamptons-home-sharone-einhorn-1238484814/",
+      "note": "auto-sent pitch to queued:mark.david@robbreport.com"
     }
   ],
   "reported": [
