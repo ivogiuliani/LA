@@ -5510,6 +5510,56 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/Wejolyn/status/2079644964745814437",
       "note": "auto-skip AI: conspiracy/politics, off-brand"
+    },
+    {
+      "date_first_reported": "2026-07-23",
+      "source": "ai_skip",
+      "title": "@nabonies: Author: @nabonies | Text: BritishGQ.𝚌𝚘.𝚞𝚔⠀ ⎯⠀ ᥪ nabonies via X\nMalibu, Californi...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/nabonies/status/2080062120281129073",
+      "note": "auto-skip AI: influencer fluff, no architecture substance"
+    },
+    {
+      "date_first_reported": "2026-07-23",
+      "source": "ai_skip",
+      "title": "@NBC10Boston: Author: @NBC10Boston | Text: WATCH: A large great white shark swims close to sev...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/NBC10Boston/status/2080038893693309286",
+      "note": "auto-skip AI: off-topic, not architecture or luxury real estate"
+    },
+    {
+      "date_first_reported": "2026-07-23",
+      "source": "ai_skip",
+      "title": "@Freya_TBL: Author: @Freya_TBL | Text: 🏛️✨ Golden elegance in a Mediterranean villa. Freya l...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Freya_TBL/status/2078221937243718134",
+      "note": "auto-skip AI: AI-generated, no real architecture or buyers"
+    },
+    {
+      "date_first_reported": "2026-07-23",
+      "source": "ai_skip",
+      "title": "@its_Joe_Friday: Author: @its_Joe_Friday | Text: If you live in Malibu you can afford to get your...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/its_Joe_Friday/status/2079661250989232515",
+      "note": "auto-skip AI: off-topic daydream, no architecture or buyer reach"
+    },
+    {
+      "date_first_reported": "2026-07-23",
+      "source": "ai_skip",
+      "title": "@brissen91275: Author: @brissen91275 | Text: The devastating fire in Pacific Palisades changed...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/brissen91275/status/2079392374309155033",
+      "note": "auto-skip AI: personal GoFundMe, not appropriate to engage commercially"
     }
   ]
 }
