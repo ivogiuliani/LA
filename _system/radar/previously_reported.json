@@ -3918,6 +3918,16 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/homes-for-sale/ruby-beets-modern-hamptons-home-sharone-einhorn-1238484814/",
       "note": "auto-sent pitch to queued:mark.david@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-07-24",
+      "source": "user_dismissed",
+      "title": "Peter Marino Bel Air estate feature",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/BillionMagazine/status/2080089355637358933",
+      "note": "auto-published journal: bel-air-luxury-estate-peter-marino-material-lesson"
     }
   ],
   "reported": [
@@ -5560,6 +5570,56 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/brissen91275/status/2079392374309155033",
       "note": "auto-skip AI: personal GoFundMe, not appropriate to engage commercially"
+    },
+    {
+      "date_first_reported": "2026-07-24",
+      "source": "ai_skip",
+      "title": "@maxdubler: Author: @maxdubler | Text: I spent a lot of time in Malibu in my prior career as...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/maxdubler/status/2079654117056876756",
+      "note": "auto-skip AI: off-topic personal opinion, no design/buyer value"
+    },
+    {
+      "date_first_reported": "2026-07-24",
+      "source": "ai_skip",
+      "title": "@AvaMaxContent: Author: @AvaMaxContent | Text: On July 23, 2022, Ava Max attended singer Selena...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/AvaMaxContent/status/2080337194300903623",
+      "note": "auto-skip AI: off-topic celebrity content"
+    },
+    {
+      "date_first_reported": "2026-07-24",
+      "source": "ai_skip",
+      "title": "@its_Joe_Friday: Author: @its_Joe_Friday | Text: If you live in Malibu you can afford to get your...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/its_Joe_Friday/status/2079661250989232515",
+      "note": "auto-skip AI: off-topic personal daydream, tiny reach"
+    },
+    {
+      "date_first_reported": "2026-07-24",
+      "source": "ai_skip",
+      "title": "@Freya_TBL: Author: @Freya_TBL | Text: 🏛️✨ Golden elegance in a Mediterranean villa. Freya l...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Freya_TBL/status/2078221937243718134",
+      "note": "auto-skip AI: AI influencer fluff, no real design substance"
+    },
+    {
+      "date_first_reported": "2026-07-24",
+      "source": "ai_skip",
+      "title": "@artndesign823: Author: @artndesign823 | Text: A cloudy & windy day at Manhattan Beach Pier in L...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/artndesign823/status/2078183791764689406",
+      "note": "auto-skip AI: generic decor content, no LA luxury/architecture value"
     }
   ]
 }
