@@ -1,0 +1,196 @@
+{
+  "date": "2026-07-25",
+  "generated_at": "2026-07-25T08:09:30.006028",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "case study house architecture",
+      "title": "@shavnyuyngah: Author: @shavnyuyngah | Text: When I say Kerala has some of the very best docume...",
+      "url": "https://x.com/shavnyuyngah/status/2080620355639525732",
+      "snippet": "Author: @shavnyuyngah | Text: When I say Kerala has some of the very best documented residential architecture right now, this is exactly what I mean. Don’t skip the comments, the best views of this home are there.\n\nHouse of Corridors treats hallways as the actual point of the house, not the boring bit between rooms. Instead of enclosed rooms connected by circulation, the whole 3,900 sq ft home unfolds through corridors that widen into pauses, bend around courtyards, and spill into verandas and s",
+      "publication": "X/Twitter",
+      "date": "2026-07-24",
+      "author": "@shavnyuyngah",
+      "engagement": {
+        "score": 219,
+        "likes": 159,
+        "retweets": 30,
+        "replies": 0,
+        "views": 8866,
+        "author_followers": 0,
+        "virality_score": 46
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 8,
+      "ai_score": 18,
+      "ai_scores": {
+        "relevance": 3,
+        "recency": 5,
+        "engagement": 3,
+        "audience_fit": 3,
+        "dialogue": 4
+      },
+      "action_type": "qualified",
+      "summary": "X post praising Kerala, India's contemporary residential architecture documentation, with strong visual comments thread.",
+      "engagement_angle": "Weigh in on regional residential design excellence outside the US — draw parallel to LA villa typology's own attention to craft and site.",
+      "cluster_suggested": "design (non-LA, international residential)",
+      "author_name": "",
+      "viral_reply": {
+        "body": "Corridors as the destination rather than the leftover space — that's a real idea, beautifully executed. The bends around the courtyards are doing the work of doors.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 164,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "Serious residential architecture conversation"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "minimalist house architecture design",
+      "title": "@HomeAdore: Author: @HomeAdore | Text: Lawrence Park: Modern Minimalist House Design in Toro...",
+      "url": "https://x.com/HomeAdore/status/2080061930211832139",
+      "snippet": "Author: @HomeAdore | Text: Lawrence Park: Modern Minimalist House Design in Toronto\n\nhttps://homeadore.com/2024/02/25/lawrence-park-modern-minimalist-house-design-in-toronto/ | URL: https://x.com/HomeAdore/status/2080061930211832139 | Date: 2026-07-22 | Likes: 75 | Retweets: 8 | Replies: 0 | Views: 8616 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-22",
+      "author": "@HomeAdore",
+      "engagement": {
+        "score": 91,
+        "likes": 75,
+        "retweets": 8,
+        "replies": 0,
+        "views": 8616,
+        "author_followers": 0,
+        "virality_score": 30
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "The restraint in the massing is what keeps minimalism reading warm rather than cold here — really disciplined material palette.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 127,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "High-end architecture audience, design-led"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "rebuilding home after wildfire California",
+      "title": "@dillonliam: Author: @dillonliam | Text: Rebuilding in Pacific Palisades and Altadena from th...",
+      "url": "https://x.com/dillonliam/status/2079244608962539938",
+      "snippet": "Author: @dillonliam | Text: Rebuilding in Pacific Palisades and Altadena from the 2025 LA wildfires is close or at to some milestones, per @politico's tracker: * 148 completed homes * Almost half of the 9,900 properties with destroyed homes have filed permits to rebuild | URL: https://x.com/dillonliam/status/2079244608962539938 | Date: 2026-07-20 | Likes: 3 | Retweets: 2 | Replies: 2 | Views: 1284 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-20",
+      "author": "@dillonliam",
+      "engagement": {
+        "score": 17,
+        "likes": 3,
+        "retweets": 2,
+        "replies": 2,
+        "views": 1284,
+        "author_followers": 0,
+        "virality_score": 12
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 3,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "148 completed against ~4,900 permits filed says the bottleneck now sits downstream of entitlement — non-combustible assemblies also ease the insurability side of that math.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 172,
+        "tone": "data-led",
+        "lead_type": "buyer",
+        "why": "Palisades rebuild audience, HNW rebuilds"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Pacific Palisades rebuild home",
+      "title": "@therossg: Author: @therossg | Text: If you can overcome all the red tape to rebuild your h...",
+      "url": "https://x.com/therossg/status/2078395871205495179",
+      "snippet": "Author: @therossg | Text: If you can overcome all the red tape to rebuild your home in Pacific Palisades, LADWP will delay you going home. We demand changes now! | URL: https://x.com/therossg/status/2078395871205495179 | Date: 2026-07-18 | Likes: 109 | Retweets: 17 | Replies: 2 | Views: 4167 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-18",
+      "author": "@therossg",
+      "engagement": {
+        "score": 153,
+        "likes": 109,
+        "retweets": 17,
+        "replies": 2,
+        "views": 4167,
+        "author_followers": 0,
+        "virality_score": 5
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 2,
+      "preliminary_score": 7,
+      "ai_score": 7,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "Utility reconnection has quietly become the critical path on a lot of Palisades rebuilds — permits cleared, then months waiting on service. Worth keeping the pressure on.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 170,
+        "tone": "data-led",
+        "lead_type": "buyer",
+        "why": "Palisades rebuilding homeowners in audience"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "reinforced concrete home California",
+      "title": "@Debi_Calvet: Author: @Debi_Calvet | Text: When we went under contract for our Florida home, w...",
+      "url": "https://x.com/Debi_Calvet/status/1881879397986431135",
+      "snippet": "Author: @Debi_Calvet | Text: When we went under contract for our Florida home, we had no idea of the state’s strict construction rules. Photos of our exterior walls in reinforced concrete-block masonry stunned us. My native California, which we left last May, could learn so much from Florida. | URL: https://x.com/Debi_Calvet/status/1881879397986431135 | Date: 2025-01-22 | Likes: 9 | Retweets: 0 | Replies: 0 | Views: 142 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2025-01-22",
+      "author": "@Debi_Calvet",
+      "engagement": {
+        "score": 9,
+        "likes": 9,
+        "retweets": 0,
+        "replies": 0,
+        "views": 142,
+        "author_followers": 0,
+        "virality_score": 2
+      },
+      "_strategy_tier": 6,
+      "_strategy_priority": 1,
+      "preliminary_score": 10,
+      "ai_score": 9,
+      "ai_scores": {
+        "relevance": 3,
+        "recency": 1,
+        "engagement": 1,
+        "audience_fit": 2,
+        "dialogue": 2
+      },
+      "action_type": "skip",
+      "summary": "Tweet about strict Florida reinforced concrete-block masonry construction rules affecting a home purchase.",
+      "engagement_angle": "Off-state topic but concrete construction adjacent; low priority, old post.",
+      "viral_reply": {
+        "body": "Florida's code looks like that partly because underwriting rewarded masonry for decades. California is only starting to price non-combustible assemblies that way — real lever on insurability.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 191,
+        "tone": "data-led",
+        "lead_type": "brand",
+        "why": "General thread on concrete construction standards"
+      }
+    }
+  ]
+}

@@ -3928,6 +3928,26 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/BillionMagazine/status/2080089355637358933",
       "note": "auto-published journal: bel-air-luxury-estate-peter-marino-material-lesson"
+    },
+    {
+      "date_first_reported": "2026-07-25",
+      "source": "user_dismissed",
+      "title": "Joni Mitchell’s Former Malibu Beach House Can Be Yours for $27 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/joni-mitchell-former-malibu-house-1238489880/",
+      "note": "auto-sent pitch to queued:mark.david@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-07-25",
+      "source": "user_dismissed",
+      "title": "Inside Kris Jenner’s $40 Million Property Portfolio",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/lists/kris-jenner-property-portfolio-1238487799/",
+      "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
     }
   ],
   "reported": [
@@ -5620,6 +5640,56 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/artndesign823/status/2078183791764689406",
       "note": "auto-skip AI: generic decor content, no LA luxury/architecture value"
+    },
+    {
+      "date_first_reported": "2026-07-25",
+      "source": "ai_skip",
+      "title": "@artndesign823: Author: @artndesign823 | Text: Manhattan Beach! 🌊🏝️\n\n📍Los Angeles, California...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/artndesign823/status/2080713284483994037",
+      "note": "auto-skip AI: influencer fluff, no luxury or design substance"
+    },
+    {
+      "date_first_reported": "2026-07-25",
+      "source": "ai_skip",
+      "title": "@whatzen: Author: @whatzen | Text: @darrengrimes Even in Malibu, California we only think...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/whatzen/status/2080735831841714347",
+      "note": "auto-skip AI: politics/drama"
+    },
+    {
+      "date_first_reported": "2026-07-25",
+      "source": "ai_skip",
+      "title": "@MalibuMart: Author: @MalibuMart | Text: 🌴🍍 🐈 🌊🍹 | URL: https://x.com/MalibuMart/status/20807...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/MalibuMart/status/2080769028407324826",
+      "note": "auto-skip AI: off-topic, no content"
+    },
+    {
+      "date_first_reported": "2026-07-25",
+      "source": "ai_skip",
+      "title": "@brissen91275: Author: @brissen91275 | Text: The devastating fire in Pacific Palisades changed...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/brissen91275/status/2079392374309155033",
+      "note": "auto-skip AI: sensitive personal fundraiser, brand comment inappropriate"
+    },
+    {
+      "date_first_reported": "2026-07-25",
+      "source": "ai_skip",
+      "title": "@artndesign823: Author: @artndesign823 | Text: Happy Weekend! 🏝️\n\nManhattan Beach, Los Angeles |...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/artndesign823/status/2078564890969846085",
+      "note": "auto-skip AI: influencer fluff, no luxury or architecture substance"
     }
   ]
 }
