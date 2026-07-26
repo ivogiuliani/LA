@@ -29,7 +29,7 @@
     "result": null
   },
   "dezeen.com": {
-    "cached_at": 1783664060.871712,
+    "cached_at": 1785046226.8532004,
     "result": null
   },
   "archdaily.com": {
@@ -1063,5 +1063,15 @@
   "luxurylaunches.com": {
     "cached_at": 1784268663.2213032,
     "result": null
+  },
+  "sfstandard.com": {
+    "cached_at": 1785046226.1865404,
+    "result": {
+      "email": "media@sfstandard.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 11,
+      "in_mailto": false
+    }
   }
 }

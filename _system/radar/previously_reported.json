@@ -3948,6 +3948,36 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/lists/kris-jenner-property-portfolio-1238487799/",
       "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-07-26",
+      "source": "user_dismissed",
+      "title": "This Lake Como-inspired estate in Hillsborough has found a buyer in what could b",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://sfstandard.com/2026/07/24/peninsula-sale-could-be-bays-biggest-deal/",
+      "note": "auto-sent pitch to elandes@sfstandard.com"
+    },
+    {
+      "date_first_reported": "2026-07-26",
+      "source": "user_dismissed",
+      "title": "Seven British dormer extensions that take design to another level",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dezeen.com/2026/07/25/british-dormer-extensions-design-another-level/",
+      "note": "auto-sent pitch to editorial@dezeen.com"
+    },
+    {
+      "date_first_reported": "2026-07-26",
+      "source": "user_dismissed",
+      "title": "3 Interior Design Shifts Defining 2026, According to Maria O’Brien",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/spaces/decor/designers/story/2026-design-trends-ruggable",
+      "note": "auto-sent pitch to sara.kitnick@latimes.com"
     }
   ],
   "reported": [
@@ -5690,6 +5720,66 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/artndesign823/status/2078564890969846085",
       "note": "auto-skip AI: influencer fluff, no luxury or architecture substance"
+    },
+    {
+      "date_first_reported": "2026-07-26",
+      "source": "ai_skip",
+      "title": "@numetal_moment: Author: @numetal_moment | Text: Incubus takes MTV Cribs on a tour of the Morning...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/numetal_moment/status/2081146299001512143",
+      "note": "auto-skip AI: nostalgia/music content, no design or buyer substance"
+    },
+    {
+      "date_first_reported": "2026-07-26",
+      "source": "ai_skip",
+      "title": "@artndesign823: Author: @artndesign823 | Text: Manhattan Beach! 🌊🏝️\n\n📍Los Angeles, California...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/artndesign823/status/2080713284483994037",
+      "note": "auto-skip AI: influencer fluff, no luxury architecture substance"
+    },
+    {
+      "date_first_reported": "2026-07-26",
+      "source": "ai_skip",
+      "title": "@maxdubler: Author: @maxdubler | Text: I spent a lot of time in Malibu in my prior career as...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/maxdubler/status/2079654117056876756",
+      "note": "auto-skip AI: debate/opinion post, engaging risks contrarian tone"
+    },
+    {
+      "date_first_reported": "2026-07-26",
+      "source": "ai_skip",
+      "title": "@HomeAdore: Author: @HomeAdore | Text: Lawrence Park: Modern Minimalist House Design in Toro...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/HomeAdore/status/2080061930211832139",
+      "note": "auto-skip AI: generic design-feed content, no audience overlap"
+    },
+    {
+      "date_first_reported": "2026-07-26",
+      "source": "ai_skip",
+      "title": "@Cleanoceaninc: Author: @Cleanoceaninc | Text: There are approximately 900 to 1,100 active or is...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Cleanoceaninc/status/2081098373973856618",
+      "note": "auto-skip AI: negligible reach, argumentative thread"
+    },
+    {
+      "date_first_reported": "2026-07-26",
+      "source": "ai_skip",
+      "title": "@brissen91275: Author: @brissen91275 | Text: The devastating fire in Pacific Palisades changed...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/brissen91275/status/2079392374309155033",
+      "note": "auto-skip AI: donation appeal, inappropriate for brand engagement"
     }
   ]
 }
