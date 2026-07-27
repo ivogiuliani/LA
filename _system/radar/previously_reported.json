@@ -3998,6 +3998,16 @@
       "action_type": "user_dismissed",
       "url": "https://architizer.com/projects/dwelling-in-the-rhythm-of-the-terrain/",
       "note": "auto-published journal: hillside-custom-home-los-angeles-structure-retaining-wall"
+    },
+    {
+      "date_first_reported": "2026-07-27",
+      "source": "user_dismissed",
+      "title": "NFL Star Myles Garrett Is Asking $2.1 Million for His Ohio Home",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/myles-garrett-house-ohio-cleveland-1238495503/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
     }
   ],
   "reported": [
