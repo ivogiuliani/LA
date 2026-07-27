@@ -3978,6 +3978,26 @@
       "action_type": "user_dismissed",
       "url": "https://www.latimes.com/spaces/decor/designers/story/2026-design-trends-ruggable",
       "note": "auto-sent pitch to sara.kitnick@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-07-27",
+      "source": "user_dismissed",
+      "title": "Instead of relying on a retaining wall, this house uses its concrete structure to hold back the hillside",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Architizer/status/2079144300466610268",
+      "note": "auto-published journal: hillside-custom-home-los-angeles-structure-retaining-wall"
+    },
+    {
+      "date_first_reported": "2026-07-27",
+      "source": "user_dismissed",
+      "title": "Dwelling in the Rhythm of the Terrain — TSC architects",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://architizer.com/projects/dwelling-in-the-rhythm-of-the-terrain/",
+      "note": "auto-published journal: hillside-custom-home-los-angeles-structure-retaining-wall"
     }
   ],
   "reported": [
@@ -5780,6 +5800,16 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/brissen91275/status/2079392374309155033",
       "note": "auto-skip AI: donation appeal, inappropriate for brand engagement"
+    },
+    {
+      "date_first_reported": "2026-07-27",
+      "source": "ai_skip",
+      "title": "@TheShawnHendrix: Author: @TheShawnHendrix | Text: Walk up beach stand in Malibu, California how d...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/TheShawnHendrix/status/2081512887659454927",
+      "note": "auto-skip AI: off-topic, no architecture or property substance"
     }
   ]
 }
