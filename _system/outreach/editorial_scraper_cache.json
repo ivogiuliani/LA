@@ -624,12 +624,13 @@
     }
   },
   "canyon-news.com": {
-    "cached_at": 1780469066.537538,
+    "cached_at": 1785218978.509556,
     "result": {
       "email": "hello@canyon-news.com",
-      "source": "article_scraped",
-      "path": "/contact-us",
-      "score": 14
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 14,
+      "in_mailto": true
     }
   },
   "toacorn.com": {

@@ -4008,6 +4008,16 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/myles-garrett-house-ohio-cleveland-1238495503/",
       "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-07-28",
+      "source": "user_dismissed",
+      "title": "Malibu Discusses Firewise Community",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.canyon-news.com/malibu-discusses-firewise-community/",
+      "note": "auto-sent pitch to queued:danny.jones@canyon-news.com"
     }
   ],
   "reported": [
@@ -5820,6 +5830,66 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/TheShawnHendrix/status/2081512887659454927",
       "note": "auto-skip AI: off-topic, no architecture or property substance"
+    },
+    {
+      "date_first_reported": "2026-07-28",
+      "source": "ai_skip",
+      "title": "@Stormy_Life_: Author: @Stormy_Life_ | Text: For anyone wondering…homeowners insurance in Calif...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Stormy_Life_/status/2081843109777006905",
+      "note": "auto-skip AI: rage/venting thread, negligible reach"
+    },
+    {
+      "date_first_reported": "2026-07-28",
+      "source": "ai_skip",
+      "title": "@HomeAdore: Author: @HomeAdore | Text: Lawrence Park: Modern Minimalist House Design in Toro...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/HomeAdore/status/2080061930211832139",
+      "note": "auto-skip AI: generic feed repost, no discussion or LA relevance"
+    },
+    {
+      "date_first_reported": "2026-07-28",
+      "source": "ai_skip",
+      "title": "@artndesign823: Author: @artndesign823 | Text: Manhattan Beach! 🌊🏝️\n\n📍Los Angeles, California...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/artndesign823/status/2080713284483994037",
+      "note": "auto-skip AI: influencer fluff, negligible reach"
+    },
+    {
+      "date_first_reported": "2026-07-28",
+      "source": "ai_skip",
+      "title": "@Ubash19: Author: @Ubash19 | Text: Proposed Mediterranean Villa Design #Architecture #nsfw...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Ubash19/status/2080304618030907561",
+      "note": "auto-skip AI: spam hashtags, no luxury or LA audience"
+    },
+    {
+      "date_first_reported": "2026-07-28",
+      "source": "ai_skip",
+      "title": "@Cleanoceaninc: Author: @Cleanoceaninc | Text: There are approximately 900 to 1,100 active or is...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Cleanoceaninc/status/2081098373973856618",
+      "note": "auto-skip AI: argumentative thread, negligible reach"
+    },
+    {
+      "date_first_reported": "2026-07-28",
+      "source": "ai_skip",
+      "title": "@brissen91275: Author: @brissen91275 | Text: The devastating fire in Pacific Palisades changed...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/brissen91275/status/2079392374309155033",
+      "note": "auto-skip AI: donation appeal, inappropriate for brand reply"
     }
   ]
 }

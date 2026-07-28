@@ -1,0 +1,172 @@
+{
+  "date": "2026-07-28",
+  "generated_at": "2026-07-28T08:08:41.730093",
+  "viral_opportunities": [
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "rebuilding home after wildfire California",
+      "title": "@msuster: Author: @msuster | Text: It’s official. 18 months after the Pacific Palisades fi...",
+      "url": "https://x.com/msuster/status/2080829156317970511",
+      "snippet": "Author: @msuster | Text: It’s official. 18 months after the Pacific Palisades fires we have completed rebuilding our home from the ground up. I move in tonight. Much work ahead but I’m home & and a debt of gratitude to my wife for making this happen at record speed 😮‍💨 | URL: https://x.com/msuster/status/2080829156317970511 | Date: 2026-07-25 | Likes: 1381 | Retweets: 6 | Replies: 121 | Views: 96885 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-25",
+      "author": "@msuster",
+      "engagement": {
+        "score": 1998,
+        "likes": 1381,
+        "retweets": 6,
+        "replies": 121,
+        "views": 96885,
+        "author_followers": 0,
+        "virality_score": 47
+      },
+      "_strategy_tier": 3,
+      "_strategy_priority": 2,
+      "preliminary_score": 10,
+      "ai_score": 14,
+      "ai_scores": {
+        "relevance": 1,
+        "recency": 3,
+        "engagement": 4,
+        "audience_fit": 3,
+        "dialogue": 3
+      },
+      "action_type": "watchlist",
+      "summary": "VC Mark Suster shares personal update on completing his home rebuild 18 months after the Palisades fire.",
+      "engagement_angle": "Palisades rebuild without luxury/design/insurance hook — capped per bias rule; monitor for any design details that could surface.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "Congratulations — 18 months from ashes to move-in is a remarkable pace. The Palisades needs stories like this. Enjoy that first night home.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 139,
+        "tone": "appreciative",
+        "lead_type": "buyer",
+        "why": "HNW Palisades rebuild audience"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "Malibu luxury real estate 2026",
+      "title": "@WSJ: Author: @WSJ | Text: One of the most desirable, celebrity-packed coastal stretch...",
+      "url": "https://x.com/WSJ/status/2081101139735704038",
+      "snippet": "Author: @WSJ | Text: One of the most desirable, celebrity-packed coastal stretches of California has a glut of luxury homes on the market. https://www.wsj.com/real-estate/malibu-california-real-estate-market-f21be7ae?mod=e2tw | URL: https://x.com/WSJ/status/2081101139735704038 | Date: 2026-07-25 | Likes: 86 | Retweets: 18 | Replies: 14 | Views: 119870 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-25",
+      "author": "@WSJ",
+      "engagement": {
+        "score": 192,
+        "likes": 86,
+        "retweets": 18,
+        "replies": 14,
+        "views": 119870,
+        "author_followers": 0,
+        "virality_score": 42
+      },
+      "_strategy_tier": 1,
+      "_strategy_priority": 2,
+      "preliminary_score": 12,
+      "ai_score": 19,
+      "ai_scores": {
+        "relevance": 3,
+        "recency": 3,
+        "engagement": 5,
+        "audience_fit": 5,
+        "dialogue": 3
+      },
+      "action_type": "qualified",
+      "summary": "WSJ reports a glut of luxury homes for sale along the Malibu coast.",
+      "engagement_angle": "Comment on why design-forward, insurable concrete villas may move faster in a soft luxury market than legacy wood-frame estates.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "Malibu reads like two markets now — insurable, non-combustible homes still trade; the rest sits waiting on underwriting. The inventory number blurs that split.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 159,
+        "tone": "data-led",
+        "lead_type": "buyer",
+        "why": "Malibu luxury market readers"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "avant-garde house design",
+      "title": "@FranSilvestreAr: Author: @FranSilvestreAr | Text: This house design draws inspiration from the ic...",
+      "url": "https://x.com/FranSilvestreAr/status/2081394157772239045",
+      "snippet": "Author: @FranSilvestreAr | Text: This house design draws inspiration from the iconic Japanese torii, creating a captivating fusion of the tradition and the contemporary aesthetics. | URL: https://x.com/FranSilvestreAr/status/2081394157772239045 | Date: 2026-07-26 | Likes: 90 | Retweets: 12 | Replies: 0 | Views: 2512 | Author followers: 0",
+      "publication": "X/Twitter",
+      "date": "2026-07-26",
+      "author": "@FranSilvestreAr",
+      "engagement": {
+        "score": 114,
+        "likes": 90,
+        "retweets": 12,
+        "replies": 0,
+        "views": 2512,
+        "author_followers": 0,
+        "virality_score": 29
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 6,
+      "ai_score": 6,
+      "action_type": "skip",
+      "viral_reply": {
+        "body": "The torii reference reads in the proportion rather than the ornament — that restraint is what makes it land. Beautiful threshold moment.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 136,
+        "tone": "appreciative",
+        "lead_type": "brand",
+        "why": "High-end architecture conversation, respected practice"
+      }
+    },
+    {
+      "source": "grok_x",
+      "cluster": "twitter",
+      "query": "case study house architecture",
+      "title": "@shavnyuyngah: Author: @shavnyuyngah | Text: When I say Kerala has some of the very best docume...",
+      "url": "https://x.com/shavnyuyngah/status/2080620355639525732",
+      "snippet": "Author: @shavnyuyngah | Text: When I say Kerala has some of the very best documented residential architecture right now, this is exactly what I mean. Don’t skip the comments, the best views of this home are there.\n\nHouse of Corridors treats hallways as the actual point of the house, not the boring bit between rooms. Instead of enclosed rooms connected by circulation, the whole 3,900 sq ft home unfolds through corridors that widen into pauses, bend around courtyards, and spill into verandas and s",
+      "publication": "X/Twitter",
+      "date": "2026-07-24",
+      "author": "@shavnyuyngah",
+      "engagement": {
+        "score": 344,
+        "likes": 258,
+        "retweets": 43,
+        "replies": 0,
+        "views": 141694,
+        "author_followers": 0,
+        "virality_score": 28
+      },
+      "_strategy_tier": 99,
+      "_strategy_priority": 2,
+      "preliminary_score": 8,
+      "ai_score": 19,
+      "ai_scores": {
+        "relevance": 4,
+        "recency": 5,
+        "engagement": 3,
+        "audience_fit": 3,
+        "dialogue": 4
+      },
+      "action_type": "qualified",
+      "summary": "Praise for well-documented contemporary residential architecture in Kerala, India.",
+      "engagement_angle": "Engage on cross-cultural residential craft — compare Kerala's material/light sensibility to Mediterranean villa typology; opens global design dialogue.",
+      "author_name": "",
+      "viral_reply": {
+        "body": "Treating circulation as the actual program is hard to pull off — the courtyards and the light have to do real work. Beautifully controlled.",
+        "skip": false,
+        "skip_reason": "",
+        "char_count": 139,
+        "tone": "peer",
+        "lead_type": "brand",
+        "why": "Serious residential architecture discussion"
+      }
+    }
+  ]
+}
