@@ -5960,6 +5960,56 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/HomeAdore/status/2080061930211832139",
       "note": "auto-skip AI: design-fan aggregator, no LA luxury buyers or partners"
+    },
+    {
+      "date_first_reported": "2026-07-30",
+      "source": "ai_skip",
+      "title": "@Stormy_Life_: Author: @Stormy_Life_ | Text: For anyone wondering…homeowners insurance in Calif...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Stormy_Life_/status/2081843109777006905",
+      "note": "auto-skip AI: frustration rant, negligible reach"
+    },
+    {
+      "date_first_reported": "2026-07-30",
+      "source": "ai_skip",
+      "title": "@vcd2sup: Author: @vcd2sup | Text: The California Department of Insurance will host a stat...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/vcd2sup/status/2082589424378839056",
+      "note": "auto-skip AI: negligible reach, logistics post"
+    },
+    {
+      "date_first_reported": "2026-07-30",
+      "source": "ai_skip",
+      "title": "@thetradingchick: Author: @thetradingchick | Text: 📍 Malibu, California\n\n$15.85M before negotiatio...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/thetradingchick/status/2081471618115846277",
+      "note": "auto-skip AI: salesy listing repost, nothing honestly admirable to affirm"
+    },
+    {
+      "date_first_reported": "2026-07-30",
+      "source": "ai_skip",
+      "title": "@AllHandsHearts: Author: @AllHandsHearts | Text: Join @Lozcast at an All Hands & Hearts worksite...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/AllHandsHearts/status/2081454734146261144",
+      "note": "auto-skip AI: charity rebuild post, commenting would read as opportunistic"
+    },
+    {
+      "date_first_reported": "2026-07-30",
+      "source": "ai_skip",
+      "title": "@Cleanoceaninc: Author: @Cleanoceaninc | Text: There are approximately 900 to 1,100 active or is...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Cleanoceaninc/status/2081098373973856618",
+      "note": "auto-skip AI: 57 views, argumentative thread"
     }
   ]
 }
