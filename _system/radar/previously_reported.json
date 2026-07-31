@@ -4028,6 +4028,26 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/homes-for-sale/bradbury-estates-mansion-for-sale-1238503992/",
       "note": "auto-published journal: mediterranean-villa-california-268m-bradbury-estate"
+    },
+    {
+      "date_first_reported": "2026-07-31",
+      "source": "user_dismissed",
+      "title": "SPF Architects wraps Los Angeles house in asphalt shingles for fire protection",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dezeen.com/2026/07/30/mountain-residence-california-spf-architects/",
+      "note": "auto-sent pitch to editorial@dezeen.com"
+    },
+    {
+      "date_first_reported": "2026-07-31",
+      "source": "user_dismissed",
+      "title": "George and Amal Clooney Were Forced to Evacuate Their French Estate Amid Wildfir",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/george-and-amal-clooney-evacuate-french-estate-amid-wildfires-1238515505/",
+      "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
     }
   ],
   "reported": [
