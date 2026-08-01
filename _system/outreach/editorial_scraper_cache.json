@@ -33,7 +33,7 @@
     "result": null
   },
   "archdaily.com": {
-    "cached_at": 1784614232.9780931,
+    "cached_at": 1785564903.3004706,
     "result": null
   },
   "malibutimes.com": {
@@ -93,7 +93,7 @@
     }
   },
   "architecturaldigest.com": {
-    "cached_at": 1784182589.1184845,
+    "cached_at": 1785564912.2943573,
     "result": null
   },
   "dig-in.com": {
@@ -297,15 +297,21 @@
     "result": null
   },
   "parametric-architecture.com": {
-    "cached_at": 1778649719.3878021,
-    "result": null
+    "cached_at": 1785564890.1591167,
+    "result": {
+      "email": "info@parametric-architecture.com",
+      "source": "about_page",
+      "path": "/about-us",
+      "score": 6,
+      "in_mailto": false
+    }
   },
   "parriva.com": {
     "cached_at": 1778649721.785582,
     "result": null
   },
   "politico.com": {
-    "cached_at": 1778736148.669962,
+    "cached_at": 1785564829.0893476,
     "result": null
   },
   "coveragecat.com": {
@@ -800,7 +806,7 @@
     "result": null
   },
   "mansionglobal.com": {
-    "cached_at": 1784268681.7309747,
+    "cached_at": 1785564846.4934008,
     "result": null
   },
   "admiddleeast.com": {
@@ -908,7 +914,7 @@
     "result": null
   },
   "patriotmaids.com": {
-    "cached_at": 1783664233.9173186,
+    "cached_at": 1785564882.3981395,
     "result": null
   },
   "tollbrothers.com": {
@@ -1074,5 +1080,41 @@
       "score": 11,
       "in_mailto": false
     }
+  },
+  "architectmagazine.com": {
+    "cached_at": 1785564847.216582,
+    "result": null
+  },
+  "upscalelivingmag.com": {
+    "cached_at": 1785564860.2260242,
+    "result": {
+      "email": "info@upscalelivingmag.com",
+      "source": "article_scraped",
+      "path": "/brand-features/wildfire-resistant-home-features-how-new-construction-protects-california-homeowners/",
+      "score": 6,
+      "in_mailto": false
+    }
+  },
+  "ynetnews.com": {
+    "cached_at": 1785564923.3925261,
+    "result": null
+  },
+  "conceptarchi.com": {
+    "cached_at": 1785564979.8107424,
+    "result": null
+  },
+  "omnesmag.com": {
+    "cached_at": 1785564987.3846817,
+    "result": {
+      "email": "omnes@omnesmag.com",
+      "source": "article_scraped",
+      "path": "/en/news/the-sainte-chapelle-of-reinforced-concrete/",
+      "score": 7,
+      "in_mailto": true
+    }
+  },
+  "indiatimes.com": {
+    "cached_at": 1785564998.721727,
+    "result": null
   }
 }

@@ -4048,6 +4048,106 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/george-and-amal-clooney-evacuate-french-estate-amid-wildfires-1238515505/",
       "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "user_dismissed",
+      "title": "A 1950s Connecticut Home by Modernist Architect Edward Durell Stone Lists for $4",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/edward-durell-stone-celanese-house-ct-lists-1238504086/",
+      "note": "auto-sent pitch to queued:demetrius.simms@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "user_dismissed",
+      "title": "A Mother and Daughter’s Concrete Home in Mexico Takes Some Unexpected Turns - Dw",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dwell.com/article/casa-gardenias-vrtical-concrete-home-renovation-e865a3f0",
+      "note": "auto-sent pitch to letters@dwell.com"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "user_dismissed",
+      "title": "Wildfire-Resistant Home Features: How New Construction Protects California Homeo",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.upscalelivingmag.com/brand-features/wildfire-resistant-home-features-how-new-construction-protects-california-homeowners/",
+      "note": "auto-sent pitch to publisher@upscalelivingmag.com"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "user_dismissed",
+      "title": "Tadao Ando’s Legacy in Shaping Contemporary Biophilic Design",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://parametric-architecture.com/tadao-andos-legacy-in-shaping-contemporary-biophilic-design/",
+      "note": "auto-sent pitch to queued:nikitha.sunil@parametric-architecture.com"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "user_dismissed",
+      "title": "Ridge Residence / Hsu McCullough | ArchDaily",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.archdaily.com/1181644/ridge-residence-hsu-mccullough",
+      "note": "auto-sent pitch to queued:nana.dokua@archdaily.com"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "user_dismissed",
+      "title": "Betsey Johnson Listed Her Modernized 1950s Ranch House in SoCal for $7.5 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/betsey-johnson-house-california-hidden-hills-1238514527/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "user_dismissed",
+      "title": "Cosima Swayze and Zoë de Givenchy Host a Sunday Roast With A Los Angeles Twist (",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/table-mates-cosima-swayze-zoe-de-givenchy",
+      "note": "auto-sent pitch to queued:kate.mcgregor@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "user_dismissed",
+      "title": "Inside Tom Cruise’s Expansive Property Portfolio",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/lists/tom-cruise-property-portfolio-1238512468/",
+      "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "user_dismissed",
+      "title": "Bamboo cladding for a modern villa",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hoog.design/en/look-inside/bamboo-cladding-modern-villa",
+      "note": "auto-sent pitch to marketing@awood.nl"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "user_dismissed",
+      "title": "The Sainte-Chapelle of Reinforced Concrete - Omnes",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.omnesmag.com/en/news/the-sainte-chapelle-of-reinforced-concrete/",
+      "note": "auto-sent pitch to omnes@omnesmag.com"
     }
   ],
   "reported": [
@@ -6030,6 +6130,56 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/Cleanoceaninc/status/2081098373973856618",
       "note": "auto-skip AI: 57 views, argumentative thread"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "ai_skip",
+      "title": "@Milajoy: Author: @Milajoy | Text: LA resident says it's going to be IMPOSSIBLE for most P...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Milajoy/status/2082885659476574344",
+      "note": "auto-skip AI: politics/conspiracy content, brand-unsafe"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "ai_skip",
+      "title": "@bay_photography: Author: @bay_photography | Text: Take a trip up PCH for the real deal to underst...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/bay_photography/status/2083235024036589981",
+      "note": "auto-skip AI: travel/photo fandom, no luxury design or buyers"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "ai_skip",
+      "title": "@studie_bijbel: Author: @studie_bijbel | Text: My mother and I are going to sell my luxury villa...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/studie_bijbel/status/2082898646442418216",
+      "note": "auto-skip AI: no visible property or design to honestly admire"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "ai_skip",
+      "title": "@grok: Author: @grok | Text: In top California neighborhoods like Bel Air or Beverly Hi...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/grok/status/2081988027912540436",
+      "note": "auto-skip AI: automated post, no author relationship or reach"
+    },
+    {
+      "date_first_reported": "2026-08-01",
+      "source": "ai_skip",
+      "title": "@Just_Terry17: Author: @Just_Terry17 | Text: Major insurance companies warned LA County months...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Just_Terry17/status/2083234665859625220",
+      "note": "auto-skip AI: negligible reach, no audience value"
     }
   ]
 }
