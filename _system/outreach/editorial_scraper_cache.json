@@ -194,7 +194,7 @@
     "result": null
   },
   "liveinsurancenews.com": {
-    "cached_at": 1783664106.4348233,
+    "cached_at": 1785651376.2041442,
     "result": null
   },
   "forbes.com": {
@@ -319,7 +319,7 @@
     "result": null
   },
   "aol.com": {
-    "cached_at": 1783836872.5871406,
+    "cached_at": 1785651316.350004,
     "result": null
   },
   "bankrate.com": {
@@ -587,7 +587,7 @@
     }
   },
   "e-a-a.com": {
-    "cached_at": 1780468836.2680929,
+    "cached_at": 1785651280.3242197,
     "result": null
   },
   "calmatters.org": {
@@ -984,7 +984,7 @@
     "result": null
   },
   "homesandgardens.com": {
-    "cached_at": 1783923493.4666798,
+    "cached_at": 1785651309.7743838,
     "result": null
   },
   "travelbinger.com": {
@@ -1116,5 +1116,63 @@
   "indiatimes.com": {
     "cached_at": 1785564998.721727,
     "result": null
+  },
+  "domusweb.it": {
+    "cached_at": 1785651275.9347858,
+    "result": null
+  },
+  "chaithanya.com": {
+    "cached_at": 1785651347.1988585,
+    "result": null
+  },
+  "homestratosphere.com": {
+    "cached_at": 1785651354.1750276,
+    "result": {
+      "email": "info@homestratosphere.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 11,
+      "in_mailto": true
+    }
+  },
+  "amwins.com": {
+    "cached_at": 1785651380.9079118,
+    "result": {
+      "email": "vendor.payables@amwins.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 5,
+      "in_mailto": true
+    }
+  },
+  "hsysourcing.com": {
+    "cached_at": 1785651404.773799,
+    "result": {
+      "email": "anna@hsysourcing.com",
+      "source": "article_scraped",
+      "path": "/cost-to-build-a-luxury-villa-budget-sourcing-guide.html",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "stackedhomes.com": {
+    "cached_at": 1785651428.534606,
+    "result": {
+      "email": "hello@stackedhomes.com",
+      "source": "article_scraped",
+      "path": "/new-freehold-semi-ds-10-minute-walk-from-three-mrt-stations-priced-8-5-million/",
+      "score": 9,
+      "in_mailto": false
+    }
+  },
+  "managecasa.com": {
+    "cached_at": 1785651428.6563764,
+    "result": {
+      "email": "info@managecasa.com",
+      "source": "article_scraped",
+      "path": "/articles/california-housing-market-2026",
+      "score": 11,
+      "in_mailto": true
+    }
   }
 }

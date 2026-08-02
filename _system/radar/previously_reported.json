@@ -4148,6 +4148,56 @@
       "action_type": "user_dismissed",
       "url": "https://www.omnesmag.com/en/news/the-sainte-chapelle-of-reinforced-concrete/",
       "note": "auto-sent pitch to omnes@omnesmag.com"
+    },
+    {
+      "date_first_reported": "2026-08-02",
+      "source": "user_dismissed",
+      "title": "Villa Monteverde 5-Bedroom Mediterranean House Plan with Home Theater (4,851 Sq.",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.homestratosphere.com/villa-monteverde-mediterranean-95072rw-house-plan/",
+      "note": "auto-sent pitch to queued:jon.dykstra@homestratosphere.com"
+    },
+    {
+      "date_first_reported": "2026-08-02",
+      "source": "user_dismissed",
+      "title": "A New Solution to California’s FAIR Plan Boom",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.amwins.com/resources-and-insights/market-insights/article/a-new-solution-to-california-s-fair-plan-boom",
+      "note": "auto-sent pitch to vendor.payables@amwins.com"
+    },
+    {
+      "date_first_reported": "2026-08-02",
+      "source": "user_dismissed",
+      "title": "How Much Does It Cost to Build a Luxury Villa? (2026 Budget Guide)",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hsysourcing.com/cost-to-build-a-luxury-villa-budget-sourcing-guide.html",
+      "note": "auto-sent pitch to anna@hsysourcing.com"
+    },
+    {
+      "date_first_reported": "2026-08-02",
+      "source": "user_dismissed",
+      "title": "These New Freehold Semi-Ds Are A 10-Minute Walk From Three MRT Stations — Priced",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://stackedhomes.com/new-freehold-semi-ds-10-minute-walk-from-three-mrt-stations-priced-8-5-million/",
+      "note": "auto-sent pitch to you@email.com"
+    },
+    {
+      "date_first_reported": "2026-08-02",
+      "source": "user_dismissed",
+      "title": "California Housing Market 2026: Outlook & Trends",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://managecasa.com/articles/california-housing-market-2026",
+      "note": "auto-sent pitch to sales@managecasa.com"
     }
   ],
   "reported": [
@@ -6180,6 +6230,56 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/Just_Terry17/status/2083234665859625220",
       "note": "auto-skip AI: negligible reach, no audience value"
+    },
+    {
+      "date_first_reported": "2026-08-02",
+      "source": "ai_skip",
+      "title": "@studie_bijbel: Author: @studie_bijbel | Text: My mother and I are going to sell my luxury villa...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/studie_bijbel/status/2082898646442418216",
+      "note": "auto-skip AI: zero-follower account, likely bait; nothing real to admire"
+    },
+    {
+      "date_first_reported": "2026-08-02",
+      "source": "ai_skip",
+      "title": "@artndesign823: Author: @artndesign823 | Text: Manhattan Beach Pier! 🌊🕊️\n\n📍Los Angeles, Californ...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/artndesign823/status/2083639381517299851",
+      "note": "auto-skip AI: off-topic scenic photo, no luxury or design content"
+    },
+    {
+      "date_first_reported": "2026-08-02",
+      "source": "ai_skip",
+      "title": "@propgoluxury: Author: @propgoluxury | Text: FOR SALE - Loma Metisse Road, Malibu, CA, 90265, U...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/propgoluxury/status/2083438588008759367",
+      "note": "auto-skip AI: syndicated bot listing with no visible design detail to honestly admire"
+    },
+    {
+      "date_first_reported": "2026-08-02",
+      "source": "ai_skip",
+      "title": "@Just_Terry17: Author: @Just_Terry17 | Text: Major insurance companies warned LA County months...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Just_Terry17/status/2083234665859625220",
+      "note": "auto-skip AI: 79 views, grievance/politics framing — low-quality traffic"
+    },
+    {
+      "date_first_reported": "2026-08-02",
+      "source": "ai_skip",
+      "title": "@Wolfways44: Author: @Wolfways44 | Text: I will just leave this here so everyone can see the...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Wolfways44/status/2082918453800022181",
+      "note": "auto-skip AI: 88 views, grievance framing, no partner or buyer audience"
     }
   ]
 }
