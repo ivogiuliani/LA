@@ -17,7 +17,7 @@
     }
   },
   "wallpaper.com": {
-    "cached_at": 1783577720.4432454,
+    "cached_at": 1785737808.8316038,
     "result": null
   },
   "prnewswire.com": {
@@ -244,7 +244,7 @@
     "result": null
   },
   "latimes.com": {
-    "cached_at": 1782454456.1681721,
+    "cached_at": 1785737834.6713617,
     "result": {
       "email": "tips@latimes.com",
       "source": "article_scraped",
@@ -578,12 +578,13 @@
     }
   },
   "myvilla.la": {
-    "cached_at": 1780468828.6662788,
+    "cached_at": 1785737836.9983737,
     "result": {
       "email": "info@myvilla.la",
       "source": "about_page",
       "path": "/team",
-      "score": 11
+      "score": 11,
+      "in_mailto": true
     }
   },
   "e-a-a.com": {
@@ -1010,7 +1011,7 @@
     "result": null
   },
   "co.uk": {
-    "cached_at": 1784009666.317162,
+    "cached_at": 1785737828.207446,
     "result": null
   },
   "architecturalrecord.com": {
@@ -1174,5 +1175,19 @@
       "score": 11,
       "in_mailto": true
     }
+  },
+  "jamesbondlifestyle.com": {
+    "cached_at": 1785737845.7978916,
+    "result": {
+      "email": "007@jamesbondlifestyle.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 7,
+      "in_mailto": true
+    }
+  },
+  "americafirstreport.com": {
+    "cached_at": 1785737859.1150157,
+    "result": null
   }
 }

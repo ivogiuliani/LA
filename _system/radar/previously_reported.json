@@ -4198,6 +4198,76 @@
       "action_type": "user_dismissed",
       "url": "https://managecasa.com/articles/california-housing-market-2026",
       "note": "auto-sent pitch to sales@managecasa.com"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "user_dismissed",
+      "title": "Drama and minimalism meet in this Osaka house – where all is not what it seems",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/residential/osaka-house-apollo-architects-associates-japan",
+      "note": "auto-sent pitch to queued:ellie.stathaki@wallpaper.com"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "user_dismissed",
+      "title": "Tour a Miami house by StudioKP2, designed for luxury living | Wallpaper*",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/residential/miami-house-studiokp2-usa",
+      "note": "auto-sent pitch to queued:ellie.stathaki@wallpaper.com"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "user_dismissed",
+      "title": "The percentage of homes surviving California wildfires is dropping, despite effo",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/environment/story/2026-08-01/percentage-homes-surviving-wildfires-dropping",
+      "note": "auto-sent pitch to noah.haggerty@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "user_dismissed",
+      "title": "Mediterranean Villa California: What a $26.8M Estate Reveals — My Villa Journal",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://myvilla.la/blog/mediterranean-villa-california-268m-bradbury-estate.html",
+      "note": "auto-sent pitch to info@myvilla.la"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "user_dismissed",
+      "title": "Modern villa architecture for living and working",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hoog.design/en/look-inside/modern-villa-architecture-living-and-working",
+      "note": "auto-sent pitch to info@hoog.design"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "user_dismissed",
+      "title": "Custom villa construction with geometric brick architecture",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hoog.design/en/look-inside/custom-villa-construction-geometric-brick-architecture",
+      "note": "auto-sent pitch to info@hoog.design"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "user_dismissed",
+      "title": "Villa del Balbianello, Lenno, Como, Italy | Bond Lifestyle",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.jamesbondlifestyle.com/product/villa-del-balbianello-lenno-como-italy",
+      "note": "auto-sent pitch to 007@jamesbondlifestyle.com"
     }
   ],
   "reported": [
@@ -6280,6 +6350,56 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/Wolfways44/status/2082918453800022181",
       "note": "auto-skip AI: 88 views, grievance framing, no partner or buyer audience"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "ai_skip",
+      "title": "@itispsychomath: Author: @itispsychomath | Text: Imagine you own an $8 million home in Malibu and...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/itispsychomath/status/2084012106538680661",
+      "note": "auto-skip AI: drama/politics, off-brand"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "ai_skip",
+      "title": "@CA_Dem: Author: @CA_Dem | Text: CADEM is proud to endorse Ben Allen for California Insur...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/CA_Dem/status/2084008279831970158",
+      "note": "auto-skip AI: partisan politics, brand-unsafe"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "ai_skip",
+      "title": "@JBMAGA03: Author: @JBMAGA03 | Text: 🚨 Kamala Harris drops $8.15 MILLION on a luxury mansio...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/JBMAGA03/status/2084061320832246162",
+      "note": "auto-skip AI: politics/drama, brand-unsafe"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "ai_skip",
+      "title": "@studie_bijbel: Author: @studie_bijbel | Text: My mother and I are going to sell my luxury villa...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/studie_bijbel/status/2082898646442418216",
+      "note": "auto-skip AI: no design substance, likely spam"
+    },
+    {
+      "date_first_reported": "2026-08-03",
+      "source": "ai_skip",
+      "title": "@Wolfways44: Author: @Wolfways44 | Text: I will just leave this here so everyone can see the...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/Wolfways44/status/2082918453800022181",
+      "note": "auto-skip AI: minimal reach, framed as grievance"
     }
   ]
 }

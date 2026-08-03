@@ -1,0 +1,32 @@
+{
+  "thread_id": "19fc120265b712c2",
+  "outreach_message_id": "19fc120265b712c2",
+  "outreach_subject": "A European angle on your These New Freehold Semi-Ds Are A 10-Minute Walk From Three M piece",
+  "outreach_to": "you@email.com",
+  "outreach_sent_at": "2026-08-02T06:18:57+00:00",
+  "replies": [
+    {
+      "thread_id": "19fc120265b712c2",
+      "gmail_message_id": "19fc120347107f1b",
+      "rfc822_message_id": "<6a6ee154.bcb5ce89.199d52.1d19.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a you@email.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\nUlteriori informazioni: https://postmaster.mail.com/en/case?c=r1601&i=ip&v=209.85.210.182&r=1MALJd-1wf70h2pUh-000qqq\r\n(attenzione: questo link indirizza a un sito di terze parti)\r\n\r\nLa risposta del server remoto è:\r\n550 Requested action not taken: mailbox unavailable For explanation visit https://postmaster.mail.com/en/case?c=r1601&i=ip&v=209.85.210.182&r=1MALJd-1wf70h2pUh-000qqq",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a you@email.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. ULTERIORI INFORMAZIONI Questo link ti indirizzerà a un",
+      "received_at": "2026-08-02T06:19:00+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "UNREAD",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "19fc120265b712c2",
+      "outreach_subject": "A European angle on your These New Freehold Semi-Ds Are A 10-Minute Walk From Three M piece",
+      "outreach_to": "you@email.com",
+      "outreach_sent_at": "2026-08-02T06:18:57+00:00"
+    }
+  ],
+  "last_checked_at": "2026-08-03T06:18:34+00:00"
+}
