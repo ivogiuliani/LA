@@ -4268,6 +4268,36 @@
       "action_type": "user_dismissed",
       "url": "https://www.jamesbondlifestyle.com/product/villa-del-balbianello-lenno-como-italy",
       "note": "auto-sent pitch to 007@jamesbondlifestyle.com"
+    },
+    {
+      "date_first_reported": "2026-08-04",
+      "source": "user_dismissed",
+      "title": "The Beverly Hills Estate of a Prominent Arts Patron Lists for $25 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/glorya-kaufman-house-beverly-hills-1238519797/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-04",
+      "source": "user_dismissed",
+      "title": "Classic Villa with Modern Glass Walls | Exterior",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hoog.design/en/look-inside/classic-villa-contemporary-exterior",
+      "note": "auto-sent pitch to info@hoog.design"
+    },
+    {
+      "date_first_reported": "2026-08-04",
+      "source": "user_dismissed",
+      "title": "Breathtaking beachfront mansions sit vacant after historic natural disaster… now",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dailymail.com/real-estate/article-15999447/malibu-fire-mansions-discount-sale.html",
+      "note": "auto-sent pitch to queued:sadie.whitelocks@dailymail.com"
     }
   ],
   "reported": [
@@ -6400,6 +6430,66 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/Wolfways44/status/2082918453800022181",
       "note": "auto-skip AI: minimal reach, framed as grievance"
+    },
+    {
+      "date_first_reported": "2026-08-04",
+      "source": "ai_skip",
+      "title": "@JBMAGA03: Author: @JBMAGA03 | Text: 🚨 Kamala Harris drops $8.15 MILLION on a luxury mansio...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/JBMAGA03/status/2084061320832246162",
+      "note": "auto-skip AI: politics/drama, off-brand"
+    },
+    {
+      "date_first_reported": "2026-08-04",
+      "source": "ai_skip",
+      "title": "@artndesign823: Author: @artndesign823 | Text: Manhattan Beach Pier! 🌊🕊️\n\n📍Los Angeles, Californ...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/artndesign823/status/2083639381517299851",
+      "note": "auto-skip AI: off-topic travel photo, no luxury design"
+    },
+    {
+      "date_first_reported": "2026-08-04",
+      "source": "ai_skip",
+      "title": "@studie_bijbel: Author: @studie_bijbel | Text: My mother and I are going to sell my luxury villa...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/studie_bijbel/status/2082898646442418216",
+      "note": "auto-skip AI: no design substance, likely not genuine listing"
+    },
+    {
+      "date_first_reported": "2026-08-04",
+      "source": "ai_skip",
+      "title": "@CABirdGirl2: Author: @CABirdGirl2 | Text: CA  insurers pay into the Fair Plan, and now that f...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/CABirdGirl2/status/2084406781527380291",
+      "note": "auto-skip AI: negligible reach, grievance thread"
+    },
+    {
+      "date_first_reported": "2026-08-04",
+      "source": "ai_skip",
+      "title": "@PatriotLantern: Author: @PatriotLantern | Text: Did you ever follow the videos that Adam Corolla...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/PatriotLantern/status/2084343060247314860",
+      "note": "auto-skip AI: politically charged grievance thread"
+    },
+    {
+      "date_first_reported": "2026-08-04",
+      "source": "ai_skip",
+      "title": "@propgoluxury: Author: @propgoluxury | Text: FOR SALE - Loma Metisse Road, Malibu, CA, 90265, U...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/propgoluxury/status/2083438588008759367",
+      "note": "auto-skip AI: no visible design detail to honestly admire"
     }
   ]
 }
