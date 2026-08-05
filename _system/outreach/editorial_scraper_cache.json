@@ -101,7 +101,7 @@
     "result": null
   },
   "insurancebusinessmag.com": {
-    "cached_at": 1781158344.8655438,
+    "cached_at": 1785910472.260477,
     "result": null
   },
   "propertyinsurancecoveragelaw.com": {
@@ -471,7 +471,7 @@
     "result": null
   },
   "yahoo.com": {
-    "cached_at": 1783750489.6542845,
+    "cached_at": 1785910458.1848876,
     "result": null
   },
   "oakviewins.com": {
@@ -1197,5 +1197,33 @@
   "houzz.com": {
     "cached_at": 1785824132.6973011,
     "result": null
+  },
+  "sciencedaily.com": {
+    "cached_at": 1785910462.3170896,
+    "result": null
+  },
+  "ideal.house": {
+    "cached_at": 1785910469.4212637,
+    "result": null
+  },
+  "urbansplatter.com": {
+    "cached_at": 1785910502.9842079,
+    "result": {
+      "email": "contact@urbansplatter.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 14,
+      "in_mailto": true
+    }
+  },
+  "thecooldown.com": {
+    "cached_at": 1785910503.9943683,
+    "result": {
+      "email": "hello@thecooldown.com",
+      "source": "article_scraped",
+      "path": "/green-home/california-homeowners-insurance-non-renewals-bill/",
+      "score": 14,
+      "in_mailto": true
+    }
   }
 }

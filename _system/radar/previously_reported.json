@@ -4298,6 +4298,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.dailymail.com/real-estate/article-15999447/malibu-fire-mansions-discount-sale.html",
       "note": "auto-sent pitch to queued:sadie.whitelocks@dailymail.com"
+    },
+    {
+      "date_first_reported": "2026-08-05",
+      "source": "user_dismissed",
+      "title": "An Oscar-Nominated Producer Listed His Ocean-View Malibu Home for $13 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/david-hoberman-house-malibu-1238528671/",
+      "note": "auto-published journal: luxury-home-design-malibu-13m-single-level"
     }
   ],
   "reported": [
@@ -6490,6 +6500,26 @@
       "action_type": "user_dismissed",
       "url": "https://x.com/propgoluxury/status/2083438588008759367",
       "note": "auto-skip AI: no visible design detail to honestly admire"
+    },
+    {
+      "date_first_reported": "2026-08-05",
+      "source": "ai_skip",
+      "title": "@itsrosesm: Author: @itsrosesm | Text: Kamala Harris bought an $8,150,000 home in a Malibu,...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/itsrosesm/status/2084769095828804009",
+      "note": "auto-skip AI: politics/drama, off-brand"
+    },
+    {
+      "date_first_reported": "2026-08-05",
+      "source": "ai_skip",
+      "title": "@bobby47397284: Author: @bobby47397284 | Text: 81x21 is 1700 a week. do you live in Malibu? | UR...",
+      "score": null,
+      "cluster": "twitter",
+      "action_type": "user_dismissed",
+      "url": "https://x.com/bobby47397284/status/2084742953172431341",
+      "note": "auto-skip AI: off-topic, no architecture or luxury substance"
     }
   ]
 }
