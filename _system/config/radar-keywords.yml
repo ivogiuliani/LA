@@ -379,6 +379,9 @@ reddit:
 
 
 # ── X/Twitter Sources ──
+# ⚠️ CANALE DISMESSO 2026-08-05 (decisione Ivo: stop totale produzione
+# social — restano solo articoli sito + outreach stampa). Il radar non
+# chiama più grok_x_search: questa sezione resta per una riattivazione.
 twitter:
   accounts_to_monitor:
     - "@ArchDigest"

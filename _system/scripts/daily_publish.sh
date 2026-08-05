@@ -262,19 +262,11 @@ fi
 # (account vivo, riattivabile). Per riaccendere: ripristinare questo step.
 log "--- ig_publisher.py — SKIP (canale IG dismesso 2026-07-06) ---"
 
-# Step 1d-bis: x_publisher — pubblica su X i tweet APPROVATI (status:
-# approved in _drafts/social/), max X_DAILY_CAP/giorno (default 4).
-# Mirror di ig_publisher. Posta SOLO gli approvati (mai i draft), li
-# sposta in social/posts/published/ (niente doppio post). No-op se la
-# coda approvati è vuota. In DRY_RUN fa solo preview. Non-bloccante.
-X_DRY=""
-[ "${DRY_RUN:-0}" = "1" ] && X_DRY="--dry-run"
-SD_DRY=""
-[ "${DRY_RUN:-0}" = "1" ] && SD_DRY="--dry-run"
-log "--- x_publisher.py --dir --status approved $X_DRY ---"
-python3 _system/scripts/x_publisher.py --dir --status approved --publish-live $X_DRY \
-    >> "$LOG_FILE" 2>&1 || \
-    log "x_publisher errore non bloccante (continuo)"
+# Step 1d-bis: x_publisher — PRODUZIONE SOCIAL DISMESSA 2026-08-05
+# (decisione Ivo: stop a tutti i contenuti social; restano solo articoli
+# sito + outreach stampa). Script dormiente nel repo; le chiavi X OAuth1
+# restano nel .env (riattivazione = ripristinare questo step).
+log "--- x_publisher.py — SKIP (produzione social dismessa 2026-08-05) ---"
 
 # Step 2: generate_journal — dipende dal radar. Se saltato, GEN_EXIT=0
 # (non è un fallimento: la digest può comunque chiudere con successo).
@@ -324,17 +316,10 @@ for pattern, keep in (("-ig-", 3), ("-x-", 2)):
         print(f"  [rotazione] archiviato {f.name}")
 PRUNE
 
-# Step 3b: generate_social — proposte social del giorno dal radar.
-# SOLO X dal 2026-07-06 (--channels x): il canale Instagram è dismesso.
-# NON pubblica: crea solo le card da approvare nel pannello.
-if [ "$RADAR_OK" = "1" ]; then
-    log "--- generate_social.py (proposte X del giorno) ---"
-    python3 _system/scripts/generate_social.py --radar "$RADAR_FILE" \
-        --max-posts 2 --channels x >> "$LOG_FILE" 2>&1 || \
-        log "generate_social errore non bloccante (continuo)"
-else
-    log "--- generate_social.py — SKIP (radar non disponibile) ---"
-fi
+# Step 3b: generate_social — PRODUZIONE SOCIAL DISMESSA 2026-08-05
+# (era rimasto solo X dopo il pivot 2026-07-06; ora stop totale).
+# Script dormiente nel repo. Per riaccendere: ripristinare questo step.
+log "--- generate_social.py — SKIP (produzione social dismessa 2026-08-05) ---"
 
 # Step 3c: ig_viral_radar — CANALE DISMESSO 2026-07-06 (con tutto IG:
 # anche l'engagement sui post virali altrui). Script dormiente nel repo;
@@ -345,15 +330,10 @@ log "--- ig_viral_radar.py — SKIP (canale IG dismesso 2026-07-06) ---"
 # era solo Instagram). Script + grading immagini dormienti nel repo.
 log "--- generate_evergreen.py — SKIP (canale IG dismesso 2026-07-06) ---"
 
-# Step 3e: social_digest — email quotidiana a Ivo+Giana con l'abstract di
-# TUTTI i contenuti social del pannello (proposte da approvare + evergreen +
-# commenti ai post virali IG/X + coda di pubblicazione). Gira DOPO la
-# generazione social (3c/3d) così fotografa i contenuti freschi. Solo
-# formattazione, niente LLM. Idempotente: una volta/giorno (marker su data).
-# Non-bloccante.
-log "--- social_digest.py (abstract social a Ivo+Giana) $SD_DRY ---"
-python3 _system/scripts/social_digest.py $SD_DRY >> "$LOG_FILE" 2>&1 || \
-    log "social_digest errore non bloccante (continuo)"
+# Step 3e: social_digest — DISMESSO 2026-08-05 insieme alla produzione
+# social (la digest fotografava solo contenuti social: senza produzione
+# sarebbe sempre vuota). Script dormiente nel repo.
+log "--- social_digest.py — SKIP (produzione social dismessa 2026-08-05) ---"
 
 # Step 4: feature_pitch — non-bloccante
 log "--- feature_pitch.py $FP_DRY ---"

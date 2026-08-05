@@ -2689,14 +2689,12 @@ def main():
     ig_engage_results = []
     print("4b/4c. Instagram — canale dismesso (2026-07-07)")
 
-    # 4. Grok/X
-    if not args.skip_grok:
-        print("4. Grok/xAI (X/Twitter)...")
-        grok_key = os.environ.get("GROK_API_KEY", os.environ.get("XAI_API_KEY", ""))
-        grok_results = grok_x_search(grok_key, config, lookback_days=args.lookback)
-        all_results.extend(grok_results)
-    else:
-        print("4. Grok/X — skipped")
+    # 4. Grok/X — PRODUZIONE SOCIAL DISMESSA (decisione Ivo 2026-08-05):
+    # la ricerca X serviva solo le card social/engagement (i tweet non
+    # diventano articoli journal né lead stampa: niente byline/email).
+    # Stop anche alle ~20 query Grok a pagamento/giorno. grok_x_search
+    # resta dormiente per un'eventuale riattivazione.
+    print("4. Grok/X — produzione social dismessa (2026-08-05)")
 
     # 5. Gemini
     if not args.skip_gemini:

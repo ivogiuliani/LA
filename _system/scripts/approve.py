@@ -260,6 +260,10 @@ IS_SHARED = os.environ.get("PANEL_MODE", "full").strip().lower() == "shared"
 # chiudono gli endpoint di generazione. Rimettere True per riattivare.
 IG_ENABLED = False
 REDDIT_ENABLED = False
+# 2026-08-05 (decisione Ivo): stop TOTALE alla produzione social — via
+# anche X (bozze, coda, engagement sui virali). Restano solo articoli
+# sito + outreach stampa. Codice dormiente; True per riattivare.
+X_ENABLED = False
 
 # Make sibling scripts importable for re-rendering on save
 if str(SCRIPT_DIR) not in sys.path:
@@ -3491,7 +3495,10 @@ def build_dashboard():
                 '</div></div>')
 
     try:
-        ig_queue_strip = _social_state_strip()
+        # Produzione social dismessa 2026-08-05: senza canali attivi la
+        # strip coda/pubblicati non ha nulla da mostrare.
+        ig_queue_strip = (_social_state_strip()
+                          if (IG_ENABLED or X_ENABLED) else "")
     except Exception as _e:  # noqa: BLE001 — la strip non deve rompere la pagina
         ig_queue_strip = ""
 
@@ -3581,7 +3588,10 @@ def build_dashboard():
             f'{inner}</div>')
 
     try:
-        publish_pipeline_strip = _publish_pipeline_section()
+        # Produzione social dismessa 2026-08-05: coda approvati non più
+        # rilevante senza canali attivi.
+        publish_pipeline_strip = (_publish_pipeline_section()
+                                  if (IG_ENABLED or X_ENABLED) else "")
     except Exception:  # noqa: BLE001
         publish_pipeline_strip = ""
 
@@ -5974,11 +5984,12 @@ def build_dashboard():
   </div>
   ''' if evergreen and IG_ENABLED else ''}
 
-  {section_social_x}
+  {section_social_x if X_ENABLED else ''}
 
   {section_social_reddit}
 
-  {'' if (social_cards_ig or social_cards_x or social_cards_reddit or evergreen) else '''
+  {'' if (social_cards_ig or social_cards_x or social_cards_reddit or evergreen
+          or not (IG_ENABLED or X_ENABLED or REDDIT_ENABLED)) else '''
   <div class="section">
     <h2 class="section-heading">📱 Social — da approvare<span class="section-count">0</span></h2>
     <p class="section-subtitle">Nessuna proposta in attesa. I generatori (radar reattivo, evergreen, partner) ne produrranno con la prossima pipeline.</p>
@@ -6004,7 +6015,7 @@ def build_dashboard():
     <p class="section-subtitle">Post X ad alto engagement sui temi del giorno (costruire / certificare / permessi / assicurazione a LA). <strong>Flusso assistito</strong>: la reply è già pronta in voce My Villa — 📋 copia → apri il post → incolla → "Skip" per segnarlo fatto (o "🚀 Reply on X" via API).</p>
     {viral_cards_x}
   </div>
-  ''' if viral_cards_x else ''}
+  ''' if viral_cards_x and X_ENABLED else ''}
 
   {f'''
   <div class="section">
@@ -9048,6 +9059,17 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 "/api/editorial/regenerate", "/api/editorial/build-package"}:
             self._send_json(
                 {"ok": False, "error": "Canale Instagram dismesso (2026-07-06)."},
+                410)
+            return
+        # 2026-08-05: stop totale produzione social — chiusi anche gli
+        # endpoint X (engagement, pubblicazione, coda, credenziali).
+        if not X_ENABLED and parsed.path in {
+                "/api/x-reply", "/api/x-quote", "/api/publish_social",
+                "/api/queue_publish", "/api/queue_remove",
+                "/api/social_credentials"}:
+            self._send_json(
+                {"ok": False,
+                 "error": "Produzione social dismessa (2026-08-05)."},
                 410)
             return
 
