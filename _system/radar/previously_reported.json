@@ -4308,6 +4308,36 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/david-hoberman-house-malibu-1238528671/",
       "note": "auto-published journal: luxury-home-design-malibu-13m-single-level"
+    },
+    {
+      "date_first_reported": "2026-08-05",
+      "source": "user_dismissed",
+      "title": "Meet Civil Architecture, an emerging Bahrain- and Kuwait-based practice | Wallpa",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/architects-directory/civil-architecture-bahrain-kuwait",
+      "note": "auto-sent pitch to queued:ellie.stathaki@wallpaper.com"
+    },
+    {
+      "date_first_reported": "2026-08-05",
+      "source": "user_dismissed",
+      "title": "Glorya Kaufman's Beverly Hills Estate Lists for $25 Million, Benefits Charity - ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.urbansplatter.com/2026/08/glorya-kaufmans-beverly-hills-estate-lists-for-25-million-benefits-charity/",
+      "note": "auto-sent pitch to queued:david.sunnyside@urbansplatter.com"
+    },
+    {
+      "date_first_reported": "2026-08-05",
+      "source": "user_dismissed",
+      "title": "California bill would force insurers to explain why coverage is ending, and give",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.thecooldown.com/green-home/california-homeowners-insurance-non-renewals-bill/",
+      "note": "auto-sent pitch to queued:kim.lacapria@thecooldown.com"
     }
   ],
   "reported": [
