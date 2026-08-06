@@ -1225,5 +1225,31 @@
       "score": 14,
       "in_mailto": true
     }
+  },
+  "e-architect.com": {
+    "cached_at": 1785996550.954811,
+    "result": null
+  },
+  "enr.com": {
+    "cached_at": 1785996558.4493053,
+    "result": null
+  },
+  "archello.com": {
+    "cached_at": 1785996559.0565772,
+    "result": null
+  },
+  "spacewar.com": {
+    "cached_at": 1785996559.7006633,
+    "result": null
+  },
+  "gharpedia.com": {
+    "cached_at": 1785996567.2929196,
+    "result": {
+      "email": "info@gharpedia.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 11,
+      "in_mailto": true
+    }
   }
 }
