@@ -4398,6 +4398,36 @@
       "action_type": "user_dismissed",
       "url": "https://www.nhc.noaa.gov/data/tcr/AL052019_Dorian.pdf",
       "note": "auto-published journal: reinforced-concrete-homes-california-dorian-lesson"
+    },
+    {
+      "date_first_reported": "2026-08-07",
+      "source": "user_dismissed",
+      "title": "This L.A. Housing Design Contest Is Exactly How This Is Supposed to Work - Dwell",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dwell.com/article/los-angeles-housing-contest-citylab-ucla-328d3e65",
+      "note": "auto-sent pitch to letters@dwell.com"
+    },
+    {
+      "date_first_reported": "2026-08-07",
+      "source": "user_dismissed",
+      "title": "When a Devastating Fire Destroyed Their 200-Year-Old House, the Malin+Goetz Foun",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/matthew-malin-andrew-goetz-hudson-valley-home",
+      "note": "auto-sent pitch to queued:laura.regensdorf@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-08-07",
+      "source": "user_dismissed",
+      "title": "Kenya Barris Lists Zedd’s Former Beverly Hills Mansion for $20.8 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/kenya-barris-zedd-house-beverly-hills-1238532551/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
     }
   ],
   "reported": [
