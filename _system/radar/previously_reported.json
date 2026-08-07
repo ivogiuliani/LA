@@ -4378,6 +4378,26 @@
       "action_type": "user_dismissed",
       "url": "https://www.gharpedia.com/blog/tuscan-style-decor/",
       "note": "auto-sent pitch to queued:nidhi.patel@gharpedia.com"
+    },
+    {
+      "date_first_reported": "2026-08-07",
+      "source": "user_dismissed",
+      "title": "A Concrete Bahamas Home That Withstood Category 5 Hurricane Dorian Lists for Nearly $2 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.mansionglobal.com/articles/a-concrete-bahamas-home-that-withstood-category-5-hurricane-dorian-lists-for-nearly-2-million-f336cd9c",
+      "note": "auto-published journal: reinforced-concrete-homes-california-dorian-lesson"
+    },
+    {
+      "date_first_reported": "2026-08-07",
+      "source": "user_dismissed",
+      "title": "Tropical Cyclone Report: Hurricane Dorian (AL052019)",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.nhc.noaa.gov/data/tcr/AL052019_Dorian.pdf",
+      "note": "auto-published journal: reinforced-concrete-homes-california-dorian-lesson"
     }
   ],
   "reported": [
