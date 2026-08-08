@@ -808,8 +808,14 @@
     "result": null
   },
   "mansionglobal.com": {
-    "cached_at": 1785564846.4934008,
-    "result": null
+    "cached_at": 1786173552.5758874,
+    "result": {
+      "email": "info@mansionglobal.com",
+      "source": "article_scraped",
+      "path": "/amp/articles/a-modern-villa-soaks-in-sicilys-southwest-coast-9fc996a9",
+      "score": 11,
+      "in_mailto": true
+    }
   },
   "admiddleeast.com": {
     "cached_at": 1783577693.9426093,
