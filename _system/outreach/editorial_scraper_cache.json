@@ -592,12 +592,13 @@
     "result": null
   },
   "calmatters.org": {
-    "cached_at": 1780468850.6897469,
+    "cached_at": 1786169314.4518044,
     "result": {
       "email": "info@calmatters.org",
       "source": "article_scraped",
-      "path": "/politics/2026/06/california-insurance-commissioner-primary/",
-      "score": 11
+      "path": "/economy/2026/08/insurance-california-rental-market/",
+      "score": 11,
+      "in_mailto": true
     }
   },
   "noncombustiblesllc.com": {
@@ -1249,6 +1250,54 @@
       "source": "contact_page",
       "path": "/contact",
       "score": 11,
+      "in_mailto": true
+    }
+  },
+  "architecturaldigest.in": {
+    "cached_at": 1786169313.6742003,
+    "result": null
+  },
+  "thecollector.com": {
+    "cached_at": 1786169313.8137517,
+    "result": {
+      "email": "hello@thecollector.com",
+      "source": "article_scraped",
+      "path": "/beautiful-museum-buildings/",
+      "score": 14,
+      "in_mailto": true
+    }
+  },
+  "southlakemn.com": {
+    "cached_at": 1786169314.3063684,
+    "result": {
+      "email": "info@southlakemn.com",
+      "source": "article_scraped",
+      "path": "/post/high-value-home-insurance",
+      "score": 11,
+      "in_mailto": true
+    }
+  },
+  "pufikhomes.com": {
+    "cached_at": 1786169321.369791,
+    "result": null
+  },
+  "nerdwallet.com": {
+    "cached_at": 1786169334.829849,
+    "result": {
+      "email": "sschlichter@nerdwallet.com",
+      "source": "article_scraped",
+      "path": "/insurance/homeowners/california-home-insurance",
+      "score": 7,
+      "in_mailto": true
+    }
+  },
+  "firerisk.ai": {
+    "cached_at": 1786169339.0211165,
+    "result": {
+      "email": "hello@firerisk.ai",
+      "source": "about_page",
+      "path": "/about",
+      "score": 14,
       "in_mailto": true
     }
   }
