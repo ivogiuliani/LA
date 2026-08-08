@@ -33,7 +33,7 @@
     "result": null
   },
   "archdaily.com": {
-    "cached_at": 1785564903.3004706,
+    "cached_at": 1786180178.9573717,
     "result": null
   },
   "malibutimes.com": {
@@ -922,7 +922,7 @@
     "result": null
   },
   "patriotmaids.com": {
-    "cached_at": 1785564882.3981395,
+    "cached_at": 1786180196.817259,
     "result": null
   },
   "tollbrothers.com": {
@@ -1305,6 +1305,20 @@
       "path": "/about",
       "score": 14,
       "in_mailto": true
+    }
+  },
+  "redfin.com": {
+    "cached_at": 1786180183.1584587,
+    "result": null
+  },
+  "nakedcapitalism.com": {
+    "cached_at": 1786180205.7903893,
+    "result": {
+      "email": "blogger@nakedcapitalism.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 2,
+      "in_mailto": false
     }
   }
 }
