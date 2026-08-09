@@ -4528,6 +4528,46 @@
       "action_type": "user_dismissed",
       "url": "https://firerisk.ai/fire-map/california",
       "note": "auto-sent pitch to hello@firerisk.ai"
+    },
+    {
+      "date_first_reported": "2026-08-09",
+      "source": "user_dismissed",
+      "title": "Shin Nakano Residence / Ryuichi Sasaki + Sasaki Architecture",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.archdaily.com/1182167/shin-nakano-residence-ryuichi-sasaki-architecture",
+      "note": "auto-sent pitch to queued:pratik.mour@archdaily.com"
+    },
+    {
+      "date_first_reported": "2026-08-09",
+      "source": "user_dismissed",
+      "title": "Mediterranean House / Dom Arquitectura | ArchDaily",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.archdaily.com/1148800/mediterranean-house-dom-arquitectura",
+      "note": "auto-sent pitch to queued:cristina.popescu@archdaily.com"
+    },
+    {
+      "date_first_reported": "2026-08-09",
+      "source": "user_dismissed",
+      "title": "A Modern Villa Soaks in Sicily’s Southwest Coast",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.mansionglobal.com/amp/articles/a-modern-villa-soaks-in-sicilys-southwest-coast-9fc996a9",
+      "note": "auto-sent pitch to queued:jonelle.mannion@mansionglobal.com"
+    },
+    {
+      "date_first_reported": "2026-08-09",
+      "source": "user_dismissed",
+      "title": "David Hoberman’s Malibu House in Photos",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/gallery/david-hoberman-house-in-photos-1238528678/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
     }
   ],
   "reported": [
