@@ -4568,6 +4568,26 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/gallery/david-hoberman-house-in-photos-1238528678/",
       "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-10",
+      "source": "user_dismissed",
+      "title": "Inside Jeff Goldblum's old Hollywood-inspired eccentric guesthouse",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.in/story/inside-jeff-goldblums-old-hollywood-inspired-eccentric-guesthouse-celebrity-homes/",
+      "note": "auto-published journal: luxury-guesthouse-design-los-angeles-second-volume"
+    },
+    {
+      "date_first_reported": "2026-08-10",
+      "source": "user_dismissed",
+      "title": "Accessory Dwelling Units — state guidance and handbook",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hcd.ca.gov/policy-and-research/accessory-dwelling-units",
+      "note": "auto-published journal: luxury-guesthouse-design-los-angeles-second-volume"
     }
   ],
   "reported": [

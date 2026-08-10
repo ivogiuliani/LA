@@ -198,11 +198,11 @@
     "result": null
   },
   "forbes.com": {
-    "cached_at": 1783577739.1758406,
+    "cached_at": 1786342073.0991473,
     "result": {
       "email": "feedback@forbes.com",
       "source": "article_scraped",
-      "path": "/sites/fredalbert/2026/07/04/americas-top-architects-in-an-east-coast-retreat-las-koning-eizenberg-proves-less-is-more/",
+      "path": "/media",
       "score": 13,
       "in_mailto": true
     }
@@ -1122,7 +1122,7 @@
     }
   },
   "indiatimes.com": {
-    "cached_at": 1785564998.721727,
+    "cached_at": 1786342083.8031175,
     "result": null
   },
   "domusweb.it": {
@@ -1320,5 +1320,27 @@
       "score": 2,
       "in_mailto": false
     }
+  },
+  "aaronkirman.com": {
+    "cached_at": 1786342069.3859038,
+    "result": null
+  },
+  "designs4yousd.com": {
+    "cached_at": 1786342084.7730772,
+    "result": {
+      "email": "info@designs4yousd.com",
+      "source": "article_scraped",
+      "path": "/fire-ember-proof-exterior-design-a-san-diego/",
+      "score": 11,
+      "in_mailto": true
+    }
+  },
+  "therealestatesolution.net": {
+    "cached_at": 1786342089.730997,
+    "result": null
+  },
+  "tidepoch.com": {
+    "cached_at": 1786342130.1132634,
+    "result": null
   }
 }
