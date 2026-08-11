@@ -61,7 +61,7 @@
     "result": null
   },
   "robbreport.com": {
-    "cached_at": 1783750446.1117954,
+    "cached_at": 1786428481.6250327,
     "result": {
       "email": "editorial@robbreport.com",
       "source": "contact_page",
@@ -163,14 +163,8 @@
     "result": null
   },
   "therealdeal.com": {
-    "cached_at": 1783750491.136281,
-    "result": {
-      "email": "news@therealdeal.com",
-      "source": "article_scraped",
-      "path": "/la/2026/07/09/apartments-proposed-for-pair-of-duplexes-in-beverly-hills/",
-      "score": 14,
-      "in_mailto": false
-    }
+    "cached_at": 1786428481.9941263,
+    "result": null
   },
   "uphelp.org": {
     "cached_at": 1778044808.285992,
@@ -1341,6 +1335,38 @@
   },
   "tidepoch.com": {
     "cached_at": 1786342130.1132634,
+    "result": null
+  },
+  "lucem.com": {
+    "cached_at": 1786428517.0840838,
+    "result": {
+      "email": "info@lucem.com",
+      "source": "article_scraped",
+      "path": "/architecture-trends/",
+      "score": 6,
+      "in_mailto": false
+    }
+  },
+  "artdocs.tv": {
+    "cached_at": 1786428519.6933608,
+    "result": null
+  },
+  "thewestendmuseum.org": {
+    "cached_at": 1786428521.0161839,
+    "result": {
+      "email": "info@thewestendmuseum.org",
+      "source": "article_scraped",
+      "path": "/history/era/modern/le-corbusier-building-towers-in-the-park/",
+      "score": 11,
+      "in_mailto": true
+    }
+  },
+  "law360.com": {
+    "cached_at": 1786428530.8857863,
+    "result": null
+  },
+  "aialosangeles.org": {
+    "cached_at": 1786428600.6936367,
     "result": null
   }
 }
