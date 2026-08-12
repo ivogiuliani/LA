@@ -4708,6 +4708,86 @@
       "action_type": "user_dismissed",
       "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PRC&sectionNum=4291",
       "note": "auto-published journal: fire-resistant-home-design-california-water-reserve"
+    },
+    {
+      "date_first_reported": "2026-08-12",
+      "source": "user_dismissed",
+      "title": "Couple adds ADU that complements their Midcentury Modern home in L.A. - Los Ange",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/lifestyle/story/2026-08-11/la-midcentury-modern-inspired-adu-northeast-los-angeles",
+      "note": "auto-sent pitch to lisa.boone@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-08-12",
+      "source": "user_dismissed",
+      "title": "Inside a 1920s Rome Apartment Renovation Where Exposed Concrete Meets Reclaimed ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.pendulummag.com/design-architecture/2026/8/9/a-dialogue-between-eras-inside-a-1920s-rome-apartment-renovation-where-exposed-concrete-meets-reclaimed-tile",
+      "note": "auto-sent pitch to user@domain.com"
+    },
+    {
+      "date_first_reported": "2026-08-12",
+      "source": "user_dismissed",
+      "title": "California wildfire insurance reform should focus on risk reduction",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://beinsure.com/news/california-wildfire-insurance-reform-should-focus-on-risk-reduction/",
+      "note": "auto-sent pitch to go@beinsure.com"
+    },
+    {
+      "date_first_reported": "2026-08-12",
+      "source": "user_dismissed",
+      "title": "The Guasti Villa: an Italian Renaissance palace in West Adams — Just West Adams",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.justwestadams.com/fieldnotes/guasti-villa-west-adams",
+      "note": "auto-sent pitch to user@domain.com"
+    },
+    {
+      "date_first_reported": "2026-08-12",
+      "source": "user_dismissed",
+      "title": "Modern residential exterior architecture around a courtyard",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hoog.design/en/look-inside/modern-residential-exterior-architecture-courtyard",
+      "note": "auto-sent pitch to dieter@blokarchitectuur.nl"
+    },
+    {
+      "date_first_reported": "2026-08-12",
+      "source": "user_dismissed",
+      "title": "Dado Castello Branco",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://archidiaries.com/practices/dado-castello-branco/",
+      "note": "auto-sent pitch to business@archidiaries.com"
+    },
+    {
+      "date_first_reported": "2026-08-12",
+      "source": "user_dismissed",
+      "title": "Can Fire-Resistant Construction Stop a Wildfire? (Building Resilience 2026) | Pr",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.protradecraft.com/building-resilience-show/video/55396409/can-fire-resistant-construction-stop-a-wildfire-building-resilience-2026",
+      "note": "auto-sent pitch to contact@archdigest.com"
+    },
+    {
+      "date_first_reported": "2026-08-12",
+      "source": "user_dismissed",
+      "title": "FAIR Plan Insurance Cost in California: What to Know",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.e360insurance.com/fair-plan-insurance-cost-california/",
+      "note": "auto-sent pitch to info@e360insurance.com"
     }
   ],
   "reported": [
