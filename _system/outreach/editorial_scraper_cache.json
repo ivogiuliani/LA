@@ -8,16 +8,17 @@
     "result": null
   },
   "beinsure.com": {
-    "cached_at": 1780726420.2312121,
+    "cached_at": 1786514994.8624122,
     "result": {
       "email": "go@beinsure.com",
       "source": "article_scraped",
-      "path": "/news/california-reviews-wildfire-deductibles-in-surplus-homeowners-insurance-policies/",
-      "score": 2
+      "path": "/news/california-wildfire-insurance-reform-should-focus-on-risk-reduction/",
+      "score": 2,
+      "in_mailto": false
     }
   },
   "wallpaper.com": {
-    "cached_at": 1785737808.8316038,
+    "cached_at": 1786514958.874325,
     "result": null
   },
   "prnewswire.com": {
@@ -334,7 +335,7 @@
     }
   },
   "sacbee.com": {
-    "cached_at": 1779514012.14212,
+    "cached_at": 1786515161.7650716,
     "result": null
   },
   "newsweek.com": {
@@ -882,11 +883,11 @@
     "result": null
   },
   "hoog.design": {
-    "cached_at": 1783664069.5483198,
+    "cached_at": 1786515011.1606786,
     "result": {
       "email": "info@hoog.design",
       "source": "article_scraped",
-      "path": "/en/look-inside/mediterranean-villa-natural-stone-strips",
+      "path": "/en/look-inside/modern-residential-exterior-architecture-courtyard",
       "score": 6,
       "in_mailto": false
     }
@@ -1368,5 +1369,55 @@
   "aialosangeles.org": {
     "cached_at": 1786428600.6936367,
     "result": null
+  },
+  "pendulummag.com": {
+    "cached_at": 1786514959.1190262,
+    "result": {
+      "email": "editor@pendulummag.com",
+      "source": "article_scraped",
+      "path": "/design-architecture/2026/8/9/a-dialogue-between-eras-inside-a-1920s-rome-apartment-renovation-where-exposed-concrete-meets-reclaimed-tile",
+      "score": 18,
+      "in_mailto": true
+    }
+  },
+  "bubbleinfo.com": {
+    "cached_at": 1786514985.7851963,
+    "result": null
+  },
+  "justwestadams.com": {
+    "cached_at": 1786514999.49064,
+    "result": null
+  },
+  "archidiaries.com": {
+    "cached_at": 1786515036.412306,
+    "result": {
+      "email": "business@archidiaries.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "protradecraft.com": {
+    "cached_at": 1786515040.635136,
+    "result": null
+  },
+  "britannica.com": {
+    "cached_at": 1786515041.04165,
+    "result": null
+  },
+  "genroom.io": {
+    "cached_at": 1786515282.4548619,
+    "result": null
+  },
+  "e360insurance.com": {
+    "cached_at": 1786515318.61158,
+    "result": {
+      "email": "info@e360insurance.com",
+      "source": "about_page",
+      "path": "/about",
+      "score": 11,
+      "in_mailto": true
+    }
   }
 }

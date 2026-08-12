@@ -4678,6 +4678,36 @@
       "action_type": "user_dismissed",
       "url": "https://thewestendmuseum.org/history/era/modern/le-corbusier-building-towers-in-the-park/",
       "note": "auto-sent pitch to queued:jaydie.halperin@thewestendmuseum.org"
+    },
+    {
+      "date_first_reported": "2026-08-12",
+      "source": "user_dismissed",
+      "title": "Shaded by oaks, this California retreat is a model of beauty and resiliency",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/residential/jensen-architects-mendocino-california-house",
+      "note": "auto-published journal: fire-resistant-home-design-california-water-reserve"
+    },
+    {
+      "date_first_reported": "2026-08-12",
+      "source": "user_dismissed",
+      "title": "Defensible Space",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://readyforwildfire.org/prepare-for-wildfire/defensible-space/",
+      "note": "auto-published journal: fire-resistant-home-design-california-water-reserve"
+    },
+    {
+      "date_first_reported": "2026-08-12",
+      "source": "user_dismissed",
+      "title": "Public Resources Code § 4291",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PRC&sectionNum=4291",
+      "note": "auto-published journal: fire-resistant-home-design-california-water-reserve"
     }
   ],
   "reported": [
