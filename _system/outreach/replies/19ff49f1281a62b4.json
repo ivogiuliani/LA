@@ -1,0 +1,33 @@
+{
+  "thread_id": "19ff49f1281a62b4",
+  "outreach_message_id": "19ff49f1281a62b4",
+  "outreach_subject": "A European angle on your wildfire insurance piece",
+  "outreach_to": "go@beinsure.com",
+  "outreach_sent_at": "2026-08-12T06:18:13+00:00",
+  "replies": [
+    {
+      "thread_id": "19ff49f1281a62b4",
+      "gmail_message_id": "19ff49f205eb1ca1",
+      "rfc822_message_id": "<6a7c1028.e78585af.11975d.2a76.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Messaggio non recapitato **\r\n\r\nSi è verificato un problema durante la consegna del messaggio a go@beinsure.com. Visualizza i dettagli tecnici di seguito.\r\n\r\n\r\n\r\nLa risposta del server remoto è:\r\n554 5.7.1 Email cannot be delivered. Reason: Email flagged as Spam.",
+      "snippet": "Messaggio non recapitato Si è verificato un problema durante la consegna del messaggio a go@beinsure.com. Visualizza i dettagli tecnici di seguito. La risposta del server remoto è: 554 5.7.1 Email",
+      "received_at": "2026-08-12T06:18:16+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "UNREAD",
+        "IMPORTANT",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "19ff49f1281a62b4",
+      "outreach_subject": "A European angle on your wildfire insurance piece",
+      "outreach_to": "go@beinsure.com",
+      "outreach_sent_at": "2026-08-12T06:18:13+00:00"
+    }
+  ],
+  "last_checked_at": "2026-08-13T06:11:58+00:00"
+}

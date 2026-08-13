@@ -30,7 +30,7 @@
     "result": null
   },
   "dezeen.com": {
-    "cached_at": 1785046226.8532004,
+    "cached_at": 1786601417.2071228,
     "result": null
   },
   "archdaily.com": {
@@ -94,7 +94,7 @@
     }
   },
   "architecturaldigest.com": {
-    "cached_at": 1785564912.2943573,
+    "cached_at": 1786601416.5551865,
     "result": null
   },
   "dig-in.com": {
@@ -181,7 +181,7 @@
     }
   },
   "cbsnews.com": {
-    "cached_at": 1781158357.237029,
+    "cached_at": 1786601445.8648582,
     "result": null
   },
   "airbnb.com": {
@@ -271,12 +271,13 @@
     }
   },
   "kqed.org": {
-    "cached_at": 1778649696.627383,
+    "cached_at": 1786601435.9710407,
     "result": {
-      "email": "mediarelations@kqed.org",
+      "email": "dventon@kqed.org",
       "source": "article_scraped",
-      "path": "/pressroom",
-      "score": 7
+      "path": "/news/12094860/california-fair-plan-announces-29-1-rate-hike-for-homeowners-this-fall",
+      "score": 2,
+      "in_mailto": false
     }
   },
   "ccr-mag.com": {
@@ -973,11 +974,11 @@
     }
   },
   "dwell.com": {
-    "cached_at": 1783923461.1351736,
+    "cached_at": 1786601409.3819065,
     "result": {
       "email": "feedback@dwell.com",
       "source": "article_scraped",
-      "path": "/article/dean-house-jackson-hallett-midland-michigan-real-estate-52320d17",
+      "path": "/article/htpio-fireproofing-high-risk-home-19e11e71",
       "score": 8,
       "in_mailto": false
     }
@@ -1418,6 +1419,34 @@
       "path": "/about",
       "score": 11,
       "in_mailto": true
+    }
+  },
+  "smmirror.com": {
+    "cached_at": 1786601429.6106803,
+    "result": null
+  },
+  "cbs8.com": {
+    "cached_at": 1786601461.2116477,
+    "result": null
+  },
+  "elitetraveler.com": {
+    "cached_at": 1786601479.6153996,
+    "result": {
+      "email": "editorial@elitetraveler.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 13,
+      "in_mailto": false
+    }
+  },
+  "greysq.com": {
+    "cached_at": 1786601484.0723717,
+    "result": {
+      "email": "web@greysq.com",
+      "source": "article_scraped",
+      "path": "/blog/bel-air-los-angeles-neighborhood-guide",
+      "score": 2,
+      "in_mailto": false
     }
   }
 }

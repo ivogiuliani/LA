@@ -4788,6 +4788,106 @@
       "action_type": "user_dismissed",
       "url": "https://www.e360insurance.com/fair-plan-insurance-cost-california/",
       "note": "auto-sent pitch to info@e360insurance.com"
+    },
+    {
+      "date_first_reported": "2026-08-13",
+      "source": "user_dismissed",
+      "title": "How They Pulled It Off: Updating—and Fireproofing—an ’80s Home in a “Very High-R",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dwell.com/article/htpio-fireproofing-high-risk-home-19e11e71",
+      "note": "auto-sent pitch to letters@dwell.com"
+    },
+    {
+      "date_first_reported": "2026-08-13",
+      "source": "user_dismissed",
+      "title": "Coachbuilt for Living? Pininfarina Designed 6 Single-Family Homes Across the U.S",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/pininfarina-launching-standalone-branded-homes-1238484980/",
+      "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-13",
+      "source": "user_dismissed",
+      "title": "Katey Sagal and Kurt Sutter's Eclectic Los Angeles Home Combines Red Walls and G",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/katey-sagal-and-kurt-sutter-los-angeles-home",
+      "note": "auto-sent pitch to queued:juliet.izon@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-08-13",
+      "source": "user_dismissed",
+      "title": "Modular housing in Los Angeles among projects from UCLA",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dezeen.com/2026/08/12/modular-housing-los-angeles-ucla-schoolshows/",
+      "note": "auto-sent pitch to editorial@dezeen.com"
+    },
+    {
+      "date_first_reported": "2026-08-13",
+      "source": "user_dismissed",
+      "title": "This $36 Million Residence on Miami’s Fisher Island Merged Two Condos Into One S",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/fisher-island-palazzo-del-sol-condo-36-million-1238549879/",
+      "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-13",
+      "source": "user_dismissed",
+      "title": "Parametric Architecture - Architecture News and Computational Design",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://parametric-architecture.com/",
+      "note": "auto-sent pitch to info@parametric-architecture.com"
+    },
+    {
+      "date_first_reported": "2026-08-13",
+      "source": "user_dismissed",
+      "title": "Chris Pratt and Katherine Schwarzenegger List Pacific Palisades Manse for $20 Mi",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/chris-pratt-and-katherine-schwarzenegger-list-pacific-palisades-manse",
+      "note": "auto-sent pitch to queued:architectural.digest@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-08-13",
+      "source": "user_dismissed",
+      "title": "California FAIR Plan Announces 29.1% Rate Hike for Homeowners This Fall | KQED",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.kqed.org/news/12094860/california-fair-plan-announces-29-1-rate-hike-for-homeowners-this-fall",
+      "note": "auto-sent pitch to dventon@kqed.org"
+    },
+    {
+      "date_first_reported": "2026-08-13",
+      "source": "user_dismissed",
+      "title": "Hotels Designed by Famous Architects: 12 Luxury Ones to Book",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://elitetraveler.com/travel/hotels-designed-by-famous-architects",
+      "note": "auto-sent pitch to queued:ellys.woodhouse@elitetraveler.com"
+    },
+    {
+      "date_first_reported": "2026-08-13",
+      "source": "user_dismissed",
+      "title": "What Does It Actually Cost to Live in Bel Air in 2026? — Grey Square",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.greysq.com/blog/bel-air-los-angeles-neighborhood-guide",
+      "note": "auto-sent pitch to web@greysq.com"
     }
   ],
   "reported": [
