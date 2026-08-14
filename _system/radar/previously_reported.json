@@ -4888,6 +4888,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.greysq.com/blog/bel-air-los-angeles-neighborhood-guide",
       "note": "auto-sent pitch to web@greysq.com"
+    },
+    {
+      "date_first_reported": "2026-08-14",
+      "source": "user_dismissed",
+      "title": "New Headquarters Office Building for IAPSER / Sebastian Stechina + Carlos Di Napoli + Andres Francesconi",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.archdaily.com/1183285/new-headquarters-office-building-for-iapser-sebastian-stechina-plus-carlos-di-napoli-plus-andres-francesconi",
+      "note": "auto-published journal: reinforced-concrete-custom-homes-los-angeles-as-cast-finish"
     }
   ],
   "reported": [

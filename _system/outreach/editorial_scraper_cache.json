@@ -584,7 +584,7 @@
     }
   },
   "e-a-a.com": {
-    "cached_at": 1785651280.3242197,
+    "cached_at": 1786687650.8233867,
     "result": null
   },
   "calmatters.org": {
@@ -1448,5 +1448,21 @@
       "score": 2,
       "in_mailto": false
     }
+  },
+  "designboom.com": {
+    "cached_at": 1786687627.133427,
+    "result": null
+  },
+  "archidust.com": {
+    "cached_at": 1786687636.7005036,
+    "result": null
+  },
+  "photo-trips.com": {
+    "cached_at": 1786687646.161807,
+    "result": null
+  },
+  "edf.org": {
+    "cached_at": 1786687656.9894123,
+    "result": null
   }
 }
