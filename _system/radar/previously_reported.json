@@ -4928,6 +4928,26 @@
       "action_type": "user_dismissed",
       "url": "https://www.hoog.design/en/look-inside/residential-interior-architecture-villa-renovation",
       "note": "auto-sent pitch to info@hoog.design"
+    },
+    {
+      "date_first_reported": "2026-08-15",
+      "source": "user_dismissed",
+      "title": "White-walled minimalism and heritage spirit meet in a revived Athens townhouse b",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/architects-directory/local-local-greece",
+      "note": "auto-sent pitch to queued:ellie.stathaki@wallpaper.com"
+    },
+    {
+      "date_first_reported": "2026-08-15",
+      "source": "user_dismissed",
+      "title": "Weezer’s Scott Shriner Lists His Los Angeles Home for $3 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/scott-shriner-house-los-angeles-eagle-rock-1238553274/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
     }
   ],
   "reported": [

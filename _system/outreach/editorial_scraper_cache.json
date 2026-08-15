@@ -1,6 +1,6 @@
 {
   "housingwire.com": {
-    "cached_at": 1781072787.466848,
+    "cached_at": 1786774243.578191,
     "result": null
   },
   "constructionowners.com": {
@@ -102,7 +102,7 @@
     "result": null
   },
   "insurancebusinessmag.com": {
-    "cached_at": 1785910472.260477,
+    "cached_at": 1786774246.4399056,
     "result": null
   },
   "propertyinsurancecoveragelaw.com": {
@@ -467,7 +467,7 @@
     "result": null
   },
   "yahoo.com": {
-    "cached_at": 1785910458.1848876,
+    "cached_at": 1786774172.912413,
     "result": null
   },
   "oakviewins.com": {
@@ -1463,6 +1463,22 @@
   },
   "edf.org": {
     "cached_at": 1786687656.9894123,
+    "result": null
+  },
+  "residentialdesignmagazine.com": {
+    "cached_at": 1786774164.1338189,
+    "result": null
+  },
+  "gjarquitectura.com": {
+    "cached_at": 1786774233.295836,
+    "result": null
+  },
+  "vulture.com": {
+    "cached_at": 1786774250.71368,
+    "result": null
+  },
+  "ark7.com": {
+    "cached_at": 1786774260.4868886,
     "result": null
   }
 }
