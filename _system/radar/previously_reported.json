@@ -4948,6 +4948,16 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/scott-shriner-house-los-angeles-eagle-rock-1238553274/",
       "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-16",
+      "source": "user_dismissed",
+      "title": "Naoshima Art Island Guide: Seto Inland Sea, Japan",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.theanonymoushungryhippopotamus.com/post/naoshima-art-island-guide-japan",
+      "note": "auto-sent pitch to info@theanonymoushungryhippopotamus.com"
     }
   ],
   "reported": [
