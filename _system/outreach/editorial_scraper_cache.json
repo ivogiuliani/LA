@@ -1118,7 +1118,7 @@
     }
   },
   "indiatimes.com": {
-    "cached_at": 1786342083.8031175,
+    "cached_at": 1786946897.4167664,
     "result": null
   },
   "domusweb.it": {
@@ -1488,6 +1488,28 @@
       "source": "article_scraped",
       "path": "/post/naoshima-art-island-guide-japan",
       "score": 11,
+      "in_mailto": true
+    }
+  },
+  "spfa.com": {
+    "cached_at": 1786946886.1637099,
+    "result": null
+  },
+  "akiyajapan.com": {
+    "cached_at": 1786946907.7570844,
+    "result": null
+  },
+  "recombu.com": {
+    "cached_at": 1786946912.2748616,
+    "result": null
+  },
+  "ankurlighting.com": {
+    "cached_at": 1786946916.7521446,
+    "result": {
+      "email": "onlinesales@ankurlighting.com",
+      "source": "article_scraped",
+      "path": "/en-us/blogs/general/lighting-for-luxury-villas-a-complete-planning-guide-before-construction-begins",
+      "score": 7,
       "in_mailto": true
     }
   }
