@@ -4978,6 +4978,36 @@
       "action_type": "user_dismissed",
       "url": "https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones",
       "note": "auto-published journal: luxury-home-addition-bel-air-47m-preservation-case"
+    },
+    {
+      "date_first_reported": "2026-08-17",
+      "source": "user_dismissed",
+      "title": "Fancy a turnkey home by a legendary Italian design house? Call Pininfarina",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/residential/pininfarina-collection-sei-design-usa",
+      "note": "auto-sent pitch to queued:jonathan.bell@wallpaper.com"
+    },
+    {
+      "date_first_reported": "2026-08-17",
+      "source": "user_dismissed",
+      "title": "Home for sale: 1360 Laurel Way, Beverly Hills Post Office 90210 - Los Angeles Ti",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/hotproperty/los-angeles-county/story/1360-laurel-way-beverly-hills-post-office-ca-90210",
+      "note": "auto-sent pitch to paidpost@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-08-17",
+      "source": "user_dismissed",
+      "title": "Lighting for Luxury Villas: A Complete Planning Guide Before Construct",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.ankurlighting.com/en-us/blogs/general/lighting-for-luxury-villas-a-complete-planning-guide-before-construction-begins",
+      "note": "auto-sent pitch to onlinesales@ankurlighting.com"
     }
   ],
   "reported": [
