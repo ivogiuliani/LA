@@ -34,7 +34,7 @@
     "result": null
   },
   "archdaily.com": {
-    "cached_at": 1786180178.9573717,
+    "cached_at": 1787033325.6300383,
     "result": null
   },
   "malibutimes.com": {
@@ -189,7 +189,7 @@
     "result": null
   },
   "liveinsurancenews.com": {
-    "cached_at": 1785651376.2041442,
+    "cached_at": 1787033371.490992,
     "result": null
   },
   "forbes.com": {
@@ -988,7 +988,7 @@
     "result": null
   },
   "homesandgardens.com": {
-    "cached_at": 1785651309.7743838,
+    "cached_at": 1787033350.5595446,
     "result": null
   },
   "travelbinger.com": {
@@ -1042,7 +1042,7 @@
     }
   },
   "elledecor.com": {
-    "cached_at": 1784096154.454342,
+    "cached_at": 1787033385.7200797,
     "result": {
       "email": "staff@elledecor.com",
       "source": "contact_page",
@@ -1511,6 +1511,34 @@
       "path": "/en-us/blogs/general/lighting-for-luxury-villas-a-complete-planning-guide-before-construction-begins",
       "score": 7,
       "in_mailto": true
+    }
+  },
+  "strategicgrowthre.com": {
+    "cached_at": 1787033351.199737,
+    "result": {
+      "email": "info@strategicgrowthre.com",
+      "source": "article_scraped",
+      "path": "/post/california-wildfire-insurance-changes-in-2026-what-los-angeles-property-owners-need-to-know",
+      "score": 11,
+      "in_mailto": true
+    }
+  },
+  "x.com": {
+    "cached_at": 1787033377.307841,
+    "result": null
+  },
+  "debbiepisaro.com": {
+    "cached_at": 1787033389.8301556,
+    "result": null
+  },
+  "landingcollective.com": {
+    "cached_at": 1787033397.0690196,
+    "result": {
+      "email": "team@landingcollective.com",
+      "source": "article_scraped",
+      "path": "/listing/crmls/DW26171440/Granada-Hills/11001-Gothic-Avenue/",
+      "score": 2,
+      "in_mailto": false
     }
   }
 }
