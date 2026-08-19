@@ -249,12 +249,13 @@
     }
   },
   "theguardian.com": {
-    "cached_at": 1778563583.139221,
+    "cached_at": 1787119762.9985054,
     "result": {
-      "email": "media@theguardian.com",
+      "email": "business.information@theguardian.com",
       "source": "contact_page",
       "path": "/contact-us",
-      "score": 11
+      "score": 5,
+      "in_mailto": true
     }
   },
   "durabondfencing.com": {
@@ -353,7 +354,7 @@
     "result": null
   },
   "insurancenewsnet.com": {
-    "cached_at": 1780306215.548523,
+    "cached_at": 1787119813.4322603,
     "result": null
   },
   "newhousebuilder.com": {
@@ -1537,6 +1538,24 @@
       "email": "team@landingcollective.com",
       "source": "article_scraped",
       "path": "/listing/crmls/DW26171440/Granada-Hills/11001-Gothic-Avenue/",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "countryandtownhouse.com": {
+    "cached_at": 1787119783.761994,
+    "result": null
+  },
+  "bloomberg.com": {
+    "cached_at": 1787119786.2577684,
+    "result": null
+  },
+  "sueddeutsche.de": {
+    "cached_at": 1787119789.4843373,
+    "result": {
+      "email": "kontakt@sueddeutsche.de",
+      "source": "article_scraped",
+      "path": "/projekte/artikel/reise/getty-villa-pompeji-los-angeles-architektur-antike-interior-design-usa-e143841/",
       "score": 2,
       "in_mailto": false
     }

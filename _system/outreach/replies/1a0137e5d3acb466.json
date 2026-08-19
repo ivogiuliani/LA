@@ -1,0 +1,33 @@
+{
+  "thread_id": "1a0137e5d3acb466",
+  "outreach_message_id": "1a0137e5d3acb466",
+  "outreach_subject": "A European angle on your California Wildfire Insurance Changes in 2026: What Los Ange piece",
+  "outreach_to": "strategicgrowth2012@gmail.com",
+  "outreach_sent_at": "2026-08-18T06:10:43+00:00",
+  "replies": [
+    {
+      "thread_id": "1a0137e5d3acb466",
+      "gmail_message_id": "1a0137e6543b60a5",
+      "rfc822_message_id": "<6a83f765.0b094a8f.12e052.08cc.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a strategicgrowth2012@gmail.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\nUlteriori informazioni: https://support.google.com/mail/?p=NoSuchUser\r\n\r\nRisposta:\r\n\r\n550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For more information, go to https://support.google.com/mail/?p=NoSuchUser d9443c01a7336-2d5cbc49001sor6882805ad.8 - gsmtp",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a strategicgrowth2012@gmail.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. ULTERIORI INFORMAZIONI Risposta: 550",
+      "received_at": "2026-08-18T06:10:45+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "UNREAD",
+        "IMPORTANT",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "1a0137e5d3acb466",
+      "outreach_subject": "A European angle on your California Wildfire Insurance Changes in 2026: What Los Ange piece",
+      "outreach_to": "strategicgrowth2012@gmail.com",
+      "outreach_sent_at": "2026-08-18T06:10:43+00:00"
+    }
+  ],
+  "last_checked_at": "2026-08-19T06:10:40+00:00"
+}
