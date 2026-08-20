@@ -180,6 +180,15 @@
       ],
       "last_bounced_at": "2026-08-18T06:10:45+00:00",
       "reason": "550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For mo"
+    },
+    "newstips@bloomberg.net": {
+      "first_bounced_at": "2026-08-19T06:12:59+00:00",
+      "bounce_count": 1,
+      "source_threads": [
+        "1a018a6c0f8eeccb"
+      ],
+      "last_bounced_at": "2026-08-19T06:12:59+00:00",
+      "reason": "550 #5.1.0 Address rejected."
     }
   }
 }

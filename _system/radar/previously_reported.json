@@ -5118,6 +5118,56 @@
       "action_type": "user_dismissed",
       "url": "https://insurancenewsnet.com/oarticle/lara-protects-more-than-64000-californians-from-non-renewals-following-gann-fire",
       "note": "auto-sent pitch to editor@insurancenewsnet.com"
+    },
+    {
+      "date_first_reported": "2026-08-20",
+      "source": "user_dismissed",
+      "title": "Geometric Decor and Repurposed Spanish Marble Revive This Bilbao Apartment’s Mid",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/geometric-decor-and-repurposed-spanish-marble-revive-this-bilbao-apartments-midcentury-soul",
+      "note": "auto-sent pitch to queued:belén.afonso@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-08-20",
+      "source": "user_dismissed",
+      "title": "This $28.5 Million Boho Malibu Mansion Has Ties to a Rock Icon and ‘E.T.’",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/sonny-astaini-house-malibu-point-dume-1238563472/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-20",
+      "source": "user_dismissed",
+      "title": "Hedy Lamarr at Home: Inside the Private Life of the Golden Age Star (and Tech Pi",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/hedy-lamarr-at-home-photos",
+      "note": "auto-sent pitch to queued:juliana.ukiomogbe@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-08-20",
+      "source": "user_dismissed",
+      "title": "California passes toughest wildfire rules in the U.S. for home landscaping",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.npr.org/2026/08/19/nx-s1-5937926/california-wildfire-rules-zone-zero-vegetation",
+      "note": "auto-sent pitch to queued:lauren.sommer@npr.org"
+    },
+    {
+      "date_first_reported": "2026-08-20",
+      "source": "user_dismissed",
+      "title": "As wildfires get worse, some states are struggling to pass fire protection rules",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.npr.org/2026/08/17/nx-s1-5923975/wildfires-western-community-protection",
+      "note": "auto-sent pitch to queued:lauren.sommer@npr.org"
     }
   ],
   "reported": [

@@ -1559,5 +1559,27 @@
       "score": 2,
       "in_mailto": false
     }
+  },
+  "santabarbaralifeandstyle.com": {
+    "cached_at": 1787206138.172839,
+    "result": null
+  },
+  "wonderfulmuseums.com": {
+    "cached_at": 1787206138.8397527,
+    "result": null
+  },
+  "holtdesignhouse.com": {
+    "cached_at": 1787206143.4214745,
+    "result": {
+      "email": "info@holtdesignhouse.com",
+      "source": "article_scraped",
+      "path": "/selected-projects-2/mediterraneanrevival",
+      "score": 6,
+      "in_mailto": false
+    }
+  },
+  "npr.org": {
+    "cached_at": 1787206264.2992952,
+    "result": null
   }
 }

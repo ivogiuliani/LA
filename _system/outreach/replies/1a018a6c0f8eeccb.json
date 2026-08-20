@@ -1,0 +1,32 @@
+{
+  "thread_id": "1a018a6c0f8eeccb",
+  "outreach_message_id": "1a018a6c0f8eeccb",
+  "outreach_subject": "A European angle on your California wildfire piece",
+  "outreach_to": "newstips@bloomberg.net",
+  "outreach_sent_at": "2026-08-19T06:12:56+00:00",
+  "replies": [
+    {
+      "thread_id": "1a018a6c0f8eeccb",
+      "gmail_message_id": "1a018a6cd6df8cc6",
+      "rfc822_message_id": "<6a85496b.dd9d3326.1b82c2.3632.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a newstips@bloomberg.net perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\n\r\n\r\nLa risposta del server remoto è:\r\n550 #5.1.0 Address rejected.",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a newstips@bloomberg.net perché l&#39;indirizzo risulta inesistente o non può ricevere email. La risposta del server remoto è: 550 #5.1.0",
+      "received_at": "2026-08-19T06:12:59+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "UNREAD",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "1a018a6c0f8eeccb",
+      "outreach_subject": "A European angle on your California wildfire piece",
+      "outreach_to": "newstips@bloomberg.net",
+      "outreach_sent_at": "2026-08-19T06:12:56+00:00"
+    }
+  ],
+  "last_checked_at": "2026-08-20T06:11:32+00:00"
+}
