@@ -18,7 +18,7 @@
     }
   },
   "wallpaper.com": {
-    "cached_at": 1786514958.874325,
+    "cached_at": 1787292540.204285,
     "result": null
   },
   "prnewswire.com": {
@@ -94,7 +94,7 @@
     }
   },
   "architecturaldigest.com": {
-    "cached_at": 1786601416.5551865,
+    "cached_at": 1787292516.1243076,
     "result": null
   },
   "dig-in.com": {
@@ -388,7 +388,7 @@
     "result": null
   },
   "latentinsure.com": {
-    "cached_at": 1781590775.5195441,
+    "cached_at": 1787292678.7216163,
     "result": null
   },
   "theunion.com": {
@@ -417,7 +417,7 @@
     "result": null
   },
   "mercurynews.com": {
-    "cached_at": 1780306248.658921,
+    "cached_at": 1787292669.5923626,
     "result": null
   },
   "eenews.net": {
@@ -1451,11 +1451,11 @@
     }
   },
   "designboom.com": {
-    "cached_at": 1786687627.133427,
+    "cached_at": 1787292509.1485925,
     "result": null
   },
   "archidust.com": {
-    "cached_at": 1786687636.7005036,
+    "cached_at": 1787292549.9326801,
     "result": null
   },
   "photo-trips.com": {
@@ -1580,6 +1580,36 @@
   },
   "npr.org": {
     "cached_at": 1787206264.2992952,
+    "result": null
+  },
+  "toptenrealestatedeals.com": {
+    "cached_at": 1787292564.8290594,
+    "result": null
+  },
+  "afr.com": {
+    "cached_at": 1787292573.0895302,
+    "result": {
+      "email": "stephen.todd@afr.com",
+      "source": "article_scraped",
+      "path": "/life-and-luxury/design/how-a-squat-concrete-block-became-dover-heights-most-desirable-home-20260807-p60mcs",
+      "score": 5,
+      "in_mailto": true
+    }
+  },
+  "bdmag.com": {
+    "cached_at": 1787292593.4962382,
+    "result": null
+  },
+  "homestyleatlas.com": {
+    "cached_at": 1787292654.2933853,
+    "result": null
+  },
+  "insurance.com": {
+    "cached_at": 1787292670.7742991,
+    "result": null
+  },
+  "10news.com": {
+    "cached_at": 1787292674.7626417,
     "result": null
   }
 }

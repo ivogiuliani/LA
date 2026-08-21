@@ -5168,6 +5168,46 @@
       "action_type": "user_dismissed",
       "url": "https://www.npr.org/2026/08/17/nx-s1-5923975/wildfires-western-community-protection",
       "note": "auto-sent pitch to queued:lauren.sommer@npr.org"
+    },
+    {
+      "date_first_reported": "2026-08-21",
+      "source": "user_dismissed",
+      "title": "Diane Keaton’s Custom-Designed Los Angeles Home Sells for $18 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/diane-keatons-custom-designed-los-angeles-home-sells",
+      "note": "auto-sent pitch to queued:katie.schultz@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-08-21",
+      "source": "user_dismissed",
+      "title": "7 perfectly preserved examples of Googie architecture in Los Angeles",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/googie-architecture-los-angeles",
+      "note": "auto-sent pitch to queued:charlotte.gunn@wallpaper.com"
+    },
+    {
+      "date_first_reported": "2026-08-21",
+      "source": "user_dismissed",
+      "title": "State approves 'Zone Zero' fire-safe landscaping rules, reshaping yards for mill",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/environment/story/2026-08-19/state-approves-zone-zero-fire-safe-landscaping-rules",
+      "note": "auto-sent pitch to noah.haggerty@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-08-21",
+      "source": "user_dismissed",
+      "title": "How a squat concrete block became Dover Heights’ most desirable home",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.afr.com/life-and-luxury/design/how-a-squat-concrete-block-became-dover-heights-most-desirable-home-20260807-p60mcs",
+      "note": "auto-sent pitch to stephen.todd@afr.com"
     }
   ],
   "reported": [
