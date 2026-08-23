@@ -5208,6 +5208,46 @@
       "action_type": "user_dismissed",
       "url": "https://www.afr.com/life-and-luxury/design/how-a-squat-concrete-block-became-dover-heights-most-desirable-home-20260807-p60mcs",
       "note": "auto-sent pitch to stephen.todd@afr.com"
+    },
+    {
+      "date_first_reported": "2026-08-23",
+      "source": "user_dismissed",
+      "title": "This $17 Million Malibu Mansion Has a Powder Room Wrapped in 3,000 Peacock Feath",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/peacock-alley-house-malibu-point-dume-1238570185/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-23",
+      "source": "user_dismissed",
+      "title": "An Italian Villa With Terraced Gardens Takes in the Sea From the Celebrity-Loved",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.mansionglobal.com/articles/an-italian-villa-with-terraced-gardens-takes-in-the-sea-from-the-celebrity-loved-amalfi-coast-affd5ef2",
+      "note": "auto-sent pitch to info@mansionglobal.com"
+    },
+    {
+      "date_first_reported": "2026-08-23",
+      "source": "user_dismissed",
+      "title": "Studio Mehta's Kenyan retreat is luxuriously built using local and recycled mate",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/architects-directory/studio-mehta-kenya",
+      "note": "auto-sent pitch to queued:ellie.stathaki@wallpaper.com"
+    },
+    {
+      "date_first_reported": "2026-08-23",
+      "source": "user_dismissed",
+      "title": "Inside LeBron James’s $70 Million Property Portfolio",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/lists/inside-lebron-james-property-portfolio-1238567054/",
+      "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
     }
   ],
   "reported": [

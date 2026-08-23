@@ -164,7 +164,7 @@
     "result": null
   },
   "therealdeal.com": {
-    "cached_at": 1786428481.9941263,
+    "cached_at": 1787465383.5678756,
     "result": null
   },
   "uphelp.org": {
@@ -871,11 +871,11 @@
     }
   },
   "helencummins.com": {
-    "cached_at": 1783577773.6675544,
+    "cached_at": 1787465397.300521,
     "result": {
       "email": "office@helencummins.com",
       "source": "article_scraped",
-      "path": "/property-for-sale-mallorca-port-d-andratx-villa-sea-view",
+      "path": "/property-for-sale-mallorca-calvia-villa-guest-house",
       "score": 2,
       "in_mailto": false
     }
@@ -1231,7 +1231,7 @@
     }
   },
   "e-architect.com": {
-    "cached_at": 1785996550.954811,
+    "cached_at": 1787465381.6153224,
     "result": null
   },
   "enr.com": {
@@ -1281,7 +1281,7 @@
     }
   },
   "pufikhomes.com": {
-    "cached_at": 1786169321.369791,
+    "cached_at": 1787465404.853449,
     "result": null
   },
   "nerdwallet.com": {
@@ -1618,6 +1618,10 @@
   },
   "uncrate.com": {
     "cached_at": 1787379000.1209004,
+    "result": null
+  },
+  "thamesandhudson.com": {
+    "cached_at": 1787465409.0232317,
     "result": null
   }
 }
