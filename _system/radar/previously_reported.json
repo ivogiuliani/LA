@@ -5248,6 +5248,36 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/lists/inside-lebron-james-property-portfolio-1238567054/",
       "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-24",
+      "source": "user_dismissed",
+      "title": "A historical Madrid home enters the 21st century through smart minimalism by Sol",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/architects-directory/solarxyz-spain",
+      "note": "auto-sent pitch to queued:ellie.stathaki@wallpaper.com"
+    },
+    {
+      "date_first_reported": "2026-08-24",
+      "source": "user_dismissed",
+      "title": "Goy Architects: 'Our hope is that every space we create resonates with a quiet s",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/architects-directory/goy-architects-singapore",
+      "note": "auto-sent pitch to queued:ellie.stathaki@wallpaper.com"
+    },
+    {
+      "date_first_reported": "2026-08-24",
+      "source": "user_dismissed",
+      "title": "Animal-Inspired Decor and Butter Yellow Plaster Warm Up This New-Build Montreal ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/animal-inspired-decor-and-butter-yellow-plaster-warm-up-this-new-build-montreal-apartment",
+      "note": "auto-sent pitch to queued:valentina.lonati@architecturaldigest.com"
     }
   ],
   "reported": [
