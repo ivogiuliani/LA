@@ -102,7 +102,7 @@
     "result": null
   },
   "insurancebusinessmag.com": {
-    "cached_at": 1786774246.4399056,
+    "cached_at": 1787638200.6412034,
     "result": null
   },
   "propertyinsurancecoveragelaw.com": {
@@ -703,7 +703,7 @@
     "result": null
   },
   "bbc.com": {
-    "cached_at": 1781072864.4972448,
+    "cached_at": 1787638227.1431234,
     "result": null
   },
   "calsociety.com": {
@@ -1497,7 +1497,7 @@
     "result": null
   },
   "akiyajapan.com": {
-    "cached_at": 1786946907.7570844,
+    "cached_at": 1787638196.7715964,
     "result": null
   },
   "recombu.com": {
@@ -1623,5 +1623,47 @@
   "thamesandhudson.com": {
     "cached_at": 1787465409.0232317,
     "result": null
+  },
+  "jetsetmag.com": {
+    "cached_at": 1787638160.5813878,
+    "result": {
+      "email": "editor@jetsetmag.com",
+      "source": "article_scraped",
+      "path": "/real-estate/vantage-the-vision-behind-bel-airs-new-architectural-icon/",
+      "score": 13,
+      "in_mailto": false
+    }
+  },
+  "archiecho.com": {
+    "cached_at": 1787638185.623412,
+    "result": null
+  },
+  "jamesedition.com": {
+    "cached_at": 1787638186.2981927,
+    "result": null
+  },
+  "johnhartrealestate.com": {
+    "cached_at": 1787638197.7196474,
+    "result": null
+  },
+  "labusinessjournal.com": {
+    "cached_at": 1787638225.0479317,
+    "result": {
+      "email": "newsdesk@labusinessjournal.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "savills.com": {
+    "cached_at": 1787638233.0411267,
+    "result": {
+      "email": "rmcmullen@savills.com",
+      "source": "article_scraped",
+      "path": "/property/bel-air-place/",
+      "score": 7,
+      "in_mailto": true
+    }
   }
 }

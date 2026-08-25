@@ -5278,6 +5278,66 @@
       "action_type": "user_dismissed",
       "url": "https://www.architecturaldigest.com/story/animal-inspired-decor-and-butter-yellow-plaster-warm-up-this-new-build-montreal-apartment",
       "note": "auto-sent pitch to queued:valentina.lonati@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-08-25",
+      "source": "user_dismissed",
+      "title": "VANTAGE: The Vision Behind Bel Air's New Architectural Icon",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://jetsetmag.com/real-estate/vantage-the-vision-behind-bel-airs-new-architectural-icon/",
+      "note": "auto-sent pitch to editor@jetsetmag.com"
+    },
+    {
+      "date_first_reported": "2026-08-25",
+      "source": "user_dismissed",
+      "title": "Contemporary villa architecture connected to its landscape",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hoog.design/en/look-inside/contemporary-villa-architecture-landscape",
+      "note": "auto-sent pitch to info@hoog.design"
+    },
+    {
+      "date_first_reported": "2026-08-25",
+      "source": "user_dismissed",
+      "title": "A calm, cohesive approach to villa interior design",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hoog.design/en/look-inside/villa-interior-design-calm-cohesive",
+      "note": "auto-sent pitch to jeff@zoutontwerpt.nl"
+    },
+    {
+      "date_first_reported": "2026-08-25",
+      "source": "user_dismissed",
+      "title": "ARCHITECTURE: Flores, Leavitt - Los Angeles Business Journal",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://labusinessjournal.com/custom-content/on-the-move/architecture-flores-leavitt/",
+      "note": "auto-sent pitch to queued:demi.ajayi@labusinessjournal.com"
+    },
+    {
+      "date_first_reported": "2026-08-25",
+      "source": "user_dismissed",
+      "title": "Defective concrete blocks: Elderly couple forced from crumbling home",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.bbc.com/news/articles/cpq8083j79vo",
+      "note": "auto-sent pitch to queued:mike.mcbride@bbc.com"
+    },
+    {
+      "date_first_reported": "2026-08-25",
+      "source": "user_dismissed",
+      "title": "BEL AIR PLACE - Portfolio by Savills",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://portfolio.savills.com/property/bel-air-place/",
+      "note": "auto-sent pitch to rmcmullen@savills.com"
     }
   ],
   "reported": [
