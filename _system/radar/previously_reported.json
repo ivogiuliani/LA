@@ -5338,6 +5338,36 @@
       "action_type": "user_dismissed",
       "url": "https://portfolio.savills.com/property/bel-air-place/",
       "note": "auto-sent pitch to rmcmullen@savills.com"
+    },
+    {
+      "date_first_reported": "2026-08-25",
+      "source": "user_dismissed",
+      "title": "At Lela Becker's Soulful Midcentury California Home, Frogs, Parrots, and a Bubbling Creek Create the Soundtrack",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/lela-becker-pacific-palisades-home",
+      "note": "auto-published journal: custom-home-design-california-sound-as-site-asset"
+    },
+    {
+      "date_first_reported": "2026-08-25",
+      "source": "user_dismissed",
+      "title": "Lake and Streambed Alteration Program",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://wildlife.ca.gov/Conservation/LSA",
+      "note": "auto-published journal: custom-home-design-california-sound-as-site-asset"
+    },
+    {
+      "date_first_reported": "2026-08-25",
+      "source": "user_dismissed",
+      "title": "Environmental Noise Guidelines for the European Region",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.who.int/europe/publications/i/item/9789289053563",
+      "note": "auto-published journal: custom-home-design-california-sound-as-site-asset"
     }
   ],
   "reported": [
