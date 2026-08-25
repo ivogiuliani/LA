@@ -1015,18 +1015,35 @@ def generate_article(item, section_id, section_name, brand_voice, blocked,
                                      prior_articles=prior_articles,
                                      content_strategy=content_strategy)
 
+    # Budget di output largo (si paga solo ciò che viene generato):
+    # 8192 troncava i pezzi lunghi e ha azzerato 3 giorni di pubblicazione
+    # consecutivi (19-24/8). Il retry con brief accorciato è la cintura.
+    _shorten_note = (
+        "\n\nIMPORTANT: Your previous attempt exceeded the output budget "
+        "and was cut off mid-article. Write a tighter piece this time — "
+        "aim for roughly 1,200-1,500 words of body copy — while keeping "
+        "the exact same JSON structure and all required fields."
+    )
     try:
-        response = client.messages.create(
-            model=model,
-            max_tokens=8192,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        # Output troncato a max_tokens → JSON incompleto: distinguilo
-        # dal generico parse error (token pagati, retry sensato a mano).
-        if getattr(response, "stop_reason", None) == "max_tokens":
-            print("  [Generate] ABORT: output troncato a max_tokens — "
-                  "articolo troppo lungo, alzare max_tokens o accorciare il brief")
-            return None
+        response = None
+        for _attempt in (1, 2):
+            response = client.messages.create(
+                model=model,
+                max_tokens=20000,
+                messages=[{"role": "user", "content":
+                           prompt if _attempt == 1 else prompt + _shorten_note}],
+            )
+            # Output troncato a max_tokens → JSON incompleto: al primo
+            # colpo ritenta chiedendo un pezzo più corto, al secondo arrendi.
+            if getattr(response, "stop_reason", None) != "max_tokens":
+                break
+            if _attempt == 1:
+                print("  [Generate] output troncato a max_tokens — "
+                      "retry con brief accorciato")
+            else:
+                print("  [Generate] ABORT: output troncato anche al retry — "
+                      "candidato saltato")
+                return None
         text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
 
         # Handle potential markdown fences
@@ -2047,10 +2064,13 @@ def main():
         "section_cooldowns": {},
     }
 
-    # Filter candidates
+    # Filter candidates — pool con 2 riserve oltre il target: un candidato
+    # che fallisce in generazione (troncamento, verifica fonti) non deve
+    # azzerare il giorno, si scala al successivo. Quanti articoli escono
+    # davvero lo decide il break nel loop (len(generated) >= max_articles).
     print("\nFiltering candidates...")
     candidates = filter_candidates(radar_data, ledger, journal_config,
-                                    max_articles=args.max_articles,
+                                    max_articles=args.max_articles + 2,
                                     min_score_override=args.min_score)
 
     if not candidates:
@@ -2165,6 +2185,11 @@ def main():
             print(f"  Excerpt: {article.get('excerpt', '')[:100]}...")
 
         generated.append(article)
+
+        # Target raggiunto: i candidati restanti erano solo riserve per
+        # i fallimenti — non pubblicare oltre args.max_articles.
+        if len(generated) >= args.max_articles:
+            break
 
     # Save ledger
     if not args.dry_run and generated:
