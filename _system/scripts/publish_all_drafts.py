@@ -61,6 +61,15 @@ DEFAULT_RECIPIENT = ("ivolo@me.com, "
                      "paolo.mezzalama@its.vision")
 SITE_BASE = "https://myvilla.la"
 
+# 2026-08-05 (decisione Ivo): stop TOTALE alla produzione social — stesso
+# flag di approve.py. Qui governa lo sweep self-healing dei companion X:
+# senza questo gate lo sweep continuava a RIGENERARE i .x.md degli articoli
+# appena pubblicati ("✓ companion ripristinato"), lasciando file orfani in
+# blog/ e sprecando una chiamata Anthropic a ogni publish (rilevato il
+# 2026-08-25; gli orfani sono stati rimossi dal repo lo stesso giorno).
+# Codice dormiente; True per riattivare insieme al resto del canale X.
+X_ENABLED = False
+
 
 # ── Helpers ──────────────────────────────────────────────────────────
 
@@ -2277,8 +2286,9 @@ def main(argv=None):
 
     # Companion Instagram dal journal: DISATTIVATI su richiesta dell'utente
     # (poco utili alla pagina IG, che ora vive di evergreen + reattivi). Non
-    # creiamo più blog/<slug>.ig.md alla pubblicazione di un articolo. X resta
-    # invariato (il companion .x.md è gestito dallo sweep self-healing sotto).
+    # creiamo più blog/<slug>.ig.md alla pubblicazione di un articolo. Dal
+    # 2026-08-05 è dismesso anche X: lo sweep .x.md qui sotto è dietro
+    # X_ENABLED (vedi flag in testa al file).
     # Per riattivare: ripristinare la generazione di .ig.md qui e nello sweep.
 
     # Self-healing companion sweep — GARANZIA "c'è sempre tutto": ogni
@@ -2288,7 +2298,11 @@ def main(argv=None):
     # non serve (il pannello li filtrerebbe). Gira su entrambi i rail.
     # NB: il companion .ig.md (IG dal journal) è DISATTIVATO su richiesta —
     # vedi nota sopra; lo sweep ora copre solo X.
-    if not args.dry_run:
+    # DORMIENTE dietro X_ENABLED dal 2026-08-25: con la produzione social
+    # dismessa (2026-08-05) lo sweep ricreava solo orfani in blog/.
+    if not X_ENABLED:
+        print("  companion sweep .x.md — SKIP (produzione social dismessa 2026-08-05)")
+    elif not args.dry_run:
         import time as _t
         _cutoff = _t.time() - 7 * 86400
         for _sidecar in sorted(BLOG_DIR.glob("*.json")):
