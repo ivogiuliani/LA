@@ -337,7 +337,10 @@ h2{{font-family:Fraunces,serif;font-size:15pt;font-weight:600;
 .tile .l{{color:{C["ink2"]};font-size:8pt;line-height:1.4;margin-top:3px}}
 .tile .d{{color:{C["good"]};font-size:8pt;font-weight:600;margin-top:2px}}
 .chart{{background:{C["card"]};border:0.6pt solid {C["line"]};
-  border-radius:5px;padding:12px 12px 6px;margin-top:8px}}
+  border-radius:5px;padding:12px 12px 6px;margin-top:8px;
+  break-inside:avoid}}
+h2{{break-after:avoid}}
+table.data{{break-inside:avoid}}
 .chart h4{{margin:0 0 6px;font-size:9.5pt}}
 .legend{{font-size:8.5pt;color:{C["ink2"]};margin:0 0 6px}}
 .legend span{{margin-right:14px}}
