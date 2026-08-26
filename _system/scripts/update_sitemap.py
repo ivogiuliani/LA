@@ -90,6 +90,12 @@ def extract_article_metadata(filepath: Path) -> dict | None:
         print(f"  WARN: could not read {filepath.name}: {exc}")
         return None
 
+    # POTATURA SEO (2026-08-26): le pagine in noindex restano sul sito ma
+    # NON vanno in sitemap — il loro canonical punta al canonico del
+    # cluster, che è già in sitemap col proprio file (evita duplicati).
+    if re.search(r'name="robots"\s+content="noindex', content):
+        return None
+
     # datePublished from JSON-LD
     date_match = re.search(r'"datePublished":\s*"(\d{4}-\d{2}-\d{2})"', content)
     if not date_match:
