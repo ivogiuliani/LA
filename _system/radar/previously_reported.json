@@ -5368,6 +5368,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.who.int/europe/publications/i/item/9789289053563",
       "note": "auto-published journal: custom-home-design-california-sound-as-site-asset"
+    },
+    {
+      "date_first_reported": "2026-08-26",
+      "source": "user_dismissed",
+      "title": "Kanye West's former Malibu home changes hands again after earlier Populis plans",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://malibutimes.com/kanye-west-s-former-malibu-home-takes-another-bizarre-turn/",
+      "note": "auto-published journal: luxury-home-malibu-stripped-concrete-shell"
     }
   ],
   "reported": [
