@@ -2352,7 +2352,11 @@ def main(argv=None):
     pushed_sha = ""
     if published and not args.dry_run:
         print("Rebuilding indices...")
-        for s in ("update_journal_index.py", "update_sitemap.py",
+        # crosslink_pillars + update_pillar_journal (interlink SEO
+        # 2026-08-26): idempotenti, così ogni nuovo articolo riceve il
+        # box pillar e le pillar mostrano i pezzi recenti pertinenti.
+        for s in ("update_journal_index.py", "crosslink_pillars.py",
+                  "update_pillar_journal.py", "update_sitemap.py",
                   "update_homepage_journal.py"):
             ok = _run_update_script(s)
             print(f"  {'✓' if ok else '✗'} {s}")
