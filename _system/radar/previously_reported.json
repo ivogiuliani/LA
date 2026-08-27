@@ -5378,6 +5378,46 @@
       "action_type": "user_dismissed",
       "url": "https://malibutimes.com/kanye-west-s-former-malibu-home-takes-another-bizarre-turn/",
       "note": "auto-published journal: luxury-home-malibu-stripped-concrete-shell"
+    },
+    {
+      "date_first_reported": "2026-08-27",
+      "source": "user_dismissed",
+      "title": "KFA set to transform 1970s brutalist LA office into apartments",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dezeen.com/2026/08/25/brutalist-sunkist-building-kfa-imt/",
+      "note": "auto-sent pitch to editorial@dezeen.com"
+    },
+    {
+      "date_first_reported": "2026-08-27",
+      "source": "user_dismissed",
+      "title": "A Penthouse at L.A.’s Park Elm Residences Lists for $68 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/park-elm-eterna-residence-los-angeles-century-city-1238572858/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-27",
+      "source": "user_dismissed",
+      "title": "A Contemporary Beverly Hills Estate With Putting Greens and a Sports Court Lists",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/1140-summit-drive-beverly-hills-home-lists-1238574344/",
+      "note": "auto-sent pitch to queued:demetrius.simms@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-27",
+      "source": "user_dismissed",
+      "title": "Nancy Meyers’s Daughter Annie Inherited Her Mom's Good Taste. She's Channeled It",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/nancy-meyerss-daughter-grew-up-absorbing-her-moms-good-taste-now-shes-sharing-all-of-it",
+      "note": "auto-sent pitch to queued:ingrid.abramovitch@architecturaldigest.com"
     }
   ],
   "reported": [
