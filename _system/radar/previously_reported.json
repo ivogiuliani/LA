@@ -5428,6 +5428,66 @@
       "action_type": "user_dismissed",
       "url": "https://www.dezeen.com/2026/08/27/lehrer-architects-loma-verde-supportive-housing-los-angeles/",
       "note": "auto-published journal: custom-home-design-los-angeles-narrow-lot"
+    },
+    {
+      "date_first_reported": "2026-08-28",
+      "source": "user_dismissed",
+      "title": "NBA Hall of Famer Kevin Garnett’s Former Ocean-View Malibu Mansion Lists for $48",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/kevin-garnett-former-house-malibu-1238600188/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-28",
+      "source": "user_dismissed",
+      "title": "Sarah Michelle Gellar and Freddie Prinze Jr. Relist Their L.A. Home for $10 Mill",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/gellar-prinze-relisted-house-los-angeles-1238605966/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-08-28",
+      "source": "user_dismissed",
+      "title": "The flat-pack skyscraper: how wood can shape the cities of the future | Green bu",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.theguardian.com/news/ng-interactive/2026/aug/27/the-flat-pack-skyscraper-how-wood-can-shape-the-cities-of-the-future",
+      "note": "auto-sent pitch to business.information@theguardian.com"
+    },
+    {
+      "date_first_reported": "2026-08-28",
+      "source": "user_dismissed",
+      "title": "Agents Alliance Opposes California FAIR Plan Commission Reductions",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/news/west/2026/08/26/882860.htm",
+      "note": "auto-sent pitch to newsdesk@insurancejournal.com"
+    },
+    {
+      "date_first_reported": "2026-08-28",
+      "source": "user_dismissed",
+      "title": "Kevin Garnett's Ocean-View Malibu Mansion: A $48 Million Transformation - Urban ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.urbansplatter.com/2026/08/kevin-garnetts-ocean-view-malibu-mansion-a-48-million-transformation",
+      "note": "auto-sent pitch to queued:david.sedath@urbansplatter.com"
+    },
+    {
+      "date_first_reported": "2026-08-28",
+      "source": "user_dismissed",
+      "title": "What's in California's Zone Zero fire safety rules — and what they mean for SoCa",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://laist.com/news/climate-environment/southern-california-zone-zero-fire-safety-rules-what-they-mean",
+      "note": "auto-sent pitch to queued:lucas.woods@laist.com"
     }
   ],
   "reported": [
