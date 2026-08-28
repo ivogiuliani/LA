@@ -94,7 +94,7 @@
     }
   },
   "architecturaldigest.com": {
-    "cached_at": 1787292516.1243076,
+    "cached_at": 1787897349.0709593,
     "result": null
   },
   "dig-in.com": {
@@ -225,11 +225,11 @@
     }
   },
   "insurancejournal.com": {
-    "cached_at": 1783923527.356747,
+    "cached_at": 1787897408.8040874,
     "result": {
       "email": "newsdesk@insurancejournal.com",
       "source": "article_scraped",
-      "path": "/magazines/mag-features/2026/07/13/877085.htm",
+      "path": "/news/west/2026/08/26/882860.htm",
       "score": 7,
       "in_mailto": true
     }
@@ -468,7 +468,7 @@
     "result": null
   },
   "yahoo.com": {
-    "cached_at": 1786774172.912413,
+    "cached_at": 1787897431.709147,
     "result": null
   },
   "oakviewins.com": {
@@ -678,12 +678,13 @@
     }
   },
   "laist.com": {
-    "cached_at": 1780726390.5924869,
+    "cached_at": 1787897411.650457,
     "result": {
       "email": "tips@laist.com",
       "source": "contact_page",
       "path": "/contact",
-      "score": 20
+      "score": 20,
+      "in_mailto": true
     }
   },
   "propertyguardian.com": {
@@ -1665,5 +1666,13 @@
       "score": 7,
       "in_mailto": true
     }
+  },
+  "loscerritosnews.net": {
+    "cached_at": 1787897389.206809,
+    "result": null
+  },
+  "vogue.com": {
+    "cached_at": 1787897422.9155142,
+    "result": null
   }
 }

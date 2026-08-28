@@ -5418,6 +5418,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.architecturaldigest.com/story/nancy-meyerss-daughter-grew-up-absorbing-her-moms-good-taste-now-shes-sharing-all-of-it",
       "note": "auto-sent pitch to queued:ingrid.abramovitch@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-08-28",
+      "source": "user_dismissed",
+      "title": "Lehrer Architects designs housing for \"extremely narrow\" site in LA",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dezeen.com/2026/08/27/lehrer-architects-loma-verde-supportive-housing-los-angeles/",
+      "note": "auto-published journal: custom-home-design-los-angeles-narrow-lot"
     }
   ],
   "reported": [
