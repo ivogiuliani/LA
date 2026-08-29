@@ -272,6 +272,42 @@ def main():
     cur_tot = sum(cur.values()) or 1
     organic_share = round(cur.get("Organic Search", 0) / cur_tot * 100)
 
+    # ── geografia (richiesta Ivo 2026-08-26: contano USA, e la
+    # California in particolare) — mese chiuso ──
+    geo_countries = ga4(s, {
+        "dateRanges": [{"startDate": str(first_prev),
+                        "endDate": str(last_prev)}],
+        "dimensions": [{"name": "country"}],
+        "metrics": [{"name": "sessions"}],
+        "orderBys": [{"metric": {"metricName": "sessions"}, "desc": True}],
+        "limit": 8})
+    geo_tot = sum(int(r["metrics"][0]) for r in geo_countries) or 1
+    us_sessions = next((int(r["metrics"][0]) for r in geo_countries
+                        if r["dims"][0] == "United States"), 0)
+    us_share = round(us_sessions / geo_tot * 100)
+
+    geo_states = ga4(s, {
+        "dateRanges": [{"startDate": str(first_prev),
+                        "endDate": str(last_prev)}],
+        "dimensions": [{"name": "region"}],
+        "metrics": [{"name": "sessions"}],
+        "dimensionFilter": {"filter": {
+            "fieldName": "country",
+            "stringFilter": {"value": "United States"}}},
+        "orderBys": [{"metric": {"metricName": "sessions"}, "desc": True}],
+        "limit": 6})
+    ca_sessions = next((int(r["metrics"][0]) for r in geo_states
+                        if r["dims"][0] == "California"), 0)
+    ca_share_us = round(ca_sessions / us_sessions * 100) if us_sessions else 0
+
+    # visibilità in ricerca dagli USA (GSC usa codici ISO-3 minuscoli)
+    gsc_us = gsc(s, {"startDate": str(first_prev), "endDate": str(last_prev),
+                     "dimensions": ["country"], "rowLimit": 50})
+    gsc_impr_tot = sum(r.get("impressions", 0) for r in gsc_us) or 1
+    gsc_us_row = next((r for r in gsc_us if r["keys"][0] == "usa"), {})
+    gsc_us_impr_share = round(
+        gsc_us_row.get("impressions", 0) / gsc_impr_tot * 100)
+
     # top pagine e query del mese
     pages = gsc(s, {"startDate": str(first_prev), "endDate": str(last_prev),
                     "dimensions": ["page"], "rowLimit": 12})
@@ -289,6 +325,21 @@ def main():
     yticks = [0, round(ymax_i / 3 / 50) * 50 or 50,
               round(ymax_i * 2 / 3 / 50) * 50 or 100]
     n_art = art_month.get(f"{first_prev:%Y%m}", 0)
+
+    def hl(name, target):
+        if name == target:
+            return (f'<b style="color:{C["accent"]}">{esc(name)}</b>')
+        return esc(name)
+
+    country_rows = "".join(
+        f"<tr><td>{hl(r['dims'][0], 'United States')}</td>"
+        f"<td class='n'>{int(r['metrics'][0])}</td>"
+        f"<td class='n'>{int(r['metrics'][0]) / geo_tot * 100:.0f}%</td></tr>"
+        for r in geo_countries)
+    state_rows = "".join(
+        f"<tr><td>{hl(r['dims'][0], 'California')}</td>"
+        f"<td class='n'>{int(r['metrics'][0])}</td></tr>"
+        for r in geo_states) or "<tr><td colspan='2'>—</td></tr>"
 
     page_rows = "".join(
         f"<tr><td>{esc(r['keys'][0].replace('https://myvilla.la', '') or '/')}"
@@ -387,6 +438,21 @@ il {today:%d/%m/%Y} da Google Analytics 4 e Search Console (API).</p>
 <div class="chart"><div class="legend">{legend}</div>
 {svg_month_stack(months_data)}</div>
 
+<h2>Da dove arriva il traffico — {mese_nome}</h2>
+<p class="sub">Sessioni dagli USA: <b>{us_sessions}</b> ({us_share}% del
+totale) — di cui California: <b>{ca_sessions}</b> ({ca_share_us}% delle
+sessioni USA). Impression Google generate da ricerche USA:
+{gsc_us_impr_share}%.</p>
+<table style="width:100%;border-collapse:separate;border-spacing:8px 0;
+margin:0 -8px"><tr>
+<td style="width:55%;vertical-align:top">
+<table class="data"><tr><th>Paese</th><th class="n">Sessioni</th>
+<th class="n">%</th></tr>{country_rows}</table></td>
+<td style="width:45%;vertical-align:top">
+<table class="data"><tr><th>Stati USA</th><th class="n">Sessioni</th></tr>
+{state_rows}</table></td>
+</tr></table>
+
 <h2>Pagine più viste in ricerca — {mese_nome}</h2>
 <table class="data"><tr><th>Pagina</th><th class="n">Click</th>
 <th class="n">Impression</th><th class="n">Pos.</th></tr>{page_rows}</table>
@@ -426,6 +492,7 @@ in allegato il rapporto SEO di {mese_nome} per myvilla.la. In sintesi:
 - Impression su Google: {m_impr:,} ({delta_str(m_impr, p_impr)} rispetto a {MESI[pp_first.month]})
 - Click: {m_click} ({delta_str(m_click, p_click)})
 - Quota di traffico da ricerca organica: {organic_share}% delle sessioni
+- Sessioni dagli USA: {us_sessions} ({us_share}% del totale), di cui California {ca_sessions} ({ca_share_us}% delle sessioni USA)
 - Articoli pubblicati dal journal: {n_art}
 - Pagina piu vista in ricerca: {top_page or "homepage"}
 
