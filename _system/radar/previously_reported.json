@@ -5488,6 +5488,56 @@
       "action_type": "user_dismissed",
       "url": "https://laist.com/news/climate-environment/southern-california-zone-zero-fire-safety-rules-what-they-mean",
       "note": "auto-sent pitch to queued:lucas.woods@laist.com"
+    },
+    {
+      "date_first_reported": "2026-08-29",
+      "source": "user_dismissed",
+      "title": "Jalmia Residence | 2025 - Global Design News",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://globaldesignnews.com/jalmia-residence-2025/",
+      "note": "auto-sent pitch to contact@globaldesignnews.com"
+    },
+    {
+      "date_first_reported": "2026-08-29",
+      "source": "user_dismissed",
+      "title": "Jiayuanhai Art Museum: Tadao Ando's Concrete Museum in Shanghai's Rice Fields",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.tfwsa.or.jp/post/jiayuanhai-art-museum",
+      "note": "auto-sent pitch to queued:gen.art@tfwsa.or.jp"
+    },
+    {
+      "date_first_reported": "2026-08-29",
+      "source": "user_dismissed",
+      "title": "Malibu Beach House Built for Joni Mitchell Gets a $2 Million Price Cut - Mansion",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.mansionglobal.com/articles/malibu-beach-house-built-for-joni-mitchell-gets-a-2-million-price-cut-a5de8f90",
+      "note": "auto-sent pitch to info@mansionglobal.com"
+    },
+    {
+      "date_first_reported": "2026-08-29",
+      "source": "user_dismissed",
+      "title": "West Hollywood Luxury Real Estate: Beverly Hills Without the Risk",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.rogerperry.com/west-hollywood-luxury-real-estate-for-wildfire-wary-buyers/",
+      "note": "auto-sent pitch to rperry@rogerperry.com"
+    },
+    {
+      "date_first_reported": "2026-08-29",
+      "source": "user_dismissed",
+      "title": "California plan to ban most plants within 5 feet of homes for wildfire safety ov",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://theconversation.com/california-plan-to-ban-most-plants-within-5-feet-of-homes-for-wildfire-safety-overlooks-some-important-truths-about-flammability-257109",
+      "note": "auto-sent pitch to europe-support@theconversation.com"
     }
   ],
   "reported": [

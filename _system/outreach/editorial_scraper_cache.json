@@ -417,7 +417,7 @@
     "result": null
   },
   "mercurynews.com": {
-    "cached_at": 1787292669.5923626,
+    "cached_at": 1787983717.4406188,
     "result": null
   },
   "eenews.net": {
@@ -700,7 +700,7 @@
     "result": null
   },
   "havenlifestyles.com": {
-    "cached_at": 1783836894.006278,
+    "cached_at": 1787983684.134807,
     "result": null
   },
   "bbc.com": {
@@ -1452,7 +1452,7 @@
     }
   },
   "designboom.com": {
-    "cached_at": 1787292509.1485925,
+    "cached_at": 1787983667.8604789,
     "result": null
   },
   "archidust.com": {
@@ -1674,5 +1674,49 @@
   "vogue.com": {
     "cached_at": 1787897422.9155142,
     "result": null
+  },
+  "globaldesignnews.com": {
+    "cached_at": 1787983663.415681,
+    "result": {
+      "email": "contact@globaldesignnews.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 14,
+      "in_mailto": true
+    }
+  },
+  "or.jp": {
+    "cached_at": 1787983668.1992564,
+    "result": {
+      "email": "contact@tfwsa.or.jp",
+      "source": "article_scraped",
+      "path": "/post/jiayuanhai-art-museum",
+      "score": 14,
+      "in_mailto": true
+    }
+  },
+  "archute.com": {
+    "cached_at": 1787983702.5577102,
+    "result": null
+  },
+  "rogerperry.com": {
+    "cached_at": 1787983745.3581884,
+    "result": {
+      "email": "rperry@rogerperry.com",
+      "source": "article_scraped",
+      "path": "/west-hollywood-luxury-real-estate-for-wildfire-wary-buyers/",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "theconversation.com": {
+    "cached_at": 1787983749.0233219,
+    "result": {
+      "email": "europe-support@theconversation.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 7,
+      "in_mailto": true
+    }
   }
 }
