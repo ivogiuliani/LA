@@ -172,13 +172,8 @@
     "result": null
   },
   "sfchronicle.com": {
-    "cached_at": 1778135226.4143848,
-    "result": {
-      "email": "feedback@sfchronicle.com",
-      "source": "contact_page",
-      "path": "/contact",
-      "score": 13
-    }
+    "cached_at": 1788069865.8257246,
+    "result": null
   },
   "cbsnews.com": {
     "cached_at": 1786601445.8648582,
@@ -1713,6 +1708,26 @@
     "cached_at": 1787983749.0233219,
     "result": {
       "email": "europe-support@theconversation.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 7,
+      "in_mailto": true
+    }
+  },
+  "design-milk.com": {
+    "cached_at": 1788069864.9572496,
+    "result": {
+      "email": "info@design-milk.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 6,
+      "in_mailto": false
+    }
+  },
+  "marinij.com": {
+    "cached_at": 1788069879.1471083,
+    "result": {
+      "email": "dallen@marinij.com",
       "source": "contact_page",
       "path": "/contact-us",
       "score": 7,

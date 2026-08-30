@@ -5538,6 +5538,36 @@
       "action_type": "user_dismissed",
       "url": "https://theconversation.com/california-plan-to-ban-most-plants-within-5-feet-of-homes-for-wildfire-safety-overlooks-some-important-truths-about-flammability-257109",
       "note": "auto-sent pitch to europe-support@theconversation.com"
+    },
+    {
+      "date_first_reported": "2026-08-30",
+      "source": "user_dismissed",
+      "title": "This Tarzana Home Brings the Tuscan Countryside to California",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://design-milk.com/tuscan-inspired-home-tarzana-california/",
+      "note": "auto-sent pitch to queued:nicole.haddad@design-milk.com"
+    },
+    {
+      "date_first_reported": "2026-08-30",
+      "source": "user_dismissed",
+      "title": "California insurers and utilities are in epic legislative fight",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.sfchronicle.com/california-wildfires/article/insurance-utilities-newsom-bill-22403231.php",
+      "note": "auto-sent pitch to citydesk@sfchronicle.com"
+    },
+    {
+      "date_first_reported": "2026-08-30",
+      "source": "user_dismissed",
+      "title": "Marin Voice: Fire-resilient housing should be part of wildfire planning – Marin ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.marinij.com/2026/08/28/marin-voice-fire-resilient-housing-should-be-part-of-wildfire-planning/",
+      "note": "auto-sent pitch to dallen@marinij.com"
     }
   ],
   "reported": [
