@@ -1,0 +1,32 @@
+{
+  "thread_id": "1a05145c9af00c8f",
+  "outreach_message_id": "1a05145c9af00c8f",
+  "outreach_subject": "One thought after reading your FAIR Plan coverage",
+  "outreach_to": "citydesk@sfchronicle.com",
+  "outreach_sent_at": "2026-08-30T06:05:22+00:00",
+  "replies": [
+    {
+      "thread_id": "1a05145c9af00c8f",
+      "gmail_message_id": "1a05145d289a9f60",
+      "rfc822_message_id": "<6a93c825.2ec8c5ef.280638.8b1d.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a citydesk@sfchronicle.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\nUlteriori informazioni: https://aka.ms/EXOSmtpErrors\r\n(attenzione: questo link indirizza a un sito di terze parti)\r\n\r\nLa risposta del server remoto è:\r\n550 5.4.1 Recipient address rejected: Access denied. For more information see https://aka.ms/EXOSmtpErrors [SJ1PEPF000026C5.namprd04.prod.outlook.com 2026-08-30T06:05:25.407Z 08DF0637AA77A1CC]",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a citydesk@sfchronicle.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. ULTERIORI INFORMAZIONI Questo link ti",
+      "received_at": "2026-08-30T06:05:25+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "UNREAD",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "1a05145c9af00c8f",
+      "outreach_subject": "One thought after reading your FAIR Plan coverage",
+      "outreach_to": "citydesk@sfchronicle.com",
+      "outreach_sent_at": "2026-08-30T06:05:22+00:00"
+    }
+  ],
+  "last_checked_at": "2026-08-31T06:04:07+00:00"
+}
