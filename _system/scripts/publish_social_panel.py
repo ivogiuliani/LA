@@ -254,6 +254,7 @@ def collect_journal_entries() -> dict[str, list[dict]]:
                 "origin": "Journal",
                 "date": d.get("_date") or "",
                 "title": d.get("title") or slug,
+                "subtitle": d.get("subtitle") or d.get("meta_description") or "",
                 "section": d.get("_section_name") or d.get("section") or "",
                 "image": hero_rel,
                 "article_url": clean_url,
@@ -634,6 +635,7 @@ section>p.lead{color:var(--mut);font-size:13px;margin-bottom:18px}
 .card img.hero{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--sand)}
 .card .pad{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
 .card h3{font-size:18px;line-height:1.25}
+.card .excerpt{color:var(--mut);font-size:13px;line-height:1.5}
 .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
 .badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--sand);color:var(--ink)}
 .badge.ig{background:#e8d5e2}.badge.x{background:#d7dee8}.badge.li{background:#cfe0ee}
@@ -1036,16 +1038,39 @@ def render(entries_by_platform, journal_ref, published, brand, pool, stock,
         _platform_pane(p, entries_by_platform[p], published[p]) for p in PLATFORMS
     )
 
-    ref_items = "".join(
-        f'<li><span class="d">{_e(a["date"])}</span> <a href="{_e(a["article_url"])}" target="_blank" rel="noopener">{_e(a["title"])}</a></li>'
-        for a in journal_ref
-    )
+    j_cards = []
+    for a in journal_ref:
+        img = f'<img class="hero" loading="lazy" src="{_e(a["image"])}" alt="">' if a["image"] else ""
+        mail_subject = quote(f"Journal — richiesta modifica/rimozione: {a['title']}")
+        mail_body = quote(
+            f"Articolo: {a['title']}\nURL: {a['article_url']}\n\n"
+            "Richiesta (modifica testo / correzione / rimozione dal sito):\n"
+        )
+        mailto = f"mailto:info@myvilla.la?subject={mail_subject}&body={mail_body}"
+        excerpt = f'<p class="excerpt">{_e(a["subtitle"])}</p>' if a.get("subtitle") else ""
+        sect = f'<span class="badge">{_e(a["section"])}</span>' if a["section"] else ""
+        j_cards.append(f"""
+<div class="card" data-done-id="journal:{_e(a["id"].split(":", 1)[1])}">
+  <div class="imgwrap">{img}</div>
+  <div class="pad">
+    <div class="meta"><span>{_e(a["date"])}</span>{sect}</div>
+    <h3>{_e(a["title"])}</h3>
+    {excerpt}
+    <div class="links"><a href="{_e(a["article_url"])}" target="_blank" rel="noopener">Apri articolo →</a></div>
+    <div class="row">
+      <a class="tool" href="{mailto}">✎ Richiedi modifica o rimozione</a>
+      <button class="tool remove" type="button">Elimina dalla lista</button>
+    </div>
+  </div>
+</div>""")
     journal_pane = f"""
 <div class="tabpane" id="tab-journal">
-  <div class="platform-head"><h2>Journal</h2><span class="note">riferimento — gli articoli si gestiscono in redazione</span></div>
+  <div class="platform-head"><h2>Journal</h2><span class="note">gli articoli del sito, in ordine di pubblicazione</span></div>
   <section>
-    <p class="lead">Gli ultimi {len(journal_ref)} articoli pubblicati su myvilla.la. Le proposte social ricavate da ciascuno sono nelle tab Instagram / X / LinkedIn.</p>
-    <ul class="reflist">{ref_items}</ul>
+    <p class="lead">Gli ultimi {len(journal_ref)} articoli pubblicati su myvilla.la — le proposte social ricavate da ciascuno sono nelle tab Instagram / X / LinkedIn.
+    "Elimina dalla lista" nasconde l'articolo solo da questa vista; "Richiedi modifica o rimozione" prepara una mail alla redazione, che interviene sull'articolo vero e proprio.</p>
+    <div class="planbar"><span class="delcount"></span><button class="restore" type="button">Ripristina eliminati</button></div>
+    <div class="grid">{''.join(j_cards)}</div>
   </section>
 </div>"""
 
