@@ -58,7 +58,7 @@ HANDOFF = ROOT / "_social_handoff"
 OUT_DIR = ROOT / "team" / "social"
 ASSETS = OUT_DIR / "assets"
 
-DEFAULT_PASSWORD = "villasocial26"
+DEFAULT_PASSWORD = "ivopaolo"
 JOURNAL_LIMIT = 20
 POOL_BLOG_HEROES = 18
 
