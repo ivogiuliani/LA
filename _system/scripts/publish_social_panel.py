@@ -166,25 +166,42 @@ def _x_proposal(d: dict, url: str) -> str:
     return f"{body}\n\n{url}\n{tags}"
 
 
+LI_MAX_CHARS = 400
+
+
 def _li_proposal(d: dict, url: str) -> str:
-    title = d.get("title") or ""
-    sub = d.get("subtitle") or d.get("meta_description") or ""
-    parts = [title, ""]
-    if sub:
-        parts += [sub, ""]
-    bullets = _key_bullets(d)
-    if bullets:
-        parts += ["The numbers that frame it:"] + bullets + [""]
-    parts += [
-        "We unpack what this means for resilient residential construction "
-        "in Los Angeles on the My Villa Journal:",
-        url,
-        "",
-    ]
-    tags = [t for t in (d.get("topic_tags") or [])[:2]]
-    hashtags = " ".join(filter(None, [BASE_HASHTAGS_LI] + [_tagify(t) for t in tags]))
+    """LinkedIn: tono esplicativo/didascalico, MAX 400 caratteri totali.
+    Niente URL nel testo: il bottone "Pubblica su LinkedIn" allega già
+    l'articolo come anteprima link (pattern nativo LinkedIn)."""
+    title = (d.get("title") or "").strip()
+    explainer = (d.get("meta_description") or d.get("subtitle") or "").strip()
+    hashtags = "#Architecture #FireResilience #LosAngeles"
+
+    # Un dato chiave come frase didascalica, se il budget lo consente.
+    key_line = ""
+    for k in (d.get("key_data") or [])[:1]:
+        num = (k.get("number") or "").strip()
+        lab = " ".join((k.get("label") or "").split())
+        if num and lab:
+            key_line = f"One figure to hold: {num} ({lab[:1].lower()}{lab[1:]})."
+
+    fixed = len(title) + len(hashtags) + 4  # separatori \n\n
+    room = LI_MAX_CHARS - fixed
+    body = ""
+    if explainer and room > 60:
+        avail = room - (len(key_line) + 2 if key_line else 0)
+        if len(explainer) > avail:
+            explainer = explainer[: max(0, avail - 1)].rsplit(" ", 1)[0].rstrip(".,;: ") + "…"
+            key_line = ""  # explainer pieno: il dato non entra
+        body = explainer
+        if key_line and len(body) + 2 + len(key_line) <= room:
+            body = f"{body}\n\n{key_line}"
+
+    parts = [title]
+    if body:
+        parts.append(body)
     parts.append(hashtags)
-    return "\n".join(parts)
+    return "\n\n".join(parts)
 
 
 def _x_effective_len(text: str, url: str) -> int:
@@ -275,40 +292,77 @@ def _parse_post_md(path: Path) -> dict | None:
         "title": meta.get("title") or "",
         "image": _public_img(meta.get("image") or ""),
         "source_url": meta.get("url") or meta.get("article_url") or "",
+        "score": meta.get("radar_score"),
         "caption": body,
     }
 
 
+_X_STATUS_RX = re.compile(r"^https?://(?:x|twitter)\.com/([A-Za-z0-9_]+)/status/", re.I)
+
+
+def _x_author(url: str) -> tuple[str, str]:
+    """Da un URL x.com/<handle>/status/... ritorna (@handle, profilo)."""
+    m = _X_STATUS_RX.match(url or "")
+    if not m:
+        return "", ""
+    handle = m.group(1)
+    return f"@{handle}", f"https://x.com/{handle}"
+
+
 def collect_queue_entries() -> dict[str, list[dict]]:
-    """Caption preparate (planned/approved/reactive) → entries."""
-    out: dict[str, list[dict]] = {p: [] for p in PLATFORMS}
+    """Caption preparate (planned/approved/reactive) → entries.
+
+    I metadati (url del post originale, immagine, score) spesso vivono
+    solo su UNA variante di canale (es. la gemella IG ha l'URL x.com
+    che manca alla variante X): prima passata per fondere i metadati
+    per slug, seconda per costruire le card arricchite."""
+    parsed: list[dict] = []
     for status in ("planned", "approved", "reactive"):
         folder = POSTS / status
         if not folder.is_dir():
             continue
         for f in sorted(folder.glob("*.md"), reverse=True):
             p = _parse_post_md(f)
-            if not p or p["platform"] not in out:
-                continue
-            origin = "Editoriale" if p["type"] == "editorial" else "Reattivo"
-            e = {
-                "id": f'{p["platform"]}:{p["file"]}',
-                "origin": origin,
-                "date": p["date"],
-                "title": p["title"] or p["slug"].replace("-", " "),
-                "section": "",
-                "image": p["image"],
-                "article_url": "",
-                "source_url": p["source_url"],
-                "text": p["caption"],
-                "slides": [],
-                "share_x": _x_intent(p["caption"]) if p["platform"] == "x" else None,
-                "share_li": (_li_share(p["source_url"])
-                             if p["platform"] == "linkedin" and p["source_url"] else None),
-                "x_len": (_x_effective_len(p["caption"], p["source_url"] or "")
-                          if p["platform"] == "x" and p["source_url"] else None),
-            }
-            out[p["platform"]].append(e)
+            if p and p["platform"] in PLATFORMS:
+                parsed.append(p)
+
+    by_slug: dict[str, dict] = {}
+    for p in parsed:
+        m = by_slug.setdefault(p["slug"], {"source_url": "", "image": None, "score": None})
+        m["source_url"] = m["source_url"] or p["source_url"]
+        m["image"] = m["image"] or p["image"]
+        if m["score"] is None:
+            m["score"] = p["score"]
+
+    out: dict[str, list[dict]] = {p: [] for p in PLATFORMS}
+    for p in parsed:
+        shared = by_slug[p["slug"]]
+        source_url = p["source_url"] or shared["source_url"]
+        image = p["image"] or shared["image"]
+        score = p["score"] if p["score"] is not None else shared["score"]
+        author, author_url = _x_author(source_url)
+        origin = "Editoriale" if p["type"] == "editorial" else "Reattivo"
+        e = {
+            "id": f'{p["platform"]}:{p["file"]}',
+            "origin": origin,
+            "date": p["date"],
+            "title": p["title"] or p["slug"].replace("-", " "),
+            "section": "",
+            "image": image,
+            "article_url": "",
+            "source_url": source_url,
+            "score": score if origin == "Reattivo" else None,
+            "author": author,
+            "author_url": author_url,
+            "text": p["caption"],
+            "slides": [],
+            "share_x": _x_intent(p["caption"]) if p["platform"] == "x" else None,
+            "share_li": (_li_share(source_url)
+                         if p["platform"] == "linkedin" and source_url else None),
+            "x_len": (_x_effective_len(p["caption"], source_url or "")
+                      if p["platform"] == "x" and source_url else None),
+        }
+        out[p["platform"]].append(e)
     return out
 
 
@@ -401,6 +455,69 @@ def collect_brand() -> dict:
     if bf.exists():
         bank = bf.read_text(encoding="utf-8").strip()
     return {"files": files, "caption_bank": bank}
+
+
+STOCK_CACHE = ROOT / "_system" / "social" / "stock_cache.json"
+STOCK_TTL_DAYS = 7
+STOCK_PER_QUERY = 6
+STOCK_QUERIES = [
+    "italian villa architecture",
+    "concrete house exterior",
+    "mediterranean courtyard garden",
+    "los angeles hillside homes",
+    "minimal luxury interior",
+    "california coastline aerial",
+]
+
+
+def collect_stock_images() -> list[dict]:
+    """Foto stock gratuite (Unsplash) per il picker, via image_picker.py.
+
+    Interrogato a build-time (la chiave resta nel .env, MAI nella pagina:
+    il repo è pubblico); risultato cachato 7 giorni in stock_cache.json
+    (committato, così anche una build senza chiave — es. il rail cloud —
+    serve le stesse foto). Fallback: cache stantia > niente."""
+    now = datetime.now().timestamp()
+    stale = None
+    if STOCK_CACHE.exists():
+        try:
+            data = json.loads(STOCK_CACHE.read_text(encoding="utf-8"))
+            stale = data.get("photos") or None
+            if stale and now - data.get("fetched_at", 0) < STOCK_TTL_DAYS * 86400:
+                return stale
+        except (json.JSONDecodeError, OSError):
+            stale = None
+
+    photos: list[dict] = []
+    try:
+        from image_picker import fetch_candidates
+        seen: set[str] = set()
+        for q in STOCK_QUERIES:
+            for c in fetch_candidates(q, count=STOCK_PER_QUERY):
+                full = c.get("full_url") or ""
+                if not full or full in seen:
+                    continue
+                seen.add(full)
+                photos.append({
+                    "thumb": c.get("thumb_url") or full,
+                    "full": full,
+                    "author": c.get("author_name") or "",
+                    "link": c.get("unsplash_url") or "",
+                })
+    except Exception:
+        photos = []
+
+    if photos:
+        try:
+            STOCK_CACHE.write_text(
+                json.dumps({"fetched_at": now, "photos": photos},
+                           ensure_ascii=False, indent=1),
+                encoding="utf-8",
+            )
+        except OSError:
+            pass
+        return photos
+    return stale or []
 
 
 def build_image_pool() -> list[str]:
@@ -521,6 +638,7 @@ section>p.lead{color:var(--mut);font-size:13px;margin-bottom:18px}
 .badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--sand);color:var(--ink)}
 .badge.ig{background:#e8d5e2}.badge.x{background:#d7dee8}.badge.li{background:#cfe0ee}
 .badge.o-journal{background:#e3dccd}.badge.o-reattivo{background:#efe6d8;color:#7a6a4f}.badge.o-editoriale{background:#dde8dc;color:#4a6046}
+.badge.trend{background:#f3ddc9;color:#8a4f2c;font-weight:700}
 .cap{margin-top:4px}
 .cap textarea{width:100%;border:1px solid var(--sand);border-radius:8px;padding:10px;font:12.5px/1.5 'Montserrat',sans-serif;color:var(--ink);background:#fdfcfa;resize:vertical}
 .row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
@@ -552,6 +670,13 @@ ul.reflist li span.d{color:var(--mut);font-size:11.5px;white-space:nowrap}
 #imgmodal .box{max-width:900px;margin:0 auto;background:var(--cream);border-radius:12px;padding:20px}
 #imgmodal .box h3{font-size:22px;margin-bottom:4px}
 #imgmodal .box p{color:var(--mut);font-size:12.5px;margin-bottom:14px}
+#imgmodal .box h4{font:600 12px 'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:.12em;margin:18px 0 8px;color:var(--ink)}
+#imgmodal .box h4 .secnote{color:var(--mut);font-weight:400;text-transform:none;letter-spacing:0;font-size:11.5px}
+#imgmodal .userimgs:empty::after{content:"Nessuna immagine tua, per ora.";color:var(--mut);font-size:12px}
+#imgmodal .userimgs .uwrap{position:relative}
+#imgmodal .userimgs .uwrap .udel{position:absolute;top:4px;right:4px;background:rgba(43,38,32,.75);color:#fff;border:none;border-radius:99px;width:22px;height:22px;font-size:12px;cursor:pointer;line-height:1}
+#imgmodal .addrow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;align-items:center}
+#imgmodal .addrow input[type=url]{flex:1;min-width:200px;border:1px solid var(--sand);border-radius:99px;padding:8px 14px;font:12.5px 'Montserrat',sans-serif;background:#fff;color:var(--ink)}
 #imgmodal .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
 #imgmodal .thumbs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer;background:var(--sand)}
 #imgmodal .thumbs img:hover{border-color:var(--terra)}
@@ -604,7 +729,30 @@ APP_JS = """
     var b = card.querySelector('button.done-toggle');
     if (b) b.textContent = on ? 'Riattiva' : 'Segna come fatto';
   }
-  function applyImage(card, src) {
+  // ── Immagini della manager (upload/URL) ──
+  var LS_USR = 'mv-panel-userimgs';
+  function userImgs() {
+    try { return JSON.parse(lsGet(LS_USR) || '[]'); } catch (e) { return []; }
+  }
+  function saveUserImgs(list) {
+    try { localStorage.setItem(LS_USR, JSON.stringify(list)); return true; }
+    catch (e) {
+      alert('Spazio del browser esaurito: elimina qualche immagine caricata e riprova.');
+      return false;
+    }
+  }
+  function resolvePick(val) {
+    if (!val) return null;
+    if (val.indexOf('user:') === 0) {
+      var id = val.slice(5);
+      var hit = userImgs().filter(function(u) { return u.id === id; })[0];
+      return hit ? hit.src : null;
+    }
+    return val;
+  }
+  function applyImage(card, pickVal) {
+    var src = resolvePick(pickVal);
+    if (!src) return;
     var img = card.querySelector('img.hero');
     var dl = card.querySelector('a.dl');
     if (img) { img.src = src; }
@@ -617,6 +765,22 @@ APP_JS = """
       }
     }
     if (dl) { dl.href = src; dl.removeAttribute('hidden'); }
+  }
+  function renderUserImgs() {
+    var box = document.querySelector('#imgmodal .userimgs');
+    if (!box) return;
+    box.innerHTML = '';
+    userImgs().forEach(function(u) {
+      var w = document.createElement('div');
+      w.className = 'uwrap';
+      var im = document.createElement('img');
+      im.src = u.src; im.dataset.pick = 'user:' + u.id; im.title = u.name || '';
+      var del = document.createElement('button');
+      del.className = 'udel'; del.type = 'button'; del.textContent = '\\u00d7';
+      del.dataset.del = u.id;
+      w.appendChild(im); w.appendChild(del);
+      box.appendChild(w);
+    });
   }
   function refreshCounters() {
     document.querySelectorAll('.planbar').forEach(function(bar) {
@@ -645,16 +809,59 @@ APP_JS = """
   }
   modal.addEventListener('click', function(ev) {
     if (ev.target === modal || ev.target.closest('.closebtn')) { closeModal(); return; }
-    var t = ev.target.closest('.thumbs img');
+    var del = ev.target.closest('button.udel');
+    if (del) {
+      saveUserImgs(userImgs().filter(function(u) { return u.id !== del.dataset.del; }));
+      renderUserImgs();
+      return;
+    }
+    var t = ev.target.closest('.thumbs img[data-pick]');
     if (t && targetCard) {
       var id = targetCard.dataset.doneId;
       var m = getMap(LS_IMG);
-      m[id] = t.dataset.src;
+      m[id] = t.dataset.pick;
       lsSet(LS_IMG, JSON.stringify(m));
-      applyImage(targetCard, t.dataset.src);
+      applyImage(targetCard, t.dataset.pick);
       closeModal();
     }
   });
+
+  // Upload dal computer: ridimensiona (max 1600px) e salva su localStorage.
+  var upload = document.getElementById('imgupload');
+  if (upload) upload.addEventListener('change', function() {
+    var f = upload.files && upload.files[0];
+    upload.value = '';
+    if (!f || f.type.indexOf('image/') !== 0) return;
+    var img = new Image();
+    img.onload = function() {
+      var MAX = 1600;
+      var scale = Math.min(1, MAX / Math.max(img.width, img.height));
+      var cv = document.createElement('canvas');
+      cv.width = Math.round(img.width * scale);
+      cv.height = Math.round(img.height * scale);
+      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+      var dataUrl = cv.toDataURL('image/jpeg', 0.82);
+      URL.revokeObjectURL(img.src);
+      var list = userImgs();
+      list.unshift({ id: String(Date.now()), src: dataUrl, name: f.name || '' });
+      if (saveUserImgs(list)) renderUserImgs();
+    };
+    img.onerror = function() { URL.revokeObjectURL(img.src); };
+    img.src = URL.createObjectURL(f);
+  });
+
+  // Aggiunta da URL (deve essere un link diretto a un'immagine).
+  var urlBtn = document.getElementById('imgurladd');
+  if (urlBtn) urlBtn.addEventListener('click', function() {
+    var inp = document.getElementById('imgurl');
+    var u = (inp.value || '').trim();
+    if (!/^https?:\\/\\//.test(u)) { alert('Incolla un URL valido (https://…)'); return; }
+    var list = userImgs();
+    list.unshift({ id: String(Date.now()), src: u, name: u.split('/').pop() });
+    if (saveUserImgs(list)) { renderUserImgs(); inp.value = ''; }
+  });
+
+  renderUserImgs();
 
   // ── Azioni card ──
   document.addEventListener('click', function(ev) {
@@ -716,13 +923,19 @@ def _entry_card(e: dict, platform: str) -> str:
     links = []
     if e["article_url"]:
         links.append(f'<a href="{_e(e["article_url"])}" target="_blank" rel="noopener">Apri articolo →</a>')
+    if e.get("author"):
+        links.append(f'<a href="{_e(e["author_url"])}" target="_blank" rel="noopener">{_e(e["author"])} →</a>')
     if e["source_url"]:
-        links.append(f'<a href="{_e(e["source_url"])}" target="_blank" rel="noopener">Fonte →</a>')
+        label = "Apri il post su X →" if _X_STATUS_RX.match(e["source_url"]) else "Fonte →"
+        links.append(f'<a href="{_e(e["source_url"])}" target="_blank" rel="noopener">{label}</a>')
     links_html = f'<div class="links">{" · ".join(links)}</div>' if links else ""
 
     origin_cls = "o-" + e["origin"].lower()
     xlen = f' · {e["x_len"]}/280' if e.get("x_len") else ""
     sect = f'<span class="badge">{_e(e["section"])}</span>' if e["section"] else ""
+    score = ""
+    if e.get("score") is not None:
+        score = f'<span class="badge trend" title="Score radar: trazione della conversazione al momento del rilevamento">▲ {_e(str(e["score"]))}</span>'
 
     pub = ""
     if e.get("share_x"):
@@ -735,7 +948,7 @@ def _entry_card(e: dict, platform: str) -> str:
 <div class="card" data-done-id="{_e(e["id"])}">
   <div class="imgwrap">{img_html}</div>
   <div class="pad">
-    <div class="meta"><span>{_e(e["date"])}</span><span class="badge {origin_cls}">{_e(e["origin"])}</span>{sect}<span class="badge {BADGE_CLASS[platform]}">{_e(PLATFORM_LABEL[platform])}{xlen}</span></div>
+    <div class="meta"><span>{_e(e["date"])}</span><span class="badge {origin_cls}">{_e(e["origin"])}</span>{score}{sect}<span class="badge {BADGE_CLASS[platform]}">{_e(PLATFORM_LABEL[platform])}{xlen}</span></div>
     <h3>{_e(e["title"])}</h3>
     {links_html}
     {slides}
@@ -770,9 +983,13 @@ def _published_table(rows: list[dict]) -> str:
 
 FLOW_NOTES = {
     "instagram": ("Per pubblicare: scarica l'immagine e posta dall'app con il testo della card."),
-    "x": ("“Pubblica su X” apre il compositore col post già scritto."),
-    "linkedin": ("“Pubblica su LinkedIn” copia il testo e apre il compositore col link già "
-                 "caricato: incolla il testo sopra l'anteprima."),
+    "x": ("“Pubblica su X” apre il compositore col post già scritto. I post Reattivi "
+          "mostrano lo score ▲ (trazione della conversazione al rilevamento) e stanno "
+          "in alto; il link @autore e “Apri il post su X” portano alla conversazione "
+          "originale per approfondire. Metriche live con lo step 2."),
+    "linkedin": ("“Pubblica su LinkedIn” copia il testo e apre il compositore col link "
+                 "dell'articolo già allegato come anteprima: incolla il testo sopra. "
+                 "Caption entro i 400 caratteri, tono esplicativo."),
 }
 
 
@@ -811,7 +1028,8 @@ def _platform_pane(platform: str, entries: list[dict], published: list[dict]) ->
 </div>"""
 
 
-def render(entries_by_platform, journal_ref, published, brand, pool, password_hash) -> str:
+def render(entries_by_platform, journal_ref, published, brand, pool, stock,
+           password_hash) -> str:
     now = datetime.now().strftime("%d %b %Y, %H:%M")
 
     panes = "".join(
@@ -849,8 +1067,18 @@ def render(entries_by_platform, journal_ref, published, brand, pool, password_ha
 </div>"""
 
     pool_thumbs = "".join(
-        f'<img loading="lazy" src="{_e(p)}" data-src="{_e(p)}" alt="">' for p in pool
+        f'<img loading="lazy" src="{_e(p)}" data-pick="{_e(p)}" alt="">' for p in pool
     )
+    stock_thumbs = "".join(
+        f'<img loading="lazy" src="{_e(s["thumb"])}" data-pick="{_e(s["full"])}" '
+        f'title="Photo by {_e(s["author"])} on Unsplash" alt="">'
+        for s in stock
+    )
+    stock_section = ""
+    if stock_thumbs:
+        stock_section = f"""
+  <h4>Unsplash — stock gratuite <span class="secnote">selezione rinnovata ogni settimana · crediti nel tooltip</span></h4>
+  <div class="thumbs">{stock_thumbs}</div>"""
 
     return f"""<!DOCTYPE html>
 <html lang="it">
@@ -889,8 +1117,17 @@ def render(entries_by_platform, journal_ref, published, brand, pool, password_ha
 </div>
 <div id="imgmodal"><div class="box">
   <h3>Scegli un'immagine</h3>
-  <p>Alternative on-brand: render del sito, visual social e hero recenti del Journal. Clicca per applicare alla card.</p>
+  <p>Clicca una miniatura per applicarla alla card.</p>
+  <h4>Dal sito <span class="secnote">render, visual social e hero recenti del Journal</span></h4>
   <div class="thumbs">{pool_thumbs}</div>
+  {stock_section}
+  <h4>Le tue immagini <span class="secnote">salvate solo su questo browser</span></h4>
+  <div class="thumbs userimgs"></div>
+  <div class="addrow">
+    <label class="tool">Carica dal computer<input id="imgupload" type="file" accept="image/*" hidden></label>
+    <input id="imgurl" type="url" placeholder="…oppure incolla l'URL di un'immagine">
+    <button class="tool" id="imgurladd" type="button">Aggiungi da URL</button>
+  </div>
   <div class="closebar"><button class="tool closebtn" type="button">Chiudi</button></div>
 </div></div>
 <script>{APP_JS}</script>
@@ -917,7 +1154,18 @@ def build_panel(password: str | None = None, out: Path | None = None) -> Path:
         merged = journal_entries[p] + queue_entries[p]
         if p == "instagram":
             merged += packages
-        merged.sort(key=lambda e: e["date"], reverse=True)
+        if p == "x":
+            # Richiesta social manager: i post con più trazione in alto
+            # (score radar desc), a parità/assenza di score la data.
+            merged.sort(
+                key=lambda e: (
+                    e.get("score") if isinstance(e.get("score"), (int, float)) else -1,
+                    e["date"],
+                ),
+                reverse=True,
+            )
+        else:
+            merged.sort(key=lambda e: e["date"], reverse=True)
         entries_by_platform[p] = merged
 
     page = render(
@@ -926,6 +1174,7 @@ def build_panel(password: str | None = None, out: Path | None = None) -> Path:
         collect_published(),
         collect_brand(),
         build_image_pool(),
+        collect_stock_images(),
         _sha256(password or DEFAULT_PASSWORD),
     )
     target = out_dir / "index.html"
