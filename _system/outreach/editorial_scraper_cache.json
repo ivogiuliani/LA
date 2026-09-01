@@ -1733,5 +1733,53 @@
       "score": 7,
       "in_mailto": true
     }
+  },
+  "flickr.com": {
+    "cached_at": 1788242914.5454707,
+    "result": null
+  },
+  "spokesman.com": {
+    "cached_at": 1788242921.3701081,
+    "result": {
+      "email": "ralphw@spokesman.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 7,
+      "in_mailto": true
+    }
+  },
+  "planetizen.com": {
+    "cached_at": 1788242922.0391788,
+    "result": null
+  },
+  "nbcpalmsprings.com": {
+    "cached_at": 1788242923.1594245,
+    "result": {
+      "email": "news@nbcpalmsprings.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 19,
+      "in_mailto": true
+    }
+  },
+  "timesofsandiego.com": {
+    "cached_at": 1788242925.4168804,
+    "result": {
+      "email": "news@timesofsandiego.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 19,
+      "in_mailto": true
+    }
+  },
+  "vanessabrink.com": {
+    "cached_at": 1788242933.9685793,
+    "result": {
+      "email": "vanessa@vanessabrink.com",
+      "source": "article_scraped",
+      "path": "/listing/crmls/TR26140920/Los-Angeles/6358-La-Rocha/",
+      "score": 2,
+      "in_mailto": false
+    }
   }
 }

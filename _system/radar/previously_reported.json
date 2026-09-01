@@ -5568,6 +5568,56 @@
       "action_type": "user_dismissed",
       "url": "https://www.marinij.com/2026/08/28/marin-voice-fire-resilient-housing-should-be-part-of-wildfire-planning/",
       "note": "auto-sent pitch to dallen@marinij.com"
+    },
+    {
+      "date_first_reported": "2026-09-01",
+      "source": "user_dismissed",
+      "title": "Why more homeowners across the U.S. are turning to an insurance that offers less",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.spokesman.com/stories/2026/aug/31/why-more-homeowners-across-the-us-are-turning-to-a/",
+      "note": "auto-sent pitch to ralphw@spokesman.com"
+    },
+    {
+      "date_first_reported": "2026-09-01",
+      "source": "user_dismissed",
+      "title": "California's New Wildfire Rules Target the First 5 Feet ...",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.nbcpalmsprings.com/public-safety/2026/08/30/californias-new-wildfire-rules-target-the-first-5-feet-around-your-home",
+      "note": "auto-sent pitch to queued:nbc.springs@nbcpalmsprings.com"
+    },
+    {
+      "date_first_reported": "2026-09-01",
+      "source": "user_dismissed",
+      "title": "Opinion: California home insurance market is finally beginning to heal",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://timesofsandiego.com/opinion/2026/08/25/california-home-insurance-market-finally-beginning-to-heal/",
+      "note": "auto-sent pitch to queued:tracey.rivera@timesofsandiego.com"
+    },
+    {
+      "date_first_reported": "2026-09-01",
+      "source": "user_dismissed",
+      "title": "California FAIR Plan rates rise October 15, with biggest increases in wildfire-r",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.thecooldown.com/green-business/california-fair-plan-insurance-hike-fire-risk/",
+      "note": "auto-sent pitch to queued:vivian.tran@thecooldown.com"
+    },
+    {
+      "date_first_reported": "2026-09-01",
+      "source": "user_dismissed",
+      "title": "6358 La Rocha, Los Angeles, CA 90068 - Vanessa Brink",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://vanessabrink.com/listing/crmls/TR26140920/Los-Angeles/6358-La-Rocha/",
+      "note": "auto-sent pitch to vanessa@vanessabrink.com"
     }
   ],
   "reported": [
