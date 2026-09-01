@@ -2491,6 +2491,19 @@ def main(argv=None):
                 if not args.no_push:
                     _push_marker_now()
 
+    # Refresh the collaborator social panel (static page in team/social/)
+    # so today's Journal articles reach the handoff page. Runs on BOTH
+    # rails (the Actions rail commits it via its own `git add -A` step,
+    # the local rail via _git_autopush below). Best-effort by design:
+    # a panel failure must never break the publish pipeline.
+    if not args.dry_run:
+        try:
+            from publish_social_panel import build_panel
+            build_panel()
+            print("  [panel] team/social refreshed")
+        except Exception as exc:  # noqa: BLE001
+            print(f"  [panel] refresh skipped: {exc}")
+
     # Final state push: commit the digest marker + outreach state
     # (ledger, send_log, dedup) so the OTHER scheduler rail sees today's
     # marker and skips. Runs even on no-article days — the mid-pipeline

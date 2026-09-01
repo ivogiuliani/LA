@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Villa — Social Content Panel</title>
+
+<meta name="robots" content="noindex,nofollow,noarchive,nocache">
+<style id="mv-auth-gate-style">
+  html { visibility: hidden !important; }
+  html.mv-team-authed { visibility: visible !important; }
+</style>
+<script id="mv-auth-gate-script">
+(function() {
+  var CORRECT_HASH = '5d0ac4e87798711132ded7fe8ad405c33eaaa616d77621d55dd5ddd58fedeb4e';
+  var SESSION_KEY  = 'myvilla-social-auth';
+  function reveal() {
+    try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (e) {}
+    document.documentElement.classList.add('mv-team-authed');
+  }
+  function deny() {
+    document.documentElement.innerHTML =
+      '<body style="font-family:-apple-system,sans-serif;padding:3rem;' +
+      'visibility:visible;color:#666;background:#faf8f5">' +
+      '<h1 style="color:#333">Access denied</h1>' +
+      '<p>Reload the page to retry.</p></body>';
+    document.documentElement.classList.add('mv-team-authed');
+  }
+  function ask() {
+    var p = prompt('My Villa \u2014 Social Content Panel\n\nPassword:');
+    if (p === null || p === '') { deny(); return; }
+    if (!window.crypto || !window.crypto.subtle) { deny(); return; }
+    var enc = new TextEncoder().encode(p);
+    window.crypto.subtle.digest('SHA-256', enc).then(function(buf) {
+      var arr = Array.from(new Uint8Array(buf));
+      var hex = arr.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+      if (hex === CORRECT_HASH) reveal(); else deny();
+    });
+  }
+  try {
+    if (sessionStorage.getItem(SESSION_KEY) === '1') { reveal(); return; }
+  } catch (e) {}
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ask);
+  } else { ask(); }
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2b2620;--cream:#faf8f5;--sand:#e9e2d6;--terra:#b06a4a;--mut:#8a8177;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:'Montserrat',-apple-system,sans-serif;font-size:15px;line-height:1.55}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600}
+a{color:var(--terra)}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+header.top{padding:26px 18px 14px;border-bottom:1px solid var(--sand);background:var(--cream);}
+header.top .brand{font-family:'Cormorant Garamond',serif;font-size:26px;letter-spacing:.14em}
+header.top .sub{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.22em;margin-top:2px}
+header.top .stamp{color:var(--mut);font-size:12px;margin-top:8px}
+nav.sticky{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:1px solid var(--sand);overflow-x:auto;white-space:nowrap;padding:10px 18px;display:flex;gap:18px}
+nav.sticky a{color:var(--ink);text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:.14em;padding:4px 0;border-bottom:2px solid transparent}
+nav.sticky a:hover{border-color:var(--terra)}
+section{margin-top:46px}
+section>h2{font-size:30px;margin-bottom:4px}
+section>p.lead{color:var(--mut);font-size:13px;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--sand);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.card img.hero{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--sand)}
+.card .pad{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-size:19px;line-height:1.25}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--sand);color:var(--ink)}
+.badge.ig{background:#e8d5e2}.badge.x{background:#d7dee8}.badge.st{background:#efe6d8;color:#7a6a4f}
+.cap{margin-top:4px}
+.cap textarea{width:100%;border:1px solid var(--sand);border-radius:8px;padding:10px;font:12.5px/1.5 'Montserrat',sans-serif;color:var(--ink);background:#fdfcfa;resize:vertical}
+button.copy{margin-top:6px;border:1px solid var(--terra);background:var(--terra);color:#fff;padding:7px 14px;border-radius:99px;font:600 11px 'Montserrat',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+button.copy.done{background:#5f7a5a;border-color:#5f7a5a}
+.links a{font-size:12.5px}
+details{border:1px solid var(--sand);border-radius:10px;background:#fff;padding:12px 16px}
+details summary{cursor:pointer;font-weight:600;font-size:13.5px}
+details pre{white-space:pre-wrap;font:12.5px/1.6 'Montserrat',sans-serif;margin-top:10px;color:var(--ink)}
+table.pub{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--sand);border-radius:10px;overflow:hidden;font-size:13px}
+table.pub th,table.pub td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--sand)}
+table.pub th{font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--mut);background:#fdfcfa}
+.brandgrid{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:16px}
+.brandgrid .bcard{background:#fff;border:1px solid var(--sand);border-radius:10px;padding:14px;text-align:center;width:150px}
+.brandgrid img{max-width:110px;max-height:60px;object-fit:contain}
+.brandgrid a{display:block;font-size:11px;margin-top:8px}
+.slides{display:flex;gap:6px;flex-wrap:wrap}
+.slides img{width:64px;height:64px;object-fit:cover;border-radius:6px;border:1px solid var(--sand)}
+footer{margin-top:60px;color:var(--mut);font-size:11.5px;border-top:1px solid var(--sand);padding-top:16px}
+@media (max-width:640px){.grid{grid-template-columns:1fr}section>h2{font-size:25px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">MY VILLA</div>
+  <div class="sub">Social Content Panel — riservato</div>
+  <div class="stamp">Aggiornato: 01 Sep 2026, 11:38 · rigenerato automaticamente dalla pipeline quotidiana</div>
+</header>
+<nav class="sticky">
+  <a href="#journal">Journal</a>
+  <a href="#captions">Caption pronte</a>
+  <a href="#editorial">Pacchetti editoriali</a>
+  <a href="#published">Già pubblicati</a>
+  <a href="#brand">Brand kit</a>
+</nav>
+<div class="wrap">
+
+<section id="journal">
+  <h2>Dal Journal — articoli freschi</h2>
+  <p class="lead">Gli ultimi 20 articoli pubblicati su myvilla.la. Ogni card ha una caption suggerita (titolo + sottotitolo + link + hashtag): copiala e adattala liberamente.</p>
+  <div class="grid">
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/custom-home-design-los-angeles-narrow-lot-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-08-28</span><span class="badge">Concrete Architecture</span></div>
+  <h3>Custom Home Design in Los Angeles: The Narrow-Lot Advantage</h3>
+  <div class="links"><a href="https://myvilla.la/blog/custom-home-design-los-angeles-narrow-lot.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Custom Home Design in Los Angeles: The Narrow-Lot Advantage
+
+Lehrer Architects&#x27; Loma Verde is a reminder that slenderness is a structural argument long before it is a stylistic one.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/custom-home-design-los-angeles-narrow-lot.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #NarrowLotDesign #SupportiveHousing #LehrerArchitects #StructuralGeometry</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/luxury-home-malibu-stripped-concrete-shell-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-08-26</span><span class="badge">Materials &amp; Construction</span></div>
+  <h3>Luxury Home in Malibu: The Value of a Stripped Concrete Shell</h3>
+  <div class="links"><a href="https://myvilla.la/blog/luxury-home-malibu-stripped-concrete-shell.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Luxury Home in Malibu: The Value of a Stripped Concrete Shell
+
+A gut renovation removed almost everything except the structure — and the structure is what kept the house in play.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/luxury-home-malibu-stripped-concrete-shell.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #Malibu #AdaptiveReuse #ConcreteShell #BuildingLayers</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/custom-home-design-california-sound-as-site-asset-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-08-25</span><span class="badge">Concrete Architecture</span></div>
+  <h3>Custom Home Design in California: Sound as a Site Asset</h3>
+  <div class="links"><a href="https://myvilla.la/blog/custom-home-design-california-sound-as-site-asset.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Custom Home Design in California: Sound as a Site Asset
+
+A Pacific Palisades midcentury house makes the case that the most valuable thing about a lot may be what you hear on it.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/custom-home-design-california-sound-as-site-asset.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #LandscapeIntegration #Acoustics #RiparianSite #PacificPalisades</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/luxury-home-addition-bel-air-47m-preservation-case-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-08-17</span><span class="badge">Concrete Architecture</span></div>
+  <h3>Luxury Home Addition in Bel Air: The $47M Preservation Case</h3>
+  <div class="links"><a href="https://myvilla.la/blog/luxury-home-addition-bel-air-47m-preservation-case.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Luxury Home Addition in Bel Air: The $47M Preservation Case
+
+A developer chose 12,000 new square feet over the wrecking ball — and inherited the hardest problem in residential architecture: the joint.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/luxury-home-addition-bel-air-47m-preservation-case.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #BelAir #AdditionDesign #HistoricPreservation #Proportion</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/reinforced-concrete-custom-homes-los-angeles-as-cast-finish-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-08-14</span><span class="badge">Concrete Architecture</span></div>
+  <h3>Reinforced Concrete Custom Homes in LA: As-Cast Finish</h3>
+  <div class="links"><a href="https://myvilla.la/blog/reinforced-concrete-custom-homes-los-angeles-as-cast-finish.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Reinforced Concrete Custom Homes in LA: As-Cast Finish
+
+A riverfront headquarters in Paraná makes the case that the formwork, not the cladding, is where a building&#x27;s finish is actually decided.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/reinforced-concrete-custom-homes-los-angeles-as-cast-finish.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #ExposedConcrete #AsCastFinish #Formwork #MaterialHonesty</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/fire-resistant-home-design-california-water-reserve-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-08-12</span><span class="badge">Climate &amp; Resilience</span></div>
+  <h3>Fire-Resistant Home Design in California: The Water Reserve</h3>
+  <div class="links"><a href="https://myvilla.la/blog/fire-resistant-home-design-california-water-reserve.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Fire-Resistant Home Design in California: The Water Reserve
+
+A Mendocino house by Jensen Architects makes the case that the most consequential resilience decisions happen outside the walls — in clearance, storage, and stored capacity.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/fire-resistant-home-design-california-water-reserve.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #WaterIndependence #DefensibleSpace #PassiveDesign #JensenArchitects</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/luxury-guesthouse-design-los-angeles-second-volume-hero.png" alt=""><div class="pad">
+  <div class="meta"><span>2026-08-10</span><span class="badge">Concrete Architecture</span></div>
+  <h3>Luxury Guesthouse Design in Los Angeles: The Second Volume</h3>
+  <div class="links"><a href="https://myvilla.la/blog/luxury-guesthouse-design-los-angeles-second-volume.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Luxury Guesthouse Design in Los Angeles: The Second Volume
+
+Jeff Goldblum&#x27;s Barbara Bestor pavilion is a reminder that the smallest building on a Los Angeles lot is usually the hardest one to design.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/luxury-guesthouse-design-los-angeles-second-volume.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #GuesthousePavilion #AncillaryStructure #BarbaraBestor #LosAngelesDesign</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/reinforced-concrete-homes-california-dorian-lesson-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-08-07</span><span class="badge">Concrete Architecture</span></div>
+  <h3>Reinforced Concrete Homes in California: The Dorian Lesson</h3>
+  <div class="links"><a href="https://myvilla.la/blog/reinforced-concrete-homes-california-dorian-lesson.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Reinforced Concrete Homes in California: The Dorian Lesson
+
+A Bahamas house that outlasted a Category 5 storm is now selling on its performance record — and that changes how resilient construction gets priced.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/reinforced-concrete-homes-california-dorian-lesson.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #ReinforcedConcrete #ResilientDesign #PropertyValue #StructuralEngineering</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/luxury-home-design-malibu-13m-single-level-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-08-05</span><span class="badge">LA Luxury Market</span></div>
+  <h3>Luxury Home Design in Malibu: The $13M Single-Level Case</h3>
+  <div class="links"><a href="https://myvilla.la/blog/luxury-home-design-malibu-13m-single-level.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Luxury Home Design in Malibu: The $13M Single-Level Case
+
+A producer&#x27;s ocean-view listing shows how much of a Malibu house&#x27;s value sits in its horizon line — and how much sits in its envelope.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/luxury-home-design-malibu-13m-single-level.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #Malibu #SingleLevelPlan #DesignerBuilder #EnvelopeDesign</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/mediterranean-villa-california-268m-bradbury-estate-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-29</span><span class="badge">LA Luxury Market</span></div>
+  <h3>Mediterranean Villa California: What a $26.8M Estate Reveals</h3>
+  <div class="links"><a href="https://myvilla.la/blog/mediterranean-villa-california-268m-bradbury-estate.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Mediterranean Villa California: What a $26.8M Estate Reveals
+
+A Tuscan-inspired compound in Bradbury Estates asks the oldest question in the typology — is the villa a palette, or a plan?
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/mediterranean-villa-california-268m-bradbury-estate.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #MediterraneanVilla #TuscanRevival #BradburyEstates #SanGabrielFoothills</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/hillside-custom-home-los-angeles-structure-retaining-wall-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-27</span><span class="badge">Materials &amp; Construction</span></div>
+  <h3>Hillside Custom Home in Los Angeles: Structure as Retaining Wall</h3>
+  <div class="links"><a href="https://myvilla.la/blog/hillside-custom-home-los-angeles-structure-retaining-wall.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Hillside Custom Home in Los Angeles: Structure as Retaining Wall
+
+A Japanese house by TSC architects deletes the retaining wall — and quietly rewrites the economics of building on a slope.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/hillside-custom-home-los-angeles-structure-retaining-wall.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #HillsideConstruction #RetainingWalls #SiteStrategy #JapaneseArchitecture</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/bel-air-luxury-estate-peter-marino-material-lesson-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-24</span><span class="badge">Materials &amp; Construction</span></div>
+  <h3>Bel Air Luxury Estate: The Material Lesson of a Decade-Long Build</h3>
+  <div class="links"><a href="https://myvilla.la/blog/bel-air-luxury-estate-peter-marino-material-lesson.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Bel Air Luxury Estate: The Material Lesson of a Decade-Long Build
+
+What a 70,000-square-foot Peter Marino estate reveals about time, permanence, and how the most expensive homes are actually made.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/bel-air-luxury-estate-peter-marino-material-lesson.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #BelAirEstate #ConstructionTimeline</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/concrete-villa-color-le-corbusier-singapore-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-22</span><span class="badge">Concrete Architecture</span></div>
+  <h3>Concrete Villa Design: The Color Lesson From a Pink House</h3>
+  <div class="links"><a href="https://myvilla.la/blog/concrete-villa-color-le-corbusier-singapore.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Concrete Villa Design: The Color Lesson From a Pink House
+
+A Le Corbusier-inspired villa in Singapore&#x27;s jungle shows how pigment and mass can work as one architectural gesture.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/concrete-villa-color-le-corbusier-singapore.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #ColoredConcrete #VillaDesign</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/organic-modernism-craftsmanship-anderson-house-la-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-20</span><span class="badge">Materials &amp; Construction</span></div>
+  <h3>Organic Modernism in LA: The Craft Lesson of a 1958 Villa</h3>
+  <div class="links"><a href="https://myvilla.la/blog/organic-modernism-craftsmanship-anderson-house-la.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Organic Modernism in LA: The Craft Lesson of a 1958 Villa
+
+A rare intact W. Earl Wear house reminds Los Angeles that craftsmanship is a material decision, not a finish.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/organic-modernism-craftsmanship-anderson-house-la.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #OrganicModernism #Craftsmanship</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/beverly-hills-luxury-condo-record-200m-aman-penthouse-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-17</span><span class="badge">LA Luxury Market</span></div>
+  <h3>Beverly Hills Luxury Record: The $200M Aman Penthouse</h3>
+  <div class="links"><a href="https://myvilla.la/blog/beverly-hills-luxury-condo-record-200m-aman-penthouse.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Beverly Hills Luxury Record: The $200M Aman Penthouse
+
+A single condo is poised to reset California&#x27;s price ceiling — and to reveal what ultra-buyers now pay for.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/beverly-hills-luxury-condo-record-200m-aman-penthouse.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #BeverlyHills #LuxuryRealEstate</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/wildfire-insurance-configuration-trap-california-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-15</span><span class="badge">Materials &amp; Construction</span></div>
+  <h3>Insurable Home in California: The Configuration Trap Behind Wildfire Risk</h3>
+  <div class="links"><a href="https://myvilla.la/blog/wildfire-insurance-configuration-trap-california.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Insurable Home in California: The Configuration Trap Behind Wildfire Risk
+
+Zurich&#x27;s CEO says the problem starts long before the loss — and insurance alone cannot fix it.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/wildfire-insurance-configuration-trap-california.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #Insurability #WildfireRisk</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/reinforced-concrete-grid-house-lessons-california-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-13</span><span class="badge">Concrete Architecture</span></div>
+  <h3>Reinforced Concrete Grid Homes: A Lesson for California</h3>
+  <div class="links"><a href="https://myvilla.la/blog/reinforced-concrete-grid-house-lessons-california.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Reinforced Concrete Grid Homes: A Lesson for California
+
+A São Paulo villa built on a disciplined structural grid shows why the frame — not the finish — sets the terms for everything that follows.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/reinforced-concrete-grid-house-lessons-california.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #ReinforcedConcrete #StructuralGrid</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/passive-cooling-thermal-mass-los-angeles-earthen-pavilion-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-10</span><span class="badge">Concrete Architecture</span></div>
+  <h3>Passive Cooling in Los Angeles: What an Earthen Pavilion Teaches Custom Homes</h3>
+  <div class="links"><a href="https://myvilla.la/blog/passive-cooling-thermal-mass-los-angeles-earthen-pavilion.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Passive Cooling in Los Angeles: What an Earthen Pavilion Teaches Custom Homes
+
+Liz Gálvez&#x27;s shade pavilion reframes cooling as a question of mass and material — not machinery.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/passive-cooling-thermal-mass-los-angeles-earthen-pavilion.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #PassiveCooling #ThermalMass</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/concrete-column-luxury-home-los-angeles-47m-sale-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-08</span><span class="badge">LA Luxury Market</span></div>
+  <h3>Concrete Home in Los Angeles: Inside a $47M Beverly Hills Sale</h3>
+  <div class="links"><a href="https://myvilla.la/blog/concrete-column-luxury-home-los-angeles-47m-sale.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Concrete Home in Los Angeles: Inside a $47M Beverly Hills Sale
+
+A 96-column poured-concrete house trades near ask — and the structure itself is the story.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/concrete-column-luxury-home-los-angeles-47m-sale.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #ConcreteConstruction #LosAngelesLuxuryMarket</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/blog/assets/img/mediterranean-villa-beverly-hills-concrete-value-hero.png" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-06</span><span class="badge">Concrete Architecture</span></div>
+  <h3>Mediterranean Villa in Beverly Hills: What Endures Beyond Style</h3>
+  <div class="links"><a href="https://myvilla.la/blog/mediterranean-villa-beverly-hills-concrete-value.html" target="_blank" rel="noopener">Apri articolo →</a></div>
+  <div class="cap"><textarea readonly rows="6">Mediterranean Villa in Beverly Hills: What Endures Beyond Style
+
+A $65,000-a-month rental reveals how much of villa value lives in the material, not the label.
+
+Full analysis on the My Villa Journal → https://myvilla.la/blog/mediterranean-villa-beverly-hills-concrete-value.html
+
+#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles #MediterraneanVilla #BeverlyHills</textarea><button class="copy" type="button">Copia caption suggerita</button></div>
+</div></div></div>
+</section>
+
+<section id="captions">
+  <h2>Caption pronte</h2>
+  <p class="lead">23 post preparati dalla redazione (varianti Instagram e X). Immagini già sul sito: aprile con tap sull'anteprima, salva e posta.</p>
+  <div class="grid">
+<div class="card"><img class="hero" loading="lazy" src="/img/social/dr-phil-s-former-mediterranean-villa-hero.png" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-05</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">dr phil s former mediterranean villa</h3>
+  <div class="links"><a href="https://entertainmentnow.com/celebrity-homes/dr-phil-former-beverly-hills-mansion-rent/" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">The Mediterranean villa as a Los Angeles archetype — arches, courtyards, stone, shade. Dr. Phil&#x27;s former Beverly Hills home just hit the rental market at a headline number, per entertainmentnow.com, and it&#x27;s a useful reminder of why the language of the villa keeps returning to this city.
+
+The real Mediterranean idea was never about scale. It was about a slower rhythm: thick walls, deep gardens, indoor rooms that open to outdoor ones, a life lived close to light and greenery.
+
+That is the Los Angeles we&#x27;re interested in. Not the trophy, but the atmosphere.
+
+#MyVilla #MyVillaLA #MediterraneanVilla #LosAngeles #LA #BeverlyHills #LuxuryHomes #ArchitecturalDigestLife #SlowLiving #CaliforniaLiving #LuxuryLifestyle</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">A Beverly Hills &quot;Mediterranean villa&quot; is on the rental market — but in LA today, the harder question isn&#x27;t the rent, it&#x27;s the insurability. Post-2026 WUI Code, non-combustible shells and IBHS Wildfire Prepared Plus are what keep admitted carriers at the table. #LosAngeles #Insurability</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/the-malibu-house-s-sturdy-design-featur-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-07-01</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">the malibu house s sturdy design featur</h3>
+  <div class="links"><a href="https://www.reddit.com/r/STEW_ScTecEngWorld/comments/1hznfzo/the_malibu_houses_sturdy_design_featuring/" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">One house stood while the block burned. That&#x27;s not luck — that&#x27;s specification.
+
+The Malibu home that survived the fires (as documented on r/STEW_ScTecEngWorld) was built with stucco walls, a non-combustible roof, and deep piles anchored into bedrock. Thoughtful engineering, not sentiment.
+
+At My Villa, we start from the same premise, then push further: a 250mm reinforced-concrete shell, Type I non-combustible structure, and a way of living rooted in a slower, greener Los Angeles. Architecture as a quiet form of permanence.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #LuxuryHomes #LosAngeles #LA #Malibu #Architecture #ContemporaryLuxury #ResilientDesign</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">A Malibu house survived the flames: stucco skin, non-combustible roof, deep piles into bedrock. The lesson isn&#x27;t luck — it&#x27;s spec. In LA today, insurability starts at the drawing board: Type I structure, 2026 WUI Code, IBHS Wildfire Prepared Plus. #FireResilient #LosAngeles</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/juliechangre-author-juliechangre-t-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-29</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">juliechangre author juliechangre t</h3>
+  <div class="links"><a href="https://x.com/JulieChangRE/status/2070888991508037798" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">The new luxury in Los Angeles isn&#x27;t the view — it&#x27;s the policy that comes with it.
+
+An agent on X recently pointed out a hillside home likely stuck with FAIR Plan fire-only coverage. It&#x27;s the quiet conversation reshaping how we live in these hills: a villa is no longer just about light, materials and landscape — it&#x27;s about whether you can actually insure the life you&#x27;re building.
+
+At My Villa we design for a slower, greener Los Angeles, where reinforced concrete, native gardens and considered architecture create homes that belong to the canyons — and remain insurable in them.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #LuxuryHomes #LosAngeles #LA #HollywoodHills #ArchitectureLovers #SlowLuxury #CaliforniaLiving</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">An LA agent on X flagged a hillside listing pushed onto FAIR Plan fire-only coverage. Insurability isn&#x27;t a footnote — it&#x27;s the design brief. Reinforced concrete + 2026 WUI Code + IBHS Wildfire Prepared Plus = admitted-carrier eligibility. #FireResilient #LosAngeles</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/a-retired-insurance-professional-s-view-hero.webp" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-26</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">a retired insurance professional s view</h3>
+  <div class="links"><a href="https://palipost.com/a-retired-insurance-professionals-view-of-the-claims-process/" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">Claims don&#x27;t fail at the fire. They fail at the underwriting desk months earlier.
+
+A retired insurance professional, writing in the Palisadian-Post, lays out how the claims process broke for Palisades fire victims — and what that says about the gap between how homes are built and how they&#x27;re insured in Los Angeles today.
+
+The path forward isn&#x27;t louder policies. It&#x27;s better houses: reinforced concrete shells, non-combustible assemblies, certifications that admitted carriers actually recognize. A villa that earns its insurability the day it&#x27;s drawn.
+
+A quieter, more grounded Los Angeles begins with structures that don&#x27;t ask the system to make exceptions for them.
+
+#MyVilla #MyVillaLA #LosAngeles #LA #PacificPalisades #ReinforcedConcrete #FireResilient #LuxuryHomes #WildfirePrepared #Insurance #BuildingCode</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">A retired insurance pro, writing in the Palisadian-Post, details how Palisades fire claims are breaking down systemically. The lesson for anyone building in LA: insurability must be engineered in — IBHS Wildfire Prepared Plus, Title 24 Part 7, admitted-carrier ready. #LosAngeles #Insurance</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/realmatt-re-author-realmatt-re-t-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-26</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">realmatt re author realmatt re t</h3>
+  <div class="links"><a href="https://x.com/realmatt_re/status/2069122159130341682" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">Premiums up 84% since 2020. FAIR Plan near 700,000 policies. The &quot;fixed&quot; mortgage isn&#x27;t fixed anymore.
+
+A real estate commentator on X laid out the math this week, and it&#x27;s the math every Los Angeles homeowner is quietly running at the kitchen table. Insurance is no longer a line item. It&#x27;s the deciding factor in what gets built, where, and whether it stays standing on the books.
+
+The answer isn&#x27;t to argue with carriers. It&#x27;s to remove the reason they&#x27;re nervous: reinforced concrete structure, non-combustible assemblies, 2026 WUI code compliance built in, IBHS Wildfire Prepared Home Plus on the certificate. Homes designed to come off the FAIR Plan, not depend on it.
+
+That&#x27;s the version of Los Angeles worth living slowly in — under the trees, inside something built to stay.
+
+#MyVilla #MyVillaLA #LosAngeles #LA #ReinforcedConcrete #FireResilient #LuxuryHomes #WildfirePrepared #Insurance #FAIRPlan #CaliforniaRealEstate</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">CA homeowner insurance premiums up 84% since 2020; FAIR Plan nearing 700K policies, per a widely-shared thread on X. The way out for LA builders: design to IBHS Wildfire Prepared Plus and CA Safer from Wildfires 12/12 from day one — and get back to admitted carriers. #LosAngeles #Insurance</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/hero.png" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-24</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">realestateorbit author realestateorb</h3>
+  <div class="links"><a href="https://x.com/realestateorbit/status/2069441262239752228" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">The new Los Angeles isn&#x27;t louder. It&#x27;s quieter, greener, built to last.
+
+A recent SFGate piece highlights how wildfire-resistant homes start with details most people overlook — a 5-foot noncombustible perimeter, dual-paned tempered glass, materials chosen for the climate they actually live in.
+
+We think about it differently. A villa shouldn&#x27;t feel like a defense. It should feel like a life — slow mornings, shaded gardens, rooms that breathe with the canyon. Resilience is what makes that life possible in Los Angeles today.
+
+Build for the place. The rest follows.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #LuxuryHomes #LosAngeles #LA #WUI #ContemporaryArchitecture #SlowLiving</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">5-ft noncombustible perimeter + dual-pane tempered glass: per SFGate, these are the baseline specs insurers now want to see in LA. The real bar to clear for permits &amp; coverage is higher: Type I shell, Chapter 7A glazing, WUI Title 24 Part 7. #WUI #LosAngeles</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/hero.png" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-24</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">realmatt re author realmatt re tex</h3>
+  <div class="links"><a href="https://x.com/realmatt_re/status/2069122159130341682" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">An 84% jump in California homeowner insurance premiums since 2020. The FAIR Plan nearing 700,000 policies. A market quietly redrawing what a home in Los Angeles even means.
+
+The post puts it plainly: the &quot;fixed&quot; mortgage payment isn&#x27;t fixed anymore. Insurance is the variable rewriting everyone&#x27;s math.
+
+Our answer isn&#x27;t louder marketing — it&#x27;s a different kind of house. Reinforced concrete. Non-combustible by structure, not by add-on. Built to the standards admitted carriers want to write, so the life inside can stay calm: gardens, light, long afternoons, a slower Los Angeles.
+
+The villa is the vehicle. The life is the point.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #LuxuryHomes #LosAngeles #LA #FAIRPlan #InsurableHomes #SlowLiving</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">: CA homeowner insurance premiums up 84% since 2020, FAIR Plan nearing 700k policies. The fix isn&#x27;t cheaper coverage — it&#x27;s homes admitted carriers will actually write: Type I, ICF shell, IBHS Wildfire Prepared Plus, 12/12 Safer from Wildfires. #LAHomes #FAIRPlan</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/california-s-fair-plan-will-hike-its-rat-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-23</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">california s fair plan will hike its rat</h3>
+  <div class="links"><a href="https://www.kpbs.org/news/environment/2026/06/22/californias-fair-plan-will-hike-its-rates-this-fall-how-will-that-impact-policyholders" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">California&#x27;s insurer of last resort is about to cost more. KPBS reports the FAIR Plan will raise rates this fall — a signal that the state&#x27;s backstop is straining under wildfire exposure. For high-value homeowners already pushed off private carriers, the math keeps getting harder: higher premiums, lower coverage limits, and rising replacement costs. Material choice is now part of the insurance conversation. Reinforced concrete construction changes the underlying risk profile, not just the price tag. #MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #LuxuryHomes #LosAngeles #LA #CAInsurance #WildfireRisk #FAIRPlan</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">California&#x27;s FAIR Plan — the insurer of last resort — will hike rates this fall, per KPBS. For high-value homeowners already priced out of the private market, the safety net is getting more expensive and thinner. #CAInsurance #WildfireRisk #LosAngeles</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/just-a-moment-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-23</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">just a moment</h3>
+  <div class="links"><a href="https://news.stanford.edu/stories/2026/06/california-home-insurance-crisis-wildfire-country" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">Stanford is now studying what homeowners already feel. A new Stanford News analysis examines California&#x27;s home insurance crisis in wildfire country — documenting how private carriers have retreated, how the FAIR Plan has ballooned, and how high-value properties face the steepest pricing gap. The takeaway from the research community echoes what the market is signaling: this isn&#x27;t a temporary dislocation. Underwriting is being rebuilt around structural risk. The homes that price best going forward will be the ones designed to fail less. #MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #LuxuryHomes #LosAngeles #LA #CAInsurance #WildfireRisk #Stanford</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">Stanford researchers are mapping California&#x27;s home insurance crisis in wildfire country — where private coverage is vanishing and replacement costs for high-value homes keep climbing. The risk-pricing gap is becoming structural, not cyclical. #CAInsurance #WildfireRisk</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/zurich-files-growth-plan-under-californi-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-23</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">zurich files growth plan under californi</h3>
+  <div class="links"><a href="https://www.insurancejournal.com/news/west/2026/06/18/874235.htm" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">A major carrier is moving back into California. Insurance Journal reports Zurich has filed a growth plan under the state&#x27;s Sustainable Insurance Strategy — the framework requiring insurers to write more policies in wildfire-distressed areas in exchange for regulatory flexibility on rates and reinsurance. It&#x27;s an early sign the reforms may pull capacity back into a market that&#x27;s been bleeding it. Whether premiums normalize for high-value homes in fire zones depends on the risk underlying each structure. #MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #LuxuryHomes #LosAngeles #LA #CAInsurance #InsuranceMarket</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">Zurich filed a growth plan under California&#x27;s Sustainable Insurance Strategy, per Insurance Journal — a notable re-entry signal in a market most carriers have been retreating from. The catch: growth ties to writing in wildfire-distressed zones. #CAInsurance #LuxuryHomes</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/an-l-a-power-couple-s-bel-air-home-with-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-22</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">an l a power couple s bel air home with</h3>
+  <div class="links"><a href="https://robbreport.com/shelter/celebrity-homes/hotchkis-villa-cresta-estate-los-angeles-bel-air-1238361768/" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">$65 million. 4 acres. A private vineyard in Bel Air.
+
+Per Robb Report, Villa Cresta — the Tuscan country estate of the late financier John Hotchkis and Kennedy Center trustee Joan Hotchkis — has hit the market at $65M. It&#x27;s a reminder that the apex of LA luxury still favors European-inflected, land-rich villas with serious architectural intent.
+
+The typology endures. What&#x27;s changing is what these homes are built from — and how they perform when the hillsides burn.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #LuxuryHomes #LuxuryRealEstate #BelAir #LosAngeles #LA #VillaLife</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">A 4-acre Tuscan estate in Bel Air — the late John Hotchkis&#x27;s Villa Cresta — just listed at $65M, per Robb Report. The market for European-inflected, land-rich LA villas is still the apex of the city&#x27;s luxury tier. #BelAir #LuxuryRealEstate #LosAngeles</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/consumerwd-author-consumerwd-text-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-22</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">consumerwd author consumerwd text</h3>
+  <div class="links"><a href="https://x.com/ConsumerWD/status/2068787415234576710" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">SB 1301 could decide whether thousands of Californians keep their home insurance at all.
+
+Per Consumer Watchdog, Senator Ben Allen&#x27;s bill — aimed at helping homeowners retain existing coverage — heads to the Assembly Insurance Committee next Wednesday. It lands as non-renewals and premium shocks reshape the LA market, and as buyers increasingly weigh structural risk before they ever sign a policy.
+
+The insurance conversation is no longer separate from the construction conversation. It is the construction conversation.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #CAInsurance #WildfireRisk #LuxuryHomes #LosAngeles #LA #SB1301</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">California&#x27;s SB 1301 (Sen. Ben Allen) heads to Assembly Insurance Committee next week — a bid to help homeowners keep the coverage they have as the non-renewal crisis deepens. Per Consumer Watchdog. #CAInsurance #WildfireRisk #LosAngeles</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/michaelwwara-author-michaelwwara-t-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-22</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">michaelwwara author michaelwwara t</h3>
+  <div class="links"><a href="https://x.com/MichaelWWara/status/2067621873991774348" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">The California insurance market is being rewritten in real time — and wildfire risk is the pen.
+
+Stanford&#x27;s Michael Wara is hosting a webinar on the evolution of the homeowners insurance market as wildfire exposure grows. For LA buyers and builders, this is no longer background noise: it&#x27;s the variable that decides what gets financed, insured, and ultimately built.
+
+Reinforced concrete isn&#x27;t a style choice in this environment. It&#x27;s a response to the math.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #WildfireRisk #CAInsurance #LuxuryHomes #LosAngeles #LA #Stanford</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">Stanford&#x27;s Michael Wara is hosting a webinar on how California&#x27;s homeowners insurance market is evolving under rising wildfire risk — the single biggest variable in LA luxury underwriting right now. #WildfireRisk #CAInsurance #LosAngeles</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/five-new-mansions-hit-market-in-elite-hi-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-18</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">five new mansions hit market in elite hi</h3>
+  <div class="links"><a href="https://therealdeal.com/la/2026/06/17/five-new-mansions-hit-market-in-elite-hidden-hills-near-l-a/" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">Hidden Hills just got five new spec mansions — top ask: $40M.
+
+Per The Real Deal, TDR Development&#x27;s first wave has landed in one of LA&#x27;s most guarded enclaves, signaling that the ultra-luxury new-construction pipeline isn&#x27;t slowing despite tightening insurance markets and a hard reset on wildfire risk pricing.
+
+What&#x27;s worth watching: at this price tier, buyers increasingly underwrite the house itself — its structure, its materials, its resilience — not just the zip code. The spec product that answers that question wins.
+
+#MyVilla #MyVillaLA #HiddenHills #LuxuryRealEstate #LuxuryHomes #LosAngeles #LA #ReinforcedConcrete #FireResilient #NewConstruction #RealEstate</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">Five new mansions just hit the Hidden Hills market via TDR Development, asking up to $40M, per The Real Deal. LA&#x27;s ultra-luxury new-construction pipeline keeps deepening even as insurance and fire risk reshape the underwriting math.
+
+#LuxuryRealEstate #LosAngeles</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/traditional-home-insurance-is-collapsing-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-18</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">traditional home insurance is collapsing</h3>
+  <div class="links"><a href="https://www.architecturaldigest.com/story/ai-assisted-parametric-insurance-climate-change" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">The insurance market isn&#x27;t just hardening in California — it&#x27;s being rewritten from scratch.
+
+A new piece in Architectural Digest (@archdigest) tracks the quiet rise of AI-assisted parametric insurance: policies that pay out automatically when a measurable event (wind speed, fire perimeter, shake intensity) crosses a threshold — no adjusters, no multi-year claims. It&#x27;s exploding across disaster-prone regions and now circling FEMA&#x27;s territory.
+
+The takeaway for LA homeowners: as carriers retreat, the cost of risk is being priced into the house itself. Materials, structure, and resilience aren&#x27;t lifestyle choices anymore — they&#x27;re underwriting inputs.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #LuxuryHomes #LosAngeles #LA #ClimateRisk #ParametricInsurance #HomeInsurance #RealEstate</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">Traditional homeowners insurance is collapsing in disaster-prone zones. AI-assisted parametric policies are quietly filling the gap — and may soon target FEMA itself, per @archdigest. The risk model is being rebuilt in real time.
+
+#ClimateRisk #LosAngeles</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/why-hazard-insurance-is-becoming-a-housi-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-16</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">why hazard insurance is becoming a housi</h3>
+  <div class="links"><a href="https://www.housingwire.com/articles/hazard-insurance-housing-markets/" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">Hazard insurance has crossed the line from cost center to market constraint.
+
+A new HousingWire analysis lays out how premium spikes and carrier pullbacks are starting to dictate where transactions clear — and where they don&#x27;t. For high-value LA neighborhoods exposed to wildfire risk, that pressure increasingly flows back to one question: what is the home actually made of?
+
+Reinforced concrete shifts the underwriting conversation. Non-combustible assemblies, lower replacement-cost volatility, and documented resilience are becoming part of how lenders, insurers, and buyers price a home.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #LuxuryHomes #LosAngeles #LA #HazardInsurance #HousingMarket #RealEstate</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">Hazard insurance is no longer a line item — it&#x27;s a market constraint. Per HousingWire, premium spikes and carrier withdrawals are now shaping where deals close and where they stall. Material resilience is becoming an underwriting question. #FireResilient #LosAngeles</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/social/bevocalnow-author-bevocalnow-text-hero.jpg" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-15</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">bevocalnow author bevocalnow text</h3>
+  <div class="links"><a href="https://x.com/BeVocalnow/status/2065863438308667661" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">72,000 policies cancelled — months before the fires.
+
+A post via @bevocalnow underscores what&#x27;s become the defining backdrop to California homeownership: State Farm, the state&#x27;s largest insurer, dropped 72,000 policies in the months leading up to the LA wildfires. The retreat wasn&#x27;t reactive. It was predictive.
+
+When insurance becomes scarce, construction quality becomes the new underwriting. Materials that meaningfully reduce loss probability — reinforced concrete among them — start to matter in ways they didn&#x27;t a decade ago.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #HomeInsurance #LosAngeles #LA #CaliforniaRealEstate #LuxuryHomes #WildfireRisk #ResilientDesign</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">State Farm canceled 72,000 California policies months before the LA fires, per @BeVocalnow. The insurer retreat isn&#x27;t reactive — it&#x27;s predictive, and it&#x27;s reshaping what gets built and where. #HomeInsurance #LosAngeles #CaliforniaRealEstate</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/hero.png" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-15</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">goaloa author goaloa text residen</h3>
+  <div class="links"><a href="https://x.com/goaloa/status/2063990278642675920" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">Hardening works — when it&#x27;s done before the fire.
+
+A widely-shared thread via @goaloa documents Pacific Palisades residents who installed fireproof roofs, exterior sprinklers, and proper home-hardening measures — and saved their homes while neighbors lost theirs.
+
+The lesson isn&#x27;t luck. It&#x27;s specification: non-combustible envelopes, ember-resistant vents, defensible space, and active suppression. Reinforced concrete construction extends that logic to the structure itself.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #HomeHardening #PacificPalisades #LosAngeles #LA #LuxuryHomes #ResilientDesign #WildfireRisk</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">Pacific Palisades homeowners who installed Class A roofs, exterior sprinklers, and hardened their exteriors largely kept their homes, per @goaloa. Hardening works — when it&#x27;s done before the fire. #HomeHardening #LosAngeles #FireResilient</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/hero.png" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-15</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">mcn742766360744 author mcn7427663607</h3>
+  <div class="links"><a href="https://x.com/MCN742766360744/status/2064350614373736934" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">$1.8M to rebuild a 1,550 sq ft ranch. That&#x27;s ~$1,160 per square foot.
+
+A California homeowner&#x27;s post going around X this week captures the new math: replacement cost has outrun what most policies — written years ago — are structured to cover. The gap between insured value and actual rebuild cost is where families get caught.
+
+It&#x27;s also why build-once, build-right is becoming a financial argument as much as an architectural one. Reinforced concrete carries a higher upfront cost and a dramatically different long-tail risk profile.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #RebuildCost #HomeInsurance #LosAngeles #LA #LuxuryHomes #CaliforniaRealEstate #ResilientDesign</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">$1.8M to rebuild a 1,550 sq ft ranch in California — roughly $1,160/sq ft, per a homeowner thread flagged on X. Replacement cost is the gap most policies quietly fail to close. #RebuildCost #LosAngeles #HomeInsurance</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="/img/hero.png" alt=""><div class="pad">
+  <div class="meta"><span>2026-06-15</span><span class="badge st">planned</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">pc 360 author pc 360 text califor</h3>
+  <div class="links"><a href="https://x.com/PC_360/status/2065585764122189958" target="_blank" rel="noopener">Fonte →</a></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">The insurance map is becoming the development map in California.
+
+A new piece via @pc_360 argues wildfire exposure and shrinking insurer appetite are now the dominant variables shaping where — and how — homes get built across the state. Materials, siting, and hardening are no longer aesthetic choices; they&#x27;re underwriting ones.
+
+Reinforced concrete sits at the intersection of all three.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #FireResilient #WildfireRisk #LuxuryHomes #LosAngeles #LA #CaliforniaRealEstate #HomeInsurance #ResilientDesign</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">Wildfire risk and insurance availability are now driving where — and how — Californians build, per @PC_360. The underwriting map is becoming the development map. #WildfireRisk #LosAngeles #ReinforcedConcrete</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><div class="pad">
+  <div class="meta"><span>2026-04-09</span><span class="badge st">approved</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">laist a foul problem fire survivors w</h3>
+  <div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">Altadena rebuilders are hitting a wall most people didn&#x27;t see coming: outdated septic systems and cesspools that must be upgraded before a single wall goes up. Rebuilding after fire isn&#x27;t just about the structure — it&#x27;s about everything underneath it.</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">Rebuilding after fire? The house might be the easy part.
+
+Altadena homeowners are discovering that outdated cesspools and septic tanks beneath their properties must be brought up to current code before rebuilding can even begin — adding tens of thousands in unexpected costs to an already brutal process.
+
+This is exactly why we think about homes as complete systems, not just what&#x27;s above grade. When My Villa designs a reinforced concrete home, we&#x27;re engineering from the ground up — site infrastructure, drainage, utilities, structure — so nothing gets left to chance.
+
+Rebuilding smarter means rebuilding holistically.
+
+#LosAngelesRealEstate #Altadena #ReinforcedConcrete</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">Altadena rebuilders are hitting a wall no one saw coming: outdated cesspools and septic systems that must be upgraded before a single wall goes up. Rebuilding after fire isn&#x27;t just about the structure — it&#x27;s about everything beneath it.</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><div class="pad">
+  <div class="meta"><span>2026-04-09</span><span class="badge st">approved</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">ozzy and sharon osbourne s los angeles h</h3>
+  <div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">A 100-year-old wood-frame mansion in Hancock Park just listed for $17M. Beautiful home. But at that price point, the question buyers should be asking: what is this built with, and what&#x27;s the next century look like?</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">$17M for a 100-year-old wood-frame home. Let that sit for a moment.
+
+The Osbournes&#x27; Hancock Park mansion just hit the market — a gorgeous estate, no question. But at ultra-luxury price points in Los Angeles, buyers are increasingly asking a harder question: what is this structure actually made of?
+
+Wood-frame construction was the standard a century ago. Today, reinforced concrete offers something legacy construction simply can&#x27;t — fire resilience, seismic performance, and a lifespan measured in generations, not renovation cycles.
+
+At $17M, you&#x27;re not just buying a home. You&#x27;re making a bet on how it ages.
+
+#LuxuryRealEstate #LosAngeles #ReinforcedConcrete</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">A 100-year-old wood-frame mansion in Hancock Park lists for $17M. At that price point, the question isn&#x27;t whether you can afford the house — it&#x27;s whether the house is built to justify the investment over the next 100 years.</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div>
+<div class="card"><div class="pad">
+  <div class="meta"><span>2026-04-08</span><span class="badge st">reactive</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">the brentwood home audrey hepburn rented</h3>
+  <div class="meta" style="margin-top:6px"><span class="badge ig">IG</span></div><div class="cap"><textarea readonly rows="6">$9.4M for Hollywood history in Brentwood. But what&#x27;s the structure actually worth?
+
+The home Audrey Hepburn once rented from Deborah Kerr just sold — a beautiful Georgian-style property unchanged for over 30 years. It&#x27;s a storied address in one of LA&#x27;s most desirable neighborhoods.
+
+But here&#x27;s the tension in today&#x27;s LA luxury market: buyers are paying eight figures for charm and location while inheriting aging wood-frame construction in a city defined by seismic and fire risk.
+
+Reinforced concrete doesn&#x27;t erase character — it ensures the next chapter of a home is as enduring as its past. That&#x27;s the standard we&#x27;re building toward at My Villa.
+
+Link in bio.
+
+#ArchitecturalDesign #LosAngelesLuxury #ReinforcedConcrete</textarea><button class="copy" type="button">Copia caption</button></div><div class="meta" style="margin-top:6px"><span class="badge x">X</span></div><div class="cap"><textarea readonly rows="6">$9.4M for a Georgian-style Brentwood home first built decades ago. Heritage is compelling — but in LA&#x27;s risk environment, provenance alone doesn&#x27;t equal resilience. The next generation of luxury needs both.</textarea><button class="copy" type="button">Copia caption</button></div>
+</div></div></div>
+</section>
+
+<section id="editorial">
+  <h2>Pacchetti editoriali pronti</h2>
+  <p class="lead">Post evergreen completi di visual (formato carosello dove indicato). Le slide segnaposto mancanti sono da completare in fase di pubblicazione.</p>
+  <div class="grid">
+<div class="card"><img class="hero" loading="lazy" src="assets/editorial/2026-05-04-two-millennia-of-villa-typology-adaptability-per/image.webp" alt=""><div class="pad">
+  <div class="meta"><span class="badge ig">instagram</span><span class="badge">single_image_or_quote_card</span><span>vision</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">two millennia of villa typology adaptability per</h3>
+  
+  <div class="cap"><textarea readonly rows="6">Two thousand years of villa typology, one persistent truth: permanence and adaptability are not opposites. The Italian villa survived every era by being both monumental and intimate — a lesson Los Angeles is ready to receive.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #VillaTypology #ArchitecturalPermanence #LosAngelesArchitecture
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #VillaTypology #ArchitecturalPermanence #LosAngelesArchitecture</textarea><button class="copy" type="button">Copia caption</button></div>
+  <div class="links"><a href="assets/editorial/2026-05-04-two-millennia-of-villa-typology-adaptability-per/image.webp" download>Scarica immagine</a></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="assets/editorial/2026-05-06-archetype-courtyard/image.webp" alt=""><div class="pad">
+  <div class="meta"><span class="badge ig">instagram</span><span class="badge">carousel</span><span>archetype</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">archetype courtyard</h3>
+  <div class="slides"><a href="assets/editorial/2026-05-06-archetype-courtyard/01.webp" target="_blank"><img src="assets/editorial/2026-05-06-archetype-courtyard/01.webp" alt=""></a></div>
+  <div class="cap"><textarea readonly rows="6">The courtyard is the oldest room in architecture — no roof, no walls that face the world. Just sky, stone, and the life that happens inside. Italian masters knew it. Los Angeles needs it.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #CourtyardHouse #ArchitecturalHeritage #LosAngelesArchitecture
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #CourtyardHouse #ArchitecturalHeritage #LosAngelesArchitecture</textarea><button class="copy" type="button">Copia caption</button></div>
+  <div class="links"><a href="assets/editorial/2026-05-06-archetype-courtyard/image.webp" download>Scarica immagine</a></div>
+</div></div>
+<div class="card"><img class="hero" loading="lazy" src="assets/editorial/2026-05-07-partner-buromilan/image.webp" alt=""><div class="pad">
+  <div class="meta"><span class="badge ig">instagram</span><span class="badge">single_image_or_carousel_first_frame</span><span>partner_echo</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">partner buromilan</h3>
+  
+  <div class="cap"><textarea readonly rows="6">Structure is the argument. via @buromilan — the Milano·Venezia·New York engineers behind 90+ Renzo Piano projects bring that same precision to every My Villa frame.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #StructuralEngineering #Permanence #ItalianSoul
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #StructuralEngineering #Permanence #ItalianSoul</textarea><button class="copy" type="button">Copia caption</button></div>
+  <div class="links"><a href="assets/editorial/2026-05-07-partner-buromilan/image.webp" download>Scarica immagine</a></div>
+</div></div>
+<div class="card"><div class="pad">
+  <div class="meta"><span class="badge ig">instagram</span><span class="badge">single_image_or_carousel_first_frame</span><span>partner_echo</span></div>
+  <h3 style="font-size:16px;font-family:'Montserrat',sans-serif;font-weight:600">partner transsolar_klimaengineering</h3>
+  
+  <div class="cap"><textarea readonly rows="6">Comfort under California sun — engineered, not assumed.
+via @transsolar_klimaengineering
+
+&quot;Radiant cooling, geothermal, thermal storage — zone-level to plant-level.&quot;
+Our climate engineering partner — designing thermal-mass behaviour into every MyVilla.
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #ClimateEngineering #ThermalMass #PassiveDesign
+
+#MyVilla #MyVillaLA #ReinforcedConcrete #ClimateEngineering #ThermalMass #PassiveDesign</textarea><button class="copy" type="button">Copia caption</button></div>
+  
+</div></div></div>
+</section>
+
+<section id="published">
+  <h2>Già pubblicati</h2>
+  <p class="lead">Archivio anti-duplicati: prima di postare, controlla qui.</p>
+  <div style="overflow-x:auto"><table class="pub">
+    <tr><th>Data</th><th>Canale</th><th>Post</th><th>Tipo</th><th>Fonte</th></tr>
+    <tr><td>2026-06-15</td><td><span class="badge x">X</span></td><td>how should high value california homeown</td><td>reactive</td><td></td></tr><tr><td>2026-06-14</td><td><span class="badge x">X</span></td><td>wildfire risk and insurance reshaping ca</td><td>reactive</td><td></td></tr><tr><td>2026-06-13</td><td><span class="badge ig">IG</span></td><td>jeremywilsdh6v author jeremywilsdh6v</td><td>reactive</td><td><a href="https://x.com/JeremyWilsdh6v/status/2065559373028479475" target="_blank" rel="noopener">link</a></td></tr><tr><td>2026-06-13</td><td><span class="badge x">X</span></td><td>jeremywilsdh6v author jeremywilsdh6v</td><td>reactive</td><td></td></tr><tr><td>2026-06-11</td><td><span class="badge ig">IG</span></td><td>california insurance commissioner race p</td><td>reactive</td><td><a href="https://www.cbsnews.com/sacramento/news/california-insurance-commissioner-primary-election-results-2026/" target="_blank" rel="noopener">link</a></td></tr><tr><td>2026-06-11</td><td><span class="badge ig">IG</span></td><td>ibhs expands wildfire prepared program t</td><td>reactive</td><td><a href="https://www.insurancebusinessmag.com/us/news/catastrophe/ibhs-expands-wildfire-prepared-program-to-cover-multifamily-properties-578344.aspx" target="_blank" rel="noopener">link</a></td></tr><tr><td>2026-06-11</td><td><span class="badge ig">IG</span></td><td>ibhs rounds out wildfire prepared progra</td><td>reactive</td><td><a href="https://www.prnewswire.com/news-releases/ibhs-rounds-out-wildfire-prepared-program-with-neighborhood-and-multifamily-standards-updates-home-requirements-302795389.html" target="_blank" rel="noopener">link</a></td></tr><tr><td>2026-06-10</td><td><span class="badge ig">IG</span></td><td>2026 06 10 ig test palisades standing</td><td>journal_companion</td><td><a href="https://myvilla.la/blog/palisades-standing-home-market-california-luxury-2026.html" target="_blank" rel="noopener">link</a></td></tr><tr><td></td><td><span class="badge ig">IG</span></td><td>aaa travelers rate hikes california insurable luxury homes.ig</td><td>journal_companion</td><td><a href="https://myvilla.la/blog/aaa-travelers-rate-hikes-california-insurable-luxury-homes.html" target="_blank" rel="noopener">link</a></td></tr><tr><td></td><td><span class="badge x">X</span></td><td>california insurance commissioner 2026 single payer proposal.x</td><td>journal_companion</td><td><a href="https://myvilla.la/blog/california-insurance-commissioner-2026-single-payer-proposal.html" target="_blank" rel="noopener">link</a></td></tr><tr><td></td><td><span class="badge x">X</span></td><td>fair plan only home insurance california underinsured luxury.x</td><td>journal_companion</td><td><a href="https://myvilla.la/blog/fair-plan-only-home-insurance-california-underinsured-luxury.html" target="_blank" rel="noopener">link</a></td></tr><tr><td></td><td><span class="badge ig">IG</span></td><td>wildfire rebuild tracker california permits 2026.ig</td><td>journal_companion</td><td><a href="https://myvilla.la/blog/wildfire-rebuild-tracker-california-permits-2026.html" target="_blank" rel="noopener">link</a></td></tr>
+  </table></div>
+</section>
+
+<section id="brand">
+  <h2>Brand kit</h2>
+  <p class="lead">Loghi ufficiali (SVG vettoriale + PNG) e la caption bank di riferimento.</p>
+  <div class="brandgrid"><div class="bcard"><img src="assets/brand/myvilla-wordmark.svg" alt=""><a href="assets/brand/myvilla-wordmark.svg" download>myvilla-wordmark.svg</a></div><div class="bcard"><img src="assets/brand/myvilla-wordmark.png" alt=""><a href="assets/brand/myvilla-wordmark.png" download>myvilla-wordmark.png</a></div><div class="bcard"><img src="assets/brand/myvilla-monogram.svg" alt=""><a href="assets/brand/myvilla-monogram.svg" download>myvilla-monogram.svg</a></div><div class="bcard"><img src="assets/brand/myvilla-monogram.png" alt=""><a href="assets/brand/myvilla-monogram.png" download>myvilla-monogram.png</a></div></div>
+  <details><summary>Caption bank Instagram (maggio 2026)</summary><pre># MY VILLA — Caption Instagram (selezione pronta)
+
+Sette caption già in tono brand, pronte da pubblicare. Suddivise per tipologia.
+Tutte le immagini di accompagnamento (`image.webp` / `image.jpg`) sono già
+disponibili in `_system/social/posts/editorial/_publish_ready/&lt;slug&gt;/`
+per le **Editoriali brand**; per le **Reattive** l&#x27;immagine va selezionata
+in base al pezzo Journal collegato.
+
+Tono: editoriale, prima persona plurale (&quot;we&quot;). Niente pitch diretto. Una
+sola osservazione per post. Hashtag asciutti (5–6 max).
+
+---
+
+## 1 · Editoriali brand (evergreen) — pronte per lancio
+
+### A · *Villa typology · 2.000 anni di adattabilità*
+&gt; Two thousand years of villa typology, one persistent truth: permanence and adaptability are not opposites. The Italian villa survived every era by being both monumental and intimate — a lesson Los Angeles is ready to receive.
+&gt;
+&gt; #MyVilla #MyVillaLA #ReinforcedConcrete #VillaTypology #ArchitecturalPermanence #LosAngelesArchitecture
+
+### B · *L&#x27;archetipo del cortile*
+&gt; The courtyard is the oldest room in architecture — no roof, no walls that face the world. Just sky, stone, and the life that happens inside. Italian masters knew it. Los Angeles needs it.
+&gt;
+&gt; #MyVilla #MyVillaLA #ReinforcedConcrete #CourtyardHouse #ArchitecturalHeritage #LosAngelesArchitecture
+
+### C · *Partner spotlight — BUROMILAN*
+&gt; Structure is the argument. via @buromilan — the Milano · Venezia · New York engineers behind 90+ Renzo Piano projects bring that same precision to every My Villa frame.
+&gt;
+&gt; #MyVilla #MyVillaLA #ReinforcedConcrete #StructuralEngineering #Permanence #ItalianSoul
+
+### D · *Partner spotlight — Transsolar Klima Engineering*
+&gt; Comfort under California sun — engineered, not assumed.
+&gt; via @transsolar_klimaengineering
+&gt;
+&gt; *&quot;Radiant cooling, geothermal, thermal storage — zone-level to plant-level.&quot;*
+&gt; Our climate engineering partner — designing thermal-mass behaviour into every My Villa.
+&gt;
+&gt; #MyVilla #MyVillaLA #ReinforcedConcrete #ClimateEngineering #ThermalMass #PassiveDesign
+
+---
+
+## 2 · Reattive (commento su news LA luxury) — esempi del nostro stile
+
+### E · *$17M, casa in legno: Hancock Park*
+&gt; $17M for a 100-year-old wood-frame home. Let that sit for a moment.
+&gt;
+&gt; The Osbournes&#x27; Hancock Park mansion just hit the market — a gorgeous estate, no question. But at ultra-luxury price points in Los Angeles, buyers are increasingly asking a harder question: what is this structure actually made of?
+&gt;
+&gt; Wood-frame construction was the standard a century ago. Today, reinforced concrete offers something legacy construction simply can&#x27;t — fire resilience, seismic performance, and a lifespan measured in generations, not renovation cycles.
+&gt;
+&gt; At $17M, you&#x27;re not just buying a home. You&#x27;re making a bet on how it ages.
+&gt;
+&gt; #LuxuryRealEstate #LosAngeles #ReinforcedConcrete
+
+### F · *Brentwood, $9.4M, eredità Hepburn*
+&gt; $9.4M for Hollywood history in Brentwood. But what&#x27;s the structure actually worth?
+&gt;
+&gt; The home Audrey Hepburn once rented from Deborah Kerr just sold — a beautiful Georgian-style property unchanged for over 30 years. It&#x27;s a storied address in one of LA&#x27;s most desirable neighborhoods.
+&gt;
+&gt; But here&#x27;s the tension in today&#x27;s LA luxury market: buyers are paying eight figures for charm and location while inheriting aging wood-frame construction in a city defined by seismic and fire risk.
+&gt;
+&gt; Reinforced concrete doesn&#x27;t erase character — it ensures the next chapter of a home is as enduring as its past. That&#x27;s the standard we&#x27;re building toward at My Villa.
+&gt;
+&gt; Link in bio.
+&gt;
+&gt; #ArchitecturalDesign #LosAngelesLuxury #ReinforcedConcrete
+
+### G · *Altadena · ricostruire significa rifare tutto*
+&gt; Rebuilding after fire? The house might be the easy part.
+&gt;
+&gt; Altadena homeowners are discovering that outdated cesspools and septic tanks beneath their properties must be brought up to current code before rebuilding can even begin — adding tens of thousands in unexpected costs to an already brutal process.
+&gt;
+&gt; This is exactly why we think about homes as complete systems, not just what&#x27;s above grade. When My Villa designs a reinforced concrete home, we&#x27;re engineering from the ground up — site infrastructure, drainage, utilities, structure — so nothing gets left to chance.
+&gt;
+&gt; Rebuilding smarter means rebuilding holistically.
+&gt;
+&gt; #LosAngelesRealEstate #Altadena #ReinforcedConcrete
+
+---
+
+## Note di pubblicazione
+
+- **Lunghezza**: 80–180 parole. Sotto i 125 caratteri per la prima riga (preview Feed) — la prima riga deve &quot;incassare il click&quot;.
+- **Hashtag**: 5–6 max. Mai più di 8. Sempre `#MyVilla` + `#MyVillaLA` + `#ReinforcedConcrete` come triade fissa.
+- **Tag**: @buromilan, @transsolar_klimaengineering, @itsarchitecture quando si nomina il partner.
+- **Niente em-dash all&#x27;inizio frase**. Niente &quot;—&quot; doppio.
+- **Niente claim non sourced**: ogni cifra/data deve essere verificabile.
+- **Mai pitch diretto** (&quot;call us&quot;, &quot;request a quote&quot;). Solo osservazione + posizionamento.
+
+---
+
+*Archivio completo (45+ caption indicizzate per topic) disponibile in
+`_system/social/posts/` — sezioni `approved/`, `reactive/`, `editorial/_publish_ready/`.*</pre></details>
+</section>
+
+<footer>
+  Pagina riservata al team My Villa — non indicizzata. Non condividere il link né la password all'esterno.<br>
+  Contenuti: articoli © My Villa Journal · myvilla.la · info@myvilla.la
+</footer>
+</div>
+<script>
+document.addEventListener('click', function(ev) {
+  var btn = ev.target.closest('button.copy');
+  if (!btn) return;
+  var ta = btn.parentElement.querySelector('textarea');
+  if (!ta) return;
+  navigator.clipboard.writeText(ta.value).then(function() {
+    var old = btn.textContent;
+    btn.textContent = 'Copiata \u2713';
+    btn.classList.add('done');
+    setTimeout(function() { btn.textContent = old; btn.classList.remove('done'); }, 1600);
+  });
+});
+</script>
+</body>
+</html>

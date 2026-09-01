@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  MY VILLA — square monogram (placeholder for Instagram avatar / favicon use)
+  Master: Cormorant Garamond. Color: #FAF8F5 on #1a1816 (offblack).
+  Aspect 1:1, designed to read at 110×110px (IG profile circle).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&amp;family=Montserrat:wght@500&amp;display=swap');
+      .mono-mv {
+        font-family: 'Cormorant Garamond', 'EB Garamond', 'Garamond', serif;
+        font-weight: 400;
+        font-size: 520px;
+        letter-spacing: 24px;
+        fill: #FAF8F5;
+      }
+      .mono-sub {
+        font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 500;
+        font-size: 38px;
+        letter-spacing: 12px;
+        fill: #FAF8F5;
+        opacity: 0.7;
+      }
+      .mono-divider { stroke: #D4B896; stroke-width: 2; opacity: 0.55; }
+    </style>
+  </defs>
+  <rect width="1080" height="1080" fill="#1a1816"/>
+  <text class="mono-mv" x="540" y="640" text-anchor="middle">MV</text>
+  <line class="mono-divider" x1="430" y1="730" x2="650" y2="730"/>
+  <text class="mono-sub" x="540" y="800" text-anchor="middle">MY VILLA</text>
+</svg>

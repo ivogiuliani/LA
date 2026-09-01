@@ -5,6 +5,9 @@
 User-agent: *
 Allow: /
 Disallow: /old/
+# /team/ è il pannello interno per i collaboratori (social panel):
+# password-gated + noindex, mai da indicizzare.
+Disallow: /team/
 # /v2/ è lo STAGING del redesign "Quiet Permanence" (in review dopo il
 # rollback a v1): duplica l'intero blog → bloccato per non indicizzare
 # contenuti doppi finché non diventa il sito live.
