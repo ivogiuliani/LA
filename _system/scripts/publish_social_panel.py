@@ -1,33 +1,34 @@
 #!/usr/bin/env python3
 """
-publish_social_panel.py — static, password-gated content panel for the
+publish_social_panel.py — static, password-gated planning panel for the
 social media manager at https://myvilla.la/team/social/.
 
-Architettura per piattaforma (step 1, 2026-09-01 — solo produzione
-contenuti, nessun servizio a pagamento):
+v3 (2026-09-01, feedback della social media manager): il pannello è uno
+strumento di PIANO EDITORIALE, non di copia.
+  - niente bottone "Copia": si seleziona, non si copia
+  - "Elimina" nasconde le proposte non utili (localStorage, reversibile
+    con "Ripristina eliminati"); "Segna come fatto" ⇄ "Riattiva"
+  - "Scarica immagine" su ogni card; "Cambia immagine" apre un picker
+    di alternative on-brand (render del sito + hero recenti)
+  - un'unica sezione "Piano editoriale — proposte" per piattaforma che
+    fonde: proposte dai Journal freschi + caption reattive preparate +
+    pacchetti editoriali (badge di origine: Journal / Reattivo /
+    Editoriale)
+  - solo immagini TRACCIATE in git vengono referenziate (le locali non
+    committate diventavano 404 su GitHub Pages)
+  - restano i bottoni "Pubblica su X" (intent, testo precompilato) e
+    "Pubblica su LinkedIn" (share-offsite + autocopy) — la
+    pubblicazione è sempre un gesto manuale della manager
 
-  Tab Instagram / X / LinkedIn, ognuna con:
-    1. Conversazioni da presidiare  → PLACEHOLDER (step 2: riattivazione
-       ig_viral_radar/Grok + nuovo radar LinkedIn; niente costi per ora)
-    2. Proposte del giorno          → dai Journal freschi, formato nativo
-       per canale, link con UTM (utm_source=<canale>)
-    3. Coda preparata               → caption esistenti filtrate per canale
-       (+ pacchetti editoriali sotto Instagram)
-    4. Già pubblicati               → archivio anti-duplicati del canale
-  Tab Journal (riferimento compatto) e Brand kit.
+Tab: Instagram / X / LinkedIn / Journal (riferimento) / Brand kit.
+Conversazioni da presidiare = placeholder fino allo step 2 (servizi di
+scansione spenti per scelta).
 
-  Tutto è SOLO PROPOSTO: nessun publisher automatico. La social media
-  manager copia e pubblica a mano; "Segna come fatto" è un toggle
-  localStorage nel suo browser (nessun backend).
-
-Threat model = stesso soft gate del vecchio /team/radar/ ("Strada 1"):
-SHA-256 client-side + noindex + robots Disallow. Il repo è pubblico:
-un attaccante determinato legge l'HTML alla fonte. Solo collaboratori
-fidati; per auth vera → Cloudflare Tunnel.
+Threat model = soft gate "Strada 1" (SHA-256 client-side + noindex +
+robots Disallow): repo pubblico, solo collaboratori fidati.
 
 Usage:
-    python3 publish_social_panel.py                     # default password
-    python3 publish_social_panel.py --password segreta  # custom gate
+    python3 publish_social_panel.py [--password segreta]
 Chiamato da publish_all_drafts.py prima dell'autopush quotidiano.
 """
 from __future__ import annotations
@@ -38,6 +39,7 @@ import html
 import json
 import re
 import shutil
+import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -58,13 +60,58 @@ ASSETS = OUT_DIR / "assets"
 
 DEFAULT_PASSWORD = "villasocial26"
 JOURNAL_LIMIT = 20
+POOL_BLOG_HEROES = 18
 
 PLATFORMS = ("instagram", "x", "linkedin")
 PLATFORM_LABEL = {"instagram": "Instagram", "x": "X", "linkedin": "LinkedIn"}
-BADGE_CLASS = {"instagram": "ig", "x": "x", "linkedin": "li", "ig": "ig"}
+BADGE_CLASS = {"instagram": "ig", "x": "x", "linkedin": "li"}
 
 BASE_HASHTAGS_IG = "#MyVilla #MyVillaLA #FireResilient #ReinforcedConcrete #LuxuryHomes #LosAngeles"
 BASE_HASHTAGS_LI = "#Architecture #FireResilience #LosAngeles #LuxuryRealEstate"
+
+# Render on-brand del sito per il picker "Cambia immagine".
+SITE_POOL = [
+    "img/hero.webp", "img/external.webp", "img/courtyard.webp",
+    "img/courtyard-interior.webp", "img/dining.webp", "img/bedroom.webp",
+    "img/bathtub.webp", "img/biophilic.webp", "img/biophilic-design.webp",
+    "img/facade-terracotta.webp", "img/facade-cream.webp", "img/facade-sand.webp",
+    "img/facade-sage.webp", "img/facade-rose.webp",
+    "img/amanvari-01.webp", "img/amanvari-02.webp",
+    "img/int-green-lounge.webp", "img/int-green-marble.webp",
+    "img/int-green-terrazzo.webp", "img/int-bespoke-layout.webp",
+    "img/int-designer-chair.webp", "img/int-designer-lamp.webp",
+    "img/int-bronze-faucet.webp",
+]
+
+
+def _tracked_files() -> set[str]:
+    """Path (relativi a ROOT) tracciati in git = ciò che esiste su Pages.
+    Fallback: set vuoto → si degrada al solo exists() locale."""
+    try:
+        out = subprocess.run(
+            ["git", "ls-files"], cwd=str(ROOT),
+            capture_output=True, text=True, timeout=20,
+        )
+        if out.returncode == 0:
+            return set(out.stdout.splitlines())
+    except Exception:
+        pass
+    return set()
+
+
+_TRACKED = _tracked_files()
+
+
+def _public_img(rel: str | None) -> str | None:
+    """Ritorna /path solo se l'immagine esisterà su GitHub Pages."""
+    if not rel:
+        return None
+    rel = rel.lstrip("/")
+    if not (ROOT / rel).exists():
+        return None
+    if _TRACKED and rel not in _TRACKED:
+        return None  # locale ma mai committata → sarebbe un 404 live
+    return "/" + rel
 
 
 def _utm(url: str, platform: str) -> str:
@@ -76,7 +123,6 @@ def _utm(url: str, platform: str) -> str:
 # --------------------------------------------------------------------------- #
 
 def _tagify(tag: str) -> str:
-    """'housing market' -> '#HousingMarket' (alnum only)."""
     words = re.findall(r"[A-Za-z0-9]+", tag)
     return "#" + "".join(w.capitalize() if not w.isupper() else w for w in words) if words else ""
 
@@ -92,7 +138,6 @@ def _key_bullets(d: dict, n: int = 3) -> list[str]:
 
 
 def _ig_proposal(d: dict, url: str) -> str:
-    """Instagram: sottotitolo + bullet dati + hashtag generosi."""
     parts = [d.get("title") or "", ""]
     sub = d.get("subtitle") or d.get("meta_description") or ""
     if sub:
@@ -107,12 +152,11 @@ def _ig_proposal(d: dict, url: str) -> str:
 
 
 def _x_proposal(d: dict, url: str) -> str:
-    """X: garantito entro 280 caratteri effettivi (link t.co = 23)."""
     title = d.get("title") or ""
     sub = d.get("subtitle") or d.get("meta_description") or ""
     tags = "#MyVilla #FireResilient"
     T_CO = 23
-    budget = 280 - T_CO - len(tags) - 6  # separatori/newline
+    budget = 280 - T_CO - len(tags) - 6
     body = title[:budget]
     remaining = budget - len(body)
     if sub and remaining > 40:
@@ -123,8 +167,6 @@ def _x_proposal(d: dict, url: str) -> str:
 
 
 def _li_proposal(d: dict, url: str) -> str:
-    """LinkedIn: tono professionale, hook + contesto + dati + link,
-    3-5 hashtag sobri. I link nei post LinkedIn sono cliccabili."""
     title = d.get("title") or ""
     sub = d.get("subtitle") or d.get("meta_description") or ""
     parts = [title, ""]
@@ -146,17 +188,24 @@ def _li_proposal(d: dict, url: str) -> str:
 
 
 def _x_effective_len(text: str, url: str) -> int:
-    """Lunghezza come la conta X: ogni URL vale 23 char via t.co."""
     return len(text) - len(url) + 23
 
 
+def _x_intent(text: str) -> str:
+    return "https://x.com/intent/post?text=" + quote(text, safe="")
+
+
+def _li_share(url: str) -> str:
+    return "https://www.linkedin.com/sharing/share-offsite/?url=" + quote(url, safe="")
+
+
 # --------------------------------------------------------------------------- #
-# Data collection
+# Data collection → entries unificate per il piano
 # --------------------------------------------------------------------------- #
 
-def collect_journal() -> list[dict]:
-    """Ultimi articoli Journal pubblicati, con proposta per ogni canale."""
-    items = []
+def collect_journal_entries() -> dict[str, list[dict]]:
+    """Articoli Journal → una entry per piattaforma (origine: Journal)."""
+    arts = []
     for jf in BLOG.glob("*.json"):
         try:
             d = json.loads(jf.read_text(encoding="utf-8"))
@@ -164,46 +213,45 @@ def collect_journal() -> list[dict]:
             continue
         slug = d.get("slug") or jf.stem
         if not (BLOG / f"{slug}.html").exists():
-            continue  # sidecar senza HTML pubblicato = bozza
+            continue
         hero_rel = None
         hero = d.get("hero_image") or {}
         if isinstance(hero, dict) and hero.get("local_path"):
-            base = Path(hero["local_path"]).name
-            if (BLOG / "assets" / "img" / base).exists():
-                hero_rel = f"/blog/assets/img/{base}"
+            hero_rel = _public_img(f"blog/assets/img/{Path(hero['local_path']).name}")
+        arts.append((d, slug, hero_rel))
+    arts.sort(key=lambda t: t[0].get("_date") or "", reverse=True)
+    arts = arts[:JOURNAL_LIMIT]
+
+    out: dict[str, list[dict]] = {p: [] for p in PLATFORMS}
+    for d, slug, hero_rel in arts:
         clean_url = f"https://myvilla.la/blog/{slug}.html"
         x_text = _x_proposal(d, _utm(clean_url, "x"))
-        items.append({
-            "slug": slug,
-            "title": d.get("title") or slug,
-            "date": d.get("_date") or "",
-            "section": d.get("_section_name") or d.get("section") or "",
-            "hero": hero_rel,
-            "url": clean_url,
-            "proposals": {
-                "instagram": _ig_proposal(d, _utm(clean_url, "instagram")),
-                "x": x_text,
-                "linkedin": _li_proposal(d, _utm(clean_url, "linkedin")),
-            },
-            "x_len": _x_effective_len(x_text, _utm(clean_url, "x")),
-            # Bottoni "Pubblica": compositori nativi delle piattaforme,
-            # la pubblicazione resta un gesto della social media manager.
-            "share": {
-                # X intent: apre il compositore col post GIÀ scritto.
-                "x": "https://x.com/intent/post?text=" + quote(x_text, safe=""),
-                # LinkedIn share-offsite: precarica solo l'URL (il testo
-                # non è supportato dall'endpoint) — il click copia anche
-                # la proposta negli appunti, lei la incolla sopra.
-                "linkedin": ("https://www.linkedin.com/sharing/share-offsite/?url="
-                             + quote(_utm(clean_url, "linkedin"), safe="")),
-            },
-        })
-    items.sort(key=lambda x: x["date"], reverse=True)
-    return items[:JOURNAL_LIMIT]
+        texts = {
+            "instagram": _ig_proposal(d, _utm(clean_url, "instagram")),
+            "x": x_text,
+            "linkedin": _li_proposal(d, _utm(clean_url, "linkedin")),
+        }
+        for p in PLATFORMS:
+            e = {
+                "id": f"{p}:{slug}",
+                "origin": "Journal",
+                "date": d.get("_date") or "",
+                "title": d.get("title") or slug,
+                "section": d.get("_section_name") or d.get("section") or "",
+                "image": hero_rel,
+                "article_url": clean_url,
+                "source_url": "",
+                "text": texts[p],
+                "slides": [],
+                "share_x": _x_intent(x_text) if p == "x" else None,
+                "share_li": _li_share(_utm(clean_url, "linkedin")) if p == "linkedin" else None,
+                "x_len": _x_effective_len(x_text, _utm(clean_url, "x")) if p == "x" else None,
+            }
+            out[p].append(e)
+    return out
 
 
 def _parse_post_md(path: Path) -> dict | None:
-    """Parse di una bozza social .md (frontmatter YAML + caption)."""
     try:
         text = path.read_text(encoding="utf-8")
     except OSError:
@@ -216,42 +264,57 @@ def _parse_post_md(path: Path) -> dict | None:
     except yaml.YAMLError:
         return None
     body = m.group(2).strip()
-    img = (meta.get("image") or "").strip()
-    img_rel = f"/{img}" if img and (ROOT / img).exists() else None
     channel = (meta.get("channel") or "?").replace("instagram", "ig").replace("twitter", "x")
+    platform = {"ig": "instagram", "x": "x", "li": "linkedin"}.get(channel, channel)
     return {
         "file": path.name,
-        "channel": channel,
-        "platform": {"ig": "instagram", "x": "x", "li": "linkedin"}.get(channel, channel),
+        "platform": platform,
         "type": meta.get("type") or "",
         "date": str(meta.get("date") or ""),
         "slug": meta.get("slug") or path.stem,
-        "image": img_rel,
+        "title": meta.get("title") or "",
+        "image": _public_img(meta.get("image") or ""),
         "source_url": meta.get("url") or meta.get("article_url") or "",
         "caption": body,
     }
 
 
-def collect_queue() -> dict[str, list[dict]]:
-    """Caption preparate, raggruppate per piattaforma."""
-    by_platform: dict[str, list[dict]] = {p: [] for p in PLATFORMS}
+def collect_queue_entries() -> dict[str, list[dict]]:
+    """Caption preparate (planned/approved/reactive) → entries."""
+    out: dict[str, list[dict]] = {p: [] for p in PLATFORMS}
     for status in ("planned", "approved", "reactive"):
         folder = POSTS / status
         if not folder.is_dir():
             continue
         for f in sorted(folder.glob("*.md"), reverse=True):
             p = _parse_post_md(f)
-            if not p or p["platform"] not in by_platform:
+            if not p or p["platform"] not in out:
                 continue
-            p["status"] = status
-            by_platform[p["platform"]].append(p)
-    for lst in by_platform.values():
-        lst.sort(key=lambda x: x["date"], reverse=True)
-    return by_platform
+            origin = "Editoriale" if p["type"] == "editorial" else "Reattivo"
+            e = {
+                "id": f'{p["platform"]}:{p["file"]}',
+                "origin": origin,
+                "date": p["date"],
+                "title": p["title"] or p["slug"].replace("-", " "),
+                "section": "",
+                "image": p["image"],
+                "article_url": "",
+                "source_url": p["source_url"],
+                "text": p["caption"],
+                "slides": [],
+                "share_x": _x_intent(p["caption"]) if p["platform"] == "x" else None,
+                "share_li": (_li_share(p["source_url"])
+                             if p["platform"] == "linkedin" and p["source_url"] else None),
+                "x_len": (_x_effective_len(p["caption"], p["source_url"] or "")
+                          if p["platform"] == "x" and p["source_url"] else None),
+            }
+            out[p["platform"]].append(e)
+    return out
 
 
-def collect_editorial() -> list[dict]:
-    """Pacchetti editoriali pronti (Instagram); copia gli asset nel pannello."""
+def collect_package_entries() -> list[dict]:
+    """Pacchetti editoriali _publish_ready (Instagram) → entries;
+    copia gli asset dentro il pannello."""
     out = []
     if not EDITORIAL_READY.is_dir():
         return out
@@ -281,44 +344,49 @@ def collect_editorial() -> list[dict]:
             shutil.copy2(s, dest / s.name)
             slide_rels.append(f"assets/editorial/{pkg.name}/{s.name}")
         post = meta.get("post") or {}
+        hashtags = " ".join("#" + h for h in (post.get("hashtags") or []))
         out.append({
-            "name": pkg.name,
-            "caption": caption,
+            "id": f"instagram:editorial:{pkg.name}",
+            "origin": "Editoriale",
+            "date": pkg.name[:10],
+            "title": (pkg.name[11:] or pkg.name).replace("-", " "),
+            "section": post.get("pillar") or "",
             "image": img_rel,
+            "article_url": "",
+            "source_url": "",
+            "text": caption + ("\n\n" + hashtags if hashtags else ""),
             "slides": slide_rels,
-            "fmt": post.get("format") or "",
-            "pillar": post.get("pillar") or "",
-            "hashtags": " ".join("#" + h for h in (post.get("hashtags") or [])),
+            "share_x": None,
+            "share_li": None,
+            "x_len": None,
         })
     return out
 
 
 def collect_published() -> dict[str, list[dict]]:
-    """Archivio pubblicati per piattaforma (riferimento anti-duplicati)."""
-    by_platform: dict[str, list[dict]] = {p: [] for p in PLATFORMS}
+    out: dict[str, list[dict]] = {p: [] for p in PLATFORMS}
     folder = POSTS / "published"
     if folder.is_dir():
         for f in sorted(folder.glob("*.md")):
             p = _parse_post_md(f)
-            if p and p["platform"] in by_platform:
-                by_platform[p["platform"]].append(p)
+            if p and p["platform"] in out:
+                out[p["platform"]].append(p)
     ed_pub = POSTS / "editorial" / "published"
     if ed_pub.is_dir():
         for pkg in sorted(ed_pub.iterdir()):
             if pkg.is_dir():
-                by_platform["instagram"].append({
-                    "file": pkg.name, "channel": "ig", "platform": "instagram",
+                out["instagram"].append({
+                    "file": pkg.name, "platform": "instagram",
                     "type": "editorial", "date": pkg.name[:10],
-                    "slug": pkg.name[11:], "image": None,
-                    "source_url": "", "caption": "",
+                    "slug": pkg.name[11:], "title": "",
+                    "image": None, "source_url": "", "caption": "",
                 })
-    for lst in by_platform.values():
+    for lst in out.values():
         lst.sort(key=lambda x: x["date"], reverse=True)
-    return by_platform
+    return out
 
 
 def collect_brand() -> dict:
-    """Brand asset copiati fuori dalle dir _ (non servite da Jekyll)."""
     dest = ASSETS / "brand"
     dest.mkdir(parents=True, exist_ok=True)
     files = []
@@ -335,6 +403,30 @@ def collect_brand() -> dict:
     return {"files": files, "caption_bank": bank}
 
 
+def build_image_pool() -> list[str]:
+    """Alternative on-brand per il picker: render del sito + hero social
+    tracciati + hero recenti del Journal."""
+    pool: list[str] = []
+    for rel in SITE_POOL:
+        p = _public_img(rel)
+        if p:
+            pool.append(p)
+    social_tracked = sorted(
+        (f for f in _TRACKED if f.startswith("img/social/")), reverse=True
+    )[:20]
+    pool.extend("/" + f for f in social_tracked)
+    heroes = sorted(
+        (f for f in _TRACKED if f.startswith("blog/assets/img/")), reverse=True
+    )[:POOL_BLOG_HEROES]
+    pool.extend("/" + f for f in heroes)
+    seen, out = set(), []
+    for p in pool:
+        if p not in seen:
+            seen.add(p)
+            out.append(p)
+    return out
+
+
 # --------------------------------------------------------------------------- #
 # Rendering
 # --------------------------------------------------------------------------- #
@@ -345,14 +437,6 @@ def _sha256(s: str) -> str:
 
 def _e(s: str) -> str:
     return html.escape(s or "", quote=True)
-
-
-def _copy_block(caption: str, label: str = "Copia", extra: str = "") -> str:
-    return (
-        f'<div class="cap"><textarea readonly rows="6">{_e(caption)}</textarea>'
-        f'<div class="row"><button class="copy" type="button">{_e(label)}</button>{extra}'
-        f'<button class="done-toggle" type="button">Segna come fatto</button></div></div>'
-    )
 
 
 def _gate(password_hash: str) -> str:
@@ -401,7 +485,7 @@ def _gate(password_hash: str) -> str:
 
 
 CSS = """
-:root{--ink:#2b2620;--cream:#faf8f5;--sand:#e9e2d6;--terra:#b06a4a;--mut:#8a8177;}
+:root{--ink:#2b2620;--cream:#faf8f5;--sand:#e9e2d6;--terra:#b06a4a;--mut:#8a8177;--ok:#5f7a5a;--danger:#a4553f;}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--cream);color:var(--ink);font-family:'Montserrat',-apple-system,sans-serif;font-size:15px;line-height:1.55}
 h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600}
@@ -422,23 +506,30 @@ section>p.lead{color:var(--mut);font-size:13px;margin-bottom:18px}
 .platform-head{display:flex;align-items:baseline;gap:12px;margin-top:34px}
 .platform-head h2{font-size:34px}
 .platform-head .note{color:var(--mut);font-size:12.5px}
+.planbar{display:flex;gap:14px;align-items:center;margin-bottom:14px;font-size:12.5px;color:var(--mut);flex-wrap:wrap}
+.planbar button{border:1px solid var(--sand);background:#fff;color:var(--mut);padding:6px 12px;border-radius:99px;font:600 10.5px 'Montserrat',sans-serif;letter-spacing:.09em;text-transform:uppercase;cursor:pointer}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
 .card{background:#fff;border:1px solid var(--sand);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;position:relative}
-.card.is-done{opacity:.45}
-.card.is-done::after{content:"✓ fatto";position:absolute;top:10px;right:10px;background:#5f7a5a;color:#fff;font:600 10px 'Montserrat';letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:99px}
+.card.is-done .imgwrap,.card.is-done h3,.card.is-done .cap textarea,.card.is-done .meta,.card.is-done .links{opacity:.4}
+.card.is-done::after{content:"✓ fatto";position:absolute;top:10px;right:10px;background:var(--ok);color:#fff;font:600 10px 'Montserrat';letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:99px}
+.card.is-removed{display:none}
+.imgwrap{position:relative}
 .card img.hero{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--sand)}
 .card .pad{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
 .card h3{font-size:18px;line-height:1.25}
 .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
 .badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--sand);color:var(--ink)}
-.badge.ig{background:#e8d5e2}.badge.x{background:#d7dee8}.badge.li{background:#cfe0ee}.badge.st{background:#efe6d8;color:#7a6a4f}
+.badge.ig{background:#e8d5e2}.badge.x{background:#d7dee8}.badge.li{background:#cfe0ee}
+.badge.o-journal{background:#e3dccd}.badge.o-reattivo{background:#efe6d8;color:#7a6a4f}.badge.o-editoriale{background:#dde8dc;color:#4a6046}
 .cap{margin-top:4px}
 .cap textarea{width:100%;border:1px solid var(--sand);border-radius:8px;padding:10px;font:12.5px/1.5 'Montserrat',sans-serif;color:var(--ink);background:#fdfcfa;resize:vertical}
-.cap .row{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
-button.copy{border:1px solid var(--terra);background:var(--terra);color:#fff;padding:7px 14px;border-radius:99px;font:600 11px 'Montserrat',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
-button.copy.ok{background:#5f7a5a;border-color:#5f7a5a}
-button.done-toggle{border:1px solid var(--sand);background:#fff;color:var(--mut);padding:7px 14px;border-radius:99px;font:600 11px 'Montserrat',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
-a.pubbtn{display:inline-block;border:1px solid var(--ink);background:var(--ink);color:#fff;padding:7px 14px;border-radius:99px;font:600 11px 'Montserrat',sans-serif;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.row .grow{flex:1}
+a.pubbtn{display:inline-block;border:1px solid var(--ink);background:var(--ink);color:#fff;padding:7px 13px;border-radius:99px;font:600 10.5px 'Montserrat',sans-serif;letter-spacing:.09em;text-transform:uppercase;text-decoration:none}
+.row .tool{border:1px solid var(--sand);background:#fff;color:var(--ink);padding:7px 13px;border-radius:99px;font:600 10.5px 'Montserrat',sans-serif;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block}
+button.remove{border:1px solid #e5cfc6;background:#fff;color:var(--danger)}
+button.done-toggle{border:1px solid var(--sand);background:#fff;color:var(--mut)}
+.card.is-done button.done-toggle{border-color:var(--ok);color:var(--ok)}
 .links a{font-size:12.5px}
 .placeholder{border:1px dashed var(--sand);border-radius:10px;background:#fdfcfa;color:var(--mut);font-size:13px;padding:16px 18px}
 details{border:1px solid var(--sand);border-radius:10px;background:#fff;padding:12px 16px}
@@ -456,21 +547,34 @@ ul.reflist li span.d{color:var(--mut);font-size:11.5px;white-space:nowrap}
 .brandgrid a{display:block;font-size:11px;margin-top:8px}
 .slides{display:flex;gap:6px;flex-wrap:wrap}
 .slides img{width:64px;height:64px;object-fit:cover;border-radius:6px;border:1px solid var(--sand)}
+#imgmodal{display:none;position:fixed;inset:0;background:rgba(43,38,32,.72);z-index:200;padding:24px;overflow-y:auto}
+#imgmodal.open{display:block}
+#imgmodal .box{max-width:900px;margin:0 auto;background:var(--cream);border-radius:12px;padding:20px}
+#imgmodal .box h3{font-size:22px;margin-bottom:4px}
+#imgmodal .box p{color:var(--mut);font-size:12.5px;margin-bottom:14px}
+#imgmodal .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+#imgmodal .thumbs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer;background:var(--sand)}
+#imgmodal .thumbs img:hover{border-color:var(--terra)}
+#imgmodal .closebar{display:flex;justify-content:flex-end;margin-top:14px}
 footer{margin-top:60px;color:var(--mut);font-size:11.5px;border-top:1px solid var(--sand);padding-top:16px}
 @media (max-width:640px){.grid{grid-template-columns:1fr}.platform-head h2{font-size:27px}}
 """
 
 APP_JS = """
 (function() {
-  var LS_TAB = 'mv-panel-tab', LS_DONE = 'mv-panel-done';
+  var LS_TAB = 'mv-panel-tab', LS_DONE = 'mv-panel-done',
+      LS_DEL = 'mv-panel-deleted', LS_IMG = 'mv-panel-img';
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
-  function doneSet() {
-    try { return new Set(JSON.parse(lsGet(LS_DONE) || '[]')); } catch (e) { return new Set(); }
+  function getSet(k) {
+    try { return new Set(JSON.parse(lsGet(k) || '[]')); } catch (e) { return new Set(); }
   }
-  function saveDone(s) { lsSet(LS_DONE, JSON.stringify(Array.from(s))); }
+  function saveSet(k, s) { lsSet(k, JSON.stringify(Array.from(s))); }
+  function getMap(k) {
+    try { return JSON.parse(lsGet(k) || '{}'); } catch (e) { return {}; }
+  }
 
-  // Tabs
+  // ── Tabs ──
   var tabs = document.querySelectorAll('nav.tabs button');
   function show(id) {
     tabs.forEach(function(b) { b.classList.toggle('active', b.dataset.tab === id); });
@@ -485,98 +589,166 @@ APP_JS = """
   var saved = lsGet(LS_TAB);
   show(saved && document.getElementById('tab-' + saved) ? saved : 'instagram');
 
-  // Done state
-  var done = doneSet();
+  // ── Stato iniziale card: fatto / eliminate / immagini scelte ──
+  var done = getSet(LS_DONE), removed = getSet(LS_DEL), imgs = getMap(LS_IMG);
   document.querySelectorAll('.card[data-done-id]').forEach(function(c) {
-    if (done.has(c.dataset.doneId)) c.classList.add('is-done');
+    var id = c.dataset.doneId;
+    if (done.has(id)) markDone(c, true);
+    if (removed.has(id)) c.classList.add('is-removed');
+    if (imgs[id]) applyImage(c, imgs[id]);
   });
-  document.addEventListener('click', function(ev) {
-    var t = ev.target.closest('button.done-toggle');
-    if (t) {
-      var card = t.closest('.card');
-      var id = card && card.dataset.doneId;
-      if (!id) return;
-      var s = doneSet();
-      if (s.has(id)) { s.delete(id); card.classList.remove('is-done'); }
-      else { s.add(id); card.classList.add('is-done'); }
-      saveDone(s);
-      return;
+  refreshCounters();
+
+  function markDone(card, on) {
+    card.classList.toggle('is-done', on);
+    var b = card.querySelector('button.done-toggle');
+    if (b) b.textContent = on ? 'Riattiva' : 'Segna come fatto';
+  }
+  function applyImage(card, src) {
+    var img = card.querySelector('img.hero');
+    var dl = card.querySelector('a.dl');
+    if (img) { img.src = src; }
+    else {
+      var wrap = card.querySelector('.imgwrap');
+      if (wrap) {
+        img = document.createElement('img');
+        img.className = 'hero'; img.loading = 'lazy'; img.src = src;
+        wrap.appendChild(img);
+      }
     }
-    // "Pubblica su LinkedIn": il compositore accetta solo l'URL, quindi
-    // copiamo anche il testo proposto mentre l'anchor apre la nuova tab.
+    if (dl) { dl.href = src; dl.removeAttribute('hidden'); }
+  }
+  function refreshCounters() {
+    document.querySelectorAll('.planbar').forEach(function(bar) {
+      var pane = bar.closest('.tabpane');
+      var hidden = pane.querySelectorAll('.card.is-removed').length;
+      var span = bar.querySelector('.delcount');
+      var btn = bar.querySelector('button.restore');
+      if (span) span.textContent = hidden === 0 ? 'nessuna proposta eliminata'
+        : (hidden === 1 ? '1 proposta eliminata' : hidden + ' proposte eliminate');
+      if (btn) btn.style.display = hidden ? '' : 'none';
+    });
+  }
+
+  // ── Modal immagini ──
+  var modal = document.getElementById('imgmodal');
+  var targetCard = null;
+  function openModal(card) {
+    targetCard = card;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    targetCard = null;
+  }
+  modal.addEventListener('click', function(ev) {
+    if (ev.target === modal || ev.target.closest('.closebtn')) { closeModal(); return; }
+    var t = ev.target.closest('.thumbs img');
+    if (t && targetCard) {
+      var id = targetCard.dataset.doneId;
+      var m = getMap(LS_IMG);
+      m[id] = t.dataset.src;
+      lsSet(LS_IMG, JSON.stringify(m));
+      applyImage(targetCard, t.dataset.src);
+      closeModal();
+    }
+  });
+
+  // ── Azioni card ──
+  document.addEventListener('click', function(ev) {
     var pub = ev.target.closest('a.pubbtn[data-autocopy]');
     if (pub) {
-      var pta = pub.closest('.cap') && pub.closest('.cap').querySelector('textarea');
+      var pta = pub.closest('.pad') && pub.closest('.pad').querySelector('textarea');
       if (pta) { try { navigator.clipboard.writeText(pta.value); } catch (e) {} }
-      return; // niente preventDefault: l'anchor prosegue verso LinkedIn
+      return; // l'anchor prosegue verso LinkedIn
     }
-    var btn = ev.target.closest('button.copy');
-    if (btn) {
-      var ta = btn.closest('.cap').querySelector('textarea');
-      if (!ta) return;
-      navigator.clipboard.writeText(ta.value).then(function() {
-        var old = btn.textContent;
-        btn.textContent = 'Copiata \\u2713';
-        btn.classList.add('ok');
-        setTimeout(function() { btn.textContent = old; btn.classList.remove('ok'); }, 1600);
+    var card = ev.target.closest('.card[data-done-id]');
+    if (!card) return;
+    var id = card.dataset.doneId;
+    if (ev.target.closest('button.done-toggle')) {
+      var s = getSet(LS_DONE);
+      var on = !s.has(id);
+      if (on) s.add(id); else s.delete(id);
+      saveSet(LS_DONE, s);
+      markDone(card, on);
+      return;
+    }
+    if (ev.target.closest('button.remove')) {
+      var r = getSet(LS_DEL);
+      r.add(id); saveSet(LS_DEL, r);
+      card.classList.add('is-removed');
+      refreshCounters();
+      return;
+    }
+    if (ev.target.closest('button.pickimg')) { openModal(card); return; }
+  });
+
+  // ── Ripristina eliminati (per tab) ──
+  document.querySelectorAll('button.restore').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var pane = btn.closest('.tabpane');
+      var r = getSet(LS_DEL);
+      pane.querySelectorAll('.card.is-removed').forEach(function(c) {
+        r.delete(c.dataset.doneId);
+        c.classList.remove('is-removed');
       });
-    }
+      saveSet(LS_DEL, r);
+      refreshCounters();
+    });
   });
 })();
 """
 
 
-def _journal_card(a: dict, platform: str) -> str:
-    img = f'<img class="hero" loading="lazy" src="{_e(a["hero"])}" alt="">' if a["hero"] else ""
-    extra = f' · {a["x_len"]}/280' if platform == "x" else ""
-    label = f"Copia post {PLATFORM_LABEL[platform]}"
-    share = a.get("share", {}).get(platform)
-    pub_btn = ""
-    if share and platform == "x":
-        pub_btn = (f'<a class="pubbtn" href="{_e(share)}" target="_blank" rel="noopener">'
-                   f'Pubblica su X ↗</a>')
-    elif share and platform == "linkedin":
-        # data-autocopy: al click il JS copia anche il testo negli appunti
-        # (LinkedIn non accetta testo precompilato via URL).
-        pub_btn = (f'<a class="pubbtn" data-autocopy="1" href="{_e(share)}" '
-                   f'target="_blank" rel="noopener">Pubblica su LinkedIn ↗</a>')
-    return f"""
-<div class="card" data-done-id="{_e(platform)}:{_e(a["slug"])}">{img}<div class="pad">
-  <div class="meta"><span>{_e(a["date"])}</span>{f'<span class="badge">{_e(a["section"])}</span>' if a["section"] else ''}<span class="badge {BADGE_CLASS[platform]}">{_e(PLATFORM_LABEL[platform])}{extra}</span></div>
-  <h3>{_e(a["title"])}</h3>
-  <div class="links"><a href="{_e(a["url"])}" target="_blank" rel="noopener">Apri articolo →</a></div>
-  {_copy_block(a["proposals"][platform], label, pub_btn)}
-</div></div>"""
-
-
-def _queue_card(p: dict) -> str:
-    img = f'<img class="hero" loading="lazy" src="{_e(p["image"])}" alt="">' if p["image"] else ""
-    src = f'<div class="links"><a href="{_e(p["source_url"])}" target="_blank" rel="noopener">Fonte →</a></div>' if p["source_url"] else ""
-    return f"""
-<div class="card" data-done-id="{_e(p["platform"])}:{_e(p["file"])}">{img}<div class="pad">
-  <div class="meta"><span>{_e(p["date"])}</span><span class="badge st">{_e(p.get("status", ""))}</span></div>
-  <h3 style="font-size:15px;font-family:'Montserrat',sans-serif;font-weight:600">{_e(p["slug"].replace("-", " "))}</h3>
-  {src}
-  {_copy_block(p["caption"])}
-</div></div>"""
-
-
-def _editorial_card(p: dict) -> str:
-    img = f'<img class="hero" loading="lazy" src="{_e(p["image"])}" alt="">' if p["image"] else ""
+def _entry_card(e: dict, platform: str) -> str:
+    img_html = ""
+    dl_hidden = "" if e["image"] else " hidden"
+    if e["image"]:
+        img_html = f'<img class="hero" loading="lazy" src="{_e(e["image"])}" alt="">'
     slides = ""
-    if p["slides"]:
-        thumbs = "".join(f'<a href="{_e(s)}" target="_blank"><img src="{_e(s)}" alt=""></a>' for s in p["slides"])
+    if e["slides"]:
+        thumbs = "".join(
+            f'<a href="{_e(s)}" target="_blank"><img src="{_e(s)}" alt=""></a>' for s in e["slides"]
+        )
         slides = f'<div class="slides">{thumbs}</div>'
-    cap_full = p["caption"] + ("\n\n" + p["hashtags"] if p["hashtags"] else "")
-    dl = f'<div class="links"><a href="{_e(p["image"])}" download>Scarica immagine</a></div>' if p["image"] else ""
+    links = []
+    if e["article_url"]:
+        links.append(f'<a href="{_e(e["article_url"])}" target="_blank" rel="noopener">Apri articolo →</a>')
+    if e["source_url"]:
+        links.append(f'<a href="{_e(e["source_url"])}" target="_blank" rel="noopener">Fonte →</a>')
+    links_html = f'<div class="links">{" · ".join(links)}</div>' if links else ""
+
+    origin_cls = "o-" + e["origin"].lower()
+    xlen = f' · {e["x_len"]}/280' if e.get("x_len") else ""
+    sect = f'<span class="badge">{_e(e["section"])}</span>' if e["section"] else ""
+
+    pub = ""
+    if e.get("share_x"):
+        pub = f'<a class="pubbtn" href="{_e(e["share_x"])}" target="_blank" rel="noopener">Pubblica su X ↗</a>'
+    elif e.get("share_li"):
+        pub = (f'<a class="pubbtn" data-autocopy="1" href="{_e(e["share_li"])}" '
+               f'target="_blank" rel="noopener">Pubblica su LinkedIn ↗</a>')
+
     return f"""
-<div class="card" data-done-id="instagram:editorial:{_e(p["name"])}">{img}<div class="pad">
-  <div class="meta"><span class="badge ig">Instagram</span><span class="badge">{_e(p["fmt"] or "post")}</span><span>{_e(p["pillar"])}</span></div>
-  <h3 style="font-size:15px;font-family:'Montserrat',sans-serif;font-weight:600">{_e(p["name"][11:].replace("-", " ") or p["name"])}</h3>
-  {slides}
-  {_copy_block(cap_full)}
-  {dl}
-</div></div>"""
+<div class="card" data-done-id="{_e(e["id"])}">
+  <div class="imgwrap">{img_html}</div>
+  <div class="pad">
+    <div class="meta"><span>{_e(e["date"])}</span><span class="badge {origin_cls}">{_e(e["origin"])}</span>{sect}<span class="badge {BADGE_CLASS[platform]}">{_e(PLATFORM_LABEL[platform])}{xlen}</span></div>
+    <h3>{_e(e["title"])}</h3>
+    {links_html}
+    {slides}
+    <div class="cap"><textarea readonly rows="6">{_e(e["text"])}</textarea></div>
+    <div class="row">
+      {pub}
+      <a class="tool dl" href="{_e(e["image"] or "#")}" download{dl_hidden}>Scarica immagine</a>
+      <button class="tool pickimg" type="button">Cambia immagine</button>
+      <button class="tool remove" type="button">Elimina</button>
+      <button class="tool done-toggle" type="button">Segna come fatto</button>
+    </div>
+  </div>
+</div>"""
 
 
 def _published_table(rows: list[dict]) -> str:
@@ -586,7 +758,7 @@ def _published_table(rows: list[dict]) -> str:
     for p in rows:
         link = f'<a href="{_e(p["source_url"])}" target="_blank" rel="noopener">link</a>' if p["source_url"] else ""
         trs.append(
-            f'<tr><td>{_e(p["date"])}</td><td>{_e(p["slug"].replace("-", " "))}</td>'
+            f'<tr><td>{_e(p["date"])}</td><td>{_e((p["title"] or p["slug"]).replace("-", " "))}</td>'
             f'<td>{_e(p["type"])}</td><td>{link}</td></tr>'
         )
     return (
@@ -597,37 +769,21 @@ def _published_table(rows: list[dict]) -> str:
 
 
 FLOW_NOTES = {
-    "instagram": ("Flusso: copia la caption, scarica la foto dell'articolo "
-                  "(tieni premuto / tasto destro) e pubblica dall'app."),
-    "x": ("Flusso: “Pubblica su X” apre il compositore col post già "
-          "scritto — controlla e premi Post."),
-    "linkedin": ("Flusso: “Pubblica su LinkedIn” copia il testo e apre il "
-                 "compositore con il link dell'articolo già caricato — "
-                 "incolla il testo sopra l'anteprima e pubblica."),
+    "instagram": ("Per pubblicare: scarica l'immagine e posta dall'app con il testo della card."),
+    "x": ("“Pubblica su X” apre il compositore col post già scritto."),
+    "linkedin": ("“Pubblica su LinkedIn” copia il testo e apre il compositore col link già "
+                 "caricato: incolla il testo sopra l'anteprima."),
 }
 
 
-def _platform_pane(platform: str, journal: list[dict], queue: list[dict],
-                   editorial: list[dict], published: list[dict]) -> str:
+def _platform_pane(platform: str, entries: list[dict], published: list[dict]) -> str:
     label = PLATFORM_LABEL[platform]
-    flow_note = FLOW_NOTES.get(platform, "")
-    j_cards = "".join(_journal_card(a, platform) for a in journal)
-    q_cards = "".join(_queue_card(p) for p in queue)
-    if not q_cards:
-        q_cards = ('<div class="placeholder">Nessuna caption preparata per questo canale, per ora: '
-                   "usa le proposte del giorno qui sopra.</div>")
-    ed_html = ""
-    if platform == "instagram" and editorial:
-        ed_cards = "".join(_editorial_card(p) for p in editorial)
-        ed_html = f"""
-<section>
-  <h2>Pacchetti editoriali pronti</h2>
-  <p class="lead">Post evergreen completi di visual (carosello dove indicato; le slide segnaposto sono da completare in pubblicazione).</p>
-  <div class="grid">{ed_cards}</div>
-</section>"""
+    cards = "".join(_entry_card(e, platform) for e in entries)
+    if not cards:
+        cards = '<div class="placeholder">Nessuna proposta al momento.</div>'
     return f"""
 <div class="tabpane" id="tab-{platform}">
-  <div class="platform-head"><h2>{label}</h2><span class="note">tutto è solo proposto: pubblichi tu, poi "Segna come fatto"</span></div>
+  <div class="platform-head"><h2>{label}</h2><span class="note">seleziona le proposte: elimina ciò che non serve, "fatto" ciò che hai pubblicato</span></div>
 
   <section>
     <h2>Conversazioni da presidiare</h2>
@@ -637,17 +793,14 @@ def _platform_pane(platform: str, journal: list[dict], queue: list[dict],
   </section>
 
   <section>
-    <h2>Proposte del giorno</h2>
-    <p class="lead">Dagli ultimi {len(journal)} articoli del Journal, già nel formato giusto per {label}. {flow_note} I link hanno UTM per misurare il traffico in Analytics.</p>
-    <div class="grid">{j_cards}</div>
-  </section>
-
-  {ed_html}
-
-  <section>
-    <h2>Coda preparata</h2>
-    <p class="lead">Caption già scritte dalla redazione per {label}.</p>
-    <div class="grid">{q_cards}</div>
+    <h2>Piano editoriale — proposte</h2>
+    <p class="lead">Tutte le proposte per {label} in un'unica lista, più recente in alto. L'etichetta dice l'origine:
+    <strong>Journal</strong> = ricavata da un articolo del sito (si rinnova ogni giorno),
+    <strong>Reattivo</strong> = scritta dalla redazione su una notizia,
+    <strong>Editoriale</strong> = contenuto istituzionale indipendente dal blog.
+    {FLOW_NOTES.get(platform, "")} I link hanno UTM per misurare il traffico in Analytics.</p>
+    <div class="planbar"><span class="delcount"></span><button class="restore" type="button">Ripristina eliminati</button></div>
+    <div class="grid">{cards}</div>
   </section>
 
   <section>
@@ -658,23 +811,22 @@ def _platform_pane(platform: str, journal: list[dict], queue: list[dict],
 </div>"""
 
 
-def render(journal, queue, editorial, published, brand, password_hash) -> str:
+def render(entries_by_platform, journal_ref, published, brand, pool, password_hash) -> str:
     now = datetime.now().strftime("%d %b %Y, %H:%M")
 
     panes = "".join(
-        _platform_pane(p, journal, queue[p], editorial, published[p])
-        for p in PLATFORMS
+        _platform_pane(p, entries_by_platform[p], published[p]) for p in PLATFORMS
     )
 
     ref_items = "".join(
-        f'<li><span class="d">{_e(a["date"])}</span> <a href="{_e(a["url"])}" target="_blank" rel="noopener">{_e(a["title"])}</a></li>'
-        for a in journal
+        f'<li><span class="d">{_e(a["date"])}</span> <a href="{_e(a["article_url"])}" target="_blank" rel="noopener">{_e(a["title"])}</a></li>'
+        for a in journal_ref
     )
     journal_pane = f"""
 <div class="tabpane" id="tab-journal">
   <div class="platform-head"><h2>Journal</h2><span class="note">riferimento — gli articoli si gestiscono in redazione</span></div>
   <section>
-    <p class="lead">Gli ultimi {len(journal)} articoli pubblicati su myvilla.la. Le proposte social per ciascuno sono nelle tab Instagram / X / LinkedIn.</p>
+    <p class="lead">Gli ultimi {len(journal_ref)} articoli pubblicati su myvilla.la. Le proposte social ricavate da ciascuno sono nelle tab Instagram / X / LinkedIn.</p>
     <ul class="reflist">{ref_items}</ul>
   </section>
 </div>"""
@@ -696,6 +848,10 @@ def render(journal, queue, editorial, published, brand, password_hash) -> str:
   </section>
 </div>"""
 
+    pool_thumbs = "".join(
+        f'<img loading="lazy" src="{_e(p)}" data-src="{_e(p)}" alt="">' for p in pool
+    )
+
     return f"""<!DOCTYPE html>
 <html lang="it">
 <head>
@@ -712,7 +868,8 @@ def render(journal, queue, editorial, published, brand, password_hash) -> str:
 <header class="top">
   <div class="brand">MY VILLA</div>
   <div class="sub">Social Content Panel — riservato</div>
-  <div class="stamp">Aggiornato: {now} · rigenerato automaticamente dalla pipeline quotidiana</div>
+  <div class="stamp">Aggiornato: {now} · rigenerato automaticamente dalla pipeline quotidiana ·
+  le scelte (eliminati, fatti, immagini) restano salvate su questo browser</div>
 </header>
 <nav class="tabs">
   <button data-tab="instagram">Instagram</button>
@@ -727,9 +884,15 @@ def render(journal, queue, editorial, published, brand, password_hash) -> str:
 {brand_pane}
 <footer>
   Pagina riservata al team My Villa — non indicizzata. Non condividere il link né la password all'esterno.<br>
-  I contenuti sono proposte: la pubblicazione sui canali è manuale. "Segna come fatto" è salvato solo su questo browser.
+  Le proposte si pubblicano manualmente sui canali. Eliminazioni, "fatto" e immagini scelte sono salvate solo su questo browser.
 </footer>
 </div>
+<div id="imgmodal"><div class="box">
+  <h3>Scegli un'immagine</h3>
+  <p>Alternative on-brand: render del sito, visual social e hero recenti del Journal. Clicca per applicare alla card.</p>
+  <div class="thumbs">{pool_thumbs}</div>
+  <div class="closebar"><button class="tool closebtn" type="button">Chiudi</button></div>
+</div></div>
 <script>{APP_JS}</script>
 </body>
 </html>
@@ -744,12 +907,25 @@ def build_panel(password: str | None = None, out: Path | None = None) -> Path:
     out_dir = (out or OUT_DIR)
     out_dir.mkdir(parents=True, exist_ok=True)
     ASSETS.mkdir(parents=True, exist_ok=True)
+
+    journal_entries = collect_journal_entries()
+    queue_entries = collect_queue_entries()
+    packages = collect_package_entries()
+
+    entries_by_platform: dict[str, list[dict]] = {}
+    for p in PLATFORMS:
+        merged = journal_entries[p] + queue_entries[p]
+        if p == "instagram":
+            merged += packages
+        merged.sort(key=lambda e: e["date"], reverse=True)
+        entries_by_platform[p] = merged
+
     page = render(
-        collect_journal(),
-        collect_queue(),
-        collect_editorial(),
+        entries_by_platform,
+        journal_entries["instagram"],  # riferimento Journal (stessi articoli)
         collect_published(),
         collect_brand(),
+        build_image_pool(),
         _sha256(password or DEFAULT_PASSWORD),
     )
     target = out_dir / "index.html"
