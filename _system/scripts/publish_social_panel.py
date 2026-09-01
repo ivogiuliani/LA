@@ -68,6 +68,48 @@ def _tagify(tag: str) -> str:
     return "#" + "".join(w.capitalize() if not w.isupper() else w for w in words) if words else ""
 
 
+def _ig_proposal(d: dict, url: str) -> str:
+    """Instagram post proposal: title, subtitle, key-data bullets,
+    link, generous hashtag block (IG rewards them)."""
+    parts = [d.get("title") or "", ""]
+    sub = d.get("subtitle") or d.get("meta_description") or ""
+    if sub:
+        parts += [sub, ""]
+    bullets = []
+    for k in (d.get("key_data") or [])[:3]:
+        num = (k.get("number") or "").strip()
+        lab = " ".join((k.get("label") or "").split())
+        if num and lab:
+            bullets.append(f"▪ {num} — {lab}")
+    if bullets:
+        parts += bullets + [""]
+    tags = [t for t in (d.get("topic_tags") or [])[:5]]
+    hashtags = " ".join(filter(None, [BASE_HASHTAGS] + [_tagify(t) for t in tags]))
+    parts += [f"Full analysis on the My Villa Journal → {url}", "", hashtags]
+    return "\n".join(parts)
+
+
+def _x_proposal(d: dict, url: str) -> str:
+    """X post proposal, guaranteed within 280 chars (t.co link = 23)."""
+    title = d.get("title") or ""
+    sub = d.get("subtitle") or d.get("meta_description") or ""
+    tags = "#MyVilla #FireResilient"
+    T_CO = 23
+    budget = 280 - T_CO - len(tags) - 6  # separators/newlines
+    body = title[:budget]
+    remaining = budget - len(body)
+    if sub and remaining > 40:
+        room = remaining - 2
+        s = sub if len(sub) <= room else sub[: room - 1].rsplit(" ", 1)[0] + "…"
+        body = f"{body}\n\n{s}"
+    return f"{body}\n\n{url}\n{tags}"
+
+
+def _x_effective_len(text: str, url: str) -> int:
+    """Length as X counts it: any URL costs 23 chars via t.co."""
+    return len(text) - len(url) + 23
+
+
 def collect_journal() -> list[dict]:
     """Latest published Journal articles from the blog/*.json sidecars."""
     items = []
@@ -85,15 +127,8 @@ def collect_journal() -> list[dict]:
             base = Path(hero["local_path"]).name
             if (BLOG / "assets" / "img" / base).exists():
                 hero_rel = f"/blog/assets/img/{base}"
-        tags = [t for t in (d.get("topic_tags") or [])[:4]]
-        hashtags = " ".join(filter(None, [BASE_HASHTAGS] + [_tagify(t) for t in tags]))
         url = f"https://myvilla.la/blog/{slug}.html"
-        caption = (
-            f"{d.get('title', slug)}\n\n"
-            f"{d.get('subtitle') or d.get('meta_description') or ''}\n\n"
-            f"Full analysis on the My Villa Journal → {url}\n\n"
-            f"{hashtags}"
-        )
+        x_text = _x_proposal(d, url)
         items.append({
             "slug": slug,
             "title": d.get("title") or slug,
@@ -102,7 +137,9 @@ def collect_journal() -> list[dict]:
             "section": d.get("_section_name") or d.get("section") or "",
             "hero": hero_rel,
             "url": url,
-            "caption": caption,
+            "ig": _ig_proposal(d, url),
+            "x": x_text,
+            "x_len": _x_effective_len(x_text, url),
         })
     items.sort(key=lambda x: x["date"], reverse=True)
     return items[:JOURNAL_LIMIT]
@@ -379,7 +416,10 @@ def render(journal, captions, editorial, published, brand, password_hash) -> str
   <div class="meta"><span>{_e(a["date"])}</span>{f'<span class="badge">{_e(a["section"])}</span>' if a["section"] else ''}</div>
   <h3>{_e(a["title"])}</h3>
   <div class="links"><a href="{_e(a["url"])}" target="_blank" rel="noopener">Apri articolo →</a></div>
-  {_copy_block(a["caption"], "Copia caption suggerita")}
+  <div class="meta" style="margin-top:6px"><span class="badge ig">IG</span><span>Proposta Instagram</span></div>
+  {_copy_block(a["ig"], "Copia post Instagram")}
+  <div class="meta" style="margin-top:6px"><span class="badge x">X</span><span>Proposta X · {a["x_len"]}/280</span></div>
+  {_copy_block(a["x"], "Copia post X")}
 </div></div>""")
 
     c_cards = []
@@ -460,7 +500,7 @@ def render(journal, captions, editorial, published, brand, password_hash) -> str
 
 <section id="journal">
   <h2>Dal Journal — articoli freschi</h2>
-  <p class="lead">Gli ultimi {len(journal)} articoli pubblicati su myvilla.la. Ogni card ha una caption suggerita (titolo + sottotitolo + link + hashtag): copiala e adattala liberamente.</p>
+  <p class="lead">Gli ultimi {len(journal)} articoli pubblicati su myvilla.la. Ogni card ha due proposte di post pronte da copiare — una per Instagram (con dati chiave e hashtag) e una per X (già entro i 280 caratteri). Adattale liberamente; la foto è quella dell'articolo.</p>
   <div class="grid">{''.join(j_cards)}</div>
 </section>
 
