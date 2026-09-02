@@ -5628,6 +5628,46 @@
       "action_type": "user_dismissed",
       "url": "https://fredericmagazine.com/2026/08/save-iconic-architecture-los-angeles/",
       "note": "auto-published journal: mediterranean-villa-design-los-angeles-what-endures"
+    },
+    {
+      "date_first_reported": "2026-09-02",
+      "source": "user_dismissed",
+      "title": "Tennis Star Madison Keys Turned to Her Fans for Helpful Advice While Restoring H",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/madison-keys-florida-home",
+      "note": "auto-sent pitch to queued:rachel.wallace@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-09-02",
+      "source": "user_dismissed",
+      "title": "Coverage for smoke damage, money for protecting homes passed to help wildfire vi",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2026-09-01/coverage-for-smoke-damage-money-for-protecting-homes-passed-to-help-wildfire-victims",
+      "note": "auto-sent pitch to nicole.nixon@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-09-02",
+      "source": "user_dismissed",
+      "title": "Commissioner Lara issues statement on SB 492: ‘We are no longer simply reacting ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2026/release028-2026.cfm",
+      "note": "auto-sent pitch to webassist@insurance.ca.gov"
+    },
+    {
+      "date_first_reported": "2026-09-02",
+      "source": "user_dismissed",
+      "title": "Luxury home builder turns social media following into multimillion-dollar busine",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.foxnews.com/video/6404067305112",
+      "note": "auto-sent pitch to friends@foxnews.com"
     }
   ],
   "reported": [
