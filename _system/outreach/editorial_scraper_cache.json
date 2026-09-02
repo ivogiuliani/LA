@@ -119,12 +119,13 @@
     }
   },
   "ca.gov": {
-    "cached_at": 1781072828.782378,
+    "cached_at": 1788329314.0841043,
     "result": {
-      "email": "vigfeedback@sos.ca.gov",
-      "source": "article_scraped",
-      "path": "/candidates/insurance-commissioner-candidate-statements.htm",
-      "score": 7
+      "email": "webassist@insurance.ca.gov",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 7,
+      "in_mailto": true
     }
   },
   "davisvanguard.org": {
@@ -915,7 +916,7 @@
     "result": null
   },
   "patriotmaids.com": {
-    "cached_at": 1786180196.817259,
+    "cached_at": 1788329337.718591,
     "result": null
   },
   "tollbrothers.com": {
@@ -1781,5 +1782,23 @@
       "score": 2,
       "in_mailto": false
     }
+  },
+  "fredericmagazine.com": {
+    "cached_at": 1788329293.8862677,
+    "result": null
+  },
+  "foxnews.com": {
+    "cached_at": 1788329345.8904655,
+    "result": {
+      "email": "friends@foxnews.com",
+      "source": "article_scraped",
+      "path": "/video/6404067305112",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "nytimes.com": {
+    "cached_at": 1788329354.6672752,
+    "result": null
   }
 }

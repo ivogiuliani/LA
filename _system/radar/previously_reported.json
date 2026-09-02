@@ -5618,6 +5618,16 @@
       "action_type": "user_dismissed",
       "url": "https://vanessabrink.com/listing/crmls/TR26140920/Los-Angeles/6358-La-Rocha/",
       "note": "auto-sent pitch to vanessa@vanessabrink.com"
+    },
+    {
+      "date_first_reported": "2026-09-02",
+      "source": "user_dismissed",
+      "title": "Jaime Rummerfield Is Working to Preserve L.A.'s Architecture",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://fredericmagazine.com/2026/08/save-iconic-architecture-los-angeles/",
+      "note": "auto-published journal: mediterranean-villa-design-los-angeles-what-endures"
     }
   ],
   "reported": [
