@@ -18,11 +18,11 @@
     }
   },
   "wallpaper.com": {
-    "cached_at": 1787292540.204285,
+    "cached_at": 1788415741.5523534,
     "result": null
   },
   "prnewswire.com": {
-    "cached_at": 1781158341.0820239,
+    "cached_at": 1788415769.8903277,
     "result": null
   },
   "greenhomebuildermag.com": {
@@ -34,7 +34,7 @@
     "result": null
   },
   "archdaily.com": {
-    "cached_at": 1787033325.6300383,
+    "cached_at": 1788415713.42399,
     "result": null
   },
   "malibutimes.com": {
@@ -1640,7 +1640,7 @@
     "result": null
   },
   "johnhartrealestate.com": {
-    "cached_at": 1787638197.7196474,
+    "cached_at": 1788415756.392802,
     "result": null
   },
   "labusinessjournal.com": {
@@ -1799,6 +1799,54 @@
   },
   "nytimes.com": {
     "cached_at": 1788329354.6672752,
+    "result": null
+  },
+  "wwd.com": {
+    "cached_at": 1788415755.7065651,
+    "result": {
+      "email": "press@wwd.com",
+      "source": "about_page",
+      "path": "/about-us",
+      "score": 12,
+      "in_mailto": false
+    }
+  },
+  "roofreplacementca.com": {
+    "cached_at": 1788415775.055104,
+    "result": {
+      "email": "contact@roofreplacementca.com",
+      "source": "article_scraped",
+      "path": "/roofing-materials-that-work-best-for-homes-in-california-fire-risk-zones/",
+      "score": 14,
+      "in_mailto": true
+    }
+  },
+  "pressdemocrat.com": {
+    "cached_at": 1788415777.4593692,
+    "result": {
+      "email": "news@pressdemocrat.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 19,
+      "in_mailto": true
+    }
+  },
+  "decaturmetro.com": {
+    "cached_at": 1788415777.8381538,
+    "result": {
+      "email": "contact@decaturmetro.com",
+      "source": "article_scraped",
+      "path": "/tuscan-dream-home-transforms-los-angeles-living-experience-european-elegance-in-the-city",
+      "score": 14,
+      "in_mailto": true
+    }
+  },
+  "simplywall.st": {
+    "cached_at": 1788415782.4649196,
+    "result": null
+  },
+  "wattsupwiththat.com": {
+    "cached_at": 1788415783.0041397,
     "result": null
   }
 }

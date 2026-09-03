@@ -5668,6 +5668,86 @@
       "action_type": "user_dismissed",
       "url": "https://www.foxnews.com/video/6404067305112",
       "note": "auto-sent pitch to friends@foxnews.com"
+    },
+    {
+      "date_first_reported": "2026-09-03",
+      "source": "user_dismissed",
+      "title": "House on Concrete Walls / dolmus Architekten | ArchDaily",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.archdaily.com/1183911/house-on-concrete-walls-dolmus-architekten",
+      "note": "auto-sent pitch to queued:cristina.popescu@archdaily.com"
+    },
+    {
+      "date_first_reported": "2026-09-03",
+      "source": "user_dismissed",
+      "title": "Mattaforma’s creative retreat in a Utah forest offers knotty, cedar-board worksp",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/architects-directory/mattaforma-profile-usa",
+      "note": "auto-sent pitch to queued:ellie.stathaki@wallpaper.com"
+    },
+    {
+      "date_first_reported": "2026-09-03",
+      "source": "user_dismissed",
+      "title": "Beverly Hills Is Buzzing With Luxury Flagships, Dining and Development",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://wwd.com/business-news/retail/beverly-hills-luxury-flagships-restaurants-development-1239174001/",
+      "note": "auto-sent pitch to cquimper@pmc.com"
+    },
+    {
+      "date_first_reported": "2026-09-03",
+      "source": "user_dismissed",
+      "title": "Breathtaking ocean views in exquisite turnkey luxury home",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/listing/breathtaking-ocean-views-in-exquisite-turnkey-luxury-home/",
+      "note": "auto-sent pitch to jsanders@eplahomes.com"
+    },
+    {
+      "date_first_reported": "2026-09-03",
+      "source": "user_dismissed",
+      "title": "Kevin Garnett’s Former Malibu Home in Photos",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/gallery/vela-house-in-photos-1238603049/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-09-03",
+      "source": "user_dismissed",
+      "title": "Roofing Materials That Work Best for Homes in California Fire-Risk Zones",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.roofreplacementca.com/roofing-materials-that-work-best-for-homes-in-california-fire-risk-zones/",
+      "note": "auto-sent pitch to queued:adolfo.ramos@roofreplacementca.com"
+    },
+    {
+      "date_first_reported": "2026-09-03",
+      "source": "user_dismissed",
+      "title": "North Bay fire agencies focus on education as thousands of property owners face ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.pressdemocrat.com/2026/08/29/north-bay-fire-agencies-focusing-on-education-as-thousands-of-property-owners-face-new-wildfire-defensible-space-requirements/",
+      "note": "auto-sent pitch to paulina.pineda@pressdemocrat.com"
+    },
+    {
+      "date_first_reported": "2026-09-03",
+      "source": "user_dismissed",
+      "title": "Tuscan Dream Home Los Angeles: European Elegance",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.decaturmetro.com/tuscan-dream-home-transforms-los-angeles-living-experience-european-elegance-in-the-city",
+      "note": "auto-sent pitch to queued:michael.reed@decaturmetro.com"
     }
   ],
   "reported": [
