@@ -5758,6 +5758,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.nytimes.com/section/realestate",
       "note": "auto-published journal: insurable-luxury-homes-california-beyond-the-listing"
+    },
+    {
+      "date_first_reported": "2026-09-04",
+      "source": "user_dismissed",
+      "title": "Your Favorite Architect Had a First Job, Too - Dwell",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dwell.com/article/surprising-early-jobs-of-famous-architects-3ef9b89a",
+      "note": "auto-sent pitch to letters@dwell.com"
     }
   ],
   "reported": [
