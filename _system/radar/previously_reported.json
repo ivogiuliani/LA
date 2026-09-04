@@ -5748,6 +5748,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.decaturmetro.com/tuscan-dream-home-transforms-los-angeles-living-experience-european-elegance-in-the-city",
       "note": "auto-sent pitch to queued:michael.reed@decaturmetro.com"
+    },
+    {
+      "date_first_reported": "2026-09-04",
+      "source": "user_dismissed",
+      "title": "Real Estate",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.nytimes.com/section/realestate",
+      "note": "auto-published journal: insurable-luxury-homes-california-beyond-the-listing"
     }
   ],
   "reported": [
