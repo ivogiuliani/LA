@@ -5828,6 +5828,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.designboom.com/architecture/mad-lucas-museum-narrative-art-los-angeles-completion-2026-debut-07-16-2025/",
       "note": "auto-published journal: reinforced-concrete-los-angeles-lucas-museum-2026"
+    },
+    {
+      "date_first_reported": "2026-09-07",
+      "source": "user_dismissed",
+      "title": "Los Angeles villa that was hub for German exiles fleeing Nazis reopens after nar",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.theguardian.com/us-news/2026/sep/01/california-villa-aurora-wildfires",
+      "note": "auto-sent pitch to business.information@theguardian.com"
     }
   ],
   "reported": [
