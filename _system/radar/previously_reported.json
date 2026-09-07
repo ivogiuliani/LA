@@ -5818,6 +5818,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.urbansplatter.com/2026/09/leslie-manns-beverly-hills-home-showcases-timeless-elegance",
       "note": "auto-sent pitch to queued:fran.houston@urbansplatter.com"
+    },
+    {
+      "date_first_reported": "2026-09-07",
+      "source": "user_dismissed",
+      "title": "MAD's Lucas Museum in Los Angeles prepares for 2026 opening",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.designboom.com/architecture/mad-lucas-museum-narrative-art-los-angeles-completion-2026-debut-07-16-2025/",
+      "note": "auto-published journal: reinforced-concrete-los-angeles-lucas-museum-2026"
     }
   ],
   "reported": [
