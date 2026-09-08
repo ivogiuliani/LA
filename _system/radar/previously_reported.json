@@ -5838,6 +5838,36 @@
       "action_type": "user_dismissed",
       "url": "https://www.theguardian.com/us-news/2026/sep/01/california-villa-aurora-wildfires",
       "note": "auto-sent pitch to business.information@theguardian.com"
+    },
+    {
+      "date_first_reported": "2026-09-08",
+      "source": "user_dismissed",
+      "title": "The Engineering of Luxury: Transforming a Multi-Million Dollar Villa into a 5-St",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hotelmobilya.com/post/hospitality-design-in-private-residences",
+      "note": "auto-sent pitch to queued:metin.durmaz@hotelmobilya.com"
+    },
+    {
+      "date_first_reported": "2026-09-08",
+      "source": "user_dismissed",
+      "title": "A billionaire was accused of stealing Malibu sand. Now he's donating a new beach",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2026-09-04/billionaire-was-accused-of-stealing-malibu-sand-now-hes-donating-new-beach-to-public",
+      "note": "auto-sent pitch to jack.flemming@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-09-08",
+      "source": "user_dismissed",
+      "title": "Hard-working artists illustrate more than one way to achieve your dreams - Pipe ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.bupipedream.com/ac/hard-working-artists-illustrate-more-than-one-way-to-achieve-your-dreams/183992/",
+      "note": "auto-sent pitch to example@binghamton.edu"
     }
   ],
   "reported": [

@@ -235,7 +235,7 @@
     "result": null
   },
   "latimes.com": {
-    "cached_at": 1785737834.6713617,
+    "cached_at": 1788847630.950781,
     "result": {
       "email": "tips@latimes.com",
       "source": "article_scraped",
@@ -581,7 +581,7 @@
     }
   },
   "e-a-a.com": {
-    "cached_at": 1786687650.8233867,
+    "cached_at": 1788847624.1092784,
     "result": null
   },
   "calmatters.org": {
@@ -1869,6 +1869,34 @@
   },
   "sortra.com": {
     "cached_at": 1788761308.531816,
+    "result": null
+  },
+  "hotelmobilya.com": {
+    "cached_at": 1788847608.8517091,
+    "result": {
+      "email": "info@hotelmobilya.com",
+      "source": "article_scraped",
+      "path": "/post/hospitality-design-in-private-residences",
+      "score": 11,
+      "in_mailto": true
+    }
+  },
+  "provence-alpes-cotedazur.com": {
+    "cached_at": 1788847619.2376175,
+    "result": null
+  },
+  "bupipedream.com": {
+    "cached_at": 1788847638.5240743,
+    "result": {
+      "email": "news@bupipedream.com",
+      "source": "about_page",
+      "path": "/about",
+      "score": 19,
+      "in_mailto": true
+    }
+  },
+  "ziddu.com": {
+    "cached_at": 1788847662.5104375,
     "result": null
   }
 }
