@@ -5868,6 +5868,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.bupipedream.com/ac/hard-working-artists-illustrate-more-than-one-way-to-achieve-your-dreams/183992/",
       "note": "auto-sent pitch to example@binghamton.edu"
+    },
+    {
+      "date_first_reported": "2026-09-09",
+      "source": "user_dismissed",
+      "title": "Home insurance rates are up 47% nationwide. See the states where rates rose the most.",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://finance.yahoo.com/personal-finance/insurance/article/home-insurance-rates-are-up-47-nationwide-see-the-states-where-rates-rose-the-most-205039646.html",
+      "note": "auto-published journal: fire-resistant-home-insurance-california-47-percent-rise"
     }
   ],
   "reported": [

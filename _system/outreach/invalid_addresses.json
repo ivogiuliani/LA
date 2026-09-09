@@ -198,6 +198,15 @@
       ],
       "last_bounced_at": "2026-08-30T06:05:25+00:00",
       "reason": "550 5.4.1 Recipient address rejected: Access denied. For more information see https://aka.ms/EXOSmtpErrors [SJ1PEPF000026C5.namprd04.prod.outlook.com 2026-08-30T06:"
+    },
+    "example@binghamton.edu": {
+      "first_bounced_at": "2026-09-08T06:08:45+00:00",
+      "bounce_count": 1,
+      "source_threads": [
+        "1a07fa21557c441b"
+      ],
+      "last_bounced_at": "2026-09-08T06:08:45+00:00",
+      "reason": "550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For mo"
     }
   }
 }

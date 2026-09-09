@@ -102,7 +102,7 @@
     "result": null
   },
   "insurancebusinessmag.com": {
-    "cached_at": 1787638200.6412034,
+    "cached_at": 1788934121.7358747,
     "result": null
   },
   "propertyinsurancecoveragelaw.com": {
@@ -464,7 +464,7 @@
     "result": null
   },
   "yahoo.com": {
-    "cached_at": 1787897431.709147,
+    "cached_at": 1788934088.6198454,
     "result": null
   },
   "oakviewins.com": {
@@ -936,13 +936,13 @@
     "result": null
   },
   "oftmw.com": {
-    "cached_at": 1783750490.284229,
+    "cached_at": 1788934090.0675316,
     "result": {
-      "email": "media@oftmw.com",
-      "source": "article_scraped",
-      "path": "/media",
-      "score": 16,
-      "in_mailto": true
+      "email": "jake@oftmw.com",
+      "source": "about_page",
+      "path": "/team",
+      "score": 2,
+      "in_mailto": false
     }
   },
   "amazingarchitecture.com": {
@@ -1897,6 +1897,28 @@
   },
   "ziddu.com": {
     "cached_at": 1788847662.5104375,
+    "result": null
+  },
+  "deco.fr": {
+    "cached_at": 1788934079.7793214,
+    "result": null
+  },
+  "newsbeep.com": {
+    "cached_at": 1788934104.6994674,
+    "result": null
+  },
+  "deadline.com": {
+    "cached_at": 1788934118.8253329,
+    "result": {
+      "email": "mattgrobar@deadline.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 7,
+      "in_mailto": true
+    }
+  },
+  "tmz.com": {
+    "cached_at": 1788934119.114822,
     "result": null
   }
 }
