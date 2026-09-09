@@ -1,0 +1,60 @@
+name: LinkedIn Daily Publish
+
+# Posta sulla pagina LinkedIn My Villa l'articolo del giorno del Journal,
+# alle 9:00 di Los Angeles (16:00 UTC). Resta inerte (exit 0) finché i
+# secrets LINKEDIN_* non sono configurati — si attiva senza altri cambi
+# quando LinkedIn approva la Community Management API e facciamo
+# l'--authorize una tantum.
+#
+# Secrets richiesti (Settings → Secrets and variables → Actions):
+#   LINKEDIN_CLIENT_ID, LINKEDIN_CLIENT_SECRET,
+#   LINKEDIN_ACCESS_TOKEN, LINKEDIN_REFRESH_TOKEN
+
+on:
+  schedule:
+    - cron: "0 16 * * *"   # 16:00 UTC = 9:00 PT = 18:00 CEST
+  workflow_dispatch: {}
+
+concurrency:
+  group: linkedin-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Publish today's article to LinkedIn
+        env:
+          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+        run: python3 _system/scripts/linkedin_publisher.py
+
+      - name: Commit ledger
+        run: |
+          git config user.name "My Villa Panel"
+          git config user.email "info@myvilla.la"
+          git add _system/social/linkedin_posted.json
+          if git diff --cached --quiet; then
+            echo "Nessun aggiornamento ledger."
+          else
+            git commit -m "LinkedIn: ledger post quotidiano [skip ci]"
+            git pull --rebase origin main || true
+            git push origin main
+          fi
