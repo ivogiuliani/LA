@@ -5878,6 +5878,26 @@
       "action_type": "user_dismissed",
       "url": "https://finance.yahoo.com/personal-finance/insurance/article/home-insurance-rates-are-up-47-nationwide-see-the-states-where-rates-rose-the-most-205039646.html",
       "note": "auto-published journal: fire-resistant-home-insurance-california-47-percent-rise"
+    },
+    {
+      "date_first_reported": "2026-09-09",
+      "source": "user_dismissed",
+      "title": "3 New Los Angeles Luxury Condos & Residences (2026) | Markets of Tomorrow",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.oftmw.com/markets/los-angeles-residences/",
+      "note": "auto-sent pitch to jake@oftmw.com"
+    },
+    {
+      "date_first_reported": "2026-09-09",
+      "source": "user_dismissed",
+      "title": "Hurricane Marie Waves Undermine Multimillion Dollar Malibu Beachfront Home",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://deadline.com/2026/09/malibu-beach-home-sinkhole-hurricane-marie-waves-1237071488/",
+      "note": "auto-sent pitch to mattgrobar@deadline.com"
     }
   ],
   "reported": [
