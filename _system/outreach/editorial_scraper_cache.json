@@ -212,12 +212,13 @@
     }
   },
   "smdp.com": {
-    "cached_at": 1778563551.933575,
+    "cached_at": 1789020679.5818138,
     "result": {
       "email": "editor@smdp.com",
       "source": "about_page",
       "path": "/about",
-      "score": 18
+      "score": 18,
+      "in_mailto": true
     }
   },
   "insurancejournal.com": {
@@ -625,7 +626,7 @@
     }
   },
   "canyon-news.com": {
-    "cached_at": 1785218978.509556,
+    "cached_at": 1789020657.254381,
     "result": {
       "email": "hello@canyon-news.com",
       "source": "contact_page",
@@ -1074,7 +1075,7 @@
     "result": null
   },
   "sfstandard.com": {
-    "cached_at": 1785046226.1865404,
+    "cached_at": 1789020616.0924344,
     "result": {
       "email": "media@sfstandard.com",
       "source": "contact_page",
@@ -1919,6 +1920,32 @@
   },
   "tmz.com": {
     "cached_at": 1788934119.114822,
+    "result": null
+  },
+  "thevalueofarchitecture.com": {
+    "cached_at": 1789020591.6055357,
+    "result": null
+  },
+  "freeyork.org": {
+    "cached_at": 1789020598.0115705,
+    "result": null
+  },
+  "starwestinsurance.com": {
+    "cached_at": 1789020606.0799932,
+    "result": {
+      "email": "james@starwestinsurance.com",
+      "source": "article_scraped",
+      "path": "/high-value-home-insurance-specialist-in-california/",
+      "score": 7,
+      "in_mailto": true
+    }
+  },
+  "marincountyvisitor.com": {
+    "cached_at": 1789020625.938515,
+    "result": null
+  },
+  "mv-voice.com": {
+    "cached_at": 1789020678.868139,
     "result": null
   }
 }

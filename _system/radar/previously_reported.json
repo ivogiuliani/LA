@@ -5898,6 +5898,66 @@
       "action_type": "user_dismissed",
       "url": "https://deadline.com/2026/09/malibu-beach-home-sinkhole-hurricane-marie-waves-1237071488/",
       "note": "auto-sent pitch to mattgrobar@deadline.com"
+    },
+    {
+      "date_first_reported": "2026-09-10",
+      "source": "user_dismissed",
+      "title": "'The whole beach is gone': Big waves, flooding bring destruction to SoCal coast.",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2026-09-09/socal-coastline-battered-marie-remnants",
+      "note": "auto-sent pitch to grace.toohey@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-09-10",
+      "source": "user_dismissed",
+      "title": "High-Value Home Insurance Specialist in California | Starwest Insurance Services",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.starwestinsurance.com/high-value-home-insurance-specialist-in-california/",
+      "note": "auto-sent pitch to james@starwestinsurance.com"
+    },
+    {
+      "date_first_reported": "2026-09-10",
+      "source": "user_dismissed",
+      "title": "Opinion: Jane Kim’s California insurance plan is built on a myth",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://sfstandard.com/opinion/2026/09/09/jane-kim-california-insurance-commissioner-myth/",
+      "note": "auto-sent pitch to jshea@sfstandard.com"
+    },
+    {
+      "date_first_reported": "2026-09-10",
+      "source": "user_dismissed",
+      "title": "Viewpoint: After 3 Years of Retreat, Insurance Capacity Is Returning to Californ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/news/west/2026/09/10/884417.htm",
+      "note": "auto-sent pitch to queued:attila.toth@insurancejournal.com"
+    },
+    {
+      "date_first_reported": "2026-09-10",
+      "source": "user_dismissed",
+      "title": "Driveway Of Actor, Nicholas Cage Collapses Into Sinkhole",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.canyon-news.com/driveway-of-actor-nicholas-cage-collapses-into-sinkhole/",
+      "note": "auto-sent pitch to hello@canyon-news.com"
+    },
+    {
+      "date_first_reported": "2026-09-10",
+      "source": "user_dismissed",
+      "title": "California Insurance Bills Protect Ratepayers from Nonrenewals",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.smdp.com/allen-insurance-bills-target-nonrenewals-stronger-enforcement/",
+      "note": "auto-sent pitch to queued:maaz.alin@smdp.com"
     }
   ],
   "reported": [
