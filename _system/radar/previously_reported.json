@@ -5968,6 +5968,56 @@
       "action_type": "user_dismissed",
       "url": "https://www.designboom.com/architecture/amdl-circle-public-life-milan-palazzo-litta/",
       "note": "auto-published journal: italian-villa-design-california-palazzo-litta"
+    },
+    {
+      "date_first_reported": "2026-09-11",
+      "source": "user_dismissed",
+      "title": "Studio KO transforms \"basilica-like\" depot into CCA Tashkent",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dezeen.com/2026/09/09/studio-ko-centre-contemporary-arts-tashkent/",
+      "note": "auto-sent pitch to editorial@dezeen.com"
+    },
+    {
+      "date_first_reported": "2026-09-11",
+      "source": "user_dismissed",
+      "title": "What happened to L.A.'s 'perfect' Mediterranean weather? Humidity challenges a b",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2026-09-09/what-happened-to-l-a-s-perfect-mediterranean-weather-humidity-challenges-birthright",
+      "note": "auto-sent pitch to ron.lin@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-09-11",
+      "source": "user_dismissed",
+      "title": "L.A. County probes Farmers Insurance Company's handling of wildfire claims",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/business/story/2026-09-10/la-county-probes-farmers-insurance-companys-handling-of-wildfire-claims",
+      "note": "auto-sent pitch to melody.petersen@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-09-11",
+      "source": "user_dismissed",
+      "title": "California FAIR Plan Rate Increase: What It Costs in 2026 - JVM Lending",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.jvmlending.com/blog/california-fair-plan-rate-increase/",
+      "note": "auto-sent pitch to queued:heidi.ameli@jvmlending.com"
+    },
+    {
+      "date_first_reported": "2026-09-11",
+      "source": "user_dismissed",
+      "title": "David Lynch's L.A.: The landmarks, diners and hideaways that invigorated him - L",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/travel/story/2026-08-18/david-lynchs-l-a-landmarks-diners-hideaways-that-invigorated-him",
+      "note": "auto-sent pitch to queued:amanda.karkoutly@latimes.com"
     }
   ],
   "reported": [
