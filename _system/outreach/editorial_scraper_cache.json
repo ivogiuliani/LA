@@ -30,7 +30,7 @@
     "result": null
   },
   "dezeen.com": {
-    "cached_at": 1787810935.082003,
+    "cached_at": 1789106927.2408574,
     "result": null
   },
   "archdaily.com": {
@@ -697,7 +697,7 @@
     "result": null
   },
   "havenlifestyles.com": {
-    "cached_at": 1787983684.134807,
+    "cached_at": 1789106955.9004805,
     "result": null
   },
   "bbc.com": {
@@ -1947,5 +1947,19 @@
   "mv-voice.com": {
     "cached_at": 1789020678.868139,
     "result": null
+  },
+  "donnalivingstondesign.com": {
+    "cached_at": 1789106939.1868992,
+    "result": null
+  },
+  "jvmlending.com": {
+    "cached_at": 1789106957.4306326,
+    "result": {
+      "email": "hello@jvmlending.com",
+      "source": "article_scraped",
+      "path": "/blog/california-fair-plan-rate-increase/",
+      "score": 14,
+      "in_mailto": true
+    }
   }
 }

@@ -5958,6 +5958,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.smdp.com/allen-insurance-bills-target-nonrenewals-stronger-enforcement/",
       "note": "auto-sent pitch to queued:maaz.alin@smdp.com"
+    },
+    {
+      "date_first_reported": "2026-09-11",
+      "source": "user_dismissed",
+      "title": "AMDL circle plans new public life for milan's palazzo litta",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.designboom.com/architecture/amdl-circle-public-life-milan-palazzo-litta/",
+      "note": "auto-published journal: italian-villa-design-california-palazzo-litta"
     }
   ],
   "reported": [
