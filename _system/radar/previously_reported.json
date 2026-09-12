@@ -6018,6 +6018,66 @@
       "action_type": "user_dismissed",
       "url": "https://www.latimes.com/travel/story/2026-08-18/david-lynchs-l-a-landmarks-diners-hideaways-that-invigorated-him",
       "note": "auto-sent pitch to queued:amanda.karkoutly@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-09-12",
+      "source": "user_dismissed",
+      "title": "An Italian retreat balances contrast and colour to blissfully harmonious results",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wallpaper.com/architecture/residential/italian-retreat-calvi-brambilla",
+      "note": "auto-sent pitch to queued:ellie.stathaki@wallpaper.com"
+    },
+    {
+      "date_first_reported": "2026-09-12",
+      "source": "user_dismissed",
+      "title": "Sleek $35M Beverly Hills estate puts a pickleball court on the roof",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.fancypantshomes.com/luxury/beverly-hills-estate-puts-a-pickleball-court-on-the-roof/",
+      "note": "auto-sent pitch to queued:georgie.mihaila@fancypantshomes.com"
+    },
+    {
+      "date_first_reported": "2026-09-12",
+      "source": "user_dismissed",
+      "title": "This Midcentury Modern Beirut Apartment Is a Lesson in Living With Antiques",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/guillaume-excoffier-places-his-art-and-design-collection-in-conversation-with-beirut",
+      "note": "auto-sent pitch to queued:hannah.martin@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-09-12",
+      "source": "user_dismissed",
+      "title": "Lionel Richie's Italian-Style Beverly Hills Mansion - Urban Splatter",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.urbansplatter.com/2026/09/lionel-richies-italian-style-beverly-hills-mansion",
+      "note": "auto-sent pitch to queued:fran.houston@urbansplatter.com"
+    },
+    {
+      "date_first_reported": "2026-09-12",
+      "source": "user_dismissed",
+      "title": "Malibu residents evacuate after massive, expanding sinkhole opens at Nicolas Cag",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2026-09-08/malibu-driveway-collapses-into-massive-sinkhole-amid-coastal-flood-risks",
+      "note": "auto-sent pitch to summer.lin@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-09-12",
+      "source": "user_dismissed",
+      "title": "Selena Gomez Offloads LA Home, Where Selena + Chef Was Filmed, for $5.4 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/selena-gomez-offloads-la-home-where-selena-chef-was-filmed",
+      "note": "auto-sent pitch to queued:india.roby@architecturaldigest.com"
     }
   ],
   "reported": [
