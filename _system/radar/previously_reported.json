@@ -6078,6 +6078,36 @@
       "action_type": "user_dismissed",
       "url": "https://www.architecturaldigest.com/story/selena-gomez-offloads-la-home-where-selena-chef-was-filmed",
       "note": "auto-sent pitch to queued:india.roby@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-09-13",
+      "source": "user_dismissed",
+      "title": "A Venice Beach home with art, exposed concrete, and garden views | Architecture",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://sg.headtopics.com/news/a-venice-beach-home-with-art-exposed-concrete-and-garden-87688305",
+      "note": "auto-sent pitch to editor@headtopics.com"
+    },
+    {
+      "date_first_reported": "2026-09-13",
+      "source": "user_dismissed",
+      "title": "America’s Home Insurance Crisis Has a New Epicenter - Newsweek",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.newsweek.com/americas-home-insurance-crisis-new-epicenter-12424297",
+      "note": "auto-sent pitch to b.kelly@newsweek.com"
+    },
+    {
+      "date_first_reported": "2026-09-13",
+      "source": "user_dismissed",
+      "title": "What California’s insurance commissioner does — and how it affects your wallet •",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://mendovoice.com/2026/09/what-californias-insurance-commissioner-does-and-how-it-affects-your-wallet/",
+      "note": "auto-sent pitch to queued:levi.calmatters@mendovoice.com"
     }
   ],
   "reported": [

@@ -338,12 +338,13 @@
     "result": null
   },
   "newsweek.com": {
-    "cached_at": 1779514017.646344,
+    "cached_at": 1789279643.1245,
     "result": {
       "email": "newsroom@newsweek.com",
       "source": "contact_page",
       "path": "/contact",
-      "score": 14
+      "score": 14,
+      "in_mailto": false
     }
   },
   "ktvu.com": {
@@ -1970,6 +1971,26 @@
       "path": "/contact",
       "score": 9,
       "in_mailto": false
+    }
+  },
+  "headtopics.com": {
+    "cached_at": 1789279638.868103,
+    "result": {
+      "email": "editor@headtopics.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 13,
+      "in_mailto": false
+    }
+  },
+  "mendovoice.com": {
+    "cached_at": 1789279643.9154382,
+    "result": {
+      "email": "info@mendovoice.com",
+      "source": "article_scraped",
+      "path": "/2026/09/what-californias-insurance-commissioner-does-and-how-it-affects-your-wallet/",
+      "score": 11,
+      "in_mailto": true
     }
   }
 }
