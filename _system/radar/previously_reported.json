@@ -6128,6 +6128,36 @@
       "action_type": "user_dismissed",
       "url": "https://www.pritzkerprize.com/laureates/1995",
       "note": "auto-published journal: reinforced-concrete-homes-california-ando-benesse-house"
+    },
+    {
+      "date_first_reported": "2026-09-14",
+      "source": "user_dismissed",
+      "title": "15 Buildings With Mysterious Details Nobody Fully Explained",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.thescroller.net/107772/strange-details-in-famous-buildings/",
+      "note": "auto-sent pitch to matt@thescroller.net"
+    },
+    {
+      "date_first_reported": "2026-09-14",
+      "source": "user_dismissed",
+      "title": "5 New Los Angeles Mixed-Use Developments (2026) | Markets of Tomorrow",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.oftmw.com/markets/los-angeles-mixed-use/",
+      "note": "auto-sent pitch to jake@oftmw.com"
+    },
+    {
+      "date_first_reported": "2026-09-14",
+      "source": "user_dismissed",
+      "title": "How to prepare for California’s new fire-smart landscaping guidelines - Redwood ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.rwcpulse.com/peninsula/2026/09/11/how-to-prepare-for-californias-new-fire-smart-landscaping-guidelines/",
+      "note": "auto-sent pitch to aswartz@embarcaderopublishing.com"
     }
   ],
   "reported": [
