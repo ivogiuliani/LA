@@ -106,7 +106,7 @@
     "result": null
   },
   "propertyinsurancecoveragelaw.com": {
-    "cached_at": 1777443611.268877,
+    "cached_at": 1789366147.195827,
     "result": null
   },
   "builtechcg.com": {
@@ -173,7 +173,7 @@
     "result": null
   },
   "sfchronicle.com": {
-    "cached_at": 1788761303.564773,
+    "cached_at": 1789366119.2310922,
     "result": null
   },
   "cbsnews.com": {
@@ -1989,6 +1989,26 @@
       "email": "info@mendovoice.com",
       "source": "article_scraped",
       "path": "/2026/09/what-californias-insurance-commissioner-does-and-how-it-affects-your-wallet/",
+      "score": 11,
+      "in_mailto": true
+    }
+  },
+  "thescroller.net": {
+    "cached_at": 1789366118.069817,
+    "result": {
+      "email": "matt@thescroller.net",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "rwcpulse.com": {
+    "cached_at": 1789366172.810873,
+    "result": {
+      "email": "info@rwcpulse.com",
+      "source": "about_page",
+      "path": "/about-us",
       "score": 11,
       "in_mailto": true
     }

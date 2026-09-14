@@ -6108,6 +6108,26 @@
       "action_type": "user_dismissed",
       "url": "https://mendovoice.com/2026/09/what-californias-insurance-commissioner-does-and-how-it-affects-your-wallet/",
       "note": "auto-sent pitch to queued:levi.calmatters@mendovoice.com"
+    },
+    {
+      "date_first_reported": "2026-09-14",
+      "source": "user_dismissed",
+      "title": "Benesse House Museum Hotel: An Unparalleled Immersion in Art, Architecture, and Nature on Naoshima Island",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.wonderfulmuseums.com/museum/benesse-house-museum-hotel/",
+      "note": "auto-published journal: reinforced-concrete-homes-california-ando-benesse-house"
+    },
+    {
+      "date_first_reported": "2026-09-14",
+      "source": "user_dismissed",
+      "title": "Tadao Ando — 1995 Laureate",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.pritzkerprize.com/laureates/1995",
+      "note": "auto-published journal: reinforced-concrete-homes-california-ando-benesse-house"
     }
   ],
   "reported": [
