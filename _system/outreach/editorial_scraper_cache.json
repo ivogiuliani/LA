@@ -62,7 +62,7 @@
     "result": null
   },
   "robbreport.com": {
-    "cached_at": 1786428481.6250327,
+    "cached_at": 1789452577.4576719,
     "result": {
       "email": "editorial@robbreport.com",
       "source": "contact_page",
@@ -1450,7 +1450,7 @@
     }
   },
   "designboom.com": {
-    "cached_at": 1788761302.648323,
+    "cached_at": 1789452581.9501271,
     "result": null
   },
   "archidust.com": {
@@ -2012,5 +2012,13 @@
       "score": 11,
       "in_mailto": true
     }
+  },
+  "france24.com": {
+    "cached_at": 1789452573.792069,
+    "result": null
+  },
+  "archpaper.com": {
+    "cached_at": 1789452574.4393935,
+    "result": null
   }
 }
