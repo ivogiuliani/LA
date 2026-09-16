@@ -7,6 +7,12 @@ WorkingDirectory=/opt/myvilla
 EnvironmentFile=/opt/myvilla/.env
 Environment=MYVILLA_PRIVATE_DIR=/opt/myvilla-private
 Environment=PYTHONUNBUFFERED=1
+# Claude via ABBONAMENTO (policy 2026-09-16): nessuna ANTHROPIC_API_KEY.
+# Il servizio usa llm_client.py -> Claude Code CLI headless, autenticata con
+# CLAUDE_CODE_OAUTH_TOKEN letto da /opt/myvilla/.env (EnvironmentFile).
+# IS_SANDBOX=1: il servizio gira come root e la CLI rifiuta la modalita'
+# bypassPermissions (usata solo per web_search=True) da root senza questo flag.
+Environment=IS_SANDBOX=1
 ExecStart=/usr/bin/python3 /opt/myvilla/_system/scripts/lead_api.py --host 127.0.0.1 --port 8788
 Restart=always
 RestartSec=5

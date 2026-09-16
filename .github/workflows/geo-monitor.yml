@@ -4,7 +4,9 @@ name: GEO Monitor (AI citation share)
 # _system/research/geo/queries.yml a Claude (web search) e Gemini (Google
 # Search grounding), misura se My Villa viene citata e con quali errori,
 # e committa _system/research/geo/** con [skip ci].
-# Costo indicativo per run: ~$3-4 (Claude ~$0.15/query, Gemini ~$0.04/query).
+# Costo: Claude gira via ABBONAMENTO (Claude Code CLI headless, policy
+# 2026-09-16: nessuna API a consumo) — pesa sul budget del piano Max
+# (finestre di 5 ore), non sulla carta. Gemini ~$0.04/query.
 # Trigger manuale: tab Actions → "GEO Monitor" → Run workflow.
 
 on:
@@ -33,6 +35,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
 
+    # Token dell'abbonamento (`claude setup-token`) per la CLI headless.
+    # Se manca: LLMUnavailable → geo_monitor salta il motore Claude e
+    # prosegue con Gemini.
+    env:
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -52,15 +60,32 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r _system/requirements.txt
 
+      # Claude Code CLI: backend del motore "claude" (abbonamento, web
+      # search della CLI). Prima dello step Python. Status non bloccante.
+      - name: Install Claude Code CLI
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Claude Code CLI (npm)
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude --version
+      - name: Claude Code CLI status
+        run: |
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "::warning::CLAUDE_CODE_OAUTH_TOKEN assente — motore Claude saltato, resta Gemini."
+          fi
+          python3 _system/scripts/llm_client.py --status || true
+
       - name: Run GEO monitor
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PYTHONUNBUFFERED: "1"
         run: |
-          # Costo: Claude+web search ≈ $0.35/query, Gemini ≈ $0.04/query.
-          # Settimanale = solo Gemini (~$1); il PRIMO lunedì del mese = entrambi
-          # i motori (~$8) per il confronto completo. Override manuale via inputs.
+          # Claude via abbonamento (nessun costo a consumo, ma ogni query con
+          # web search pesa sul budget 5h del piano); Gemini ≈ $0.04/query.
+          # Settimanale = solo Gemini; il PRIMO lunedì del mese = entrambi i
+          # motori per il confronto completo. Override manuale via inputs.
           ENGINE="${{ github.event.inputs.engine }}"
           if [ -z "$ENGINE" ]; then
             if [ "$(date -u +%d)" -le 7 ]; then ENGINE="both"; else ENGINE="gemini"; fi

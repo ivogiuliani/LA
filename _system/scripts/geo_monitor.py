@@ -5,9 +5,10 @@ geo_monitor.py — GEO (Generative Engine Optimization) monitor.
 Pone le domande "da cliente" di _system/research/geo/queries.yml a due
 motori di risposta AI con ricerca web e misura se My Villa viene citata:
 
-  (a) Claude + web search server tool
-      {"type": "web_search_20260209", "name": "web_search", "max_uses": 1}
-      via anthropic SDK, modello = model_resolver.resolve("balanced")
+  (a) Claude + WebSearch via llm_client.complete(tier="balanced",
+      web_search=True) → Claude Code headless (abbonamento claude.ai,
+      MAI API a consumo). La CLI restituisce testo con URL: le fonti
+      vengono estratte dal testo con regex (link markdown + URL nudi).
   (b) Gemini via REST (requests) su
       generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash
       con tools [{"google_search": {}}] e GEMINI_API_KEY
@@ -17,20 +18,24 @@ motori di risposta AI con ricerca web e misura se My Villa viene citata:
 Per ogni risposta salva: testo, URL citati, cited_myvilla (myvilla.la nel
 testo o nelle fonti), mentioned_myvilla (il nome nel testo) e le
 affermazioni SBAGLIATE su My Villa (sedi, "built homes", prezzi…) rilevate
-con un secondo passaggio Claude cheap (solo se il nome compare: costo zero
-altrimenti).
+con un secondo passaggio Claude cheap + json_schema (solo se il nome compare).
 
 Output:
   _system/research/geo/runs/<date>.json   run completo (una voce per query × motore)
   _system/research/geo/summary.json       citation share per motore + storico
-Costo stimato (token × listino, indicativo) nel log e nel run.
+Costo: Claude = 0 (abbonamento; il "cost_reported_usd" della CLI è solo
+informativo e NON viene fatturato); Gemini = stima token × listino.
 
 Uso:
   python3 _system/scripts/geo_monitor.py                 # baseline/run completo
-  python3 _system/scripts/geo_monitor.py --dry-run       # nessuna chiamata API
+  python3 _system/scripts/geo_monitor.py --dry-run       # nessuna chiamata ai modelli
   python3 _system/scripts/geo_monitor.py --engine claude # solo un motore
   python3 _system/scripts/geo_monitor.py --limit 3       # prime 3 query
   python3 _system/scripts/geo_monitor.py --date 2026-09-16
+  python3 _system/scripts/geo_monitor.py --engine claude --limit 1 --no-save  # test: non tocca run/summary
+
+Se Claude Code non è disponibile (limite d'uso, CLI, auth) il motore claude e
+il fact-check vengono saltati con log: la pipeline non si ferma mai.
 
 Schedulato: .github/workflows/geo-monitor.yml (lunedì 07:00 UTC).
 Exit code: sempre 0.
@@ -61,20 +66,29 @@ SETTINGS = SYSTEM_DIR / "config" / "lead_settings.yml"
 
 sys.path.insert(0, str(SCRIPT_DIR))
 try:
-    from model_resolver import resolve  # noqa: E402
-except Exception:  # noqa: BLE001
-    def resolve(tier):  # type: ignore
-        return {"balanced": "claude-sonnet-4-5", "cheap": "claude-haiku-4-5"}.get(tier, "claude-sonnet-4-5")
+    from llm_client import complete, complete_json, LLMUnavailable, LLMRefused  # noqa: E402
+    _LLM_IMPORT_ERROR: Optional[str] = None
+except Exception as _exc:  # noqa: BLE001
+    complete = complete_json = None  # type: ignore
+    _LLM_IMPORT_ERROR = f"{type(_exc).__name__}: {_exc}"
+
+    class LLMUnavailable(RuntimeError):  # type: ignore
+        pass
+
+    class LLMRefused(RuntimeError):  # type: ignore
+        pass
 
 BRAND_RE = re.compile(r"my\s?villa|myvilla\.la", re.I)
 DOMAIN_RE = re.compile(r"myvilla\.la", re.I)
+_MD_LINK_RE = re.compile(r"\[([^\]]{1,200})\]\((https?://[^\s)]+)\)")
+_URL_RE = re.compile(r"https?://[^\s<>()\[\]\"'`]+")
 
-# Listino indicativo (USD per 1M token; web search per 1000 ricerche).
+# Listino indicativo Gemini (USD per 1M token; grounding per 1000 ricerche).
 # Solo per la STIMA nel log: aggiornare se cambia il pricing.
+# Claude passa dall'abbonamento (Claude Code): costo 0, nessun listino.
 PRICE = {
-    "sonnet": (3.0, 15.0), "haiku": (1.0, 5.0), "opus": (15.0, 75.0),
-    "fable": (15.0, 75.0), "gemini": (0.30, 2.50),
-    "claude_search_per_1k": 10.0, "gemini_grounding_per_1k": 35.0,
+    "gemini": (0.30, 2.50),
+    "gemini_grounding_per_1k": 35.0,
 }
 
 SYSTEM_ANSWER = "Answer as a knowledgeable assistant; cite sources."
@@ -99,11 +113,27 @@ def log(msg: str) -> None:
     print(f"[geo] {msg}", flush=True)
 
 
-def _price_family(model: str) -> str:
-    for fam in ("sonnet", "haiku", "opus", "fable"):
-        if fam in model:
-            return fam
-    return "sonnet"
+def _clean_url(u: str) -> str:
+    return u.rstrip(".,;:!?'\"*_")
+
+
+def extract_urls(text: str) -> List[Dict[str, str]]:
+    """URL citati nel testo della CLI: prima i link markdown (con titolo), poi
+    gli URL nudi. Dedup, ordine di apparizione."""
+    urls: List[Dict[str, str]] = []
+    seen = set()
+
+    def _add(url: str, title: str = "") -> None:
+        url = _clean_url(url or "")
+        if url and url not in seen:
+            seen.add(url)
+            urls.append({"url": url, "title": (title or "").strip()})
+
+    for m in _MD_LINK_RE.finditer(text or ""):
+        _add(m.group(2), m.group(1))
+    for m in _URL_RE.finditer(text or ""):
+        _add(m.group(0))
+    return urls
 
 
 def canonical_facts() -> str:
@@ -128,54 +158,34 @@ def canonical_facts() -> str:
                 "(Rome, Paris). It has not yet delivered a villa. Pricing from $1,500/sq ft.")
 
 
-# ── Engine A: Claude + web search ────────────────────────────────────
-def ask_claude(client: Any, model: str, question: str) -> Dict[str, Any]:
+# ── Engine A: Claude + WebSearch (Claude Code, abbonamento) ─────────
+_CLAUDE_QUESTION_SUFFIX = ("\n\nSearch the web once before answering. In the answer, cite the "
+                           "sources you used with their full URLs (markdown links or plain URLs).")
+
+
+def ask_claude(question: str, model: Optional[str] = None) -> Dict[str, Any]:
+    """Una domanda a Claude con ricerca web via llm_client (tier balanced).
+    Solleva LLMUnavailable/LLMRefused se il modello non è raggiungibile."""
+    if complete is None:
+        raise LLMUnavailable(f"llm_client non importabile ({_LLM_IMPORT_ERROR})")
     t0 = time.time()
-    resp = client.messages.create(
-        model=model,
-        max_tokens=1500,
-        system=SYSTEM_ANSWER,
-        messages=[{"role": "user", "content": question}],
-        tools=[{"type": "web_search_20260209", "name": "web_search", "max_uses": 1}],
-    )
-    text_parts: List[str] = []
-    urls: List[Dict[str, str]] = []
-    search_error: Optional[str] = None
-    seen = set()
-
-    def _add(url: str, title: str = "") -> None:
-        if url and url not in seen:
-            seen.add(url)
-            urls.append({"url": url, "title": title or ""})
-
-    for block in resp.content:
-        btype = getattr(block, "type", "")
-        if btype == "text":
-            text_parts.append(getattr(block, "text", "") or "")
-            for cit in (getattr(block, "citations", None) or []):
-                _add(getattr(cit, "url", "") or "", getattr(cit, "title", "") or "")
-        elif btype == "web_search_tool_result":
-            content = getattr(block, "content", None)
-            if isinstance(content, list):
-                for r in content:
-                    _add(getattr(r, "url", "") or "", getattr(r, "title", "") or "")
-            else:  # oggetto errore
-                search_error = str(getattr(content, "error_code", None) or content)
-    usage = getattr(resp, "usage", None)
-    in_tok = getattr(usage, "input_tokens", 0) or 0
-    out_tok = getattr(usage, "output_tokens", 0) or 0
-    stu = getattr(usage, "server_tool_use", None)
-    searches = getattr(stu, "web_search_requests", 0) if stu else 0
-    fam = _price_family(model)
-    cost = (in_tok * PRICE[fam][0] + out_tok * PRICE[fam][1]) / 1e6 \
-        + searches * PRICE["claude_search_per_1k"] / 1000
+    r = complete(question + _CLAUDE_QUESTION_SUFFIX, system=SYSTEM_ANSWER, tier="balanced",
+                 model=model, web_search=True, max_tokens=1500)
+    text = (r.text or "").strip()
+    usage = r.usage or {}
+    raw = r.raw or {}
     return {
-        "text": "\n".join(text_parts).strip(),
-        "urls": urls,
-        "search_error": search_error,
-        "model": model,
-        "usage": {"input_tokens": in_tok, "output_tokens": out_tok, "web_searches": searches},
-        "cost_usd": round(cost, 4),
+        "text": text,
+        "urls": extract_urls(text),
+        "search_error": None,
+        "model": r.model,
+        "backend": r.backend,
+        "usage": {"input_tokens": usage.get("input_tokens", 0) or 0,
+                  "output_tokens": usage.get("output_tokens", 0) or 0,
+                  "cache_read_tokens": usage.get("cache_read_input_tokens", 0) or 0,
+                  "turns": raw.get("num_turns")},
+        "cost_usd": 0.0,   # abbonamento: non fatturato
+        "cost_reported_usd": raw.get("total_cost_usd"),   # solo informativo (listino CLI)
         "latency_s": round(time.time() - t0, 1),
     }
 
@@ -242,8 +252,26 @@ def ask_gemini(key: str, question: str) -> Dict[str, Any]:
     raise RuntimeError(last_err or "gemini: nessun modello disponibile")
 
 
-# ── Fact-check pass (Claude cheap) ───────────────────────────────────
-def fact_check(client: Any, model: str, answer_text: str, facts: str) -> Dict[str, Any]:
+# ── Fact-check pass (Claude cheap + json_schema) ─────────────────────
+_FACT_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "wrong_claims": {
+            "type": "array",
+            "items": {"type": "object",
+                      "properties": {"claim": {"type": "string"}, "issue": {"type": "string"}},
+                      "required": ["claim", "issue"]},
+        },
+    },
+    "required": ["wrong_claims"],
+}
+
+
+def fact_check(answer_text: str, facts: str, model: Optional[str] = None) -> Dict[str, Any]:
+    """Elenca le affermazioni su My Villa che contraddicono i fatti canonici.
+    Solleva LLMUnavailable/LLMRefused se il modello non è raggiungibile."""
+    if complete_json is None:
+        raise LLMUnavailable(f"llm_client non importabile ({_LLM_IMPORT_ERROR})")
     prompt = (
         f"{facts}\n\nBelow is an AI assistant's answer that mentions My Villa. List every "
         "statement ABOUT MY VILLA that CONTRADICTS the canonical facts (office locations, "
@@ -254,21 +282,12 @@ def fact_check(client: Any, model: str, answer_text: str, facts: str) -> Dict[st
         '{"wrong_claims": [{"claim": "<quoted or paraphrased>", "issue": "<why wrong>"}]} '
         "— an empty list if nothing is wrong.\n\nANSWER:\n" + answer_text[:6000]
     )
-    resp = client.messages.create(model=model, max_tokens=800,
-                                  messages=[{"role": "user", "content": prompt}])
-    txt = "".join(getattr(b, "text", "") for b in resp.content if getattr(b, "type", "") == "text")
-    m = re.search(r"\{.*\}", txt, re.S)
+    data = complete_json(prompt, _FACT_SCHEMA, tier="cheap", model=model, max_tokens=800)
     claims: List[Dict[str, str]] = []
-    if m:
-        try:
-            claims = json.loads(m.group(0)).get("wrong_claims", []) or []
-        except Exception:  # noqa: BLE001
-            claims = [{"claim": "(unparsed)", "issue": txt[:300]}]
-    usage = getattr(resp, "usage", None)
-    fam = _price_family(model)
-    cost = ((getattr(usage, "input_tokens", 0) or 0) * PRICE[fam][0]
-            + (getattr(usage, "output_tokens", 0) or 0) * PRICE[fam][1]) / 1e6
-    return {"wrong_claims": claims, "model": model, "cost_usd": round(cost, 4)}
+    for c in data.get("wrong_claims", []) or []:
+        if isinstance(c, dict):
+            claims.append({"claim": str(c.get("claim", "")), "issue": str(c.get("issue", ""))})
+    return {"wrong_claims": claims, "model": model or "cheap", "cost_usd": 0.0}
 
 
 # ── Orchestrazione ───────────────────────────────────────────────────
@@ -319,10 +338,12 @@ def update_summary(run: Dict[str, Any]) -> Dict[str, Any]:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="GEO monitor: citazioni di My Villa nei motori AI")
-    ap.add_argument("--dry-run", action="store_true", help="nessuna chiamata API")
+    ap.add_argument("--dry-run", action="store_true", help="nessuna chiamata ai modelli")
     ap.add_argument("--engine", choices=["claude", "gemini", "both"], default="both")
     ap.add_argument("--limit", type=int, default=0, help="solo le prime N query")
     ap.add_argument("--date", default=date.today().isoformat())
+    ap.add_argument("--no-save", action="store_true",
+                    help="non scrivere runs/<date>.json né summary.json (test)")
     args = ap.parse_args()
 
     load_dotenv()
@@ -343,21 +364,23 @@ def main() -> int:
         return 0
 
     engines = ["claude", "gemini"] if args.engine == "both" else [args.engine]
-    client = None
-    model_balanced = model_cheap = ""
-    if "claude" in engines or True:  # il fact-check usa sempre Claude
+    # Claude (motore + fact-check) passa da llm_client → Claude Code, abbonamento.
+    claude_ok = complete is not None
+    if claude_ok:
         try:
-            import anthropic  # noqa: WPS433
-            if not os.environ.get("ANTHROPIC_API_KEY"):
-                raise RuntimeError("ANTHROPIC_API_KEY mancante")
-            client = anthropic.Anthropic()
-            model_balanced = resolve("balanced")
-            model_cheap = resolve("cheap")
-            log(f"claude: answer={model_balanced} · fact-check={model_cheap}")
+            from llm_client import status as llm_status, model_for
+            st = llm_status()
+            if not st.get("cli"):
+                raise LLMUnavailable("Claude Code CLI non trovata")
+            log(f"claude: backend={st.get('backend')} · answer={model_for('balanced')} · "
+                f"fact-check={model_for('cheap')} · billed=0 (abbonamento)")
         except Exception as e:  # noqa: BLE001
             log(f"Claude non disponibile ({e}) → engine claude e fact-check saltati")
-            client = None
-            engines = [e for e in engines if e != "claude"]
+            claude_ok = False
+    else:
+        log(f"llm_client non importabile ({_LLM_IMPORT_ERROR}) → engine claude e fact-check saltati")
+    if not claude_ok:
+        engines = [e for e in engines if e != "claude"]
     gemini_key = os.environ.get("GEMINI_API_KEY", "").strip()
     if "gemini" in engines and not gemini_key:
         log("GEMINI_API_KEY mancante → engine gemini saltato")
@@ -370,11 +393,22 @@ def main() -> int:
         for eng in engines:
             entry: Dict[str, Any] = {"query_id": q["id"], "group": q["group"],
                                      "query": q["text"], "engine": eng, "error": None}
+            if eng == "claude" and not claude_ok:
+                entry["error"] = "LLMUnavailable: Claude Code non disponibile (skip)"
+                results.append(entry)
+                continue
             try:
                 if eng == "claude":
-                    entry.update(ask_claude(client, model_balanced, q["text"]))
+                    entry.update(ask_claude(q["text"]))
                 else:
                     entry.update(ask_gemini(gemini_key, q["text"]))
+            except (LLMUnavailable, LLMRefused) as e:
+                # limite d'uso / CLI / auth: inutile insistere sulle query successive
+                entry["error"] = f"{type(e).__name__}: {str(e)[:200]}"
+                log(f"  {q['id']} {eng}: {entry['error']} → motore claude e fact-check saltati")
+                claude_ok = False
+                results.append(entry)
+                continue
             except Exception as e:  # noqa: BLE001
                 entry["error"] = f"{type(e).__name__}: {str(e)[:200]}"
                 log(f"  {q['id']} {eng}: ERRORE {entry['error']}")
@@ -382,11 +416,15 @@ def main() -> int:
                 continue
             analyse(entry)
             total_cost += entry.get("cost_usd", 0.0)
-            if entry["mentioned_myvilla"] and client is not None:
+            if entry["mentioned_myvilla"] and claude_ok:
                 try:
-                    fc = fact_check(client, model_cheap, entry["text"], facts)
+                    fc = fact_check(entry["text"], facts)
                     entry["fact_check"] = fc
                     total_cost += fc.get("cost_usd", 0.0)
+                except (LLMUnavailable, LLMRefused) as e:
+                    entry["fact_check"] = {"wrong_claims": [], "error": str(e)[:200]}
+                    log(f"  fact-check: {type(e).__name__} → saltato per il resto del run")
+                    claude_ok = False
                 except Exception as e:  # noqa: BLE001
                     entry["fact_check"] = {"wrong_claims": [], "error": str(e)[:200]}
             flag = "CITED" if entry["cited_myvilla"] else ("mentioned" if entry["mentioned_myvilla"] else "-")
@@ -404,10 +442,17 @@ def main() -> int:
         "cost_est_usd": round(total_cost, 3),
         "results": results,
     }
+    if args.no_save:
+        log(f"--no-save: run non scritto · costo stimato ${total_cost:.3f} (Claude: 0, abbonamento)")
+        for r in results:
+            log(f"  {r['query_id']} {r['engine']}: error={r.get('error')} "
+                f"cited={r.get('cited_myvilla')} mentioned={r.get('mentioned_myvilla')} "
+                f"urls={len(r.get('urls') or [])} text[:200]={(r.get('text') or '')[:200]!r}")
+        return 0
     out = RUNS_DIR / f"{args.date}.json"
     out.write_text(json.dumps(run, indent=2, ensure_ascii=False), encoding="utf-8")
     row = update_summary(run)
-    log(f"salvato {out.relative_to(ROOT_DIR)} · costo stimato ${total_cost:.3f}")
+    log(f"salvato {out.relative_to(ROOT_DIR)} · costo stimato ${total_cost:.3f} (Claude: 0, abbonamento)")
     for eng, st in row["engines"].items():
         if st["answered"] or st["errors"]:
             log(f"  {eng}: {st['answered']} risposte, {st['errors']} errori, "

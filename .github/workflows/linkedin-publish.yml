@@ -9,6 +9,8 @@ name: LinkedIn Daily Publish
 # Secrets richiesti (Settings → Secrets and variables → Actions):
 #   LINKEDIN_CLIENT_ID, LINKEDIN_CLIENT_SECRET,
 #   LINKEDIN_ACCESS_TOKEN, LINKEDIN_REFRESH_TOKEN
+# Nessun modello Claude coinvolto (verificato 2026-09-16): niente Claude Code
+# CLI, niente CLAUDE_CODE_OAUTH_TOKEN, nessuna ANTHROPIC_API_KEY.
 
 on:
   schedule:

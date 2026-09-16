@@ -9,7 +9,8 @@ un'immagine ORIGINALE del sito e una caption in voce My Villa (regole di
 social_guidelines.py). Sono PROPOSTE (status: draft) — non pubblica nulla:
 compaiono nel pannello nella sezione "Evergreen dal sito" per l'approvazione.
 
-LLM: Anthropic (tier balanced) con fallback Gemini se Anthropic è giù.
+LLM: Claude Code headless via llm_client (tier balanced, abbonamento — mai
+API a consumo) con fallback Gemini se Claude non è disponibile.
 
 CLI:
   python3 generate_evergreen.py            # genera le proposte di oggi
@@ -39,11 +40,19 @@ ARCHIVE = ROOT_DIR / "_archive" / "social"
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
+# ── LLM: SOLO via Claude Code headless (abbonamento) — policy 2026-09-16.
+# Nessuna chiamata diretta alla Claude API a consumo in questo file.
 try:
-    from model_resolver import resolve as _resolve_model
-except Exception:  # noqa: BLE001
-    def _resolve_model(tier):
-        return "claude-sonnet-4-6"
+    from llm_client import complete as _llm_complete, LLMUnavailable, LLMRefused
+    LLM_OK = True
+except ImportError:  # adapter assente: lo step LLM viene saltato, mai crash
+    LLM_OK = False
+
+    class LLMUnavailable(RuntimeError):  # noqa: D101
+        pass
+
+    class LLMRefused(RuntimeError):  # noqa: D101
+        pass
 try:
     from social_guidelines import VOICE_RULES
 except Exception:  # noqa: BLE001
@@ -96,19 +105,18 @@ def _gemini_complete(prompt: str, model: str = "gemini-2.5-flash") -> str:
 
 
 def _complete(system: str, user: str) -> str:
-    """Anthropic (balanced) → fallback Gemini. '' se entrambi giù."""
-    key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
-    if key and not key.startswith("sk-ant-PLACEHOLDER"):
+    """Claude Code (tier balanced, abbonamento) → fallback Gemini.
+    '' se entrambi giù."""
+    if LLM_OK:
         try:
-            import anthropic
-            client = anthropic.Anthropic(api_key=key)
-            r = client.messages.create(
-                model=_resolve_model("balanced"), max_tokens=600,
-                system=system, messages=[{"role": "user", "content": user}])
-            return "".join(b.text for b in r.content
-                           if getattr(b, "type", "") == "text").strip()
+            r = _llm_complete(user, system=system, tier="balanced",
+                              max_tokens=600, timeout=300)
+            return r.text.strip()
+        except (LLMUnavailable, LLMRefused) as e:
+            print(f"  [evergreen] Claude non disponibile "
+                  f"({type(e).__name__}: {str(e)[:80]}) → fallback Gemini")
         except Exception as e:  # noqa: BLE001
-            print(f"  [evergreen] Anthropic non disponibile "
+            print(f"  [evergreen] Claude errore "
                   f"({type(e).__name__}) → fallback Gemini")
     return _gemini_complete(system + "\n\n" + user)
 

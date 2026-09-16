@@ -30,6 +30,8 @@ Il pannello è un SERVER (approva → commit → API social): GitHub Pages
    scp -r ~/Code/myvilla-la/_system/outreach/credentials root@IP:/opt/myvilla/_system/outreach/
    systemctl restart myvilla-panel   # sul VPS
    ```
+   Poi sul VPS togliere `ANTHROPIC_API_KEY=` da `/opt/myvilla/.env` e
+   aggiungere `CLAUDE_CODE_OAUTH_TOKEN=` (vedi "Claude via abbonamento").
 5. **DNS** (dove è gestito myvilla.la): record `A` → `content` → IP del VPS.
    HTTPS automatico (Caddy/Let's Encrypt) al primo accesso.
 
@@ -125,6 +127,66 @@ password in `.env`.
 Aggiornamenti futuri: `git -C /opt/myvilla pull && systemctl restart lead-api chat-api`.
 La chat sul sito resta spenta finché `chat.enabled: true` in
 `_system/config/lead_settings.yml` (widget a cura del conversion-layer).
+
+## Claude via abbonamento sul VPS (policy 2026-09-16)
+
+**Nessuna Claude API a consumo.** `chat_api.py`, `lead_api.py` (→
+`lead_score.py`) e ogni altro script che usa un modello passano da
+`_system/scripts/llm_client.py`, che lancia **Claude Code CLI in modalità
+headless** (`claude -p`) con l'abbonamento claude.ai (piano Max).
+**`chat_api` e `lead_api` NON usano più `ANTHROPIC_API_KEY`**: la riga va
+tolta dal `.env` del VPS (se restasse, l'adapter la rimuove comunque
+dall'ambiente della CLI, ma è una chiave viva in giro per niente).
+Quadro completo e checklist: `_system/docs/fase2/llm-subscription.md`.
+
+Setup una tantum, **da root sul VPS** (Ubuntu 24.04):
+
+```bash
+# 1. Node.js 20 LTS (NodeSource) + Claude Code CLI
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt-get install -y nodejs
+npm install -g @anthropic-ai/claude-code
+which claude && claude --version          # atteso: /usr/bin/claude (o /usr/local/bin/claude)
+
+# 2. token dell'abbonamento: generato SUL MAC da Ivo con `claude setup-token`
+#    (richiede il piano; è un token OAuth di lunga durata, ~1 anno). Va
+#    custodito SOLO in /opt/myvilla/.env (chmod 600, fuori dal repo).
+sed -i '/^ANTHROPIC_API_KEY=/d' /opt/myvilla/.env
+echo 'CLAUDE_CODE_OAUTH_TOKEN=sk-ant-oat01-...' >> /opt/myvilla/.env
+chmod 600 /opt/myvilla/.env
+
+# 3. i service file aggiornati (IS_SANDBOX=1: i servizi girano come root e la
+#    CLI rifiuta bypassPermissions da root senza quel flag; serve alle sole
+#    chiamate con web search)
+git -C /opt/myvilla pull
+cp /opt/myvilla/_system/deploy/{lead-api,chat-api,lead-intake}.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl restart lead-api chat-api
+
+# 4. verifica (cwd neutra + token dal .env, come fanno i servizi)
+cd /opt/myvilla && set -a && . ./.env && set +a
+python3 _system/scripts/llm_client.py --status      # auth.loggedIn: true, subscriptionType: max
+python3 _system/scripts/llm_client.py --prompt "Reply OK" --tier cheap
+tail -1 _system/logs/llm_calls.jsonl                # "backend": "claude_code", "billed": 0
+```
+
+Note:
+
+- La CLI non deve trovarsi in PATH per forza: l'adapter cerca anche
+  `/usr/local/bin/claude`; per un percorso diverso impostare
+  `MYVILLA_CLAUDE_BIN=/percorso/claude` nel `.env`.
+- La CLI usa `$HOME/.claude` per la propria configurazione: con `User=root`
+  è `/root/.claude`. La cwd delle chiamate è `MYVILLA_PRIVATE_DIR/llm-cwd`
+  (`/opt/myvilla-private/llm-cwd`, creata da sola), così nessun `CLAUDE.md`
+  del repo viene letto.
+- Se il token scade o viene revocato, i log dei servizi mostrano
+  `LLMUnavailable: Claude Code non autenticata`: la chat risponde con il
+  fallback, il lead resta con il tier da regole. Rigenerare con
+  `claude setup-token` e aggiornare il `.env` + il secret GitHub.
+- Limiti d'uso del piano (finestre di 5 ore): l'adapter ritenta con backoff
+  e poi degrada; il conteggio è in `_system/logs/llm_calls.jsonl`
+  (gitignored).
+- Aggiornare la CLI ogni tanto: `npm update -g @anthropic-ai/claude-code`.
 
 ## Pannello come servizio sul Mac (launchd)
 

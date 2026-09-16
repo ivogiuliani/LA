@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 My Villa — Journal Article Generator
-Converts radar JSON → Journal articles (HTML) via Claude Opus
+Converts radar JSON → Journal articles (HTML) via Claude Code headless (tier writer, abbonamento)
 
 Usage:
   python3 generate_journal.py \
@@ -34,11 +34,21 @@ except ImportError:  # fallback: articoli senza mid-CTA, end-CTA verso la landin
         return f"https://myvilla.la/private-briefing.html?src=journal_end&amp;slug={slug}"
     CTA_JS_BLOCK = ""
 
+# ── LLM: SOLO via Claude Code headless (abbonamento) — policy 2026-09-16.
+# Nessuna chiamata diretta alla Claude API a consumo in questo file.
+if str(Path(__file__).resolve().parent) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
-    import anthropic
-    ANTHROPIC_OK = True
-except ImportError:
-    ANTHROPIC_OK = False
+    from llm_client import complete as _llm_complete, LLMUnavailable, LLMRefused
+    LLM_OK = True
+except ImportError:  # adapter assente: lo step LLM viene saltato, mai crash
+    LLM_OK = False
+
+    class LLMUnavailable(RuntimeError):  # noqa: D101
+        pass
+
+    class LLMRefused(RuntimeError):  # noqa: D101
+        pass
 
 try:
     from image_picker import fetch_source_images, download_source_image, fetch_hero_image
@@ -61,22 +71,10 @@ except ImportError:
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
 
-# ── Auto-model: tier risolto via model_resolver — upgrade automatico
-# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
-# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
-# il modello non deve MAI bloccare la pipeline.
-try:
-    import sys as _sys
-    if str(SCRIPT_DIR) not in _sys.path:
-        _sys.path.insert(0, str(SCRIPT_DIR))
-    from model_resolver import resolve as _resolve_model
-except Exception:  # noqa: BLE001
-    def _resolve_model(tier, _fb={"writer": "claude-opus-4-8",
-                                  "heavy": "claude-opus-4-8",
-                                  "balanced": "claude-sonnet-4-6",
-                                  "cheap": "claude-haiku-4-5"}):
-        return _fb.get(tier, "claude-sonnet-4-6")
-_WRITER_MODEL = _resolve_model("writer")
+# Modello: tier "writer" risolto dall'adapter llm_client (alias CLI opus).
+# Un model id esplicito (--model, o quello passato da approve.py) viene
+# mappato per famiglia dall'adapter. None = usa il tier.
+_WRITER_MODEL = None
 SYSTEM_DIR = SCRIPT_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
 KNOWLEDGE_DIR = SYSTEM_DIR / "knowledge"
@@ -1014,13 +1012,11 @@ def verify_sources_live(article, item=None, strict=True):
 def generate_article(item, section_id, section_name, brand_voice, blocked,
                      model=_WRITER_MODEL, perspective_kb="",
                      prior_articles=None, content_strategy=""):
-    """Generate a Journal article using Opus."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
-        print("  [Generate] No valid API key — returning placeholder")
+    """Generate a Journal article (tier writer via Claude Code headless)."""
+    if not LLM_OK:
+        print("  [Generate] llm_client non importabile — step saltato")
         return None
 
-    client = anthropic.Anthropic(api_key=api_key)
     prompt = build_generation_prompt(item, section_id, section_name, brand_voice, blocked,
                                      perspective_kb=perspective_kb,
                                      prior_articles=prior_articles,
@@ -1036,42 +1032,44 @@ def generate_article(item, section_id, section_name, brand_voice, blocked,
         "the exact same JSON structure and all required fields."
     )
     try:
-        response = None
+        article = None
         for _attempt in (1, 2):
-            response = client.messages.create(
-                model=model,
-                max_tokens=20000,
-                messages=[{"role": "user", "content":
-                           prompt if _attempt == 1 else prompt + _shorten_note}],
-            )
-            # Output troncato a max_tokens → JSON incompleto: al primo
-            # colpo ritenta chiedendo un pezzo più corto, al secondo arrendi.
-            if getattr(response, "stop_reason", None) != "max_tokens":
-                break
-            if _attempt == 1:
-                print("  [Generate] output troncato a max_tokens — "
-                      "retry con brief accorciato")
-            else:
-                print("  [Generate] ABORT: output troncato anche al retry — "
-                      "candidato saltato")
-                return None
-        text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
+            r = _llm_complete(
+                prompt if _attempt == 1 else prompt + _shorten_note,
+                tier="writer", model=model, max_tokens=20000, timeout=1500)
+            text = r.text.strip()
 
-        # Handle potential markdown fences
-        if text.startswith("```"):
-            text = re.sub(r'^```json?\n?', '', text)
-            text = re.sub(r'\n?```$', '', text)
+            # Handle potential markdown fences
+            if text.startswith("```"):
+                text = re.sub(r'^```json?\n?', '', text)
+                text = re.sub(r'\n?```$', '', text)
 
-        try:
-            article = json.loads(text)
-        except json.JSONDecodeError:
-            # Modelli "chiacchieroni" / risposte multi-blocco: preambolo
-            # prima del JSON o note accodate dopo ("Extra data"). Estrai
-            # il PRIMO oggetto JSON valido e ignora il resto.
-            start = text.find("{")
-            if start < 0:
-                raise
-            article, _end = json.JSONDecoder().raw_decode(text[start:])
+            try:
+                article = json.loads(text)
+            except json.JSONDecodeError:
+                # Modelli "chiacchieroni" / risposte multi-blocco: preambolo
+                # prima del JSON o note accodate dopo ("Extra data"). Estrai
+                # il PRIMO oggetto JSON valido e ignora il resto.
+                start = text.find("{")
+                try:
+                    if start < 0:
+                        raise json.JSONDecodeError("no JSON object", text, 0)
+                    article, _end = json.JSONDecoder().raw_decode(text[start:])
+                except json.JSONDecodeError:
+                    # Output incompleto/troncato (la CLI non espone
+                    # stop_reason): al primo colpo ritenta chiedendo un
+                    # pezzo più corto, al secondo arrendi.
+                    if _attempt == 1:
+                        print("  [Generate] output non-JSON/incompleto — "
+                              "retry con brief accorciato")
+                        continue
+                    print("  [Generate] ABORT: output incompleto anche al "
+                          "retry — candidato saltato")
+                    return None
+            break
+        if not isinstance(article, dict):
+            print("  [Generate] ABORT: risposta non è un oggetto JSON")
+            return None
         # Sanitizza lo slug PRIMA di qualunque uso come filename/URL:
         # uno slug LLM con '/', '..', spazi o maiuscole causava path
         # traversal / FileNotFoundError / canonical URL rotti.
@@ -1091,6 +1089,9 @@ def generate_article(item, section_id, section_name, brand_voice, blocked,
 
     except json.JSONDecodeError as e:
         print(f"  [Generate] JSON parse error: {e}")
+        return None
+    except (LLMUnavailable, LLMRefused) as e:
+        print(f"  [Generate] LLM non disponibile, candidato saltato: {e}")
         return None
     except Exception as e:
         print(f"  [Generate] Error: {e}")
@@ -2018,7 +2019,7 @@ def main():
     parser.add_argument("--knowledge", default=None,
                         help="Path to knowledge directory")
     parser.add_argument("--model", default=_WRITER_MODEL,
-                        help="Claude model for generation")
+                        help="Model override (default: tier writer via Claude Code)")
     parser.add_argument("--min-score", type=int, default=None,
                         help="Override min score from config")
     parser.add_argument("--max-articles", type=int, default=2,
@@ -2073,7 +2074,7 @@ def main():
     # Load radar data
     radar_data = load_json(Path(args.radar))
     date_str = radar_data.get("date", today)
-    print(f"Date: {date_str} | Model: {args.model}")
+    print(f"Date: {date_str} | Model: {args.model or 'tier=writer (Claude Code)'}")
 
     # Load ledger
     ledger_path = Path(args.ledger) if args.ledger else (HISTORY_DIR / "journal_ledger.json")

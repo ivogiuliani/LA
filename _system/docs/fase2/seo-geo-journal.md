@@ -14,7 +14,7 @@ schema/CTA degli articoli del Journal, template dei nuovi articoli, monitor GEO.
 | Template nuovi articoli | `generate_journal.py`, `build_v2.py`, `update_journal_index.py` | aggiornati (importano le CTA da `inject_article_cta.py`) |
 | llms.txt rigenerabile | `_system/scripts/build_llms.py` → `llms.txt` | eseguito |
 | Monitor GEO | `_system/scripts/geo_monitor.py`, `_system/research/geo/queries.yml`, `runs/<date>.json`, `summary.json` | baseline eseguita |
-| Workflow GEO | `.github/workflows/geo-monitor.yml` (lunedì 07:00 UTC) | pronto, usa secrets `ANTHROPIC_API_KEY` + `GEMINI_API_KEY` |
+| Workflow GEO | `.github/workflows/geo-monitor.yml` (lunedì 07:00 UTC) | pronto, usa il secret `GEMINI_API_KEY` (Claude via CLI su abbonamento: `CLAUDE_CODE_OAUTH_TOKEN`) |
 
 ### robots.txt
 Ogni gruppo per-User-agent (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot,

@@ -16,6 +16,10 @@ Fornisce:
   - fetch(url)             → GET con UA onesto, timeout 15, ritorna (status, html, final_url)
   - find_myvilla_links(html) → [{href, rel, anchor, nofollow}] verso myvilla.la
   - is_own_or_homonym(domain) → True per i nostri domini e per gli omonimi da escludere
+  - claude_text(prompt, system, tier, max_tokens) → testo o None, via
+    _system/scripts/llm_client.py (Claude Code headless = abbonamento claude.ai;
+    MAI API a consumo). Se il modello non è disponibile ritorna None e la
+    pipeline degrada (nessuna bozza), mai crash.
   - slugify(), today(), now_iso()
 """
 from __future__ import annotations
@@ -278,9 +282,10 @@ def html_to_text(html: str) -> str:
     return txt.strip()
 
 
-# ── Claude ─────────────────────────────────────────────────────────────
+# ── Claude (via llm_client → Claude Code, abbonamento) ─────────────────
 def resolve_model(tier: str = "heavy") -> str:
-    """model_resolver.resolve(tier) con fallback: mai bloccare la pipeline."""
+    """model_resolver.resolve(tier) con fallback: mai bloccare la pipeline.
+    Mantenuta per compatibilità: claude_text() usa i tier di llm_client."""
     try:
         from model_resolver import resolve  # type: ignore
         return resolve(tier)
@@ -292,21 +297,21 @@ def resolve_model(tier: str = "heavy") -> str:
 
 def claude_text(prompt: str, *, system: str = "", tier: str = "heavy",
                 max_tokens: int = 1200) -> Optional[str]:
-    """Chiamata semplice al SDK anthropic. None se manca la chiave o fallisce."""
+    """Chiamata semplice via llm_client.complete (Claude Code, abbonamento).
+    None se il modello non è disponibile (LLMUnavailable/LLMRefused) o fallisce:
+    chi chiama salta la generazione, la pipeline non si ferma."""
     load_dotenv()
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        print("  [backlinklib] ANTHROPIC_API_KEY assente: skip generazione")
+    try:
+        from llm_client import complete, LLMUnavailable, LLMRefused  # type: ignore
+    except Exception as e:  # noqa: BLE001
+        print(f"  [backlinklib] llm_client non importabile ({type(e).__name__}: {e}): skip generazione")
         return None
     try:
-        import anthropic
-        client = anthropic.Anthropic()
-        kwargs: dict[str, Any] = dict(model=resolve_model(tier), max_tokens=max_tokens,
-                                      messages=[{"role": "user", "content": prompt}])
-        if system:
-            kwargs["system"] = system
-        resp = client.messages.create(**kwargs)
-        parts = [b.text for b in resp.content if getattr(b, "type", "") == "text"]
-        return "\n".join(parts).strip() or None
+        r = complete(prompt, system=system or None, tier=tier, max_tokens=max_tokens)
+        return (r.text or "").strip() or None
+    except (LLMUnavailable, LLMRefused) as e:
+        print(f"  [backlinklib] Claude non disponibile ({type(e).__name__}: {e}): skip generazione")
+        return None
     except Exception as e:  # noqa: BLE001
         print(f"  [backlinklib] Claude error: {type(e).__name__}: {e}")
         return None

@@ -74,8 +74,8 @@ def _load_dotenv():
         k, _, v = line.partition("=")
         k, v = k.strip(), v.strip().strip('"').strip("'")
         # Override when the env var is missing OR empty. (setdefault
-        # would skip a pre-set EMPTY var — which some shells/CI inject
-        # for ANTHROPIC_API_KEY — leaving us without the real key.)
+        # would skip a pre-set EMPTY var, which some shells/CI inject,
+        # leaving us without the real value.)
         if v and not os.environ.get(k):
             os.environ[k] = v
 
@@ -150,11 +150,16 @@ def _find_email(outlet: dict) -> tuple[str | None, str]:
 
 
 def _generate_pitch(outlet: dict) -> tuple[str, str] | None:
-    """Return (subject, body) for the feature pitch, or None on failure."""
-    import urllib.request
-    key = os.environ.get("ANTHROPIC_API_KEY")
-    if not key:
-        print("    [pitch] ANTHROPIC_API_KEY missing")
+    """Return (subject, body) for the feature pitch, or None on failure.
+
+    Modello: tier heavy via llm_client (Claude Code headless, abbonamento).
+    Nessuna chiamata diretta all'API a consumo.
+    """
+    try:
+        sys.path.insert(0, str(SCRIPT_DIR))
+        from llm_client import complete
+    except Exception as e:  # noqa: BLE001
+        print(f"    [pitch] llm_client non importabile: {e}")
         return None
     voice = VOICE_DOC.read_text(encoding="utf-8")[:6000] if VOICE_DOC.exists() else ""
 
@@ -189,26 +194,17 @@ Subject: <subject>
 <blank line>
 <body>"""
 
-    body = json.dumps({
-        "model": MODEL, "max_tokens": 700,
-        "messages": [{"role": "user", "content": prompt}],
-    }).encode()
-    req = urllib.request.Request(
-        "https://api.anthropic.com/v1/messages", data=body,
-        headers={"x-api-key": key, "anthropic-version": "2023-06-01",
-                 "content-type": "application/json"})
     try:
-        import urllib.error
-        with urllib.request.urlopen(req, timeout=60) as r:
-            blocks = json.load(r).get("content") or []
-            # Solo i blocchi di testo: i modelli recenti possono anteporre
-            # blocchi non-text (prima: content[0]["text"] → KeyError 'text').
-            txt = "\n".join(b.get("text", "") for b in blocks if b.get("type") == "text").strip()
-            if not txt:
-                raise ValueError("risposta senza blocchi di testo")
-    except Exception as e:  # noqa: BLE001
-        print(f"    [pitch] generation failed: {e}")
+        r = complete(prompt, tier="heavy", model=MODEL, max_tokens=700)
+        txt = (r.text or "").strip()
+        if not txt:
+            raise ValueError("risposta vuota dal modello")
+    except Exception as e:  # noqa: BLE001 — LLMUnavailable/LLMRefused inclusi
+        print(f"    [pitch] generation failed: {type(e).__name__}: {e}")
         return None
+    # Strip accidental code fences
+    if txt.startswith("```"):
+        txt = txt.strip("`").strip()
 
     # Split "Subject: ..." from body.
     subject, _, rest = txt.partition("\n")

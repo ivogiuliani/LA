@@ -144,7 +144,7 @@ def auto_generate_ig_companions(verbose=True):
                 [sys.executable, str(script),
                  "--article", str(sidecar),
                  "--output",  str(companion)],
-                capture_output=True, text=True, timeout=60,
+                capture_output=True, text=True, timeout=240,
             )
             if r.returncode == 0:
                 summary[stem] = "ok"
@@ -10217,24 +10217,18 @@ class ReviewHandler(BaseHTTPRequestHandler):
         if not feedback or not str(feedback).strip():
             self._send_json({"ok": False, "error": "Empty feedback"}, 400)
             return
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
-        if not api_key:
-            self._send_json(
-                {"ok": False, "error": "ANTHROPIC_API_KEY not set in .env"},
-                500,
-            )
-            return
+        # Modelli Claude SOLO via llm_client (Claude Code headless,
+        # abbonamento; policy 2026-09-16: niente API a consumo).
         try:
-            import anthropic
-        except ImportError:
+            from llm_client import complete as _llm_complete
+        except Exception as _ie:  # noqa: BLE001
             self._send_json(
-                {"ok": False, "error": "anthropic package not installed"},
+                {"ok": False, "error": f"llm_client non disponibile: {_ie}"},
                 500,
             )
             return
 
         try:
-            client = anthropic.Anthropic(api_key=api_key)
             model = _WRITER_MODEL
 
             if content_type == "journal":
@@ -10294,15 +10288,9 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 )
                 max_tokens = 500
 
-            resp = client.messages.create(
-                model=model,
-                max_tokens=max_tokens,
-                system=system_prompt,
-                messages=[{"role": "user", "content": user_msg}],
-            )
-            text = "".join(
-                getattr(b, "text", "") for b in resp.content if getattr(b, "type", "") == "text"
-            ).strip()
+            resp = _llm_complete(user_msg, system=system_prompt, tier="writer",
+                                 model=model, max_tokens=max_tokens)
+            text = (resp.text or "").strip()
 
             if content_type == "journal":
                 # Strip code fences if present
@@ -10337,18 +10325,13 @@ class ReviewHandler(BaseHTTPRequestHandler):
         if not current_content or not str(current_content).strip():
             self._send_json({"ok": False, "error": "Empty content"}, 400)
             return
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
-        if not api_key:
-            self._send_json(
-                {"ok": False, "error": "ANTHROPIC_API_KEY not set in .env"},
-                500,
-            )
-            return
+        # Modelli Claude SOLO via llm_client (Claude Code headless,
+        # abbonamento; policy 2026-09-16: niente API a consumo).
         try:
-            import anthropic
-        except ImportError:
+            from llm_client import complete as _llm_complete
+        except Exception as _ie:  # noqa: BLE001
             self._send_json(
-                {"ok": False, "error": "anthropic package not installed"},
+                {"ok": False, "error": f"llm_client non disponibile: {_ie}"},
                 500,
             )
             return
@@ -10414,16 +10397,9 @@ class ReviewHandler(BaseHTTPRequestHandler):
         )
 
         try:
-            client = anthropic.Anthropic(api_key=api_key)
-            resp = client.messages.create(
-                model=_WRITER_MODEL,
-                max_tokens=max_tokens,
-                system=system_prompt,
-                messages=[{"role": "user", "content": user_msg}],
-            )
-            text = "".join(
-                getattr(b, "text", "") for b in resp.content if getattr(b, "type", "") == "text"
-            ).strip()
+            resp = _llm_complete(user_msg, system=system_prompt, tier="writer",
+                                 model=_WRITER_MODEL, max_tokens=max_tokens)
+            text = (resp.text or "").strip()
             # Strip accidental code fences
             if text.startswith("```"):
                 text = re.sub(r"^```[a-zA-Z]*\s*", "", text)
@@ -11421,7 +11397,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 [sys.executable, str(SCRIPT_DIR / "generate_ig_companion.py"),
                  "--article", str(article_json),
                  "--output",  str(companion_path)],
-                capture_output=True, text=True, timeout=60,
+                capture_output=True, text=True, timeout=240,
             )
             if result.returncode != 0:
                 err = (result.stderr or result.stdout or "").strip()[:500]

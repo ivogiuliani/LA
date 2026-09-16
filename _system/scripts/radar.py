@@ -32,15 +32,30 @@ try:
 except ImportError:
     FEEDPARSER_OK = False
 
-try:
-    import anthropic
-    ANTHROPIC_OK = True
-except ImportError:
-    ANTHROPIC_OK = False
-    print("WARNING: 'anthropic' SDK not installed. Run: pip install anthropic")
-
 # ── Paths (relative to this script) ──────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── LLM: unico punto di accesso ai modelli Claude = llm_client
+# (Claude Code headless, abbonamento; policy 2026-09-16: niente API a
+# consumo). Se l'adapter non è importabile lo scoring AI viene saltato
+# e si usano i punteggi preliminari — la pipeline non si ferma.
+try:
+    import sys as _sys0
+    if str(SCRIPT_DIR) not in _sys0.path:
+        _sys0.path.insert(0, str(SCRIPT_DIR))
+    from llm_client import complete as _llm_complete, LLMUnavailable, LLMRefused
+    import llm_client as _llm_client
+    LLM_OK = True
+except Exception as _llm_exc:  # noqa: BLE001
+    LLM_OK = False
+    _llm_client = None
+    print(f"WARNING: llm_client non importabile ({_llm_exc}) — AI scoring disabilitato")
+
+    class LLMUnavailable(RuntimeError):  # type: ignore[no-redef]
+        pass
+
+    class LLMRefused(RuntimeError):  # type: ignore[no-redef]
+        pass
 
 # ── Auto-model: tier risolto via model_resolver — upgrade automatico
 # ai modelli più recenti appena compaiono su /v1/models (policy Ivo
@@ -117,26 +132,29 @@ def _ping_apollo(key, timeout):
         return False, f"HTTP {e.code}"
 
 
-def _ping_anthropic(key, timeout):
-    import urllib.request, urllib.error, json as _j
-    payload = _j.dumps({
-        "model": "claude-haiku-4-5",
-        "max_tokens": 4,
-        "messages": [{"role": "user", "content": "ping"}],
-    }).encode()
-    req = urllib.request.Request(
-        "https://api.anthropic.com/v1/messages",
-        data=payload,
-        headers={
-            "x-api-key": key,
-            "anthropic-version": "2023-06-01",
-            "content-type": "application/json",
-        },
-        method="POST",
-    )
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        body = _j.loads(r.read())
-        return True, f"model={body.get('model','?')}"
+def _ping_claude_code(key, timeout):
+    """Salute del backend Claude (Claude Code headless, abbonamento).
+
+    Nessuna chiamata a un modello e nessun traffico verso l'API a
+    consumo: si controlla solo che la CLI esista e sia autenticata
+    (`claude auth status`, via llm_client.status()). `key` è ignorata
+    (il provider non ha una env var: l'auth è il login keychain o
+    CLAUDE_CODE_OAUTH_TOKEN).
+    """
+    if not LLM_OK or _llm_client is None:
+        return False, "llm_client non importabile"
+    info = _llm_client.status()
+    if info.get("backend") == "api" and not info.get("api_allowed"):
+        return False, "backend=api richiesto ma non consentito (policy)"
+    if not info.get("cli"):
+        return False, "Claude Code CLI non trovata"
+    auth = info.get("auth")
+    if isinstance(auth, dict):
+        if auth.get("loggedIn"):
+            sub = auth.get("subscriptionType") or auth.get("authMethod") or "?"
+            return True, f"claude_code, {sub}, models={info['models'].get('balanced')}"
+        return False, "Claude Code non autenticata (claude login / CLAUDE_CODE_OAUTH_TOKEN)"
+    return False, f"auth n/d: {str(auth)[:80]}"
 
 
 def _ping_xai(key, timeout):
@@ -241,8 +259,10 @@ def _ping_apify(key, timeout):
 # module still imports gracefully and short-circuits to None when the
 # env var is missing — see apollo_lookup.lookup()). To restore Apollo,
 # uncomment the line below and re-add APOLLO_API_KEY to .env.
+# "anthropic" (etichetta storica nel banner) ora = backend Claude Code
+# via llm_client: nessuna env var (None → nessun check "missing").
 _API_CHECKS = (
-    ("anthropic",  "ANTHROPIC_API_KEY",   _ping_anthropic),
+    ("anthropic",  None,                  _ping_claude_code),
     # ("apollo",     "APOLLO_API_KEY",      _ping_apollo),
     ("xai_grok",   "XAI_API_KEY",         _ping_xai),
     ("gemini",     "GEMINI_API_KEY",      _ping_gemini),
@@ -266,10 +286,10 @@ def api_health_check(timeout=10):
     out = {}
     for name, env_var, fn in _API_CHECKS:
         # Allow GROK_API_KEY as fallback for XAI (radar.py uses both names).
-        key = os.environ.get(env_var, "").strip()
+        key = os.environ.get(env_var, "").strip() if env_var else ""
         if not key and env_var == "XAI_API_KEY":
             key = os.environ.get("GROK_API_KEY", "").strip()
-        if not key:
+        if not key and env_var:
             out[name] = {
                 "status": "missing",
                 "detail": f"{env_var} not set",
@@ -304,21 +324,21 @@ def api_health_check(timeout=10):
             out[name] = {
                 "status": "fail",
                 "detail": f"{type(last_exc).__name__}: {str(last_exc)[:120]}",
-                "env_var": env_var,
+                "env_var": env_var or "",
             }
             continue
         # `_ping_google_cse` may return (None, reason) for skip
         if result is None or result[0] is None:
             detail = result[1] if result else "skipped"
             out[name] = {
-                "status": "skip", "detail": detail, "env_var": env_var,
+                "status": "skip", "detail": detail, "env_var": env_var or "",
             }
             continue
         ok, detail = result
         out[name] = {
             "status": "ok" if ok else "fail",
             "detail": detail,
-            "env_var": env_var,
+            "env_var": env_var or "",
         }
     return out
 
@@ -2224,31 +2244,38 @@ Return a JSON array. For each item include:
 Return ONLY valid JSON array, no markdown fences."""
 
 
+def _fallback_scores(batch):
+    """Punteggi preliminari quando il modello non è disponibile."""
+    for r in batch:
+        r["ai_score"] = r.get("preliminary_score", 0)
+        r["action_type"] = (
+            "qualified" if r["ai_score"] >= 15
+            else "watchlist" if r["ai_score"] >= 12
+            else "skip"
+        )
+
+
 def ai_score_batch(results, model=_BALANCED_MODEL):
-    """Use Claude Sonnet to score a batch of results."""
-    if not ANTHROPIC_OK:
-        print("  [AI Score] Skipped — anthropic SDK not installed")
-        return results
+    """Use Claude (tier balanced via llm_client) to score a batch of results.
 
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
-        print("  [AI Score] Skipped — no valid ANTHROPIC_API_KEY")
-        # Fall back to preliminary scores
-        for r in results:
-            r["ai_score"] = r.get("preliminary_score", 0)
-            r["action_type"] = (
-                "qualified" if r["ai_score"] >= 15
-                else "watchlist" if r["ai_score"] >= 12
-                else "skip"
-            )
+    Una chiamata per batch di 20 item, in sequenza (nessun parallelismo).
+    Se il modello non è raggiungibile (LLMUnavailable / LLMRefused) il
+    batch corrente E i successivi ripiegano sui punteggi preliminari:
+    inutile ritentare 30s+ di backoff per ogni batch.
+    """
+    if not LLM_OK:
+        print("  [AI Score] Skipped — llm_client non disponibile")
+        _fallback_scores(results)
         return results
-
-    client = anthropic.Anthropic(api_key=api_key)
 
     # Process in batches of 20
     batch_size = 20
+    llm_down = False
     for batch_start in range(0, len(results), batch_size):
         batch = results[batch_start:batch_start + batch_size]
+        if llm_down:
+            _fallback_scores(batch)
+            continue
         items_text = json.dumps([{
             "index": i + batch_start,
             "title": r.get("title", ""),
@@ -2261,24 +2288,23 @@ def ai_score_batch(results, model=_BALANCED_MODEL):
         } for i, r in enumerate(batch)], indent=2)
 
         try:
-            response = client.messages.create(
+            resp = _llm_complete(
+                f"Score these {len(batch)} items:\n\n{items_text}",
+                system=SCORING_SYSTEM_PROMPT,
+                tier="balanced",
                 model=model,
                 max_tokens=8192,
-                system=SCORING_SYSTEM_PROMPT,
-                messages=[{
-                    "role": "user",
-                    "content": f"Score these {len(batch)} items:\n\n{items_text}",
-                }],
             )
-            response_text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
-            if getattr(response, "stop_reason", None) == "max_tokens":
-                print(f"  [AI Score] batch troncato a max_tokens — "
-                      f"possibile perdita parziale")
+            response_text = (resp.text or "").strip()
             # Strip fence markdown: senza, un ```json in testa faceva
             # fallire il parse e perdere l'INTERO batch in silenzio.
             if response_text.startswith("```"):
                 response_text = re.sub(r'^```(?:json)?\n?', '', response_text)
                 response_text = re.sub(r'\n?```$', '', response_text)
+            if not response_text.startswith("["):
+                a, b = response_text.find("["), response_text.rfind("]")
+                if a != -1 and b > a:
+                    response_text = response_text[a:b + 1]
 
             # Parse JSON response
             scored = json.loads(response_text)
@@ -2300,22 +2326,15 @@ def ai_score_batch(results, model=_BALANCED_MODEL):
         except json.JSONDecodeError as e:
             print(f"  [AI Score] JSON parse error: {e}")
             # Fall back to preliminary scores for this batch
-            for r in batch:
-                r["ai_score"] = r.get("preliminary_score", 0)
-                r["action_type"] = (
-                    "qualified" if r["ai_score"] >= 15
-                    else "watchlist" if r["ai_score"] >= 12
-                    else "skip"
-                )
+            _fallback_scores(batch)
+        except (LLMUnavailable, LLMRefused) as e:
+            print(f"  [AI Score] modello non disponibile ({type(e).__name__}: "
+                  f"{str(e)[:120]}) — punteggi preliminari per i batch restanti")
+            llm_down = True
+            _fallback_scores(batch)
         except Exception as e:
             print(f"  [AI Score] Error: {e}")
-            for r in batch:
-                r["ai_score"] = r.get("preliminary_score", 0)
-                r["action_type"] = (
-                    "qualified" if r["ai_score"] >= 15
-                    else "watchlist" if r["ai_score"] >= 12
-                    else "skip"
-                )
+            _fallback_scores(batch)
 
         time.sleep(1)  # Rate limit courtesy
 

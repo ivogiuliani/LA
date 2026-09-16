@@ -38,6 +38,12 @@ Come funziona:
   6. Fallback robusto: API giù → cache anche scaduta → costanti
      hardcoded (gli id validi di oggi). La pipeline non si ferma mai
      per colpa del resolver.
+  7. SENZA ANTHROPIC_API_KEY (policy 2026-09-16: niente API a consumo,
+     i modelli passano da Claude Code/llm_client) il resolver NON fa
+     alcuna chiamata di rete e restituisce cache pulita o default
+     hardcoded, senza errori. Gli id restituiti servono solo come
+     "famiglia" a llm_client.model_for() (opus/sonnet/haiku): il
+     modello effettivo lo sceglie la CLI per alias.
 
 CLI:
     python3 model_resolver.py            # tabella risoluzioni
@@ -132,8 +138,15 @@ def _load_api_key() -> str:
     return ""
 
 
+def has_api_key() -> bool:
+    """True se una chiave API è configurata (env o .env). Senza chiave il
+    resolver lavora offline: nessuna richiesta, nessun errore."""
+    return bool(_load_api_key())
+
+
 def _fetch_models() -> list[dict] | None:
-    """Lista modelli da /v1/models. None su qualunque errore."""
+    """Lista modelli da /v1/models (GET gratuito, solo se c'è la chiave).
+    None su qualunque errore o senza chiave → cache/fallback."""
     key = _load_api_key()
     if not key:
         return None
@@ -226,6 +239,11 @@ def _get_resolution(force_refresh: bool = False) -> dict[str, str]:
     if not force_refresh and cache.get("date") == today and cache_clean:
         return cached
 
+    if not has_api_key():
+        # Nessuna chiave (default dal 2026-09-16): niente rete, niente
+        # errori. Cache pulita se c'è, altrimenti i default hardcoded.
+        return cached if cache_clean else dict(FALLBACKS)
+
     models = _fetch_models()
     if models is None:
         # API giù: usa la cache solo se "pulita", altrimenti fallback
@@ -280,6 +298,9 @@ def main(argv=None) -> int:
     p.add_argument("--refresh", action="store_true", help="Ignora la cache 24h")
     args = p.parse_args(argv)
     res = _get_resolution(force_refresh=args.refresh)
+    if not has_api_key():
+        print("(nessuna ANTHROPIC_API_KEY: modalità offline, cache/default; "
+              "i modelli reali li sceglie Claude Code via llm_client)")
     print("Tier        Modello risolto")
     print("─" * 45)
     for tier in TIERS:

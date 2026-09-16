@@ -7,7 +7,8 @@ Pipeline role
 -------------
 Triggered from the dashboard "📷 Generate IG companion" button (or
 from this CLI for manual runs). Reads the journal article's .json
-sidecar, asks Anthropic Sonnet for an IG caption that announces the
+sidecar, asks Claude (via llm_client, tier balanced — Claude Code
+headless, abbonamento, niente API a consumo) for an IG caption that announces the
 piece, and writes the result alongside the article as
   _drafts/journal/<slug>.ig.md
 
@@ -32,13 +33,13 @@ Usage
         --article _drafts/journal/<slug>.json \\
         --output  _drafts/journal/<slug>.ig.md      # default = sibling of --article
     python3 generate_ig_companion.py --article ... --print     # stdout only
-    python3 generate_ig_companion.py --article ... --model claude-haiku-4-5
+    python3 generate_ig_companion.py --article ... --model haiku
 
 Exit codes
 ----------
     0  ok
-    1  bad input (no article, no API key, malformed sidecar)
-    2  Anthropic call failed
+    1  bad input (no article, malformed sidecar)
+    2  LLM call failed / non disponibile (limite d'uso, CLI, auth)
 """
 from __future__ import annotations
 
@@ -53,26 +54,17 @@ from pathlib import Path
 # ── Paths + .env loader ──────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
 
-# ── Auto-model: tier risolto via model_resolver — upgrade automatico
-# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
-# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
-# il modello non deve MAI bloccare la pipeline.
-try:
-    import sys as _sys
-    if str(SCRIPT_DIR) not in _sys.path:
-        _sys.path.insert(0, str(SCRIPT_DIR))
-    from model_resolver import resolve as _resolve_model
-except Exception:  # noqa: BLE001
-    def _resolve_model(tier, _fb={"writer": "claude-opus-4-8",
-                                  "heavy": "claude-opus-4-8",
-                                  "balanced": "claude-sonnet-4-6",
-                                  "cheap": "claude-haiku-4-5"}):
-        return _fb.get(tier, "claude-sonnet-4-6")
+# ── LLM: llm_client (Claude Code headless, abbonamento — policy Ivo
+# 2026-09-16: niente API a consumo). Tier "balanced"; --model = override.
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+from llm_client import complete as _llm_complete, LLMUnavailable, LLMRefused  # noqa: E402
 try:
     from social_guidelines import VOICE_RULES
 except Exception:  # noqa: BLE001
     VOICE_RULES = ""
-_BALANCED_MODEL = _resolve_model("balanced")
+_BALANCED_TIER = "balanced"
+_BALANCED_MODEL = None   # None → tier "balanced" via llm_client
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
 
@@ -87,24 +79,6 @@ def _load_dotenv():
             continue
         k, _, v = line.partition("=")
         os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
-
-
-# ── Anthropic client (lazy import; we want a clean error if missing) ──
-def _anthropic_client():
-    try:
-        import anthropic  # noqa: WPS433 — intentional lazy import
-    except ImportError as e:
-        print(
-            f"  [ig-companion] anthropic SDK not installed: {e}\n"
-            "  Install with: pip install anthropic",
-            file=sys.stderr,
-        )
-        sys.exit(1)
-    key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
-    if not key:
-        print("  [ig-companion] ANTHROPIC_API_KEY not set in .env", file=sys.stderr)
-        sys.exit(1)
-    return anthropic.Anthropic(api_key=key)
 
 
 # ── Caption synthesis ─────────────────────────────────────────────────
@@ -161,18 +135,11 @@ blank line, then 5-7 CamelCase hashtags."""
 
 
 def generate_caption(article_meta, model=_BALANCED_MODEL, max_tokens=400):
-    client = _anthropic_client()
-    msg = client.messages.create(
-        model=model,
-        max_tokens=max_tokens,
-        system=_SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": _build_user_prompt(article_meta)}],
-    )
-    parts = []
-    for block in msg.content:
-        if getattr(block, "type", "") == "text":
-            parts.append(block.text)
-    return "".join(parts).strip()
+    """Caption IG via llm_client (tier balanced). Solleva
+    LLMUnavailable/LLMRefused se il modello non è raggiungibile."""
+    r = _llm_complete(_build_user_prompt(article_meta), system=_SYSTEM_PROMPT,
+                      tier=_BALANCED_TIER, model=model, max_tokens=max_tokens)
+    return (r.text or "").strip()
 
 
 # ── Companion file writer ─────────────────────────────────────────────
@@ -255,7 +222,7 @@ def _main(argv=None):
     )
     parser.add_argument(
         "--model", default=_BALANCED_MODEL,
-        help="Anthropic model id (default: auto, tier balanced).",
+        help="Override modello (alias opus/sonnet/haiku o id; default: tier balanced).",
     )
     parser.add_argument(
         "--print", action="store_true",
@@ -277,8 +244,11 @@ def _main(argv=None):
 
     try:
         caption = generate_caption(meta, model=args.model)
+    except (LLMUnavailable, LLMRefused) as e:
+        print(f"  [ig-companion] LLM non disponibile (skip): {e}", file=sys.stderr)
+        return 2
     except Exception as e:  # noqa: BLE001 — surface the real error to the operator
-        print(f"  [ig-companion] Anthropic call failed: {e}", file=sys.stderr)
+        print(f"  [ig-companion] LLM call failed: {e}", file=sys.stderr)
         return 2
 
     if args.print:

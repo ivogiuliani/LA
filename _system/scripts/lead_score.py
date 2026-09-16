@@ -5,11 +5,13 @@ lead_score.py — tier A/B/C + score 0-100 per un lead.
 Due passi:
   1. REGOLE deterministiche da lead_settings.yml → lead.scoring
      (aree tier-1, timeline, rebuild, red flag fornitori). Sempre eseguite.
-  2. RIFINITURA Claude (model_resolver.resolve("balanced")) sui SOLI campi
+  2. RIFINITURA Claude (llm_client.complete_json, tier "balanced", via
+     Claude Code headless = abbonamento, MAI API a consumo) sui SOLI campi
      project_type / timeline / site_location / message — mai nome, email,
      telefono. Output JSON {tier, score, reasons[], needs_human, confidence}.
-     Se l'API manca/fallisce → si tengono le regole (needs_human=True se
-     il caso è ambiguo). Confidence < soglia → needs_human=True.
+     Se il modello non è disponibile (LLMUnavailable/LLMRefused) → si tengono
+     le regole (needs_human=True se il caso è ambiguo). Confidence < soglia →
+     needs_human=True.
 
     from lead_score import score_lead
     result = score_lead(lead_dict, use_llm=True)
@@ -24,26 +26,26 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
-import re
 import sys
 from typing import Any, Optional
 
-from lead_settings import get as cfg_get, PROJECT_ROOT
+from lead_settings import get as cfg_get, PROJECT_ROOT  # noqa: F401 (PROJECT_ROOT: compat import)
 
 SCORE_FIELDS = ("project_type", "timeline", "site_location", "message", "how_found")
 
-
-def _load_env_key() -> str:
-    key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if key:
-        return key
-    env_file = PROJECT_ROOT / ".env"
-    if env_file.exists():
-        for line in env_file.read_text(encoding="utf-8").splitlines():
-            if line.strip().startswith("ANTHROPIC_API_KEY="):
-                return line.split("=", 1)[1].strip().strip('"').strip("'")
-    return ""
+# Schema dell'output strutturato della rifinitura (validato dalla CLI).
+_LLM_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "tier": {"type": "string", "enum": ["A", "B", "C"]},
+        "score": {"type": "integer"},
+        "reasons": {"type": "array", "items": {"type": "string"}},
+        "needs_human": {"type": "boolean"},
+        "confidence": {"type": "number"},
+        "vendor": {"type": "boolean"},
+    },
+    "required": ["tier", "score", "reasons", "needs_human", "confidence", "vendor"],
+}
 
 
 def _contains_any(text: str, needles: list) -> Optional[str]:
@@ -181,31 +183,21 @@ on tier A. Do not invent facts."""
 
 
 def refine_with_llm(lead: dict, rules: dict) -> Optional[dict]:
-    key = _load_env_key()
-    if not key:
-        return None
+    """Rifinitura via llm_client (Claude Code, abbonamento). None se il modello
+    non è disponibile o la risposta non è valida: l'intake non si ferma mai."""
     try:
-        import anthropic
-        from model_resolver import resolve
-    except Exception:  # noqa: BLE001
+        from llm_client import complete_json, LLMUnavailable, LLMRefused
+    except Exception as exc:  # noqa: BLE001
+        print(f"  [lead_score] llm_client non importabile: {exc}", file=sys.stderr)
         return None
     payload = {k: (lead.get(k) or "")[:1500] for k in SCORE_FIELDS}
     payload["rules_verdict"] = {"tier": rules["tier"], "score": rules["score"],
                                 "reasons": rules["reasons"]}
     try:
-        client = anthropic.Anthropic(api_key=key)
-        resp = client.messages.create(
-            model=resolve("balanced"),
-            max_tokens=400,
-            system=_SYSTEM,
-            messages=[{"role": "user", "content":
-                       "Enquiry fields (JSON):\n" + json.dumps(payload, ensure_ascii=False)}],
-        )
-        text = "".join(getattr(b, "text", "") for b in resp.content)
-        m = re.search(r"\{.*\}", text, re.S)
-        if not m:
-            return None
-        data = json.loads(m.group(0))
+        data = complete_json(
+            "Enquiry fields (JSON):\n" + json.dumps(payload, ensure_ascii=False),
+            _LLM_SCHEMA, system=_SYSTEM, tier="balanced", max_tokens=400,
+            timeout=180, retries=1)
         tier = str(data.get("tier", "")).upper()[:1]
         if tier not in ("A", "B", "C"):
             return None
@@ -217,7 +209,11 @@ def refine_with_llm(lead: dict, rules: dict) -> Optional[dict]:
             "confidence": float(data.get("confidence", 0.5)),
             "vendor": bool(data.get("vendor", False)),
         }
-    except Exception as exc:  # noqa: BLE001 — l'API non ferma mai l'intake
+    except (LLMUnavailable, LLMRefused) as exc:
+        print(f"  [lead_score] LLM refinement skipped (modello non disponibile): {exc}",
+              file=sys.stderr)
+        return None
+    except Exception as exc:  # noqa: BLE001 — il modello non ferma mai l'intake
         print(f"  [lead_score] LLM refinement skipped: {type(exc).__name__}: {exc}",
               file=sys.stderr)
         return None

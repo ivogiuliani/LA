@@ -40,12 +40,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-# Anthropic client is optional at import-time (same pattern as approve.py).
+# LLM: unico accesso ai modelli Claude = llm_client (Claude Code headless,
+# abbonamento; policy 2026-09-16: niente API a consumo). Import opzionale:
+# se manca si ripiega sulla bozza `needs_human` (mai crash).
 try:
-    import anthropic
-    HAS_ANTHROPIC = True
-except ImportError:
-    HAS_ANTHROPIC = False
+    import sys as _sys0
+    _sys0.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent))
+    from llm_client import complete_json, LLMUnavailable, LLMRefused
+    HAS_LLM = True
+except Exception:  # noqa: BLE001
+    HAS_LLM = False
+# Alias storico (altri moduli/test potrebbero leggerlo).
+HAS_ANTHROPIC = HAS_LLM
 
 
 # --------------------------------------------------------------------------- #
@@ -241,31 +247,48 @@ Draft the reply now. Return the JSON object only.
 # Claude call + parsing
 # --------------------------------------------------------------------------- #
 
+# Schema equivalente al contratto JSON descritto nel system prompt:
+# l'output strutturato della CLI garantisce chiavi e tipi.
+REPLY_JSON_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "classification": {
+            "type": "string",
+            "enum": ["request_material", "request_call", "request_both",
+                     "polite_decline", "needs_human"],
+        },
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "reasoning": {"type": "string"},
+        "subject": {"type": "string"},
+        "body": {"type": "string"},
+        "include_attachments": {"type": "boolean"},
+        "suggested_next_step": {"type": ["string", "null"]},
+    },
+    "required": ["classification", "confidence", "reasoning", "subject",
+                 "body", "include_attachments"],
+}
+
+
 def _call_claude(system_prompt: str, user_prompt: str) -> dict[str, Any]:
     """
-    Call Claude and parse the returned JSON. On any failure, raise so
+    Call Claude (tier balanced via llm_client) and return the parsed
+    JSON dict (classification, confidence, reasoning, subject, body,
+    include_attachments, suggested_next_step). On any failure, raise so
     the caller can fall back to the safe `needs_human` path.
     """
-    if not HAS_ANTHROPIC:
-        raise RuntimeError(
-            "anthropic package not installed. Run `pip3 install anthropic`."
-        )
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key or api_key.startswith(("sk-PLACEHOLDER", "sk-ant-PLACEHOLDER")):
-        raise RuntimeError("ANTHROPIC_API_KEY missing or placeholder.")
-    client = anthropic.Anthropic(api_key=api_key)
-    resp = client.messages.create(
+    if not HAS_LLM:
+        raise RuntimeError("llm_client non importabile (Claude Code CLI adapter).")
+    data = complete_json(
+        user_prompt,
+        REPLY_JSON_SCHEMA,
+        system=system_prompt,
+        tier="balanced",
         model=CLAUDE_MODEL,
         max_tokens=1500,
-        system=system_prompt,
-        messages=[{"role": "user", "content": user_prompt}],
     )
-    # Collect text blocks (Claude may split across multiple content blocks).
-    text = ""
-    for block in resp.content:
-        if getattr(block, "type", None) == "text":
-            text += block.text
-    return _parse_json_response(text)
+    if not isinstance(data, dict):
+        raise RuntimeError("risposta del modello non è un oggetto JSON")
+    return data
 
 
 def _parse_json_response(text: str) -> dict[str, Any]:
@@ -378,11 +401,11 @@ def draft_for_thread(
     )
     original_subject = thread_state.get("outreach_subject") or "Following up"
 
-    if not HAS_ANTHROPIC or not os.environ.get("ANTHROPIC_API_KEY"):
+    if not HAS_LLM:
         draft = _build_fallback_draft(
             thread_state=thread_state,
             latest_reply=latest,
-            reason="ANTHROPIC_API_KEY not set or anthropic package missing.",
+            reason="llm_client (Claude Code adapter) non disponibile.",
         )
         _save_draft(draft)
         return draft

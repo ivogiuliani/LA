@@ -5,3 +5,7 @@ launchd_daily_publish.*.log
 
 # Fase 2: log del poller lead (rail Mac launchd)
 lead_intake*.log
+
+# Fase 2: log delle chiamate LLM via Claude Code (llm_client.py) — locale,
+# una riga per chiamata (backend/tier/token), mai in repo
+llm_calls*.jsonl

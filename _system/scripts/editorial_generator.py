@@ -42,30 +42,22 @@ try:
 except ImportError:
     PARTNER_SCRAPER_OK = False
 
+# ── LLM: SOLO via Claude Code headless (abbonamento) — policy 2026-09-16.
+# Nessuna chiamata diretta alla Claude API a consumo in questo file.
 try:
-    import anthropic
-    ANTHROPIC_OK = True
-except ImportError:
-    ANTHROPIC_OK = False
+    from llm_client import complete as _llm_complete, LLMUnavailable, LLMRefused
+    LLM_OK = True
+except ImportError:  # adapter assente: lo step LLM viene saltato, mai crash
+    LLM_OK = False
+
+    class LLMUnavailable(RuntimeError):  # noqa: D101
+        pass
+
+    class LLMRefused(RuntimeError):  # noqa: D101
+        pass
 
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
-
-# ── Auto-model: tier risolto via model_resolver — upgrade automatico
-# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
-# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
-# il modello non deve MAI bloccare la pipeline.
-try:
-    import sys as _sys
-    if str(SCRIPT_DIR) not in _sys.path:
-        _sys.path.insert(0, str(SCRIPT_DIR))
-    from model_resolver import resolve as _resolve_model
-except Exception:  # noqa: BLE001
-    def _resolve_model(tier, _fb={"writer": "claude-opus-4-8",
-                                  "heavy": "claude-opus-4-8",
-                                  "balanced": "claude-sonnet-4-6",
-                                  "cheap": "claude-haiku-4-5"}):
-        return _fb.get(tier, "claude-sonnet-4-6")
 
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
@@ -80,7 +72,8 @@ CONFIG_FILE = CONFIG_DIR / "editorial-calendar.yml"
 BRAND_VOICE_FILE = CONFIG_DIR / "brand-voice.yml"
 PROJECT_BRIEF = KNOWLEDGE_DIR / "project_brief.md"
 
-DEFAULT_MODEL = _resolve_model("balanced")
+# Modello: tier "balanced" risolto dall'adapter (alias CLI). None = tier.
+DEFAULT_MODEL = None
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -972,9 +965,8 @@ def generate_post_for_slot(slot, config, brand_voice, model=DEFAULT_MODEL,
     Returns the post dict (caption, hashtags, slides, ...) plus auxiliary
     keys: _framing_angle, _partner_post (so the writer can persist them).
     """
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
-        return {"error": "no_api_key"}
+    if not LLM_OK:
+        return {"error": "no_api_key", "exception": "llm_client non importabile"}
 
     pillar = slot["pillar"]
 
@@ -1013,7 +1005,6 @@ def generate_post_for_slot(slot, config, brand_voice, model=DEFAULT_MODEL,
         slot["partner_post_relevance_score"] = partner_post.get("relevance_score")
         slot["partner_post_relevance_rationale"] = partner_post.get("relevance_rationale", "")
 
-    client = anthropic.Anthropic(api_key=api_key)
     brief_excerpt = get_brief_excerpt(slot)
     base_prompt = build_user_prompt(
         slot, brand_voice, brief_excerpt,
@@ -1043,13 +1034,10 @@ def generate_post_for_slot(slot, config, brand_voice, model=DEFAULT_MODEL,
             )
 
         try:
-            response = client.messages.create(
-                model=model,
-                max_tokens=2048,
-                system=EDITORIAL_SYSTEM_PROMPT,
-                messages=[{"role": "user", "content": user_prompt}],
-            )
-            text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
+            r = _llm_complete(user_prompt, system=EDITORIAL_SYSTEM_PROMPT,
+                              tier="balanced", model=model, max_tokens=2048,
+                              timeout=600)
+            text = r.text.strip()
             if text.startswith("```"):
                 text = re.sub(r"^```(?:json)?\n?", "", text)
                 text = re.sub(r"\n?```$", "", text)
@@ -1062,6 +1050,9 @@ def generate_post_for_slot(slot, config, brand_voice, model=DEFAULT_MODEL,
                 "warnings": [],
             }
             continue
+        except (LLMUnavailable, LLMRefused) as e:
+            # Limite d'uso / CLI assente: lo slot viene saltato, il run continua
+            return {"error": "api_error", "exception": f"llm_unavailable: {e}"}
         except Exception as e:
             return {"error": "api_error", "exception": str(e)}
 
@@ -1273,13 +1264,13 @@ def main():
     parser.add_argument("--dry-run", action="store_true",
                         help="Print without writing files")
     parser.add_argument("--model", default=DEFAULT_MODEL,
-                        help=f"Claude model (default {DEFAULT_MODEL})")
+                        help="Model override (default: tier balanced via Claude Code)")
     args = parser.parse_args()
 
     print(f"\nMy Villa — IG Editorial Generator")
     print(f"{'=' * 50}")
     print(f"  Month: {args.month}")
-    print(f"  Model: {args.model}")
+    print(f"  Model: {args.model or 'tier=balanced (Claude Code)'}")
 
     cal = load_calendar(args.month)
     if cal is None:

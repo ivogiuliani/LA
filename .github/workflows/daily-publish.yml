@@ -50,6 +50,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
+    # Claude via ABBONAMENTO (policy 2026-09-16): nessuna ANTHROPIC_API_KEY.
+    # Tutte le chiamate ai modelli passano da llm_client.py → Claude Code CLI
+    # headless, autenticata con questo token (generato da Ivo con
+    # `claude setup-token`). Se il secret manca, la CLI non è autenticata,
+    # l'adapter solleva LLMUnavailable e gli script saltano lo step LLM.
+    env:
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+
     steps:
       # ───────────────────────────────────────────────────────────
       # 1. Checkout del repo (con credentials per il push automatico)
@@ -110,13 +118,38 @@ jobs:
           pip install google-auth google-auth-oauthlib google-api-python-client
 
       # ───────────────────────────────────────────────────────────
+      # 3b. Claude Code CLI — backend dei modelli (abbonamento, non API).
+      #     Deve esistere PRIMA di ogni step Python che usa llm_client.
+      #     Lo status è informativo e non bloccante: se il token manca
+      #     lo si legge qui ("loggedIn": false) e gli step LLM degradano.
+      # ───────────────────────────────────────────────────────────
+      - name: Install Claude Code CLI
+        if: steps.guard.outputs.should_run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Claude Code CLI (npm)
+        if: steps.guard.outputs.should_run == 'true'
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude --version
+      - name: Claude Code CLI status
+        if: steps.guard.outputs.should_run == 'true'
+        run: |
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "::warning::CLAUDE_CODE_OAUTH_TOKEN assente — gli step che usano Claude verranno saltati (LLMUnavailable)."
+          fi
+          python3 _system/scripts/llm_client.py --status || true
+
+      # ───────────────────────────────────────────────────────────
       # 4. Restore .env from GitHub Secrets
+      #    (NIENTE ANTHROPIC_API_KEY: policy abbonamento — l'adapter la
+      #    rimuoverebbe comunque dall'ambiente della CLI)
       # ───────────────────────────────────────────────────────────
       - name: Restore .env from secrets
         if: steps.guard.outputs.should_run == 'true'
         run: |
           cat > .env << 'EOF'
-          ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
           XAI_API_KEY=${{ secrets.XAI_API_KEY }}
           GOOGLE_CSE_API_KEY=${{ secrets.GOOGLE_CSE_API_KEY }}

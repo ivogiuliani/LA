@@ -18,31 +18,28 @@ from pathlib import Path
 
 import yaml
 
-try:
-    import anthropic
-    ANTHROPIC_OK = True
-except ImportError:
-    ANTHROPIC_OK = False
-
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
 
-# ── Auto-model: tier risolto via model_resolver — upgrade automatico
-# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
-# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
-# il modello non deve MAI bloccare la pipeline.
+# ── LLM: SOLO via Claude Code headless (abbonamento) — policy 2026-09-16.
+# Nessuna chiamata diretta alla Claude API a consumo in questo file.
 try:
-    import sys as _sys
-    if str(SCRIPT_DIR) not in _sys.path:
-        _sys.path.insert(0, str(SCRIPT_DIR))
-    from model_resolver import resolve as _resolve_model
-except Exception:  # noqa: BLE001
-    def _resolve_model(tier, _fb={"writer": "claude-opus-4-8",
-                                  "heavy": "claude-opus-4-8",
-                                  "balanced": "claude-sonnet-4-6",
-                                  "cheap": "claude-haiku-4-5"}):
-        return _fb.get(tier, "claude-sonnet-4-6")
-_BALANCED_MODEL = _resolve_model("balanced")
+    from llm_client import complete as _llm_complete, LLMUnavailable, LLMRefused
+    LLM_OK = True
+except ImportError:  # adapter assente: lo step LLM viene saltato, mai crash
+    LLM_OK = False
+
+    class LLMUnavailable(RuntimeError):  # noqa: D101
+        pass
+
+    class LLMRefused(RuntimeError):  # noqa: D101
+        pass
+
+# Modello: tier "balanced" risolto dall'adapter (alias CLI). Un model id
+# esplicito (--model) viene mappato per famiglia da llm_client.
+_BALANCED_MODEL = None
 SYSTEM_DIR = SCRIPT_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
 
@@ -242,25 +239,24 @@ Return ONLY valid JSON."""
 
 
 def ai_validate(text, content_type="general", model=_BALANCED_MODEL):
-    """Use Claude Sonnet for deeper brand voice validation."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
+    """Deeper brand voice validation via Claude Code (tier balanced).
+    Returns the parsed JSON dict, or None if the model is unavailable."""
+    if not LLM_OK:
         return None
 
-    client = anthropic.Anthropic(api_key=api_key)
     prompt = VALIDATION_PROMPT.format(content_type=content_type, content=text[:3000])
 
     try:
-        response = client.messages.create(
-            model=model,
-            max_tokens=1024,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        result_text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
+        r = _llm_complete(prompt, tier="balanced", model=model,
+                          max_tokens=1024, timeout=300)
+        result_text = r.text.strip()
         if result_text.startswith("```"):
             result_text = re.sub(r'^```json?\n?', '', result_text)
             result_text = re.sub(r'\n?```$', '', result_text)
         return json.loads(result_text)
+    except (LLMUnavailable, LLMRefused) as e:
+        print(f"  [AI Validate] LLM non disponibile, step saltato: {e}")
+        return None
     except Exception as e:
         print(f"  [AI Validate] Error: {e}")
         return None
@@ -332,9 +328,9 @@ def main():
     parser.add_argument("--config", default=None,
                         help="Config directory (default: _system/config/)")
     parser.add_argument("--model", default=_BALANCED_MODEL,
-                        help="Model for AI validation")
+                        help="Model override for AI validation (default: tier balanced via Claude Code)")
     parser.add_argument("--ai", action="store_true",
-                        help="Enable AI validation (uses API credits)")
+                        help="Enable AI validation (via Claude Code subscription, no API credits)")
     parser.add_argument("--fix", action="store_true",
                         help="Auto-fix simple issues (hashtag removal, etc.)")
     args = parser.parse_args()

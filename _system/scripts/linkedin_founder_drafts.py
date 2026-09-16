@@ -4,7 +4,8 @@ linkedin_founder_drafts.py — una bozza di post LinkedIn a settimana per Paolo.
 
 Cosa fa
   Prende gli articoli del Journal degli ultimi 7 giorni (blog/*.json con HTML
-  gemello), sceglie un dato (key_data) e genera con Claude (tier "heavy") un
+  gemello), sceglie un dato (key_data) e genera con Claude (tier "heavy", via
+  backlinklib.claude_text → llm_client → Claude Code, abbonamento) un
   post in prima persona di 150-220 parole, con il link all'articolo in fondo.
   Salva _drafts/linkedin_founder/<date>.md (frontmatter: status review, article,
   datum). Non pubblica nulla: Paolo copia/incolla dal suo profilo.
@@ -73,7 +74,7 @@ def run(*, days: int = 7, dry_run: bool = False, force: bool = False) -> dict:
               f"EXCERPT:\n{(d.get('excerpt') or '')[:600]}\n")
     text = bl.claude_text(prompt, system=SYSTEM_PROMPT, tier="heavy", max_tokens=700)
     if not text:
-        print("linkedin_founder_drafts: generazione fallita (chiave assente o errore API)")
+        print("linkedin_founder_drafts: generazione fallita (Claude Code non disponibile o errore modello)")
         return {"ok": False}
     words = len(text.split())
     out = (f"---\nkind: linkedin_founder\nstatus: review\narticle: {d['_url']}\narticle_title: \"{d.get('title', '')}\"\n"

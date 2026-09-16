@@ -29,24 +29,18 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 
-# Auto-model (tier balanced) via model_resolver; fallback hardcoded.
-try:
-    import sys as _sys
-    if str(SCRIPT_DIR) not in _sys.path:
-        _sys.path.insert(0, str(SCRIPT_DIR))
-    from model_resolver import resolve as _resolve_model
-except Exception:  # noqa: BLE001
-    def _resolve_model(tier, _fb={"writer": "claude-opus-4-8",
-                                  "heavy": "claude-opus-4-8",
-                                  "balanced": "claude-sonnet-4-6",
-                                  "cheap": "claude-haiku-4-5"}):
-        return _fb.get(tier, "claude-sonnet-4-6")
+# LLM: llm_client (Claude Code headless, abbonamento — policy 2026-09-16:
+# niente API a consumo). Tier "balanced"; --model resta un override.
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+from llm_client import complete as _llm_complete, LLMUnavailable, LLMRefused  # noqa: E402
 try:
     from social_guidelines import VOICE_RULES, X_SCOPE
 except Exception:  # noqa: BLE001
     VOICE_RULES = ""
     X_SCOPE = ""
-_BALANCED_MODEL = _resolve_model("balanced")
+_BALANCED_TIER = "balanced"
+_BALANCED_MODEL = None   # None → tier "balanced" via llm_client
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
 
@@ -61,19 +55,6 @@ def _load_dotenv():
             continue
         k, _, v = line.partition("=")
         os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
-
-
-def _anthropic_client():
-    try:
-        import anthropic  # noqa: WPS433
-    except ImportError as e:
-        print(f"  [x-companion] anthropic SDK not installed: {e}", file=sys.stderr)
-        sys.exit(1)
-    key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
-    if not key:
-        print("  [x-companion] ANTHROPIC_API_KEY not set in .env", file=sys.stderr)
-        sys.exit(1)
-    return anthropic.Anthropic(api_key=key)
 
 
 _SYSTEM_PROMPT = """You write X (Twitter) posts for My Villa, a Los \
@@ -143,16 +124,12 @@ def _fit_280(text: str) -> str:
 
 
 def generate_post(meta, article_url, model=_BALANCED_MODEL, max_tokens=300):
-    client = _anthropic_client()
-    msg = client.messages.create(
-        model=model,
-        max_tokens=max_tokens,
-        system=_SYSTEM_PROMPT,
-        messages=[{"role": "user",
-                   "content": _build_user_prompt(meta, article_url)}],
-    )
-    parts = [b.text for b in msg.content if getattr(b, "type", "") == "text"]
-    return _fit_280("".join(parts).strip().strip('"').strip())
+    """Tweet ≤280 char via llm_client (tier balanced). Solleva
+    LLMUnavailable/LLMRefused se il modello non è raggiungibile."""
+    r = _llm_complete(_build_user_prompt(meta, article_url),
+                      system=_SYSTEM_PROMPT, tier=_BALANCED_TIER,
+                      model=model, max_tokens=max_tokens)
+    return _fit_280((r.text or "").strip().strip('"').strip())
 
 
 def companion_markdown(post_text, article_slug):
@@ -206,8 +183,11 @@ def _main(argv=None):
     article_url = f"https://myvilla.la/blog/{slug}.html"
     try:
         post_text = generate_post(meta, article_url, model=args.model)
+    except (LLMUnavailable, LLMRefused) as e:
+        print(f"  [x-companion] LLM non disponibile (skip): {e}", file=sys.stderr)
+        return 2
     except Exception as e:  # noqa: BLE001
-        print(f"  [x-companion] Anthropic call failed: {e}", file=sys.stderr)
+        print(f"  [x-companion] LLM call failed: {e}", file=sys.stderr)
         return 2
 
     if args.print:

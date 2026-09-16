@@ -12,6 +12,8 @@ name: Weekly Backlinks
 # Secrets: BRAVE_API_KEY, GOOGLE_CSE_API_KEY, GOOGLE_CSE_ENGINE_ID (opzionali:
 # senza, mention_monitor salta la ricerca con un messaggio). BING_WMT_API_KEY
 # opzionale per --bing.
+# Nessun modello Claude coinvolto (verificato 2026-09-16): niente Claude Code
+# CLI, niente CLAUDE_CODE_OAUTH_TOKEN, nessuna ANTHROPIC_API_KEY.
 
 on:
   schedule:

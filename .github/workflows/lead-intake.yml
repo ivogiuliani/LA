@@ -35,6 +35,13 @@ jobs:
   intake:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # Claude via ABBONAMENTO (policy 2026-09-16): il tier del lead
+    # (lead_score.py) passa da llm_client.py → Claude Code CLI headless,
+    # autenticata con questo token (`claude setup-token`). Se il secret
+    # manca l'adapter solleva LLMUnavailable e lead_intake ripiega sulle
+    # sole regole YAML (nessuna ANTHROPIC_API_KEY, mai).
+    env:
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -55,14 +62,25 @@ jobs:
           # Google auth libs (Gmail OAuth) — non in requirements.txt
           pip install google-auth google-auth-oauthlib google-api-python-client
 
-      # Come daily-publish.yml: .env e credenziali Gmail dai Secrets.
-      - name: Restore .env from secrets
+      # Claude Code CLI: backend dei modelli (abbonamento). Prima dello
+      # step Python che usa llm_client. Status non bloccante.
+      - name: Install Claude Code CLI
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Claude Code CLI (npm)
         run: |
-          cat > .env << 'EOF'
-          ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
-          EOF
-          chmod 600 .env
+          npm install -g @anthropic-ai/claude-code
+          claude --version
+      - name: Claude Code CLI status
+        run: |
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "::warning::CLAUDE_CODE_OAUTH_TOKEN assente — lead scoring senza LLM (solo regole)."
+          fi
+          python3 _system/scripts/llm_client.py --status || true
 
+      # Come daily-publish.yml: credenziali Gmail dai Secrets. Nessun .env:
+      # l'unica chiave che conteneva (ANTHROPIC_API_KEY) non serve più.
       - name: Restore Gmail OAuth credentials
         run: |
           mkdir -p _system/outreach/credentials

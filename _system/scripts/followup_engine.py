@@ -559,37 +559,31 @@ def _build_followup_prompt(contact: dict, touch_n: int) -> tuple[str, str]:
     return system, user
 
 
-def _generate_body_with_claude(contact: dict, touch_n: int) -> str | None:
-    """Calls Claude (Sonnet) to draft the follow-up body. Returns None
-    on any failure — caller decides whether to skip or queue for retry.
-    """
+def _llm_complete_or_none(prompt: str, system: str, *, max_tokens: int, tag: str):
+    """Chiamata Claude via llm_client (tier balanced, abbonamento Claude
+    Code). Ritorna il testo o None su qualunque errore: chi chiama
+    ripiega sul template deterministico — mai crash."""
     try:
-        from anthropic import Anthropic
-    except ImportError:
-        print("  [ai] anthropic SDK not installed — falling back to template")
-        return _template_body(contact, touch_n)
-
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        print("  [ai] ANTHROPIC_API_KEY not set — falling back to template")
-        return _template_body(contact, touch_n)
-
-    system, user = _build_followup_prompt(contact, touch_n)
-    try:
-        client = Anthropic(api_key=api_key)
-        resp = client.messages.create(
-            model=_BALANCED_MODEL,
-            max_tokens=400,
-            system=system,
-            messages=[{"role": "user", "content": user}],
-        )
-        text = "".join(
-            blk.text for blk in resp.content if getattr(blk, "type", "") == "text"
-        ).strip()
-        return text or None
+        from llm_client import complete
     except Exception as e:  # noqa: BLE001
-        print(f"  [ai] Claude call failed: {type(e).__name__}: {e}")
-        return _template_body(contact, touch_n)
+        print(f"  [{tag}] llm_client non importabile ({e}) — falling back to template")
+        return None
+    try:
+        r = complete(prompt, system=system, tier="balanced",
+                     model=_BALANCED_MODEL, max_tokens=max_tokens)
+        return (r.text or "").strip() or None
+    except Exception as e:  # noqa: BLE001 — LLMUnavailable/LLMRefused inclusi
+        print(f"  [{tag}] Claude call failed: {type(e).__name__}: {e}")
+        return None
+
+
+def _generate_body_with_claude(contact: dict, touch_n: int) -> str | None:
+    """Calls Claude (tier balanced via llm_client) to draft the follow-up
+    body. Falls back to the deterministic template on any failure.
+    """
+    system, user = _build_followup_prompt(contact, touch_n)
+    text = _llm_complete_or_none(user, system, max_tokens=400, tag="ai")
+    return text or _template_body(contact, touch_n)
 
 
 def _template_body(contact: dict, touch_n: int) -> str:
@@ -636,31 +630,9 @@ def _generate_rescue_cold_body(contact: dict, author_name: str) -> str | None:
     author-rescue. Falls back to a deterministic template if the API
     isn't available.
     """
-    try:
-        from anthropic import Anthropic
-    except ImportError:
-        return _rescue_template_body(contact, author_name)
-
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        return _rescue_template_body(contact, author_name)
-
     system, user = _build_rescue_cold_prompt(contact, author_name)
-    try:
-        client = Anthropic(api_key=api_key)
-        resp = client.messages.create(
-            model=_BALANCED_MODEL,
-            max_tokens=500,
-            system=system,
-            messages=[{"role": "user", "content": user}],
-        )
-        text = "".join(
-            blk.text for blk in resp.content if getattr(blk, "type", "") == "text"
-        ).strip()
-        return text or _rescue_template_body(contact, author_name)
-    except Exception as e:  # noqa: BLE001
-        print(f"  [rescue] Claude call failed: {type(e).__name__}: {e}")
-        return _rescue_template_body(contact, author_name)
+    text = _llm_complete_or_none(user, system, max_tokens=500, tag="rescue")
+    return text or _rescue_template_body(contact, author_name)
 
 
 def _rescue_template_body(contact: dict, author_name: str) -> str:

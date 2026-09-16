@@ -56,14 +56,30 @@ from pathlib import Path
 
 import yaml
 
-try:
-    import anthropic
-    ANTHROPIC_OK = True
-except ImportError:
-    ANTHROPIC_OK = False
-
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+# ── LLM: llm_client (Claude Code headless, abbonamento — policy Ivo
+# 2026-09-16: niente API a consumo). Tier "cheap" per lo scoring.
+# NOTA: la CLI headless non accetta immagini → lo scoring è text-only
+# (caption + metadati); il modello viene istruito a essere conservativo
+# sulla RULE 2 (mai lodare come cemento ciò che non è dichiarato tale).
+try:
+    if str(SCRIPT_DIR) not in sys.path:
+        sys.path.insert(0, str(SCRIPT_DIR))
+    from llm_client import complete as _llm_complete, LLMUnavailable, LLMRefused
+    LLM_OK = True
+except Exception as _llm_import_err:  # noqa: BLE001
+    LLM_OK = False
+
+    class LLMUnavailable(RuntimeError):  # type: ignore[no-redef]
+        pass
+
+    class LLMRefused(RuntimeError):  # type: ignore[no-redef]
+        pass
+
+    def _llm_complete(*_a, **_k):
+        raise LLMUnavailable(f"llm_client non importabile: {_llm_import_err}")
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
@@ -79,7 +95,19 @@ APIFY_URL = f"https://api.apify.com/v2/acts/{APIFY_ACTOR}/run-sync-get-dataset-i
 
 DEFAULT_MAX_AGE_DAYS = 21
 DEFAULT_MIN_RELEVANCE = 6
-SCORING_MODEL = "claude-haiku-4-5"
+SCORING_MODEL = "haiku"          # alias CLI (tier cheap) via llm_client
+SCORING_TIER = "cheap"
+_SCORING_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "relevance": {"type": "integer"},
+        "angle": {"type": "string"},
+        "comment": {"type": "string"},
+        "skip_reason": {"type": "string"},
+    },
+    "required": ["relevance", "angle", "comment", "skip_reason"],
+}
+_VISION_WARNED = False
 
 # Niche keyword anchors for the cheap pre-filter (any hit → send to Claude).
 # Broadened 2026-06-14 to cover all 6 conversation areas the target reads:
@@ -306,8 +334,8 @@ Output ONLY the JSON object — no prose before or after, no code fences, one li
 def score_and_comment(post: dict, model: str = SCORING_MODEL,
                       img_bytes: bytes | None = None,
                       img_media_type: str = "image/jpeg") -> dict | None:
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
+    global _VISION_WARNED
+    if not LLM_OK:
         return None
     cap = (post.get("caption") or "").strip()
     lines = [
@@ -318,44 +346,49 @@ def score_and_comment(post: dict, model: str = SCORING_MODEL,
         f"Caption:\n\"\"\"\n{cap[:700]}\n\"\"\"",
         "",
     ]
+    # Il backend abbonamento (Claude Code headless) non accetta immagini:
+    # l'immagine viene scaricata solo per la thumbnail della dashboard.
+    # RULE 2 (mai lodare legno come cemento) si applica in modo
+    # conservativo: senza foto, il modello non può verificare il materiale.
     if img_bytes:
-        # The image is the decisive signal for RULE 2 (don't praise wood as
-        # concrete/fire-resilient) — tell the model to read it, not the pitch.
+        if not _VISION_WARNED:
+            print("  [viral] nota: scoring text-only (la CLI headless non "
+                  "accetta immagini) — RULE 2 applicata in modo conservativo")
+            _VISION_WARNED = True
         lines.append(
-            "The attached image is THIS post's actual photo. Judge the real "
-            "construction and design quality from it — e.g. visible wood/timber "
-            "framing & plywood sheathing vs concrete/masonry/steel. The caption "
-            "is the seller's pitch; trust your eyes over the words.")
+            "NOTE: the post photo could NOT be attached. You are judging from "
+            "the caption only. Be conservative on RULE 2: unless the caption "
+            "explicitly and credibly states concrete/masonry/steel construction, "
+            "do NOT praise the build as concrete or fire-resilient; comment on "
+            "design, siting, light, or typology instead, or skip.")
     lines.append("Evaluate as a My Villa comment opportunity.")
     user_text = "\n".join(lines)
 
-    content = []
-    if img_bytes:
-        import base64
-        content.append({"type": "image", "source": {
-            "type": "base64", "media_type": img_media_type,
-            "data": base64.standard_b64encode(img_bytes).decode()}})
-    content.append({"type": "text", "text": user_text})
-
     try:
-        client = anthropic.Anthropic(api_key=api_key)
-        resp = client.messages.create(
-            model=model, max_tokens=400, system=SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": content}], timeout=45)
-        text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text").strip()
-        # Vision responses sometimes fence the JSON and/or append prose
-        # ("**Why:** …") despite the single-line instruction. Extract the
-        # outermost {...} object before parsing so that never trips us up.
-        a, b = text.find("{"), text.rfind("}")
-        if a != -1 and b > a:
-            text = text[a:b + 1]
-        r = json.loads(text)
+        resp = _llm_complete(user_text, system=SYSTEM_PROMPT, tier=SCORING_TIER,
+                             model=model, max_tokens=400,
+                             json_schema=_SCORING_SCHEMA, timeout=180)
+        r = resp.data if isinstance(resp.data, dict) else None
+        if r is None:
+            text = (resp.text or "").strip()
+            # Responses sometimes fence the JSON and/or append prose
+            # despite the single-line instruction. Extract the outermost
+            # {...} object before parsing so that never trips us up.
+            a, b = text.find("{"), text.rfind("}")
+            if a != -1 and b > a:
+                text = text[a:b + 1]
+            r = json.loads(text)
         return {
             "relevance": max(0, min(10, int(r.get("relevance", 0)))),
             "angle": str(r.get("angle", "skip")),
             "comment": str(r.get("comment", "")).strip(),
             "skip_reason": str(r.get("skip_reason", "")).strip(),
         }
+    except (LLMUnavailable, LLMRefused) as e:
+        # Modello non raggiungibile (limite d'uso / CLI / auth): come per la
+        # vecchia "chiave assente" → None, il post viene saltato senza crash.
+        print(f"  [viral] LLM non disponibile, skip scoring: {str(e)[:120]}")
+        return None
     except Exception as e:
         return {"relevance": 0, "angle": "skip", "comment": "",
                 "skip_reason": f"scorer error: {type(e).__name__}"}
@@ -364,7 +397,7 @@ def score_and_comment(post: dict, model: str = SCORING_MODEL,
 # ── Images (vision scoring + dashboard thumbnails) ───────────────────
 
 def _sniff_media_type(data: bytes) -> str:
-    """Anthropic accepts jpeg/png/webp/gif. IG is almost always jpeg."""
+    """Media type sniffing (jpeg/png/webp/gif). IG is almost always jpeg."""
     if data[:3] == b"\xff\xd8\xff":
         return "image/jpeg"
     if data[:8] == b"\x89PNG\r\n\x1a\n":
@@ -486,7 +519,7 @@ def main():
     #    for the keeper's thumbnail, so the honesty rule "don't praise a
     #    wood-frame build as concrete/fire-resilient" is judged on what's
     #    actually built, not on the seller's caption.
-    print(f"  Scoring with {SCORING_MODEL} (vision)…")
+    print(f"  Scoring with {SCORING_MODEL} via llm_client (text-only)…")
     kept = []
     for s in shaped:
         img_bytes, media_type = fetch_image_bytes(s.get("image_url"))

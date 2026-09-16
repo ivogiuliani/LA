@@ -57,21 +57,26 @@ import yaml
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
 
-# ── Auto-model: tier risolto via model_resolver — upgrade automatico
-# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
-# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
-# il modello non deve MAI bloccare la pipeline.
+# ── LLM: llm_client (Claude Code headless, abbonamento — policy Ivo
+# 2026-09-16: niente API a consumo). Tier "cheap" per lo scoring.
+# Se l'adapter non è importabile lo scoring viene saltato (score None),
+# mai crash: lo scraper deve sempre completare.
 try:
-    import sys as _sys
-    if str(SCRIPT_DIR) not in _sys.path:
-        _sys.path.insert(0, str(SCRIPT_DIR))
-    from model_resolver import resolve as _resolve_model
-except Exception:  # noqa: BLE001
-    def _resolve_model(tier, _fb={"writer": "claude-opus-4-8",
-                                  "heavy": "claude-opus-4-8",
-                                  "balanced": "claude-sonnet-4-6",
-                                  "cheap": "claude-haiku-4-5"}):
-        return _fb.get(tier, "claude-sonnet-4-6")
+    if str(SCRIPT_DIR) not in sys.path:
+        sys.path.insert(0, str(SCRIPT_DIR))
+    from llm_client import complete as _llm_complete, LLMUnavailable, LLMRefused
+    LLM_OK = True
+except Exception as _llm_import_err:  # noqa: BLE001
+    LLM_OK = False
+
+    class LLMUnavailable(RuntimeError):  # type: ignore[no-redef]
+        pass
+
+    class LLMRefused(RuntimeError):  # type: ignore[no-redef]
+        pass
+
+    def _llm_complete(*_a, **_k):
+        raise LLMUnavailable(f"llm_client non importabile: {_llm_import_err}")
 
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
@@ -385,8 +390,14 @@ def filter_posts(shaped: list, max_age_days: int,
 # Claude relevance scoring (0..10)
 # ══════════════════════════════════════════════════════════════════════
 
-CLAUDE_SCORING_MODEL = _resolve_model("cheap")   # cheap, fast — scoring only
-CLAUDE_SCORING_TIMEOUT = 30
+CLAUDE_SCORING_TIER = "cheap"      # scoring di massa → haiku via llm_client
+CLAUDE_SCORING_MODEL = None        # None → tier; un alias/id esplicito = override
+CLAUDE_SCORING_TIMEOUT = 180       # secondi per la CLI headless (include avvio)
+_SCORING_SCHEMA = {
+    "type": "object",
+    "properties": {"score": {"type": "integer"}, "rationale": {"type": "string"}},
+    "required": ["score", "rationale"],
+}
 
 
 SCORING_SYSTEM_PROMPT = """\
@@ -424,12 +435,7 @@ Output ONLY JSON:
 def score_relevance_with_claude(post: dict, model: str = CLAUDE_SCORING_MODEL) -> Optional[dict]:
     """Score one post 0-10 for editorial relevance. Returns
     {"score": int, "rationale": str} or None on error."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
-    if not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
-        return None
-    try:
-        import anthropic
-    except ImportError:
+    if not LLM_OK:
         return None
 
     caption = (post.get("caption") or "").strip()
@@ -450,27 +456,34 @@ def score_relevance_with_claude(post: dict, model: str = CLAUDE_SCORING_MODEL) -
     )
 
     try:
-        client = anthropic.Anthropic(api_key=api_key)
-        resp = client.messages.create(
+        resp = _llm_complete(
+            user_prompt,
+            system=SCORING_SYSTEM_PROMPT,
+            tier=CLAUDE_SCORING_TIER,
             model=model,
             max_tokens=160,
-            system=SCORING_SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": user_prompt}],
+            json_schema=_SCORING_SCHEMA,
             timeout=CLAUDE_SCORING_TIMEOUT,
         )
-        text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text").strip()
-        if text.startswith("```"):
-            text = text.split("```")[1]
-            if text.startswith("json"):
-                text = text[4:]
-            text = text.strip()
-        result = json.loads(text)
+        result = resp.data if isinstance(resp.data, dict) else None
+        if result is None:
+            text = (resp.text or "").strip()
+            if text.startswith("```"):
+                text = text.split("```")[1]
+                if text.startswith("json"):
+                    text = text[4:]
+                text = text.strip()
+            result = json.loads(text)
         score = int(result.get("score", 0))
         score = max(0, min(10, score))
         return {
             "score": score,
             "rationale": str(result.get("rationale", ""))[:200],
         }
+    except (LLMUnavailable, LLMRefused):
+        # Modello non raggiungibile (limite d'uso / CLI / auth): come per la
+        # vecchia "chiave assente" → None (relevance_score resta None).
+        return None
     except Exception as e:
         return {"score": 0, "rationale": f"scorer error: {type(e).__name__}"}
 
@@ -670,8 +683,8 @@ def scrape_handle(handle: str, *, max_age_days: int, force: bool,
     shaped = [s for s in shaped if s]
 
     # Score every usable post for editorial relevance (0-10) via Claude
-    # Haiku. Costs ~$0.005/post for low input/output. Skipped silently
-    # if ANTHROPIC_API_KEY missing (relevance_score stays None).
+    # (llm_client, tier cheap → abbonamento, nessun costo a consumo).
+    # Skipped silently if the LLM is unavailable (relevance_score stays None).
     print(f"    Scoring {sum(1 for p in shaped if p.get('usable'))} usable posts for editorial relevance…")
     score_all_unscored(shaped, verbose=True)
 

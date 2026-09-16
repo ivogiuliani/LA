@@ -32,6 +32,13 @@ export GIT_TERMINAL_PROMPT=0
 export GIT_PAGER=cat
 export GIT_EDITOR=true
 
+# Claude via ABBONAMENTO (policy 2026-09-16): i modelli passano da
+# llm_client.py → Claude Code CLI headless (login keychain sul Mac, token
+# CLAUDE_CODE_OAUTH_TOKEN sul VPS). launchd/systemd hanno un PATH minimo:
+# rendiamo visibile la CLI installata da npm (l'adapter ha comunque i suoi
+# fallback hardcoded, questo è cintura+bretelle).
+export PATH="$HOME/.npm-global/bin:/usr/local/bin:/opt/homebrew/bin:$PATH"
+
 # Override per il rail server (systemd setta MYVILLA_ROOT=/opt/myvilla/LA);
 # default = runtime storico del Mac, così il launchd resta compatibile.
 PROJECT_ROOT="${MYVILLA_ROOT:-/Users/ivogiuliani/Code/myvilla-la}"
@@ -163,6 +170,62 @@ trap 'rmdir "$LOCK_FILE" 2>/dev/null' EXIT
 log "=== daily_publish START ==="
 log "PWD: $(pwd)"
 log "Python: $(which python3) ($(python3 --version 2>&1))"
+
+# ── Controllo ambiente LLM (solo log, non bloccante) ─────────────────
+# Stato dell'adapter: backend, binario CLI, auth (loggedIn/subscription),
+# alias modello per tier. Se la CLI manca o non è autenticata gli script
+# degradano da soli (LLMUnavailable → step saltato): qui lo rendiamo
+# visibile nel log del giorno, così il digest di debug lo mostra.
+LLM_STATUS="$(python3 _system/scripts/llm_client.py --status 2>/dev/null | python3 -c '
+import json, sys
+try:
+    s = json.load(sys.stdin)
+except Exception:
+    print("status non leggibile"); sys.exit(0)
+auth = s.get("auth") or {}
+logged = auth.get("loggedIn") if isinstance(auth, dict) else None
+sub = auth.get("subscriptionType", "?") if isinstance(auth, dict) else "?"
+backend = s.get("backend"); cli = s.get("cli") or "ASSENTE"
+tok = s.get("oauth_token_in_env"); key = s.get("api_key_in_env"); models = s.get("models")
+print(f"backend={backend} cli={cli} loggedIn={logged} subscription={sub} "
+      f"oauth_token_env={tok} api_key_env={key} models={models}")
+' 2>/dev/null)"
+log "LLM: ${LLM_STATUS:-status non disponibile}"
+case "$LLM_STATUS" in
+    *"cli=ASSENTE"*)     log "  ⚠ Claude Code CLI non trovata: gli step LLM verranno saltati (npm i -g @anthropic-ai/claude-code)";;
+    *"loggedIn=False"*)  log "  ⚠ Claude Code non autenticata: gli step LLM verranno saltati (claude login / CLAUDE_CODE_OAUTH_TOKEN)";;
+esac
+case "$LLM_STATUS" in
+    *"api_key_env=True"*) log "  ⚠ ANTHROPIC_API_KEY ancora nell'ambiente/.env: ignorata dall'adapter, ma va rimossa (policy abbonamento)";;
+esac
+if [ "${MYVILLA_LLM_BACKEND:-}" = "api" ]; then
+    log "  ⚠ MYVILLA_LLM_BACKEND=api: backend a consumo (consentito SOLO con MYVILLA_ALLOW_API=1, emergenza)"
+fi
+
+# Riepilogo delle chiamate LLM del giorno (da _system/logs/llm_calls.jsonl).
+# Chiamata all'END: la riga "billed" deve restare 0.
+log_llm_usage() {
+    local f="${LOG_DIR}/llm_calls.jsonl"
+    [ -f "$f" ] || { log "LLM oggi: nessuna chiamata registrata"; return 0; }
+    local summary
+    summary="$(grep "\"ts\": \"${TODAY}" "$f" 2>/dev/null | python3 -c '
+import json, sys, collections
+n = 0; billed = 0; other = 0; cost = 0.0; tiers = collections.Counter()
+for line in sys.stdin:
+    try: e = json.loads(line)
+    except Exception: continue
+    n += 1; tiers[e.get("tier")] += 1
+    billed += 1 if e.get("billed") else 0
+    other += 1 if e.get("backend") != "claude_code" else 0
+    cost += e.get("cost_reported_usd") or 0
+print(f"{n} chiamate {dict(tiers)} · backend non-CLI={other} · billed={billed} · equivalente API ${cost:.2f} (non fatturato)")
+' 2>/dev/null)"
+    log "LLM oggi: ${summary:-n/d}"
+    case "$summary" in
+        *"billed=0"*) ;;
+        *"billed="*) log "  ⚠ chiamate FATTURATE rilevate oggi (backend api): verificare _system/logs/llm_calls.jsonl";;
+    esac
+}
 
 # ── Self-heal git + Sync + cross-rail guard ────────────────────────
 # CAUSA RADICE della doppia digest (21-22/6): un rebase rimasto APPESO da un
@@ -376,6 +439,9 @@ if [ "${DRY_RUN:-0}" != "1" ]; then
         fi
     fi
 fi
+
+# Riepilogo chiamate LLM del giorno (solo log).
+log_llm_usage
 
 # Riga canonica SOLO a successo: i poll successivi della giornata
 # diventano no-op. Su fallimento il poll dopo 30 min ritenta.

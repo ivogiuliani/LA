@@ -17,36 +17,38 @@ from pathlib import Path
 
 import yaml
 
-try:
-    import anthropic
-    ANTHROPIC_OK = True
-except ImportError:
-    ANTHROPIC_OK = False
-
 # ── Paths ────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).resolve().parent
 
-# ── Auto-model: tier risolto via model_resolver — upgrade automatico
-# ai modelli più recenti appena compaiono su /v1/models (policy Ivo
-# 2026-06-10). Fallback hardcoded se il resolver non è importabile:
-# il modello non deve MAI bloccare la pipeline.
+# ── LLM: unico accesso ai modelli Claude = llm_client (Claude Code
+# headless, abbonamento claude.ai — policy Ivo 2026-09-16: niente API a
+# consumo). Si chiede un TIER ("heavy" per i social); un model id
+# esplicito (--model) resta un override opzionale mappato per famiglia.
+# Se l'adapter non è importabile la generazione viene saltata, mai crash.
 try:
     import sys as _sys
     if str(SCRIPT_DIR) not in _sys.path:
         _sys.path.insert(0, str(SCRIPT_DIR))
-    from model_resolver import resolve as _resolve_model
-except Exception:  # noqa: BLE001
-    def _resolve_model(tier, _fb={"writer": "claude-opus-4-8",
-                                  "heavy": "claude-opus-4-8",
-                                  "balanced": "claude-sonnet-4-6",
-                                  "cheap": "claude-haiku-4-5"}):
-        return _fb.get(tier, "claude-sonnet-4-6")
+    from llm_client import complete as _llm_complete, LLMUnavailable, LLMRefused
+    LLM_OK = True
+except Exception as _llm_import_err:  # noqa: BLE001
+    LLM_OK = False
+
+    class LLMUnavailable(RuntimeError):  # type: ignore[no-redef]
+        pass
+
+    class LLMRefused(RuntimeError):  # type: ignore[no-redef]
+        pass
+
+    def _llm_complete(*_a, **_k):
+        raise LLMUnavailable(f"llm_client non importabile: {_llm_import_err}")
 # Linee guida social ufficiali (tono di voce + obiettivo) — fonte unica.
 try:
     from social_guidelines import VOICE_RULES, IMAGE_STYLE_HINT, X_SCOPE
 except Exception:  # noqa: BLE001
     VOICE_RULES, IMAGE_STYLE_HINT, X_SCOPE = "", "", ""
-_HEAVY_MODEL = _resolve_model("heavy")
+_HEAVY_TIER = "heavy"
+_HEAVY_MODEL = None   # None → tier "heavy" via llm_client; --model = override
 SYSTEM_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SYSTEM_DIR.parent
 CONFIG_DIR = SYSTEM_DIR / "config"
@@ -361,14 +363,24 @@ def _sanitize_posts(posts):
     return posts
 
 
+def _llm_text(prompt, *, model=None, max_tokens=4096):
+    """Una chiamata testo via llm_client (system = SOCIAL_SYSTEM_PROMPT),
+    con strip dei code-fence. Solleva LLMUnavailable/LLMRefused: il
+    chiamante le cattura e SALTA lo step (la pipeline non si ferma)."""
+    r = _llm_complete(prompt, system=SOCIAL_SYSTEM_PROMPT, tier=_HEAVY_TIER,
+                      model=model, max_tokens=max_tokens)
+    text = (r.text or "").strip()
+    if text.startswith("```"):
+        text = re.sub(r'^```json?\n?', '', text)
+        text = re.sub(r'\n?```$', '', text)
+    return text
+
+
 def generate_reactive_posts(items, model=_HEAVY_MODEL):
     """Generate reactive social posts from radar signals."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
-        print("  [Social] No valid API key — skipping generation")
+    if not LLM_OK:
+        print("  [Social] llm_client non disponibile — skipping generation")
         return []
-
-    client = anthropic.Anthropic(api_key=api_key)
 
     items_json = json.dumps([{
         "index": i,
@@ -386,19 +398,13 @@ def generate_reactive_posts(items, model=_HEAVY_MODEL):
     prompt = REACTIVE_PROMPT.format(items_json=items_json)
 
     try:
-        response = client.messages.create(
-            model=model,
-            max_tokens=4096,
-            system=SOCIAL_SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
-        if text.startswith("```"):
-            text = re.sub(r'^```json?\n?', '', text)
-            text = re.sub(r'\n?```$', '', text)
+        text = _llm_text(prompt, model=model, max_tokens=4096)
         posts = _sanitize_posts(json.loads(text))
         print(f"  [Social] Generated {len(posts)} reactive posts")
         return posts
+    except (LLMUnavailable, LLMRefused) as e:
+        print(f"  [Social] LLM non disponibile — skipping generation ({e})")
+        return []
     except Exception as e:
         print(f"  [Social] Error: {e}")
         return []
@@ -406,11 +412,8 @@ def generate_reactive_posts(items, model=_HEAVY_MODEL):
 
 def generate_companion_posts(articles, model=_HEAVY_MODEL):
     """Generate social companion posts for Journal articles."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
+    if not LLM_OK:
         return []
-
-    client = anthropic.Anthropic(api_key=api_key)
 
     articles_json = json.dumps([{
         "index": i,
@@ -424,19 +427,13 @@ def generate_companion_posts(articles, model=_HEAVY_MODEL):
     prompt = COMPANION_PROMPT.format(articles_json=articles_json)
 
     try:
-        response = client.messages.create(
-            model=model,
-            max_tokens=8192,
-            system=SOCIAL_SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
-        if text.startswith("```"):
-            text = re.sub(r'^```json?\n?', '', text)
-            text = re.sub(r'\n?```$', '', text)
+        text = _llm_text(prompt, model=model, max_tokens=8192)
         posts = json.loads(text)
         print(f"  [Social] Generated {len(posts)} companion posts")
         return posts
+    except (LLMUnavailable, LLMRefused) as e:
+        print(f"  [Social] LLM non disponibile — skipping companions ({e})")
+        return []
     except Exception as e:
         print(f"  [Social] Error: {e}")
         return []
@@ -454,15 +451,13 @@ def generate_reddit_posts(articles, allowlist, model=_HEAVY_MODEL):
     Solo i fit con subreddit IN allowlist e con titolo+corpo non vuoti
     sopravvivono (il modello può restituire subreddit:"" per scartare i
     pezzi puramente visivi, che su Reddit non hanno appiglio)."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
-        print("  [Reddit] No valid API key — skipping generation")
+    if not LLM_OK:
+        print("  [Reddit] llm_client non disponibile — skipping generation")
         return []
     if not allowlist:
         print("  [Reddit] Nessun submission_subreddits in config — skip")
         return []
 
-    client = anthropic.Anthropic(api_key=api_key)
     articles_json = json.dumps([{
         "index": i,
         "slug": a.get("slug", ""),
@@ -476,17 +471,11 @@ def generate_reddit_posts(articles, allowlist, model=_HEAVY_MODEL):
         allowlist=", ".join(allowlist), articles_json=articles_json)
 
     try:
-        response = client.messages.create(
-            model=model,
-            max_tokens=8192,
-            system=SOCIAL_SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
-        if text.startswith("```"):
-            text = re.sub(r'^```json?\n?', '', text)
-            text = re.sub(r'\n?```$', '', text)
+        text = _llm_text(prompt, model=model, max_tokens=8192)
         posts = json.loads(text)
+    except (LLMUnavailable, LLMRefused) as e:
+        print(f"  [Reddit] LLM non disponibile — skip ({e})")
+        return []
     except Exception as e:  # noqa: BLE001
         print(f"  [Reddit] Error: {e}")
         return []
@@ -682,7 +671,8 @@ def main():
     parser.add_argument("--output", "-o", default=None,
                         help="Output directory (default: _system/social/posts/reactive/)")
     parser.add_argument("--model", default=_HEAVY_MODEL,
-                        help="Claude model for generation")
+                        help="Override modello (alias opus/sonnet/haiku o id); "
+                             "default: tier heavy via llm_client")
     parser.add_argument("--min-score", type=int, default=15,
                         help="Min radar score for reactive posts (default: 15)")
     parser.add_argument("--max-posts", type=int, default=5,

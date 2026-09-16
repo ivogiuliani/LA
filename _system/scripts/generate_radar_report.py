@@ -23,11 +23,20 @@ from pathlib import Path
 
 import yaml
 
+# ── LLM: unico accesso ai modelli Claude = llm_client (Claude Code
+# headless, abbonamento; policy 2026-09-16: niente API a consumo).
 try:
-    import anthropic
-    ANTHROPIC_OK = True
-except ImportError:
-    ANTHROPIC_OK = False
+    from llm_client import complete as _llm_complete, LLMUnavailable, LLMRefused
+    LLM_OK = True
+except Exception as _llm_exc:  # noqa: BLE001
+    LLM_OK = False
+    print(f"WARNING: llm_client non importabile ({_llm_exc}) — step AI saltati")
+
+    class LLMUnavailable(RuntimeError):  # type: ignore[no-redef]
+        pass
+
+    class LLMRefused(RuntimeError):  # type: ignore[no-redef]
+        pass
 
 from api_health_banner import (
     render_api_health_banner_html,
@@ -262,11 +271,7 @@ def estimate_unknown_reach(items, model=_HEAVY_MODEL):
     Caches results in _system/radar/reach_cache.json to avoid re-estimating
     the same publication on future runs.
     """
-    if not ANTHROPIC_OK:
-        return items
-
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
+    if not LLM_OK:
         return items
 
     # Collect unknown publications (dedup)
@@ -315,13 +320,8 @@ Return format (strict JSON, no markdown):
 {{"publication1.com": 1.5, "publication2.com": 0.3}}"""
 
         try:
-            client = anthropic.Anthropic(api_key=api_key)
-            response = client.messages.create(
-                model=model,
-                max_tokens=1024,
-                messages=[{"role": "user", "content": prompt}],
-            )
-            text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
+            response = _llm_complete(prompt, tier="heavy", model=model, max_tokens=1024)
+            text = (response.text or "").strip()
             # Strip code fences if present
             if text.startswith("```"):
                 text = re.sub(r"^```(?:json)?\s*\n?", "", text)
@@ -342,6 +342,8 @@ Return format (strict JSON, no markdown):
                 except (TypeError, ValueError):
                     continue
             _save_reach_cache(cache)
+        except (LLMUnavailable, LLMRefused) as e:
+            print(f"  [Reach] modello non disponibile ({type(e).__name__}): {str(e)[:120]}")
         except Exception as e:
             print(f"  [Reach] AI estimate failed: {e}")
 
@@ -884,13 +886,10 @@ def _rewrite_for_editorial(
 
 
 def generate_drafts(items, model=_HEAVY_MODEL):
-    """Generate email/tweet/reddit drafts for qualified items using Opus."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
-        print("  [Drafts] Skipped — no valid Anthropic API key")
+    """Generate email/tweet/reddit drafts for qualified items (tier heavy via llm_client)."""
+    if not LLM_OK:
+        print("  [Drafts] Skipped — llm_client non disponibile")
         return items
-
-    client = anthropic.Anthropic(api_key=api_key)
 
     # Build prompt with all items
     items_desc = []
@@ -961,13 +960,14 @@ Return a JSON array with one object per item:
 Return ONLY valid JSON, no markdown fences."""
 
     try:
-        response = client.messages.create(
-            model=model,
-            max_tokens=8192,
-            system=DRAFT_SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        response_text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
+        try:
+            response = _llm_complete(prompt, system=DRAFT_SYSTEM_PROMPT, tier="heavy",
+                                     model=model, max_tokens=8192)
+        except (LLMUnavailable, LLMRefused) as _le:
+            print(f"  [Drafts] modello non disponibile ({type(_le).__name__}: "
+                  f"{str(_le)[:120]}) — nessuna bozza generata")
+            return items
+        response_text = (response.text or "").strip()
         # Strip markdown code fences if present
         if response_text.startswith("```"):
             response_text = re.sub(r"^```(?:json)?\s*\n?", "", response_text)
@@ -1241,15 +1241,8 @@ def generate_viral_reply_drafts(viral_items, model=_HEAVY_MODEL):
     Uses a different prompt/voice from the journalist-pitch drafts.
     Adds `viral_reply` dict to each item with body + optional skip flag.
     """
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not ANTHROPIC_OK or not api_key or api_key.startswith("sk-ant-PLACEHOLDER"):
-        print("  [ViralReply] Skipped — no valid Anthropic API key")
-        return viral_items
-
     if not viral_items:
         return viral_items
-
-    client = anthropic.Anthropic(api_key=api_key)
 
     items_desc = []
     for i, item in enumerate(viral_items):
@@ -1304,16 +1297,14 @@ Return ONLY a valid JSON array of {len(items_desc)} objects, no markdown fences.
 
     try:
         try:
-            response = client.messages.create(
-                model=model,
-                max_tokens=4096,
-                system=VIRAL_REPLY_SYSTEM_PROMPT,
-                messages=[{"role": "user", "content": prompt}],
-            )
-            response_text = "".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
+            if not LLM_OK:
+                raise LLMUnavailable("llm_client non importabile")
+            response = _llm_complete(prompt, system=VIRAL_REPLY_SYSTEM_PROMPT,
+                                     tier="heavy", model=model, max_tokens=4096)
+            response_text = (response.text or "").strip()
         except Exception as _ae:  # noqa: BLE001
-            # Anthropic giù/senza crediti → fallback Gemini.
-            print(f"  [ViralReply] Anthropic non disponibile "
+            # Claude non disponibile (limite d'uso / CLI) → fallback Gemini.
+            print(f"  [ViralReply] Claude non disponibile "
                   f"({type(_ae).__name__}) → fallback Gemini")
             response_text = _gemini_complete(
                 VIRAL_REPLY_SYSTEM_PROMPT + "\n\n" + prompt)
