@@ -33,7 +33,7 @@ import argparse
 import json
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -86,9 +86,20 @@ def _load_outlets() -> tuple[list, dict]:
     return data.get("outlets", []), data.get("cadence", {})
 
 
+BACKOFF_DAYS = 30   # non ricontattare (né ritentare) lo stesso outlet prima di 30 gg
+
+
 def _already_pitched() -> set:
-    """Domains already feature-pitched (any status), from the log."""
+    """Domains to skip in this run, from the log.
+
+    - esiti definitivi (sent, declined, ...) escludono l'outlet per sempre;
+    - 'paused' (ex no_email) e 'queued_review' escludono l'outlet per
+      BACKOFF_DAYS giorni dall'ultimo tentativo, poi si può ritentare:
+      prima del 2026-09-16 il no_email veniva ritentato OGNI giorno
+      (891 righe di log inutili in 5 mesi).
+    """
     done = set()
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=BACKOFF_DAYS)).isoformat()
     if PITCH_LOG.exists():
         for line in PITCH_LOG.read_text(encoding="utf-8").splitlines():
             line = line.strip()
@@ -99,10 +110,14 @@ def _already_pitched() -> set:
             except json.JSONDecodeError:
                 continue
             status = r.get("status") or ""
-            # Solo gli esiti DEFINITIVI escludono l'outlet; no_email e
-            # queued_review devono poter essere ritentati nei run futuri.
-            if r.get("domain") and status not in ("no_email", "queued_review"):
-                done.add(r["domain"].lower())
+            dom = (r.get("domain") or "").lower()
+            if not dom:
+                continue
+            if status in ("no_email", "paused", "queued_review"):
+                if (r.get("logged_at") or "") >= cutoff:
+                    done.add(dom)          # backoff attivo
+                continue
+            done.add(dom)                  # esito definitivo
     return done
 
 
@@ -145,7 +160,7 @@ def _generate_pitch(outlet: dict) -> tuple[str, str] | None:
 
     prompt = f"""You are Lisa Monelli, My Villa's media-relations lead, writing a FEATURE-PITCH email.
 
-This proposes that the publication writes a feature / profile ABOUT My Villa — our company, approach, and houses. It is NOT a reaction to one of their articles.
+This proposes that the publication writes a feature / profile ABOUT My Villa — our company, approach, and concept designs. It is NOT a reaction to one of their articles.
 
 TARGET PUBLICATION: {outlet['name']} ({outlet['domain']})
 THEIR BEAT: {outlet.get('beat','luxury real estate & design')}
@@ -159,7 +174,8 @@ Write the email. Rules:
 - Subject: short, specific to this publication, no clickbait.
 - Body ≤ 160 words, warm, human, editorial peer-to-peer tone, no stacked superlatives.
 - One idea: My Villa would be a strong feature for THEIR specific readers because we bring European construction resilience + Italian livability in exposed reinforced concrete (cemento a vista) to LA — exactly as insurability and fire-resilience reshape what a luxury home means here. Tie the relevance to their beat.
-- One concrete low-friction offer (first look at a current build / renders + photos / short talk with our founder Paolo Mezzalama).
+- One concrete low-friction offer (renders and drawings of our concept typologies / a short talk with our founder Paolo Mezzalama).
+- My Villa has NOT built or completed any villa: our four typologies are concept designs. Never imply a construction site, a completed house, photos of built work, or clients moved in.
 - One open question at the end.
 - FOUNDER NAME: he is "Paolo Mezzalama". Refer to him as "Paolo" or "Paolo Mezzalama" — NEVER invent or use any other surname.
 - Standard signature:
@@ -184,7 +200,12 @@ Subject: <subject>
     try:
         import urllib.error
         with urllib.request.urlopen(req, timeout=60) as r:
-            txt = json.load(r)["content"][0]["text"].strip()
+            blocks = json.load(r).get("content") or []
+            # Solo i blocchi di testo: i modelli recenti possono anteporre
+            # blocchi non-text (prima: content[0]["text"] → KeyError 'text').
+            txt = "\n".join(b.get("text", "") for b in blocks if b.get("type") == "text").strip()
+            if not txt:
+                raise ValueError("risposta senza blocchi di testo")
     except Exception as e:  # noqa: BLE001
         print(f"    [pitch] generation failed: {e}")
         return None
@@ -228,8 +249,10 @@ def run(*, dry_run=False, max_per_run=None, only=None) -> dict:
             queued.append({"outlet": outlet["name"], "domain": dom,
                            "reason": "email non trovata"})
             if not dry_run:
+                # 'paused': l'outlet resta in pausa BACKOFF_DAYS giorni
+                # (prima 'no_email' veniva ritentato ogni run).
                 _log_pitch({"domain": dom, "outlet": outlet["name"],
-                            "status": "no_email"})
+                            "status": "paused", "reason": "no_email"})
             continue
 
         gen = _generate_pitch(outlet)

@@ -1,0 +1,42 @@
+# ── My Villa — Caddyfile per content.myvilla.la (Fase 2, lead + chat API) ──
+# Sostituisce il blocco generato da setup_vps.sh (passo 6). Le route API
+# pubbliche NON hanno basic_auth (le chiama il browser del visitatore su
+# myvilla.la); il pannello resta protetto da password.
+#
+#   /api/lead*   → lead_api.py  :8788   (POST, JSON o form)
+#   /api/chat*   → chat_api.py  :8789   (POST)
+#   /api/healthz → lead_api.py  :8788   (GET; chat: /api/chat/healthz)
+#   tutto il resto → approve.py :8787   dietro basic_auth
+#
+# Sostituire IVO_HASH con l'hash già presente nel Caddyfile attuale
+# (caddy hash-password --plaintext "…") — oppure incollare questo blocco
+# sopra quello esistente e mantenere il suo basic_auth.
+
+content.myvilla.la {
+    encode gzip
+
+    # Pubblico, senza password: solo i path API esatti.
+    @lead_api path /api/lead /api/lead/* /api/healthz
+    handle @lead_api {
+        reverse_proxy 127.0.0.1:8788 {
+            header_up X-Forwarded-For {remote_host}
+        }
+    }
+
+    @chat_api path /api/chat /api/chat/*
+    handle @chat_api {
+        # /api/chat/healthz → /api/healthz del servizio chat
+        uri replace /api/chat/healthz /api/healthz
+        reverse_proxy 127.0.0.1:8789 {
+            header_up X-Forwarded-For {remote_host}
+        }
+    }
+
+    # Pannello di review: password (invariata).
+    handle {
+        basic_auth {
+            ivo IVO_HASH
+        }
+        reverse_proxy 127.0.0.1:8787
+    }
+}

@@ -1,0 +1,85 @@
+name: Weekly Backlinks
+
+# Motore backlink (Fase 2): ogni lunedì 06:00 UTC
+#   - backlink_check.py     → status.json + ledger (link live/persi verso myvilla.la)
+#   - mention_monitor.py    → mentions.json + nuovi prospect needs_contact (Brave + Google CSE)
+#   - resource_page_audit.py (solo settimane ISO pari) → resource_audit.json
+# Sono SOLO letture web + scritture locali: nessuna email parte da qui.
+# Commit [skip ci] dei soli file dati: _system/backlinks/*.json + ledger.jsonl.
+# (prospects.yml resta a gestione locale/manuale: backlink_check legge il ledger
+#  per non ri-segnalare come "nuovo" un link già visto.)
+#
+# Secrets: BRAVE_API_KEY, GOOGLE_CSE_API_KEY, GOOGLE_CSE_ENGINE_ID (opzionali:
+# senza, mention_monitor salta la ricerca con un messaggio). BING_WMT_API_KEY
+# opzionale per --bing.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"     # lunedì 06:00 UTC
+  workflow_dispatch:
+    inputs:
+      audit:
+        description: "Forza resource_page_audit anche in settimana dispari"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-backlinks
+  cancel-in-progress: false
+
+jobs:
+  backlinks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml requests
+
+      - name: Backlink check
+        run: python3 _system/scripts/backlink_check.py --bing
+        env:
+          BING_WMT_API_KEY: ${{ secrets.BING_WMT_API_KEY }}
+
+      - name: Mention monitor
+        run: python3 _system/scripts/mention_monitor.py
+        env:
+          BRAVE_API_KEY: ${{ secrets.BRAVE_API_KEY }}
+          GOOGLE_CSE_API_KEY: ${{ secrets.GOOGLE_CSE_API_KEY }}
+          GOOGLE_CSE_ENGINE_ID: ${{ secrets.GOOGLE_CSE_ENGINE_ID }}
+
+      - name: Resource page audit (settimane ISO pari)
+        run: |
+          WEEK=$(date -u +%V)
+          if [ $((10#$WEEK % 2)) -eq 0 ] || [ "${{ github.event.inputs.audit }}" = "true" ]; then
+            python3 _system/scripts/resource_page_audit.py
+          else
+            echo "Settimana ISO $WEEK dispari: audit saltato."
+          fi
+
+      - name: Commit data files
+        run: |
+          git config user.name  "My Villa Bot"
+          git config user.email "info@myvilla.la"
+          git add _system/backlinks/*.json _system/backlinks/ledger.jsonl
+          if git diff --cached --quiet; then
+            echo "Nessun aggiornamento."
+          else
+            git commit -m "Weekly backlinks $(date -u +%Y-%m-%d) [skip ci]"
+            for i in 1 2 3; do
+              git pull --rebase origin main || true
+              if git push origin HEAD:main; then break; fi
+              sleep 10
+            done
+          fi

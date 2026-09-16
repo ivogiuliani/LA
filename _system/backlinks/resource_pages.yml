@@ -1,0 +1,140 @@
+# My Villa — pagine risorse (.gov/.org/.edu) su ricostruzione LA/Malibu/Palisades
+# e resilienza wildfire, da auditare con resource_page_audit.py.
+# Logica: se una pagina ha link esterni rotti, offriamo in dono una risorsa
+# (Westside Rebuild Tracker su /research/, checklist insurable-home-california.html)
+# con una bozza email SOLO in _drafts/backlinks/resource_outreach/ (mai invio).
+#
+# contact: solo form/caselle generiche istituzionali già pubbliche; vuoto = da leggere sulla pagina.
+# gift: tracker | checklist (quale risorsa proporre).
+# Fonte: WebSearch 2026-09-16; la raggiungibilità viene verificata dallo script a ogni run.
+
+pages:
+  # ── LA County / City / State (.gov) ──
+  - id: lacounty-recovers-rebuilding
+    url: "https://recovery.lacounty.gov/rebuilding/"
+    org: "LA County Recovers"
+    gift: tracker
+  - id: lacounty-recovers-palisades
+    url: "https://recovery.lacounty.gov/disasters/palisades-fire/"
+    org: "LA County Recovers"
+    gift: tracker
+  - id: lacounty-recovers-city-la-palisades
+    url: "https://recovery.lacounty.gov/city-of-los-angeles-palisades-fire-recovery-information-resources/"
+    org: "LA County Recovers"
+    gift: tracker
+  - id: lacounty-recovers-malibu
+    url: "https://recovery.lacounty.gov/malibu-fire-recovery-information-resources/"
+    org: "LA County Recovers"
+    gift: checklist
+  - id: lacounty-recovers-altadena
+    url: "https://recovery.lacounty.gov/altadena/"
+    org: "LA County Recovers"
+    gift: tracker
+  - id: lacounty-recovers-eaton
+    url: "https://recovery.lacounty.gov/disasters/eaton-fire/"
+    org: "LA County Recovers"
+    gift: tracker
+  - id: cd11-palisades-recovery
+    url: "https://cd11.lacity.gov/palisades-recovery-updates"
+    org: "LA City Council District 11"
+    gift: tracker
+  - id: ca-gov-lafires
+    url: "https://www.ca.gov/LAfires/"
+    org: "State of California"
+    gift: tracker
+  - id: ca-gov-rebuilding-la
+    url: "https://www.ca.gov/lafires/rebuilding-la/"
+    org: "State of California"
+    gift: tracker
+  - id: ca-gov-track-progress
+    url: "https://www.ca.gov/lafires/track-progress/"
+    org: "State of California"
+    gift: tracker
+  - id: dfpi-lafires
+    url: "https://dfpi.ca.gov/lafires/"
+    org: "CA Dept. of Financial Protection & Innovation"
+    gift: checklist
+  - id: scag-fire-recovery
+    url: "https://scag.ca.gov/news/resources-near-and-long-term-fire-recovery"
+    org: "Southern California Association of Governments"
+    gift: tracker
+  - id: sd33-wildfire-resources
+    url: "https://sd33.senate.ca.gov/index.php/resource-corner/windstorm-wildfire-resources"
+    org: "CA Senate District 33"
+    gift: checklist
+  - id: malibucity-firesafety
+    url: "https://www.malibucity.org/firesafety"
+    org: "City of Malibu"
+    gift: checklist
+  - id: malibucity-home-fire-safety
+    url: "https://www.malibucity.org/1056/Home-Fire-Safety"
+    org: "City of Malibu"
+    gift: checklist
+  - id: calosba-outsmart-disaster
+    url: "https://outsmartdisaster.calosba.ca.gov/support-and-resources-for-los-angeles-area-wildfire-recovery/"
+    org: "CalOSBA Outsmart Disaster"
+    gift: tracker
+  - id: sandiego-wildfire-prepared
+    url: "https://www.sandiegocounty.gov/content/sdc/sdcfa/crr-main-menu/CommunityRiskReduction.html"
+    org: "San Diego County Fire"
+    gift: checklist
+
+  # ── Università (.edu) ──
+  - id: ucanr-fire-network-prepare-home
+    url: "https://ucanr.edu/program/uc-anr-fire-network/prepare-your-home"
+    org: "UC ANR Fire Network"
+    gift: checklist
+  - id: ucanr-fire-network-preparedness
+    url: "https://ucanr.edu/program/uc-anr-fire-network/wildfire-preparedness"
+    org: "UC ANR Fire Network"
+    gift: checklist
+  - id: ucanr-central-sierra-fire-resistant
+    url: "https://ucanr.edu/site/ucce-central-sierra-living-fire/fire-resistant-home-construction"
+    org: "UCCE Central Sierra"
+    gift: checklist
+  - id: ucanr-central-sierra-resources
+    url: "https://ucanr.edu/county/ucce-central-sierra/central-sierra-fire-safety-resources"
+    org: "UCCE Central Sierra"
+    gift: checklist
+  - id: ucanr-la-fire
+    url: "https://celosangeles.ucanr.edu/Natural_Resources/Fire"
+    org: "UCCE Los Angeles"
+    gift: checklist
+
+  # ── Community / nonprofit (.org) ──
+  - id: pacpalicc-fire-updates
+    url: "https://pacpalicc.org/index.php/palisades-fire-information-updates-2026/"
+    org: "Pacific Palisades Community Council"
+    gift: tracker
+  - id: maliburebuilds-community-resources
+    url: "https://maliburebuilds.org/community-resources/"
+    org: "Malibu Rebuilds"
+    gift: checklist
+  - id: altadena-collective-homeowners
+    url: "https://www.altadenacollective.org/homeowners"
+    org: "Altadena Collective"
+    gift: tracker
+  - id: altadena-chamber-recovery
+    url: "https://www.altadenachamber.org/en/wildfire-recovery"
+    org: "Altadena Chamber of Commerce"
+    gift: tracker
+  - id: eaton-fire-collab-resources
+    url: "https://www.eatonfirecollaborative.org/trustedcommunityresources"
+    org: "Eaton Fire Collaborative"
+    gift: tracker
+  - id: larises-rebuild
+    url: "https://larises.org/rebuild/"
+    org: "LA Rises"
+    gift: tracker
+  - id: cafiresafecouncil-map
+    url: "https://cafiresafecouncil.org/resources/map-of-fire-safe-councils/"
+    org: "California Fire Safe Council"
+    gift: checklist
+  - id: wildfireprepared-home
+    url: "https://wildfireprepared.org/"
+    org: "IBHS Wildfire Prepared Home"
+    gift: checklist
+  - id: malibu-lakeside-fire-safety
+    url: "https://malibulakeside.com/fire-safety/"
+    org: "Malibu Lakeside (501c3)"
+    gift: checklist

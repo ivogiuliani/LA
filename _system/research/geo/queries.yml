@@ -1,0 +1,65 @@
+# GEO monitor — domande "da cliente" poste ai motori AI (Claude + web search,
+# Gemini + Google Search grounding) per misurare se e come My Villa viene
+# citata. Letto da _system/scripts/geo_monitor.py. Modificare qui, non nello
+# script. `group`: brand | category | cost | insurance | design | rebuild.
+queries:
+  - id: q01
+    group: category
+    text: "who builds fire-resistant luxury homes in Malibu"
+  - id: q02
+    group: category
+    text: "concrete home builder Los Angeles insurable"
+  - id: q03
+    group: design
+    text: "Italian villa architect Los Angeles"
+  - id: q04
+    group: cost
+    text: "how much does it cost to build a fire resistant house in Malibu 2026"
+  - id: q05
+    group: insurance
+    text: "alternatives to California FAIR Plan for a new luxury home"
+  - id: q06
+    group: brand
+    text: "My Villa Los Angeles architecture"
+  - id: q07
+    group: brand
+    text: "myvilla.la reinforced concrete villas review"
+  - id: q08
+    group: category
+    text: "best architects for a fireproof custom home in Beverly Hills"
+  - id: q09
+    group: category
+    text: "reinforced concrete luxury home builders Southern California"
+  - id: q10
+    group: insurance
+    text: "how to build a new home in California that insurers will actually cover in 2026"
+  - id: q11
+    group: insurance
+    text: "IBHS Wildfire Prepared Home luxury new construction Los Angeles architect"
+  - id: q12
+    group: rebuild
+    text: "Pacific Palisades rebuild architect fire resistant concrete"
+  - id: q13
+    group: design
+    text: "modern Italian courtyard villa design California hillside"
+  - id: q14
+    group: cost
+    text: "cost per square foot concrete luxury home Beverly Hills 2026"
+  - id: q15
+    group: design
+    text: "fair-faced concrete house architect Los Angeles museum quality finish"
+  - id: q16
+    group: category
+    text: "European architects designing wildfire resilient homes in California"
+  - id: q17
+    group: insurance
+    text: "does a concrete house lower wildfire insurance premiums in California"
+  - id: q18
+    group: rebuild
+    text: "Malibu custom home builder after wildfire non-combustible construction"
+  - id: q19
+    group: design
+    text: "biophilic luxury villa architect Los Angeles Transsolar"
+  - id: q20
+    group: brand
+    text: "who is the founder of My Villa Los Angeles Italian architect"

@@ -6,13 +6,19 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+/* CONV:CONSENT:START */
+  // Consent Mode v2 — default denied in EU/EEA/UK/CH (opt-in), granted elsewhere (notice + opt-out); stored choice and GPC/DNT honoured
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","IS","LI","NO","GB","CH"] });
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+  (function () { try { var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' }); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', { analytics_storage: 'denied' }); } catch (e) {} })();
+/* CONV:CONSENT:END */
   gtag('js', new Date());
   gtag('config', 'G-D6HJX7BNZN');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — My Villa</title>
-<meta name="description" content="Privacy Policy for My Villa. Learn how we collect, use, and protect your personal data.">
+<title>Privacy Notice — My Villa</title>
+<meta name="description" content="Privacy Notice for myvilla.la: what we collect through the briefing form and analytics, why, on which legal basis, who processes it, how long we keep it and your rights.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://myvilla.la/privacy.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,6 +109,27 @@ li {
 }
 a { color: var(--terracotta); }
 
+/* Cookie choices widget + TOC */
+.privacy-toc { margin: 0 0 32px; padding: 20px 24px; background: #F0EBE3; border-left: 2px solid var(--terracotta); }
+.privacy-toc ol { padding-left: 20px; margin: 0; columns: 2; column-gap: 32px; }
+.privacy-toc li { font-size: 13.5px; margin-bottom: 4px; break-inside: avoid; }
+.privacy-toc a { text-decoration: none; }
+.privacy-toc a:hover { text-decoration: underline; }
+.cookie-choices { margin: 20px 0 8px; padding: 20px 22px; background: var(--offblack); color: var(--cream); border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; flex-wrap: wrap; }
+.cookie-choices p { margin: 0; font-size: 14px; color: rgba(250,248,245,0.8); flex: 1; min-width: 240px; }
+.cookie-choices-btns { display: flex; gap: 10px; }
+.cookie-choices button { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 20px; border-radius: 2px; cursor: pointer; border: 1px solid transparent; transition: background 0.3s, color 0.3s; }
+.cookie-choices .cc-accept { background: var(--terracotta); color: #fff; }
+.cookie-choices .cc-accept:hover { background: #a8593e; }
+.cookie-choices .cc-decline { background: transparent; color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.3); }
+.cookie-choices .cc-decline:hover { color: #fff; border-color: #fff; }
+.cookie-status { font-size: 13px; color: var(--stone-grey); margin-bottom: 16px; }
+.placeholder { background: #FFF3D6; border: 1px dashed #C4A265; padding: 2px 6px; border-radius: 2px; }
+h2 { scroll-margin-top: 100px; }
+table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 14px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid rgba(44,44,44,0.12); vertical-align: top; line-height: 1.6; }
+th { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone-grey); font-weight: 600; }
+@media (max-width: 600px) { .privacy-toc ol { columns: 1; } table, thead, tbody, tr, th, td { display: block; } thead { display: none; } td { padding: 6px 0; border: 0; } tr { padding: 10px 0; border-bottom: 1px solid rgba(44,44,44,0.12); } }
 /* Footer */
 .footer {
   background: var(--offblack);
@@ -120,7 +147,7 @@ a { color: var(--terracotta); }
 .footer-copy a:hover { color: #fff; }
 </style>
 </head>
-<body>
+<body data-page-type="privacy">
 
 <nav class="nav">
   <a href="index.html" class="nav-logo">MY VILLA</a>
@@ -128,91 +155,236 @@ a { color: var(--terracotta); }
 </nav>
 
 <div class="privacy-container">
-  <h1 class="privacy-title">Privacy Policy</h1>
-  <div class="privacy-updated">Last updated: March 2, 2026</div>
+  <h1 class="privacy-title">Privacy Notice</h1>
+  <div class="privacy-updated">Last updated: September 2026</div>
 
-  <p>My Villa ("we," "our," or "us") is committed to protecting the privacy of visitors to our website myvilla.la (the "Site"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our Site or submit inquiries through our contact form.</p>
+  <p>This notice explains what personal data My Villa collects through myvilla.la (the "Site"), why we collect it, on which legal basis, who processes it on our behalf, how long we keep it and which rights you have. It is written to satisfy the EU General Data Protection Regulation (GDPR), the UK GDPR and the California Consumer Privacy Act (CCPA/CPRA) notice-at-collection requirements, in plain English.</p>
 
-  <h2>1. Information We Collect</h2>
-  <p><strong>Personal Data.</strong> When you submit our contact form, we may collect the following personal information:</p>
+  <div class="privacy-toc" aria-label="Contents">
+    <ol>
+      <li><a href="#controller">Who is responsible</a></li>
+      <li><a href="#what-we-collect">What we collect</a></li>
+      <li><a href="#purposes">Why, and on which legal basis</a></li>
+      <li><a href="#processors">Who processes your data</a></li>
+      <li><a href="#transfers">International transfers</a></li>
+      <li><a href="#retention">How long we keep it</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#cookies">Cookies, analytics and consent</a></li>
+      <li><a href="#dnt">Do Not Track and Global Privacy Control</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#children">Children</a></li>
+      <li><a href="#changes">Changes and contact</a></li>
+    </ol>
+  </div>
+
+  <h2 id="controller">1. Who is responsible</h2>
+  <p>The controller of your personal data is My Villa, the Los Angeles practice of IT'S Architecture.</p>
+  <p><strong>Legal entity and postal address:</strong> <span class="placeholder">[Legal entity and postal address to be confirmed]</span></p>
+  <p>For any privacy question or request, write to <a href="mailto:info@myvilla.la">info@myvilla.la</a>. We answer from that same address.</p>
+
+  <h2 id="what-we-collect">2. What we collect</h2>
+  <p><strong>Briefing and contact forms.</strong> When you request a private briefing we ask for your first name, email address and three quick choices (type of project, timeline, how you found us). Optionally you may add your last name, phone number, the location of your site, who referred you, a short message, and whether you would like occasional insights from us. The form also records technical context that helps us understand where a request comes from: the page you submitted it from, the page you arrived on, the referring site and any campaign parameters in the address (utm_*). The form contains a hidden anti-spam field that real visitors never see or fill.</p>
+  <p><strong>Email.</strong> If you write to us, we keep the correspondence, including your address and anything you choose to share.</p>
+  <p><strong>AI assistant (when active).</strong> If the Site offers a chat assistant, it is clearly labelled as automated. What you type is used to answer you and may be reviewed by our team to improve answers and, if you ask for a briefing, to prepare it. Please do not type sensitive information into it.</p>
+  <p><strong>Analytics, with your consent where required.</strong> With Google Analytics 4 we measure pages viewed, approximate location (city level), device and browser type, the referring site and interactions with buttons and forms (for example that a form was started or submitted, never what you typed into it). IP addresses are not stored by Google Analytics 4. See <a href="#cookies">section 8</a>.</p>
+  <p><strong>Server logs.</strong> Our hosting providers keep standard access logs (IP address, time, requested page, user agent) for security and operations.</p>
+  <p>We do not collect financial information, government identifiers or special categories of data through the Site, and we ask you not to send them.</p>
+
+  <h2 id="purposes">3. Why, and on which legal basis</h2>
+  <table>
+    <thead><tr><th>Purpose</th><th>Data</th><th>Legal basis (GDPR)</th></tr></thead>
+    <tbody>
+      <tr><td>Answering your briefing request, scheduling a call and preparing a feasibility read of your site</td><td>Form data, correspondence</td><td>Steps at your request prior to a contract (art. 6(1)(b))</td></tr>
+      <tr><td>Following up on an open request a small number of times, and keeping a record of the conversation</td><td>Form data, correspondence, notes</td><td>Legitimate interest in responding to enquiries we received (art. 6(1)(f))</td></tr>
+      <tr><td>Sending occasional insights on insurable building in California</td><td>Name, email</td><td>Your consent, given by ticking the box; withdrawable at any time (art. 6(1)(a))</td></tr>
+      <tr><td>Classifying and prioritising requests (for example by area and timeline) with software assistance, always reviewed by a person before any decision</td><td>Form data</td><td>Legitimate interest (art. 6(1)(f)); no solely automated decision with legal or similarly significant effect</td></tr>
+      <tr><td>Measuring how the Site is used and improving it</td><td>Analytics data</td><td>Consent in the EEA, UK and Switzerland (art. 6(1)(a)); legitimate interest elsewhere, with opt-out</td></tr>
+      <tr><td>Security, spam prevention and legal compliance</td><td>Logs, honeypot field</td><td>Legitimate interest and legal obligation (art. 6(1)(c) and (f))</td></tr>
+    </tbody>
+  </table>
+  <p><strong>California residents.</strong> The categories above correspond to "identifiers", "commercial information" and "internet activity" under the CCPA. We do not sell personal information and we do not share it for cross-context behavioural advertising. We do not use it for profiling that produces legal or similarly significant effects.</p>
+
+  <h2 id="processors">4. Who processes your data</h2>
+  <p>We do not sell, rent or trade personal data. We use the following service providers, each bound by a data processing agreement or equivalent terms:</p>
   <ul>
-    <li>First and last name</li>
-    <li>Email address</li>
-    <li>Phone number (optional)</li>
-    <li>Project description and any additional information you choose to provide</li>
+    <li><strong>Formspree</strong> (United States) receives form submissions and forwards them to our mailbox.</li>
+    <li><strong>Google Workspace</strong> (Google LLC, United States, with EU data-region options) hosts our email, calendar and document storage; <strong>Google Analytics 4</strong> provides the site measurement described in section 8.</li>
+    <li><strong>GitHub Pages</strong> (GitHub, Inc., United States) hosts the public Site and keeps access logs.</li>
+    <li><strong>A virtual private server hosted in the European Union</strong> runs the private tools with which our team receives, records and answers requests.</li>
+    <li><strong>Anthropic</strong> (Anthropic, PBC, United States) provides the language model we use to draft replies and to classify requests. Drafts and classifications are always reviewed by a person before anything is sent or decided. Anthropic does not train its models on data sent through its API.</li>
+    <li><strong>Google Fonts</strong> delivers the typefaces of the Site and receives the technical request to do so.</li>
   </ul>
-  <p><strong>Automatically Collected Data.</strong> When you visit our Site, our hosting provider (GitHub Pages) and analytics services may automatically collect certain technical data, including your IP address, browser type and version, operating system, referring URL, pages visited, and the date and time of your visit.</p>
+  <p>We may also disclose data when the law requires it, or to professional advisers bound by confidentiality.</p>
 
-  <h2>2. How We Use Your Information</h2>
-  <p>We use the information we collect to:</p>
+  <h2 id="transfers">5. International transfers</h2>
+  <p>My Villa's team works between Los Angeles and Europe, and several providers above are in the United States. Where data leaves the EEA, the UK or Switzerland we rely on the European Commission's Standard Contractual Clauses, and, for providers certified under it, on the EU-U.S. Data Privacy Framework (including its UK and Swiss extensions). You can ask us for details of the safeguard that applies to a given provider.</p>
+
+  <h2 id="retention">6. How long we keep it</h2>
   <ul>
-    <li>Respond to your inquiries and provide information about our services</li>
-    <li>Schedule private briefings and consultations</li>
-    <li>Improve our website and user experience</li>
-    <li>Comply with legal obligations</li>
+    <li><strong>Briefing requests and related correspondence:</strong> 24 months from the last exchange, unless a project starts, in which case the data becomes part of the project file.</li>
+    <li><strong>Insights emails:</strong> until you unsubscribe or until we have not heard from you for 24 months.</li>
+    <li><strong>Analytics:</strong> Google Analytics 4 retains event data for 14 months; aggregated reports may be kept longer.</li>
+    <li><strong>Server and email logs:</strong> as set by the provider, typically 30 to 90 days.</li>
   </ul>
-  <p>We do not use your personal data for automated decision-making or profiling.</p>
+  <p>You can ask us to delete your data earlier at any time (section 7).</p>
 
-  <h2>3. Legal Basis for Processing (GDPR)</h2>
-  <p>If you are located in the European Economic Area (EEA), we process your personal data based on the following legal grounds:</p>
+  <h2 id="rights">7. Your rights</h2>
+  <p>Depending on where you live, you may have the right to access the personal data we hold about you, to have it corrected or deleted, to restrict or object to its processing, to receive it in a portable format, to withdraw consent at any time (without affecting what was done before), and to lodge a complaint with a supervisory authority. California residents additionally have the right to know, to delete, to correct, to opt out of sale or sharing (we do neither) and not to be discriminated against for exercising these rights.</p>
+  <p>To exercise any right, email <a href="mailto:info@myvilla.la">info@myvilla.la</a> from the address you used with us, or tell us how we can verify it is you. We answer within one month (GDPR) or 45 days (CCPA), and we never charge for a first request. You may use an authorised agent under the CCPA; we will ask for proof of the authorisation.</p>
+
+  <h2 id="cookies">8. Cookies, analytics and consent</h2>
+  <p>The Site uses <strong>Google Analytics 4</strong>, which sets first-party cookies (<code>_ga</code>, <code>_ga_*</code>) to recognise a browser across visits and to measure use of the Site. We use Google's <em>Consent Mode</em>:</p>
   <ul>
-    <li><strong>Consent:</strong> When you voluntarily submit your information through our contact form</li>
-    <li><strong>Legitimate interest:</strong> To operate and improve our website and respond to inquiries</li>
-    <li><strong>Legal obligation:</strong> To comply with applicable laws and regulations</li>
+    <li>If your browser reports a European time zone (EEA, UK, Switzerland), no analytics cookie is set until you click <strong>Accept</strong> in the banner. If you click <strong>Decline</strong>, Google Analytics only receives cookieless, aggregate signals that do not identify your browser.</li>
+    <li>Elsewhere, analytics cookies are set by default and a small notice points here, where you can opt out.</li>
+    <li>We never use advertising cookies, and advertising features of Google Analytics are switched off.</li>
   </ul>
+  <p>Your choice is stored in your browser's local storage (key <code>myvilla_cookie_consent</code>) and in a session value that remembers where you arrived from during a visit; neither is sent to us unless you submit a form. Google Fonts may set its own technical cookies. You can also block cookies entirely in your browser settings; the Site works without them.</p>
+  <div class="cookie-status" id="cookieStatus" role="status">Loading your current choice…</div>
+  <div class="cookie-choices" id="cookieChoices">
+    <p>Change your analytics choice for this browser at any time.</p>
+    <div class="cookie-choices-btns">
+      <button type="button" class="cc-accept" onclick="mvCookieChoice('accepted')">Allow analytics</button>
+      <button type="button" class="cc-decline" onclick="mvCookieChoice('declined')">Decline analytics</button>
+    </div>
+  </div>
 
-  <h2>4. Cookies</h2>
-  <p>Our Site uses minimal cookies. We store a cookie consent preference in your browser's local storage to remember whether you have accepted or declined cookies. We do not use advertising or tracking cookies. Third-party services embedded on our Site (such as Google Fonts) may set their own cookies. You can control cookie behavior through your browser settings.</p>
+  <h2 id="dnt">9. Do Not Track and Global Privacy Control</h2>
+  <p>If your browser sends a <strong>Global Privacy Control</strong> (GPC) signal, we treat it as a request to opt out of sale or sharing of personal information, which we do not do in any case, and as a decline of analytics cookies for that browser. Browsers' older <strong>Do Not Track</strong> setting has no agreed meaning; we honour it in the same way as GPC on this Site.</p>
 
-  <h2>5. Data Sharing and Third Parties</h2>
-  <p>We do not sell, trade, or rent your personal information to third parties. We may share your data with:</p>
-  <ul>
-    <li><strong>Formspree:</strong> Our form processing service, which receives and transmits contact form submissions. Formspree's privacy policy applies to their handling of your data.</li>
-    <li><strong>GitHub Pages:</strong> Our hosting provider, which may collect server logs including IP addresses.</li>
-    <li><strong>Google Fonts:</strong> Font delivery service, which may collect usage data.</li>
-  </ul>
+  <h2 id="security">10. Security</h2>
+  <p>The Site is served over HTTPS. Form submissions travel encrypted to Formspree and to our own request endpoint. Access to the mailbox and the tools that hold requests is limited to the My Villa team, protected by two-factor authentication, and the records live outside the public website. No method of transmission or storage is completely secure, and we cannot guarantee absolute security.</p>
 
-  <h2>6. Data Retention</h2>
-  <p>We retain personal data submitted through our contact form for as long as necessary to fulfill the purposes outlined in this policy, or as required by law. You may request deletion of your data at any time by contacting us.</p>
+  <h2 id="children">11. Children</h2>
+  <p>The Site is not intended for anyone under 16 and we do not knowingly collect data from children. If you believe a child has sent us data, tell us and we will delete it.</p>
 
-  <h2>7. Your Rights</h2>
-  <p>Depending on your location, you may have the following rights regarding your personal data:</p>
-  <ul>
-    <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
-    <li><strong>Rectification:</strong> Request correction of inaccurate or incomplete data</li>
-    <li><strong>Erasure:</strong> Request deletion of your personal data</li>
-    <li><strong>Restriction:</strong> Request restriction of processing of your data</li>
-    <li><strong>Portability:</strong> Request transfer of your data in a machine-readable format</li>
-    <li><strong>Objection:</strong> Object to processing based on legitimate interest</li>
-    <li><strong>Withdraw consent:</strong> Withdraw your consent at any time</li>
-  </ul>
-  <p>To exercise any of these rights, please contact us at <a href="mailto:info@myvilla.la">info@myvilla.la</a>.</p>
-
-  <h2>8. Data Security</h2>
-  <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. Our Site uses HTTPS encryption for all data transmission. However, no method of electronic transmission or storage is 100% secure, and we cannot guarantee absolute security.</p>
-
-  <h2>9. International Transfers</h2>
-  <p>Your data may be processed in the United States where our hosting and form processing services are located. If you are located in the EEA, by submitting your data you acknowledge that it may be transferred to and processed in the United States.</p>
-
-  <h2>10. Children's Privacy</h2>
-  <p>Our Site is not intended for individuals under the age of 16. We do not knowingly collect personal data from children. If we become aware that we have collected data from a child, we will take steps to delete it promptly.</p>
-
-  <h2>11. Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last updated" date. We encourage you to review this policy periodically.</p>
-
-  <h2>12. Contact Us</h2>
-  <p>If you have any questions about this Privacy Policy or our data practices, please contact us at:</p>
+  <h2 id="changes">12. Changes and contact</h2>
+  <p>We update this notice when our practices or the law change, and we show the date at the top. Material changes to how we use data already collected will be announced on this page before they take effect.</p>
   <p>
     <strong>My Villa</strong><br>
-    Los Angeles, California, USA<br>
+    <span class="placeholder">[Legal entity and postal address to be confirmed]</span><br>
     Email: <a href="mailto:info@myvilla.la">info@myvilla.la</a><br>
     Website: <a href="https://myvilla.la">myvilla.la</a>
   </p>
 </div>
 
 <footer class="footer">
-  <div class="footer-copy">© 2026 My Villa · <a href="index.html">Home</a> · <a href="privacy.html">Privacy Policy</a></div>
+  <div class="footer-copy">© 2026 My Villa · <a href="index.html">Home</a> · <a href="privacy.html">Privacy Notice</a></div>
 </footer>
 
+<script>
+// Cookie choices on this page: same storage key and consent update as the site banner.
+function mvCookieChoice(v) {
+  try { localStorage.setItem('myvilla_cookie_consent', v); } catch (e) {}
+  try { gtag('consent', 'update', { analytics_storage: v === 'accepted' ? 'granted' : 'denied' }); } catch (e) {}
+  try { if (typeof closeCookieBanner === 'function') closeCookieBanner(); } catch (e) {}
+  mvCookieStatus();
+}
+function mvCookieStatus() {
+  var el = document.getElementById('cookieStatus'); if (!el) return;
+  var v = null; try { v = localStorage.getItem('myvilla_cookie_consent'); } catch (e) {}
+  var gpc = !!(navigator.globalPrivacyControl || navigator.doNotTrack === '1' || window.doNotTrack === '1');
+  el.textContent = v === 'accepted' ? 'Current choice for this browser: analytics allowed.' :
+                   v === 'declined' ? 'Current choice for this browser: analytics declined.' :
+                   gpc ? 'No choice saved yet. Your browser sends a privacy signal (GPC/DNT), so analytics is declined.' :
+                   'No choice saved yet for this browser.';
+}
+(function () {
+  // Honour GPC / DNT as a decline when no explicit choice exists.
+  try {
+    var v = localStorage.getItem('myvilla_cookie_consent');
+    if (!v && (navigator.globalPrivacyControl || navigator.doNotTrack === '1' || window.doNotTrack === '1')) {
+      gtag('consent', 'update', { analytics_storage: 'denied' });
+    }
+  } catch (e) {}
+  mvCookieStatus();
+})();
+</script>
+
+<!-- CONV:MVTRACK:START -->
+<script>
+(function () {
+  var PT = (document.body && document.body.getAttribute('data-page-type')) || 'page';
+  function send(ev, params) { try { if (typeof gtag === 'function') gtag('event', ev, params); } catch (e) {} }
+  function snake(k) { return k.replace(/([A-Z])/g, '_$1').toLowerCase(); }
+  document.addEventListener('click', function (e) {
+    var t = e.target; if (!t || !t.closest) return;
+    var el = t.closest('[data-ev]');
+    if (el) {
+      var p = { page_type: PT }, d = el.dataset;
+      for (var k in d) { if (k !== 'ev') p[snake(k)] = d[k]; }
+      if (!p.cta_id) p.cta_id = el.id || (el.getAttribute('href') || '').slice(0, 60) || el.tagName.toLowerCase();
+      send(d.ev, p);
+    }
+    var a = t.closest('a[href^="mailto:"]');
+    if (a) send('contact_email_click', { page_type: PT, cta_id: a.id || 'mailto', link_url: a.getAttribute('href') });
+  }, true);
+  var started = {};
+  document.addEventListener('focusin', function (e) {
+    var f = e.target && e.target.form; if (!f || f.tagName !== 'FORM') return;
+    var key = f.id || 'form'; if (started[key]) return; started[key] = true;
+    var fid = f.querySelector('input[name="form_id"]');
+    send('form_start', { page_type: PT, form_id: (fid && fid.value) || key });
+  }, true);
+  window.mvTrack = send;
+})();
+</script>
+<!-- CONV:MVTRACK:END -->
+<!-- CONV:COOKIE_UI:START -->
+<style>
+#cookieBanner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9990; background: var(--offblack, #1a1816); border-top: 1px solid rgba(196,162,101,0.2); padding: 20px var(--side-pad, 24px); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; transform: translateY(100%); transition: transform 0.4s ease; }
+#cookieBanner.visible { transform: translateY(0); }
+.cookie-text { font-family: var(--sans, 'Montserrat', sans-serif); font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.75); flex: 1; min-width: 260px; }
+.cookie-text a { color: var(--terracotta, #C2714F); text-decoration: underline; }
+.cookie-buttons { display: flex; gap: 12px; flex-shrink: 0; }
+.cookie-btn { font-family: var(--sans, 'Montserrat', sans-serif); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 10px 24px; border: none; border-radius: 2px; cursor: pointer; transition: background 0.3s, color 0.3s; }
+.cookie-accept { background: var(--terracotta, #C2714F); color: #fff; }
+.cookie-accept:hover { background: #a8593e; }
+.cookie-decline { background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); }
+.cookie-decline:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+body #cookieBanner.cookie-toast { left: auto; right: 16px; bottom: 16px; max-width: 380px; border: 1px solid rgba(196,162,101,0.3); border-radius: 4px; padding: 14px 16px; gap: 14px; flex-wrap: nowrap; }
+body #cookieBanner.cookie-toast .cookie-text { font-size: 12.5px; min-width: 0; }
+body #cookieBanner.cookie-toast .cookie-btn { padding: 8px 14px; font-size: 11px; }
+@media (max-width: 600px) { #cookieBanner { flex-direction: column; text-align: center; padding: 20px 16px; } .cookie-buttons { width: 100%; justify-content: center; } body #cookieBanner.cookie-toast { left: 16px; max-width: none; flex-direction: row; text-align: left; } body #cookieBanner.cookie-toast .cookie-buttons { width: auto; } }
+</style>
+<script>
+// ══════════════ COOKIE CONSENT — Consent Mode v2 (opt-in in EU, notice + opt-out elsewhere) ══════════════
+(function () {
+  var KEY = 'myvilla_cookie_consent';
+  function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function store(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function consent(granted) { try { gtag('consent', 'update', { analytics_storage: granted ? 'granted' : 'denied' }); } catch (e) {} }
+  var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+  var isEU = /^Europe\//.test(tz);
+  window.mvIsEU = isEU;
+  function close() {
+    var b = document.getElementById('cookieBanner');
+    document.documentElement.style.removeProperty('--mv-banner-h');
+    if (b) { b.classList.remove('visible'); setTimeout(function () { b.remove(); }, 400); }
+  }
+  window.acceptCookies = function () { store('accepted'); consent(true); close(); };
+  window.declineCookies = function () { store('declined'); consent(false); close(); };
+  window.closeCookieBanner = close;
+  if (stored()) return;
+  var banner = document.createElement('div');
+  banner.id = 'cookieBanner';
+  banner.setAttribute('role', 'region');
+  banner.setAttribute('aria-label', 'Cookie choices');
+  if (isEU) {
+    banner.innerHTML = '<div class="cookie-text">We use analytics cookies (Google Analytics) to understand how the site is used. Nothing is stored until you choose. <a href="/privacy.html#cookies">Privacy choices</a></div>' +
+      '<div class="cookie-buttons"><button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button><button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button></div>';
+  } else {
+    banner.className = 'cookie-toast';
+    banner.innerHTML = '<div class="cookie-text">This site uses analytics cookies. <a href="/privacy.html#cookies">Privacy choices</a></div>' +
+      '<div class="cookie-buttons"><button class="cookie-btn cookie-accept" onclick="acceptCookies()" aria-label="Dismiss">OK</button></div>';
+  }
+  document.body.appendChild(banner);
+  setTimeout(function () {
+    banner.classList.add('visible');
+    document.documentElement.style.setProperty('--mv-banner-h', (banner.offsetHeight || 0) + 'px');
+  }, 800);
+})();
+</script>
+<!-- CONV:COOKIE_UI:END -->
 </body>
 </html>

@@ -1,0 +1,55 @@
+name: Westside Rebuild Tracker
+
+# Rigenera ogni lunedì il Westside Rebuild Tracker (research/**) dai
+# permessi edilizi LADBS su data.lacity.org (SODA API pubblica, senza
+# token). Committa SOLO research/** con [skip ci]. Nessun secret richiesto.
+#
+# Trigger manuale: tab Actions → "Westside Rebuild Tracker" → Run workflow.
+
+on:
+  schedule:
+    - cron: "30 5 * * 1"   # lunedì 05:30 UTC (LADBS aggiorna i dati settimanalmente)
+  workflow_dispatch: {}
+
+concurrency:
+  group: rebuild-tracker
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  tracker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install matplotlib
+
+      - name: Build tracker (CSV + JSON + PNG + HTML)
+        run: python3 _system/scripts/rebuild_tracker.py
+
+      - name: Commit research/** only
+        run: |
+          git config user.name  "My Villa Bot"
+          git config user.email "info@myvilla.la"
+          git add research/
+          if git diff --cached --quiet; then
+            echo "Tracker: nessuna modifica."
+            exit 0
+          fi
+          git commit -m "Rebuild tracker weekly refresh $(date -u +%Y-%m-%d) [skip ci]"
+          for i in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git pull --rebase --autostash origin main || true
+          done
+          echo "Push fallito dopo 3 tentativi (non fatale)."

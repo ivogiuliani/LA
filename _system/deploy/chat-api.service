@@ -1,0 +1,17 @@
+[Unit]
+Description=My Villa Chat API (POST /api/chat) on 127.0.0.1:8789
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/myvilla
+EnvironmentFile=/opt/myvilla/.env
+Environment=MYVILLA_PRIVATE_DIR=/opt/myvilla-private
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /opt/myvilla/_system/scripts/chat_api.py --host 127.0.0.1 --port 8789
+Restart=always
+RestartSec=5
+User=root
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

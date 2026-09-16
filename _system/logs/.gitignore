@@ -2,3 +2,6 @@
 daily_publish_*.log
 launchd_daily_publish.*.log
 .daily_publish.lock/
+
+# Fase 2: log del poller lead (rail Mac launchd)
+lead_intake*.log

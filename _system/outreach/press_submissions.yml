@@ -1,0 +1,161 @@
+# My Villa — Press submissions (editoria architettura, concept design)
+# Usato da: _system/scripts/press_submit.py
+#
+# Per ogni testata: how (form|email), url, requirements (parole/immagini),
+# accepts_unbuilt, exclusive_days (finestra di esclusiva da rispettare PRIMA
+# di inviare ad altri), contact SOLO se casella generica verificata sulla pagina
+# ufficiale (contact_source: verified). to_verify ⇒ contact vuoto ⇒ solo bozza.
+#
+# Ordine consigliato (strategia §motore 2): Dezeen (esclusiva 7 gg) → ArchDaily
+# unbuilt → designboom → Divisare → gli altri. 1 tipologia al mese da ottobre 2026:
+# Courtyard → Hill → L → Deconstructed. Etichetta SEMPRE "concept design".
+
+cadence:
+  max_per_day: 2            # tetto locale (il policy layer applica anche budgets_per_day.submission)
+  backoff_days: 30          # non ricontattare la stessa testata prima di 30 gg
+  typology_calendar:
+    "2026-10": courtyard
+    "2026-11": hill
+    "2026-12": l
+    "2027-01": deconstructed
+
+outlets:
+  - id: dezeen
+    name: "Dezeen"
+    how: email
+    url: "https://www.dezeen.com/submit-a-story/"
+    contact: ""
+    contact_source: to_verify     # press@ citata da guide terze; pagina 403 ai bot → confermare a mano
+    accepts_unbuilt: true
+    exclusive_days: 7
+    priority: 1
+    requirements:
+      max_words: 500
+      images: "min 3000 px lato corto, JPG, no watermark, in link (WeTransfer/Dropbox), non allegati"
+      notes: "Chiedono novità + storia + immagini eccellenti; dichiarare 'concept design, unbuilt'."
+
+  - id: archdaily-unbuilt
+    name: "ArchDaily — Unbuilt Project"
+    how: form
+    url: "https://www.archdaily.com/unbuilt-project"
+    contact: "https://www.archdaily.com/unbuilt-project"
+    contact_source: verified
+    accepts_unbuilt: true
+    exclusive_days: 0
+    priority: 2
+    requirements:
+      max_words: 800
+      images: "render + planimetrie + sezioni, >= 2000 px, JPG"
+      notes: "Categoria small/medium/large; i curatori contattano se selezionato."
+
+  - id: designboom
+    name: "designboom — readers submit"
+    how: form
+    url: "https://www.designboom.com/readers-submit/"
+    contact: "https://www.designboom.com/readers-submit/"
+    contact_source: verified
+    accepts_unbuilt: true
+    exclusive_days: 0
+    priority: 3
+    requirements:
+      max_words: 500
+      images: "max 12 immagini, orizzontali, >= 1200 px"
+      notes: "Preferiscono lavoro non ancora pubblicato altrove."
+
+  - id: divisare
+    name: "Divisare"
+    how: form
+    url: "https://divisare.com/submit"
+    contact: "https://divisare.com/submit"
+    contact_source: verified
+    accepts_unbuilt: true
+    exclusive_days: 0
+    priority: 4
+    requirements:
+      max_words: 1000
+      images: "cartella zip o link; titolo, abstract, descrizione, luogo, stato (concept), anno, tipo"
+      notes: "Curatela fotografica severa: inviare solo i render migliori."
+
+  - id: metalocus
+    name: "METALOCUS (via BowerBird)"
+    how: form
+    url: "https://www.bowerbird.io/publications/metalocus"
+    contact: "https://www.bowerbird.io/publications/metalocus"
+    contact_source: verified
+    accepts_unbuilt: true
+    exclusive_days: 0
+    priority: 5
+    requirements:
+      max_words: 800
+      images: "BowerBird: immagini + testo EN/ES"
+      notes: "Verificare piano free di BowerBird prima dell'invio."
+
+  - id: e-architect
+    name: "e-architect"
+    how: email
+    url: "https://www.e-architect.com/submit-your-project"
+    contact: ""
+    contact_source: to_verify     # info@ non presente nel HTML della pagina submit → confermare
+    accepts_unbuilt: true
+    exclusive_days: 0
+    priority: 6
+    requirements:
+      max_words: 1000
+      images: "fino a 16 immagini, min 1200 px larghezza, via WeTransfer/Dropbox"
+      notes: "Testo 300-1000 parole; online entro 72h se selezionato."
+
+  - id: archeyes
+    name: "ArchEyes"
+    how: email
+    url: "https://archeyes.com/submit-work/"
+    contact: ""
+    contact_source: to_verify     # hello@ citata da snippet; pagina 403 ai bot
+    accepts_unbuilt: true
+    exclusive_days: 0
+    priority: 7
+    requirements:
+      max_words: 800
+      images: "JPG alta risoluzione + disegni"
+      notes: "Gratuito se non promozionale: tono editoriale, niente CTA."
+
+  - id: amazing-architecture
+    name: "Amazing Architecture"
+    how: email
+    url: "https://amazingarchitecture.com/pages/submit"
+    contact: ""
+    contact_source: to_verify     # info@ citata da snippet → confermare sulla pagina
+    accepts_unbuilt: true
+    exclusive_days: 0
+    priority: 8
+    requirements:
+      max_words: 500
+      images: "JPG/PNG 300 DPI, interni + esterni + schizzi + piante + render"
+      notes: "Descrizione in DOC/PDF allegato."
+
+  - id: architizer-profile
+    name: "Architizer — firm profile"
+    how: form
+    url: "https://architizer.com/firms/"
+    contact: "https://architizer.com/firms/"
+    contact_source: verified
+    accepts_unbuilt: true
+    exclusive_days: 0
+    priority: 9
+    requirements:
+      max_words: 300
+      images: "profilo + 4 progetti 'concept'"
+      notes: "B&P §5536: 'design studio', mai 'architecture firm licensed in California'."
+
+  - id: archello-profile
+    name: "Archello — profile"
+    how: form
+    url: "https://archello.com/"
+    contact: "https://archello.com/"
+    contact_source: verified
+    accepts_unbuilt: true
+    exclusive_days: 0
+    priority: 10
+    requirements:
+      max_words: 300
+      images: "profilo brand + progetti"
+      notes: "Registrazione gratuita."

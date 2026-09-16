@@ -1,51 +1,110 @@
 # robots.txt for myvilla.la
 # My Villa — Italian-Designed Luxury Villas in Los Angeles
+#
+# Regola: OGNI gruppo per-User-agent ripete gli stessi Disallow, elencati
+# PRIMA di "Allow: /" (i parser first-match-wins, es. urllib.robotparser,
+# altrimenti applicherebbero Allow: / a tutto; Google usa longest-match).
+# (Un gruppo che contiene solo "Allow: /" annulla i Disallow del gruppo
+# "*" per quel crawler: robots.txt applica il gruppo più specifico e
+# ignora gli altri.)
+#
+#   /old/   vecchio sito, mai da indicizzare
+#   /team/  pannello interno collaboratori (password + noindex)
+#   /v2/    STAGING del redesign "Quiet Permanence": duplica il blog,
+#           bloccato finché non diventa il sito live
 
-# Allow all search engine crawlers
 User-agent: *
-Allow: /
 Disallow: /old/
-# /team/ è il pannello interno per i collaboratori (social panel):
-# password-gated + noindex, mai da indicizzare.
 Disallow: /team/
-# /v2/ è lo STAGING del redesign "Quiet Permanence" (in review dopo il
-# rollback a v1): duplica l'intero blog → bloccato per non indicizzare
-# contenuti doppi finché non diventa il sito live.
 Disallow: /v2/
+Allow: /
 
-# Explicitly allow AI crawlers for AI search visibility
+# ── AI search / answer engines (esplicitamente ammessi, stessi limiti) ──
+
 User-agent: GPTBot
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
+Allow: /
+
+User-agent: OAI-SearchBot
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
 Allow: /
 
 User-agent: ChatGPT-User
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
 Allow: /
 
 User-agent: ClaudeBot
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
+Allow: /
+
+User-agent: Claude-SearchBot
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
 Allow: /
 
 User-agent: Claude-Web
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-User-agent: cohere-ai
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
 Allow: /
 
 User-agent: anthropic-ai
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
 Allow: /
 
-# Sitemap location
+User-agent: PerplexityBot
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
+Allow: /
+
+User-agent: Perplexity-User
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
+Allow: /
+
+User-agent: Applebot-Extended
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
+Allow: /
+
+User-agent: Google-Extended
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
+Allow: /
+
+User-agent: Bingbot
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
+Allow: /
+
+User-agent: CCBot
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
+Allow: /
+
+User-agent: cohere-ai
+Disallow: /old/
+Disallow: /team/
+Disallow: /v2/
+Allow: /
+
+# Sitemaps
 Sitemap: https://myvilla.la/sitemap.xml
+Sitemap: https://myvilla.la/news-sitemap.xml

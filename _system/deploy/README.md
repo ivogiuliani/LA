@@ -76,6 +76,56 @@ casi — il tunnel serve SOLO per far vedere il pannello alla SMM.
 Lo stato viaggia via git (auto-pull nel pannello), quindi le due
 soluzioni sono intercambiabili in qualsiasi momento.
 
+## Fase 2 — Lead API, Chat API e intake lead sul VPS (2026-09-16)
+
+Tre servizi in più accanto al pannello. Tutti leggono `/opt/myvilla/.env`
+e scrivono i dati personali SOLO in `/opt/myvilla-private` (fuori dal
+repo). File pronti in questa cartella: `lead-api.service`,
+`chat-api.service`, `lead-intake.service` + `lead-intake.timer`,
+`Caddyfile.snippet`.
+
+Comandi da lanciare **da root sul VPS** (Ivo; il coordinatore non ha SSH):
+
+```bash
+# 0. codice aggiornato
+git -C /opt/myvilla pull
+
+# 1. private dir (registro lead, log chat, suppression list)
+mkdir -p /opt/myvilla-private && chmod 700 /opt/myvilla-private
+grep -q MYVILLA_PRIVATE_DIR /opt/myvilla/.env || echo 'MYVILLA_PRIVATE_DIR=/opt/myvilla-private' >> /opt/myvilla/.env
+
+# 2. servizi systemd
+cp /opt/myvilla/_system/deploy/lead-api.service     /etc/systemd/system/
+cp /opt/myvilla/_system/deploy/chat-api.service     /etc/systemd/system/
+cp /opt/myvilla/_system/deploy/lead-intake.service  /etc/systemd/system/
+cp /opt/myvilla/_system/deploy/lead-intake.timer    /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable --now lead-api chat-api lead-intake.timer
+systemctl status lead-api chat-api lead-intake.timer --no-pager
+
+# 3. Caddy: route API pubbliche senza password (sostituire IVO_HASH con
+#    l'hash già presente in /etc/caddy/Caddyfile)
+HASH=$(grep -oE '\$2[aby]\$[^ ]+' /etc/caddy/Caddyfile | head -1)
+sed "s|IVO_HASH|$HASH|" /opt/myvilla/_system/deploy/Caddyfile.snippet > /etc/caddy/Caddyfile
+caddy validate --config /etc/caddy/Caddyfile && systemctl reload caddy
+
+# 4. verifica
+curl -s https://content.myvilla.la/api/healthz          # lead_api
+curl -s https://content.myvilla.la/api/chat/healthz     # chat_api
+curl -s -X POST https://content.myvilla.la/api/lead -H 'Content-Type: application/json' \
+  -d '{"first_name":"Test","email":"info@myvilla.la","message":"self-send test","_gotcha":"x"}'
+#   ↑ con _gotcha pieno risponde ok ma NON registra nulla: prova innocua del routing
+journalctl -u lead-intake -n 30 --no-pager                # log dell'ultimo run intake
+```
+
+Il pannello sul VPS mostra la sezione **Leads** perché `PANEL_PASSWORD` è
+impostata (owner-only). Per il Mac: `MYVILLA_OWNER=1` oppure la stessa
+password in `.env`.
+
+Aggiornamenti futuri: `git -C /opt/myvilla pull && systemctl restart lead-api chat-api`.
+La chat sul sito resta spenta finché `chat.enabled: true` in
+`_system/config/lead_settings.yml` (widget a cura del conversion-layer).
+
 ## Pannello come servizio sul Mac (launchd)
 
 Installato il 2026-06-12: `com.myvilla.panel.plist` (template in questa

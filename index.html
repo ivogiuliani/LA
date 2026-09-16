@@ -6,6 +6,12 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+/* CONV:CONSENT:START */
+  // Consent Mode v2 — default denied in EU/EEA/UK/CH (opt-in), granted elsewhere (notice + opt-out); stored choice and GPC/DNT honoured
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","IS","LI","NO","GB","CH"] });
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+  (function () { try { var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' }); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', { analytics_storage: 'denied' }); } catch (e) {} })();
+/* CONV:CONSENT:END */
   gtag('js', new Date());
   gtag('config', 'G-D6HJX7BNZN');
 </script>
@@ -68,40 +74,72 @@
       "url": "https://myvilla.la",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://myvilla.la/img/logos/favicon.svg"
+        "url": "https://myvilla.la/img/myvilla-logo.png"
       },
       "description": "Italian-designed, fire-resilient luxury villas in Los Angeles. Reinforced concrete construction with museum-grade finishes.",
       "foundingDate": "2025",
       "areaServed": [
-        { "@type": "City", "name": "Los Angeles", "addressRegion": "CA", "addressCountry": "US" },
-        { "@type": "Place", "name": "Pacific Palisades", "addressRegion": "CA" },
-        { "@type": "City", "name": "Malibu", "addressRegion": "CA" },
-        { "@type": "Place", "name": "Topanga Canyon", "addressRegion": "CA" },
-        { "@type": "City", "name": "Altadena", "addressRegion": "CA" },
-        { "@type": "Place", "name": "Bel Air", "addressRegion": "CA" },
-        { "@type": "Place", "name": "Brentwood", "addressRegion": "CA" },
-        { "@type": "City", "name": "Calabasas", "addressRegion": "CA" },
-        { "@type": "Place", "name": "Hollywood Hills", "addressRegion": "CA" }
+        {
+          "@type": "City",
+          "name": "Los Angeles",
+          "addressRegion": "CA",
+          "addressCountry": "US"
+        },
+        {
+          "@type": "Place",
+          "name": "Pacific Palisades",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "City",
+          "name": "Malibu",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "Place",
+          "name": "Topanga Canyon",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "City",
+          "name": "Altadena",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "Place",
+          "name": "Bel Air",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "Place",
+          "name": "Brentwood",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "City",
+          "name": "Calabasas",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "Place",
+          "name": "Hollywood Hills",
+          "addressRegion": "CA"
+        }
       ],
       "contactPoint": {
         "@type": "ContactPoint",
         "email": "info@myvilla.la",
         "contactType": "sales",
-        "availableLanguage": ["English", "Italian"]
+        "availableLanguage": [
+          "English",
+          "Italian"
+        ]
       },
       "sameAs": [
         "https://www.instagram.com/myvilla.la/",
         "https://x.com/myvilla_la",
         "https://www.linkedin.com/company/myvilla-la/"
-      ]
-    },
-    {
-      "@type": "LocalBusiness",
-      "@id": "https://myvilla.la/#localbusiness",
-      "name": "My Villa",
-      "description": "Luxury villa builder specializing in Italian-designed, fire-resilient reinforced concrete homes in Los Angeles.",
-      "url": "https://myvilla.la",
-      "email": "info@myvilla.la",
+      ],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Los Angeles",
@@ -113,15 +151,34 @@
         "latitude": 34.0522,
         "longitude": -118.2437
       },
-      "priceRange": "$$$$",
-      "image": "https://myvilla.la/img/hero.png"
+      "image": "https://myvilla.la/img/hero.png",
+      "alternateName": "My Villa LA",
+      "email": "info@myvilla.la",
+      "founder": {
+        "@id": "https://myvilla.la/team.html#paolo-mezzalama"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://myvilla.la/team.html#paolo-mezzalama",
+      "name": "Paolo Mezzalama",
+      "jobTitle": "Founder · Architect registered in Italy and France",
+      "url": "https://myvilla.la/team.html#paolo-mezzalama",
+      "worksFor": {
+        "@id": "https://myvilla.la/#organization"
+      },
+      "sameAs": [
+        "https://its.vision/en/about/paolo-mezzalama/"
+      ]
     },
     {
       "@type": "Service",
       "@id": "https://myvilla.la/#villa-design",
       "name": "Custom Luxury Villa Design & Construction",
       "description": "End-to-end design and construction of fire-resilient luxury villas in Los Angeles using double-skin precast reinforced concrete, biophilic architecture, and museum-grade fair-faced concrete finishes.",
-      "provider": {"@id": "https://myvilla.la/#organization"},
+      "provider": {
+        "@id": "https://myvilla.la/#organization"
+      },
       "areaServed": {
         "@type": "City",
         "name": "Los Angeles"
@@ -131,10 +188,38 @@
         "@type": "OfferCatalog",
         "name": "Villa Collection",
         "itemListElement": [
-          {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Courtyard House", "description": "Open-plan villa centered around a private courtyard"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "L House", "description": "L-shaped villa maximizing garden views and natural light"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Deconstructed House", "description": "Modular villa with interconnected pavilions"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Hill House", "description": "Elevated villa designed for sloped terrain with panoramic views"}}
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Courtyard House",
+              "description": "Open-plan villa centered around a private courtyard"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "L House",
+              "description": "L-shaped villa maximizing garden views and natural light"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Deconstructed House",
+              "description": "Modular villa with interconnected pavilions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Hill House",
+              "description": "Elevated villa designed for sloped terrain with panoramic views"
+            }
+          }
         ]
       }
     },
@@ -147,7 +232,7 @@
           "name": "What makes My Villa homes fire-resilient?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "My Villa uses double-skin precast reinforced concrete panels approximately 250mm thick with continuous thermal insulation. This monolithic construction method provides superior fire resistance compared to traditional wood-frame construction common in Los Angeles."
+            "text": "My Villa uses double-skin precast reinforced concrete panels approximately 250mm thick with continuous thermal insulation. This monolithic, non-combustible construction provides a materially higher fire resistance than the wood-frame construction common in Los Angeles."
           }
         },
         {
@@ -155,7 +240,7 @@
           "name": "How long does it take to build a My Villa home?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The complete process from initial briefing to move-in takes approximately 20 months. This includes design, permitting, off-site prefabrication, and on-site assembly with a fixed-price guarantee."
+            "text": "Construction takes about 18 months after permit approval, roughly 20–24 months overall. The path is fixed from the first conversation: discovery, typology selection, personalization, engineering and permits, then off-site prefabrication and on-site assembly with a fixed-price agreement."
           }
         },
         {
@@ -171,7 +256,7 @@
           "name": "Where does My Villa build?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "My Villa currently builds custom luxury villas throughout the Los Angeles metropolitan area, including Pacific Palisades, Beverly Hills, Bel Air, Brentwood, Malibu, and surrounding neighborhoods."
+            "text": "My Villa designs and delivers custom villas across the Los Angeles area, with a primary focus on Malibu, Pacific Palisades, Beverly Hills, Bel Air, Brentwood, Hidden Hills, Calabasas and the surrounding hillside and coastal neighborhoods."
           }
         },
         {
@@ -180,6 +265,30 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "My Villa combines Italian architectural heritage with California's lifestyle — Italian Soul, Californian Body. The approach integrates biophilic design, reinforced concrete construction, and sustainable materials to create homes that are beautiful, resilient, and in harmony with their environment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Have you built in Los Angeles yet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not yet. My Villa has not yet delivered a villa: the projects shown are concept designs and renders. What is already real is the system behind them: the precast reinforced-concrete method, the construction partner DGU (whose built work includes the Kimbell Art Museum and Palazzo Grassi) and the climate engineering by Transsolar. Architecture of record in California is carried by a California-licensed architect. We say this plainly, because a briefing with us should start from facts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does a My Villa cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Construction starts from $1,500 per square foot, before land, site works and the level of finish you choose. A private briefing gives you a site-specific range rather than a brochure number, and the total cost of ownership we discuss includes insurance positioning and maintenance over decades, not only the build."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you work with my agent, broker or architect?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As collaborators. Many briefings arrive through a buyer's agent, a broker holding a lot, or a family's architect or advisor. We share feasibility reads, keep your representative in every conversation you want them in, and can work alongside an architect of record you have already chosen. If you are the representative, say so in the form and we will address the briefing to you."
           }
         }
       ]
@@ -190,7 +299,9 @@
       "url": "https://myvilla.la",
       "name": "My Villa",
       "description": "Italian-designed, fire-resilient luxury villas in Los Angeles",
-      "publisher": {"@id": "https://myvilla.la/#organization"},
+      "publisher": {
+        "@id": "https://myvilla.la/#organization"
+      },
       "inLanguage": "en-US"
     },
     {
@@ -198,8 +309,12 @@
       "@id": "https://myvilla.la/#webpage",
       "url": "https://myvilla.la",
       "name": "MY VILLA — Italian-Designed Luxury Villas in Los Angeles",
-      "isPartOf": {"@id": "https://myvilla.la/#website"},
-      "about": {"@id": "https://myvilla.la/#organization"},
+      "isPartOf": {
+        "@id": "https://myvilla.la/#website"
+      },
+      "about": {
+        "@id": "https://myvilla.la/#organization"
+      },
       "description": "My Villa builds Italian-designed, fire-resilient luxury villas in Los Angeles. Reinforced concrete construction, biophilic design, and museum-grade finishes.",
       "inLanguage": "en-US"
     }
@@ -3051,9 +3166,61 @@ section[id], #briefing { scroll-margin-top: 96px; }
   .mobile-menu a { font-size: 20px; padding: 4px 16px; }
 }
 
+/* CONV:CSS:START */
+/* Hero CTAs */
+.hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 34px; position: relative; z-index: 2; }
+.hero-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 14px 30px; font-family: var(--sans); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--white); transition: background 0.3s, border-color 0.3s, transform 0.2s; }
+.hero-btn-primary { background: var(--terracotta); border: 1px solid var(--terracotta); }
+.hero-btn-primary:hover { background: var(--pacific-blue); border-color: var(--pacific-blue); transform: translateY(-1px); }
+.hero-btn-ghost { border: 1px solid rgba(255,255,255,0.6); background: rgba(62,47,43,0.28); }
+.hero-btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.14); }
+@media (max-width: 640px) { .hero-ctas { flex-direction: column; align-items: stretch; padding: 0 8px; } .hero-btn { width: 100%; } }
+@media (max-height: 500px) and (orientation: landscape) { .hero-ctas { margin-top: 18px; } }
+/* Sticky CTA: up to 900px, above the cookie banner, lifted by its height when visible */
+.sticky-cta { z-index: 9995; bottom: calc(16px + var(--mv-banner-h, 0px) + env(safe-area-inset-bottom)); }
+@media (max-width: 900px) { .sticky-cta { display: block; } }
+/* Contextual CTAs */
+.ctx-cta { padding: 0 var(--side-pad) clamp(48px, 7vw, 88px); }
+.ctx-cta--offblack { background: var(--offblack); }
+.ctx-cta--espresso { background: var(--espresso); }
+.ctx-cta--charcoal { background: var(--charcoal); }
+.ctx-cta-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; }
+.ctx-cta-text { font-family: var(--serif); font-size: clamp(19px, 2.2vw, 24px); font-style: italic; font-weight: 300; color: var(--cream); opacity: 0.85; max-width: 620px; line-height: 1.4; }
+.ctx-cta-btn { display: inline-block; padding: 14px 28px; border: 1px solid var(--tuscan-gold); color: var(--cream); font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; white-space: nowrap; transition: background 0.3s, color 0.3s; }
+.ctx-cta-btn:hover { background: var(--tuscan-gold); color: var(--offblack); }
+/* Trust note under DGU works */
+.material-trust-note { margin: -10px 0 clamp(28px, 3vw, 40px); font-family: var(--sans); font-size: 12.5px; line-height: 1.6; color: var(--white); opacity: 0.55; max-width: 720px; }
+/* Visible FAQ (Investment) */
+.invest-faq { margin-top: 56px; }
+.invest-faq .section-label { margin-bottom: 18px; }
+.faq-item { border-top: 1px solid rgba(255,255,255,0.1); }
+.faq-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
+.faq-item summary { list-style: none; cursor: pointer; padding: 18px 40px 18px 0; position: relative; font-family: var(--serif); font-size: clamp(18px, 2vw, 22px); font-weight: 400; color: var(--cream); }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); color: var(--tuscan-gold); font-family: var(--sans); font-size: 22px; font-weight: 300; transition: transform 0.3s; }
+.faq-item[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq-item p { font-size: 14px; line-height: 1.8; color: var(--white); opacity: 0.7; padding: 0 0 22px; max-width: 760px; }
+/* Cookie banner below the sticky CTA; discreet toast outside the EU */
+body #cookieBanner { z-index: 9990; }
+body #cookieBanner.cookie-toast { left: auto; right: 16px; bottom: 16px; max-width: 380px; border: 1px solid rgba(196,162,101,0.3); border-radius: 4px; padding: 14px 16px; gap: 14px; flex-wrap: nowrap; }
+body #cookieBanner.cookie-toast .cookie-text { font-size: 12.5px; min-width: 0; }
+body #cookieBanner.cookie-toast .cookie-btn { padding: 8px 14px; font-size: 11px; }
+@media (max-width: 600px) { body #cookieBanner.cookie-toast { left: 16px; max-width: none; flex-direction: row; text-align: left; } body #cookieBanner.cookie-toast .cookie-buttons { width: auto; } }
+/* Canonical form extras */
+.cta-field-hint { font-size: 11px; line-height: 1.5; color: rgba(255,255,255,0.5); }
+.cta-consent { grid-column: 1 / -1; display: flex; gap: 10px; align-items: flex-start; font-family: var(--sans); font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.72); cursor: pointer; text-align: left; }
+.cta-consent input { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; accent-color: var(--terracotta); }
+.cta-legal { grid-column: 1 / -1; font-family: var(--sans); font-size: 11.5px; color: rgba(255,255,255,0.5); text-align: center; }
+.cta-legal a { text-decoration: underline; color: rgba(255,255,255,0.75); }
+.cta-error { grid-column: 1 / -1; display: none; padding: 12px 14px; border: 1px solid rgba(194,113,79,0.7); background: rgba(194,113,79,0.12); font-family: var(--sans); font-size: 13px; line-height: 1.6; color: var(--cream); }
+.cta-error.show { display: block; }
+.cta-error a { text-decoration: underline; color: var(--tuscan-gold); }
+select.cta-input:invalid { color: rgba(255,255,255,0.75); }
+.cta-form input.cta-input::placeholder, .cta-form textarea.cta-input::placeholder { color: rgba(255,255,255,0.45); opacity: 1; }
+/* CONV:CSS:END */
 </style>
 </head>
-<body>
+<body data-page-type="home">
 
 <!-- ══════════════ NAVIGATION ══════════════ -->
 <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
@@ -3070,7 +3237,9 @@ section[id], #briefing { scroll-margin-top: 96px; }
     <a href="#process">Process</a>
     <a href="#team">Team</a>
     <a href="/blog/index.html" class="nav-link-journal"><span class="nav-journal-text">Journal</span><span class="nav-journal-stamp"><span class="live-pulse" aria-hidden="true"></span>Updated today</span></a>
-    <a href="#contact" class="nav-cta">Request Briefing</a>
+    <!-- CONV:NAV:START -->
+<a href="/private-briefing.html?src=nav" class="nav-cta" data-ev="cta_click" data-cta-id="nav_briefing">Request Briefing</a>
+<!-- CONV:NAV:END -->
   </div>
   <div class="nav-burger" id="burger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -3087,15 +3256,17 @@ section[id], #briefing { scroll-margin-top: 96px; }
   <a href="#process" onclick="closeMobile()">Process</a>
   <a href="#team" onclick="closeMobile()">Team</a>
   <a href="/blog/index.html" onclick="closeMobile()" class="nav-link-journal"><span class="nav-journal-text">Journal</span><span class="nav-journal-stamp"><span class="live-pulse" aria-hidden="true"></span>Updated today</span></a>
-  <a href="#contact" onclick="closeMobile()">Request Briefing</a>
+  <!-- CONV:NAV_MOBILE:START -->
+<a href="/private-briefing.html?src=nav_mobile" onclick="closeMobile()" data-ev="cta_click" data-cta-id="nav_mobile_briefing">Request Briefing</a>
+<!-- CONV:NAV_MOBILE:END -->
 </div>
 
 <main>
 <!-- ══════════════ 1. HERO ══════════════ -->
 <section class="hero" id="hero" aria-label="Hero">
-  <video class="hero-video" autoplay muted loop playsinline poster="img/hero.webp">
-    <source src="vid/backyard.mp4" type="video/mp4">
-  </video>
+<!-- CONV:VIDEO:START -->
+  <video class="hero-video" muted loop playsinline preload="none" poster="img/hero.webp" data-src="vid/backyard.mp4" aria-hidden="true"></video>
+<!-- CONV:VIDEO:END -->
   <img class="hero-fallback" src="img/hero.webp" alt="My Villa Garden" style="display:none;">
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -3103,6 +3274,12 @@ section[id], #briefing { scroll-margin-top: 96px; }
     <div class="hero-payoff reveal reveal-delay-1">Italian Soul &middot; <span style="color:var(--sky-mist)">Californian Body</span></div>
     <div class="hero-line reveal reveal-delay-2"></div>
     <div class="hero-sub reveal reveal-delay-3">Luxury villas built to last centuries, not decades.</div>
+<!-- CONV:HERO:START -->
+    <div class="hero-ctas reveal reveal-delay-3">
+      <a href="/private-briefing.html?src=hero" class="hero-btn hero-btn-primary" data-ev="cta_click" data-cta-id="hero_briefing">Request a Private Briefing</a>
+      <a href="#collection" class="hero-btn hero-btn-ghost" data-ev="cta_click" data-cta-id="hero_collection">See the Collection</a>
+    </div>
+<!-- CONV:HERO:END -->
   </div>
   <div class="hero-scroll">
     <span>Discover</span>
@@ -3641,6 +3818,14 @@ section[id], #briefing { scroll-margin-top: 96px; }
 
   </div>
 </section>
+<!-- CONV:CTX_RESILIENCE:START -->
+<aside class="ctx-cta ctx-cta--offblack" aria-label="Request a private briefing">
+  <div class="ctx-cta-inner">
+    <p class="ctx-cta-text">Curious what an insurable, non-combustible villa would mean on your lot?</p>
+    <a href="/private-briefing.html?src=resilience" class="ctx-cta-btn" data-ev="cta_click" data-cta-id="ctx_resilience">Request a Private Briefing</a>
+  </div>
+</aside>
+<!-- CONV:CTX_RESILIENCE:END -->
 
 <!-- ══════════════ MATERIAL / CONCRETE + RESILIENCE ══════════════ -->
 <section class="material" id="material">
@@ -3658,7 +3843,9 @@ section[id], #briefing { scroll-margin-top: 96px; }
     </div>
 
     <!-- Past works: 3 cards in a horizontal row -->
-    <div class="material-legacy-label reveal">Completed Works</div>
+    <!-- CONV:TRUST_LABEL:START -->
+<div class="material-legacy-label reveal">DGU — Selected Works</div>
+<!-- CONV:TRUST_LABEL:END -->
     <div class="material-works-row">
       <div class="material-work reveal">
         <div class="material-work-thumb">
@@ -3683,6 +3870,9 @@ section[id], #briefing { scroll-margin-top: 96px; }
       </div>
     </div>
 
+<!-- CONV:TRUST_NOTE:START -->
+    <p class="material-trust-note reveal">My Villa's first villas are in design; the works shown are by our construction partner DGU.</p>
+<!-- CONV:TRUST_NOTE:END -->
     <!-- Amanvari: current project -->
     <div class="material-current-label reveal">Currently Under Construction</div>
     <div class="material-current-top">
@@ -3767,7 +3957,21 @@ section[id], #briefing { scroll-margin-top: 96px; }
       </div>
     </div>
 
-  </div>
+  
+<!-- CONV:FAQ:START -->
+    <div class="invest-faq reveal" id="faq">
+      <div class="section-label">Questions we hear most</div>
+      <details class="faq-item"><summary>What makes My Villa homes fire-resilient?</summary><p>My Villa uses double-skin precast reinforced concrete panels approximately 250mm thick with continuous thermal insulation. This monolithic, non-combustible construction provides a materially higher fire resistance than the wood-frame construction common in Los Angeles.</p></details>
+      <details class="faq-item"><summary>How long does it take to build a My Villa home?</summary><p>Construction takes about 18 months after permit approval, roughly 20–24 months overall. The path is fixed from the first conversation: discovery, typology selection, personalization, engineering and permits, then off-site prefabrication and on-site assembly with a fixed-price agreement.</p></details>
+      <details class="faq-item"><summary>What is fair-faced concrete?</summary><p>Fair-faced concrete is a museum-grade finish where the concrete surface is the final aesthetic, requiring no additional cladding or paint. My Villa uses oxide pigments to achieve warm, natural tones inspired by Italian architectural traditions seen in buildings like Palazzo Grassi and the Kimbell Art Museum.</p></details>
+      <details class="faq-item"><summary>Where does My Villa build?</summary><p>My Villa designs and delivers custom villas across the Los Angeles area, with a primary focus on Malibu, Pacific Palisades, Beverly Hills, Bel Air, Brentwood, Hidden Hills, Calabasas and the surrounding hillside and coastal neighborhoods.</p></details>
+      <details class="faq-item"><summary>What is the design philosophy behind My Villa?</summary><p>My Villa combines Italian architectural heritage with California's lifestyle — Italian Soul, Californian Body. The approach integrates biophilic design, reinforced concrete construction, and sustainable materials to create homes that are beautiful, resilient, and in harmony with their environment.</p></details>
+      <details class="faq-item"><summary>Have you built in Los Angeles yet?</summary><p>Not yet. My Villa has not yet delivered a villa: the projects shown are concept designs and renders. What is already real is the system behind them: the precast reinforced-concrete method, the construction partner DGU (whose built work includes the Kimbell Art Museum and Palazzo Grassi) and the climate engineering by Transsolar. Architecture of record in California is carried by a California-licensed architect. We say this plainly, because a briefing with us should start from facts.</p></details>
+      <details class="faq-item"><summary>What does a My Villa cost?</summary><p>Construction starts from $1,500 per square foot, before land, site works and the level of finish you choose. A private briefing gives you a site-specific range rather than a brochure number, and the total cost of ownership we discuss includes insurance positioning and maintenance over decades, not only the build.</p></details>
+      <details class="faq-item"><summary>How do you work with my agent, broker or architect?</summary><p>As collaborators. Many briefings arrive through a buyer's agent, a broker holding a lot, or a family's architect or advisor. We share feasibility reads, keep your representative in every conversation you want them in, and can work alongside an architect of record you have already chosen. If you are the representative, say so in the form and we will address the briefing to you.</p></details>
+    </div>
+<!-- CONV:FAQ:END -->
+</div>
 </section>
 
 <!-- ══════════════ 16. CLOSING IMAGE ══════════════ -->
@@ -3785,8 +3989,8 @@ section[id], #briefing { scroll-margin-top: 96px; }
 <section class="process" id="process">
   <div class="process-inner">
     <div class="section-label reveal">The Process</div>
-    <h2 class="section-title reveal">From Conversation to Keys in 20 Months</h2>
-    <p class="seo-kw light reveal">Custom Villa Build Timeline — 20-Month Delivery</p>
+    <h2 class="section-title reveal">From Permit Approval to Keys in 18 Months</h2>
+    <p class="seo-kw light reveal">Custom Villa Build Timeline — 18 Months After Permit Approval, About 20–24 Overall</p>
     <div class="process-desc reveal reveal-delay-1">
       Every My Villa follows a proven path — a system refined over decades of Italian construction practice, adapted for California. Fixed timelines, transparent budgets, zero compromise on design.
     </div>
@@ -3841,6 +4045,14 @@ section[id], #briefing { scroll-margin-top: 96px; }
     </div>
   </div>
 </section>
+<!-- CONV:CTX_PROCESS:START -->
+<aside class="ctx-cta ctx-cta--espresso" aria-label="Request a private briefing">
+  <div class="ctx-cta-inner">
+    <p class="ctx-cta-text">Twenty months from a conversation to keys. The conversation starts here.</p>
+    <a href="/private-briefing.html?src=process" class="ctx-cta-btn" data-ev="cta_click" data-cta-id="ctx_process">Request a Private Briefing</a>
+  </div>
+</aside>
+<!-- CONV:CTX_PROCESS:END -->
 
 <!-- ══════════════ THE TEAM (between Process and The Desk) ══════════════ -->
 <section class="team" id="team">
@@ -3926,6 +4138,14 @@ section[id], #briefing { scroll-margin-top: 96px; }
 
   </div>
 </section>
+<!-- CONV:CTX_TEAM:START -->
+<aside class="ctx-cta ctx-cta--charcoal" aria-label="Request a private briefing">
+  <div class="ctx-cta-inner">
+    <p class="ctx-cta-text">Meet the people who would design your villa. A 30-minute call, no obligation.</p>
+    <a href="/private-briefing.html?src=team" class="ctx-cta-btn" data-ev="cta_click" data-cta-id="ctx_team">Request a Private Briefing</a>
+  </div>
+</aside>
+<!-- CONV:CTX_TEAM:END -->
 
 <!-- ══════════════ 16c. THE DESK (Monitoring Desk + Topical Desks) ══════════════ -->
 <section class="homepage-journal" id="journal-preview" aria-label="The Desk">
@@ -4019,41 +4239,42 @@ section[id], #briefing { scroll-margin-top: 96px; }
       <span>Prefer email? Write to <strong>info@myvilla.la</strong></span>
     </a>
     <div class="cta-form-wrap reveal reveal-delay-3">
-      <form class="cta-form" id="contactForm" onsubmit="handleSubmit(event)" aria-label="Request a private briefing">
-        <input type="text" class="cta-input" placeholder="First Name" required aria-label="First Name" name="first_name" autocomplete="given-name">
-        <input type="text" class="cta-input" placeholder="Last Name" required aria-label="Last Name" name="last_name" autocomplete="family-name">
-        <input type="email" class="cta-input" placeholder="Email" required aria-label="Email address" name="email" autocomplete="email">
-        <input type="tel" class="cta-input" placeholder="Phone (optional)" aria-label="Phone number" name="phone" autocomplete="tel">
-        <div class="cta-field">
-          <label class="cta-field-label" for="ctaInterest">I'm exploring</label>
-          <select id="ctaInterest" class="cta-input" name="project_type">
-            <option value="New custom build">A new custom build</option>
-            <option value="Rebuild after fire">A rebuild after fire</option>
-            <option value="Future site / land search">A future site — still searching</option>
-            <option value="General interest">General interest</option>
-          </select>
-        </div>
-        <div class="cta-field">
-          <label class="cta-field-label" for="ctaTimeline">Timeline</label>
-          <select id="ctaTimeline" class="cta-input" name="timeline">
-            <option value="Ready now">Ready to start now</option>
-            <option value="6-12 months">Within 6–12 months</option>
-            <option value="12-24 months">Within 1–2 years</option>
-            <option value="Exploring">Just exploring</option>
-          </select>
-        </div>
-        <input type="text" class="cta-input full" placeholder="Site location (optional) — e.g. Malibu, Pacific Palisades, Bel Air…" aria-label="Site location" name="site_location">
-        <textarea class="cta-input full" placeholder="Tell us about your project, your site, or what drew you to My Villa..." aria-label="Project description" name="message"></textarea>
-        <!-- Honeypot anti-spam (hidden from humans) -->
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-        <input type="hidden" name="_subject" value="Private Briefing Request — myvilla.la">
-        <button type="submit" class="cta-submit">Request Private Briefing</button>
-        <div class="cta-micro"><strong>Our founding partner will personally respond within 48 hours.</strong></div>
-      </form>
+      <!-- CONV:FORM:START -->
+<form class="cta-form" id="contactForm" onsubmit="handleSubmit(event)" data-mv-form aria-label="Request a private briefing">
+  <div class="cta-field"><label class="cta-field-label" for="mv-first">First name *</label><input id="mv-first" type="text" class="cta-input" name="first_name" required autocomplete="given-name"></div>
+  <div class="cta-field"><label class="cta-field-label" for="mv-last">Last name</label><input id="mv-last" type="text" class="cta-input" name="last_name" autocomplete="family-name"></div>
+  <div class="cta-field"><label class="cta-field-label" for="mv-email">Email *</label><input id="mv-email" type="email" class="cta-input" name="email" required autocomplete="email"></div>
+  <div class="cta-field"><label class="cta-field-label" for="mv-phone">Phone</label><input id="mv-phone" type="tel" class="cta-input" name="phone" autocomplete="tel"><span class="cta-field-hint">Used only to reach you about your briefing. No marketing texts.</span></div>
+  <div class="cta-field"><label class="cta-field-label" for="mv-project">I'm exploring *</label><select id="mv-project" class="cta-input" name="project_type" required><option value="" selected disabled>Select…</option><option value="New custom build">New custom build</option><option value="Rebuild after fire">Rebuild after fire</option><option value="Future site / land search">Future site — still searching</option><option value="General interest">General interest</option></select></div>
+  <div class="cta-field"><label class="cta-field-label" for="mv-timeline">Timeline *</label><select id="mv-timeline" class="cta-input" name="timeline" required><option value="" selected disabled>Select…</option><option value="Ready now">Ready now</option><option value="6-12 months">Within 6–12 months</option><option value="12-24 months">Within 1–2 years</option><option value="Exploring">Just exploring</option></select></div>
+  <div class="cta-field"><label class="cta-field-label" for="mv-found">How did you find us? *</label><select id="mv-found" class="cta-input" name="how_found" required><option value="" selected disabled>Select…</option><option value="Google search">Google search</option><option value="ChatGPT or another AI assistant">ChatGPT or another AI assistant</option><option value="Instagram">Instagram</option><option value="LinkedIn">LinkedIn</option><option value="X">X</option><option value="Press or article">Press or article</option><option value="Referral">Referral</option><option value="Other">Other</option></select></div>
+  <div class="cta-field"><label class="cta-field-label" for="mv-referred">Referred by</label><input id="mv-referred" type="text" class="cta-input" name="referred_by" placeholder="Agent, broker, architect, friend…"></div>
+  <div class="cta-field full"><label class="cta-field-label" for="mv-location">Site location</label><input id="mv-location" type="text" class="cta-input" name="site_location" placeholder="e.g. Malibu, Pacific Palisades, Bel Air…"></div>
+  <div class="cta-field full"><label class="cta-field-label" for="mv-message">Your project</label><textarea id="mv-message" class="cta-input" name="message" rows="3" placeholder="A few lines about your site, your vision, or what drew you to My Villa."></textarea></div>
+  <label class="cta-consent"><input type="checkbox" name="consent_nurture" value="yes"><span>Keep me posted with occasional insights on insurable building in California.</span></label>
+  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <input type="hidden" name="_subject" value="Private Briefing Request — myvilla.la">
+  <input type="hidden" name="form_id" value="home">
+  <input type="hidden" name="source_page" value="index">
+  <input type="hidden" name="page_type" value="home">
+  <input type="hidden" name="referrer" value="">
+  <input type="hidden" name="landing_url" value="">
+  <input type="hidden" name="utm_source" value="">
+  <input type="hidden" name="utm_medium" value="">
+  <input type="hidden" name="utm_campaign" value="">
+  <input type="hidden" name="utm_content" value="">
+  <input type="hidden" name="utm_term" value="">
+  <input type="hidden" name="cta_src" value="">
+  <button type="submit" class="cta-submit">Request a Private Briefing</button>
+  <div class="cta-micro"><strong>Paolo Mezzalama replies personally within one business day.</strong></div>
+  <div class="cta-legal">By submitting you agree to our <a href="/privacy.html#what-we-collect">Privacy Notice</a>.</div>
+  <div class="cta-error" role="alert">Something went wrong and your request did not go through. Please write to us directly at <a href="mailto:info@myvilla.la">info@myvilla.la</a>.</div>
+</form>
+<!-- CONV:FORM:END -->
       <div class="cta-success" id="ctaSuccess" role="status">
         <div class="ok-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5 L10 18 L20 6"/></svg></div>
         <h3>Grazie — request received.</h3>
-        <p>Our founding partner will personally respond within 48 hours with next steps for your private briefing.</p>
+        <p>Paolo Mezzalama replies personally within one business day. You will receive a confirmation by email in the meantime.</p>
       </div>
     </div>
   </div>
@@ -4062,7 +4283,9 @@ section[id], #briefing { scroll-margin-top: 96px; }
 </main>
 
 <!-- Sticky mobile CTA (≤640px, appears after the hero, hides near the form) -->
-<a href="#briefing" class="sticky-cta" id="stickyCta">Request a Private Briefing</a>
+<!-- CONV:STICKY:START -->
+<a href="/private-briefing.html?src=sticky" class="sticky-cta" id="stickyCta" data-ev="cta_click" data-cta-id="sticky_briefing">Private Briefing</a>
+<!-- CONV:STICKY:END -->
 
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer class="footer" role="contentinfo">
@@ -4219,53 +4442,9 @@ document.querySelectorAll('video').forEach(v => {
 
 // Investment Simulator removed
 
-// Form — sends data via Formspree
-const FORMSPREE_ID = 'mgoljyjl';
-
-async function handleSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('.cta-submit');
-  const originalText = btn.textContent;
-
-  // Show loading state
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  btn.style.opacity = '0.7';
-
-  try {
-    const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (response.ok) {
-      const success = document.getElementById('ctaSuccess');
-      if (success) {
-        success.classList.add('show');
-      } else {
-        btn.textContent = 'Grazie. We\'ll be in touch.';
-        btn.style.background = '#5C6B4F';
-        btn.style.opacity = '1';
-      }
-      form.reset();
-      try { gtag('event', 'generate_lead', { event_category: 'briefing', event_label: 'private_briefing_form' }); } catch (err) {}
-    } else {
-      throw new Error('Form submission failed');
-    }
-  } catch (error) {
-    btn.textContent = 'Something went wrong. Try again.';
-    btn.style.background = '#C2714F';
-    btn.style.opacity = '1';
-    btn.disabled = false;
-    setTimeout(() => {
-      btn.textContent = originalText;
-      btn.style.background = '';
-    }, 3000);
-  }
-}
-
+/* CONV:FORM_LEGACY:START */
+// Form submit: see the CONV:FORMJS block at the end of the page (dual-post Formspree + lead API, redirect to thank-you).
+/* CONV:FORM_LEGACY:END */
 // Smooth anchor scrolling — with post-scroll settle.
 // Lazy images loading mid-flight stretch the layout and make the original
 // destination stale (you land short, e.g. on the Journal instead of the
@@ -4300,40 +4479,44 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// ══════════════ GDPR COOKIE BANNER ══════════════
-(function() {
-  if (localStorage.getItem('myvilla_cookie_consent')) return;
-
-  const banner = document.createElement('div');
+/* CONV:COOKIE:START */
+// ══════════════ COOKIE CONSENT — Consent Mode v2 (opt-in in EU, notice + opt-out elsewhere) ══════════════
+(function () {
+  var KEY = 'myvilla_cookie_consent';
+  function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function store(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function consent(granted) { try { gtag('consent', 'update', { analytics_storage: granted ? 'granted' : 'denied' }); } catch (e) {} }
+  var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+  var isEU = /^Europe\//.test(tz);
+  window.mvIsEU = isEU;
+  function close() {
+    var b = document.getElementById('cookieBanner');
+    document.documentElement.style.removeProperty('--mv-banner-h');
+    if (b) { b.classList.remove('visible'); setTimeout(function () { b.remove(); }, 400); }
+  }
+  window.acceptCookies = function () { store('accepted'); consent(true); close(); };
+  window.declineCookies = function () { store('declined'); consent(false); close(); };
+  window.closeCookieBanner = close;
+  if (stored()) return;
+  var banner = document.createElement('div');
   banner.id = 'cookieBanner';
-  banner.innerHTML = `
-    <div class="cookie-text">
-      We use cookies to improve your experience on our site. By continuing to browse, you accept our use of cookies in accordance with our
-      <a href="privacy.html">Privacy Policy</a>.
-    </div>
-    <div class="cookie-buttons">
-      <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
-      <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
-    </div>
-  `;
+  banner.setAttribute('role', 'region');
+  banner.setAttribute('aria-label', 'Cookie choices');
+  if (isEU) {
+    banner.innerHTML = '<div class="cookie-text">We use analytics cookies (Google Analytics) to understand how the site is used. Nothing is stored until you choose. <a href="/privacy.html#cookies">Privacy choices</a></div>' +
+      '<div class="cookie-buttons"><button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button><button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button></div>';
+  } else {
+    banner.className = 'cookie-toast';
+    banner.innerHTML = '<div class="cookie-text">This site uses analytics cookies. <a href="/privacy.html#cookies">Privacy choices</a></div>' +
+      '<div class="cookie-buttons"><button class="cookie-btn cookie-accept" onclick="acceptCookies()" aria-label="Dismiss">OK</button></div>';
+  }
   document.body.appendChild(banner);
-
-  // Animate in after a short delay
-  setTimeout(() => { banner.classList.add('visible'); }, 800);
+  setTimeout(function () {
+    banner.classList.add('visible');
+    document.documentElement.style.setProperty('--mv-banner-h', (banner.offsetHeight || 0) + 'px');
+  }, 800);
 })();
-
-function acceptCookies() {
-  localStorage.setItem('myvilla_cookie_consent', 'accepted');
-  closeCookieBanner();
-}
-function declineCookies() {
-  localStorage.setItem('myvilla_cookie_consent', 'declined');
-  closeCookieBanner();
-}
-function closeCookieBanner() {
-  const b = document.getElementById('cookieBanner');
-  if (b) { b.classList.remove('visible'); setTimeout(() => b.remove(), 400); }
-}
+/* CONV:COOKIE:END */
 
 // ── Sticky mobile CTA: show after the hero, hide when the form approaches ──
 (function () {
@@ -4402,5 +4585,111 @@ function closeCookieBanner() {
   .cookie-buttons { width: 100%; justify-content: center; }
 }
 </style>
+<!-- CONV:FORMJS:START -->
+<script>
+(function () {
+  var MV = { formspree: 'https://formspree.io/f/mgoljyjl', leadApi: 'https://content.myvilla.la/api/lead', thankYou: 'https://myvilla.la/briefing-received.html' };
+  var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  if (!Promise.allSettled) { Promise.allSettled = function (ps) { return Promise.all(ps.map(function (p) { return Promise.resolve(p).then(function (v) { return { status: 'fulfilled', value: v }; }, function (r) { return { status: 'rejected', reason: r }; }); })); }; }
+  function ss(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
+  var q = {}; try { new URLSearchParams(location.search).forEach(function (v, k) { q[k] = v; }); } catch (e) {}
+  // First-touch attribution, kept for the session
+  var attrib = null; try { attrib = JSON.parse(ss('mv_attrib') || 'null'); } catch (e) {}
+  if (!attrib || typeof attrib !== 'object') {
+    attrib = { referrer: document.referrer || '', landing_url: location.href.split('#')[0] };
+    UTM.forEach(function (k) { attrib[k] = q[k] || ''; });
+    ss('mv_attrib', JSON.stringify(attrib));
+  }
+  attrib.cta_src = q.src || attrib.cta_src || '';
+  function fill(form) {
+    Object.keys(attrib).forEach(function (k) { var el = form.querySelector('input[name="' + k + '"]'); if (el && !el.value) el.value = attrib[k] || ''; });
+  }
+  function setError(form, on) { var el = form.querySelector('.cta-error'); if (el) el.classList.toggle('show', !!on); }
+  function submit(form) {
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    fill(form); setError(form, false);
+    var btn = form.querySelector('[type="submit"]'), orig = btn ? btn.textContent : '';
+    if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; btn.style.opacity = '0.7'; }
+    var fd = new FormData(form);
+    var formId = fd.get('form_id') || form.id || 'form', how = fd.get('how_found') || '';
+    var dest = MV.thankYou + '?form=' + encodeURIComponent(formId) + '&via=' + encodeURIComponent(how);
+    if (fd.get('_gotcha')) { window.location.assign(dest); return; }  // honeypot: silent
+    var payload = {}; fd.forEach(function (v, k) { if (k !== '_gotcha') payload[k] = v; });
+    if (!payload.consent_nurture) payload.consent_nurture = 'no';
+    payload.submitted_at = new Date().toISOString();
+    Promise.allSettled([
+      fetch(MV.formspree, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }),
+      fetch(MV.leadApi, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+    ]).then(function (rs) {
+      var ok = rs.some(function (r) { return r.status === 'fulfilled' && r.value && r.value.ok; });
+      if (!ok) throw new Error('send-failed');
+      var wrap = form.parentElement, succ = wrap && wrap.querySelector('.cta-success, .brief-success');
+      if (succ) succ.classList.add('show');
+      var done = false; function go() { if (done) return; done = true; window.location.assign(dest); }
+      try { gtag('event', 'generate_lead', { form_id: formId, how_found: how, event_category: 'briefing', event_label: formId, event_callback: go, event_timeout: 600 }); } catch (e) {}
+      setTimeout(go, 600);
+    }).catch(function () {
+      setError(form, true);
+      if (btn) { btn.textContent = orig; btn.disabled = false; btn.style.opacity = ''; }
+    });
+  }
+  window.handleSubmit = function (e) { e.preventDefault(); submit(e.target); };
+  function init() {
+    var forms = document.querySelectorAll('form[data-mv-form]');
+    for (var i = 0; i < forms.length; i++) { (function (f) {
+      fill(f);
+      if (!f.hasAttribute('onsubmit')) f.addEventListener('submit', function (e) { e.preventDefault(); submit(f); });
+    })(forms[i]); }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+<!-- CONV:FORMJS:END -->
+<!-- CONV:MVTRACK:START -->
+<script>
+(function () {
+  var PT = (document.body && document.body.getAttribute('data-page-type')) || 'page';
+  function send(ev, params) { try { if (typeof gtag === 'function') gtag('event', ev, params); } catch (e) {} }
+  function snake(k) { return k.replace(/([A-Z])/g, '_$1').toLowerCase(); }
+  document.addEventListener('click', function (e) {
+    var t = e.target; if (!t || !t.closest) return;
+    var el = t.closest('[data-ev]');
+    if (el) {
+      var p = { page_type: PT }, d = el.dataset;
+      for (var k in d) { if (k !== 'ev') p[snake(k)] = d[k]; }
+      if (!p.cta_id) p.cta_id = el.id || (el.getAttribute('href') || '').slice(0, 60) || el.tagName.toLowerCase();
+      send(d.ev, p);
+    }
+    var a = t.closest('a[href^="mailto:"]');
+    if (a) send('contact_email_click', { page_type: PT, cta_id: a.id || 'mailto', link_url: a.getAttribute('href') });
+  }, true);
+  var started = {};
+  document.addEventListener('focusin', function (e) {
+    var f = e.target && e.target.form; if (!f || f.tagName !== 'FORM') return;
+    var key = f.id || 'form'; if (started[key]) return; started[key] = true;
+    var fid = f.querySelector('input[name="form_id"]');
+    send('form_start', { page_type: PT, form_id: (fid && fid.value) || key });
+  }, true);
+  window.mvTrack = send;
+})();
+</script>
+<!-- CONV:MVTRACK:END -->
+<!-- CONV:VIDEOJS:START -->
+<script>
+// Hero video: loaded only on wide viewports (≥ 900px) and without reduced-motion; poster elsewhere.
+(function () {
+  var v = document.querySelector('video.hero-video[data-src]');
+  if (!v) return;
+  var wide = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!wide || reduced) return;
+  var src = document.createElement('source');
+  src.src = v.getAttribute('data-src'); src.type = 'video/mp4';
+  v.appendChild(src);
+  v.load();
+  v.play().catch(function () {});
+})();
+</script>
+<!-- CONV:VIDEOJS:END -->
 </body>
 </html>

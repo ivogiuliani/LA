@@ -6,6 +6,12 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+/* CONV:CONSENT:START */
+  // Consent Mode v2 — default denied in EU/EEA/UK/CH (opt-in), granted elsewhere (notice + opt-out); stored choice and GPC/DNT honoured
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","IS","LI","NO","GB","CH"] });
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+  (function () { try { var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' }); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', { analytics_storage: 'denied' }); } catch (e) {} })();
+/* CONV:CONSENT:END */
   gtag('js', new Date());
   gtag('config', 'G-D6HJX7BNZN');
 </script>
@@ -280,15 +286,28 @@ li { margin-bottom: 10px; line-height: 1.7; color: rgba(44,44,44,0.85); }
   .brief-form { grid-template-columns: 1fr; }
 }
 </style>
+<!-- CONV:FORMCSS:START -->
+<style>
+.bf-hint { font-size: 11px; line-height: 1.5; color: rgba(255,255,255,0.5); }
+.bf-consent { grid-column: 1 / -1; display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.72); cursor: pointer; }
+.bf-consent input { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; accent-color: var(--terracotta); -webkit-appearance: checkbox; appearance: checkbox; }
+.bf-legal { grid-column: 1 / -1; font-size: 11.5px; color: rgba(255,255,255,0.5); text-align: center; }
+.bf-legal a { text-decoration: underline; color: rgba(255,255,255,0.75); }
+.cta-error { grid-column: 1 / -1; display: none; padding: 12px 14px; border: 1px solid rgba(194,113,79,0.7); background: rgba(194,113,79,0.12); font-size: 13px; line-height: 1.6; color: var(--cream); }
+.cta-error.show { display: block; }
+.cta-error a { text-decoration: underline; color: var(--tuscan-gold); }
+.brief-form select:invalid { color: rgba(255,255,255,0.75); }
+</style>
+<!-- CONV:FORMCSS:END -->
 </head>
-<body>
+<body data-page-type="pillar">
 
 <nav class="nav">
   <a href="index.html" class="nav-logo-wrap">
     <span class="nav-logo">MY VILLA</span>
     <span class="nav-payoff">Italian Soul · Californian Body</span>
   </a>
-  <a href="#brief" class="nav-cta">Request Briefing</a>
+  <a href="#brief" class="nav-cta" data-ev="cta_click" data-cta-id="nav_brief">Request Briefing</a>
 </nav>
 
 <section class="pillar-hero">
@@ -491,18 +510,19 @@ li { margin-bottom: 10px; line-height: 1.7; color: rgba(44,44,44,0.85); }
   <section class="brief" id="brief">
     <div class="brief-eyebrow">Private Briefing</div>
     <h2>Commission a custom home in Beverly Hills or Bel Air</h2>
-    <p class="brief-sub">Currently accepting a limited number of California commissions for 2026–2027. A briefing begins with a site visit, a structural feasibility review, and a site-specific insurance positioning analysis — led personally by our founding partner.</p>
+    <p class="brief-sub">Currently accepting a limited number of California commissions for 2026–2027. A briefing begins with a site visit, a structural feasibility review, and a site-specific insurance positioning analysis — led personally by Paolo Mezzalama.</p>
     <a class="brief-alt" href="mailto:info@myvilla.la">
       <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5 L12 13 L20.5 6.5"/></svg>
       <span>Prefer email? Write to <strong>info@myvilla.la</strong></span>
     </a>
-    <form class="brief-form" id="briefForm" aria-label="Request a private briefing">
+    <form class="brief-form" id="briefForm" data-mv-form aria-label="Request a private briefing">
       <div class="bf-field"><label class="bf-label" for="bf-first">First name</label><input id="bf-first" type="text" name="first_name" required autocomplete="given-name" placeholder="Jane"></div>
       <div class="bf-field"><label class="bf-label" for="bf-last">Last name</label><input id="bf-last" type="text" name="last_name" required autocomplete="family-name" placeholder="Doe"></div>
       <div class="bf-field"><label class="bf-label" for="bf-email">Email</label><input id="bf-email" type="email" name="email" required autocomplete="email" placeholder="jane@example.com"></div>
-      <div class="bf-field"><label class="bf-label" for="bf-phone">Phone (optional)</label><input id="bf-phone" type="tel" name="phone" autocomplete="tel" placeholder="+1 (310) …"></div>
+      <div class="bf-field"><label class="bf-label" for="bf-phone">Phone (optional)</label><input id="bf-phone" type="tel" name="phone" autocomplete="tel" placeholder="+1 (310) …"><span class="bf-hint">Used only to reach you about your briefing. No marketing texts.</span></div>
       <div class="bf-field"><label class="bf-label" for="bf-interest">I'm exploring</label>
-        <select id="bf-interest" name="project_type">
+        <select id="bf-interest" name="project_type" required>
+          <option value="" selected disabled>Select…</option>
           <option value="New custom build">A new custom build</option>
           <option value="Rebuild after fire">A rebuild after fire</option>
           <option value="Future site / land search">A future site — still searching</option>
@@ -510,25 +530,45 @@ li { margin-bottom: 10px; line-height: 1.7; color: rgba(44,44,44,0.85); }
         </select>
       </div>
       <div class="bf-field"><label class="bf-label" for="bf-timeline">Timeline</label>
-        <select id="bf-timeline" name="timeline">
+        <select id="bf-timeline" name="timeline" required>
+          <option value="" selected disabled>Select…</option>
           <option value="Ready now">Ready to start now</option>
           <option value="6-12 months">Within 6–12 months</option>
           <option value="12-24 months">Within 1–2 years</option>
           <option value="Exploring">Just exploring</option>
         </select>
       </div>
+      <div class="bf-field"><label class="bf-label" for="bf-found">How did you find us?</label>
+        <select id="bf-found" name="how_found" required>
+          <option value="" selected disabled>Select…</option><option value="Google search">Google search</option><option value="ChatGPT or another AI assistant">ChatGPT or another AI assistant</option><option value="Instagram">Instagram</option><option value="LinkedIn">LinkedIn</option><option value="X">X</option><option value="Press or article">Press or article</option><option value="Referral">Referral</option><option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="bf-field"><label class="bf-label" for="bf-referred">Referred by (optional)</label><input id="bf-referred" type="text" name="referred_by" placeholder="Agent, broker, architect, friend…"></div>
       <div class="bf-field full"><label class="bf-label" for="bf-location">Site location (optional)</label><input id="bf-location" type="text" name="site_location" placeholder="e.g. Montecito, Bel Air, Pacific Palisades…"></div>
       <div class="bf-field full"><label class="bf-label" for="bf-message">Your project</label><textarea id="bf-message" name="message" placeholder="Tell us about your site, your vision, or what drew you to the Italian villa…"></textarea></div>
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="_subject" value="Beverly Hills Briefing Request — myvilla.la">
       <input type="hidden" name="source_page" value="beverly-hills-custom-home">
-      <button type="submit" class="brief-submit" id="briefSubmit">Request a Private Briefing</button>
-      <div class="brief-micro"><strong>Our founding partner will personally respond within 48 hours.</strong></div>
+      <label class="bf-consent"><input type="checkbox" name="consent_nurture" value="yes"><span>Keep me posted with occasional insights on insurable building in California.</span></label>
+      <input type="hidden" name="form_id" value="beverly_pillar">
+      <input type="hidden" name="page_type" value="pillar">
+      <input type="hidden" name="referrer" value="">
+      <input type="hidden" name="landing_url" value="">
+      <input type="hidden" name="utm_source" value="">
+      <input type="hidden" name="utm_medium" value="">
+      <input type="hidden" name="utm_campaign" value="">
+      <input type="hidden" name="utm_content" value="">
+      <input type="hidden" name="utm_term" value="">
+      <input type="hidden" name="cta_src" value="">
+      <button type="submit" class="brief-submit" id="briefSubmit" data-ev="form_submit_click" data-cta-id="beverly_pillar">Request a Private Briefing</button>
+      <div class="bf-legal">By submitting you agree to our <a href="/privacy.html#what-we-collect">Privacy Notice</a>.</div>
+      <div class="cta-error" role="alert">Something went wrong and your request did not go through. Please write to us directly at <a href="mailto:info@myvilla.la">info@myvilla.la</a>.</div>
+      <div class="brief-micro"><strong>Paolo Mezzalama replies personally within one business day.</strong></div>
     </form>
     <div class="brief-success" id="briefSuccess" role="status">
       <div class="ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5 L10 18 L20 6"/></svg></div>
       <h3>Grazie — request received.</h3>
-      <p>Our founding partner will personally respond within 48 hours with next steps for your private briefing.</p>
+      <p>Paolo Mezzalama replies personally within one business day. You will receive a confirmation by email in the meantime.</p>
     </div>
   </section>
 
@@ -554,35 +594,156 @@ li { margin-bottom: 10px; line-height: 1.7; color: rgba(44,44,44,0.85); }
 </footer>
 
 <script>
-(function () {
-  var FORMSPREE_ID = 'mgoljyjl';
-  var form = document.getElementById('briefForm');
-  var success = document.getElementById('briefSuccess');
-  if (!form) return;
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    var btn = document.getElementById('briefSubmit');
-    var orig = btn.textContent;
-    btn.textContent = 'Sending…'; btn.disabled = true; btn.style.opacity = '0.7';
-    fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-      method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }
-    }).then(function (res) {
-      if (res.ok) {
-        success.classList.add('show'); form.reset();
-        try { gtag('event', 'generate_lead', { event_category: 'briefing', event_label: 'beverly_hills_pillar' }); } catch (err) {}
-      } else { throw new Error('send-failed'); }
-    }).catch(function () {
-      btn.textContent = 'Something went wrong — try again';
-      btn.disabled = false; btn.style.opacity = '';
-      setTimeout(function () { btn.textContent = orig; }, 4000);
-    });
-  });
-})();
+// Form submit: see the CONV:FORMJS block at the end of the page.
 window.addEventListener('scroll', function () {
   document.querySelector('.nav').style.boxShadow = window.scrollY > 40 ? '0 2px 20px rgba(0,0,0,0.25)' : 'none';
 });
 </script>
 
+<!-- CONV:FORMJS:START -->
+<script>
+(function () {
+  var MV = { formspree: 'https://formspree.io/f/mgoljyjl', leadApi: 'https://content.myvilla.la/api/lead', thankYou: 'https://myvilla.la/briefing-received.html' };
+  var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  if (!Promise.allSettled) { Promise.allSettled = function (ps) { return Promise.all(ps.map(function (p) { return Promise.resolve(p).then(function (v) { return { status: 'fulfilled', value: v }; }, function (r) { return { status: 'rejected', reason: r }; }); })); }; }
+  function ss(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
+  var q = {}; try { new URLSearchParams(location.search).forEach(function (v, k) { q[k] = v; }); } catch (e) {}
+  // First-touch attribution, kept for the session
+  var attrib = null; try { attrib = JSON.parse(ss('mv_attrib') || 'null'); } catch (e) {}
+  if (!attrib || typeof attrib !== 'object') {
+    attrib = { referrer: document.referrer || '', landing_url: location.href.split('#')[0] };
+    UTM.forEach(function (k) { attrib[k] = q[k] || ''; });
+    ss('mv_attrib', JSON.stringify(attrib));
+  }
+  attrib.cta_src = q.src || attrib.cta_src || '';
+  function fill(form) {
+    Object.keys(attrib).forEach(function (k) { var el = form.querySelector('input[name="' + k + '"]'); if (el && !el.value) el.value = attrib[k] || ''; });
+  }
+  function setError(form, on) { var el = form.querySelector('.cta-error'); if (el) el.classList.toggle('show', !!on); }
+  function submit(form) {
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    fill(form); setError(form, false);
+    var btn = form.querySelector('[type="submit"]'), orig = btn ? btn.textContent : '';
+    if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; btn.style.opacity = '0.7'; }
+    var fd = new FormData(form);
+    var formId = fd.get('form_id') || form.id || 'form', how = fd.get('how_found') || '';
+    var dest = MV.thankYou + '?form=' + encodeURIComponent(formId) + '&via=' + encodeURIComponent(how);
+    if (fd.get('_gotcha')) { window.location.assign(dest); return; }  // honeypot: silent
+    var payload = {}; fd.forEach(function (v, k) { if (k !== '_gotcha') payload[k] = v; });
+    if (!payload.consent_nurture) payload.consent_nurture = 'no';
+    payload.submitted_at = new Date().toISOString();
+    Promise.allSettled([
+      fetch(MV.formspree, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }),
+      fetch(MV.leadApi, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+    ]).then(function (rs) {
+      var ok = rs.some(function (r) { return r.status === 'fulfilled' && r.value && r.value.ok; });
+      if (!ok) throw new Error('send-failed');
+      var wrap = form.parentElement, succ = wrap && wrap.querySelector('.cta-success, .brief-success');
+      if (succ) succ.classList.add('show');
+      var done = false; function go() { if (done) return; done = true; window.location.assign(dest); }
+      try { gtag('event', 'generate_lead', { form_id: formId, how_found: how, event_category: 'briefing', event_label: formId, event_callback: go, event_timeout: 600 }); } catch (e) {}
+      setTimeout(go, 600);
+    }).catch(function () {
+      setError(form, true);
+      if (btn) { btn.textContent = orig; btn.disabled = false; btn.style.opacity = ''; }
+    });
+  }
+  window.handleSubmit = function (e) { e.preventDefault(); submit(e.target); };
+  function init() {
+    var forms = document.querySelectorAll('form[data-mv-form]');
+    for (var i = 0; i < forms.length; i++) { (function (f) {
+      fill(f);
+      if (!f.hasAttribute('onsubmit')) f.addEventListener('submit', function (e) { e.preventDefault(); submit(f); });
+    })(forms[i]); }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+<!-- CONV:FORMJS:END -->
+<!-- CONV:MVTRACK:START -->
+<script>
+(function () {
+  var PT = (document.body && document.body.getAttribute('data-page-type')) || 'page';
+  function send(ev, params) { try { if (typeof gtag === 'function') gtag('event', ev, params); } catch (e) {} }
+  function snake(k) { return k.replace(/([A-Z])/g, '_$1').toLowerCase(); }
+  document.addEventListener('click', function (e) {
+    var t = e.target; if (!t || !t.closest) return;
+    var el = t.closest('[data-ev]');
+    if (el) {
+      var p = { page_type: PT }, d = el.dataset;
+      for (var k in d) { if (k !== 'ev') p[snake(k)] = d[k]; }
+      if (!p.cta_id) p.cta_id = el.id || (el.getAttribute('href') || '').slice(0, 60) || el.tagName.toLowerCase();
+      send(d.ev, p);
+    }
+    var a = t.closest('a[href^="mailto:"]');
+    if (a) send('contact_email_click', { page_type: PT, cta_id: a.id || 'mailto', link_url: a.getAttribute('href') });
+  }, true);
+  var started = {};
+  document.addEventListener('focusin', function (e) {
+    var f = e.target && e.target.form; if (!f || f.tagName !== 'FORM') return;
+    var key = f.id || 'form'; if (started[key]) return; started[key] = true;
+    var fid = f.querySelector('input[name="form_id"]');
+    send('form_start', { page_type: PT, form_id: (fid && fid.value) || key });
+  }, true);
+  window.mvTrack = send;
+})();
+</script>
+<!-- CONV:MVTRACK:END -->
+<!-- CONV:COOKIE_UI:START -->
+<style>
+#cookieBanner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9990; background: var(--offblack, #1a1816); border-top: 1px solid rgba(196,162,101,0.2); padding: 20px var(--side-pad, 24px); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; transform: translateY(100%); transition: transform 0.4s ease; }
+#cookieBanner.visible { transform: translateY(0); }
+.cookie-text { font-family: var(--sans, 'Montserrat', sans-serif); font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.75); flex: 1; min-width: 260px; }
+.cookie-text a { color: var(--terracotta, #C2714F); text-decoration: underline; }
+.cookie-buttons { display: flex; gap: 12px; flex-shrink: 0; }
+.cookie-btn { font-family: var(--sans, 'Montserrat', sans-serif); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 10px 24px; border: none; border-radius: 2px; cursor: pointer; transition: background 0.3s, color 0.3s; }
+.cookie-accept { background: var(--terracotta, #C2714F); color: #fff; }
+.cookie-accept:hover { background: #a8593e; }
+.cookie-decline { background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); }
+.cookie-decline:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+body #cookieBanner.cookie-toast { left: auto; right: 16px; bottom: 16px; max-width: 380px; border: 1px solid rgba(196,162,101,0.3); border-radius: 4px; padding: 14px 16px; gap: 14px; flex-wrap: nowrap; }
+body #cookieBanner.cookie-toast .cookie-text { font-size: 12.5px; min-width: 0; }
+body #cookieBanner.cookie-toast .cookie-btn { padding: 8px 14px; font-size: 11px; }
+@media (max-width: 600px) { #cookieBanner { flex-direction: column; text-align: center; padding: 20px 16px; } .cookie-buttons { width: 100%; justify-content: center; } body #cookieBanner.cookie-toast { left: 16px; max-width: none; flex-direction: row; text-align: left; } body #cookieBanner.cookie-toast .cookie-buttons { width: auto; } }
+</style>
+<script>
+// ══════════════ COOKIE CONSENT — Consent Mode v2 (opt-in in EU, notice + opt-out elsewhere) ══════════════
+(function () {
+  var KEY = 'myvilla_cookie_consent';
+  function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function store(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function consent(granted) { try { gtag('consent', 'update', { analytics_storage: granted ? 'granted' : 'denied' }); } catch (e) {} }
+  var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+  var isEU = /^Europe\//.test(tz);
+  window.mvIsEU = isEU;
+  function close() {
+    var b = document.getElementById('cookieBanner');
+    document.documentElement.style.removeProperty('--mv-banner-h');
+    if (b) { b.classList.remove('visible'); setTimeout(function () { b.remove(); }, 400); }
+  }
+  window.acceptCookies = function () { store('accepted'); consent(true); close(); };
+  window.declineCookies = function () { store('declined'); consent(false); close(); };
+  window.closeCookieBanner = close;
+  if (stored()) return;
+  var banner = document.createElement('div');
+  banner.id = 'cookieBanner';
+  banner.setAttribute('role', 'region');
+  banner.setAttribute('aria-label', 'Cookie choices');
+  if (isEU) {
+    banner.innerHTML = '<div class="cookie-text">We use analytics cookies (Google Analytics) to understand how the site is used. Nothing is stored until you choose. <a href="/privacy.html#cookies">Privacy choices</a></div>' +
+      '<div class="cookie-buttons"><button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button><button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button></div>';
+  } else {
+    banner.className = 'cookie-toast';
+    banner.innerHTML = '<div class="cookie-text">This site uses analytics cookies. <a href="/privacy.html#cookies">Privacy choices</a></div>' +
+      '<div class="cookie-buttons"><button class="cookie-btn cookie-accept" onclick="acceptCookies()" aria-label="Dismiss">OK</button></div>';
+  }
+  document.body.appendChild(banner);
+  setTimeout(function () {
+    banner.classList.add('visible');
+    document.documentElement.style.setProperty('--mv-banner-h', (banner.offsetHeight || 0) + 'px');
+  }, 800);
+})();
+</script>
+<!-- CONV:COOKIE_UI:END -->
 </body>
 </html>

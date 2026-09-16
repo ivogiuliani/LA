@@ -56,7 +56,7 @@
     "@type": "Organization",
     "name": "My Villa",
     "url": "https://myvilla.la",
-    "logo": { "@type": "ImageObject", "url": "https://myvilla.la/assets/img/myvilla-logo.png" }
+    "logo": { "@type": "ImageObject", "url": "https://myvilla.la/img/myvilla-logo.png" }
   },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://myvilla.la/blog/fair-plan-wildfire-hardening-discounts-california-luxury-homes.html" },
   "image": "https://myvilla.la/blog/assets/img/fair-plan-wildfire-hardening-discounts-california-luxury-homes-hero.jpg",
@@ -358,6 +358,13 @@ a.source-citation::after { content: '↗'; display: inline-block; font-size: 0.7
 
 <p class="reveal">At the structure layer, the FAIR Plan recognizes measures including a Class A fire-rated roof, ember-resistant vents, enclosed eaves, non-combustible cladding within five feet of the building, upgraded multi-pane glazing, and a clear Zone 0 perimeter. These are physical, verifiable, and tied directly to the building envelope (<a href="https://fbia.com/blog/fair-plan-wildfire-hardening-discounts/">FBIA</a>).</p>
 
+<!-- MV-MIDCTA:START -->
+<aside class="mv-midcta" aria-label="Request a private briefing" style="margin:40px 0;padding:22px 26px;border-left:3px solid #C2714F;background:#FAF6F0;font-family:'Montserrat',-apple-system,sans-serif;font-size:14px;line-height:1.65;color:#3E2F2B;">
+  <span style="display:block;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#C2714F;margin-bottom:8px;">From My Villa</span>
+  Planning a home in Malibu or Beverly Hills? <a href="https://myvilla.la/private-briefing.html?src=journal_mid&amp;slug=fair-plan-wildfire-hardening-discounts-california-luxury-homes" data-ev="journal_cta_click" data-cta="mid" style="color:#C2714F;font-weight:600;text-decoration:underline;text-underline-offset:3px;">Request a private briefing with our founder.</a>
+</aside>
+<!-- MV-MIDCTA:END -->
+
 <p class="reveal">The parcel layer addresses defensible space — vegetation management, fuel reduction, and outbuilding separation. The community layer recognizes participation in Firewise USA programs or designation as a Fire Risk Reduction Community. As the California Department of Insurance has formalized, this twelve-measure framework is now the baseline language admitted carriers must speak when pricing fire risk.</p>
 
 <div class="key-data">
@@ -444,7 +451,7 @@ a.source-citation::after { content: '↗'; display: inline-block; font-size: 0.7
     <p class="journal-cta-text">We design and coordinate luxury reinforced concrete villas for the Los Angeles market. European engineering. Californian lifestyle.</p>
     <div class="journal-cta-buttons">
       <a href="https://myvilla.la" class="cta-btn cta-btn-primary">Explore My Villa</a>
-      <a href="https://myvilla.la/#contact" class="cta-btn cta-btn-secondary">Request a Briefing</a>
+      <a href="https://myvilla.la/private-briefing.html?src=journal_end&amp;slug=fair-plan-wildfire-hardening-discounts-california-luxury-homes" class="cta-btn cta-btn-secondary" data-ev="journal_cta_click" data-cta="end">Request a Briefing</a>
     </div>
   </div>
 </section>
@@ -482,5 +489,10 @@ function copyShareLink(btn) {
 }
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+<!-- MV-CTAJS:START -->
+<script>
+(function(){document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('[data-ev]'):null;if(!a||typeof window.gtag!=='function')return;var slug=(location.pathname.split('/').pop()||'').replace(/\.html$/,'');window.gtag('event',a.getAttribute('data-ev'),{cta:a.getAttribute('data-cta')||'',slug:slug,transport_type:'beacon'});},true);})();
+</script>
+<!-- MV-CTAJS:END -->
 </body>
 </html>

@@ -1,0 +1,17 @@
+[Unit]
+Description=My Villa Lead API (POST /api/lead, GET /api/healthz) on 127.0.0.1:8788
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/myvilla
+EnvironmentFile=/opt/myvilla/.env
+Environment=MYVILLA_PRIVATE_DIR=/opt/myvilla-private
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /opt/myvilla/_system/scripts/lead_api.py --host 127.0.0.1 --port 8788
+Restart=always
+RestartSec=5
+User=root
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

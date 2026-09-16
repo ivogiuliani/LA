@@ -56,7 +56,7 @@
     "@type": "Organization",
     "name": "My Villa",
     "url": "https://myvilla.la",
-    "logo": { "@type": "ImageObject", "url": "https://myvilla.la/assets/img/myvilla-logo.png" }
+    "logo": { "@type": "ImageObject", "url": "https://myvilla.la/img/myvilla-logo.png" }
   },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://myvilla.la/blog/california-fair-plan-rate-increase-2026-insurable-home.html" },
   "image": "https://myvilla.la/blog/assets/img/california-fair-plan-rate-increase-2026-insurable-home-hero.jpg",
@@ -365,6 +365,13 @@ a.source-citation::after { content: '↗'; display: inline-block; font-size: 0.7
 
 <p class="reveal">The other half of California's regulatory architecture is the Safer from Wildfires framework. Under a 2022 California Department of Insurance regulation, every admitted insurer must offer discounts to homes that adopt any of 12 specified mitigation measures, ranging from Class A roofs and ember-resistant vents to defensible-space landscaping. The full text of the rule and the menu of measures is published by the California Department of Insurance. Layered on top, the <a href="https://ibhs.org/wildfire-prepared-home/">IBHS Wildfire Prepared Home and Wildfire Prepared Home Plus designations</a> have become the standard several California carriers — including Mercury — reference when offering their largest wildfire-related discounts.</p>
 
+<!-- MV-MIDCTA:START -->
+<aside class="mv-midcta" aria-label="Request a private briefing" style="margin:40px 0;padding:22px 26px;border-left:3px solid #C2714F;background:#FAF6F0;font-family:'Montserrat',-apple-system,sans-serif;font-size:14px;line-height:1.65;color:#3E2F2B;">
+  <span style="display:block;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#C2714F;margin-bottom:8px;">From My Villa</span>
+  Planning a home in Malibu or Beverly Hills? <a href="https://myvilla.la/private-briefing.html?src=journal_mid&amp;slug=california-fair-plan-rate-increase-2026-insurable-home" data-ev="journal_cta_click" data-cta="mid" style="color:#C2714F;font-weight:600;text-decoration:underline;text-underline-offset:3px;">Request a private briefing with our founder.</a>
+</aside>
+<!-- MV-MIDCTA:END -->
+
 <h2 class="reveal">What it means for the Los Angeles luxury market</h2>
 
 <p class="reveal">For owners of conventional wood-frame homes in high-risk ZIPs, the path of least resistance has been the FAIR Plan plus a non-admitted excess and surplus wrap for contents and liability. That stack just got more expensive at the base. For buyers commissioning new construction in Malibu, Beverly Hills, Bel Air, and the Westside canyons, the filing sharpens a calculation that was already moving in one direction: the cost of insuring a combustible building over a 30-year hold is rising faster than the cost of building a non-combustible one.</p>
@@ -443,7 +450,7 @@ a.source-citation::after { content: '↗'; display: inline-block; font-size: 0.7
     <p class="journal-cta-text">We design and coordinate luxury reinforced concrete villas for the Los Angeles market. European engineering. Californian lifestyle.</p>
     <div class="journal-cta-buttons">
       <a href="https://myvilla.la" class="cta-btn cta-btn-primary">Explore My Villa</a>
-      <a href="https://myvilla.la/#contact" class="cta-btn cta-btn-secondary">Request a Briefing</a>
+      <a href="https://myvilla.la/private-briefing.html?src=journal_end&amp;slug=california-fair-plan-rate-increase-2026-insurable-home" class="cta-btn cta-btn-secondary" data-ev="journal_cta_click" data-cta="end">Request a Briefing</a>
     </div>
   </div>
 </section>
@@ -481,5 +488,10 @@ function copyShareLink(btn) {
 }
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+<!-- MV-CTAJS:START -->
+<script>
+(function(){document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('[data-ev]'):null;if(!a||typeof window.gtag!=='function')return;var slug=(location.pathname.split('/').pop()||'').replace(/\.html$/,'');window.gtag('event',a.getAttribute('data-ev'),{cta:a.getAttribute('data-cta')||'',slug:slug,transport_type:'beacon'});},true);})();
+</script>
+<!-- MV-CTAJS:END -->
 </body>
 </html>

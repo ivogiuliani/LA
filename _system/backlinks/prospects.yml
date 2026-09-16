@@ -1,0 +1,642 @@
+# My Villa — Backlink prospects (motore backlink, Fase 2)
+# Regole: contact SOLO caselle generiche/form verificati; mai nominativi;
+# contact_source known|verified|to_verify; status todo|drafted|sent|live|lost|declined|needs_contact.
+# Aggiornato automaticamente da backlink_check.py e mention_monitor.py (campi status/last_checked/notes).
+# Ultima riscrittura: 2026-09-16T19:22:35+00:00
+
+meta:
+  created: '2026-09-16'
+  goal_domains_2027_03: 25
+  goal_dofollow: 10
+  baseline_referring_domains: 0
+prospects:
+- id: its-vision-site
+  engine: network
+  name: IT'S Architecture — its.vision (bio, footer, news)
+  target_url: https://its.vision/
+  contact_source: known
+  contact: info@its.vision
+  sender: paolo
+  myvilla_url: https://myvilla.la/team.html
+  anchor: My Villa
+  rel_expected: dofollow
+  status: todo
+  notes: 'Partner fondatore. Chiedere: link nel footer/partner + news ''IT''S apre la pratica LA con My Villa''.
+    Bozza: _drafts/backlinks/partner_requests/01-its-vision.md'
+  source_evidence_url: https://its.vision/
+  last_checked: '2026-09-16T19:22:05+00:00'
+  last_http: 200
+- id: buromilan-journal
+  engine: network
+  name: BUROMILAN — Journal / news
+  target_url: https://buromilan.com/
+  contact_source: verified
+  contact: info@buromilan.com
+  sender: paolo
+  myvilla_url: https://myvilla.la/team.html
+  anchor: My Villa
+  rel_expected: dofollow
+  status: todo
+  notes: 'Casella generica info@ e stampa@ presenti in homepage (fetch 2026-09-16). Proposta: news ''ingegneria
+    strutturale per My Villa, Los Angeles''. Bozza: partner_requests/02-buromilan.md'
+  source_evidence_url: https://buromilan.com/
+  last_checked: '2026-09-16T19:22:05+00:00'
+  last_http: 200
+- id: cooperative-la-perspectives
+  engine: network
+  name: Cooperative LA — Perspectives (co-firmato)
+  target_url: https://cooperative.la/
+  contact_source: to_verify
+  contact: ''
+  sender: paolo
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: 'Sezione /perspectives/ attiva (es. ''What Is an Owner''s Representative?''). Proporre un Perspective co-firmato
+    ''Rebuilding in concrete: what an owner''s rep should ask''. Contatto: usare il canale diretto di Paolo con
+    il partner, non la casella generica. Bozza: partner_requests/03-cooperative-la.md'
+  source_evidence_url: https://cooperative.la/perspectives/what-is-an-owners-representative/
+  last_checked: '2026-09-16T19:22:05+00:00'
+  last_http: 200
+- id: transsolar-projects
+  engine: network
+  name: Transsolar KlimaEngineering — Projects
+  target_url: https://transsolar.com/projects
+  contact_source: to_verify
+  contact: ''
+  sender: paolo
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: 'Chiedere una scheda progetto ''My Villa Los Angeles — climate concept'' con link. Contatto: referente
+    di progetto di Paolo (mai casella generica). Bozza: partner_requests/04-transsolar.md'
+  source_evidence_url: https://transsolar.com/projects
+  last_checked: '2026-09-16T19:22:05+00:00'
+  last_http: 200
+- id: dgu-dottorgroup
+  engine: network
+  name: DGU / Dottor Group — news e partner
+  target_url: https://www.dottorgroup.com/
+  contact_source: to_verify
+  contact: ''
+  sender: paolo
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: 'Dominio dottorgroup.com (Dottor Group S.p.A., San Vendemiano TV). Fetch 2026-09-16 fallito dalla rete
+    locale: ri-verificare. Chiedere news ''DGU partner del sistema My Villa'' + link. Bozza: partner_requests/05-dgu.md'
+  source_evidence_url: https://www.dottorgroup.com/
+  last_checked: '2026-09-16T19:22:05+00:00'
+  last_http: 0
+- id: archilovers-profile
+  engine: network
+  name: Archilovers — profilo studio + progetti (concept)
+  target_url: https://www.archilovers.com/
+  contact_source: verified
+  contact: https://www.archilovers.com/
+  sender: giana
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: nofollow
+  status: todo
+  notes: 'Profilo gratuito (registrazione). Caricare le 4 tipologie come ''concept''. Bozza istruzioni: partner_requests/06-archilovers-archello.md'
+  source_evidence_url: https://www.archilovers.com/
+  last_checked: '2026-09-16T19:22:05+00:00'
+  last_http: 200
+- id: archello-profile
+  engine: network
+  name: Archello — profilo brand/studio
+  target_url: https://archello.com/
+  contact_source: verified
+  contact: https://archello.com/
+  sender: giana
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: nofollow
+  status: drafted
+  notes: 'Homepage risponde 403 ai bot (fetch 2026-09-16): il check automatico va fatto sull''URL del profilo una
+    volta creato. Stesso file istruzioni di Archilovers.'
+  source_evidence_url: https://archello.com/
+  last_checked: '2026-09-16T19:22:05+00:00'
+  last_http: 403
+  drafted_at: '2026-09-16'
+- id: dezeen-submit
+  engine: editorial
+  name: Dezeen — Submit a story (esclusiva 7 gg)
+  target_url: https://www.dezeen.com/submit-a-story/
+  contact_source: to_verify
+  contact: ''
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: 'Pagina risponde 403 ai bot; la casella press@ è citata da guide terze: aprire la pagina a mano e confermare
+    prima dell''invio. Ordine: Dezeen prima (esclusiva), poi ArchDaily unbuilt, designboom, Divisare. Vedi press_submissions.yml'
+  source_evidence_url: https://www.dezeen.com/submit-a-story/
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 403
+- id: archdaily-unbuilt
+  engine: editorial
+  name: ArchDaily — Unbuilt Project submission form
+  target_url: https://www.archdaily.com/unbuilt-project
+  contact_source: verified
+  contact: https://www.archdaily.com/unbuilt-project
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: drafted
+  notes: Form ufficiale, accetta unbuilt/concept. Inviare dopo la finestra Dezeen.
+  source_evidence_url: https://www.archdaily.com/unbuilt-project
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 200
+  drafted_at: '2026-09-16'
+- id: designboom-readers
+  engine: editorial
+  name: designboom — readers submit (DIY)
+  target_url: https://www.designboom.com/readers-submit/
+  contact_source: verified
+  contact: https://www.designboom.com/readers-submit/
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: drafted
+  notes: Upload fino a 12 immagini; preferiscono lavori inediti.
+  source_evidence_url: https://www.designboom.com/readers-submit/
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 200
+  drafted_at: '2026-09-16'
+- id: divisare-submit
+  engine: editorial
+  name: Divisare — Submit your work
+  target_url: https://divisare.com/submit
+  contact_source: verified
+  contact: https://divisare.com/submit
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: drafted
+  notes: Testo fino a 1000 parole, immagini in cartella zip o link. Status 'concept'.
+  source_evidence_url: https://divisare.com/submit
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 200
+  drafted_at: '2026-09-16'
+- id: metalocus-bowerbird
+  engine: editorial
+  name: METALOCUS — submission via BowerBird
+  target_url: https://www.bowerbird.io/publications/metalocus
+  contact_source: verified
+  contact: https://www.bowerbird.io/publications/metalocus
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: drafted
+  notes: BowerBird gratuito per invii singoli (verificare piano free).
+  source_evidence_url: https://www.bowerbird.io/publications/metalocus
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 200
+  drafted_at: '2026-09-16'
+- id: e-architect-submit
+  engine: editorial
+  name: e-architect — Submit your project
+  target_url: https://www.e-architect.com/submit-your-project
+  contact_source: to_verify
+  contact: ''
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: '300-1000 parole, fino a 16 immagini >=1200px. La casella info@ non compare nel HTML della pagina (fetch
+    2026-09-16): confermare a mano.'
+  source_evidence_url: https://www.e-architect.com/submit-your-project
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 200
+- id: archeyes-submit
+  engine: editorial
+  name: ArchEyes — Submit work
+  target_url: https://archeyes.com/submit-work/
+  contact_source: to_verify
+  contact: ''
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: 'Pagina 403 ai bot. Casella hello@ citata da snippet: confermare a mano.'
+  source_evidence_url: https://archeyes.com/submit-work/
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 202
+- id: amazing-architecture-submit
+  engine: editorial
+  name: Amazing Architecture — Submit
+  target_url: https://amazingarchitecture.com/pages/submit
+  contact_source: to_verify
+  contact: ''
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: Chiedono descrizione EN (DOC/PDF) + JPG/PNG 300 DPI. Casella info@ da confermare sulla pagina.
+  source_evidence_url: https://amazingarchitecture.com/pages/submit
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 200
+- id: architizer-firm-profile
+  engine: editorial
+  name: Architizer — firm profile (gratuito)
+  target_url: https://architizer.com/firms/
+  contact_source: verified
+  contact: https://architizer.com/firms/
+  sender: giana
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: nofollow
+  status: drafted
+  notes: 'Profilo firm + 4 progetti ''concept''. Attenzione B&P §5536: descrivere come ''design studio'', non ''architecture
+    firm licensed in CA''.'
+  source_evidence_url: https://architizer.com/firms/
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 200
+  drafted_at: '2026-09-16'
+- id: the-plan-publish
+  engine: editorial
+  name: THE PLAN — Publish your work (webzine)
+  target_url: https://www.theplan.it/eng/publish-your-work
+  contact_source: verified
+  contact: https://www.theplan.it/eng/publish-your-work
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: todo
+  notes: 'Area riservata dopo registrazione; pagina 403 ai bot ma il flusso è documentato. Testata italiana con
+    edizione EN: ponte tra motore 2 e 3.'
+  source_evidence_url: https://www.theplan.it/eng/publish-your-work
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 403
+- id: artribune
+  engine: press_it
+  name: Artribune — redazione
+  target_url: https://www.artribune.com/contatti/
+  contact_source: verified
+  contact: redazione@artribune.com
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: todo
+  notes: 'Comunicato IT (press_release_it.md). Storia: un NAJA 2008 porta la villa italiana in cemento a vista a
+    Los Angeles.'
+  source_evidence_url: https://www.artribune.com/contatti/
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 200
+- id: giornale-architettura
+  engine: press_it
+  name: Il Giornale dell'Architettura — redazione
+  target_url: https://ilgiornaledellarchitettura.com/contatti/
+  contact_source: verified
+  contact: redazione@ilgiornaledellarchitettura.com
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: todo
+  notes: Casella verificata sulla pagina contatti (fetch 2026-09-16).
+  source_evidence_url: https://ilgiornaledellarchitettura.com/contatti/
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 200
+- id: professione-architetto
+  engine: press_it
+  name: professioneArchitetto — redazione
+  target_url: https://www.professionearchitetto.it/
+  contact_source: verified
+  contact: redazione@professionearchitetto.it
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: todo
+  notes: Casella redazione@ presente in homepage (fetch 2026-09-16).
+  source_evidence_url: https://www.professionearchitetto.it/
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 200
+- id: ioarch
+  engine: press_it
+  name: IoArch — redazione
+  target_url: https://ioarch.it/
+  contact_source: to_verify
+  contact: ''
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: 'redazione@ioarch.it citata da directory terze, non trovata nel HTML della home: verificare sulla pagina
+    contatti.'
+  source_evidence_url: https://ioarch.it/
+  last_checked: '2026-09-16T19:22:06+00:00'
+  last_http: 200
+- id: chroniques-architecture
+  engine: press_it
+  name: Chroniques d'architecture (FR) — form contatto
+  target_url: https://chroniques-architecture.com/nous-contacter/
+  contact_source: verified
+  contact: https://chroniques-architecture.com/nous-contacter/
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: todo
+  notes: 'Solo form. Usare press_release_fr.md (angolo: NAJA 2008 del Ministère de la Culture).'
+  source_evidence_url: https://chroniques-architecture.com/nous-contacter/
+  last_checked: '2026-09-16T19:22:07+00:00'
+  last_http: 200
+- id: iic-los-angeles
+  engine: press_it
+  name: Istituto Italiano di Cultura Los Angeles — Italian Design Day 2027
+  target_url: https://iiclosangeles.esteri.it/en/chi-siamo/contatti/
+  contact_source: to_verify
+  contact: ''
+  sender: paolo
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: 'Sito 403 ai bot. Casella desk.iicla@esteri.it citata da snippet: confermare sulla pagina contatti a mano.
+    Proposta: talk Italian Design Day (marzo 2027) → pagina evento con link.'
+  source_evidence_url: https://iiclosangeles.esteri.it/en/chi-siamo/contatti/
+  last_checked: '2026-09-16T19:22:07+00:00'
+  last_http: 403
+- id: ice-los-angeles
+  engine: press_it
+  name: ICE / Italian Trade Agency Los Angeles
+  target_url: https://www.ice.it/en/markets/usa/los-angeles
+  contact_source: to_verify
+  contact: ''
+  sender: paolo
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: 'Casella losangeles@ice.it citata da snippet: confermare sulla pagina ufficiale. Angolo: made-in-Italy
+    della costruzione (DGU, BUROMILAN) in California.'
+  source_evidence_url: https://www.ice.it/en/markets/usa/los-angeles
+  last_checked: '2026-09-16T19:22:07+00:00'
+  last_http: 200
+- id: usgbc-california
+  engine: directory
+  name: USGBC California — membership directory
+  target_url: https://usgbc-ca.org/
+  contact_source: verified
+  contact: https://usgbc-ca.org/
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: nofollow
+  status: todo
+  notes: 'usgbc-la.org reindirizza a usgbc-ca.org (fetch 2026-09-16). Membership a pagamento: valutare tier minimo.
+    Directory dietro login: il check automatico non vede il link.'
+  source_evidence_url: https://usgbc-ca.org/
+  last_checked: '2026-09-16T19:22:07+00:00'
+  last_http: 200
+- id: aia-la-allied
+  engine: directory
+  name: AIA|LA — Allied membership + directory
+  target_url: https://www.aialosangeles.org/join/
+  contact_source: verified
+  contact: https://www.aialosangeles.org/join/
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: nofollow
+  status: todo
+  notes: Individual Allied Membership (non-architect). Parere legale B&P §5536 prima del profilo.
+  source_evidence_url: https://www.aialosangeles.org/join/
+  last_checked: '2026-09-16T19:22:07+00:00'
+  last_http: 200
+- id: palibuilds-directory
+  engine: directory
+  name: Pali Builds — directory professionisti Palisades
+  target_url: https://palibuilds.com/
+  contact_source: verified
+  contact: info@palibuilds.com
+  sender: office
+  myvilla_url: https://myvilla.la/pacific-palisades-rebuild.html
+  anchor: My Villa
+  rel_expected: unknown
+  status: todo
+  notes: Casella info@ nel footer (fetch 2026-09-16). Chiedere inserimento come 'design consultant / concept design';
+    NON come GC o architect.
+  source_evidence_url: https://palibuilds.com/
+  last_checked: '2026-09-16T19:22:07+00:00'
+  last_http: 200
+- id: palipost-rebuild-dashboard
+  engine: asset
+  name: Palisadian-Post — Rebuild Dashboard (citazione dati)
+  target_url: https://palipost.com/pacific-palisades-rebuild-dashboard/
+  contact_source: to_verify
+  contact: ''
+  sender: office
+  myvilla_url: https://myvilla.la/research/
+  anchor: Westside Rebuild Tracker
+  rel_expected: dofollow
+  status: needs_contact
+  notes: Offrire il tracker open-data (data-assets) come fonte complementare. Contatto redazione da leggere sul
+    sito.
+  source_evidence_url: https://palipost.com/pacific-palisades-rebuild-dashboard/
+  last_checked: '2026-09-16T19:22:08+00:00'
+  last_http: 200
+- id: larises-rebuild-resources
+  engine: asset
+  name: LA Rises — Rebuild resources (offerta tracker)
+  target_url: https://larises.org/rebuild/
+  contact_source: to_verify
+  contact: ''
+  sender: office
+  myvilla_url: https://myvilla.la/research/
+  anchor: Westside Rebuild Tracker
+  rel_expected: dofollow
+  status: needs_contact
+  notes: Pagina risorse ufficiale (Governor + LA Rises). Offrire tracker/checklist come risorsa. Contatto dal form
+    del sito.
+  source_evidence_url: https://larises.org/rebuild/
+  last_checked: '2026-09-16T19:22:08+00:00'
+  last_http: 200
+- id: source-of-sources
+  engine: journo
+  name: Source of Sources (SOS) — newsletter richieste
+  target_url: https://www.sourceofsources.com/
+  contact_source: verified
+  contact: https://www.sourceofsources.com/
+  sender: paolo
+  myvilla_url: https://myvilla.la/blog/
+  anchor: My Villa
+  rel_expected: unknown
+  status: todo
+  notes: 'Iscrizione gratuita con info@myvilla.la; filtro Gmail → label MV/JournoRequests. Script: journalist_requests.py'
+  source_evidence_url: https://www.sourceofsources.com/
+  last_checked: '2026-09-16T19:22:08+00:00'
+  last_http: 200
+- id: featured-com
+  engine: journo
+  name: Featured.com (ex HARO) — expert questions
+  target_url: https://featured.com/expert-questions
+  contact_source: verified
+  contact: https://featured.com/
+  sender: paolo
+  myvilla_url: https://myvilla.la/blog/
+  anchor: My Villa
+  rel_expected: unknown
+  status: todo
+  notes: Account esperto per Paolo. Newsletter HARO gratuita 3 digest/giorno → label MV/JournoRequests.
+  source_evidence_url: https://featured.com/expert-questions
+  last_checked: '2026-09-16T19:22:08+00:00'
+  last_http: 429
+- id: qwoted
+  engine: journo
+  name: Qwoted — free plan (2 pitch/mese)
+  target_url: https://www.qwoted.com/
+  contact_source: verified
+  contact: https://www.qwoted.com/
+  sender: paolo
+  myvilla_url: https://myvilla.la/blog/
+  anchor: My Villa
+  rel_expected: unknown
+  status: todo
+  notes: 'Piano free: 2 pitch/mese con ritardo 2h. Solo richieste ad alta pertinenza (score >= soglia).'
+  source_evidence_url: https://www.qwoted.com/
+  last_checked: '2026-09-16T19:22:08+00:00'
+  last_http: 200
+- id: altadena-collective-homeowners
+  engine: asset
+  name: Altadena Collective — Homeowner resources wiki
+  target_url: https://www.altadenacollective.org/homeowners
+  contact_source: to_verify
+  contact: ''
+  sender: office
+  myvilla_url: https://myvilla.la/insurable-home-california.html
+  anchor: insurable home checklist
+  rel_expected: dofollow
+  status: needs_contact
+  notes: 'Wiki di risorse community-run: candidata per resource_page_audit + offerta checklist. Contatto via form
+    del sito.'
+  source_evidence_url: https://www.altadenacollective.org/homeowners
+  last_checked: '2026-09-16T19:22:08+00:00'
+  last_http: 200
+- id: pacpalicc-resources
+  engine: asset
+  name: Pacific Palisades Community Council — fire info/updates
+  target_url: https://pacpalicc.org/index.php/palisades-fire-information-updates-2026/
+  contact_source: to_verify
+  contact: ''
+  sender: office
+  myvilla_url: https://myvilla.la/research/
+  anchor: Westside Rebuild Tracker
+  rel_expected: dofollow
+  status: needs_contact
+  notes: Pagina risorse aggiornata 2026. Offrire tracker come risorsa civica. Contatto dal sito.
+  source_evidence_url: https://pacpalicc.org/index.php/palisades-fire-information-updates-2026/
+  last_checked: '2026-09-16T19:22:08+00:00'
+  last_http: 200
+- id: malibu-rebuilds-resources
+  engine: asset
+  name: Malibu Rebuilds — Community resources
+  target_url: https://maliburebuilds.org/community-resources/
+  contact_source: to_verify
+  contact: ''
+  sender: office
+  myvilla_url: https://myvilla.la/insurable-home-california.html
+  anchor: insurable home checklist
+  rel_expected: dofollow
+  status: needs_contact
+  notes: Pagina risorse con molti link esterni (candidata audit link rotti). Contatto dal sito, non le caselle istituzionali
+    citate nella pagina.
+  source_evidence_url: https://maliburebuilds.org/community-resources/
+  last_checked: '2026-09-16T19:22:08+00:00'
+  last_http: 200
+- id: architizer-aplus-unbuilt
+  engine: award
+  name: Architizer A+Awards — Unbuilt (early entry)
+  target_url: https://awards.architizer.com/a/page/about/fees-deadlines
+  contact_source: verified
+  contact: awards@architizer.com
+  sender: office
+  myvilla_url: https://myvilla.la/
+  anchor: My Villa
+  rel_expected: nofollow
+  status: todo
+  notes: 'Casella awards@ presente nella pagina fees (fetch 2026-09-16). Piano: una sola entry early (circa 283
+    USD, entro 23 ott 2026 — riverificare fee/deadline sulla pagina). Decisione di spesa: Ivo.'
+  source_evidence_url: https://awards.architizer.com/a/page/about/fees-deadlines
+  last_checked: '2026-09-16T19:22:08+00:00'
+  last_http: 200
+- id: second-studio-podcast
+  engine: podcast
+  name: The Second Studio (LA) — booking
+  target_url: https://www.secondstudiopod.com/contact
+  contact_source: verified
+  contact: booking@secondstudiopod.com
+  sender: paolo
+  myvilla_url: https://myvilla.la/team.html
+  anchor: My Villa
+  rel_expected: dofollow
+  status: todo
+  notes: 'Casella booking@ verificata sulla pagina contatti. Podcast LA/SF, ospiti architetti. Pitch: podcast_pitches.md
+    #1'
+  source_evidence_url: https://www.secondstudiopod.com/contact
+  last_checked: '2026-09-16T19:22:09+00:00'
+  last_http: 200
+- id: entrearchitect-podcast
+  engine: podcast
+  name: EntreArchitect Podcast — guest
+  target_url: https://entrearchitect.com/podcast/
+  contact_source: to_verify
+  contact: ''
+  sender: paolo
+  myvilla_url: https://myvilla.la/team.html
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: 'podcast@entrearchitect.com citata da snippet, non trovata nel HTML: confermare. Pitch: podcast_pitches.md
+    #2'
+  source_evidence_url: https://entrearchitect.com/podcast/
+  last_checked: '2026-09-16T19:22:09+00:00'
+  last_http: 200
+- id: business-of-architecture-podcast
+  engine: podcast
+  name: Business of Architecture — guest
+  target_url: https://www.businessofarchitecture.com/podcast/
+  contact_source: to_verify
+  contact: ''
+  sender: paolo
+  myvilla_url: https://myvilla.la/team.html
+  anchor: My Villa
+  rel_expected: dofollow
+  status: needs_contact
+  notes: 'Sito 403 ai bot. Host californiano (Enoch Sears). Pitch: podcast_pitches.md #3'
+  source_evidence_url: https://www.businessofarchitecture.com/podcast/
+  last_checked: '2026-09-16T19:22:09+00:00'
+  last_http: 202
+- id: archispeak-podcast
+  engine: podcast
+  name: Archispeak — contact
+  target_url: https://www.archispeakpodcast.com/contact
+  contact_source: verified
+  contact: https://www.archispeakpodcast.com/contact
+  sender: paolo
+  myvilla_url: https://myvilla.la/team.html
+  anchor: My Villa
+  rel_expected: dofollow
+  status: todo
+  notes: 'Usare il form (l''unica email in pagina è nominativa: non usarla). Pitch: podcast_pitches.md #4'
+  source_evidence_url: https://www.archispeakpodcast.com/contact
+  last_checked: '2026-09-16T19:22:10+00:00'
+  last_http: 200

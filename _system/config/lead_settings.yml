@@ -1,0 +1,110 @@
+# ─────────────────────────────────────────────────────────────────────
+# My Villa — lead_settings.yml (Fase 2, 2026-09-16)
+# Testo canonico e parametri condivisi da: sito (FAQ, form, thank-you),
+# email automatiche ai lead, schema, llms.txt, chat concierge, policy
+# layer email. UNA sola fonte: chi cambia un numero lo cambia qui.
+# Decisioni applicate col mandato "procedi con tutte le implementazioni
+# tranne Calendly" (utente, 2026-09-16); i punti ⚠️ restano da confermare.
+# ─────────────────────────────────────────────────────────────────────
+brand:
+  name: My Villa
+  site: https://myvilla.la
+  contact_email: info@myvilla.la
+  landing_url: https://myvilla.la/private-briefing.html
+  thank_you_url: https://myvilla.la/briefing-received.html
+  booking_url: ""          # Calendly RINVIATO: vuoto ⇒ l'ack propone due finestre (mattina LA)
+  postal_address: ""       # ⚠️ OBBLIGATORIO per i kind commerciali (CAN-SPAM). Vuoto ⇒ gate chiuso
+
+canonical:
+  price: "from $1,500 per square foot"
+  timeline: "about 18 months after permit approval, roughly 20–24 months overall"
+  response_promise: "within one business day"
+  founder_name: "Paolo Mezzalama"
+  founder_title: "Founder · Architect registered in Italy and France"
+  architect_of_record_note: "Architecture of record in California is carried by a California-licensed architect."
+  built_disclaimer: "My Villa has not yet delivered a villa: the projects shown are concept designs and renders."
+  insurance_claim: "up to 50% wildfire insurance savings"      # claim già pubblicato; dossier di sostanziazione richiesto
+  fire_rating: "4+ hour fire rating"
+
+signatures:
+  prospects: |
+    the office of Paolo Mezzalama · My Villa
+    info@myvilla.la · myvilla.la
+  # Stampa: resta la firma Lisa Monelli di _system/outreach/config.yml (decisione 4: Lisa solo verso la stampa)
+
+alerts:
+  # Repo pubblico: qui SOLO la casella aziendale. Gli altri destinatari
+  # (Ivo, Paolo) stanno in .env → LEAD_ALERT_TO=a@x,b@y (override completo).
+  to: [info@myvilla.la]
+  pii_level: minimal       # nome + tipo progetto + area + tier; MAI email/telefono nell'alert
+
+budgets_per_day:           # tetti giornalieri per kind nel policy layer di send_email.py
+  outreach: 10
+  reply: 20
+  lead_ack: 15
+  lead_nudge: 10
+  backlink_request: 2
+  submission: 2
+  journo_reply: 1
+  asset_pitch: 2
+  newsletter: 0            # resta 0 finché DMARC quarantine + indirizzo postale
+
+dry_run_kinds:             # kill-switch per kind (prudente di default; togliere dalla lista per andare live)
+  - lead_nudge
+  - newsletter
+  - backlink_request
+  - submission
+  - journo_reply
+  - asset_pitch
+
+commercial_kinds:          # richiedono postal_address + opt-out footer (CAN-SPAM)
+  # NB: 'outreach' (pitch ai giornalisti, flusso già live) e 'reply' restano FUORI dal gate
+  # finché l'indirizzo postale non è confermato: fermarli avrebbe spento la pipeline stampa.
+  - lead_nudge
+  - newsletter
+  - backlink_request
+  - submission
+  - journo_reply
+  - asset_pitch
+
+private_dir_env: MYVILLA_PRIVATE_DIR   # default: ~/.myvilla-private (Mac) · /opt/myvilla-private (VPS). MAI nel repo.
+
+lead:
+  retention_months: 24
+  ack_within_minutes: 5
+  sla_hours_founder: 24
+  tier_rules:
+    A: "area tier-1 (Malibu, Beverly Hills, Bel Air, Brentwood, Hidden Hills, Calabasas, Pacific Palisades) AND timeline ≤ 12 mesi"
+    B: "area California luxury OR timeline 12–24 mesi OR rebuild after fire"
+    C: "just exploring, fuori California, fornitori/servizi"
+  states: [new, acked, founder_replied, call_booked, briefing_done, won, lost, dormant, do_not_contact]
+  # Liste strutturate usate da lead_score.py (le tier_rules sopra sono la
+  # descrizione leggibile; queste sono ciò che il codice applica).
+  scoring:
+    tier1_areas: [Malibu, Beverly Hills, Bel Air, Brentwood, Hidden Hills, Calabasas,
+                  Pacific Palisades, Holmby Hills, Trousdale, Montecito]
+    california_areas: [Los Angeles, Santa Monica, Topanga, Altadena, Pasadena, Hollywood Hills,
+                       Laurel Canyon, Encino, Sherman Oaks, Studio City, Manhattan Beach,
+                       Palos Verdes, Newport Beach, Laguna, Orange County, Santa Barbara,
+                       Ojai, Carmel, Big Sur, Marin, Napa, Sonoma, Palm Springs, San Diego,
+                       La Jolla, Rancho Santa Fe, Silicon Valley, Atherton, Los Altos,
+                       Woodside, California, CA, LA]
+    fast_timelines: ["Ready now", "6-12 months"]        # ≤ 12 mesi
+    mid_timelines: ["12-24 months"]
+    rebuild_keywords: [rebuild, fire, burned, burnt, lost our home, palisades fire, eaton fire]
+    vendor_red_flags: ["we offer", "our services", "seo", "agency", "link building",
+                       "guest post", "backlink", "web design services", "lead generation",
+                       "outsourc", "partnership opportunity", "white label", "affiliate"]
+    needs_human_below_confidence: 0.6
+
+chat:
+  enabled: false           # si attiva dopo il deploy dell'endpoint sul VPS (serve root)
+  endpoint: https://content.myvilla.la/api/chat
+  disclosure: "You're chatting with My Villa's AI assistant, not a person."
+
+lead_api:
+  endpoint: https://content.myvilla.la/api/lead
+  healthz: https://content.myvilla.la/api/healthz
+
+formspree_id: mgoljyjl
+ga4_measurement_id: G-D6HJX7BNZN

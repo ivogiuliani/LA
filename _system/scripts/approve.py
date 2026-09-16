@@ -2002,6 +2002,15 @@ def build_dashboard():
     # surface first, then the rest sorted by reply recency.
     reply_drafts = scan_reply_drafts()
     today = datetime.now().strftime("%A, %B %-d, %Y")
+    # Fase 2 (2026-09-16) — desk Leads (owner-only; registro privato fuori
+    # git). Hook minimo: tutto il rendering vive in lead_desk.py.
+    try:
+        import lead_desk as _lead_desk
+        lead_section = _lead_desk.render_section()
+        lead_pill = _lead_desk.count_pill()
+    except Exception as _lead_exc:  # noqa: BLE001 — il pannello non deve mai cadere per il desk
+        print(f"  [lead_desk] disabled: {_lead_exc}")
+        lead_section, lead_pill = "", ""
     total = len(journal) + len(social)
     ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -5960,6 +5969,7 @@ def build_dashboard():
   <div class="subtitle">{today}</div>
   <div class="counts">
     {f'<div class="count-pill count-reply"><strong>{len(reply_drafts)}</strong>&ensp;↩️ Replies</div>' if reply_drafts and not IS_SHARED else ''}
+    {lead_pill}
     {f'<div class="count-pill count-viral"><strong>{len(radar["viral"])}</strong>&ensp;🔥 Viral</div>' if radar and radar.get("viral") else ''}
     {f'<div class="count-pill"><strong>{len(radar["news"])}</strong>&ensp;📰 News</div>' if radar and radar.get("news") and not IS_SHARED else ''}
     {f'<div class="count-pill count-pitch"><strong>{len(radar["emails"])}</strong>&ensp;✉️ Email Ready</div>' if radar and radar.get("emails") and not IS_SHARED else ''}
@@ -6032,6 +6042,8 @@ def build_dashboard():
     {reply_cards}
   </div>
   ''' if reply_drafts and not IS_SHARED else ''}
+
+  {lead_section}
 
   {f'''
   <div class="section section-collapsed" data-section="radar-news">
@@ -9034,7 +9046,7 @@ class ReviewHandler(BaseHTTPRequestHandler):
         if os.environ.get("PANEL_MODE", "full").strip().lower() == "shared":
             _owner_only = {
                 "/api/send-email", "/api/send-reply", "/api/redraft-reply",
-                "/api/scan-replies", "/api/unpublish",
+                "/api/scan-replies", "/api/unpublish", "/api/lead-state",
             }
             if parsed.path in _owner_only:
                 self._send_json(
@@ -9099,6 +9111,16 @@ class ReviewHandler(BaseHTTPRequestHandler):
                 uploaded_attachments=data.get("uploaded_attachments") or [],
                 source_url=(data.get("source_url") or "").strip(),
             )
+            return
+
+        # ── Leads desk (Fase 2) — stato lead, owner-only ─────────────────
+        if parsed.path == "/api/lead-state":
+            try:
+                import lead_desk as _lead_desk
+                payload, status = _lead_desk.handle_state_change(data)
+            except Exception as exc:  # noqa: BLE001
+                payload, status = {"ok": False, "error": f"{type(exc).__name__}: {exc}"}, 500
+            self._send_json(payload, status)
             return
 
         # ── Reply follow-up endpoints (Sprint 2) ─────────────────────────

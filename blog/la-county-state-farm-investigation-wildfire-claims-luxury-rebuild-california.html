@@ -56,7 +56,7 @@
     "@type": "Organization",
     "name": "My Villa",
     "url": "https://myvilla.la",
-    "logo": { "@type": "ImageObject", "url": "https://myvilla.la/assets/img/myvilla-logo.png" }
+    "logo": { "@type": "ImageObject", "url": "https://myvilla.la/img/myvilla-logo.png" }
   },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://myvilla.la/blog/la-county-state-farm-investigation-wildfire-claims-luxury-rebuild-california.html" },
   "image": "https://myvilla.la/assets/img/myvilla-og-journal.jpg",
@@ -339,6 +339,13 @@ a.source-citation::after { content: '↗'; display: inline-block; font-size: 0.7
 
 <p class="reveal">State Farm is the largest homeowners insurer in California, writing roughly one in five policies statewide. That scale means its post-fire behavior effectively sets the tempo for the rebuild market. The <a href="https://www.insurance.ca.gov/0400-news/0100-press-releases/2025/release041-2025.cfm">California Department of Insurance's market conduct examination</a> was announced after the regulator logged a sustained volume of complaints alleging delayed advance payments, incomplete coverage of Additional Living Expense, and contractor estimates that diverged materially from carrier valuations.</p>
 
+<!-- MV-MIDCTA:START -->
+<aside class="mv-midcta" aria-label="Request a private briefing" style="margin:40px 0;padding:22px 26px;border-left:3px solid #C2714F;background:#FAF6F0;font-family:'Montserrat',-apple-system,sans-serif;font-size:14px;line-height:1.65;color:#3E2F2B;">
+  <span style="display:block;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#C2714F;margin-bottom:8px;">From My Villa</span>
+  Planning a home in Malibu or Beverly Hills? <a href="https://myvilla.la/private-briefing.html?src=journal_mid&amp;slug=la-county-state-farm-investigation-wildfire-claims-luxury-rebuild-california" data-ev="journal_cta_click" data-cta="mid" style="color:#C2714F;font-weight:600;text-decoration:underline;text-underline-offset:3px;">Request a private briefing with our founder.</a>
+</aside>
+<!-- MV-MIDCTA:END -->
+
 <p class="reveal">Reporting by the <em>Los Angeles Times</em> documented individual files where total-loss payments stretched past six and nine months, with owners carrying construction and temporary housing costs in parallel. The gap between insurer-estimated rebuild figures and actual bid pricing — often 20 to 40 percent — has become the most cited friction in the Palisades and Eaton fire footprints.</p>
 
 <div class="key-data">
@@ -424,7 +431,7 @@ a.source-citation::after { content: '↗'; display: inline-block; font-size: 0.7
     <p class="journal-cta-text">We design and coordinate luxury reinforced concrete villas for the Los Angeles market. European engineering. Californian lifestyle.</p>
     <div class="journal-cta-buttons">
       <a href="https://myvilla.la" class="cta-btn cta-btn-primary">Explore My Villa</a>
-      <a href="https://myvilla.la/#contact" class="cta-btn cta-btn-secondary">Request a Briefing</a>
+      <a href="https://myvilla.la/private-briefing.html?src=journal_end&amp;slug=la-county-state-farm-investigation-wildfire-claims-luxury-rebuild-california" class="cta-btn cta-btn-secondary" data-ev="journal_cta_click" data-cta="end">Request a Briefing</a>
     </div>
   </div>
 </section>
@@ -462,5 +469,10 @@ function copyShareLink(btn) {
 }
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+<!-- MV-CTAJS:START -->
+<script>
+(function(){document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('[data-ev]'):null;if(!a||typeof window.gtag!=='function')return;var slug=(location.pathname.split('/').pop()||'').replace(/\.html$/,'');window.gtag('event',a.getAttribute('data-ev'),{cta:a.getAttribute('data-cta')||'',slug:slug,transport_type:'beacon'});},true);})();
+</script>
+<!-- MV-CTAJS:END -->
 </body>
 </html>

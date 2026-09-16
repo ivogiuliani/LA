@@ -23,6 +23,17 @@ from pathlib import Path
 import urllib.parse
 import yaml
 
+# CTA di conversione condivise col batch (Fase 2, 2026-09-16)
+try:
+    from inject_article_cta import inject_mid_cta, end_cta_href, CTA_JS_BLOCK
+except ImportError:  # fallback: articoli senza mid-CTA, end-CTA verso la landing
+    def inject_mid_cta(body_html, slug):  # noqa: D103
+        return body_html
+
+    def end_cta_href(slug):  # noqa: D103
+        return f"https://myvilla.la/private-briefing.html?src=journal_end&amp;slug={slug}"
+    CTA_JS_BLOCK = ""
+
 try:
     import anthropic
     ANTHROPIC_OK = True
@@ -1274,6 +1285,13 @@ def render_article_html(article, date_str):
     # Defensive sanitizers
     body_html = _strip_inline_perspective(body_html)
     body_html = _wrap_key_data_blocks(body_html)
+    # MID-CTA (Fase 2): blocco MV-MIDCTA dopo il 3° paragrafo — stesso
+    # codice del batch inject_article_cta.py, così archivio e nuovi articoli
+    # coincidono. Il sidecar JSON resta pulito (si inietta solo nel render).
+    try:
+        body_html = inject_mid_cta(body_html, slug)
+    except Exception as _e:  # noqa: BLE001 — mai bloccare il render
+        print(f"  [cta] mid-CTA skipped: {_e}")
     our_perspective = article.get("our_perspective", "")
     key_data = article.get("key_data", [])
     read_time = article.get("read_time_min", 6)
@@ -1400,7 +1418,7 @@ def render_article_html(article, date_str):
 <meta name="description" content="{esc(meta_desc)}">
 <meta name="keywords" content="{esc(meta_kw)}">
 <meta name="author" content="My Villa">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="{canonical}">
 
 <meta property="og:type" content="article">
@@ -1441,7 +1459,7 @@ def render_article_html(article, date_str):
     "@type": "Organization",
     "name": "My Villa",
     "url": "https://myvilla.la",
-    "logo": {{ "@type": "ImageObject", "url": "https://myvilla.la/assets/img/myvilla-logo.png" }}
+    "logo": {{ "@type": "ImageObject", "url": "https://myvilla.la/img/myvilla-logo.png" }}
   }},
   "mainEntityOfPage": {{ "@type": "WebPage", "@id": "{canonical}" }},
   "image": "{og_image_url}",
@@ -1793,7 +1811,7 @@ a.source-citation::after {{ content: '↗'; display: inline-block; font-size: 0.
     <p class="journal-cta-text">We design and coordinate luxury reinforced concrete villas for the Los Angeles market. European engineering. Californian lifestyle.</p>
     <div class="journal-cta-buttons">
       <a href="https://myvilla.la" class="cta-btn cta-btn-primary">Explore My Villa</a>
-      <a href="https://myvilla.la/#contact" class="cta-btn cta-btn-secondary">Request a Briefing</a>
+      <a href="{end_cta_href(slug)}" class="cta-btn cta-btn-secondary" data-ev="journal_cta_click" data-cta="end">Request a Briefing</a>
     </div>
   </div>
 </section>
@@ -1831,6 +1849,7 @@ function copyShareLink(btn) {{
 }}
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+{CTA_JS_BLOCK}
 </body>
 </html>"""
 

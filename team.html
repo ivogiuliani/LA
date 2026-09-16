@@ -6,6 +6,12 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+/* CONV:CONSENT:START */
+  // Consent Mode v2 — default denied in EU/EEA/UK/CH (opt-in), granted elsewhere (notice + opt-out); stored choice and GPC/DNT honoured
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","IS","LI","NO","GB","CH"] });
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+  (function () { try { var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' }); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', { analytics_storage: 'denied' }); } catch (e) {} })();
+/* CONV:CONSENT:END */
   gtag('js', new Date());
   gtag('config', 'G-D6HJX7BNZN');
 </script>
@@ -62,7 +68,7 @@
       "url": "https://myvilla.la",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://myvilla.la/img/logos/favicon.svg"
+        "url": "https://myvilla.la/img/myvilla-logo.png"
       },
       "description": "Italian-designed, fire-resilient, insurable luxury villas in Los Angeles. The Los Angeles practice of IT'S Architecture, serving Malibu, Beverly Hills, and the greater Westside.",
       "foundingDate": "2025",
@@ -72,25 +78,40 @@
         "url": "https://its.vision",
         "foundingDate": "2016",
         "founder": [
-          { "@type": "Person", "name": "Alessandro Cambi" },
-          { "@type": "Person", "name": "Francesco Marinelli" },
-          { "@type": "Person", "name": "Paolo Mezzalama" }
+          {
+            "@type": "Person",
+            "name": "Alessandro Cambi"
+          },
+          {
+            "@type": "Person",
+            "name": "Francesco Marinelli"
+          },
+          {
+            "@type": "Person",
+            "name": "Paolo Mezzalama"
+          }
         ],
         "address": [
-          { "@type": "PostalAddress", "addressLocality": "Rome", "addressCountry": "IT" },
-          { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
-          { "@type": "PostalAddress", "addressLocality": "Los Angeles", "addressRegion": "CA", "addressCountry": "US" }
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Rome",
+            "addressCountry": "IT"
+          },
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Paris",
+            "addressCountry": "FR"
+          },
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Los Angeles",
+            "addressRegion": "CA",
+            "addressCountry": "US"
+          }
         ]
       },
       "founder": {
-        "@type": "Person",
-        "name": "Paolo Mezzalama",
-        "jobTitle": "Founding Partner & Design Lead",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "IT'S Architecture",
-          "url": "https://its.vision"
-        }
+        "@id": "https://myvilla.la/team.html#paolo-mezzalama"
       },
       "knowsAbout": [
         "fire-resilient home construction",
@@ -102,31 +123,117 @@
         "Mediterranean style homes California"
       ],
       "areaServed": [
-        { "@type": "City", "name": "Malibu", "addressRegion": "CA", "addressCountry": "US" },
-        { "@type": "City", "name": "Beverly Hills", "addressRegion": "CA", "addressCountry": "US" },
-        { "@type": "Place", "name": "Bel Air", "addressRegion": "CA" },
-        { "@type": "Place", "name": "Holmby Hills", "addressRegion": "CA" },
-        { "@type": "Place", "name": "Brentwood", "addressRegion": "CA" },
-        { "@type": "City", "name": "Calabasas", "addressRegion": "CA" },
-        { "@type": "Place", "name": "Hidden Hills", "addressRegion": "CA" },
-        { "@type": "City", "name": "Los Angeles", "addressRegion": "CA", "addressCountry": "US" }
-      ]
+        {
+          "@type": "City",
+          "name": "Malibu",
+          "addressRegion": "CA",
+          "addressCountry": "US"
+        },
+        {
+          "@type": "City",
+          "name": "Beverly Hills",
+          "addressRegion": "CA",
+          "addressCountry": "US"
+        },
+        {
+          "@type": "Place",
+          "name": "Bel Air",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "Place",
+          "name": "Holmby Hills",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "Place",
+          "name": "Brentwood",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "City",
+          "name": "Calabasas",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "Place",
+          "name": "Hidden Hills",
+          "addressRegion": "CA"
+        },
+        {
+          "@type": "City",
+          "name": "Los Angeles",
+          "addressRegion": "CA",
+          "addressCountry": "US"
+        }
+      ],
+      "alternateName": "My Villa LA",
+      "sameAs": [
+        "https://www.instagram.com/myvilla.la/",
+        "https://x.com/myvilla_la",
+        "https://www.linkedin.com/company/myvilla-la/"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@myvilla.la",
+        "contactType": "sales",
+        "availableLanguage": [
+          "English",
+          "Italian"
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://myvilla.la/team.html#paolo-mezzalama",
+      "name": "Paolo Mezzalama",
+      "jobTitle": "Founder · Architect registered in Italy and France",
+      "url": "https://myvilla.la/team.html#paolo-mezzalama",
+      "worksFor": {
+        "@id": "https://myvilla.la/#organization"
+      },
+      "sameAs": [
+        "https://its.vision/en/about/paolo-mezzalama/"
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "IT'S Architecture",
+        "url": "https://its.vision"
+      },
+      "description": "Co-founder of IT'S Architecture (Rome, 2016) and founder of My Villa, its California practice. Founder · Architect registered in Italy and France."
     },
     {
       "@type": "WebPage",
       "@id": "https://myvilla.la/team.html",
       "url": "https://myvilla.la/team.html",
       "name": "The My Villa Team — IT'S Architecture",
-      "about": { "@id": "https://myvilla.la/#organization" },
+      "about": {
+        "@id": "https://myvilla.la/#organization"
+      },
       "inLanguage": "en-US",
-      "breadcrumb": { "@id": "https://myvilla.la/team.html#breadcrumb" }
+      "breadcrumb": {
+        "@id": "https://myvilla.la/team.html#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://myvilla.la/team.html#paolo-mezzalama"
+      }
     },
     {
       "@type": "BreadcrumbList",
       "@id": "https://myvilla.la/team.html#breadcrumb",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://myvilla.la/" },
-        { "@type": "ListItem", "position": 2, "name": "Team", "item": "https://myvilla.la/team.html" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://myvilla.la/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Team",
+          "item": "https://myvilla.la/team.html"
+        }
       ]
     }
   ]
@@ -420,7 +527,7 @@ strong { color: var(--charcoal); font-weight: 600; }
 }
 </style>
 </head>
-<body>
+<body data-page-type="team">
 
 <nav class="nav">
   <a href="index.html" class="nav-logo">MY VILLA</a>
@@ -445,6 +552,18 @@ strong { color: var(--charcoal); font-weight: 600; }
     <p>The same people who design the homes also curate the Journal. That is deliberate: everything we publish is reviewed by a practicing architect before it goes live.</p>
     <a class="studio-cta" href="https://its.vision" rel="noopener" target="_blank">its.vision &rarr;</a>
   </div>
+
+  <!-- CONV:FOUNDER:START -->
+  <h2>The founder</h2>
+  <div class="studio-card" id="paolo-mezzalama" itemscope itemtype="https://schema.org/Person">
+    <div class="studio-label">Paolo Mezzalama — Founder · Architect registered in Italy and France</div>
+    <h3 itemprop="name">Paolo Mezzalama</h3>
+    <div class="studio-meta" itemprop="jobTitle">Founder · Architect registered in Italy and France</div>
+    <p>Paolo Mezzalama co-founded IT'S Architecture in Rome in 2016 with Alessandro Cambi and Francesco Marinelli, and leads My Villa, the studio's California practice. He is an architect registered in Italy and France and an Advisor to the American Academy in Rome. Every private briefing is a conversation with him: he reads each request personally and replies within one business day.</p>
+    <p>Architecture of record in California is carried by a California-licensed architect. My Villa has not yet delivered a villa: the projects shown are concept designs and renders.</p>
+    <a class="studio-cta" href="https://its.vision/en/about/paolo-mezzalama/" rel="noopener" target="_blank" itemprop="sameAs">Profile at IT'S Architecture &rarr;</a>
+  </div>
+  <!-- CONV:FOUNDER:END -->
 
   <h2>The editorial desk</h2>
   <p>The Journal is produced by the IT'S Architecture team across its Rome, Paris and Los Angeles desks — the same practitioners who design the homes. We do not outsource the writing to a marketing agency. Every article is monitored, drafted, and reviewed internally, with one principle: we write only about topics we are qualified to build around.</p>
@@ -514,7 +633,7 @@ strong { color: var(--charcoal); font-weight: 600; }
   </ul>
 
   <h2>Contact</h2>
-  <p>For editorial inquiries, media requests, or to discuss a project, write to <a href="mailto:info@myvilla.la">info@myvilla.la</a>. Requests for private briefings with Paolo Mezzalama and the design team can be made through our <a href="index.html#contact">home page contact form</a>. To learn more about the studio, visit <a href="https://its.vision" rel="noopener" target="_blank">its.vision</a>.</p>
+  <p>For editorial inquiries, media requests, or to discuss a project, write to <a href="mailto:info@myvilla.la">info@myvilla.la</a>. Requests for private briefings with Paolo Mezzalama and the design team: <a class="btn" href="/private-briefing.html?src=team_page" data-ev="cta_click" data-cta-id="team_contact_brief" style="display:inline-block;margin:6px 0">Request a Private Briefing</a> To learn more about the studio, visit <a href="https://its.vision" rel="noopener" target="_blank">its.vision</a>.</p>
 
   <div class="related">
     <h2>From the Journal</h2>
@@ -528,8 +647,8 @@ strong { color: var(--charcoal); font-weight: 600; }
 
   <div class="team-cta">
     <h2>Building a home to last — and stay insured.</h2>
-    <p>If you are considering a luxury rebuild or new build in Malibu, Beverly Hills, or the broader Westside, request a private briefing with the IT'S Architecture design team.</p>
-    <a class="btn" href="index.html#contact">Request a briefing</a>
+    <p>If you are considering a luxury rebuild or new build in Malibu, Beverly Hills, or the broader Westside, request a private briefing. Paolo Mezzalama replies personally within one business day.</p>
+    <a class="btn" href="/private-briefing.html?src=team_cta" data-ev="cta_click" data-cta-id="team_cta_brief">Request a Private Briefing</a>
   </div>
 
 </div>
@@ -538,5 +657,90 @@ strong { color: var(--charcoal); font-weight: 600; }
   <div class="footer-copy">© 2026 My Villa · a practice of <a href="https://its.vision" rel="noopener" target="_blank">IT'S Architecture</a> · <a href="index.html">Home</a> · <a href="team.html">Team</a> · <a href="blog/">Journal</a> · <a href="privacy.html">Privacy Policy</a></div>
 </footer>
 
+<!-- CONV:MVTRACK:START -->
+<script>
+(function () {
+  var PT = (document.body && document.body.getAttribute('data-page-type')) || 'page';
+  function send(ev, params) { try { if (typeof gtag === 'function') gtag('event', ev, params); } catch (e) {} }
+  function snake(k) { return k.replace(/([A-Z])/g, '_$1').toLowerCase(); }
+  document.addEventListener('click', function (e) {
+    var t = e.target; if (!t || !t.closest) return;
+    var el = t.closest('[data-ev]');
+    if (el) {
+      var p = { page_type: PT }, d = el.dataset;
+      for (var k in d) { if (k !== 'ev') p[snake(k)] = d[k]; }
+      if (!p.cta_id) p.cta_id = el.id || (el.getAttribute('href') || '').slice(0, 60) || el.tagName.toLowerCase();
+      send(d.ev, p);
+    }
+    var a = t.closest('a[href^="mailto:"]');
+    if (a) send('contact_email_click', { page_type: PT, cta_id: a.id || 'mailto', link_url: a.getAttribute('href') });
+  }, true);
+  var started = {};
+  document.addEventListener('focusin', function (e) {
+    var f = e.target && e.target.form; if (!f || f.tagName !== 'FORM') return;
+    var key = f.id || 'form'; if (started[key]) return; started[key] = true;
+    var fid = f.querySelector('input[name="form_id"]');
+    send('form_start', { page_type: PT, form_id: (fid && fid.value) || key });
+  }, true);
+  window.mvTrack = send;
+})();
+</script>
+<!-- CONV:MVTRACK:END -->
+<!-- CONV:COOKIE_UI:START -->
+<style>
+#cookieBanner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9990; background: var(--offblack, #1a1816); border-top: 1px solid rgba(196,162,101,0.2); padding: 20px var(--side-pad, 24px); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; transform: translateY(100%); transition: transform 0.4s ease; }
+#cookieBanner.visible { transform: translateY(0); }
+.cookie-text { font-family: var(--sans, 'Montserrat', sans-serif); font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.75); flex: 1; min-width: 260px; }
+.cookie-text a { color: var(--terracotta, #C2714F); text-decoration: underline; }
+.cookie-buttons { display: flex; gap: 12px; flex-shrink: 0; }
+.cookie-btn { font-family: var(--sans, 'Montserrat', sans-serif); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 10px 24px; border: none; border-radius: 2px; cursor: pointer; transition: background 0.3s, color 0.3s; }
+.cookie-accept { background: var(--terracotta, #C2714F); color: #fff; }
+.cookie-accept:hover { background: #a8593e; }
+.cookie-decline { background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); }
+.cookie-decline:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+body #cookieBanner.cookie-toast { left: auto; right: 16px; bottom: 16px; max-width: 380px; border: 1px solid rgba(196,162,101,0.3); border-radius: 4px; padding: 14px 16px; gap: 14px; flex-wrap: nowrap; }
+body #cookieBanner.cookie-toast .cookie-text { font-size: 12.5px; min-width: 0; }
+body #cookieBanner.cookie-toast .cookie-btn { padding: 8px 14px; font-size: 11px; }
+@media (max-width: 600px) { #cookieBanner { flex-direction: column; text-align: center; padding: 20px 16px; } .cookie-buttons { width: 100%; justify-content: center; } body #cookieBanner.cookie-toast { left: 16px; max-width: none; flex-direction: row; text-align: left; } body #cookieBanner.cookie-toast .cookie-buttons { width: auto; } }
+</style>
+<script>
+// ══════════════ COOKIE CONSENT — Consent Mode v2 (opt-in in EU, notice + opt-out elsewhere) ══════════════
+(function () {
+  var KEY = 'myvilla_cookie_consent';
+  function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function store(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function consent(granted) { try { gtag('consent', 'update', { analytics_storage: granted ? 'granted' : 'denied' }); } catch (e) {} }
+  var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+  var isEU = /^Europe\//.test(tz);
+  window.mvIsEU = isEU;
+  function close() {
+    var b = document.getElementById('cookieBanner');
+    document.documentElement.style.removeProperty('--mv-banner-h');
+    if (b) { b.classList.remove('visible'); setTimeout(function () { b.remove(); }, 400); }
+  }
+  window.acceptCookies = function () { store('accepted'); consent(true); close(); };
+  window.declineCookies = function () { store('declined'); consent(false); close(); };
+  window.closeCookieBanner = close;
+  if (stored()) return;
+  var banner = document.createElement('div');
+  banner.id = 'cookieBanner';
+  banner.setAttribute('role', 'region');
+  banner.setAttribute('aria-label', 'Cookie choices');
+  if (isEU) {
+    banner.innerHTML = '<div class="cookie-text">We use analytics cookies (Google Analytics) to understand how the site is used. Nothing is stored until you choose. <a href="/privacy.html#cookies">Privacy choices</a></div>' +
+      '<div class="cookie-buttons"><button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button><button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button></div>';
+  } else {
+    banner.className = 'cookie-toast';
+    banner.innerHTML = '<div class="cookie-text">This site uses analytics cookies. <a href="/privacy.html#cookies">Privacy choices</a></div>' +
+      '<div class="cookie-buttons"><button class="cookie-btn cookie-accept" onclick="acceptCookies()" aria-label="Dismiss">OK</button></div>';
+  }
+  document.body.appendChild(banner);
+  setTimeout(function () {
+    banner.classList.add('visible');
+    document.documentElement.style.setProperty('--mv-banner-h', (banner.offsetHeight || 0) + 'px');
+  }, 800);
+})();
+</script>
+<!-- CONV:COOKIE_UI:END -->
 </body>
 </html>

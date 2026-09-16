@@ -37,6 +37,17 @@ CAT_DIR = OUT_DIR / "category"
 
 SITE = "https://myvilla.la"
 
+# CTA di conversione condivise col batch inject_article_cta.py (Fase 2)
+try:
+    from inject_article_cta import inject_mid_cta, end_cta_href, CTA_JS_BLOCK
+except ImportError:
+    def inject_mid_cta(body_html, slug):  # noqa: D103
+        return body_html
+
+    def end_cta_href(slug):  # noqa: D103
+        return f"{SITE}/private-briefing.html?src=journal_end&amp;slug={slug}"
+    CTA_JS_BLOCK = ""
+
 GTAG = """<script async src="https://www.googletagmanager.com/gtag/js?id=G-D6HJX7BNZN"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -343,7 +354,7 @@ def fmt_date_short(iso):
 def robots_tag(preview):
     if preview:
         return '<!-- PREVIEW FLAG: rimuovere alla promozione -->\n<meta name="robots" content="noindex, nofollow">'
-    return '<meta name="robots" content="index, follow">'
+    return '<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">'
 
 
 def hero_web_path(art):
@@ -388,12 +399,20 @@ def footer_html(depth=0):
 </footer>"""
 
 
-def cta_band_html(depth=0):
+def cta_band_html(depth=0, slug=None):
+    """Banda CTA finale. Con `slug` (pagine articolo) il bottone punta alla
+    landing private-briefing con tracking src=journal_end (Fase 2)."""
     up = "../" * (depth + 1)
+    if slug:
+        href = end_cta_href(slug)
+        track = ' data-ev="journal_cta_click" data-cta="end"'
+    else:
+        href = f"{up}index.html#briefing"
+        track = ""
     return f"""<section class="cta-band a-cta" aria-label="Request a private briefing">
   <h2 data-rv>Reading the risk is our job.<br><em>Building past it is our craft.</em></h2>
   <p data-rv style="--d:1">If you are considering a luxury build or rebuild in Malibu, Beverly Hills, or the broader Westside — request a private briefing with the design team.</p>
-  <a class="btn" href="{up}index.html#briefing" data-rv style="--d:2"><span>Request a Private Briefing</span><span>&rarr;</span></a>
+  <a class="btn" href="{href}"{track} data-rv style="--d:2"><span>Request a Private Briefing</span><span>&rarr;</span></a>
 </section>"""
 
 
@@ -510,10 +529,10 @@ def render_article(art, all_arts, preview=True):
       {f'"image": "{SITE}{hero}",' if hero else ''}
       "datePublished": "{date_iso}",
       "dateModified": "{date_iso}",
-      "author": {{ "@type": "Organization", "name": "My Villa", "url": "{SITE}" }},
+      "author": {{ "@type": "Organization", "name": "My Villa Editorial Team", "url": "{SITE}/team.html" }},
       "publisher": {{
-        "@type": "Organization", "name": "My Villa",
-        "logo": {{ "@type": "ImageObject", "url": "{SITE}/img/logos/favicon.svg" }}
+        "@type": "Organization", "name": "My Villa", "url": "{SITE}",
+        "logo": {{ "@type": "ImageObject", "url": "{SITE}/img/myvilla-logo.png" }}
       }},
       "articleSection": {json.dumps(sec['name'], ensure_ascii=False)},
       "inLanguage": "en-US"
@@ -593,7 +612,7 @@ def render_article(art, all_arts, preview=True):
   {kd_html}
 
   <div class="a-body">
-{art.get('body_html','')}
+{inject_mid_cta(art.get('body_html',''), slug)}
   </div>
 
   <aside class="perspective" aria-label="Our perspective">
@@ -608,11 +627,12 @@ def render_article(art, all_arts, preview=True):
   {related_html}
 </article>
 
-{cta_band_html(depth=0)}
+{cta_band_html(depth=0, slug=slug)}
 </main>
 
 {footer_html(depth=0)}
 {REVEAL_JS}
+{CTA_JS_BLOCK}
 </body>
 </html>"""
 

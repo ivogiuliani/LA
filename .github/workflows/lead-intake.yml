@@ -1,0 +1,89 @@
+name: Lead Intake (cloud fallback)
+
+# Rail CLOUD del ciclo di vita lead — fallback del launchd sul Mac
+# (com.myvilla.lead-intake, ogni 5 min) e del timer systemd sul VPS.
+#
+# Cosa fa qui: legge le notifiche Formspree non ancora etichettate in
+# info@myvilla.la, manda ack al lead + alert interno, mette la label
+# MV/Lead-Processed. Il registro (private dir) su un runner è EFFIMERO:
+# il record completo NON viene conservato qui (--ephemeral). Il Mac/VPS lo
+# ricostruisce dalle notifiche etichettate con
+#   python3 _system/scripts/lead_intake.py --rebuild-from-label
+# (senza nuovo ack). Anti-doppione fra rail: la label è messa PRIMA di
+# processare (claim), quindi due rail non mandano due ack.
+#
+# Cron ogni 15 minuti. Il cron free-tier di GitHub ritarda spesso: il
+# rail primario resta il Mac/VPS; questo copre i buchi.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry-run (nessuna mail, nessuna label)"
+        required: false
+        default: "false"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lead-intake
+  cancel-in-progress: false
+
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: _system/requirements.txt
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r _system/requirements.txt
+          # Google auth libs (Gmail OAuth) — non in requirements.txt
+          pip install google-auth google-auth-oauthlib google-api-python-client
+
+      # Come daily-publish.yml: .env e credenziali Gmail dai Secrets.
+      - name: Restore .env from secrets
+        run: |
+          cat > .env << 'EOF'
+          ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
+          EOF
+          chmod 600 .env
+
+      - name: Restore Gmail OAuth credentials
+        run: |
+          mkdir -p _system/outreach/credentials
+          echo '${{ secrets.GMAIL_OAUTH_CLIENT }}' > _system/outreach/credentials/oauth_client.json
+          echo '${{ secrets.GMAIL_OAUTH_TOKEN }}' > _system/outreach/credentials/token.json
+          chmod 600 _system/outreach/credentials/*.json
+
+      - name: "Lead intake (ephemeral ledger: ack + alert + label only)"
+        env:
+          MYVILLA_PRIVATE_DIR: ${{ runner.temp }}/myvilla-private
+          PYTHONWARNINGS: ignore
+        run: |
+          EXTRA=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then EXTRA="--dry-run"; fi
+          python3 _system/scripts/lead_intake.py --ephemeral --max 25 $EXTRA
+          echo "::notice::Rail cloud: record lead NON conservato (ledger effimero). Il Mac/VPS lo ricostruisce con --rebuild-from-label."
+
+      # Il runner viene distrutto: nessun file con PII sopravvive. Per
+      # sicurezza cancelliamo comunque .env, credenziali e private dir.
+      - name: Cleanup secrets
+        if: always()
+        run: |
+          rm -f .env _system/outreach/credentials/*.json
+          rm -rf "${{ runner.temp }}/myvilla-private"

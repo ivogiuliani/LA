@@ -1163,6 +1163,14 @@ def _format_digest(published, skipped, errors,
                 lines.append(f"Da approvare ({len(props)}: {cats}) — apri il pannello radar")
                 lines.append("")
 
+    try:
+        from lead_desk import digest_text as _lead_digest_text
+        _lt = _lead_digest_text()
+        if _lt:
+            lines.append("\n" + _lt)
+    except Exception:  # noqa: BLE001
+        pass
+
     lines.append("\n--\nAuto-published + outreach by publish_all_drafts.py")
     lines.append(f"Site: {SITE_BASE}/blog/")
     lines.append("Le pitch 'risky' (Apollo likely, pattern_guess) restano per review manuale sul dashboard.")
@@ -1898,6 +1906,18 @@ def _build_html_digest(published, skipped, errors,
         # handle + invalid-address registry + skipped/errors tail.
         pitch_block = _html_outreach_panel(pitches, dry_run=dry_run)
 
+    # ── Fase 2: blocco lead "In attesa di te" (senza PII) e "Link e citazioni" ──
+    try:
+        from lead_desk import digest_block as _lead_digest_block
+        lead_block = _lead_digest_block() or ""
+    except Exception:  # noqa: BLE001
+        lead_block = ""
+    try:
+        from backlink_check import digest_block as _links_digest_block
+        links_block = _links_digest_block() or ""
+    except Exception:  # noqa: BLE001
+        links_block = ""
+
     # ── Instagram section ──────────────────────────────────────────
     ig_block = ""
     if ig_data:
@@ -1979,7 +1999,11 @@ def _build_html_digest(published, skipped, errors,
   {article_cards}
   {skipped_block}
 
+  {lead_block}
+
   {pitch_block}
+
+  {links_block}
 
   {ig_block}
 
@@ -2355,8 +2379,15 @@ def main(argv=None):
         # crosslink_pillars + update_pillar_journal (interlink SEO
         # 2026-08-26): idempotenti, così ogni nuovo articolo riceve il
         # box pillar e le pillar mostrano i pezzi recenti pertinenti.
+        # Fase 2 (2026-09-16): fix_article_schema + inject_article_cta
+        # (idempotenti: schema/logo/robots e CTA verso la landing sui
+        # nuovi articoli), build_answer_page (hub assicurabilità) e
+        # build_llms (llms.txt) PRIMA della sitemap, così lastmod/feed
+        # vedono i file finali.
         for s in ("update_journal_index.py", "crosslink_pillars.py",
-                  "update_pillar_journal.py", "update_sitemap.py",
+                  "update_pillar_journal.py", "fix_article_schema.py",
+                  "inject_article_cta.py", "build_answer_page.py",
+                  "build_llms.py", "update_sitemap.py",
                   "update_homepage_journal.py"):
             ok = _run_update_script(s)
             print(f"  {'✓' if ok else '✗'} {s}")

@@ -657,6 +657,7 @@ def render_index_html(articles):
 <title>Journal — My Villa</title>
 <meta name="description" content="Perspectives on building in Los Angeles. Insurance, materials, regulation, and resilience — grounded in data, informed by daily monitoring.">
 <meta name="author" content="My Villa">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="https://myvilla.la/blog/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -724,7 +725,7 @@ def render_index_html(articles):
     <p class="journal-cta-text">We design and coordinate luxury reinforced concrete villas for the Los Angeles market. European engineering. Californian lifestyle.</p>
     <div class="journal-cta-buttons">
       <a href="https://myvilla.la" class="cta-btn cta-btn-primary">Explore My Villa</a>
-      <a href="https://myvilla.la/#contact" class="cta-btn cta-btn-secondary">Request a Briefing</a>
+      <a href="https://myvilla.la/private-briefing.html?src=journal_index" class="cta-btn cta-btn-secondary" data-ev="journal_cta_click" data-cta="index">Request a Briefing</a>
     </div>
   </div>
 </section>
@@ -941,6 +942,7 @@ def render_category_page(section_id, articles, style_block):
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>{esc(sec['name'])} — My Villa Journal</title>
 <meta name="description" content="{esc(sec['name'])} articles from the My Villa Journal. Perspectives on building reinforced concrete villas in Los Angeles.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="https://myvilla.la/blog/category/{section_id}.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1015,7 +1017,7 @@ def render_category_page(section_id, articles, style_block):
     <p class="journal-cta-text">We design and coordinate luxury reinforced concrete villas for the Los Angeles market. European engineering. Californian lifestyle.</p>
     <div class="journal-cta-buttons">
       <a href="https://myvilla.la" class="cta-btn cta-btn-primary">Explore My Villa</a>
-      <a href="https://myvilla.la/#contact" class="cta-btn cta-btn-secondary">Request a Briefing</a>
+      <a href="https://myvilla.la/private-briefing.html?src=journal_category&amp;slug={section_id}" class="cta-btn cta-btn-secondary" data-ev="journal_cta_click" data-cta="category">Request a Briefing</a>
     </div>
   </div>
 </section>

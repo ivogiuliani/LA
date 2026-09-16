@@ -1,0 +1,41 @@
+{
+  "updated_at": "2026-09-16T19:18:07+00:00",
+  "mentions": {
+    "https://villahomedecor.com/": {
+      "first_seen": "2026-09-16",
+      "title": "My Villa Home Decor",
+      "via": "brave",
+      "query": "\"My Villa\" Mezzalama",
+      "last_checked": "2026-09-16T19:18:06+00:00",
+      "http": 200,
+      "about_us": false,
+      "linked": false,
+      "rel": null,
+      "anchor": null
+    },
+    "https://my.villaplus.com/": {
+      "first_seen": "2026-09-16",
+      "title": "My Villa Plus | My booking",
+      "via": "brave",
+      "query": "\"My Villa\" Mezzalama",
+      "last_checked": "2026-09-16T19:18:06+00:00",
+      "http": 200,
+      "about_us": false,
+      "linked": false,
+      "rel": null,
+      "anchor": null
+    },
+    "https://www.ibizamyvilla.com/": {
+      "first_seen": "2026-09-16",
+      "title": "Ibiza Villas for Rent Luxury Holiday Homes - Ibiza My Villa",
+      "via": "brave",
+      "query": "\"My Villa\" Mezzalama",
+      "last_checked": "2026-09-16T19:18:07+00:00",
+      "http": 200,
+      "about_us": false,
+      "linked": false,
+      "rel": null,
+      "anchor": null
+    }
+  }
+}

@@ -1,0 +1,14 @@
+[Unit]
+Description=My Villa lead intake (Gmail Formspree notifications -> ledger -> ack + alert), one run
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/myvilla
+EnvironmentFile=/opt/myvilla/.env
+Environment=MYVILLA_PRIVATE_DIR=/opt/myvilla-private
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /opt/myvilla/_system/scripts/lead_intake.py --max 25
+User=root
+UMask=0077

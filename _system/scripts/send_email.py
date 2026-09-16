@@ -176,6 +176,166 @@ def rate_limit_state(config: OutreachConfig) -> dict[str, Any]:
 
 
 # --------------------------------------------------------------------------- #
+# Fase 2 (2026-09-16) — policy per KIND, letta da lead_settings.yml
+#
+#   budgets_per_day   tetto giornaliero (UTC) per kind, contato sul log
+#   dry_run_kinds     kill-switch per kind → reason=dry_run_kind
+#   commercial_kinds  gate CAN-SPAM: senza brand.postal_address non si
+#                     invia (reason=missing_postal_address); con indirizzo,
+#                     footer postale + riga opt-out
+#   do_not_contact.json (private dir) letto insieme alla blacklist bounce
+#   signature_override / firma "prospects" automatica per i kind lead_*
+#
+# I kind lead_* loggano nel PRIVATE DIR (leads/send_log.jsonl): il log
+# di repo è tracciato da git e non deve contenere email di lead.
+# --------------------------------------------------------------------------- #
+
+BUDGET_EXEMPT_KINDS = {"lead_alert"}   # notifiche interne: mai contingentate
+_PRIVATE_LOG_KIND_PREFIX = "lead_"
+
+
+def _lead_settings() -> dict:
+    """lead_settings.yml come dict (mai eccezioni: {} se assente)."""
+    try:
+        from lead_settings import load_settings
+        return load_settings()
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def _private_dir_path() -> Path | None:
+    try:
+        from lead_settings import private_dir
+        return private_dir()
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _private_send_log() -> Path | None:
+    p = _private_dir_path()
+    return (p / "leads" / "send_log.jsonl") if p else None
+
+
+def _log_path_for_kind(cfg: OutreachConfig, kind: str) -> Path:
+    """Kind lead_* → log privato (PII fuori git); altrimenti log di repo."""
+    if (kind or "").startswith(_PRIVATE_LOG_KIND_PREFIX):
+        priv = _private_send_log()
+        if priv is not None:
+            return priv
+    return cfg.send_log
+
+
+def _all_log_entries(cfg: OutreachConfig) -> list[dict[str, Any]]:
+    entries = _read_send_log(cfg.send_log)
+    priv = _private_send_log()
+    if priv is not None and priv != cfg.send_log:
+        entries += _read_send_log(priv)
+    return entries
+
+
+def kind_budget_state(kind: str, config: OutreachConfig | None = None) -> dict[str, Any]:
+    """Invii REALI (ok, non dry-run) di `kind` nel giorno UTC corrente vs tetto.
+
+    Kind senza tetto in budgets_per_day → limit None, mai bloccato.
+    """
+    cfg = config or load_config()
+    budgets = (_lead_settings().get("budgets_per_day") or {})
+    limit = budgets.get(kind)
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    sent = 0
+    for e in _all_log_entries(cfg):
+        if e.get("kind", "outreach") != kind:
+            continue
+        if not e.get("ok") or e.get("dry_run"):
+            continue
+        if str(e.get("timestamp", ""))[:10] == today:
+            sent += 1
+    exempt = kind in BUDGET_EXEMPT_KINDS
+    return {
+        "kind": kind,
+        "sent_today": sent,
+        "limit": None if limit is None else int(limit),
+        "exempt": exempt,
+        "would_block": (not exempt) and (limit is not None) and sent >= int(limit),
+    }
+
+
+def sent_today_by_kind(config: OutreachConfig | None = None) -> dict[str, int]:
+    """Conteggio invii reali di oggi (UTC) per kind — usato dal desk/digest."""
+    cfg = config or load_config()
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    out: dict[str, int] = {}
+    for e in _all_log_entries(cfg):
+        if not e.get("ok") or e.get("dry_run"):
+            continue
+        if str(e.get("timestamp", ""))[:10] != today:
+            continue
+        k = e.get("kind", "outreach")
+        out[k] = out.get(k, 0) + 1
+    return out
+
+
+def _load_do_not_contact() -> dict[str, Any]:
+    """Suppression list nel private dir: {"addresses": {email: {...}}}."""
+    p = _private_dir_path()
+    if p is None:
+        return {}
+    f = p / "do_not_contact.json"
+    if not f.exists():
+        return {}
+    try:
+        data = json.loads(f.read_text(encoding="utf-8"))
+        if isinstance(data, dict):
+            return data.get("addresses") or {}
+        if isinstance(data, list):   # forma minimale: lista di email
+            return {str(a).strip().lower(): {} for a in data}
+    except (OSError, json.JSONDecodeError):
+        pass
+    return {}
+
+
+def is_suppressed(address: str) -> bool:
+    """True se l'indirizzo è nella suppression list privata (opt-out/STOP)."""
+    return (address or "").strip().lower() in _load_do_not_contact()
+
+
+def add_do_not_contact(address: str, *, reason: str = "opt_out") -> None:
+    """Aggiunge un indirizzo alla suppression list (idempotente)."""
+    p = _private_dir_path()
+    addr = (address or "").strip().lower()
+    if p is None or not addr or "@" not in addr:
+        return
+    f = p / "do_not_contact.json"
+    try:
+        data = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+    except (OSError, json.JSONDecodeError):
+        data = {}
+    if not isinstance(data, dict):
+        data = {}
+    data.setdefault("version", 1)
+    addresses = data.setdefault("addresses", {})
+    entry = addresses.get(addr) or {
+        "added_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+    entry["reason"] = reason
+    addresses[addr] = entry
+    tmp = f.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    tmp.replace(f)
+
+
+def _commercial_footer(postal_address: str, contact_email: str) -> str:
+    return (
+        f"{postal_address.strip()}\n"
+        f"Reply STOP or write to {contact_email} to stop hearing from us."
+    )
+
+
+def _prospects_signature() -> str | None:
+    sig = ((_lead_settings().get("signatures") or {}).get("prospects") or "").strip()
+    return sig or None
+
+
+# --------------------------------------------------------------------------- #
 # Public send functions
 # --------------------------------------------------------------------------- #
 
@@ -195,6 +355,7 @@ def send_raw(
     attachments: list[Path] | None = None,
     inline_images: dict[str, Path] | None = None,
     kind: str = "outreach",
+    signature_override: str | None = None,
 ) -> SendResult:
     """
     Send an email through the policy layer.
@@ -202,6 +363,12 @@ def send_raw(
     Parameters
     ----------
     to, subject, body : the message
+    signature_override : firma da usare al posto di quella Lisa Monelli
+                  (es. signatures.prospects). Per i kind `lead_*` senza
+                  override la firma prospects viene applicata da sola.
+    kind : oltre a "outreach"/"reply": lead_ack, lead_alert, lead_nudge,
+           backlink_request, submission, journo_reply, asset_pitch,
+           newsletter — ognuno con tetto/dry-run/gate da lead_settings.yml.
     config : optional override (defaults to loading from config.yml)
     skip_signature : if True, do NOT append the Lisa Monelli signature
     skip_rate_limit : if True, bypass the rate limit check (use sparingly)
@@ -230,8 +397,42 @@ def send_raw(
     if html_body:
         html_body = sanitize_founder_name(html_body)
 
+    # Per-kind policy (lead_settings.yml). Letta una volta per invio.
+    kind = kind or "outreach"
+    lead_cfg = _lead_settings()
+    log_path = _log_path_for_kind(cfg, kind)
+    brand = lead_cfg.get("brand") or {}
+    is_commercial = kind in set(lead_cfg.get("commercial_kinds") or [])
+    is_kind_dry = kind in set(lead_cfg.get("dry_run_kinds") or [])
+
+    # Signature: override esplicito > firma prospects (kind lead_*) > Lisa.
+    signature = cfg.signature
+    if signature_override:
+        signature = signature_override.strip()
+    elif kind.startswith("lead_"):
+        signature = _prospects_signature() or cfg.signature
+
     # Compose final body with signature injection.
-    final_body = body if skip_signature else compose_body(body, cfg.signature)
+    final_body = body if skip_signature else compose_body(body, signature)
+
+    # CAN-SPAM footer per i kind commerciali (solo se il gate è aperto;
+    # il gate stesso è verificato più sotto, dopo blacklist/suppression).
+    postal_address = (brand.get("postal_address") or "").strip()
+    if is_commercial and postal_address:
+        final_body = (final_body.rstrip() + "\n\n" +
+                      _commercial_footer(postal_address,
+                                         brand.get("contact_email") or "info@myvilla.la")
+                      + "\n")
+
+    def _refuse(reason: str, error: str) -> SendResult:
+        res = SendResult(
+            ok=False, dry_run=cfg.dry_run, message_id=None, thread_id=thread_id,
+            to=to, subject=subject, body_chars=len(final_body), body=final_body,
+            timestamp=now_iso, error=error, reason=reason, kind=kind,
+            in_reply_to=in_reply_to,
+        )
+        _append_send_log(log_path, res)
+        return res
 
     # Blacklist guard: refuse to resend to an address that bounced before.
     # The list is maintained by reply_monitor.py every time a DSN arrives.
@@ -245,30 +446,32 @@ def send_raw(
             )
             reason_detail = entry.get("reason") or "previously bounced"
             first_seen = entry.get("first_bounced_at") or "?"
-            result = SendResult(
-                ok=False,
-                dry_run=cfg.dry_run,
-                message_id=None,
-                thread_id=thread_id,
-                to=to,
-                subject=subject,
-                body_chars=len(final_body),
-                body=final_body,
-                timestamp=now_iso,
-                error=(
-                    f"Address {to!r} is on the bounce blacklist "
-                    f"(first bounced {first_seen}): {reason_detail}"
-                ),
-                reason="blacklisted",
-                kind=kind,
-                in_reply_to=in_reply_to,
+            return _refuse(
+                "blacklisted",
+                f"Address {to!r} is on the bounce blacklist "
+                f"(first bounced {first_seen}): {reason_detail}",
             )
-            _append_send_log(cfg.send_log, result)
-            return result
     except ImportError:
         # reply_monitor not on the path — skip the check silently. The
         # generate/send flow should still work without it.
         pass
+
+    # Suppression list (opt-out / STOP / richiesta esplicita) — private dir.
+    # Vale per TUTTI i kind, comprese le mail al lead: chi ha detto STOP
+    # non riceve più nulla, nemmeno un ack.
+    if is_suppressed(to):
+        return _refuse("do_not_contact",
+                       f"Address {to!r} is on the do-not-contact list.")
+
+    # Tetto giornaliero per kind (UTC). lead_alert è esente.
+    bstate = kind_budget_state(kind, cfg)
+    if bstate["would_block"]:
+        return _refuse(
+            "budget_exceeded",
+            f"Daily budget for kind {kind!r} reached: "
+            f"{bstate['sent_today']}/{bstate['limit']} today (UTC). Retry tomorrow.",
+        )
+
 
     # Resolve attachment paths relative to the project root so that callers
     # can pass short paths like "_system/outreach/attachments/foo.pdf".
@@ -291,10 +494,29 @@ def send_raw(
                     kind=kind, in_reply_to=in_reply_to,
                     attachments=[str(p) for p in attachments],
                 )
-                _append_send_log(cfg.send_log, result)
+                _append_send_log(log_path, result)
                 return result
             resolved_attachments.append(cand)
             attachment_names.append(cand.name)
+
+    # Kill-switch per kind (dry_run_kinds): componi, logga, non inviare.
+    if is_kind_dry:
+        result = SendResult(
+            ok=True, dry_run=True, message_id=None, thread_id=thread_id,
+            to=to, subject=subject, body_chars=len(final_body), body=final_body,
+            timestamp=now_iso, reason="dry_run_kind", kind=kind,
+            in_reply_to=in_reply_to, attachments=attachment_names or None,
+        )
+        _append_send_log(log_path, result)
+        return result
+
+    # Gate CAN-SPAM: i kind commerciali (non in dry_run_kinds) non partono senza indirizzo postale.
+    if is_commercial and not postal_address:
+        return _refuse(
+            "missing_postal_address",
+            f"Kind {kind!r} is commercial: set brand.postal_address in "
+            f"_system/config/lead_settings.yml before sending (CAN-SPAM).",
+        )
 
     # Rate limit check.
     if not skip_rate_limit:
@@ -321,7 +543,7 @@ def send_raw(
                 in_reply_to=in_reply_to,
                 attachments=attachment_names or None,
             )
-            _append_send_log(cfg.send_log, result)
+            _append_send_log(log_path, result)
             return result
 
     # Dry run short-circuit.
@@ -341,7 +563,7 @@ def send_raw(
             in_reply_to=in_reply_to,
             attachments=attachment_names or None,
         )
-        _append_send_log(cfg.send_log, result)
+        _append_send_log(log_path, result)
         return result
 
     # Real send.
@@ -390,7 +612,7 @@ def send_raw(
             attachments=attachment_names or None,
         )
 
-    _append_send_log(cfg.send_log, result)
+    _append_send_log(log_path, result)
     return result
 
 
@@ -484,6 +706,15 @@ def _main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Force a real send even if config.yml has dry_run: true.",
     )
+    parser.add_argument(
+        "--kind", default="outreach",
+        help="Kind della mail (outreach, reply, lead_ack, lead_alert, lead_nudge, "
+             "backlink_request, submission, journo_reply, asset_pitch, newsletter).",
+    )
+    parser.add_argument(
+        "--budget-check", action="store_true",
+        help="Stampa invii di oggi per kind vs tetti (lead_settings.yml) ed esce.",
+    )
     args = parser.parse_args(argv)
 
     cfg = load_config()
@@ -491,6 +722,13 @@ def _main(argv: list[str] | None = None) -> int:
     if args.rate_check:
         state = rate_limit_state(cfg)
         print(json.dumps(state, indent=2))
+        return 0
+
+    if args.budget_check:
+        budgets = (_lead_settings().get("budgets_per_day") or {})
+        sent = sent_today_by_kind(cfg)
+        for k in sorted(set(budgets) | set(sent)):
+            print(json.dumps(kind_budget_state(k, cfg)))
         return 0
 
     if not args.to or not args.subject:
@@ -514,6 +752,7 @@ def _main(argv: list[str] | None = None) -> int:
         body=body,
         config=cfg,
         skip_signature=args.skip_signature,
+        kind=args.kind,
     )
     print(result.to_json())
     return 0 if result.ok else 1

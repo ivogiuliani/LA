@@ -1,0 +1,89 @@
+# My Villa — stampa italiana / francese / istituzioni italiane a LA (scaffold)
+# Usato da: nessuno script (per ora). Serve come registro per l'invio manuale
+# del comunicato (_drafts/backlinks/press_release_it.md / _fr.md / _en.md).
+#
+# contact: SOLO caselle generiche di redazione verificate sulla pagina ufficiale.
+# Vuoto = da verificare. Come verificare: aprire contact_url nel browser, cercare
+# la casella "redazione@" / "info@" / il form; incollarla qui con verified: true
+# e la data. Mai nominativi. Mai indirizzi da Muck Rack/ZoomInfo/snippet.
+
+outlets:
+  - id: artribune
+    name: "Artribune"
+    language: it
+    contact_url: "https://www.artribune.com/contatti/"
+    contact: "redazione@artribune.com"
+    verified: true              # letto sulla pagina contatti il 2026-09-16
+    angle: "NAJAP 2008 → villa italiana a Los Angeles; architettura + arte (DGU: Punta della Dogana, Palazzo Grassi)"
+    release: press_release_it.md
+    status: todo
+
+  - id: giornale-architettura
+    name: "Il Giornale dell'Architettura"
+    language: it
+    contact_url: "https://ilgiornaledellarchitettura.com/contatti/"
+    contact: "redazione@ilgiornaledellarchitettura.com"
+    verified: true              # letto sulla pagina contatti il 2026-09-16
+    angle: "tipologia della villa italiana esportata; crisi assicurativa californiana come tema di architettura"
+    release: press_release_it.md
+    status: todo
+
+  - id: professione-architetto
+    name: "professioneArchitetto"
+    language: it
+    contact_url: "https://www.professionearchitetto.it/"
+    contact: "redazione@professionearchitetto.it"
+    verified: true              # presente nel footer della home il 2026-09-16
+    angle: "studio italiano che apre a Los Angeles: come si lavora in un mercato con titolo protetto"
+    release: press_release_it.md
+    status: todo
+
+  - id: ioarch
+    name: "IoArch"
+    language: it
+    contact_url: "https://ioarch.it/"
+    contact: ""
+    verified: false             # redazione@ioarch.it citata da directory terze: verificare sulla pagina contatti
+    angle: "sistema di partner italiani (DGU, BUROMILAN) per l'export di architettura"
+    release: press_release_it.md
+    status: needs_contact
+
+  - id: the-plan
+    name: "THE PLAN (webzine, IT/EN)"
+    language: en
+    contact_url: "https://www.theplan.it/eng/publish-your-work"
+    contact: "https://www.theplan.it/eng/publish-your-work"
+    verified: true              # form ufficiale (area riservata dopo registrazione)
+    angle: "submission dossier tipologico (usare press_submit.py, non il comunicato)"
+    release: press_release_en.md
+    status: todo
+
+  - id: chroniques-architecture
+    name: "Chroniques d'architecture"
+    language: fr
+    contact_url: "https://chroniques-architecture.com/nous-contacter/"
+    contact: "https://chroniques-architecture.com/nous-contacter/"
+    verified: true              # solo form (pagina letta il 2026-09-16)
+    angle: "un lauréat NAJAP 2008 (ministère de la Culture) à Los Angeles"
+    release: press_release_fr.md
+    status: todo
+
+  - id: iic-los-angeles
+    name: "Istituto Italiano di Cultura di Los Angeles"
+    language: it
+    contact_url: "https://iiclosangeles.esteri.it/en/chi-siamo/contatti/"
+    contact: ""
+    verified: false             # sito 403 ai bot; desk.iicla@esteri.it citata da snippet → aprire la pagina e confermare
+    angle: "Italian Design Day 2027 (marzo): proposta di talk 'La villa italiana a Los Angeles' → pagina evento con link"
+    release: press_release_it.md
+    status: needs_contact
+
+  - id: ice-los-angeles
+    name: "ICE Agenzia — Ufficio di Los Angeles"
+    language: it
+    contact_url: "https://www.ice.it/en/markets/usa/los-angeles"
+    contact: ""
+    verified: false             # losangeles@ice.it citata da snippet → confermare sulla pagina ufficiale
+    angle: "made in Italy della costruzione in California: DGU, BUROMILAN, Transsolar"
+    release: press_release_it.md
+    status: needs_contact

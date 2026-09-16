@@ -336,6 +336,17 @@ log "--- generate_evergreen.py — SKIP (canale IG dismesso 2026-07-06) ---"
 log "--- social_digest.py — SKIP (produzione social dismessa 2026-08-05) ---"
 
 # Step 4: feature_pitch — non-bloccante
+# ── Fase 2 (2026-09-16): richieste dei giornalisti (bozze, mai invio) e,
+#    il lunedì, la bozza LinkedIn del founder. Entrambi non fatali. ──
+log "--- journalist_requests.py (bozze da MV/JournoRequests) ---"
+python3 _system/scripts/journalist_requests.py >> "$LOG_FILE" 2>&1 || log "  ⚠ journalist_requests.py fallito (non fatale)"
+if [ "$(date +%u)" = "1" ]; then
+    log "--- linkedin_founder_drafts.py (lunedì) ---"
+    python3 _system/scripts/linkedin_founder_drafts.py >> "$LOG_FILE" 2>&1 || log "  ⚠ linkedin_founder_drafts.py fallito (non fatale)"
+fi
+log "--- lead_intake.py --rebuild-from-label (riallinea i lead acked dal rail cloud) ---"
+python3 _system/scripts/lead_intake.py --rebuild-from-label --no-llm >> "$LOG_FILE" 2>&1 || log "  ⚠ lead_intake rebuild fallito (non fatale)"
+
 log "--- feature_pitch.py $FP_DRY ---"
 python3 _system/scripts/feature_pitch.py $FP_DRY >> "$LOG_FILE" 2>&1 || \
     log "feature_pitch.py errore non bloccante (continuo)"

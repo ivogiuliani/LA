@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.myvilla.lead-intake</string>
+
+    <!-- Rail PRIMARIO del ciclo di vita lead: ogni 5 minuti legge le
+         notifiche Formspree in info@myvilla.la, registra il lead nel
+         registro privato (~/.myvilla-private), manda ack + alert e
+         etichetta la notifica (MV/Lead-Processed). Idempotente: un run
+         senza novità è un no-op di pochi secondi. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/ivogiuliani/Code/myvilla-la/_system/scripts/lead_intake.py</string>
+        <string>--max</string>
+        <string>25</string>
+    </array>
+
+    <!-- StartInterval (non StartCalendarInterval): macOS recupera
+         l'intervallo perso appena il Mac si sveglia. -->
+    <key>StartInterval</key>
+    <integer>300</integer>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/ivogiuliani/Code/myvilla-la</string>
+
+    <key>StandardOutPath</key>
+    <string>/Users/ivogiuliani/Code/myvilla-la/_system/logs/lead_intake.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/ivogiuliani/Code/myvilla-la/_system/logs/lead_intake.err.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>MYVILLA_PRIVATE_DIR</key>
+        <string>/Users/ivogiuliani/.myvilla-private</string>
+        <key>PYTHONWARNINGS</key>
+        <string>ignore</string>
+    </dict>
+
+    <!-- Se esce con errore non riavviare in loop: riprova al prossimo tick. -->
+    <key>KeepAlive</key>
+    <false/>
+</dict>
+</plist>
