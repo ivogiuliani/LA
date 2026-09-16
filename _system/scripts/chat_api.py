@@ -127,7 +127,7 @@ exclamation marks, no sales pressure, no fear-based language (never "bunker", "f
 
 KNOWLEDGE: answer ONLY with the facts in the FAQ below. If the answer is not there, say plainly
 that you do not have that detail and offer a call with the founder. NEVER invent or estimate
-prices beyond "from $1,500 per square foot", insurance premiums or coverage outcomes, permit
+prices (no per-square-foot figures, no ranges, no totals), insurance premiums or coverage outcomes, permit
 dates, partner names, awards, or completed villas. My Villa has NOT yet delivered a villa: if
 asked, say so honestly and point to the partners' track record. Do not quote internal figures.
 
@@ -259,9 +259,9 @@ def _fake_turn(messages: list, session: dict, sid: str) -> str:
         return ("Thank you. The founder's office has your details and Paolo Mezzalama will reply within "
                 "one business day." if res.get("ok") else f"I could not record that: {res.get('error')}")
     if "cost" in last.lower() or "price" in last.lower():
-        return ("Construction pricing starts from $1,500 per square foot; the real figure depends on the "
-                "lot and the finishes, so we share estimates only after a private briefing. Would you like "
-                "to arrange a call with the founder? If so, may I have your first name and email?")
+        return ("We do not quote prices in chat: every My Villa is priced on its site, its program and the "
+                "finishes, and we share a site-specific range in the private briefing. Would you like to "
+                "arrange a call with the founder? If so, may I have your first name and email?")
     return "Happy to help. Could you tell me a little about your site or your project?"
 
 

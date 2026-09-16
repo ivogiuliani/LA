@@ -157,7 +157,7 @@ def build(limit: int = 20) -> str:
       "Wildfire Prepared Home criteria.")
     a(f"- Insurability: {can['insurance_claim']} is the target we design toward; "
       "actual premiums depend on carrier, site and configuration.")
-    a(f"- Indicative cost: {can['price']}.")
+    a(f"- Pricing: {can['price']}.")
     a(f"- Indicative timeline: {can['timeline']}.")
     a("")
     a("## How to engage")

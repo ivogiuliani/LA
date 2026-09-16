@@ -90,7 +90,8 @@ DEFAULTS = {
         "thank_you_url": "https://myvilla.la/briefing-received.html",
     },
     "canonical": {
-        "price": "from $1,500 per square foot",
+        "price": "premium, site-specific pricing; we share a range in the private briefing rather than a brochure number",
+        "price_faq": "Every My Villa is priced on its site, its program and the level of finish you choose. It is a premium, museum-grade build in reinforced concrete: in the private briefing we share a site-specific range rather than a brochure number, and the total cost of ownership we discuss includes insurance positioning and maintenance over decades, not only the build.",
         "timeline": "about 18 months after permit approval, roughly 20–24 months overall",
         "response_promise": "within one business day",
         "founder_name": "Paolo Mezzalama",
@@ -135,6 +136,7 @@ class S:
         self.formspree = f"https://formspree.io/f/{cfg['formspree_id']}"
         self.ga4 = cfg["ga4_measurement_id"]
         self.price = c["price"]
+        self.price_faq = c.get("price_faq") or c["price"]
         self.timeline = c["timeline"]
         self.response_promise = c["response_promise"]
         self.founder_name = c["founder_name"]
@@ -461,7 +463,7 @@ def faqs(s: S) -> List[Tuple[str, str]]:
         ("Have you built in Los Angeles yet?",
          f"Not yet. {s.built_disclaimer} What is already real is the system behind them: the precast reinforced-concrete method, the construction partner DGU (whose built work includes the Kimbell Art Museum and Palazzo Grassi) and the climate engineering by Transsolar. {s.aor_note} We say this plainly, because a briefing with us should start from facts."),
         ("What does a My Villa cost?",
-         f"Construction starts {s.price}, before land, site works and the level of finish you choose. A private briefing gives you a site-specific range rather than a brochure number, and the total cost of ownership we discuss includes insurance positioning and maintenance over decades, not only the build."),
+         f"{s.price_faq}"),
         ("How do you work with my agent, broker or architect?",
          "As collaborators. Many briefings arrive through a buyer's agent, a broker holding a lot, or a family's architect or advisor. We share feasibility reads, keep your representative in every conversation you want them in, and can work alongside an architect of record you have already chosen. If you are the representative, say so in the form and we will address the briefing to you."),
     ]

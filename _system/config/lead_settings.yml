@@ -16,7 +16,8 @@ brand:
   postal_address: ""       # ⚠️ OBBLIGATORIO per i kind commerciali (CAN-SPAM). Vuoto ⇒ gate chiuso
 
 canonical:
-  price: "from $1,500 per square foot"
+  price: "premium, site-specific pricing; we share a range in the private briefing rather than a brochure number"
+  price_faq: "Every My Villa is priced on its site, its program and the level of finish you choose. It is a premium, museum-grade build in reinforced concrete: in the private briefing we share a site-specific range rather than a brochure number, and the total cost of ownership we discuss includes insurance positioning and maintenance over decades, not only the build."
   timeline: "about 18 months after permit approval, roughly 20–24 months overall"
   response_promise: "within one business day"
   founder_name: "Paolo Mezzalama"

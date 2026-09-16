@@ -10,7 +10,7 @@ timelines, partners or completed projects.
 My Villa designs and orchestrates Italian-designed luxury villas in Los Angeles, built in reinforced concrete. We bring together an architecture studio (IT'S Architecture, Rome and Paris), a construction partner specialised in architectural concrete (DGU), climate engineers (Transsolar) and structural engineers (BUROMILAN), with California-licensed professionals for permitting and construction. We are not a conventional contractor or a developer: we lead the design and the system, and coordinate the build.
 
 ## Q: How much does a My Villa cost?
-Construction pricing starts from $1,500 per square foot. Every project is site-specific, so the real number depends on the lot, the typology and the finishes. We share a proper estimate only after a private briefing and a site study. We do not give quotes in chat.
+Every My Villa is priced on its site, its program and the level of finish: it is a premium, museum-grade build in reinforced concrete. We share a site-specific range only after a private briefing and a site study. We do not give quotes or per-square-foot figures in chat.
 
 ## Q: How long does it take?
 About 18 months of construction after permit approval, roughly 20 to 24 months overall from the first conversation to keys. Permitting time varies by jurisdiction and by lot; rebuild lots in fire-affected areas may move faster under the current expedited programs, but we cannot promise a permit date.
