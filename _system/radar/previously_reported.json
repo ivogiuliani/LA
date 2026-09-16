@@ -6188,6 +6188,56 @@
       "action_type": "user_dismissed",
       "url": "https://therealdeal.com/la/2026/09/14/mansion-built-for-bel-air-founder-listed-for-33-million/",
       "note": "auto-published journal: luxury-home-renovation-bel-air-32-5m-benchmark"
+    },
+    {
+      "date_first_reported": "2026-09-16",
+      "source": "user_dismissed",
+      "title": "Kylie Jenner Offloads Her Longtime Hidden Hills Home for $15.3 million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/kylie-jenner-offloads-her-longtime-hidden-hills-home",
+      "note": "auto-sent pitch to queued:architectural.digest@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-09-16",
+      "source": "user_dismissed",
+      "title": "Newsom signs first-in-nation standards for homes damaged by wildfire smoke",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/politics/story/2026-09-15/newsom-signs-first-in-u-s-standards-for-homes-damaged-by-wildfire-smoke",
+      "note": "auto-sent pitch to nicole.nixon@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-09-16",
+      "source": "user_dismissed",
+      "title": "‘A love letter to concrete and steel’: This suburban house is different",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.theage.com.au/business/consumer-affairs/a-love-letter-to-concrete-and-steel-this-suburban-house-is-different-20260910-p60w4t.html",
+      "note": "auto-sent pitch to queued:stephen.crafti@theage.com.au"
+    },
+    {
+      "date_first_reported": "2026-09-16",
+      "source": "user_dismissed",
+      "title": "Librairie Avant-Garde Huize Baiwu Bookstore / Jiakun Architects | ArchDaily",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.archdaily.com/1184708/librairie-avant-garde-huize-baiwu-bookstore-jiakun-architects",
+      "note": "auto-sent pitch to editorial@archdaily.com"
+    },
+    {
+      "date_first_reported": "2026-09-16",
+      "source": "user_dismissed",
+      "title": "At the Nicolas Cage sinkhole in Malibu, El Niño fears alter good vibes - Los Ang",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2026-09-11/at-nicolas-cage-sinkhole-in-malibu-el-nino-fears-alter-good-vibes",
+      "note": "auto-sent pitch to fedor.zarkhin@latimes.com"
     }
   ],
   "reported": [
