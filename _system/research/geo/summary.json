@@ -1,0 +1,63 @@
+{
+  "history": [
+    {
+      "date": "2026-09-16",
+      "engines": {
+        "claude": {
+          "answered": 20,
+          "errors": 0,
+          "cited": 4,
+          "mentioned": 4,
+          "citation_share": 0.2,
+          "mention_share": 0.2,
+          "wrong_claims": 3,
+          "brand_queries_cited": 3,
+          "brand_queries": 3
+        },
+        "gemini": {
+          "answered": 20,
+          "errors": 0,
+          "cited": 10,
+          "mentioned": 11,
+          "citation_share": 0.5,
+          "mention_share": 0.55,
+          "wrong_claims": 20,
+          "brand_queries_cited": 2,
+          "brand_queries": 3
+        }
+      },
+      "cost_est_usd": 5.669,
+      "queries": 20
+    }
+  ],
+  "latest": {
+    "date": "2026-09-16",
+    "engines": {
+      "claude": {
+        "answered": 20,
+        "errors": 0,
+        "cited": 4,
+        "mentioned": 4,
+        "citation_share": 0.2,
+        "mention_share": 0.2,
+        "wrong_claims": 3,
+        "brand_queries_cited": 3,
+        "brand_queries": 3
+      },
+      "gemini": {
+        "answered": 20,
+        "errors": 0,
+        "cited": 10,
+        "mentioned": 11,
+        "citation_share": 0.5,
+        "mention_share": 0.55,
+        "wrong_claims": 20,
+        "brand_queries_cited": 2,
+        "brand_queries": 3
+      }
+    },
+    "cost_est_usd": 5.669,
+    "queries": 20
+  },
+  "updated_at": "2026-09-16T20:00:12+00:00"
+}
