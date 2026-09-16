@@ -316,7 +316,7 @@ def run(*, dry_run: bool = False, use_llm: bool = True, max_items: int = 25,
 
     query = QUERY_LABELED if rebuild_from_label else QUERY
     try:
-        msgs = client.list_recent(query, max_results=max_items)
+        msgs = client.list_recent(query=query, max_results=max_items)
     except Exception as exc:  # noqa: BLE001
         print(f"  [intake] list failed: {exc}")
         return 0
