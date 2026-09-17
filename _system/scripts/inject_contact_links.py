@@ -91,9 +91,11 @@ def patch(path: Path, dry: bool) -> dict:
         block = _wrap(FOOT_S, FOOT_E, " &middot; " + foot_link.replace("</a> <a", "</a> &middot; <a"))
         html, changed = _replace_block(html, FOOT_S, FOOT_E, block)
         if changed is None:
-            m = re.search(r'<a href="[^"]*privacy\.html[^"]*">[^<]*</a>', html)
-            if m and "<footer" in html and m.start() > html.find("<footer"):
-                html = html[:m.end()] + block + html[m.end():]
+            fpos = html.find("<footer")
+            m = re.search(r'<a href="[^"]*privacy\.html[^"]*">[^<]*</a>', html[fpos:]) if fpos != -1 else None
+            if m:
+                end = fpos + m.end()
+                html = html[:end] + block + html[end:]
                 rep["footer"] = "inserted"
         else:
             rep["footer"] = "updated" if changed else "unchanged"
