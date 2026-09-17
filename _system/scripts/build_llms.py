@@ -169,6 +169,8 @@ def build(limit: int = 20) -> str:
         a(f"- Book directly: {booking}")
     a("")
     a("## Key pages")
+    a("- Research: Westside Rebuild Tracker (LADBS permits open data, refreshed weekly): https://myvilla.la/research/westside-rebuild-tracker.html")
+    a("- Research: Insurable home in California, the 2026 data: https://myvilla.la/insurable-home-california.html")
     a("")
     a(f"- Home: {site}/")
     a(f"- Private briefing (contact): {brand['landing_url']}")

@@ -482,7 +482,17 @@ def faq_html(s: S) -> str:
 # ---------------------------------------------------------------------------
 
 def conv_css(s: S) -> str:
-    return f"""/* Footer contact */
+    return f"""/* Journal research strip (home) */
+.journal-research {{ margin: 44px 0 30px; padding-top: 30px; border-top: 1px solid rgba(62,47,43,0.12); }}
+.journal-research-label {{ font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terracotta); font-weight: 600; margin-bottom: 16px; }}
+.journal-research-grid {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }}
+.journal-research-card {{ display: flex; flex-direction: column; gap: 8px; padding: 22px 24px; background: #FFFFFF; border: 1px solid rgba(62,47,43,0.12); text-decoration: none; color: inherit; transition: border-color .25s ease, transform .25s ease; }}
+.journal-research-card:hover {{ border-color: var(--terracotta); transform: translateY(-2px); }}
+.jr-kicker {{ font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracotta); font-weight: 600; }}
+.jr-title {{ font-family: var(--serif); font-size: 20px; line-height: 1.3; color: #2B2622; }}
+.jr-meta {{ font-family: var(--sans); font-size: 12px; color: #8A8072; }}
+@media (max-width: 760px) {{ .journal-research-grid {{ grid-template-columns: 1fr; }} }}
+/* Footer contact */
 .footer-contact {{ display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: baseline; padding: 18px 0 4px; margin-top: 8px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; color: rgba(255,255,255,0.75); }}
 .footer-contact-label {{ font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-sand); margin-right: 6px; }}
 .footer-contact a {{ color: #fff; opacity: 0.85; transition: color 0.3s, opacity 0.3s; }}
@@ -742,7 +752,7 @@ def apply_index(html: str, s: S, log: List[str]) -> str:
     html = upsert(html, "NAV_MOBILE_CONTACT",
                   '<a href="#contact" onclick="closeMobile()">Contact</a>',
                   before(re.escape("<!-- CONV:NAV_MOBILE:START -->")), log)
-    html = upsert(html, "FOOTER_LINK_CONTACT", '        <a href="#contact">Contact</a>',
+    html = upsert(html, "FOOTER_LINK_CONTACT", '        <a href="research/westside-rebuild-tracker.html">Research</a>\n        <a href="#contact">Contact</a>',
                   before(r'\n      </nav>\n    </div>\n    <div class="footer-bottom">'), log)
     footer_contact = f"""    <div class="footer-contact" id="footer-contact">
       <span class="footer-contact-label">Contact</span>
@@ -753,6 +763,25 @@ def apply_index(html: str, s: S, log: List[str]) -> str:
       <a href="#contact">Contact form</a>
     </div>"""
     html = upsert(html, "FOOTER_CONTACT", footer_contact, before(r'    <div class="footer-bottom">'), log)
+
+    # RESEARCH — blocco "My Villa Research" nella sezione Journal della home (2026-09-17)
+    research = """    <div class="journal-research reveal reveal-delay-2" id="research" aria-label="My Villa Research">
+      <div class="journal-research-label">My Villa Research &middot; open data</div>
+      <div class="journal-research-grid">
+        <a class="journal-research-card" href="research/westside-rebuild-tracker.html" data-ev="cta_click" data-cta-id="journal_research_tracker">
+          <span class="jr-kicker">Westside Rebuild Tracker</span>
+          <span class="jr-title">Every new-home permit filed on the Westside since the January 2025 fires, by area, status and construction type</span>
+          <span class="jr-meta">Los Angeles open data &middot; refreshed every Monday &middot; CSV and JSON to download</span>
+        </a>
+        <a class="journal-research-card" href="insurable-home-california.html" data-ev="cta_click" data-cta-id="journal_research_insurable">
+          <span class="jr-kicker">Insurable home in California</span>
+          <span class="jr-title">What the 2026 data says: premiums, discounts, Zone 0 and how insurers read a concrete home</span>
+          <span class="jr-meta">Every figure sourced from a Journal note with a primary reference</span>
+        </a>
+      </div>
+    </div>
+"""
+    html = upsert(html, "JOURNAL_RESEARCH", research, before(r'    <div class="journal-cta reveal reveal-delay-3">'), log)
 
     # HERO CTAs — right after the hero-sub element
     hero = f"""    <div class="hero-ctas reveal reveal-delay-3">

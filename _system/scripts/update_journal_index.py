@@ -602,6 +602,11 @@ def render_index_html(articles):
     /* ── Latest cross-section strip ──────────────────────────── */
     .latest-strip-section { max-width: 1280px; margin: 40px auto 60px; padding: 0 40px; }
     .latest-strip-header { margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(192, 180, 165, 0.3); display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+    .research-strip { background: var(--espresso); padding: 0 var(--side-pad) 36px; }
+    .research-strip-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: baseline; justify-content: center; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.12); }
+    .research-strip-label { font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tuscan-gold); font-weight: 600; }
+    .research-strip a { font-family: var(--serif); font-size: 17px; color: rgba(255,255,255,0.88); text-decoration: none; border-bottom: 1px solid rgba(196,162,101,0.35); transition: color .25s, border-color .25s; }
+    .research-strip a:hover { color: var(--tuscan-gold); border-color: var(--tuscan-gold); }
     .latest-strip-label { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--espresso); font-weight: 600; }
     .latest-strip-sub { font-family: var(--sans); font-size: 11px; color: var(--stone-grey); letter-spacing: 0.04em; }
     .latest-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
@@ -704,6 +709,14 @@ def render_index_html(articles):
 <div class="cat-nav">
   {cat_pills}
 </div>
+
+<section class="research-strip" aria-label="My Villa Research">
+  <div class="research-strip-inner">
+    <span class="research-strip-label">My Villa Research</span>
+    <a href="https://myvilla.la/research/westside-rebuild-tracker.html">Westside Rebuild Tracker &rarr;</a>
+    <a href="https://myvilla.la/insurable-home-california.html">Insurable home in California: the 2026 data &rarr;</a>
+  </div>
+</section>
 
 <section class="featured-section">
   <div class="featured-wrapper">

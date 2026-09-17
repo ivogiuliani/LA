@@ -76,7 +76,7 @@ def patch(path: Path, dry: bool) -> dict:
         rep["nav"] = "updated" if changed else "unchanged"
 
     # ── footer ──
-    foot_link = f'<a href="{CONTACT_URL}">Contact</a>'
+    foot_link = f'<a href="https://myvilla.la/research/westside-rebuild-tracker.html">Research</a> <a href="{CONTACT_URL}">Contact</a>'
     if '<div class="footer-links">' in html:
         block = _wrap(FOOT_S, FOOT_E, f"\n    {foot_link}")
         html, changed = _replace_block(html, FOOT_S, FOOT_E, block)
@@ -88,7 +88,7 @@ def patch(path: Path, dry: bool) -> dict:
         else:
             rep["footer"] = "updated" if changed else "unchanged"
     else:
-        block = _wrap(FOOT_S, FOOT_E, f" &middot; {foot_link}")
+        block = _wrap(FOOT_S, FOOT_E, " &middot; " + foot_link.replace("</a> <a", "</a> &middot; <a"))
         html, changed = _replace_block(html, FOOT_S, FOOT_E, block)
         if changed is None:
             m = re.search(r'<a href="[^"]*privacy\.html[^"]*">[^<]*</a>', html)
