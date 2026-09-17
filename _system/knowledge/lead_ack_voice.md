@@ -17,7 +17,7 @@ Dear {first_name},
 
 Thank you for reaching out. Your request for a private briefing has arrived, and we are glad you found us.
 
-Paolo Mezzalama, our founder, reads every enquiry himself and will reply to you personally {response_promise}.
+We read every enquiry and will reply to you {response_promise}. A My Villa partner will join the first call to answer every question.
 
 {scheduling}
 
@@ -29,7 +29,7 @@ Warm regards,
 
 ## Scheduling (no booking link)
 
-To make the call easy to arrange, simply reply with two windows that suit you. Los Angeles mornings work best for a Teams call with Paolo.
+To make the call easy to arrange, simply reply with two windows that suit you. Los Angeles mornings work best for a Teams call.
 
 ## Scheduling (booking link)
 

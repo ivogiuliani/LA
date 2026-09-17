@@ -38,6 +38,9 @@ jobs:
       - name: Build tracker (CSV + JSON + PNG + HTML)
         run: python3 _system/scripts/rebuild_tracker.py
 
+      - name: Contact links on regenerated page
+        run: python3 _system/scripts/inject_contact_links.py || true
+
       - name: Commit research/** only
         run: |
           git config user.name  "My Villa Bot"

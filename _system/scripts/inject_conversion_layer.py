@@ -95,7 +95,8 @@ DEFAULTS = {
         "timeline": "about 18 months after permit approval, roughly 20–24 months overall",
         "response_promise": "within one business day",
         "founder_name": "Paolo Mezzalama",
-        "founder_title": "Founder · Architect registered in Italy and France",
+        "founder_title": "Founder & Architect",
+        "promise_line": "We reply within one business day, and a My Villa partner joins your first call to answer every question.",
         "architect_of_record_note": "Architecture of record in California is carried by a California-licensed architect.",
         "built_disclaimer": "My Villa has not yet delivered a villa: the projects shown are concept designs and renders.",
     },
@@ -139,6 +140,7 @@ class S:
         self.price_faq = c.get("price_faq") or c["price"]
         self.timeline = c["timeline"]
         self.response_promise = c["response_promise"]
+        self._c = c
         self.founder_name = c["founder_name"]
         self.founder_title = c["founder_title"]
         self.aor_note = c["architect_of_record_note"]
@@ -149,7 +151,7 @@ class S:
 
     @property
     def promise_line(self) -> str:
-        return f"{self.founder_name} replies personally {self.response_promise}."
+        return self._c.get("promise_line") or "We reply within one business day, and a My Villa partner joins your first call to answer every question."
 
 
 # ---------------------------------------------------------------------------
@@ -480,7 +482,13 @@ def faq_html(s: S) -> str:
 # ---------------------------------------------------------------------------
 
 def conv_css(s: S) -> str:
-    return f"""/* Hero CTAs */
+    return f"""/* Footer contact */
+.footer-contact {{ display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: baseline; padding: 18px 0 4px; margin-top: 8px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; color: rgba(255,255,255,0.75); }}
+.footer-contact-label {{ font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-sand); margin-right: 6px; }}
+.footer-contact a {{ color: #fff; opacity: 0.85; transition: color 0.3s, opacity 0.3s; }}
+.footer-contact a:hover {{ opacity: 1; color: var(--pacific-blue); }}
+.footer-contact-sep {{ opacity: 0.4; }}
+/* Hero CTAs */
 .hero-ctas {{ display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 34px; position: relative; z-index: 2; }}
 .hero-btn {{ display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 14px 30px; font-family: var(--sans); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--white); transition: background 0.3s, border-color 0.3s, transform 0.2s; }}
 .hero-btn-primary {{ background: var(--terracotta); border: 1px solid var(--terracotta); }}
@@ -727,6 +735,25 @@ def apply_index(html: str, s: S, log: List[str]) -> str:
     html = upsert(html, "NAV_MOBILE", nav_m,
                   replace(r'<a href="#(?:contact|briefing)" onclick="closeMobile\(\)">Request Briefing</a>'), log)
 
+    # CONTACT — voce di menu (desktop + mobile) e blocco nel footer (2026-09-17)
+    html = upsert(html, "NAV_CONTACT",
+                  '<a href="#contact" data-ev="cta_click" data-cta-id="nav_contact">Contact</a>',
+                  before(re.escape("<!-- CONV:NAV:START -->")), log)
+    html = upsert(html, "NAV_MOBILE_CONTACT",
+                  '<a href="#contact" onclick="closeMobile()">Contact</a>',
+                  before(re.escape("<!-- CONV:NAV_MOBILE:START -->")), log)
+    html = upsert(html, "FOOTER_LINK_CONTACT", '        <a href="#contact">Contact</a>',
+                  before(r'\n      </nav>\n    </div>\n    <div class="footer-bottom">'), log)
+    footer_contact = f"""    <div class="footer-contact" id="footer-contact">
+      <span class="footer-contact-label">Contact</span>
+      <a href="mailto:info@myvilla.la" data-ev="contact_email_click">info@myvilla.la</a>
+      <span class="footer-contact-sep">&middot;</span>
+      <a href="{s.landing("footer")}" data-ev="cta_click" data-cta-id="footer_briefing">Request a private briefing</a>
+      <span class="footer-contact-sep">&middot;</span>
+      <a href="#contact">Contact form</a>
+    </div>"""
+    html = upsert(html, "FOOTER_CONTACT", footer_contact, before(r'    <div class="footer-bottom">'), log)
+
     # HERO CTAs — right after the hero-sub element
     hero = f"""    <div class="hero-ctas reveal reveal-delay-3">
       <a href="{s.landing("hero")}" class="hero-btn hero-btn-primary" data-ev="cta_click" data-cta-id="hero_briefing">Request a Private Briefing</a>
@@ -784,9 +811,13 @@ def apply_index(html: str, s: S, log: List[str]) -> str:
     form = canonical_form(s, form_id="home", source_page="index", page_type="home",
                           subject="Private Briefing Request — myvilla.la", dom_id="contactForm", onsubmit=True)
     html = upsert(html, "FORM", form, replace(r'<form[^>]*\bid="contactForm"[^>]*>.*?</form>', re.S), log)
-    old_promise = "Our founding partner will personally respond within 48 hours with next steps for your private briefing."
-    if old_promise in html:
-        html = html.replace(old_promise, f"{s.promise_line} You will receive a confirmation by email in the meantime.")
+    # Success copy: allinea qualsiasi frase-promessa precedente al testo canonico
+    new_promise = f"{s.promise_line} You will receive a confirmation by email in the meantime."
+    pat = re.compile(r"(?:Our founding partner will personally respond within 48 hours with next steps for your private briefing\.|"
+                     r"Paolo Mezzalama replies personally within one business day\. You will receive a confirmation by email in the meantime\.|"
+                     r"We reply within one business day[^<]*?You will receive a confirmation by email in the meantime\.)")
+    if pat.search(html) and new_promise not in html:
+        html = pat.sub(new_promise, html, count=1)
         log.append("  ~ PROMISE          success copy aligned to canonical response promise")
 
     # Old submit code → replaced by the shared FORMJS block

@@ -3,7 +3,7 @@
 Read at runtime by `_system/scripts/chat_api.py`. Facts come from
 `_system/config/lead_settings.yml` (canonical) and `site_content.md`.
 If a question is not answered here, the assistant says so and offers a
-call with the founder. It never invents prices, insurance outcomes,
+call with a My Villa partner. It never invents prices, insurance outcomes,
 timelines, partners or completed projects.
 
 ## Q: What does My Villa do?
@@ -25,7 +25,7 @@ The system is designed to satisfy all 12 California "Safer from Wildfires" measu
 Los Angeles first: Malibu, Pacific Palisades, Beverly Hills, Bel Air, Brentwood, Hidden Hills, Calabasas, Topanga, Altadena, Hollywood Hills and similar neighbourhoods. Other California locations are considered case by case. We are not currently taking projects outside California.
 
 ## Q: Can I see a My Villa project or visit one?
-During a private briefing Paolo Mezzalama walks you through the projects, the drawings and the construction system in person; site visits and references are arranged from there.
+During a private briefing a My Villa partner walks you through the projects, the drawings and the construction system in person; site visits and references are arranged from there.
 
 ## Q: What is the process?
 Five steps: a discovery conversation and site visit; the choice of one of four typologies (Courtyard, L House, Deconstructed, Hill); personalisation of materials, finishes and layout; engineering and permits with our Italian team and Los Angeles specialists; construction by concrete specialists with a dedicated project manager and weekly updates.
@@ -43,13 +43,13 @@ Yes, rebuilds after fire in Pacific Palisades, Altadena, Malibu and the surround
 Integrated photovoltaics supply about 80% of electricity and 20% of hot water, paired with battery storage, in a fully electric home. Cross-ventilation calibrated by the climate engineers, thermal mass and shading keep the house cool without relying on air conditioning. Water collection and stored energy give two to three days of autonomy during outages or public safety power shut-offs.
 
 ## Q: How do I start? What happens after I fill in the form?
-Request a private briefing on myvilla.la (the form takes a minute). You receive a confirmation right away and Paolo Mezzalama replies personally within one business day. The first step is a 30-minute video call on Teams; Los Angeles mornings work best. If you already have a lot, tell us where it is and its current state: that lets us prepare properly.
+Request a private briefing on myvilla.la (the form takes a minute). You receive a confirmation right away; we reply within one business day and a My Villa partner joins the first call to answer every question. The first step is a 30-minute video call on Teams; Los Angeles mornings work best. If you already have a lot, tell us where it is and its current state: that lets us prepare properly.
 
 ## Q: Can I talk to a person now?
-This chat is an AI assistant. To speak with a person, leave your name, email and phone here and we pass them straight to the founder's office, or write to info@myvilla.la. Paolo replies within one business day.
+This chat is an AI assistant. To speak with a person, leave your name, email and phone here and we pass them straight to the partners, or write to info@myvilla.la. We reply within one business day.
 
 ## Q: Do you take on many projects?
-No. My Villa accepts a limited number of commissions per year so that every project gets the founder's direct involvement. Availability is confirmed during the briefing.
+No. My Villa accepts a limited number of commissions per year so that every project gets a partner's direct involvement. Availability is confirmed during the briefing.
 
 ## Q: Do you work with my architect, my builder or my insurance broker?
 We are glad to coordinate with your advisors. The construction system, the structural and climate engineering and the architectural direction stay with the My Villa team and its partners; local consultants, brokers and legal advisors are welcome at the table from the start.

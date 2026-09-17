@@ -162,7 +162,7 @@
       "@type": "Person",
       "@id": "https://myvilla.la/team.html#paolo-mezzalama",
       "name": "Paolo Mezzalama",
-      "jobTitle": "Founder · Architect registered in Italy and France",
+      "jobTitle": "Founder & Architect",
       "url": "https://myvilla.la/team.html#paolo-mezzalama",
       "worksFor": {
         "@id": "https://myvilla.la/#organization"
@@ -3151,6 +3151,12 @@ section[id], #briefing { scroll-margin-top: 96px; }
 }
 
 /* CONV:CSS:START */
+/* Footer contact */
+.footer-contact { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: baseline; padding: 18px 0 4px; margin-top: 8px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; color: rgba(255,255,255,0.75); }
+.footer-contact-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-sand); margin-right: 6px; }
+.footer-contact a { color: #fff; opacity: 0.85; transition: color 0.3s, opacity 0.3s; }
+.footer-contact a:hover { opacity: 1; color: var(--pacific-blue); }
+.footer-contact-sep { opacity: 0.4; }
 /* Hero CTAs */
 .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 34px; position: relative; z-index: 2; }
 .hero-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 14px 30px; font-family: var(--sans); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--white); transition: background 0.3s, border-color 0.3s, transform 0.2s; }
@@ -3221,7 +3227,11 @@ select.cta-input:invalid { color: rgba(255,255,255,0.75); }
     <a href="#process">Process</a>
     <a href="#team">Team</a>
     <a href="/blog/index.html" class="nav-link-journal"><span class="nav-journal-text">Journal</span><span class="nav-journal-stamp"><span class="live-pulse" aria-hidden="true"></span>Updated today</span></a>
-    <!-- CONV:NAV:START -->
+    
+<!-- CONV:NAV_CONTACT:START -->
+<a href="#contact" data-ev="cta_click" data-cta-id="nav_contact">Contact</a>
+<!-- CONV:NAV_CONTACT:END -->
+<!-- CONV:NAV:START -->
 <a href="/private-briefing.html?src=nav" class="nav-cta" data-ev="cta_click" data-cta-id="nav_briefing">Request Briefing</a>
 <!-- CONV:NAV:END -->
   </div>
@@ -3240,7 +3250,11 @@ select.cta-input:invalid { color: rgba(255,255,255,0.75); }
   <a href="#process" onclick="closeMobile()">Process</a>
   <a href="#team" onclick="closeMobile()">Team</a>
   <a href="/blog/index.html" onclick="closeMobile()" class="nav-link-journal"><span class="nav-journal-text">Journal</span><span class="nav-journal-stamp"><span class="live-pulse" aria-hidden="true"></span>Updated today</span></a>
-  <!-- CONV:NAV_MOBILE:START -->
+  
+<!-- CONV:NAV_MOBILE_CONTACT:START -->
+<a href="#contact" onclick="closeMobile()">Contact</a>
+<!-- CONV:NAV_MOBILE_CONTACT:END -->
+<!-- CONV:NAV_MOBILE:START -->
 <a href="/private-briefing.html?src=nav_mobile" onclick="closeMobile()" data-ev="cta_click" data-cta-id="nav_mobile_briefing">Request Briefing</a>
 <!-- CONV:NAV_MOBILE:END -->
 </div>
@@ -4248,7 +4262,7 @@ select.cta-input:invalid { color: rgba(255,255,255,0.75); }
   <input type="hidden" name="utm_term" value="">
   <input type="hidden" name="cta_src" value="">
   <button type="submit" class="cta-submit">Request a Private Briefing</button>
-  <div class="cta-micro"><strong>Paolo Mezzalama replies personally within one business day.</strong></div>
+  <div class="cta-micro"><strong>We reply within one business day, and a My Villa partner joins your first call to answer every question.</strong></div>
   <div class="cta-legal">By submitting you agree to our <a href="/privacy.html#what-we-collect">Privacy Notice</a>.</div>
   <div class="cta-error" role="alert">Something went wrong and your request did not go through. Please write to us directly at <a href="mailto:info@myvilla.la">info@myvilla.la</a>.</div>
 </form>
@@ -4256,7 +4270,7 @@ select.cta-input:invalid { color: rgba(255,255,255,0.75); }
       <div class="cta-success" id="ctaSuccess" role="status">
         <div class="ok-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5 L10 18 L20 6"/></svg></div>
         <h3>Grazie — request received.</h3>
-        <p>Paolo Mezzalama replies personally within one business day. You will receive a confirmation by email in the meantime.</p>
+        <p>We reply within one business day, and a My Villa partner joins your first call to answer every question. You will receive a confirmation by email in the meantime.</p>
       </div>
     </div>
   </div>
@@ -4285,8 +4299,21 @@ select.cta-input:invalid { color: rgba(255,255,255,0.75); }
         <a href="malibu-custom-home-builder.html">Malibu</a>
         <a href="blog/">Journal</a>
         <a href="team.html">Studio</a>
+<!-- CONV:FOOTER_LINK_CONTACT:START -->
+        <a href="#contact">Contact</a>
+<!-- CONV:FOOTER_LINK_CONTACT:END -->
       </nav>
     </div>
+<!-- CONV:FOOTER_CONTACT:START -->
+    <div class="footer-contact" id="footer-contact">
+      <span class="footer-contact-label">Contact</span>
+      <a href="mailto:info@myvilla.la" data-ev="contact_email_click">info@myvilla.la</a>
+      <span class="footer-contact-sep">&middot;</span>
+      <a href="/private-briefing.html?src=footer" data-ev="cta_click" data-cta-id="footer_briefing">Request a private briefing</a>
+      <span class="footer-contact-sep">&middot;</span>
+      <a href="#contact">Contact form</a>
+    </div>
+<!-- CONV:FOOTER_CONTACT:END -->
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 My Villa</span>
       <div class="footer-legal">

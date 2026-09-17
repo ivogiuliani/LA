@@ -49,7 +49,7 @@ MID_START, MID_END = "<!-- MV-MIDCTA:START -->", "<!-- MV-MIDCTA:END -->"
 JS_START, JS_END = "<!-- MV-CTAJS:START -->", "<!-- MV-CTAJS:END -->"
 
 MID_TEXT_LEAD = "Planning a home in Malibu or Beverly Hills?"
-MID_TEXT_LINK = "Request a private briefing with our founder."
+MID_TEXT_LINK = "Request a private briefing with a My Villa partner."
 
 
 def mid_cta_href(slug: str) -> str:

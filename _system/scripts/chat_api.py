@@ -85,7 +85,7 @@ TURN_SCHEMA = {
     "properties": {
         "reply": {"type": "string", "description": "Your answer to the visitor, plain text, no markdown headers."},
         "capture_lead": {
-            "description": ("Contact details to record so the founder's office can follow up. "
+            "description": ("Contact details to record so the My Villa partners can follow up. "
                             "Fill it ONLY in the turn where the visitor has given at least a first "
                             "name and an email address; otherwise null. Never invent or guess any field."),
             "anyOf": [
@@ -115,10 +115,10 @@ def load_faq() -> str:
 
 def system_prompt() -> str:
     booking = (cfg_get("brand.booking_url", "") or "").strip()
-    sched = (f"offer this booking link for a 30-minute call with the founder: {booking}"
+    sched = (f"offer this booking link for a 30-minute call with a My Villa partner: {booking}"
              if booking else
              "ask for two time windows that suit them (Los Angeles mornings work best) for a "
-             "30-minute Teams call with the founder")
+             "30-minute Teams call with a My Villa partner")
     return f"""You are the concierge assistant on myvilla.la, the website of My Villa: Italian-designed
 luxury villas in reinforced concrete for Los Angeles. You are an AI, not a person, and you say so
 when relevant. Tone: warm, precise, unhurried, British-neutral English, short paragraphs, no
@@ -126,10 +126,10 @@ exclamation marks, no sales pressure, no fear-based language (never "bunker", "f
 "protect your family", "survive the next fire", "dream home").
 
 KNOWLEDGE: answer ONLY with the facts in the FAQ below. If the answer is not there, say plainly
-that you do not have that detail and offer a call with the founder. NEVER invent or estimate
+that you do not have that detail and offer a call with a My Villa partner. NEVER invent or estimate
 prices (no per-square-foot figures, no ranges, no totals), insurance premiums or coverage outcomes, permit
 dates, partner names, awards, or completed villas. Never claim that My Villa has completed
-villas; if asked about built work or visits, point to the briefing, where the founder walks
+villas; if asked about built work or visits, point to the briefing, where a My Villa partner walks
 through the projects in person. Do not quote internal figures.
 
 LEAD CAPTURE: when the visitor shows real interest (a lot, a rebuild, a budget, a timeline, or
@@ -137,7 +137,7 @@ asks to talk to someone), ask for their first name, email and phone (phone optio
 {sched}. The moment the visitor gives a first name and an email address, fill the "capture_lead"
 object of your JSON output IN THAT SAME TURN with what they told you (do not wait for the phone or
 the time windows: ask for those afterwards, in the confirmation), and in "reply" confirm that the
-founder's office will reply {cfg_get('canonical.response_promise', 'within one business day')}.
+My Villa partners will reply {cfg_get('canonical.response_promise', 'within one business day')}.
 Fill "capture_lead" at most once per conversation and never with guessed data; in every other turn
 set it to null. Never ask for financial details, IDs or passwords.
 
@@ -240,7 +240,7 @@ def capture_lead(args: dict, session: dict, sid: str) -> dict:
         session["lead_captured"] = True
         threading.Thread(target=_bg, daemon=True).start()
         _log_turn(sid, "system", "capture_lead", {"email_hash": _hash(email)})
-        return {"ok": True, "message": "captured; the founder's office will reply within one business day"}
+        return {"ok": True, "message": "captured; the My Villa partners will reply within one business day"}
     except Exception as exc:  # noqa: BLE001
         return {"ok": False, "error": f"storage error: {type(exc).__name__}"}
 
@@ -259,12 +259,12 @@ def _fake_turn(messages: list, session: dict, sid: str) -> str:
         res = capture_lead({"first_name": name.group(1) if name else "Visitor", "email": m.group(0),
                             "summary": last[:200], "site_location": "Malibu" if "malibu" in last.lower() else ""},
                            session, sid)
-        return ("Thank you. The founder's office has your details and Paolo Mezzalama will reply within "
+        return ("Thank you. The My Villa partners have your details and will reply within "
                 "one business day." if res.get("ok") else f"I could not record that: {res.get('error')}")
     if "cost" in last.lower() or "price" in last.lower():
         return ("We do not quote prices in chat: every My Villa is priced on its site, its program and the "
                 "finishes, and we share a site-specific range in the private briefing. Would you like to "
-                "arrange a call with the founder? If so, may I have your first name and email?")
+                "arrange a call with a My Villa partner? If so, may I have your first name and email?")
     return "Happy to help. Could you tell me a little about your site or your project?"
 
 
@@ -301,15 +301,15 @@ def _claude_turn(messages: list, session: dict, sid: str) -> str:
         return reply
     out = capture_lead(cap, session, sid)
     if out.get("ok"):
-        return reply or ("Thank you. The founder's office has your details and will reply "
+        return reply or ("Thank you. The My Villa partners have your details and will reply "
                          "within one business day.")
     err = str(out.get("error") or "")
     _log(f"capture_lead rejected: {err}")
     if "email" in err.lower():
         return ("Thank you. I could not record that email address as written; could you check it "
-                "and send it again? Alternatively, write to info@myvilla.la and the founder's office "
+                "and send it again? Alternatively, write to info@myvilla.la and the My Villa partners "
                 "will reply within one business day.")
-    return reply or ("Thank you. Please write to info@myvilla.la and the founder's office will "
+    return reply or ("Thank you. Please write to info@myvilla.la and the My Villa partners will "
                      "reply within one business day.")
 
 
@@ -321,7 +321,7 @@ def llm_turn(messages: list, session: dict, sid: str) -> str:
     except Exception as exc:  # noqa: BLE001 — include LLMUnavailable/LLMRefused: degradare, mai crashare
         _log(f"LLM error: {type(exc).__name__}: {exc}")
         return ("I am having trouble answering right now. Please write to info@myvilla.la and "
-                "the founder's office will reply within one business day.")
+                "the My Villa partners will reply within one business day.")
 
 
 def chat(sid: Optional[str], message: str, ip: str, page: str = "") -> tuple:
@@ -336,7 +336,7 @@ def chat(sid: Optional[str], message: str, ip: str, page: str = "") -> tuple:
     if session["count"] >= MAX_MESSAGES:
         return {"ok": False, "session_id": sid, "error": "session limit reached",
                 "reply": "We have reached the limit for this chat. Please write to info@myvilla.la "
-                         "and the founder's office will reply within one business day."}, 429
+                         "and the My Villa partners will reply within one business day."}, 429
     session["count"] += 1
     session["last"] = time.time()
     first_turn = not session["history"]

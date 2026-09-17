@@ -20,8 +20,9 @@ canonical:
   price_faq: "Every My Villa is priced on its site, its program and the level of finish you choose. It is a premium, museum-grade build in reinforced concrete: in the private briefing we share a site-specific range rather than a brochure number, and the total cost of ownership we discuss includes insurance positioning and maintenance over decades, not only the build."
   timeline: "about 18 months after permit approval, roughly 20–24 months overall"
   response_promise: "within one business day"
+  promise_line: "We reply within one business day, and a My Villa partner joins your first call to answer every question."
   founder_name: "Paolo Mezzalama"
-  founder_title: "Founder · Architect registered in Italy and France"
+  founder_title: "Founder & Architect"
   architect_of_record_note: "Architecture of record in California is carried by a California-licensed architect."
   built_disclaimer: "My Villa has not yet delivered a villa: the projects shown are concept designs and renders."
   insurance_claim: "up to 50% wildfire insurance savings"      # claim già pubblicato; dossier di sostanziazione richiesto
@@ -29,7 +30,7 @@ canonical:
 
 signatures:
   prospects: |
-    the office of Paolo Mezzalama · My Villa
+    The partners at My Villa
     info@myvilla.la · myvilla.la
   # Stampa: resta la firma Lisa Monelli di _system/outreach/config.yml (decisione 4: Lisa solo verso la stampa)
 

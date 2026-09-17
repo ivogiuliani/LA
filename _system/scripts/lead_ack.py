@@ -37,12 +37,12 @@ VOICE_PATH = SYSTEM_DIR / "knowledge" / "lead_ack_voice.md"
 _FALLBACK_SUBJECT = "Your private briefing with My Villa"
 _FALLBACK_BODY = (
     "Dear {first_name},\n\nThank you for reaching out. Your request for a private "
-    "briefing has arrived.\n\nPaolo Mezzalama, our founder, will reply to you "
-    "personally {response_promise}.\n\n{scheduling}\n\nDo you already have a site "
+    "briefing has arrived.\n\nWe will reply to you {response_promise}; a My Villa partner "
+    "will join the first call to answer every question.\n\n{scheduling}\n\nDo you already have a site "
     "or lot in mind?\n\nWarm regards,"
 )
 _FALLBACK_SCHED_NO = ("To make the call easy to arrange, simply reply with two windows "
-                      "that suit you. Los Angeles mornings work best for a Teams call with Paolo.")
+                      "that suit you. Los Angeles mornings work best for a Teams call.")
 _FALLBACK_SCHED_LINK = "You can pick a slot directly here: {booking_url}"
 
 

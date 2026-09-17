@@ -161,7 +161,7 @@ def build(limit: int = 20) -> str:
     a("")
     a("## How to engage")
     a("")
-    a(f"- Request a private briefing with the founder: {brand['landing_url']}")
+    a(f"- Request a private briefing (we reply within one business day; a My Villa partner joins the first call): {brand['landing_url']}")
     a(f"- Email: {brand['contact_email']}")
     a(f"- We reply {can['response_promise']}; briefings are 30-minute video calls, "
       "mornings Los Angeles time.")

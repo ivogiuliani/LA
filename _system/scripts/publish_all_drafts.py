@@ -2387,7 +2387,7 @@ def main(argv=None):
         for s in ("update_journal_index.py", "crosslink_pillars.py",
                   "update_pillar_journal.py", "fix_article_schema.py",
                   "inject_article_cta.py", "build_answer_page.py",
-                  "build_llms.py", "update_sitemap.py",
+                  "inject_contact_links.py", "build_llms.py", "update_sitemap.py",
                   "update_homepage_journal.py"):
             ok = _run_update_script(s)
             print(f"  {'✓' if ok else '✗'} {s}")
