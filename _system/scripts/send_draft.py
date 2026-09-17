@@ -17,6 +17,8 @@ Formato bozza (Markdown con frontmatter YAML):
   attachments: [_system/outreach/attachments/MyVilla_Fact_Sheet.pdf]  # opzionale
   signature: lisa | prospects | none # default lisa (stampa); prospects = "The partners at My Villa"
   send_after: 2026-09-18             # opzionale: prima di quella data non parte
+  thread_id: 1a0040c78bdb2436       # opzionale: RISPOSTA nello stesso thread Gmail (kind reply, firma Lisa)
+  in_reply_to: <Message-ID>          # opzionale con thread_id: header RFC-822 dell'ultimo messaggio del giornalista
   ---
   corpo in testo semplice (righe vuote = paragrafi). Niente firma: la mette il policy layer.
 
@@ -143,14 +145,26 @@ def handle(path: Path, *, send: bool, to_override: str | None, force: bool) -> d
             "blacklisted": _blacklisted(to),
             "budget": bstate,
         }
-        rec.update({"ok": True, "reason": "preview", "gates": gates,
+        rec.update({"ok": True, "reason": "preview" + (" (risposta in thread)" if fm.get("thread_id") else ""), "gates": gates,
                     "signature": "none" if skip_sig else ("prospects" if sig_override else "lisa"),
                     "preview": body[:600]})
         return rec
 
-    res = send_email.send_raw(to=to, subject=subject, body=body, cc=cc, config=cfg,
-                              kind=kind, attachments=attachments or None,
-                              signature_override=sig_override, skip_signature=skip_sig)
+    thread_id = str(fm.get("thread_id") or "").strip()
+    if thread_id:
+        # Risposta dentro un thread esistente: passa da send_raw con thread_id
+        # (kind "reply" → tetto reply, firma Lisa salvo override).
+        res = send_email.send_raw(to=to, subject=subject, body=body, cc=cc, config=cfg,
+                                  kind="reply" if kind == "outreach" else kind,
+                                  thread_id=thread_id,
+                                  in_reply_to=(str(fm.get("in_reply_to") or "").strip() or None),
+                                  references=(str(fm.get("references") or "").strip() or None),
+                                  attachments=attachments or None,
+                                  signature_override=sig_override, skip_signature=skip_sig)
+    else:
+        res = send_email.send_raw(to=to, subject=subject, body=body, cc=cc, config=cfg,
+                                  kind=kind, attachments=attachments or None,
+                                  signature_override=sig_override, skip_signature=skip_sig)
     rec.update({"ok": res.ok, "dry_run": res.dry_run, "reason": res.reason,
                 "error": res.error, "message_id": res.message_id})
     if res.ok and not res.dry_run:
