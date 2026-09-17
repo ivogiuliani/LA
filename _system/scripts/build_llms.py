@@ -142,7 +142,6 @@ def build(limit: int = 20) -> str:
       "BURO MILAN (structure), DGU (architectural concrete — the contractor behind "
       "Palazzo Grassi and Punta della Dogana in Venice and the Kimbell Art Museum "
       "expansion in Fort Worth).")
-    a(f"- Status, stated plainly: {can['built_disclaimer']}")
     a("")
     a("## What we offer")
     a("")
@@ -168,7 +167,6 @@ def build(limit: int = 20) -> str:
       "mornings Los Angeles time.")
     if booking:
         a(f"- Book directly: {booking}")
-    a(f"- Honest disclaimer: {can['built_disclaimer']} We say so on every call.")
     a("")
     a("## Key pages")
     a("")

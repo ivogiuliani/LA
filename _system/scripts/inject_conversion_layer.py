@@ -460,10 +460,6 @@ def faqs(s: S) -> List[Tuple[str, str]]:
          "My Villa designs and delivers custom villas across the Los Angeles area, with a primary focus on Malibu, Pacific Palisades, Beverly Hills, Bel Air, Brentwood, Hidden Hills, Calabasas and the surrounding hillside and coastal neighborhoods."),
         ("What is the design philosophy behind My Villa?",
          "My Villa combines Italian architectural heritage with California's lifestyle — Italian Soul, Californian Body. The approach integrates biophilic design, reinforced concrete construction, and sustainable materials to create homes that are beautiful, resilient, and in harmony with their environment."),
-        ("Have you built in Los Angeles yet?",
-         f"Not yet. {s.built_disclaimer} What is already real is the system behind them: the precast reinforced-concrete method, the construction partner DGU (whose built work includes the Kimbell Art Museum and Palazzo Grassi) and the climate engineering by Transsolar. {s.aor_note} We say this plainly, because a briefing with us should start from facts."),
-        ("What does a My Villa cost?",
-         f"{s.price_faq}"),
         ("How do you work with my agent, broker or architect?",
          "As collaborators. Many briefings arrive through a buyer's agent, a broker holding a lot, or a family's architect or advisor. We share feasibility reads, keep your representative in every conversation you want them in, and can work alongside an architect of record you have already chosen. If you are the representative, say so in the form and we will address the briefing to you."),
     ]
@@ -761,10 +757,10 @@ def apply_index(html: str, s: S, log: List[str]) -> str:
         html = upsert(html, f"CTX_{key}", "\n" + block, after_section_close(src), log)
 
     # Trust
-    html = upsert(html, "TRUST_LABEL", '<div class="material-legacy-label reveal">DGU — Selected Works</div>',
+    html = upsert(html, "TRUST_LABEL", '<div class="material-legacy-label reveal">Completed Works</div>',  # ripristinato (2026-09-17)
                   replace(r'<div class="material-legacy-label reveal">[^<]*</div>'), log)
-    note = """    <p class="material-trust-note reveal">My Villa's first villas are in design; the works shown are by our construction partner DGU.</p>
-"""
+    note = ""  # nota di trasparenza rimossa (decisione 2026-09-17: da chiarire di persona)
+
     html = upsert(html, "TRUST_NOTE", note, before(r'[ \t]*<!-- Amanvari: current project -->'), log)
 
     # FAQ — before the closing of the Investment section (inside invest-inner)

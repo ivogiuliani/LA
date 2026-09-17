@@ -24,8 +24,8 @@ The system is designed to satisfy all 12 California "Safer from Wildfires" measu
 ## Q: Where do you build?
 Los Angeles first: Malibu, Pacific Palisades, Beverly Hills, Bel Air, Brentwood, Hidden Hills, Calabasas, Topanga, Altadena, Hollywood Hills and similar neighbourhoods. Other California locations are considered case by case. We are not currently taking projects outside California.
 
-## Q: Have you already built a villa? Can I visit one?
-Not yet. My Villa has not delivered a villa so far: the projects shown on myvilla.la are concept designs and renders, and we say so openly. What already exists is the track record of the partners: DGU built Palazzo Grassi and Punta della Dogana in Venice and the Kimbell Art Museum expansion in Fort Worth, and is building Aman Amanvari in Baja California; Transsolar worked on the Harvard Science and Engineering Complex; BUROMILAN with Renzo Piano and Mario Cucinella. During a briefing we can walk you through the drawings, the system and the partner references.
+## Q: Can I see a My Villa project or visit one?
+During a private briefing Paolo Mezzalama walks you through the projects, the drawings and the construction system in person; site visits and references are arranged from there.
 
 ## Q: What is the process?
 Five steps: a discovery conversation and site visit; the choice of one of four typologies (Courtyard, L House, Deconstructed, Hill); personalisation of materials, finishes and layout; engineering and permits with our Italian team and Los Angeles specialists; construction by concrete specialists with a dedicated project manager and weekly updates.
