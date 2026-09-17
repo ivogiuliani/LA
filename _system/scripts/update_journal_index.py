@@ -664,6 +664,7 @@ def render_index_html(articles):
 <meta name="author" content="My Villa">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="https://myvilla.la/blog/">
+<link rel="alternate" type="application/atom+xml" title="My Villa Journal" href="https://myvilla.la/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -957,6 +958,7 @@ def render_category_page(section_id, articles, style_block):
 <meta name="description" content="{esc(sec['name'])} articles from the My Villa Journal. Perspectives on building reinforced concrete villas in Los Angeles.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="https://myvilla.la/blog/category/{section_id}.html">
+<link rel="alternate" type="application/atom+xml" title="My Villa Journal" href="https://myvilla.la/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">

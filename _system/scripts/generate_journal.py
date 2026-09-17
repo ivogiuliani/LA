@@ -1421,6 +1421,7 @@ def render_article_html(article, date_str):
 <meta name="author" content="My Villa">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="{canonical}">
+<link rel="alternate" type="application/atom+xml" title="My Villa Journal" href="https://myvilla.la/feed.xml">
 
 <meta property="og:type" content="article">
 <meta property="og:url" content="{canonical}">

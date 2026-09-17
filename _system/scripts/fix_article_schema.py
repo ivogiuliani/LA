@@ -15,6 +15,7 @@ Cosa corregge, per ogni articolo (blog/<slug>.html, escluso index.html):
      canonical verso il pillar del cluster): quelli restano com'erano.
   5. <meta name="robots">         → index,follow,max-image-preview:large,max-snippet:-1
      (gli articoli potati restano noindex,follow — non si tocca).
+  6. <link rel="alternate" atom>   → feed.xml (Google Discover / aggregatori), se manca
 
 Ogni sostituzione nel blocco JSON-LD è chirurgica (regex sul testo, non
 ri-serializzazione) per non riscrivere l'intero blocco; dopo le modifiche
@@ -49,6 +50,9 @@ AUTHOR = {"@type": "Organization", "name": "My Villa Editorial Team",
 AUTHOR_JSON = ('{ "@type": "Organization", "name": "My Villa Editorial Team", '
                f'"url": "{SITE}/team.html" }}')
 ROBOTS_INDEX = "index,follow,max-image-preview:large,max-snippet:-1"
+FEED_LINK = ('<link rel="alternate" type="application/atom+xml" '
+             'title="My Villa Journal" href="https://myvilla.la/feed.xml">')
+FEED_RE = re.compile(r'<link rel="alternate" type="application/(atom|rss)\+xml"[^>]*>')
 
 LDJSON_RE = re.compile(
     r'(<script type="application/ld\+json">)(.*?)(</script>)', re.DOTALL)
@@ -165,6 +169,13 @@ def fix_file(path: Path, dry_run: bool = False) -> Dict:
                 html = html[:anchor.end()] + \
                     f'<link rel="canonical" href="{expected}">\n' + html[anchor.end():]
                 changes.append("canonical_added")
+
+    # 6. feed link (Discover / aggregatori): dopo il canonical, se manca
+    if not FEED_RE.search(html):
+        anchor = re.search(r'<link rel="canonical"[^>]*>\n?', html)
+        if anchor:
+            html = html[:anchor.end()] + FEED_LINK + "\n" + html[anchor.end():]
+            changes.append("feed_link")
 
     # JSON-LD Article
     found_article = False
