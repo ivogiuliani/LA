@@ -364,9 +364,16 @@ EDITORIAL_EMAILS = {
     "la times": "letters@latimes.com",
     "los angeles times": "letters@latimes.com",
     "latimes.com": "letters@latimes.com",
-    "the real deal": "newsdesk@therealdeal.com",
-    "therealdeal.com": "newsdesk@therealdeal.com",
-    "realdeal": "newsdesk@therealdeal.com",
+    # The Real Deal → la-news@ (Los Angeles editors' desk), published on
+    # https://therealdeal.com/contact-us/ — verified 2026-09-17.
+    # NOT newsdesk@: author_lookup treats that alias as "generic", so the
+    # T1 upgrade in publish_all_drafts scraped trd@therealdeal.com off the
+    # article page instead — bounced 550 5.1.1 on 2026-06-11 and has been
+    # blacklisted ever since (60 refused sends). la-news@ is not a generic
+    # alias, so the pitch reaches the LA desk as-is.
+    "the real deal": "la-news@therealdeal.com",
+    "therealdeal.com": "la-news@therealdeal.com",
+    "realdeal": "la-news@therealdeal.com",
     "abc7": "abc7eyewitnessnews@abc.com",
     "abc7.com": "abc7eyewitnessnews@abc.com",
     "curbed": "tips@curbed.com",

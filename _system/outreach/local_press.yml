@@ -74,10 +74,18 @@ outlets:
 
   - name: "The Real Deal — Los Angeles"
     domain: "therealdeal.com"
-    contact_url: "https://therealdeal.com/la/"
+    # Public contact page (the /la/ section page lists no editorial
+    # address). therealdeal.com answers HTTP 405 to the scraper's bot
+    # User-Agent anyway, so known_email below is what actually gets used.
+    contact_url: "https://therealdeal.com/contact-us/"
     beat: "LA real estate news & development"
     priority: 2
-    known_email: null
+    # la-news@ = Los Angeles editors' desk, listed on the contact page
+    # above — verified 2026-09-17, not guessed. Same box the radar's
+    # EDITORIAL_EMAILS fallback uses. Do NOT use trd@therealdeal.com
+    # (bounced 550 5.1.1 on 2026-06-11, blacklisted) nor events@
+    # (events team; feature pitch already sent there on 2026-06-02).
+    known_email: "la-news@therealdeal.com"
 
   - name: "Variety — Dirt"
     domain: "variety.com"
