@@ -1,0 +1,1373 @@
+{
+  "date": "2026-09-21",
+  "generated_at": "2026-09-21T13:40:32+00:00",
+  "engines": [
+    "gemini"
+  ],
+  "query_count": 20,
+  "cost_est_usd": 0.733,
+  "results": [
+    {
+      "query_id": "q01",
+      "group": "category",
+      "query": "who builds fire-resistant luxury homes in Malibu",
+      "engine": "gemini",
+      "error": null,
+      "text": "Several companies specialize in building fire-resistant luxury homes in Malibu, addressing the unique challenges of the region's wildfire risk and stringent building codes. These builders often incorporate advanced materials and construction techniques to ensure resilience and safety.\n\nSome notable builders in this specialized field include:\n\n*   **My Villa** designs and constructs fire-resilient, Italian-designed luxury homes in Malibu using reinforced concrete (ICF) construction. Their method focuses on six integrated layers of fire protection, including ICF concrete shells with a 4+ hour fire rating, multi-pane tempered glass windows and WUI-compliant vents, Class A fire-rated concrete roofs, NFPA 13D residential sprinkler systems, defensible space perimeters, and off-grid solar with battery storage.\n*   **Empress Builders** specializes in fire-resistant home construction, hillside and coastal home building, and luxury finishes in Malibu. They are also active in wildfire home rebuilding and offer comprehensive services from fire damage assessment to ground-up construction tailored for the Malibu environment.\n*   **Joy Line Homes** offers fire-smart modular homes in Malibu that combine luxury, performance, and resilience. Their factory-built homes integrate modern design, Wildland Urban Interface (WUI) compliance, and advanced fire-resistant materials such as non-combustible fiber-cement siding, standing seam metal roofs, and dual-pane tempered glass windows.\n*   **Roderick Builders** provides luxury craftsmanship and engineering expertise for custom homes in Malibu, with a strong focus on fire zone compliance. They design for full compliance with Malibu's strict fire-resistant construction requirements, which include non-combustible exteriors, fire-rated glazing, and ember-resistant vents.\n*   **DWD Builders Inc.** is a general contractor specializing in hillside fire rebuilds in Malibu, constructing custom luxury homes that meet coastal-rated and fire-resistant construction requirements. They address challenges like steep hillside lots and integrate fire hardening requirements into their insulation and roofing systems.\n\nThese builders often employ materials and methods such as reinforced concrete, stucco and stone exteriors, fireproof roofs, ember-resistant vents, and multi-pane tempered glass to meet or exceed California's Chapter 7A wildfire standards for the Wildland-Urban Interface (WUI) that govern construction in Malibu. They also navigate the complexities of building in Malibu, including Coastal Commission approvals and specific requirements for hillside and coastal properties.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHseNlAiE4C0xJFT0QL6Hfznk01E2O7XiPMXaKrgXUq2C9hAx-wm2rYZiu6RVwrELLVivc8bEQpEk7mnnV02UH4aJgaGeSTzF0oxW-1a6YN3FopPVsUM3k0QeIWGGKKQrferQJn9B96iJmkxbw=",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGeLd0vRK1Lb17CaaMlShw5qziKr03Mp6b730ZIJaKV6ScYmKxL_od2hVRQUI5np44gQ2k8f8r5OVI-8toWyALXG37Y_waQs51jG5WIlb49t6DVyjlu0DMRAOLHyKjnovQ=",
+          "title": "empressbuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHholvhwgdVnF5kP0aZC3pagL1t_I6iJXdC7mcuTXoSzGXu-az2o66bcFXc5zH-mWeEBDAzQ1xuFAr3-UPXWX62PYbTckzGqO4KbIKhl9kKtegZA1hNPdifai86dOyaU8M7TYZjIZPePSW9Dw==",
+          "title": "joylinehomes.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHK9lNBa-q6fTiKIefd7roHM0TM5D3Ac7wdUOkBIv8z8CLg9Bd9KlhdtFuRgVKR1zzPe10t46utgINmKlv-XFg4Mcve3DRY53-ZwRioPptWaVOljTt4d-uub1eIBKHeRkXWvNjCjYrMy-dk",
+          "title": "roderickbuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFahBmTmQ_l2Ktu-oq1RcmaStiL0_GLtAjpW6djLbkpQO_BVFQ9qqKcqRdg9cPG0ArFxTMMvyhM_3ac2cXlpp0tH6QTJ7XOwmxFRsMbHsXiLRJCjEdqhIUU4GA0bo-6AcOIf5ngdjlWMiQZV_ZmWlK2vCNTzBOfiqPvAwVC8eZVg5c20jHoLg==",
+          "title": "dwdbuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGnpRxCo5JPnrFtxJf_D_gWPLlNnNwV8i69PbbSzCZnnKH5D6zdUd06z2q-owdAyS_sNKIUSRT3rCNL2GHQD7BQkjUW7c3knGsu-Q69dPB8_Cr4ThJhBAy_RZvb8oMKu7GbLroDRaIwCLM1B0Sicl66",
+          "title": "luxuryhomebuildersinc.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFa_U-9gmfYF5UiuEu7Y1Vx-KQGsmZ6ZYOYyOYtYqn4FN3pMLpcHBA8dMCLI9IEYHRFTtGaI4yqAT4dgW4bjaDtMfju0NJZyPpHTRpUo0fl0l-TI4ad2bfjo7ESQcMw3UNSUAVtqXjNqXlE05OYGTzP4OFFnpmU8fnO6RKLEnZC81o=",
+          "title": "facebook.com"
+        }
+      ],
+      "search_queries": [
+        "fire-resistant luxury homes Malibu builders",
+        "Malibu custom home builders fire resistant"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 18,
+        "output_tokens": 521,
+        "grounded": 1
+      },
+      "cost_usd": 0.0363,
+      "latency_s": 5.1,
+      "mentioned_myvilla": true,
+      "cited_myvilla": true,
+      "myvilla_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHseNlAiE4C0xJFT0QL6Hfznk01E2O7XiPMXaKrgXUq2C9hAx-wm2rYZiu6RVwrELLVivc8bEQpEk7mnnV02UH4aJgaGeSTzF0oxW-1a6YN3FopPVsUM3k0QeIWGGKKQrferQJn9B96iJmkxbw="
+      ],
+      "fact_check": {
+        "wrong_claims": [],
+        "error": "Claude Code non autenticata: `claude` login sul Mac o CLAUDE_CODE_OAUTH_TOKEN (claude setup-token) in CI/VPS"
+      }
+    },
+    {
+      "query_id": "q02",
+      "group": "category",
+      "query": "concrete home builder Los Angeles insurable",
+      "engine": "gemini",
+      "error": null,
+      "text": "Yes, concrete home builders in Los Angeles are insurable, and concrete homes themselves can be a favorable option for insurability, especially in areas prone to specific risks. Builders undertaking concrete home construction are typically required to carry a range of insurance policies, and homeowners or project owners should also secure appropriate coverage during the construction phase.\n\n**Concrete Home Builders in Los Angeles**\nSeveral companies in Los Angeles specialize in concrete home construction. These include:\n*   **Kiwi Precast Homes** focuses on modern, energy-efficient precast concrete homes, emphasizing durability against fire, storms, and floods, with faster construction times.\n*   **My Villa** builds reinforced concrete and Insulated Concrete Form (ICF) luxury homes. They highlight that these building systems remain insurable through California's wildfire cycles and are engineered to seismic standards.\n*   **Serrato Builders** are concrete contractors specializing in structural concrete, foundations, and hardscapes, including work for accessory dwelling units (ADUs).\n*   **Foundation and Framing Los Angeles** specializes in residential concrete foundations and shotcrete wall construction, designing homes to withstand earthquakes.\nMany other general concrete contractors also operate in the Los Angeles area, offering a variety of concrete and foundation services.\n\n**Insurability of Concrete Homes and Builders**\n\n**For the Builder/Contractor:**\nConcrete contractors in California need specialized insurance due to the demanding environment, including seismic foundations, Cal/OSHA trenching standards, and high property values. Key insurance coverages for concrete home builders include:\n*   **General Liability Insurance** is fundamental, protecting against third-party claims of bodily injury or property damage arising from business operations. Clients often require this before work begins. For foundation and structural concrete work, higher general liability limits (e.g., $2M/$4M) and umbrella coverage may be necessary.\n*   **Workers' Compensation Insurance** is legally mandated in California for any business with employees.\n*   **Commercial Auto Insurance** covers vehicles and equipment used in their operations.\n*   **Equipment and Tools Insurance (Inland Marine)** protects against theft, loss, or damage to expensive machinery and tools, whether on-site or off-site.\n*   **Builder's Risk Insurance** (also known as Course of Construction insurance) can be purchased by contractors to cover the structure, materials, and equipment during the construction phase.\n*   Some builders may also carry Professional Liability (Errors & Omissions) and Pollution Liability insurance.\n\n**For the Homeowner/Project Owner:**\n*   **Builder's Risk Insurance** is vital for homeowners or project owners undergoing new construction or major renovations. This policy protects the investment against perils such as fire, theft, vandalism, and certain natural disasters during the construction period. It is often a mandatory requirement if a construction loan is involved. It's crucial to carefully review policies, as some lower-cost options may exclude critical coverages like wildfire or flood.\n*   Concrete homes are often considered advantageous for insurability due to their inherent resistance to hazards like fire, storms, and floods. My Villa, for example, notes that their non-combustible reinforced concrete and ICF homes remain insurable through California's wildfire cycles.\n\nWorking with an experienced insurance broker specializing in construction and property insurance in Los Angeles can help ensure all necessary coverages are in place for both the builder and the homeowner.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2-maMIuwBGb6epbClrNLza1MWgo8rCP5Y_KQBnZ5ql0QkZkAfl4zZ1EUJRi1LKUzJN5m_I2CROeFtz_x8o0bvPwz-trVgDECb4efkKfLrFZo_ZYIIjDPByrz4osgYewpocUbkxJw721FhcVrizT9tbpNcihPyJmo=",
+          "title": "kiwinewton.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF5DXlAcL9Ry71AKASEauXmmY6PbB_k7Y6jT5z-dAdr79oHz0HKEY-vfpVVl9n5ixwNVdr7ZTdeQ3sFvrZAmo3kZ-_bS0W_beHAgWEBCaiU69z-8D9UkwiOavEUTrOTqrq5s57HDsK_qOf8B1Vbgq_5UhXodE92uA==",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG3oCbMi5asF4IOwKCG_DityQ8cRn8nonmi2SMgrrqfFIR_8oPkRzgB3Oak5cw8PWjPQRgUOVWhAG6zOP5URxoBADxvi-hOOOfp3fDcbNQrhQyh-HxKJGglgxQ=",
+          "title": "serratobuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG5SU2fdAfAwjcrqcHoUkAa33m2b-nuFRZzp19kh4Gwum1Sxe1P5xYpYdGsFzZrN1tkUqLjTxalHVefEge55bqJ3yb7fuZgFcGOisIJV8UWZQBpittCgmyZZ1Ke1YxYJFtO154KtQ2vNncYR9KIYcih9nBuGngyFUdNW6UDH_S7ZLSIHXM=",
+          "title": "foundationframinglosangeles.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEoUEyt9hPuK-zAQrIhwzR3eTMgqrvqVuE0daPJG6Eqq4tOMCHJS74kknqWPSHDa9Uk-BudgpMg2C2TWedTt1BzU_HsnLXlePuu9O0mizaVTEFdOUEplVW7hQmJeNsDKgfFdmFCADNx65F92qIP4z9Ui47Qa1Bc",
+          "title": "porch.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHmRgmaXfalF6goUxvDB9HJJZTLDnWBetV4KPm5Arfo6RgPYGkjZaMdDQacZna-buFOWCSV1aZmfRgjqJdeN8cpYyMU_xigNXv_YpTErDvjgLv0-ql_gQOhOaefI2enB6qBeah10Fwgv4awY_qnsotTxt1CG_CZyvX7qEVsTiHYTgtT",
+          "title": "californiacontractorinsurance.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEQhqwpWVkTzz3kr2VE3K480givxETlvlByEeaqjhbMhNyKwFvCcWGb3wlE_LemE3F37LJVQUH2WTlvx5T1Wq-CSO94hoAxvy6yx1qPhBZ7ABinurHzFtPPYGzjjG9PVnuIozphBWusBCqXb09aCKDrR3JuikVZEU9wnMufbRUqqEAtMJ1j2dD9ukSHV5NMNOIj6c15U4oJxgU07ccSugLGX0EAQY3IIvUUQhia6j_0-ly6-wp4",
+          "title": "foagency.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEkfgiXMCx-Gg4VvET8P3Xuq9KISSvl9io1-XUhPWjpn6kJx8ckj7uYhgbHBccuzNT7OmXBOZXiponyJVgDTtstLuzKaKAeR01EwAdmdAz8uvnRb2hOKn38j8FPn4E_3QmH-hViMUhXEGvMLS6OHDJvjuI7CsaYSqM6cEoDtFN5O6ODCzLtoeX1BGg2eKNRVNdoTWojJOTtYg2FFbdSThWWYZ2eS_iiaTxBrNXsGiY=",
+          "title": "carusoins.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHPQYpqWfOMphv9B7Bcnw1hgsOp6nHg60ZtHjXmhRmDu8ozuQWlG9YSim6yZQrMUbktevMokBR-DIzN6N_pyRLctJ7ukZjfXZGom_O6pejvQUfDt-vVJ-on-68=",
+          "title": "c8concreteinsurance.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFzD12pkdKrvX05J1ATihDDqLMxAYDdKbph2I0WTyXJhaR_gsm5484DNir1lqLtW3lSzZhb41VbsFSl3R2ahI97Y_I-tGyqIPY9SEa1STESVLRUKEGLMPuCVgaYUktRS8al4zVoN7q1nBGfQFqv0yHKkc4mhPxgpfSPXF3Ie69UvbvZ8Zm1IDtEjEblaYi4W7KcNEXzI6DXLuxNZmF-IQ==",
+          "title": "tcinsur.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFrbHukorFkK7WhK-anfrJFEoV0bXx1uiU9yzkl-LIXCUDNTTmE8lpscuxWqyTdfj5n_uzy3OOkKtP6VDsCdmZJFXeBFYEdYFv5OL0IuguaGJiuw3uRIZMcYA==",
+          "title": "usassure.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHH1nWCU1kiY2dZ3qNzhXu154qm9OPu50qLvTMBgl2e0qEZrN9kJJnZPr55QOYgSWPg-Dyt7OuMC4MVPrbM60Lulhx5JfVMQZKd8INdv24ZpA56-6kPv8JFB9n5Iorv3ExEi9Uy2c2Klhp7tgexiCTtgqNkrccVnw==",
+          "title": "buildersrisk.net"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHwj9HcqUZPvbQrhn-KXMGbeQLPGfH9C6WZwwEhGtDvKziGXGKrwsJdHc2MP5H3ESTXZA8i35UIIZLQi0j4u1EjwB36H5HZWDx5Y1VbTnOFJg22ThZoz9Ch4Fg2UPVzd07zaIeB4vl9BkqSLfPd6zo_5Ek9xR_qV3m-afqcxd7_D5-QQ3KCwT1pttOqjAdo0rN7QDRf4w5jo-5T2or-3OPtXGzJUneyzIMgUck9UEWkWBQ9",
+          "title": "venbrook.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHw_hox1O8adrAFTaPAPbXEihFiHSgx6E8v9zo7VgJETD1HnW9-xA_W41eUoTwAypHXy5GDqOczlokQ8JhphMPMaC8wYq-8nw3KESZcirWZ27Nqh9KnR--SbkrQInZgpiAfkBiOrN53ZzMXlh8yjQuW06Ix",
+          "title": "moodyins.com"
+        }
+      ],
+      "search_queries": [
+        "concrete home builders Los Angeles",
+        "insurance for concrete homes Los Angeles",
+        "builder's risk insurance Los Angeles concrete homes"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 16,
+        "output_tokens": 731,
+        "grounded": 1
+      },
+      "cost_usd": 0.0368,
+      "latency_s": 8.5,
+      "mentioned_myvilla": true,
+      "cited_myvilla": true,
+      "myvilla_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF5DXlAcL9Ry71AKASEauXmmY6PbB_k7Y6jT5z-dAdr79oHz0HKEY-vfpVVl9n5ixwNVdr7ZTdeQ3sFvrZAmo3kZ-_bS0W_beHAgWEBCaiU69z-8D9UkwiOavEUTrOTqrq5s57HDsK_qOf8B1Vbgq_5UhXodE92uA=="
+      ]
+    },
+    {
+      "query_id": "q03",
+      "group": "design",
+      "query": "Italian villa architect Los Angeles",
+      "engine": "gemini",
+      "error": null,
+      "text": "Several architects and firms in the Angeles area specialize in or have experience with Italian villa design.\n\n**IT'S Architecture / My Villa:**\nThis firm, with offices in Rome, Paris, and soon Los Angeles, has a California practice called \"My Villa\" that focuses on Italian-designed, fire-resilient luxury villas. They emphasize reinforced concrete construction, biophilic design, and museum-grade finishes. My Villa aims to reinterpret the Italian villa typology (courtyard, podium, portico, pergola, inward-facing garden) for areas like Malibu, Beverly Hills, and the Westside, specifically building to California's WUI Code for fire resistance. The firm was founded in 2016 by Alessandro Cambi, Francesco Marinelli, and Paolo Mezzalama, and has received recognition such as the French Ministry of Culture recognition and the Italian National Architecture Prize.\n\n**Other notable architects and firms with Italianate experience include:**\n\n*   **Ferguson & Shamamian Architects:** They designed a new Italianate villa in Southern California, described as an homage to the homeowner's memories of Italy and the Mediterranean vernacular found in old Los Angeles. The project was recognized with a Julia Morgan Award in 2022 and a Stanford White Award in 2021.\n*   **William Hablinski Architecture:** Their portfolio includes several Italian-style projects in the Los Angeles area, such as \"Italian Country Villa, Los Angeles,\" \"Italianate Palazzo, Beverly Hills,\" and \"Italian Country Villa, Bel Air.\"\n*   **Sia Architectural Design:** This firm is a local custom architect in Los Angeles that handles custom home builds and remodels, including Italian villa styles.\n*   **Architect Mark D. Lyon:** Features Italianate homes in his portfolio, describing the style as derived from Italy's rambling farmhouses with characteristic square towers and informal detailing.\n*   **Christine Markatos Design:** Has worked on Italianate architecture and interiors in Santa Monica.\n\nWhile not exclusively Italian villa architects, firms like **Tim Barber Architects** focus on traditional and sustainable residential architecture in Los Angeles, and **Krueger Architects** specialize in design-build custom residential projects, including the restoration and renovation of various historic California styles. These firms might also undertake projects with Italianate influences depending on client needs.Several architects and firms in the Los Angeles area specialize in or have experience designing Italian villas.\n\nOne prominent example is **IT'S Architecture**, which operates a California practice called \"My Villa.\" This firm, with offices in Rome, Paris, and soon Los Angeles, focuses on creating Italian-designed, fire-resilient luxury villas. My Villa's designs emphasize reinforced concrete construction, biophilic principles, and high-quality finishes, reinterpreting traditional Italian villa elements like courtyards, porticos, and inward-facing gardens to meet contemporary standards, including California's WUI Code for fire resistance. Founded in 2016 by Alessandro Cambi, Francesco Marinelli, and Paolo Mezzalama, IT'S Architecture has garnered accolades such as the French Ministry of Culture recognition and the Italian National Architecture Prize.\n\nOther notable architects and firms with expertise in Italianate design in the Los Angeles area include:\n*   **Ferguson & Shamamian Architects** designed an Italianate villa in Southern California, drawing inspiration from the homeowner's memories of Italy and the region's Mediterranean architectural heritage. This project received a Julia Morgan Award in 2022 and a Stanford White Award in 2021.\n*   **William Hablinski Architecture** showcases several Italian-style residences in its portfolio, such as \"Italian Country Villa, Los Angeles,\" \"Italianate Palazzo, Beverly Hills,\" and \"Italian Country Villa, Bel Air.\"\n*   **Sia Architectural Design** is a local Los Angeles firm that provides services for custom home builds and remodels, including Italian villa styles.\n*   **Architect Mark D. Lyon** features Italianate homes in his work, defining the style by its origins in Italian farmhouses with characteristic square towers and informal details.\n*   **Christine Markatos Design** has experience with Italianate architecture and interiors, including projects in Santa Monica.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSqpADP7IN066-IkOqYe-3fmPVuGB9RZL9NDwB3wBbOeLOB3v4anLDOD4f6Q6UZTw-MzXGmvNWGABA6_w08EyrXerRBlIMlk-zhbOm_z4=",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFmjri7eO2dW9a4jQiPRje1wc2zrzXh8w0GqD3vi3uRCdNF2k7SDQZLcuyHMOG3Vkxsk3RCuemWxCjd-MBv-sILn3ib5uU1GyOjbHVBKBPl3gLAwL6dmhU=",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGtq6g42CkvPykdfRcSfU47ar9NLxLir0bMW-00Tbl20sU3hjYw6EIO9bDlGNvkqOT9NSg2SPcXk1OoqSYOqQD0A2AC4n29kJik-cP41mGeYg3Xd7jVTJNrvKeB7vmt2VZLRl6qgt6FTJnfhV43p8eO1m8vPnOcmK36gF2xyZqgH52_wcGgaw==",
+          "title": "fergusonshamamian.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFnnw3TSsVwc86pAXZ3qlKD6qkNCvDirn17Kzgorz6xX5KEX5p6_i_RAHZtoYrW5gUQCVZ-bmJKW_ke2UpQ5KnVNa7xfQAbVvizUAoLAYkbGtRpiCh5Nj9ndnxQNFSe6_1_XqcVVKA6LauoudBCOkwZ2ckka1qyAAds-cvjKQ==",
+          "title": "williamhablinski.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFGnn4ZnuCsfp0yB3oxmPzz1ocRMAE-guToyeRXYP0m-Dz3uJ2SE7d-7IuSUwAb4FSgIkJkhaLEJXxChh2z2OYpH7JMUlHjVQ-iMF5dQbB235EZwgjBkdpzUSmAd1IMrpKs8XyE6v8=",
+          "title": "siaarchdesign.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE4f3eMy0B-gRCpGmMq9iAFV4DgkC9X8-zQJyST0MZr2xFnkQ4ZlJdf6MzAbvB-wQ2aTtmJlRTwiscr6p2CFzjgNf9Bci0uhNcyPi9UBuBR9oIQa5480EnKJAZjzKBelw8cpvCO9g==",
+          "title": "mdla.net"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGKmsGHDkjuTGMTMmngeIopI-3kGekouJ-vdF4OUrNSDinPt20Y59GWrkBeV_5x91065QQzokj6S-deJREBOr8Oag4c8yhDdFPvcm6RVIS9UCZvEUsymgDvK2Wd4kye0UMCBqG4TQBV3yzxQt02MkO35ESO6IM=",
+          "title": "markatosdesign.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF1SnyOtAnKmVsv7f69cmaCsIKvQHAfH6aDsCMzZvGVzqFnG2uguDXpJQCfQTV1f370kunushROTU8NMulAmVtHCPHZhcySAGfjxAfs7mvC7glUWxz7VK9K_ABw",
+          "title": "timbarberarchitects.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHQvSvcXbyjOo8Fp8aAhH9PfD5oAV0ec-auVYYox8ntCxLcKHVGsgeHxxTx5e84lft9is7UZc-ibFDZ5Q48QcbvxL3eWkmlNeokNTEDf4Oei-mOM6PUkQgphQ==",
+          "title": "kruegerarchitects.com"
+        }
+      ],
+      "search_queries": [
+        "Italian villa architects Los Angeles",
+        "Los Angeles architects specializing in Italianate design"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 14,
+        "output_tokens": 886,
+        "grounded": 1
+      },
+      "cost_usd": 0.0372,
+      "latency_s": 6.6,
+      "mentioned_myvilla": true,
+      "cited_myvilla": true,
+      "myvilla_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSqpADP7IN066-IkOqYe-3fmPVuGB9RZL9NDwB3wBbOeLOB3v4anLDOD4f6Q6UZTw-MzXGmvNWGABA6_w08EyrXerRBlIMlk-zhbOm_z4=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFmjri7eO2dW9a4jQiPRje1wc2zrzXh8w0GqD3vi3uRCdNF2k7SDQZLcuyHMOG3Vkxsk3RCuemWxCjd-MBv-sILn3ib5uU1GyOjbHVBKBPl3gLAwL6dmhU="
+      ]
+    },
+    {
+      "query_id": "q04",
+      "group": "cost",
+      "query": "how much does it cost to build a fire resistant house in Malibu 2026",
+      "engine": "gemini",
+      "error": null,
+      "text": "Building a fire-resistant house in Malibu in 2026 is a significant investment, with costs varying widely based on factors such as the home's size, location (flat lot vs. hillside), level of customization, and chosen finishes. The overall expense is driven by high construction costs, stringent building codes, complex permitting processes, and the premium associated with building in Malibu.\n\n**Estimated Costs Per Square Foot (2026):**\n*   **Hard Construction Costs:** Expect to pay no less than $600 per square foot for even a straightforward build in Malibu. More generally, custom residential construction ranges from $850 to $1,100 per square foot on a flat lot, and $1,000 to $1,800 or more per square foot for hillside properties. High-end, luxury custom builds can reach $1,650 to $2,500+ per square foot. Some builders quote premium constructions at $1,100–$1,500/sqft and ultra-luxury at $1,500+/sqft.\n\n**Total Project Costs:**\nFor a 2,500 square-foot home, the total rebuild cost, including hard construction, foundation, site work, septic system, and soft costs, could range from $2 million to $6 million or more. A 2,400 square-foot house might typically cost between $1.92 million and $6 million or more. For luxury homes between 4,000 to 6,000 square feet, the construction budget alone could be multi-million dollars, with some luxury rebuilds costing $7 million to $10 million or more when factoring in coastal engineering, seawalls, and upgraded septic systems. An active fire rebuild project by a general contractor in Malibu in 2026 is noted to have a completed value of approximately $8 million.\n\n**Key Factors Influencing Costs:**\n\n1.  **Malibu Premium:** Construction in Malibu is inherently more expensive than in the greater Los Angeles area. This is due to material logistics (narrow, traffic-heavy roads), the demand for qualified builders, and the complex regulatory environment.\n2.  **Fire-Resistant Building Codes (Chapter 7A):** All properties in Very High Fire Hazard Severity Zones, which include most of Malibu, must comply with Chapter 7A of the California Building Standards Code. This mandates specific fire-hardening measures, including:\n    *   Class A roof.\n    *   Ignition-resistant exterior walls (e.g., stucco, metal panels, fiber cement).\n    *   Ember-resistant vents (1/16 to 1/8 inch mesh at every opening).\n    *   Fire-rated eaves and soffits.\n    *   Tempered or multi-pane glazing.\n    These Chapter 7A requirements alone can add $40,000 to $60,000 or more to the cost of a typical custom home. Some sources suggest Chapter 7A compliance typically adds 8–12% to base construction costs.\n3.  **Soft Costs:** Non-construction expenses like permits, architect fees, engineering, and inspections are significantly higher in Malibu, ranging from 15% to 25% of the total project cost, compared to 10-15% in most other residential markets. Complex beachfront projects can incur $400,000 to $1 million just in pre-construction paper trail expenses.\n4.  **Permitting and Regulatory Complexity:** Malibu's regulatory environment is exceptionally thick, involving the California Coastal Act, Malibu's Local Coastal Program, FEMA flood requirements, and city zoning codes. Nearly all new construction requires California Coastal Commission approval. A straightforward Coastal Development Permit (CDP) can add 4 to 12 months to the timeline and over $10,000 in application fees. Projects requiring a full CDP can take 12 to 24 months for approval before construction starts and incur fees of $11,579 or more.\n5.  **Site Work and Foundation:** Challenging terrain, particularly on hillsides, often necessitates extensive geotechnical reports, deeper caissons drilled to bedrock, and taller retaining walls, which can add roughly 25% to a rebuild budget (e.g., $625,000 on a $2.5 million project). Septic system (OWTS) installation can cost from $70,000 to $750,000.\n6.  **Material Choices:** Upgrading to fire-resistant materials like metal roofing or fiber-cement siding increases costs compared to basic options. While some fire-resistant options like fiber-cement siding can be more affordable than traditional alternatives like cedar plank siding, other fire-resistant modifications, particularly to roofing, vents, fascia, soffits, and gutters, can increase costs significantly. Fireproof insulation can range from $21 to $86 per square meter depending on material type and fire-rating.\n7.  **Rebuild vs. New Construction:** For those rebuilding after",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE-EfocLxb_9bjT5VadXfmnTpfzx4rT3RKJJDnK1-q-6lph--z8Qq_mU2MqT9TwflXu1AZisB9LF17bzzRIXsphiZaLJEzcLH6grThhsn5jEuxU2mhhvKWw7MeHMWtxbhba34WfgH1QK48yeCGDOphJdTuskdewA4tILyT124aOcPqtjJTLN-CZ1UVLZO_SWl6a0G3HUlUv6XhWBnaKTYpGSvVU8F6doDks",
+          "title": "shenrealty.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFF7AHiVgsmPS6yP_V79gyI7ITiBmQ_y45zSyf0VViaeXTwMONbdRLrhcpAQ4oIxNElaWCJBzqcplcwoDbLaJQWNfU52gv5LQ5gjgWseO7DeUm7Gx3u1QTlJuwLNuxAhMtqdVuiUspTchu4rhL08TWPiM6yFd2e5w==",
+          "title": "bensonconstructiongroup.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFREvri9abqFlsJbG4F0h8kCNOPbdGP_PnS5_-UL8kmzuwZ0VTjbQ6VD4CdjeuD2q_qX8WS06K8uHFw6YzUL-yLAZJGpFrscXR2AaIbv3AvLfOQ29m4Hdto2D_7eYdkXH19UbBb2ZZH8u4Ii0bKPjhpaH8_Ws225g==",
+          "title": "buildoraiq.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFLL-81HZ7rpVBul6PF4-7SR69REPHbXI1Ivj_o4H8CjIPLt0JpN4Jifc1xiDB36q4plzmKuPk1oU0y8TRX8gf4vscWY835ZE2cEXfAU4xGjr9TeKHusPuGhlu67qzQT9STzMx2uAldng68kA==",
+          "title": "roderickbuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG7PuFfHtzwzjnt6o5S0hCj3jVxKvmAI5oTZZIabiCbsjaDvIqBLiaUte6MMvHJOTmDlOp9RK8r4CPkmQeR1kbyYnqSeUDIy-cz2wotOfDLfo-EKfgAMYpGzLSYS1Gx_sap0_qv1hkrJxUsnup8MCtm98Cp2IddG4dBn5RcVA4qgV9ZOTuddvTjkKjNHUj2fUolqtGE4sSGas0yO9IUjUXG",
+          "title": "timothydiprizito.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHMxtwzVPicYUVTz4O-a9TdOWNxtlv-Lu1QMyEzRFTB_WdPAWyYZSK6qThlpU3dWXg5P9E63zyOrUPvpx0Bc1UbtGtpmAATCi3zdIFcGKNeqNpwuxFK4B6kZf_OGS8ckWpkRtHLCtMgQXN8yyNhifR5EtZD_xdSd8ocS967F7CrhZSKUStaWULqVVgkPhANz35zOFCmqg==",
+          "title": "malibumoss.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGnJknLto7sP6eOoXZ07YNIEJfWXiv4RL1uo1aVHUq9Jh7Eh-9tynRqMLgkl7Yiyv-Tj6pF_hafMZw8gCVs2PCDIEnLVRTVHuujgOk6p2bBdL9F1jLJk4vluyj5hHphkZ-15GeTDWrQYKJaRUhEKtEdEspsyySsoW1gqbJR3Zz3xEcutA==",
+          "title": "dwdbuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFzxCsBMMajhu0MxHYUAuOQHByjFjC7Fyojv92QHuP23l8AYnPeac5eQmcA74qnRGkBdg6wgMHdBZtt29c8GQMgfDBKZX39dkcwaMN0ukKh-aDxNLswMy3-hkcpRb93WaWs8V0bGyTdjlB1KtxDZkd2wTflSw==",
+          "title": "dwdbuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH4lNlqb8VTsl1FPEjujU8vduVpISujUqa9e7P3VGvOoZTG_ZJva5-__ygJjBOMts4v_NV-MAAAyItADBaMs5tapKXWGdvRRXa2XMVw_Yw7Rv63Rizqm6QVr731B4Lud8XZPZbFdqL-4gT-h4yeI8g58EfhAeZ_kPIyYFrCGy9Szw==",
+          "title": "bensonconstructiongroup.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGINP976tSPV5ifVRAbNmu9pWJr9NcrC_TalDUPCT1VtoO3lBQzLWlE6QXpNLfX-oz8o62flFZK0GPZQb_akZk41qpQ_97pKFQuBXyO1F0hR5shir5MpCY36GRGn472OKGpE01tOjzu3OE3R6DYOtl8kfj9gV9mKo2WWs0ZyzkvpQ==",
+          "title": "goldenlineconstruction.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGOeczjbpVTgU3_xA6FB0o3WuQcOl5-O9reqMcCF2r37rw6k5HsXZ80XAA2peuY-nllkIZuUOvS70m6fmjaWkWkobG1lDnfMRK23hiKqIWz-xWBPuFdIYSpdW17JywSWH3UiTVg6N59Oj8QGnxJfaKqcU4IeYmPwlwDE_pqHsgZrmYITmwOYY1hMQXC8noTAblhDiePBLd0VGJLOzNVSn0P",
+          "title": "constructelements.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHBQ_vItYoqr_THjuSTOFkup6goYYYs9idPrd3NDfqTFzwz_0lwbf4vgjuMdmzTKvxQkQFb-s0-hsUoih5Slhrdx2SETJPwfWTHYDJqzchzJgD2slNnZn3RcAduga6DdfN7J0g2EXlTcLuHF-vvVdwMHHTcjg4NrXQDCOoo8SxlBFCl1XcUa2Qd9G8CZJ2OqYmxwnB9",
+          "title": "headwaterseconomics.org"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGOpY_JimqbrtrJbWgnQa35PEAzokde4FlgGYe-gR7_IkxI3Ek51GhdbAz70P0oIaYY0kfED57OTemFCoVhHMie2ampB2nGEWjS4b8I9EmSdn84u03Jl4q0hv82kVWf0dxoUWF1RLBgRd-2JlUfEEYnTeRmGzX35cVsCGvtAccoIYh4TMxSVw==",
+          "title": "homestars.com"
+        }
+      ],
+      "search_queries": [
+        "cost to build fire resistant house Malibu 2026",
+        "fire resistant building codes Malibu costs",
+        "average cost of construction Malibu 2026",
+        "fire resistant building materials cost"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 27,
+        "output_tokens": 1135,
+        "grounded": 1
+      },
+      "cost_usd": 0.0378,
+      "latency_s": 9.9,
+      "mentioned_myvilla": false,
+      "cited_myvilla": false,
+      "myvilla_urls": []
+    },
+    {
+      "query_id": "q05",
+      "group": "insurance",
+      "query": "alternatives to California FAIR Plan for a new luxury home",
+      "engine": "gemini",
+      "error": null,
+      "text": "For owners of new luxury homes in California, several alternatives to the California FAIR Plan offer more comprehensive and tailored coverage. The FAIR Plan is typically a last-resort option, providing basic fire, lightning, and smoke coverage, often with significant gaps in protection for high-value properties.\n\nHere are the primary alternatives to consider:\n\n*   **High-Net-Worth (HNW) Specialty Programs** These programs are designed specifically for luxury homes with higher replacement costs, custom architecture, premium finishes, and valuable collections. They offer broader coverage, higher liability limits, and specialized services that standard policies often lack. Leading carriers in this space include:\n    *   **Chubb:** Often considered a benchmark for high-value home coverage, offering features like agreed value on the dwelling, wildfire defense services, and cash settlement options.\n    *   **AIG Private Client Group:** Provides comprehensive luxury home coverage, integrated personal risk management, fine art and collections coverage, and estate management services, typically for homes with replacement costs starting at $750,000.\n    *   **PURE Insurance:** A member-owned insurer purpose-built for high-net-worth homeowners, known for its exceptional claims service and accurate replacement cost assessment.\n    *   **Cincinnati Insurance:** Another carrier that places high-value estates.\n\n*   **Excess & Surplus (E&S) Lines Insurance** This market is for properties that standard, or \"admitted,\" insurance carriers may decline to cover due to factors like high wildfire risk, unique construction, coastal exposure, or very high replacement costs. E&S policies offer more flexibility in underwriting but require careful review of their forms, exclusions, and terms, and are not protected by the California Insurance Guarantee Association (CIGA) fund.\n\n*   **FAIR Plan + Difference in Conditions (DIC) Policy Combo** If private market options are limited, homeowners can use the California FAIR Plan for its basic fire coverage and then purchase a separate Difference in Conditions (DIC) policy from a private insurer. This DIC policy \"wraps around\" the FAIR Plan, covering perils not included in the basic FAIR Plan, such as theft, water damage, and personal liability. This combined approach can provide more comprehensive protection than the FAIR Plan alone.\n\n*   **Standard Private Market Re-entry (with broker assistance)** While challenging for luxury homes in high-risk areas, working with an independent insurance agent or broker can help explore options in the standard private market. Some carriers are participating in the Sustainable Insurance Strategy, committing to expand wildfire-zone writing, which may create more opportunities for private coverage.\n\n**Key Considerations for Luxury Homes:**\nLuxury homes often have specific needs that standard policies cannot address, such as guaranteed replacement cost, higher liability limits (often paired with umbrella policies), and specialized coverage for valuable items like art, jewelry, and wine collections. Many high-value homes are considered those with a replacement cost of $750,000 or more, with some companies starting high-value coverage at $1 million or $1.5 million.\n\nIt is highly recommended to work with an independent insurance broker specializing in high-value homes in California. They have access to multiple carriers and can help navigate the complexities of coverage for unique properties, assess actual replacement costs, and ensure adequate protection for all assets. \"Home hardening\" measures, such as fire-resistant construction and defensible space, can also improve insurability and potentially unlock private market options.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGowrle9sKw7GxHxgJHzjbbXzNIK1RJW9SjgLXOsK5sKWhUwCenETEeBxhJ3j4qF9sWtCLUCiE2HyHQkC2KKGWcdOnxhxeNMm4YQT8GwBIiXeU8s4NsNGb96T3iSB8xHsZVkzk1cDzjf4a3UDA28ona90pfoN9LrYWqOrOBIxKrfdwe3U7b",
+          "title": "lendingtree.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG6A4w4XNQTVXxtwuEjwPx4y7BcT_sQYRn3FwqfG39Qn4aIkwhN8z87DuterdkgKCZN6whhTE1bdwuNZOYpOldps7XTyrbs1eWpZtigra28z-LEtF8qd4p9c4Lu2nJjRzo3cTIML-i9gLDNmictiQqavhbgcdPAv2lxlwja4w==",
+          "title": "coveragecat.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3Uom6Bgu_bJQkpNOwVgdVf0wnKcs_zlf4rcR4Y4cj0POAtWW9BAY7LU2OYGdwpLcJ509ku37-Ksd4lhswVI8bbsPqQogDsGOiXdTDIh2IHsWHKa3BEuOc1pHesVUB-Vuqp6VzL7DMfO91Khts0i1x3Vou",
+          "title": "tect.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQELC4A2nf116RbKM-fKSq2W4AGUM4DlBQ2-boB8FTH4Uhq3vmC6sBINT05vm2iwbP6ZPCB-XYnJ95yKVdSPPkqLvt9O0WOAsxbqgPWcyEPB_lz1LAwhi5MHg7Ixoaui4-wO94zqk5fb8S-cq8qnkFXhtihOapnveA==",
+          "title": "californiahomeownerquotes.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFmrOdeIbnSWP3o0jcnm2b9UQ0O7JL4NeeOnaJfztFoUxJwcyqXIL9qnxtlBtqP_brraDn850qE9CEFqjc_wdDCDfj-Gg06LGnjQ8BOcK_m253Km4hnR0-JVl5RVNANVpelVFxaILlt6VNkiljAiwfN2cmWbJPsa4jlr-SdFt2ElboIvVeza_-7mOHNuh8=",
+          "title": "coveragecat.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEYbYRf8XRBMhJ2os1RZ1kl1UCJAcCKVhx5f7XVxznwA1GQOE73wNFXngCxAfuBwUWQ5JQ0PAAA9GluKuG8wU68pIAF-KuwKdC3VDuHyAxwVYbV43x9_bXa79pVA0F-6my1ovN04qgo17Yr6QDgKKkvaFQ6kLJhNc=",
+          "title": "etrustedadvisor.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHCBcrp1CPPg3oCprMESce9VDcByo88U5zMqi3wqoiVOx5bZVIcAWgBf53eAOJZY4B4G7buEQnRgU2NsItlYUKTe1WMPhaEzp4I0yyQSqaSHKym4r91YgXF9mRrbLx8swfP04BfV_SJ1yX9olTTBh9ZwznoX44FFPg=",
+          "title": "jlis.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFmiuUg_uQC4eeu4_ySaAzDJDBFSL2m2lYBcc8JJxVz4IO4W2OAiBlT6aqxEKUNKuCfMxMwuUXkW9zsyF0887W-gcey3Ye1C8n9hYxdcFrlVHpIpNL7VA3Ccs4vtrI-lNJddGn-bWG6V-60juWguKFI8Htma2VeFLpn8mnsgmMLnQJmRWM=",
+          "title": "summergroup.net"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGIjxUMfvWuLmOjh-9XHIsPoIF7CGrcMCPFcxKbqnYCVWIrCcrp160XJHS_E-SFx3b3a9RzG-wotGUIj0t6zz1OBnIHwWZrJbgfsOY_G6-NEKQzfBqoJQKTb-UnZXELH4JCpA_HNIEHdfdYfAUH8O_AWtk1zA==",
+          "title": "stonecrestinsurance.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbsSEGQfHnqQI0jGcLNjwdtT1D8fXvQNUJkOykex3kj4Kw1OIGWzg3aspHXUuh-1RTeFogILkQDh3yewX5s93DVtU6HNMt4ELgi1qu9qtRlQBY5jNi-SwQNH2lVZpFKGJKjKHSZbSjraASvyD4yuv3pZsiLzwR-f8uiwvWpZ2JbWZ-3I2EbV73mhW05MyYUMb_KadVNBLjYLyPDdgLAZJ9FRTDF5FK",
+          "title": "eiscalifornia.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHffmHT7uDZzoZnQQ-TdZm0d7O9pYyeIuT-o33aH07MYJh2S9pvslPNrQGEofXWytpr7yzon0u5jRun-tDi4hNf-UQ3XFb--_l0G40dQt2-kQFhMNMeYO0ZS2a8AuKw-1VkVfkP1EKi4VmX1TtQRrnTzPU9B77OG3oJPqtD-b3J5Q7m",
+          "title": "allenthomasgroup.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFWDY-oIyaCtdqPY0s7ic7dd0kdqHuTLVhGcMDwquh5Jv5MAvE9oz6R-PxsYbUtTkL_98zPLmTTEIcTP9qN72xgZt3Ers-0D2800kb4X36aC3mp7RwH5wXC-z-UW_1tec0Dqp_1Yzh7xrcW1F_E5CYWpl6KuefTa0mu0PW7pzdlzKBeLaw8nSjOgMYoQfBdv3jpUMcLjkLzAnmW7GbquVpzeNUeYF1qYJ1cezgUDpz6feIEQLOBG-Kr_w==",
+          "title": "whins.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGOjaP_CUKoFEnRLKe7oyGCJGOnJsSTOGilDdWRYwONsLV6dPl_p09_1VjnCW-79-gTkCxkyn6Nn-cOpeUl4K6dF7bqRIr8NTF0Vn36gUB-PT9WvAMOrvA3v3YCWKDxHRMIDpmMJxfWbrlhIw7uN0ZnnWvWaSl746Y=",
+          "title": "latentinsure.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEnDq9EfBtgC8LpomqQ-7Yima3COZxKcQywGBcs9v8K8aRgotAqMRIIt02DyxCiwl6peYEOK3388IOBZYftEbx_kt_WhLJKJkdLhuVFJwj18nHOX4Jqi02O4GjltpjC0_wi-5fW_fvfVo-4aT56bjsa8XojRFsOI7Q2P9g_pKFJgaN_xe-b7mxGP8_CoMtUfw4O7MC9NSgRyEUGTdbgVSM=",
+          "title": "insuranceopedia.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF_gCO53hILQ1SzAXiBX8Nz1yONXF-ohGeNuyoLmatX4tsEjRES049E2n3wUYx9WQCPaw-xLLkpZzTF9UuXSGEjEe9aXN75da_RHCN4YdNDWy-nzyax2vQIwrTEcyQm-bFZhK5w1j6n8oUk_HX_buFBhueGYbcDKoQ=",
+          "title": "covfind.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHu_lxdqZqfmhTB2xFwk_9_od3CQcefsJSjAL5qCNt-sahYuI9SrntKPydg6EcrAxd5JjEyXCyZoq8TgM9petxGoPJBQYT9XoP0uLZjMOX3jRLAfKr5ww4X27PGx8UOVFYCyvXarv5gE-4=",
+          "title": "climasure.org"
+        }
+      ],
+      "search_queries": [
+        "alternatives to California FAIR Plan luxury home insurance",
+        "homeowners insurance for luxury homes California",
+        "high-value home insurance California",
+        "private insurance California luxury homes"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 20,
+        "output_tokens": 753,
+        "grounded": 1
+      },
+      "cost_usd": 0.0369,
+      "latency_s": 8.4,
+      "mentioned_myvilla": false,
+      "cited_myvilla": false,
+      "myvilla_urls": []
+    },
+    {
+      "query_id": "q06",
+      "group": "brand",
+      "query": "My Villa Los Angeles architecture",
+      "engine": "gemini",
+      "error": null,
+      "text": "\"My Villa\" in Los Angeles refers to an architectural studio and construction firm that specializes in designing and building Italian-designed, fire-resilient luxury villas. It is the California practice of IT'S Architecture, a studio founded in 2016 with offices in Rome and Paris, and an upcoming office in Los Angeles.\n\nKey aspects of My Villa's architecture include:\n*   **Italian Design and Typology** My Villa reinterprets classic Italian villa typologies, incorporating elements like courtyards, podiums, porticos, and pergolas, which are well-suited to the Mediterranean climate of California.\n*   **Fire-Resilient Construction** A primary focus of My Villa is building homes that are fire-resilient and insurable, especially in fire-prone areas of Los Angeles. They achieve this by using double-skin precast reinforced concrete panels, approximately 250mm thick, with continuous thermal insulation. This monolithic, non-combustible construction offers a significantly higher fire resistance compared to typical wood-frame construction in Los Angeles.\n*   **Durable and Sustainable Materials** My Villa homes are built to last for centuries, not just decades, using reinforced concrete, handmade ceramics, and bioclimatic intelligence. They utilize \"fair-faced concrete,\" a museum-grade finish where the concrete surface itself serves as the final aesthetic, often incorporating oxide pigments for warm, natural tones inspired by Italian architectural traditions. This approach to concrete construction is implemented by DGU, an Italian construction firm known for its work on projects like Renzo Piano's Kimbell Art Museum expansion.\n*   **Biophilic Design** The firm incorporates biophilic design principles, aiming to create homes that connect residents with nature.\n*   **Location Focus** My Villa designs and delivers custom villas across the Los Angeles area, with a particular focus on neighborhoods such as Malibu, Pacific Palisades, Beverly Hills, Bel Air, Brentwood, Hidden Hills, Calabasas, and surrounding hillside and coastal areas.\n*   **Architectural Philosophy** IT'S Architecture, the studio behind My Villa, views architecture as a long-duration object, designed to outlast trends, weather, and market cycles. Their aim is to create homes that are not expenses that depreciate but assets that appreciate over time.\n\nConstruction of a My Villa home typically takes around 18 months after permit approval, with an overall timeframe of approximately 20–24 months.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE8-D7OVQJ0yGfGt3MZfrqgdVdoAx9Z1qHtQf_4WLqEueU57TMTv7I7XwY_0TfGe76yPML0ILwNeJMijxHscgrMKDp5g1htiRJ2HA19WdA=",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFqholaWwd0KOXwqZmBmVSR3EnrrSJvQu-_h-b9YIGWHLTM9sh1v6pj6KJTgBHlh07-R5zACObWZd3cg0fh50qMgzLdL73oo9ivwqC-kN5G74tmAJ7PGPo=",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQv97HkEBM-drfdTqATZX9ub17UdkA5cuGab103TxO61LTIyhzmGkhN69oky4_Wq5xAXtBGlHE00Mu6nq7gCa_qnZOKYFr87bPFAVB0gAFPq7fAtls-gKxcLHjzjD4nf2CaDhYbbKOZhiJjskQ9b7sYmsK",
+          "title": "myvilla.la"
+        }
+      ],
+      "search_queries": [
+        "My Villa Los Angeles architecture"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 14,
+        "output_tokens": 518,
+        "grounded": 1
+      },
+      "cost_usd": 0.0363,
+      "latency_s": 4.9,
+      "mentioned_myvilla": true,
+      "cited_myvilla": true,
+      "myvilla_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE8-D7OVQJ0yGfGt3MZfrqgdVdoAx9Z1qHtQf_4WLqEueU57TMTv7I7XwY_0TfGe76yPML0ILwNeJMijxHscgrMKDp5g1htiRJ2HA19WdA=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFqholaWwd0KOXwqZmBmVSR3EnrrSJvQu-_h-b9YIGWHLTM9sh1v6pj6KJTgBHlh07-R5zACObWZd3cg0fh50qMgzLdL73oo9ivwqC-kN5G74tmAJ7PGPo=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQv97HkEBM-drfdTqATZX9ub17UdkA5cuGab103TxO61LTIyhzmGkhN69oky4_Wq5xAXtBGlHE00Mu6nq7gCa_qnZOKYFr87bPFAVB0gAFPq7fAtls-gKxcLHjzjD4nf2CaDhYbbKOZhiJjskQ9b7sYmsK"
+      ]
+    },
+    {
+      "query_id": "q07",
+      "group": "brand",
+      "query": "myvilla.la reinforced concrete villas review",
+      "engine": "gemini",
+      "error": null,
+      "text": "MyVilla.la specializes in designing and building Italian-designed, luxury reinforced concrete villas in Los Angeles, with a strong emphasis on fire resilience and sustainable features.\n\nHere's a review of what MyVilla.la offers:\n\n**Construction and Design:**\n*   **Reinforced Concrete:** MyVilla.la homes are crafted from architectural concrete by DGU, a construction firm known for its work on celebrated cultural buildings. They utilize double-skin precast reinforced concrete panels, approximately 250mm thick, with continuous thermal insulation. This monolithic, non-combustible construction offers significantly higher fire resistance compared to standard wood-frame construction prevalent in Los Angeles.\n*   **Fire Resilience:** A key aspect of MyVilla.la's design is fire resilience, a critical consideration in fire-prone areas of California. Their homes are engineered to satisfy multiple fire-safety frameworks simultaneously, including all 12 \"Safer from Wildfires\" measures, the 2026 WUI Code, and IBHS Wildfire Prepared Home PLUS certification. This approach aims to result in lower insurance premiums and easier access to insurability for homeowners.\n*   **Bioclimatic Intelligence and Sustainability:** The villas incorporate biophilic design and are engineered for performance in extreme conditions. This includes passive design, renewable energy integration, and fire-resistant construction. Features often include integrated PV panels for electricity and hot water, battery storage for energy independence, water collection systems, and a 100% electrical system with no gas refrigerants. The design also emphasizes natural cooling through cross-ventilation, optimal shading, and exposed concrete to maximize thermal mass.\n*   **Architectural Style:** MyVilla.la reinterprets Italian villa typology for Southern California, focusing on clarity of form, proportion, spatial hierarchy, and integration with the landscape. This can include elements like courtyards, porticos, and pergolas, and architecture that steps with the terrain.\n\n**Customer Reviews and Testimonials:**\nAs of the current search, specific customer reviews or testimonials for \"myvilla.la reinforced concrete villas\" on independent review platforms are not readily available. General review sites like Trustpilot and Tellacity for \"MyVilla.com\" exist, but they appear to be for different businesses (e.g., commercial real estate in Dubai or a villa booking service) and do not contain reviews directly relevant to MyVilla.la's construction services in Los Angeles. MyVilla.la's website indicates they are currently accepting a limited number of commissions for 2026–2027, suggesting a bespoke building approach rather than a high volume of projects.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEKY6kbeY2clgTCOxGcOLhgYAIFWEKq64K9XnWwBChu51WmGHO7NG2AjXTKYxo4ZIDb7Pbm9PU-sC9i9xYJfj7MhqcI2YpskfXTayMrQ==",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFDWDd7238ZH71VC4r3jFbMizTa04YnQLoFfZg7q436Bv_hqznu55_xhUddqIByTRu8MbgVkH5eZ4KPLEHXgz_oEg869obuvHGuuJW4ShvAuPBXI05hkDH0gI6nkk-ef17McotFIsTBypc2-4lB_dQ1lyc=",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGIh6AoA-67ogBEDRquf3Q5FmcPmFsPQeG6-acVwkZu96uHu9i4hgEGSeud_BpdTuBNImMm-oAZIa4ye8VK33BkbA2BVW8c8srpt3TPygvv0VfJnspHNDn5j5i1qo3FBNDlepADpqj-kg==",
+          "title": "tellacity.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGdBqfkVGJgPmLJI1B-tqyKzSUcrkGMLWbzEl__m_CMSeJHGXsmgKkjRTqFJBxOKmYj9nJur6BDYqhFspDZkbqhCNnFiSGqi-vycatj63Fjee5BxqX8PBKr0xS08gKX4FFuCZas7OCU",
+          "title": "trustpilot.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHUlUjQ1sOprisJLbCNyfctb1bMTJtsxP5iM0Po0tz11kvTtHbogN9FSP5YcFMOoXOVzsge6ZOeNkIuKixgSTbUAl5FuTc_q7GdPeBc9gYrG5bhzxGxoTUb63oDVYvGcAXSmcc=",
+          "title": "villaselect.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGI69ltKhk91OnokapmCPdKG29iQs9ccY5sG9Z2Tzi8cFn5rz7upuY6Ach5diEitoem1l2ckI-5yxKd6XrRWAZ6JBESP2lts5K3or9Btprt74Etev5jryxKGnr3afupRMxWeTbTp2aBVpH66PkBWAt1WFOpp04=",
+          "title": "trustpilot.com"
+        }
+      ],
+      "search_queries": [
+        "myvilla.la reinforced concrete villas reviews",
+        "myvilla.la reviews",
+        "myvilla.la construction quality",
+        "myvilla.la customer testimonials"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 17,
+        "output_tokens": 583,
+        "grounded": 1
+      },
+      "cost_usd": 0.0365,
+      "latency_s": 6.1,
+      "mentioned_myvilla": true,
+      "cited_myvilla": true,
+      "myvilla_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEKY6kbeY2clgTCOxGcOLhgYAIFWEKq64K9XnWwBChu51WmGHO7NG2AjXTKYxo4ZIDb7Pbm9PU-sC9i9xYJfj7MhqcI2YpskfXTayMrQ==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFDWDd7238ZH71VC4r3jFbMizTa04YnQLoFfZg7q436Bv_hqznu55_xhUddqIByTRu8MbgVkH5eZ4KPLEHXgz_oEg869obuvHGuuJW4ShvAuPBXI05hkDH0gI6nkk-ef17McotFIsTBypc2-4lB_dQ1lyc="
+      ]
+    },
+    {
+      "query_id": "q08",
+      "group": "category",
+      "query": "best architects for a fireproof custom home in Beverly Hills",
+      "engine": "gemini",
+      "error": null,
+      "text": "For homeowners seeking to build a fireproof custom home in Beverly Hills, several architectural firms and design-build companies demonstrate significant expertise in wildfire-resistant construction, often exceeding California's stringent Chapter 7A Building Code requirements for Wildland-Urban Interface (WUI) zones. These specialists focus on integrating robust materials and intelligent design strategies to protect against embers, radiant heat, and direct flame contact.\n\nHere are some notable architects and firms known for their work in fire-resistant custom homes:\n\n*   **Holder Parlette**: This firm emphasizes a \"fire-safe architecture\" approach, viewing WUI compliance as a positive design influence that expands their modern aesthetic. They are known for creating \"hardened\" structures that combine Class A non-combustible roofing, ASTM E2886-certified ember-resistant vents, and multi-paned tempered glazing with a strict, five-foot Zone 0 non-combustible perimeter. Holder Parlette also focuses on \"passive resilience,\" using non-combustible materials that shield the home while enhancing its architectural integrity.\n*   **SPF Architects**: Founded by Zoltan Pali and Judit Fekete-Pali, this studio has experience in renovating and designing homes with wildfire protection in mind. One of their projects involved reconstructing a house's exterior with a layered assembly that enhances thermal performance and fire resistance, using Class A, fire-resistant asphalt shingles across both walls and the roof to create a continuous protective shell.\n*   **SweisKloss | Design + Construct**: Led by architect Abeer Sweis, this firm specializes in fire-resistant building practices, focusing on designing homes from the outset to eliminate features that make older homes susceptible to fire. They prioritize a tightly sealed building envelope using materials like Class A fire-rated roofs (standing seam metal, tile, slate, or cementitious composite) and walls covered in cement board underlayment, stucco, stone veneer, or aluminum siding. They also explore options like concrete, fire-rated glazing, and shutters for enhanced protection.\n*   **Green Studio (Michael Rosen, California Licensed Architect – LEED AP, CPHD)**: Green Studio designs high-performance homes tailored for California's climate challenges, including high-fire zones. Michael Rosen brings over 30 years of experience, and his firm integrates smart building systems and highly fire-resistant construction. They primarily build with EBS Perfect Block ICCF, a non-toxic, code-compliant, fire- and earthquake-resistant material, and offer in-house structural engineering and advanced energy modeling.\n*   **UnikHomes**: While primarily a contractor, UnikHomes specializes in building fire-resistant homes in California. They utilize advanced, non-combustible systems such as RSG-3D Panels, Insulated Concrete Forms (ICF), EPS InsulDeck decking, and cast-in-place concrete to deliver homes designed to withstand natural extremes.\n*   **SKS Construction**: This company emphasizes incorporating innovative materials, thoughtful landscaping, and modern technology for fire-resistant custom homes. They recommend materials like concrete, steel, tempered glass, and fiber cement siding, along with strategic landscaping to create defensible space around the property.\n\nWhen selecting an architect, it is crucial to consider their experience with local Beverly Hills building codes and regulations, their portfolio of custom homes in the region, and their integrated approach to fire safety, which often includes features like ember-resistant vents, fire-resistant roofing (composite, metal, clay, or tile), dual-pane windows with tempered glass, and non-combustible decking and fencing materials.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGa9hzA9y5FN3p7_h6hHsCH-93S1-VZ1dRDe0iXINwxS35tSNeMLTEHuNNNX0nzEDd0JlRgQSBGQ_9reDY0vkLEVsA1w0MjNtxJoiulAemk-o7ZCIn7zw_UhxtPcLEGgwy3VJNBKReZw_YavdywzTnv",
+          "title": "holderparlette.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEjBsxvSAT647Pdcic0cgwSIYQGflF54iZLEqEw1UF4sdxoTM0AYKvpov4chIek4rwJsgcDr8GEdX_9E9Eo0Yp_wQtxDqXGRA6iwxSKzeZaBeLw7DDLEVNPSY50gJ3BURGgrTovsjas8rpAHor_gKvrYiCLtlAmnzemfQY85WGmWgFum_0crKgV01M=",
+          "title": "dezeen.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_oX5gPbRcEkcXazFE1DvIdWghyKcFsvyJ-RiQC3F1bgZdQUSC7IVqv__q-HSu2dg-D4hMJxqQp1GnBlILvn3jAT2kPaAP-Wh16JYDjWuvE2fN3SU_2v1mZy8=",
+          "title": "sweiskloss.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHHaM4dtS4Sx7gskcrHHW9Yp-ks4lP_z1k6_I7o_G73zx2hPXpPLIjCeLeF_nL8H-U3guGe7X8ZnPZlGTgO5dRxgGxd4CWINiw6JPJHfTaDKuTqsV5u1TLjTdwsqEZqZ1DXIaxrGO3SWo9fTXI=",
+          "title": "theperfectblock.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEPUaz_kAOEAMQciSOqx_FaQnJmnxL_l_qbhG51miyetyAn8HZ33mLpiYANnnjZnr_UZcSslQa0LLD42QC8hOBrPvNcTS8VoTgksXZQrptm-mgzq3L--n1qlBxFX_jp6pD8JHj03xro4dIYHLLWMPjAYeeRkw==",
+          "title": "unikhomes.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF45ipbrf-OXHr5TV_PXtRpLm4Sns2XG3CIslE-qp4WVxHXlBpAKx21rE6nulP5igHsnBQy5tU8pXA216wKTSDopbp2q4MHc-wNBV0oMhHszLtGJkvjiHQFPPeBnBJmzyYhi1P2Ox2d7v5ct15RPdCnIa70z0HATtr7jaFC3qkXPdT-2UBbCYDD_pWt-ROwTaBjLaXTdnQwuPo=",
+          "title": "sksconstruction.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH99KqbDES3yDlwAF3WU8NfeEa2uOQSynjKiZrq_jZm1tJsDHf-hUljqqHgXKQ9c_gZvaeAyHwD_RN3BUyy8zOirIKfsc61YkSRWcTgB_L6YbNUGI85tgLkrsRUu6k1Kpv45pJwXQ3doY2FCkjAoSkVIBte_tn6nLgRnyF_tlsGL0JiUZD7uUiL_z8_reNbDCTDsqnUt8aS8QiEJnDOjxMkXKrNRg==",
+          "title": "joycerey.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGcI3M4VXrFpOYv_bslScOToWWMbGj5A6DprBChHRB6fLCL_PCp6WqfdBmP5XL1zpmazxHmUP7fDMmECUlChXLku--YweGx2oRAKEifI9dfrRFV4Y-yAbW366kmJnfkDsUPFJbAKEAZJZbq",
+          "title": "beverlyhills.org"
+        }
+      ],
+      "search_queries": [
+        "fireproof custom home architects Beverly Hills",
+        "wildfire resistant home design Beverly Hills"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 20,
+        "output_tokens": 760,
+        "grounded": 1
+      },
+      "cost_usd": 0.0369,
+      "latency_s": 7.2,
+      "mentioned_myvilla": false,
+      "cited_myvilla": false,
+      "myvilla_urls": []
+    },
+    {
+      "query_id": "q09",
+      "group": "category",
+      "query": "reinforced concrete luxury home builders Southern California",
+      "engine": "gemini",
+      "error": null,
+      "text": "Building a luxury home with reinforced concrete in Southern California offers enhanced durability, fire resistance, and seismic stability, which are highly valued in the region. Several builders in Southern California specialize in or offer reinforced concrete construction for luxury residences.\n\nHere are some builders known for their work with reinforced concrete in luxury homes in Southern California:\n\n*   **My Villa** explicitly identifies as a reinforced concrete and Insulated Concrete Form (ICF) home builder in Los Angeles. They focus on non-combustible luxury homes, highlighting their suitability for California's wildfire cycles and their engineering to seismic standards. My Villa emphasizes that building with reinforced concrete provides insurability, lower lifetime maintenance, and a building envelope designed to last centuries.\n\n*   **Norris Construction**, a luxury home builder in Southern California, incorporates advanced materials such as ultra-high-performance concrete (UHPC) in their projects. UHPC is a type of reinforced concrete known for its superior strength, allowing for innovative designs, improved longevity, and resistance to weathering in luxury constructions.\n\n*   **SoCal Dream Builders** lists \"Concrete Construction & Design\" among their services and specializes in crafting luxury residences across Southern California, including coastal villas and hilltop estates. Their focus on \"world-class homes crafted for elegance, built for comfort\" suggests the use of durable and high-quality construction methods like reinforced concrete.\n\n*   **So-Cal Builders** (Palm Springs), a design-build firm, includes \"concrete\" as one of their in-house trades and aims to build \"legacies built to last\" through new custom homes and luxury renovations throughout Greater Palm Springs and Southern California. Their commitment to enduring craftsmanship and innovation suggests the application of robust construction techniques such as reinforced concrete to ensure longevity and quality in their luxury projects.\n\nWhen selecting a builder for a reinforced concrete luxury home, it is advisable to discuss their specific experience with this construction method, review their portfolio of similar projects, and inquire about the engineering and design considerations they implement for seismic activity and other environmental factors pertinent to Southern California.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHJZwFlRhInlEHLQWyGxcU17ovgJkl5lRJsnFbK-KIA0TLXAGlUOBkgNLQlzlyeLxvmtb9q21MExhWM_JMqnse14O8ikmgBuY9NJv3RgOGjw2okdrP4LGVo8w==",
+          "title": "so-calbuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHRsYLtqiNCYLyA9rGpO4j9lQDHYB9lxgjcOGyc5nziqwgcxExIU_JTMpLDKIOkeP1yiOzPogqZKAVVBNDq25evdcr3Grtf6Y95PggJWAs7cIRMc5uS2nGszK7gl0USOkoxhrqkaYHhcGyBragUDh15AnqZqtOi8aSQL3BU1hRnW6cFw4SXT4lzgBogIu6memviUeA=",
+          "title": "norris.construction"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHsE0COMAZAfgod2ZoVcsP76aKvwU8WIUKRCLhSBCawNU4Muo8DOEcuyY64ACNvN-mh5i7dPTlpEj4bjnvr-DCiDdfDZ_3W4kOxid1IFcQ1iUUmLliB5bj8kbKg-PBWH6NaMvfJFwSrXwy727fnJSuSAm18NYArYlbdWy-KQIIrUGYoHFZI1JSYY9vj2AD5uvJMNoDkBZWB2Q==",
+          "title": "norris.construction"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHoYVGPZANnWIzen2mD1eas4If3IUbIbAq9QeNBnsRXwmFv4HXTrvko8srcgNc2BcFMnHnwzz6Ii7C0tfs7FtehvQWmUSCJ0IY1daJu88YAL1aXft4-nkzJikL_RSs=",
+          "title": "socaldreambuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGzTbN8GIZ58gKCAdmZrgu5cLiBnfXgcmP2JdfXCluJ_OYl961kvxN4bCVsGavoYMnjt-_5rZuTOwD17bGGasfEFAemghGVBS1p3Wd-Wvg_KsGyacO1t1ZXzOQH61dK",
+          "title": "so-calbuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEP4rO0lZlGt-o96rH1eWNCbRROLNS5Z7OnrbW9S-kI49zKr-B76E4Pg5poBcWhKfBlqigSgjkeRN3-lQ4a47CXGuVcKEAutQi7S-ONpYKEV2ZQnZ8hlr_TQHB0GlHd0hawUqm4s-VhJg5C8Xi3bYj-a4vSdeEQkvP9CkqSUOkXqsdCUdyvX_-eGAabinFLisg=",
+          "title": "houzz.com"
+        }
+      ],
+      "search_queries": [
+        "luxury home builders Southern California reinforced concrete",
+        "reinforced concrete custom homes Southern California",
+        "Norris Construction Southern California reinforced concrete luxury homes",
+        "Hartman Baldwin Southern California reinforced concrete luxury homes",
+        "So Cal Home Builders Inc. reinforced concrete luxury homes",
+        "Norris Construction luxury homes reinforced concrete usage",
+        "Hartman Baldwin luxury homes reinforced concrete construction",
+        "So Cal Home Builders Inc. luxury homes reinforced concrete",
+        "So-Cal Builders luxury homes reinforced concrete",
+        "Norris Construction primary use of reinforced concrete in luxury homes Southern California",
+        "SoCal Dream Builders reinforced concrete luxury home projects Southern California",
+        "So-Cal Builders Palm Springs reinforced concrete luxury homes",
+        "Norris Construction reinforced concrete luxury homes standard practice Southern California",
+        "SoCal Dream Builders luxury homes reinforced concrete as primary material Southern California",
+        "So-Cal Builders Palm Springs luxury homes reinforced concrete construction emphasis"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 16,
+        "output_tokens": 634,
+        "grounded": 1
+      },
+      "cost_usd": 0.0366,
+      "latency_s": 16.6,
+      "mentioned_myvilla": true,
+      "cited_myvilla": false,
+      "myvilla_urls": []
+    },
+    {
+      "query_id": "q10",
+      "group": "insurance",
+      "query": "how to build a new home in California that insurers will actually cover in 2026",
+      "engine": "gemini",
+      "error": null,
+      "text": "Building a new home in California in 2026 that insurers will cover requires a strong focus on wildfire resilience and adherence to evolving building codes and defensible space regulations. The goal is to \"harden\" your home against embers, radiant heat, and direct flames, which are the primary threats during a wildfire.\n\nHere's a comprehensive guide to building an insurable home in California:\n\n### 1. Adhere to the 2025 California Wildland-Urban Interface Code (WUI Code)\n\nEffective January 1, 2026, the 2025 California Wildland-Urban Interface Code (Title 24, Part 7) consolidates and makes mandatory all wildfire safety requirements for new construction in Fire Hazard Severity Zones. This code replaced the former Chapter 7A of the California Building Code.\n\n### 2. Implement \"Home Hardening\" Measures\n\nHome hardening involves using specific construction features, building materials, and maintenance practices to increase a structure's resistance to ignition.\n\n**Key Home Hardening Components:**\n\n*   **Roof:** The roof is the most vulnerable part of a home during a wildfire due to ember fallout.\n    *   **Class A Rated Materials:** The 2026 California WUI building code mandates Class A fire-rated roofing assemblies for all structures in Fire Hazard Severity Zones. Recommended materials include asphalt fiberglass shingles, clay or concrete tiles, and metal roofing systems. Wood shingles and shakes are prohibited in WUI zones and Very High Fire Hazard Severity Zones.\n    *   **Ember Sealing:** Close gaps under roof tiles and shingles to block wind-blown embers.\n    *   **Gutter Maintenance:** Keep gutters free from plant debris and consider noncombustible gutter covers and metal drip edges.\n*   **Vents:** Unscreened vents are common entry points for embers.\n    *   **Ember-Resistant Vents:** All ventilation openings must be covered with Wildfire Flame and Ember Resistant vents approved by the California State Fire Marshal or tested to ASTM E2886, typically with 1/16 to 1/8 inch metal mesh screening.\n*   **Exterior Walls & Siding:** These areas are susceptible to radiant heat and embers.\n    *   **Noncombustible or Ignition-Resistant Materials:** Choose materials like fiber cement siding, stucco, concrete, precast concrete panels, brick, or metal panels. Fiber cement siding offers Class A fire resistance and is non-combustible.\n    *   **Enclosed Eaves:** Box in open eaves and soffits with noncombustible or ignition-resistant material like fiber-cement board or stucco to prevent fire from taking hold.\n*   **Windows:** Radiant heat can break windows, allowing embers and flames to enter.\n    *   **Dual-Pane, Tempered Glass:** Install dual-pane windows with at least one tempered pane to resist radiant heat and breakage. Limit the size and number of windows facing large vegetation areas.\n*   **Doors:** Fire-rated exterior doors can act as a barrier against intense temperatures.\n\n### 3. Create and Maintain Defensible Space\n\nCalifornia law requires 100 feet of defensible space around homes in State Responsibility Areas. This buffer zone helps slow wildfires and provides a safer environment for firefighters. Defensible space works in conjunction with home hardening.\n\n**Defensible Space Zones (effective January 1, 2026, for new construction):**\n\n*   **Zone 0 (0-5 feet from the home):** This is the most critical area for preventing home ignition from embers.\n    *",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbAH3EzZ8oPpjT5M4W33RnMKKMpdYdmzEmec-WZhf69kYXE59ylr6-gEF_dtvKo81OGXx60Qt6S4Tv66QSvC3QIO4BtWEOLVpH3yPtUNKwXSre64IbEy6v7a2b-sR-JNjr",
+          "title": "ca.gov"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFh9q8sJOf9k9lKnL5fvlBEvyk32pKw7qH4DPg-gxkDbECITfPyBG5QMZcUefUF4S-88z7IxbkBtj7MTh2E5Y0ULvFp9wqfvxcaYkB_JN4obsRM0P1jKdumRUbCG6RvkNaYiq8HZgOdh9eewpioNEGUF4aGODB6lGzFrMyP8rC9ExCsuTlMJuZRfX6kNJZf_d-Z4cw4GT0M3f0=",
+          "title": "mercuryinsurance.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-9XomYKw7QVawGdWALSQcYWc9xpjah_WJRZe7k_F7GY2reNQoxQcbB1INAl9h2yJNWQiYcq1SPZO_t6D9F_Haa0efEY0aDXYofvx-0F95m8LS_eqvKwcKASUZJlHBJWZulccAqKiwRU3bHnf-uhVkGUa3cUGLfHbSe17PXiDg7R2TLvcd",
+          "title": "readyforwildfire.org"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbfR73_R_EjnvrBYdeLCfiCelKRptRS2d8N94kl4XMsAEvVnyMMUj-loZ2euIDb2CF3YAn8926uMVOSwjdaUsLy8Bhk6PlQ6UB3vnnAtDZ0-6rPcO3eYdh2SWt3hSW6OBgU0iej0J7m4FSDe8Z9EW6u3xI8SmActmW08CbXfjw-DBXs_0Xa3QP-NgAiKPCq6RQ17c2ej86yQJD-bMzrchDzp1926KvUhMZVg==",
+          "title": "vaismanconstruction.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHWnZjyOfrdj6RA0VRqQ1Sk-laScIG5s03Tgb8io7Acuf9iWh4ZT3kUo5_poA7fQhqwwjCx-0K41Miyqe7EBx8EY4aUgFyY8qn6zcYrwwzUqPTfGfySjvSYWMO5IH8hE97ccZTLXZ9GtllUqlevk5lzOfy_lf4X1XZ2S7UPFhlnTo83DSMHi_1Ba1YxGhgh1oe87jOBkuORGDyXevAfyKbQD_zTN1E=",
+          "title": "pacificbeachbuilder.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFwSu2sYlm-U30VV-4kJjAyI38iY4McV0668P2C2_FaUuJn3Jc2_G3S4yVRLa-oQBuLdui74aVcZ8ZTTiiwD-aiJyvjaz_-6SWfuVMdoU-DSiiE32TU6MeIy_LvqWCFsjRsv6pOCiaQkp4FjZPNqD6SU6TGe4l1v5qWLg7G8mw0oAeUcyn_DkEGVQCOrYdrag==",
+          "title": "avicaconstruction.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVZvJdpP-c2Dj5k8GvykTxs6-UebVeUkMNKrPgT9sMN-potq42RvGoY6nFufjDA7UkSLa99aUlkRNSG9InMuXY2tMdMsf08C4RJiPgy70kr-ybXjzaaMrQ_c0qLOyqzVrPoJ-sSQs6KZFeFvdLnfQE_gZhfCRIsSu9U6NBdKJtcir_clbpIazn2gZ3fWK_A-JLRNO1wPSeJbw=",
+          "title": "cedur.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGDcBJ_89jsFFTYaCbD7025B4U-KY2zhbtBT3pQ1vysxd5oPM4vVIBvhkCjdrjroAPjIxEtqwdeWo0eox84PWiUXxekMRNXyoNQzWD_ouwefTFyKAZIshcFLIyEBhu_M5QY1PuMxnDDL8Ku1xpI2web66xwpT0VcXyG8vV2vyR76jlRP_ROkKYpAMoufwX2dJFX0IKbq9YPwA2bLWhNElbs0Qt1Get4LCE0AWJdhg==",
+          "title": "monumenthomebuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHhuK2i9-T3e3AUHqg1zKfK8x3Okix7KfogMSJ_KtoGlRFVFzkJfkvdm-0Xrih3HptkMqbr8ZUaO21ao3rO4PNOZeOUTxvCcudwGmxJPGrLuu15ASHDT9MMgTCBoIAs06Psc-_NOkZSt-kMPad4yhaunjvwQdySOwKqOHySvA1ar05J47byjfJHCA==",
+          "title": "precisionbuilderscorp.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHuNYkNog6LyhF_Fss6bY968c3IazmpbbA5okZmmOMiTVOnqeDWldZhBgbZl7KVG1BJujtoPE-pGAl1xKQKEF9y4Qh9vtIiqCdO_V3nVri4rm0S4GYvcAmw53qiA_VlFe85jHS7UzreQ7010Be4DA==",
+          "title": "kin.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtk_A6V8aRrQZW--dTEE9w_Ui8FJSm-k98p75hTaL4rrEPjASJ-sW9Vs3AgpKC7wobO-U6V7Ro6mUrfrZdMqdtLJLT2mpSbNFtn6ewm4RNag5GrKC1xvTni-OLqAcMzasuadvbhMSgMeTj07XJBwRQIxOJUuixizNp4FELsbU9b8LZwgii-sMrYWYHIp6hY8Yr",
+          "title": "defensiblehome.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFNIvQ4Tt-ToXFAA5L3PeUO_GLiCbCpsJDAC_k4_yhBudL1sIWqd5Ax7Iqnru4SgVIv0ewYPZIfaR7ChFtAzaAm7tkgbyiLUPC2xQAesx4a9FElaWH0BqrFgArCYtTD3pZuQDQWm43ggu15lPfgrDr8i6o7wCSdOj38rUMJqgziHaWycLzbcPkHHo_35mmjpvGQAicBw1O5mnfK-PYJKxoD-3CRP1vMP9nL0FdQnESym9VPJ-5P8Dgm9ij5m3yhBdYobuu77A==",
+          "title": "facebook.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFGr4rJvGlPcCpP7bVLAWnR8Opq9rE77YFYOcA5BBTYexuSgAsixC1RsNvogmBkqSRzNyYC3_-wQ9qg8CXuU8vbZkUFxVXi8GQALdUeKOowboJmfzcpD0TnlemuodgDAmSQ2-WkRJiuQVbZztIqFD1_39sJH38Ab-mgQHhOsZmwVqMlUQ==",
+          "title": "wfca.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFHP5RUQiqL0J8lxV0laDGKx7uDPJUaafj_hi22VhjZCgU1ftWSljXS_BDfAmJapQa5lyfgBfF0zuCfVd1hXXwH60WPRbDuBAQ7_xh00RVaXAWZe8YpayUj0BgAyK3FUD_uSdZKlz8N5ZJQ8lVm",
+          "title": "firesafesantacruz.org"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-GgO0GBaScQGBs0gOw4C40eGbsirR58LBp_Ev4LIVNpif8aA32DKTPiHBxyByWNu6ktzsJm74s_JMU8Ac1kRMfL4LiPu2sma9rzTklwSPFUcN97brMI6RUjKEomIH_m9u5dpFn41kJfpYfzc=",
+          "title": "readyforwildfire.org"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGGw6rGBW5Javhk0mSAEg0kSst7_K_ggjKIS4SVgT83BQ5O7LVp6rKD0ImhCpGivRRe1aoRnko6RCwdDC5DIoUAowNXAvHtUGRh4y9-BVXW4siLxqoRO0WLgw==",
+          "title": "ca.gov"
+        }
+      ],
+      "search_queries": [
+        "building codes California wildfire resistant homes 2026",
+        "California insurance requirements new home construction wildfire zone 2026",
+        "fire-resistant building materials California homes",
+        "hardening homes against wildfires California",
+        "defensible space California new construction requirements",
+        "FAIR Plan California new home coverage"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 28,
+        "output_tokens": 822,
+        "grounded": 1
+      },
+      "cost_usd": 0.0371,
+      "latency_s": 9.7,
+      "mentioned_myvilla": false,
+      "cited_myvilla": false,
+      "myvilla_urls": []
+    },
+    {
+      "query_id": "q11",
+      "group": "insurance",
+      "query": "IBHS Wildfire Prepared Home luxury new construction Los Angeles architect",
+      "engine": "gemini",
+      "error": null,
+      "text": "The Insurance Institute for Business & Home Safety (IBHS) offers the Wildfire Prepared Home program, a science-based designation designed to significantly reduce a home's risk from wildfires. For luxury new construction in Los Angeles, achieving this designation, particularly the \"Plus\" standard, involves a comprehensive approach to design, materials, and landscaping. This commitment not only enhances safety but can also improve insurability and potentially lead to premium discounts.\n\n**Understanding the IBHS Wildfire Prepared Home Program**\n\nThe IBHS Wildfire Prepared Home program has two levels: \"Base\" and \"Plus.\" While the \"Base\" level focuses on reducing ember-driven ignition risks, the \"Wildfire Prepared Home Plus\" standard is recommended for new construction and offers a higher degree of protection against direct flame contact and radiant heat. This standard often exceeds California's Wildland Urban Interface (WUI) Code, particularly Part 7, which applies to homes in very high fire hazard zones.\n\nKey requirements for an IBHS Wildfire Prepared Home designation include:\n*   **Defensible Space (Home Ignition Zone - HIZ):** A mandatory 0 to 5-foot noncombustible perimeter immediately surrounding the structure, including decks. This zone must be free of all vegetation, wood mulch, wood or vinyl fencing, and stored combustible items. Beyond this, defensible space requirements extend up to 30 feet from the structure or to the property line, focusing on fuel reduction.\n*   **Roofing:** Use of Class A fire-rated roof coverings such as asphalt shingles, tile, slate, or metal.\n*   **Vents:** Vents must be made of noncombustible material and covered with noncombustible, corrosion-resistant mesh with openings no larger than 1/8 inch.\n*   **Exterior Walls:** A minimum of 6 vertical inches of noncombustible material must be maintained at the base of exterior walls, measured from the ground or nearest horizontal surface.\n*   **Decks and Porches:** These structures, including staircases, must also meet wildfire resilience requirements, including their own 5 feet of defensible space, clear of debris and woody vegetation on top surfaces, and featuring noncombustible or ignition-resistant items.\n*   **Accessory Structures:** Outbuildings must also meet the same wildfire resilience requirements as the main home and have their own 5 feet of defensible space that does not overlap with the main home's HIZ.\n\nThe certification process involves completing DIY mitigation work using a checklist, submitting an application fee and photos, and then undergoing a third-party in-person evaluation. If all requirements are met, IBHS issues a certificate.\n\n**Los Angeles Architects and Luxury Wildfire-Resistant Construction**\n\nGiven Los Angeles's susceptibility to wildfires, architects specializing in luxury new construction are increasingly incorporating robust fire-resistant design principles. Some firms and individuals are recognized for their work in this area:\n\n*   **Ardie Tavangarian (Arya Group Inc):** Known for high-end modern residential estates, Tavangarian designed a fireproof, luxury modular home prototype in Pacific Palisades after his own home burned down. This design aims to withstand fire for 24 hours without external services.\n*   **Alloi (Marcos Santa Ana):** This Los Angeles firm focuses on creating fire-resilient homes that integrate sustainability and high-performance design, acknowledging wildfires as an annual threat.\n*   **SPF Architects (Zoltan Pali and Judit Fekete-Pali):** For their own home renovation in the Santa Monica Mountains, they prioritized wildfire protection by stripping the house to its frame and rebuilding it with a layered assembly that enhances fire resistance, including Class A fire-resistant asphalt shingles covering both walls and roof.\n*   **Cosmic Buildings:** This company is developing fire-resistant single-family homes designed to exceed California's WUI code, using non-combustible materials like cement board siding. They are deploying robotic microfactories in Los Angeles to build climate-resilient homes quickly.\n\nWhile specific luxury new construction projects in Los Angeles with explicit IBHS Wildfire Prepared Home \"Plus\" certification were not extensively detailed in the search, the principles and materials these architects and builders employ align directly with IBHS standards. For instance, KB Home's Stone Canyon community in Northern California is built to the Wildfire Prepared Home Plus standard, demonstrating that large-scale builders are adopting these stringent measures for new construction. The Resiliency Company also reported that many builders and architects involved in rebuilding efforts in fire-impacted regions are using the IBHS Wildfire Prepared Home standard as a baseline.\n\nAn architect undertaking a luxury new construction project in a wildfire-prone area of Los Angeles with the goal of achieving IBHS Wildfire Prepared Home certification would need to integrate these rigorous standards from the initial design phase, ensuring material selection, landscaping plans, and building envelope details all adhere to the \"Plus\" designation requirements. This proactive approach not only safeguards the significant investment in a luxury home but also contributes to the broader wildfire resilience of the community.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFq0vg7nxkITe3ROMrPBrwZr8RaEMzJqQmTEvqLK10ms41EX_XIGT2G3Ulhfh_lG4y6P54rxdmaPMkHAEJH3IpTSEG3FJ3my05DM4ssV3G34BBz1mWTHyBBRxfo9cb2I_ZqfVBLsGukjBP_aQ97MYlWIxbVCkUeEHJ1EbLRly_rEEMItX5VU9IPvDk=",
+          "title": "firestormbuildingproducts.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFlww7IDH842EnofsVAdwdqwtI66IaU0dfxVlGx3l0lI2KgB_y_JgPno9--zZ4iO7nxODhpJ2nckTxjHw-BKvEQ0JwxRnGYVF-SQn0neQuGQI6OYVE4T1OHsyZEO_l7BXkYXtHYmgQg4kgP61jez3HHTWkXWqNwzDDrzSxdqR-0lTg5eXjYfBSYIQRYsywI",
+          "title": "smarthomeamerica.org"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-BbI5DaHrwpyfIzuOkidl_uIAjE8jqxSi2vQlgATivFhbtnqJ9chmaUlCAoJPoqPH6r74M69kSi-Dn-x0Wz1CQgieYJpOfD3wPRlw8PN-qyvxiEQEfrkiFsTHkRFTEs_KpHJTY_sXubFh5aKTCcG2twEcD4pdClk7E0kQAbWG6CifetuYew6Vrl1EYXQAQYY3HuKrxWezU0Y=",
+          "title": "resilientlosangeles.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFW0pSoIBw1AdHZDj1-u_Ht5xoGpoORhleSJ9xssUPBXoAik3PFtJHU95xwbwfC0bYihTK3GvNELZXzL2uuz3Q6GXYYL8X8EO5UNaCRr5ja_xlLbzi8FhJLu3JvKMN3aTU2ZQt5",
+          "title": "cosmicbuildings.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6LxNQkqYkfwA2XVhYxjfKZYk4LfhA4EulIm-RZR1f3wZZBoT0JmcinZhfObuMmOVQYXVwql6AOPtUq9tktiXSFyFnTXftwX6SoD2XHTij7MTEGgxTWCUOGW2dlYEMoygH6TvLklS0F3qHtWDKExmHzXv1vZSMNBwLQ0vSTLhGzVMFcjEUSPyFegEC",
+          "title": "wildfireprepared.org"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFvLz47F9tWDXCYBOwOCejXL0MgQeSLUtxB5avnXTij41-npGqzHPoq1i8o-KHR73oQ1QAYjzQBDwjCrdDf4zCFyJ-LkL3ir61Q4FrJTR1epon1Vy0Lc1P8XVBcV0obQ_oDhKL1um_78DvjEavxouhzWRt8cHLIDfmRZAwbO7QGm8RXN1Dk0hEGNiHVHbeclsmijAAoM-B0koRkkYpRyEYhaR6qLzBVZGiYr2CK7thGUmjK4y-ySvELXp4gsmhy",
+          "title": "wa.gov"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHwoab91UzSAjJH3eSEJk-lS3cYhKYp2H10QUseR1ADHunAxUJ9xuvoRKU925mhkLzzCtd6H9RzPOlJ7o9rQk_VdjX4gov8cq8yYk3_IZHbamRaG5T2Mjk=",
+          "title": "wildfireprepared.org"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGnxKBfh05s-69hCrBc2kBdcvhr6BL_JEtMGtGawvwbs_PSPUviMro8IaZbs8bWxH0A8gBJVHZya2ru1-YBWTI-DmNn3IcMlzst5suZU3THgyt8ofhnBIa_ng8SdBCY2yhnWQLkgNHqy229JHUvx929MN5swB6GuDq_EazQ6PXqd8IvVJClEHtzs88weW-HtebbGjeAhyLuAaxv07N9b0-H32prXDGcFMqjVfOu62LPKMmaXpXmuZCuAfTWkC9m__DVj4ekoEqv_L17T5gFsbwX6Q==",
+          "title": "cbsnews.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH9mZbJI_lj-po5fhKxQGrdvH11DhCxO-dXpCpZIKmicKF6Ow4ABcFr1NOlPo8DB-297JZ-XO1SOunc0kOUwwrKyEuHBORlxQATmRDMeU1SiRY1OTVJolVh3nKsionL1-MuWP4yCVpTty8GLaYhybeJvipJw0qET8Z3v8C1",
+          "title": "entrearchitect.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcgkn3gRse9yggIdgC34wxSj93NN49SiqyG7MU_PbcW6zwHaHy6JRda-egIG5F19eBGEBzbN-0kvVAw1VNacZKkRoY4V5f0uiC2IhfBc2BCHtQoy12LZCm7wER9r5laZ7RmSer3y3-kv1cVhYYxPETpZ4jz6IkTy4WfBm0YXWaUsTFGU8Robqo-Q==",
+          "title": "dezeen.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFwdlxNJ2OBy9ZyxduQ8dnno1Z8VgRbd9hCrY6dZ4raNLwvCkqprcpahmZXrh58prF6ST14WCNMTeFe2xbEuM1alB5y_dUp1b1iCdn9hWcbngml2sPd9_72GjouQCY5XVpkn5UVwp4t3-HTx-9_tKeg8BjdoT4zCCFdcYsaRHMnd2YEAFd8g-Wdd1NUgCSmRWI=",
+          "title": "resnet.us"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEAkuH-QdkDL1CxTbi4aVQpdFXgIB_lB1iCIqCxZZLGOQwpX4q_Bptp09atvy8Yko8TygRD3G8jFhCzi3V99h0zMOozHUS6jC9XFr7P4UTw8aO-DH4bXvtD_VdlVd1EKHbh_JUvaZBDzRy6dPkaYTQyIF9pAIiqHo2DseMBEH-N3JH7J71uQYCyS0gS248N3rtRqu8h",
+          "title": "greenhomebuildermag.com"
+        }
+      ],
+      "search_queries": [
+        "IBHS Wildfire Prepared Home program requirements",
+        "luxury new construction Los Angeles wildfire resistant architect",
+        "IBHS Wildfire Prepared Home standards luxury homes Los Angeles"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 21,
+        "output_tokens": 1085,
+        "grounded": 1
+      },
+      "cost_usd": 0.0377,
+      "latency_s": 9.5,
+      "mentioned_myvilla": false,
+      "cited_myvilla": false,
+      "myvilla_urls": []
+    },
+    {
+      "query_id": "q12",
+      "group": "rebuild",
+      "query": "Pacific Palisades rebuild architect fire resistant concrete",
+      "engine": "gemini",
+      "error": null,
+      "text": "Pacific Palisades, a community frequently impacted by wildfires, is seeing a growing trend in rebuilding homes with fire-resistant materials like concrete. Architects and builders in the area are increasingly focusing on incorporating innovative designs and sustainable construction techniques to create homes that can withstand the increasing threat of wildfires.\n\nHere are some architects and firms specializing in fire-resistant concrete rebuilds and design in Pacific Palisades and surrounding areas:\n\n*   **My Villa** rebuilds Italian-designed reinforced concrete luxury homes in Pacific Palisades, emphasizing fire resistance, insurability, and energy efficiency. They utilize 250mm reinforced concrete or Insulated Concrete Form (ICF) walls, offering a 4+ hour fire rating.\n*   **Bittoni Architects** designs hillside homes and fire rebuilds in Pacific Palisades, guiding clients through Wildland-Urban Interface (WUI) compliance and resilient modern design. They focus on ignition-resistant cladding, ember-resistant vents, protected glazing systems, and defensible space planning.\n*   **FAME Architecture & Design** offers services for rebuilding homes in Pacific Palisades, integrating fire-smart architectural features such as defensible space, ember-resistant vents, and metal roofs. They emphasize the opportunity to construct homes that are not only aesthetically pleasing but also fire-resistant.\n*   **Ataman Studio** specializes in fire-resistant home design in areas like Pacific Palisades, focusing on creating resilient, sustainable, and code-compliant homes that meet California's fire safety standards. They address threats from embers, radiant heat, and direct flame exposure through site planning, material selection, and construction detailing.\n*   **SweisKloss | Design + Construct**, located in Santa Monica, prioritizes fire resistance in their architecture and construction practice. They incorporate materials like concrete and concrete block, fire-rated glazing, and shutters to defend against smoke and flames.\n*   **HUUM Architects** integrates Wildland-Urban Interface (WUI) code, building regulations, and best practices to create fire-resilient homes in California, including focusing on perimeter defense, structural geometry, envelope defense with fire-resistant materials, and roof defense.\n*   **DNM Architecture** has 20 years of experience designing fire-resistant homes in California, combining fire-resistant materials with architectural design.\n*   **Holder Parlette** views WUI compliance as a positive design influence, integrating fire resilience into their modern aesthetic through high-performance, ignition-resistant materials and smart, defensible space landscaping.\n\n**Why Concrete for Fire-Resistant Rebuilds?**\n\nConcrete is highly valued for its fire-resistant properties. It is a non-combustible material that can withstand extreme heat without compromising its structural integrity. Insulated Concrete Forms (ICFs), which are concrete walls reinforced with fire-retardant foam, provide additional protection by slowing the spread of fire. Concrete walls can typically withstand up to four hours of extreme fire pressure, significantly longer than wood-framed walls which may collapse in an hour or less. Additionally, when concrete burns, it does not emit toxic fumes, produce smoke, or drip molten particles.\n\nWhile the initial cost of building with fire-resistant concrete might be slightly higher than traditional wood framing, the long-term benefits can include lower insurance premiums, reduced maintenance, and enhanced safety.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHppKUIigONmfLM1MfGlnrX5XfoWwIcinUBsedMmpr0mQp5MQhXf1RyWW5tPsx-2j3rAfX3uIl1FdeF37TzDMgpkT4WbKyMnvTqxamvbs45Ooxsb1TAs46rL8ErqZjFU_-lmkKT0AXfWMArAzgMV2jtM4Q7W_KcLcb8WRxJSCWRjt9KjTUyZmvvP2cJJwAFqRLJz8tS_DC_F9VyPVmZU6O0_g==",
+          "title": "jamesrespondek.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHjXtIz05PxroFVfvkleMQ3q9b1NlDmXxZOqtyQJaP0djkh_jkydNg9trFZUxR1GI7CrUqFEtKAagqwXsWhPpMnG0DgXHsO50amLRdQhJGe_Djftnt0Kfn2yHw6BEjt-1Ht6MDFhBwGvY5a94k=",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFv2bv7qw3yabGoFbG7FUbjVN1NPS88aXR7ggcCtrHyjFcO69fbNew5fKHpstB7pzMkiLvmo42FXFh_d5JU6IKeAhp0LJp-1n051pAFyfGtolDERHU4yAVaYXxuw27arkcBztctkkFItz92xDy-3iRdyrTdNupRB_gh",
+          "title": "bittoniarchitects.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFIEiGhGJnzJI8iDimifKA2z-weBFfujfcksdu0tIeEt20I7O1S7r30TetjqyhYrNY_hJYaa4XhJa90ZjMTt8nphcKfFnRC31-jBF_HQuaIjQIf39ULGCbHO-OqNcTey01PfMFvS30PDGOcvbFKvpM5WMer9UOp9dmpR0B1EisgfgZAvA_PVNl1",
+          "title": "famearchitects.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0Xzh5CeoLV9YzcCzoVyTlAmBJKb_remdBibvRxKcjSc7qFv53iOlv1OKJ0ZpcDp_SchF3Lt7VJngx5Ev4dvF1iH1nETHCGlsslPEEIvLPBnIArLIzWglXka4MvGp4NoLFLqmAYD13WyVD_p8IGn73Ve_zTwzXfLOgeeaCUa-4qtKbpslVEIp-",
+          "title": "atamanstudio.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFhETP4Po4buBbNQNx59VoxXU0uduCGayGucVbIIx5WGvHcmgI07Frp-BSc9B-wjh2FT71lnt6yeul46BOdLZZLK9qJwMVcEh5mIA4eU8JTCfBbbPR--eW752w=",
+          "title": "sweiskloss.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEuptuaJlQxpH--2z4B75AxX6SYlfP_DIQOdG7I593PgQNUdlNRLEx1_81EUZiKBLJuxwEfawCPFcfCMEFwx03th7UI0-hCMjYJem9xtNDbh-aa38iGZmY0RyEolX1TRIHpAAIy6DRqbTyVCuYXy1H1kK2svmSIZvm3BFhZ5EwUEKry",
+          "title": "huum.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHm2-mOoufpf5NIYWosZQj1qBMKwxtiCJWBaBXiRIChJQviJfoY23nacw6z5XLzrgQl_hXA6C0HyOttfI_jas76CGdxfpIL5XF6v_6_iojDQvn_PTEIhGynKyhTl4FkabFgNvuPu3I0GU089E3T_CI0ACj1ANsvt7PNLftozs2HumAEOpw=",
+          "title": "dnmarchitecture.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVwAVwX5jwoIIRoyE9K5ZjmSAL3UzAoYCJfuw0-AMXDS-CAh5VKmozFlDkd2cFj69KBzHL45zeUNz7szEdob6FoFNRBYohsKbbhGZsbN2cqZDnWWeyRprthCq8jVgJEarx13Zo7iEaYWZhfJ9XNfmk",
+          "title": "holderparlette.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEmB_u1qaQRM5Wf_057YJsyPhnu2TROL0xYjKTks5plWp6URIDO1DYqSmPoI4_FsIeynnqe4oae9CaKy1LnYBrVowUbz59E9zEP6sIWXUstu18cMtZ7E440lUmPLzOtQLl28xBoFpxVA3A7trrqYhuP-jboVUTjd5avJBjOfZjX27lqbQxXCHw4pAOPrEcmLBsW2Jy-VmmPfb-0mFVr",
+          "title": "howstuffworks.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEW7vI_qajHPRW_hHL_DOJjb5ZWHFKbBbQGmBLmPi42tGz4Zryhvrs9P5aE5QCbYAnMcp-lx-1-9rKqXjxuejSNDl_TXRG-7OfDOHZGLP7606lJYzOm77kbY_bImrdZpw8s51HuldKgZnPklpZy4NATJ0zgU5UBPvOo-oc=",
+          "title": "wfca.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGkLK61fVgNm2A7zbz-7VqJNMmFFhiCCcBNEFvYDqzzfnMINoVy5h4T4y-Up0DpQt3C6FGPasl7eDKUtCvZyPZa-BmGREMobdf55dTzeLwNdPiKT7kAxLPChVYpTcM-trAkBEXC2yflDhSLaHjp0mM8CVBqNzhp4F8=",
+          "title": "srmconcrete.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFgj5Encc_9qHM_l29oObCRbhLvYJWHtwwUV6_JnuYFuSlkReeWzC0wCDRC5swKmCcR7Hr40qRNHlW14gOhasov03BFjc08xeOmgAt3EwpISd3Jh4u-uJBFDTUHE2BkHQkXU-tASboH3n8HdH_5wMAdtZVFyUxqcmir-HFk6dm3yo2vG4tOTsbAIWXSWKD1J_kxZte0Kmw90nEnFWVb3tb3zr2lU_u9N4Tc0Gljki8mGVJXTTC2Uw==",
+          "title": "laist.com"
+        }
+      ],
+      "search_queries": [
+        "Pacific Palisades architects fire resistant concrete rebuild",
+        "Pacific Palisades fire resistant home design concrete",
+        "architects specializing in fire resistant construction California",
+        "fire resistant building materials concrete homes"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 16,
+        "output_tokens": 718,
+        "grounded": 1
+      },
+      "cost_usd": 0.0368,
+      "latency_s": 5.7,
+      "mentioned_myvilla": true,
+      "cited_myvilla": true,
+      "myvilla_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHjXtIz05PxroFVfvkleMQ3q9b1NlDmXxZOqtyQJaP0djkh_jkydNg9trFZUxR1GI7CrUqFEtKAagqwXsWhPpMnG0DgXHsO50amLRdQhJGe_Djftnt0Kfn2yHw6BEjt-1Ht6MDFhBwGvY5a94k="
+      ]
+    },
+    {
+      "query_id": "q13",
+      "group": "design",
+      "query": "modern Italian courtyard villa design California hillside",
+      "engine": "gemini",
+      "error": null,
+      "text": "Designing a modern Italian courtyard villa for a California hillside presents a unique opportunity to blend timeless European elegance with the contemporary demands and stunning landscapes of the Golden State. This architectural style emphasizes a seamless integration of indoor and outdoor living, natural materials, and a sophisticated approach to site-specific challenges presented by a hillside location.\n\nKey elements of a modern Italian courtyard villa design on a California hillside include:\n\n*   **Courtyard as a Central Organizing Element:** The courtyard is a defining feature, serving as a private oasis that provides natural light, promotes cross-ventilation, and creates a sense of seclusion and calmness. On a hillside, the courtyard can be strategically carved into the slope or used to connect multiple pavilions that step down the terrain. It acts as a central gathering space, often directly accessible from main living areas like the kitchen and dining room, enhancing the indoor-outdoor flow.\n*   **Seamless Indoor-Outdoor Living:** A hallmark of Italian villa design, this principle is crucial for maximizing the California climate and hillside views. Large sliding glass doors, loggias, terraces, and expansive decks extend living spaces outdoors, blurring the lines between the interior and the natural surroundings. Courtyards, balconies, and planted roofs further celebrate nature and connect the home to its site.\n*   **Thoughtful Adaptation to the Hillside:** Designing on a slope requires careful consideration. Strategies include elongated plans that follow the site's contours to minimize excavation, multi-level designs that step down the hill, and the use of retaining walls to stabilize the terrain. Architectural solutions might involve building a significant portion of the house below grade to adhere to height restrictions while still ensuring ample natural light. Strategic placement of windows and decks is essential to capture panoramic views while maintaining privacy.\n*   **Modern Italian Aesthetic:** This style often blends the warmth and character of traditional Italian villas with contemporary sensibilities. It features clean lines, open-plan interiors, and expansive glass elements. Inspiration often comes from Italian countryside villas or coastal homes, incorporating elements like vaulted ceilings, arches, and a mix of traditional and modern furniture.\n*   **Natural and Refined Materials:** An emphasis on natural, durable materials creates a warm and authentic feel. Common choices include stone (limestone, sandstone, marble, reclaimed stone), wood (walnut, solid oak, reclaimed wood), terracotta tiles, and plaster finishes. These materials contribute to a serene and timeless aesthetic, often in neutral, sun-washed color palettes with earthy hues.\n*   **Sustainability and Efficiency:** Modern hillside designs in California often integrate sustainable practices. This can include exceeding California's Title 24 energy code standards, optimizing cross-ventilation, utilizing broad overhangs and landscaping for shading, and incorporating photovoltaic and solar hot water panels. Fire-resilient concrete construction is also a consideration for California hillside homes.\n\nExamples of this design philosophy can be seen in various California projects. The \"Hillside Courtyard House\" in Marin County, for instance, remodels a midcentury home on a steeply sloping site, reorganizing the plan to create strategic indoor-outdoor connections and a central courtyard for calmness and seclusion. Another example, \"Stone Villa\" in the Santa Lucia Preserve, features four separate stone pavilions stepping across a California hillside, connected by pathways, gardens, and open-air courtyards, reflecting inspiration from the Italian countryside. Homes in regions like Hillsborough and Newport Coast also showcase this blend, interpreting classical European architecture with contemporary living, expansive grounds, and resort-style amenities.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHHTB59fqg1ch6k4malDZSolNPJcs-ZfUAYt2Pf1AkhQU9m2-y2TDabx2Ir5fwFB6b732Fy6x7Q8sAp7LIcbZFkJYR77ACm90lolKR8w0rwWzX0wGIcea0CEKRu46jtNcR11oaCDMULR2iQgbGea7zpXGHNmA==",
+          "title": "architizer.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHP979ESA-RueV8Ars3nVhDoMEyYJJ4RkF-Yyu9ewjaKrzbvrXqGKME9ycEjw0XzTOeOeG8Buk6XfjqEnI8oB41kAxcIBakmeWF4aQBI7G2hbROLfWSdV7_lAkxymCTx07OgosYC8C2KbGDzPY=",
+          "title": "kuthranieri.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGPHrolpunFVsuNNW-1ECBSG_g_2XL1QKcrCpbWR_EiaQg04NNscImLhGj2Bnd3SAyeWL9FYolm2jZ7_pioBG_huG3lP11HTxVFOcenGdaCtwOSetiE7fRiwYZxszJIX5qoAj0pkniJdHOEAo7-TPubi78=",
+          "title": "rp-architects.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEGyhuxBD-CN8EiGUJkb19xQHQ2NO3pjNFU-0dPVRJ5DRwcixRmWvJ5W4Nt-3K0ozyQ2gtKnFEPKXnEG_7M_UFjn7UQ9lsD3xyWCGSZ1Go=",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHn4cxw06YW6Iyx_nIyqNl9wzGBfTiNgMogD-4yXr7_CA2MMIMqeejjkj5Md-LmPjWYew7C4DX9m5tZk9dD1Cvq2JN_KtUvWap1zuuC5CBm2fF_4_ffRXjQylRLkMS_As1zdF0Sr9Adn52sqsGAPU5gRqjsXQIo0pMIbxBBxiumYQZ98Rb5IaUlao21bTO57qeuznUhd_WiRrOb8A_ncFy8dQ==",
+          "title": "houzz.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHlMUepgfAqW-MsCqPaSgwRQeWgksoHY177GYHuXwjQ9IgMg4P3SrjVV0Vmu1UrEplgzpD1xWuN1AJIopQfc0U42sLQz5EzKgNThoGi23M9dBlJbsASvNKFAfjrxNue_gqSJNrQ-_RWvTGKDGb76LSFed4I1E8YS0dVZq7maQ0mn5MDpSSdKE2iMhU5mTudjss2RecK",
+          "title": "contemporist.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEO3YOtlLMtEOkU5mgDv-qGlwl8G9gjsj3vkEbtdnVJhpgdIvV4Joha48N425a5ot_zMWe_Kh3zJYmc1p-nvJ9hy7eE_m_YCff0NNh2l15K9-zfdfMine3B70mAGmgEbKnb2uMGAOZSe199Ofvg-UEHFlLUo6ETNc-GgZRZuRQsAfE1glzkmegSbsHRKYcMLmFqKAq2hnRzfrJWpoF7OiCNIwO4xruLNw==",
+          "title": "wordpress.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXHmG_bHarQ1eiEi72Z1Vw6-Z48tXP1ZYItcL5DkRtYU7sewlu1wcRMbTe9SO8mitNzBwXvVwwbm0AKNvfbLiOAS1qFufCECT4WsGmvGVrzWkl_4IkZ5N9bpUQsUKq5ViBQqbMAszhKWUD27cTeorzuwvmrzF4kT0fLd-wjLp_flGz7Vs9YS2n4qZNXffAOd9CZRunOFi1akqty3m_oQ-948tW",
+          "title": "architectinitaly.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEPmE-uBmUa18tdv144aKXg6DCg34jI6vbJ6Rnvz1RbKvvm6Qb6yKxE1iwg6mOlk-4XhbBkROSIFlunJzFqcPolfTdTyH7Tjt61HcBjY283MNCWwEenHfueKsKUFnaKD33Z0R3iZvjo1UPRQ6ZIoTdFFNqxX87yAqHs5BeyybXzek_KHaK-lIBt8cOBNPdCw7E10AFF02aYpiRpuh4bbmz1L2Y0X9hPP11N4aPtg9U=",
+          "title": "hgtv.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGVNWUXbSaqxiwJofNsVkRHkvTDKMYWqPoJZUNRr0VTFpCuvmxD_P3v60QpAmkEH1MCn5rj0jFGm8e7b1w10EmGIGDLaa0e1kfJw2TyCYyCxN1kaMcZYDtsDsC0dl8TnA71QIIl7NB4PgEr3qPS7Ky-ldnFE8u-QBedRTTCiuwvXy3kpCZznmIfVDJ2Ig0qtM735vkFYiLkVA==",
+          "title": "homesandgardens.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFHqpwxhqo8qnCtxCIaVoQrlKceNNe6y6hf2Qr0Bq4KsTO2m2auHQ1IN627v1U1tdWqlNovlfBNvKj4PbU7zQi_hO1PxF5XyWhg5Nk51MNNEDqPuvKp8h-8gw9zrnS-pdcl4yYFLRk=",
+          "title": "dnmarchitecture.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_hv_35ChpfHMdBJbYZVW9c1T7IL1XRy1U9aUNt83jt3MFOhaiwsuEALY_VjVhSIBBZSajFdHYOesgOOP4dP1ULo5k5cniJUX7Uotonqm_C5zTBKKbSsIimjbgI-myUQKNjl-KTnl4NKI4zZ00xNTUlUTZMrwpVaaT",
+          "title": "3asignature.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGGdcG5u9fmpD1KJkJ7eQggtmAKcvp7yXHYHoQMo8lIkD-Zo84L3CW6-5rgHVsKXn0MkRnqn7NyJ-nug_8JdPeUSUrlevgZZ_B0WF4dJGweQhv-sjhiZOKrug0B-p0mOug0fjR4XlE=",
+          "title": "youtube.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEBESCTZGD03Pq7abDykLtjeNuGmIl_bV8h0yEkIFbtdz8XSwuLu3gn296n_NlEMXXrMdRgFOWI720ULnU6ws-oyRR33qj3UQ1_o1UFAg1RDLCgvcF2NpdCEG5v2UFjRYjCitzrljY=",
+          "title": "youtube.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJQfWfsXTdpXzNbFuEgn0lJ6AqTq-sV3onxEDuxylRMdTb-044JNOgg9IVkXPuZSzRDNsBcxctExo_6d7Fr9LwGM-i7MGzxEAvQ-bRcPVHLxTjt-i6gsFALhvitRxJcheAW6vXFl8XJxhyCDbo1yvmcDm4lPKP1luuiDpuNcz310eGzAa-F2zWm11FLogDpMrib55hcOSuPZIC0E7brFQxUg9LvPeSGbbea00WrHN6LEOn_NoyNcpXXpp2v4zxMK02M3LjPoct-_BjAoLLUYnbB-X2zA==",
+          "title": "houseandgarden.co.za"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFHNYUak8mKlkXYjyZOGqwdtoFGwW4IoL94B929u-EPxRiFm-wVXvyrF1RY5yZN0h_r7SzzpYBbdnPmBWoJMiJpFjPIVK19B-Y75mEDa4QsIsSXlWZ-vMjU6jn7w1sAexpwEgW1Wq5ZFgz3Su18tninY-xbL-c=",
+          "title": "woodgrain.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQRQPi6tbaIqMmXdMgxlfT33SJ4w0_5HUMq382MhZyXbbao9W1zN3hZxpOfZ0aKwN_At0xEqWV6RWmUvcK4mljqLNw6xEdHgk9YjiDuuEVD6iUDpKdyKODuJHT8Uu7q4oDxuH40IQTU1hITJN1a5ghHYWZjGRBn5mPbVAoRaKfebhtS7qgQ3417jIvCuYclzeCGl0=",
+          "title": "homestyler.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEsVLI5kfquITdsLGmeXTsnRmEQtVXdbAX6sOEyE3zJrToAzymj9JlzWabjihv5CYY0UXb47kkNN5fDCuukEVhRvjqP59YL5ZNXpYjF50SRuvqJb67lcNWFAsYiIaHBWeG1ee_VDJaElqiiFaOiPLU=",
+          "title": "golfhouses.co"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZ-egNCo2isagn_mwqK23EykuMay5_ClDZbV5HlPShghsAuNrZVDlDOmcIG6whna1pj-ENwuk7R61sBFPNRpyQO1nS03ie3027DK3hCaU1WQGvLpZZGpnB4UEt4x-gWc6bZ37DFj-oOu6xa5bJs8fK0A==",
+          "title": "onekindesign.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEkOyO0INudbte5rzkOjwf5pvQI0x3STvcnyl-ZpqoxOmJK4LERqXoLoQaHRMoGeDAviUY6p3mZRHdcr-wOUDm5BEM2Q1q9ERgiucXuliXU-FXb0bIHcwBWRsTLasj8-OrCkGoB66LYEfU38cOwvzp5pQ_SWW679X8sdabYdmy_KobNXrRf0A==",
+          "title": "architectmagazine.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQErjtMLQiECiXr9PD4QvCRXCqKkD_8uBJXxBlWWbdgwPmLgsSzfWwYRgKEFXNLohL52Op3khBHPbKdH6JHo-awXjtrRh5mWAdIISv95F7ql35AYkGYIImBbXwEA0EPjqlfmi2jHytJipgISz20LnCcTEyxE31UoknN-_zmuycV2rkvlKIKIIeGRg8Z1sBK246evotJzttTdnhjEeM4o8bv54ww=",
+          "title": "househomeco.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFOABGfKEDwtvELZxnE5hHUfC91yBPTuzAsz1Eux3_F2MMHnckubLMXNnRjrv_Izm8cCQbZvV2V8mPuKfq0aeGTd3ud1Iy0WSFIy_ISRytaUNTc4xMp9fSOcgXEldrX7kK3WCGHCOI=",
+          "title": "youtube.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEGwPOnK52THKSgfCw-LdRX2TkOaf36X1F9XCU3imxhCjM_v2blviQU2Jgx1UrvFEigqi3Bo4YFtLW3jjJPFEQ1GNpQvNxTgI_Eq1HPj6LRuyrfp7KrB364vzYJK40ZjcEbOrX0XuNZ_GIUrCjvCixn_sm7A1NOAnrTd3imuLGxn81h2SbUEK0z3L6BKsf6qgcAMjsluzzSCouF4hg=",
+          "title": "luxurymediajournal.com"
+        }
+      ],
+      "search_queries": [
+        "modern Italian courtyard villa design California hillside",
+        "Italian modern villa architecture California",
+        "hillside courtyard house design California",
+        "modern Mediterranean courtyard villa California",
+        "elements of modern Italian villa design",
+        "designing a courtyard villa on a sloped site"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 16,
+        "output_tokens": 768,
+        "grounded": 1
+      },
+      "cost_usd": 0.0369,
+      "latency_s": 8.8,
+      "mentioned_myvilla": false,
+      "cited_myvilla": true,
+      "myvilla_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEGyhuxBD-CN8EiGUJkb19xQHQ2NO3pjNFU-0dPVRJ5DRwcixRmWvJ5W4Nt-3K0ozyQ2gtKnFEPKXnEG_7M_UFjn7UQ9lsD3xyWCGSZ1Go="
+      ]
+    },
+    {
+      "query_id": "q14",
+      "group": "cost",
+      "query": "cost per square foot concrete luxury home Beverly Hills 2026",
+      "engine": "gemini",
+      "error": null,
+      "text": "The cost per square foot for a concrete luxury home in Beverly Hills in 2026 is estimated to range significantly, typically from **$850 to over $3,500**, depending on the level of customization, finish quality, and site conditions.\n\nHere's a breakdown of the expected costs:\n\n*   **High-end Production Luxury:** For homes that are derived from stock plans but still offer a high level of luxury with mid-luxury appliance and finish packages, the construction-only cost is estimated between $850 and $1,200 per square foot in 2026.\n*   **Architect-Led Custom Luxury:** Homes with bespoke design, full custom millwork, premium appliance brands, integrated audio-visual systems, and structural sophistication can cost between $1,200 and $1,800 per square foot.\n*   **Trophy / No-Compromise Luxury:** For the most opulent estates featuring imported stone, museum-grade glazing, signature architecture, art-handling level finishes, and flexible schedules, the cost can be $2,000 to $3,500+ per square foot.\n*   **General Luxury Home Construction:** Other sources provide broader ranges for luxury home construction in Beverly Hills, with estimates from $600 to $1,500+ per square foot, and ultra-high-end estates potentially exceeding $2,000 per square foot. Some 2025 estimates for high-end luxury builds in Los Angeles (with Beverly Hills being 20-30% higher) were $450-$650+ per square foot, indicating that Beverly Hills would easily surpass $1,000 per square foot. For custom homes, costs commonly run $800-$1,500+ per square foot.\n*   **Concrete Construction Premium:** While reinforced concrete costs more upfront than wood framing, it's generally a modest premium—around 3% of the total construction cost. This investment can lead to significant long-term benefits, including insurability at occupancy, lower lifetime maintenance, and enhanced durability.\n*   **Site-Specific Factors:** Several factors can significantly impact the final cost per square foot:\n    *   **Lot Conditions:** Hillside lots in areas like Trousdale or north-of-Sunset estates incur substantially higher foundation and engineering costs, typically adding a 15-35% premium over flat lots. This premium covers extensive work like caissons (drilled concrete piers), grading, shoring, and increased structural steel/concrete requirements.\n    *   **Design Complexity:** Cantilevered rooms, multi-level basements, large spans of glass, and unconventional rooflines demand more engineering and specialized construction methods, driving up the per-square-foot cost.\n    *   **Finish Level:** The quality and origin of materials, such as imported stone, custom millwork, and high-end glazing systems (e.g., thermally-broken steel vs. aluminum-clad wood), are major cost drivers.\n    *   **Permitting and Regulations:** Beverly Hills has its own stringent building department and design review processes, which can extend pre-construction timelines and contribute to higher costs compared to other Los Angeles jurisdictions. California's regulatory environment, including Title 24 energy compliance, CalGreen standards, and seismic zone requirements, also elevates construction costs.\n\nIt's important to note that these figures primarily represent construction costs and do not typically include land acquisition, soft costs (like architectural and engineering fees), and furniture, fixtures, and equipment (FF&E), which can add an additional 25-40% to the total project cost.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGop96rooYY1RixII03G3siB8VnD0BIBvOejCb3jfoiVl7_qnLKT2yMXHnzSNkKRFUIUOIk9DORlm9HUrHObmL8K_SbGWl3Xzuk63t7_kfuXGlbz9M_3Km97gFvQiPulTqy9CDZ-Of7ciL_5T7tb-U_I70FrbgdCERlcPmqjg3QiP6NpfG31NI1Ff1yU7k=",
+          "title": "vividlybuilt.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFCMtRtTK82IHV1329xL2CsrqBxhRO4WOFWyZ1mAWWRQt2WRdhmxqnyJREfuXb8Im3-psNnf7n6bOsEVZ8NxXlpq2us22lIhmQdhDeFq4hqJ4J06SEBaX0oeFuIiOGYFqsy8ZMRLo_agdVxb_q8KhuwoPBqX07ro99_rk5eEoFfrlahJuw-SHrAGzOO0amJk8DU9kOGawXJXw==",
+          "title": "resellerclub.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEBcrQ1OAiJFQmcbXnvIktcY9t8523RmRvOBCd3ZJ3Uz2LyK4f8TLXZHmqtrlnmm8pEyfnt6MrdBv2MSQnm50L9Tz88JTmTP0AqxQ-ADEQm_P0mcUEr21qYuLt8ERAbCEma6a_K35T8SABY9b9vhQ8vmQCaF43qjtyUQ-iBwoFx4QHnas9C",
+          "title": "jdj-consulting.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEu8ITyhLUjY2-1HzLzcl5m-uMqLHQYXjRKRTJGnDQClxmREeUG3UulSpJoXWVKyYpGv-jz-11lG7mt2UApBI3TeuPX6077iXpTjFNW8WFDW3gTQWOMtJJXEmhcmo8wAqj-ebDE2YdiI9oj8buw5Za5_2A=",
+          "title": "roderickbuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE7ZbZ8gYofMda0LDQDBqCIKl4pLzdPaw56jH37SbRmL6OGBUvoU3lRbdf1Ok_h0Njt3PMHW861LlDz13HUl-_K_Zn-xVW-Xc-pFnm1HvFwaChQWjkaDKTLM_nuVQMOk82PSqNtsCFFh7uzR84=",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGJCU2M4lhbF1RBVax88L_ped7XD0WAjAdOBHxc6zEGyrBV-mm8ZEzAbgEnufrBgSWoVL3O04aWa3yFa4S9JkJF-v9fAaWwojhxCA4LuiIxBuF8Vwml4LxVkaLs-Ovmy4YbxBbOxRki9cwRNDg1rjKQFZVOnAqCOm6oXdYyRUjpEl7feGiD9L0=",
+          "title": "vividlybuilt.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGaYu-6EpeMBMYqZ1W2MYivuBHChZ5McDw6y5hZ7ldG0r7LhDuv0ncpNr6yfWhITlYrO3rBgJrxg5qJWDWEqpgifHTbnHYFGy4ABP2aEf3jMvvQv18dwOrekSzNB6_9bJjKhemNjnav-2QJ3p9voDIWKB0-y8kkxHXUW7-ynE9LRZHR6EnmXtKxXHdj6bm69Lse2CD4fkuZlSpX74UNvTjgjf3OqYprS27lmMk=",
+          "title": "calbizjournal.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXijWItA3fKPNatYCGvipFVaQz9hGqY0P7gUnbe-KyM9ZvFA_8aSRBjU6LuwHb8HalZtGAhEsVl4oLcNhR3Qs36UmMSPP4_NwOgYHgQW6uegmuyjqExWhuwjfgfiIVB4FrmQ1QLoMUYrUpKsfxrzJsGN-IAX9MZuk82OZkDiBZuN9PGtWmXuRrZyXipHTDgKAHyCDqxw==",
+          "title": "buildoraiq.com"
+        }
+      ],
+      "search_queries": [
+        "cost per square foot luxury home Beverly Hills 2026",
+        "concrete construction cost per square foot Beverly Hills luxury home",
+        "luxury home construction cost Beverly Hills 2025",
+        "high-end home building costs Beverly Hills"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 23,
+        "output_tokens": 831,
+        "grounded": 1
+      },
+      "cost_usd": 0.0371,
+      "latency_s": 7.8,
+      "mentioned_myvilla": false,
+      "cited_myvilla": true,
+      "myvilla_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE7ZbZ8gYofMda0LDQDBqCIKl4pLzdPaw56jH37SbRmL6OGBUvoU3lRbdf1Ok_h0Njt3PMHW861LlDz13HUl-_K_Zn-xVW-Xc-pFnm1HvFwaChQWjkaDKTLM_nuVQMOk82PSqNtsCFFh7uzR84="
+      ]
+    },
+    {
+      "query_id": "q15",
+      "group": "design",
+      "query": "fair-faced concrete house architect Los Angeles museum quality finish",
+      "engine": "gemini",
+      "error": null,
+      "text": "For those seeking an architect in Los Angeles specializing in fair-faced concrete homes with a museum-quality finish, several firms demonstrate expertise in high-end modern residential design and a meticulous approach to material execution.\n\nHere are some notable architects and firms:\n\n*   **Whitten Architects, Inc.** offers specialized \"Architectural Concrete Consulting Services.\" They possess extensive knowledge in \"surface aesthetics, embed detailing, crack control, and finish product troubleshooting\". Their portfolio includes work as architectural concrete consultants for the Sachs Residence by renowned architect Tadao Ando in Malibu, indicating their capability in achieving pristine concrete finishes for high-profile projects.\n*   **Belzberg Architects** is recognized for designing \"memorably unconventional award-winning projects\" and has experience with modern concrete-and-glass residences. One notable project, a concrete-and-glass house in Hollywood Hills West, was acquired by musician Pharrell Williams, underscoring their ability to deliver high-quality contemporary designs.\n*   **David Hertz Architects, Studio of Environmental Architecture (SEA)**, led by David Hertz, has a strong background in innovative concrete applications. Hertz founded Syndesis in 1983 and developed Syndecrete®, a \"pre-cast lightweight concrete surfacing material,\" demonstrating a deep understanding and history with concrete as a refined building material.\n*   **Miguel Rueda Designs** has established a reputation for \"world class iconic timeless residential architecture design\" in Los Angeles, emphasizing \"unparalleled craftsmanship and quality\" through the use of \"the very best materials.\" While not exclusively focused on concrete, their commitment to high-end finishes aligns with the user's request for museum-quality work.\n*   **Bittoni Architects** specializes in \"modern residential design\" and \"custom homes\" in Los Angeles. Their focus on contemporary custom residences suggests an aptitude for working with various high-quality materials, including fair-faced concrete, to achieve sophisticated aesthetics.\n*   **Krueger Architects** is a \"design-centered architectural practice\" in Los Angeles that emphasizes \"forward-thinking, high design architecture for residential homes\" and prides itself on the \"craft of building.\" Their commitment to craftsmanship and design excellence indicates a capacity to deliver homes with refined concrete finishes.\n*   **Ballentine Architects** is a \"boutique architecture firm focused on high end luxury residential design\" in Los Angeles, known for its work with premiere luxury home builders and designers.\n\nWhen considering architects for a fair-faced concrete house with a museum-quality finish, it is crucial to review their portfolios for examples of precision in concrete work and attention to detail. These firms represent a strong starting point for such a specialized project in the Los Angeles area.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHy0oT-3maZNljhcNIyMMuc8_Q-l_o1N87WYuPQZszgrJx6NnMT7xxh4tKr2WTPzIlfOVd6CY9ZCsPs0bJGeptc9Amt9wDZZID4CXvd15M4Ak6ma4O33BzTuNRifVFBpXzWvRuJLbt3m5eX2uiRkMaQmYUzKlQ-fHjuuGmryw==",
+          "title": "whittenarchitectsinc.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGJJYS8ULKS_VN6-5jNYA4mgElP8LwSvDmEkfMUIAIfMBuUDk8nz2fMZra2jxdgQ9VmCNbEPqtQAUDZcg5I-JxJ11JFlJsOAIa9EUnKCaTBqxyyFytWuNccQL44FLLQtGQHqNJGCP10jL_chUiDaYLFb2DAba3xJUvF2zhVUVX41BYukFtTjYb38irbbw==",
+          "title": "losangelesarchitects.org"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG86FcSWoHke08P4moqVy9lm0f12tjOBFjiYBrwuxqR8rbA0tcr3oIXqKBujCu65RguZ1X0VVwadrcizUospPrE6u2qKR3p_U64RDAAhkco75Tk0VtSFdl0wIcVchsiKQRJ_14PmenJJrrFVfGt-qMXLf-8nMwCOyEcjZWYLTpIEgczTdgnIG4wdPTMTLmra6KiRgHi8XI=",
+          "title": "architizer.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGz9bWWmEeZNWPHmbKC1w5FcW2yMyn76Yy3EMdispoEsYxqtjkiToM3vKxh0vSE4sGd7D3VN0P4EZ9Ajyp5xl23ZxxMUCjC_NNHh05I8hZDTuaawKE-PuhMUhTwf2qu7kRMotNEU-Zegt97iDl_9KdzWkXp_cbV3QrDp_lPiHcyc62DbuEcibyuuHH_-XwpxQZxQoi5X6t7iGximeTRCx2vtQzagAitzA==",
+          "title": "miguelruedadesigns.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0MyGSKA4yeil3Hl-_k-l5Vgqcjs23KRSmlVfrBdz5_HxpnCI5Gxf7n6PCy5cIWJ-MHBHa3X9Pg8l924eFnVzxO9UHPRct_Y4EmYJHaePXwe0q3JFj_iyEoW_TYvU=",
+          "title": "bittoniarchitects.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGAxjP_9Np8MoAvpPBfr50KQ7QF9BJwgab58Xo4_tvv8LRFeokCgLiv0A3_QNSxM332R3kAgNX5T8TxiokVOXcCDLlzgpvG6Aqce5W9FoIJPlhS8CaBAfFm3g==",
+          "title": "kruegerarchitects.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFK8OvaF185JOIzIIZhtogVMVLbjj8BVIZ6LdIskrGjffNydFeNEotYjG1hyCo9uIMPjRDRfNcHqLujIi8xxaGK-BToSLpeR_9cwkqrnexFOrJdXC03k4na7HmIFeqapQM=",
+          "title": "ballentinearchitects.com"
+        }
+      ],
+      "search_queries": [
+        "Los Angeles architect fair-faced concrete museum quality finish",
+        "LA architects specializing in exposed concrete residential",
+        "top architects Los Angeles modern concrete homes",
+        "architects known for pristine concrete work Los Angeles",
+        "LA architects high-end concrete residential projects"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 20,
+        "output_tokens": 607,
+        "grounded": 1
+      },
+      "cost_usd": 0.0365,
+      "latency_s": 7.7,
+      "mentioned_myvilla": false,
+      "cited_myvilla": false,
+      "myvilla_urls": []
+    },
+    {
+      "query_id": "q16",
+      "group": "category",
+      "query": "European architects designing wildfire resilient homes in California",
+      "engine": "gemini",
+      "error": null,
+      "text": "While many firms are actively designing wildfire-resilient homes in California, most prominently featured in search results are US-based. However, there are indications of European involvement and influence in the broader effort to develop fire-resilient architecture in the state.\n\nFor instance, William / Kaven, a firm contributing to the \"Case Study 2.0\" initiative for post-wildfire rebuilding in Southern California, is associated with the European Center for Architecture Art Design and Urban Studies. This suggests a connection that could facilitate the involvement of European architectural concepts and potentially designers in California's rebuilding efforts. The Case Study 2.0 catalog aims to provide practical housing solutions and approved standard plans for communities rebuilding after wildfires.\n\nGenerally, wildfire-resilient home design in California adheres to Chapter 7A of the California Building Code, which mandates \"hardened\" structures. This includes using Class A non-combustible roofing, ember-resistant vents, multi-paned tempered glazing, and a five-foot non-combustible perimeter. These standards address the primary wildfire threats: flying embers, radiant heat, and direct flame contact. Architects often employ materials like concrete, weathering steel, and fire-resistant asphalt shingles to achieve these requirements.\n\nWhile specific European architectural firms directly designing individual wildfire-resilient homes in California are not explicitly highlighted in the provided search results, the involvement of European centers in broader initiatives suggests a collaborative and internationally influenced approach to tackling the challenges of wildfire-prone regions.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE9-2cjPWE1U2J50XqTZl7RYXRXTg202O8k_00hANx3gvixwKwwIhOPCdIys9n1HNp1-iN8I9IR_83xiT9AXVgBaa2YLYtUE9ZoqWHY1u3qsmI6nmmC4K99AU6Biv983moj4uy721uvEg==",
+          "title": "williamkaven.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-DnQ4hhStIC6m96LdTrRQ7av-RngrZ84VB2lx9UlQCXOLCZ7w6qg-Di6_oI9CVRbouf_ERSRK8GmgMx5acWonhIVayaQypBmcQ5GaMLogPpoP-HabMA1jcVL5J2nB2XtUMgHRw1r_MDrna-br88yz",
+          "title": "holderparlette.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_lxJ6K3XOdLpN8i_j-1FPN7h-aZvUWqZR1P-bCVmkgFpGDTvaYrj-KS4_--VPqz-6of-1EvzvSfOZcigzdg3U9m6cPrQGuy-laB5-9UPHfe_RDmqaWfuj5a5CE90CYAkYWB0R0p3BKDflJ42DXAMU8a4W7KSfyKsPGUr-sRCCtOIrUCYjIxd-n-94A_aGOJgiK2dIKMk=",
+          "title": "dezeen.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFpvZCClgtkVU4SaWztaJaxezjGqS_pKVNyyjXM8nR2vyXj0MyxxFC75ABfN4MuQzQdSTRDpq6S0GV8CdOt5lLlUdFUAwdq0JGFl05igoUEAWlOm06WN9AiQSqSwUMR9aJ31Kt7O4CX-KXTrZ5ey2bZHCr_k1p0XF81a8LIDadiZlxSUDVtiqmuMNM=",
+          "title": "dezeen.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHttBM6nm3N2mnlzmIIAwGgWyqJs0Q5DcBqt1q-lhlTSwY3YPRhqi3dMwIPWeUeLF4sxgsqTIBpA8h91Ctwu5ZYOIU8gxvkZ3t4SKVGHfRaV1JXlrpWd0Kx5RjHbRkNJxn4ZpGdpAMe7pKbzLp-SdoNKnnnNUzx_GzBw_P4LoYVcHIA8dNpGvUyhrX68e6XWAby1Z2SxuzzG5WyJl073oj_bFixT8lxI-zZ82kqCZnFM-nOC3w=",
+          "title": "stirworld.com"
+        }
+      ],
+      "search_queries": [
+        "European architects wildfire resilient homes California",
+        "wildfire resistant architecture California European designers",
+        "international architects California fire-resistant design"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 17,
+        "output_tokens": 335,
+        "grounded": 1
+      },
+      "cost_usd": 0.0358,
+      "latency_s": 5.3,
+      "mentioned_myvilla": false,
+      "cited_myvilla": false,
+      "myvilla_urls": []
+    },
+    {
+      "query_id": "q17",
+      "group": "insurance",
+      "query": "does a concrete house lower wildfire insurance premiums in California",
+      "engine": "gemini",
+      "error": null,
+      "text": "Yes, having a concrete house can help lower wildfire insurance premiums in California. Insurers consider building materials when assessing wildfire risk, and fire-resistant materials like concrete are viewed more favorably.\n\nThe \"Safer from Wildfires\" regulation in California, effective since 2022, mandates that insurers offering wildfire coverage provide discounts for specific mitigation actions. These actions include home hardening measures such as using non-combustible materials, including concrete, for exterior walls and roofs. For instance, the regulation recognizes \"non-combustible 6 inches at the bottom of exterior walls\" as a measure to prevent embers from igniting walls, with concrete listed as a qualifying material. Additionally, Class-A fire-rated roofs often include concrete tiles.\n\nWhile concrete construction is a beneficial factor, it's important to note that wildfire insurance premiums are determined by a combination of elements. Key factors influencing your premium include:\n*   **Location:** Your property's position within CAL FIRE's Fire Hazard Severity Zone maps (Moderate, High, or Very High) is the most significant factor.\n*   **Defensible Space:** Creating and maintaining a defensible space around your home is crucial.\n*   **Other Home Hardening Measures:** This includes features like ember- and fire-resistant vents, upgraded windows, and enclosed eaves.\n*   **Proximity to Vegetation and Fire Stations:** Homes closer to forested areas or further from fire stations generally face higher premiums.\n\nImplementing a range of wildfire mitigation measures, including the use of concrete and other fire-resistant materials, can lead to discounts on the wildfire portion of your insurance premium. The California FAIR Plan, often a last resort for homeowners in high-risk areas, also offers discounts for documented wildfire hardening.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVCokfIBWJ-aA5IHSRXyt9kUMCTG7xX2pLNEjlGMhwMPYIB0U8aEVph8xVz7nJku2fKSnFNKrs9OLlyrC20-806Zy7wwdZ2c_nnes8a6SidkCtUCAS7Ju5Cf7qcZ_9FylyVdf9wNK_F76GY4xMxQHoZTgGxGWWfbfnIBFVklsstNFXs2eueD_Zmnstn3PvHts=",
+          "title": "delgadosinsurance.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHFRcRqFROo0xbsA76rue3VBSCaXsQAHPcEp17oWYmXuQSGT-uIo7lEmMOBG0ukTwDxCit7YWxvO13y9aoJvvbs8sEsWkp4f6d8HS_suoGLHb1DE09RIJpxOFy2o5rgemnF6ilKkPzj2xpGvTsOMa0qu3tCoJ0t1mbCpZFNBHHbtP3OQZX5u7icCHbGpWvJ4xBE0SYkoovT",
+          "title": "custom-exteriors.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHBvncwyJfP0x2EI5gk-AByu2LqwiTUM3DyT1cNEf-D3s_v2ogsPEugcDIULcTGfhKnn2whT_4t1K2sHWj6B38hD_UKPK-PbXUEvnOHoGevo94ZBf0qQ4cJ1nzjMWDFEj4yarunNSiq2k7Xjcuq9zl8VogkaOsGW2zu6njAJi5v4rdMo1Ax",
+          "title": "ca.gov"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHbj5yaB2XFd3xvEEbrDLL0KYQIgFwewZ-m8ReMWMGGSxfsgFBaX8LFcDGy0RzNRsJoTmzpC0FcWlsKhemMFARC18MxJCDG2J_nvmdTuEaF97Jz97GQnKekB5hCKjtH5H9Lvnb0_3V8Th9G2begYLtjV_WfbZUlvvaQjINilNA030suEv5PXcNPu1R5q3bk7w==",
+          "title": "beachbreakinsurance.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGVUWqb_q27UpsnF1zm0mgAPlBb-_bK2b_rNpLSptwqfmbmV-VvoAj8B5RGNPWoH2TydUSBY7ihn5AeRV78mx2ItNOxudQpiY7BMsMWP04oZrX2Zq9pQJCygZT_x9ABkQH0lLP-SQNFmt_G8OCoud0ADIaDcBNgAnqWw0vsT9DNePL4C9gSIO-w19QQ451JQEOVNFi6UeE=",
+          "title": "emberprousa.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGpMigr_tORXDzb_1aoVCR_7imnpkk6vPoB5MTpKqR9Haibexj9maISUybhva7YduwYmXM3xudl1jTi2y3wMLvBvZPiZ9pBBnr8vhVRBznEqF2yGeu6VEjLiTKRCvCvPFL72sk_mIFZHBcxzoBgAWfavw==",
+          "title": "latentinsure.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEgfOhjU01XCEjrhp3-DMVgWPah0NXGonhZuR9gSY50ZB6OVxkw-KzB_r--5WibdfP4TW0XgY6eBIOCMRDPzm1GTSJn56mKVEtJRcaSsUzY1YhlH62Esn80V13V_8MJy88jcYFCAKZPdgu6tTgM6wcmQG2v62e-Z3T6BSdk6LV6ms4HcurtJerOU6h3XGmtRiDttY1trUF2wmqSeYM=",
+          "title": "broadwayinsurance.agency"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGWMjYNuIHCIBtDRPjqJ-5aqdiRvty5ndy1HYnyaLvnn3zCVxgIG7nBLdzuVCtX3cSdceCX16aNXnND-P7MQMaxBJYNW1A7Yz2edtAbOPAO-IqO28bVCqIgxzKsXUMesn62BGvsPgisluG7pB9mjZfuTb9t9uv5XA==",
+          "title": "tect.com"
+        }
+      ],
+      "search_queries": [
+        "concrete house wildfire insurance premiums California",
+        "wildfire mitigation home construction materials California insurance",
+        "factors influencing wildfire insurance costs California"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 19,
+        "output_tokens": 390,
+        "grounded": 1
+      },
+      "cost_usd": 0.036,
+      "latency_s": 5.2,
+      "mentioned_myvilla": false,
+      "cited_myvilla": false,
+      "myvilla_urls": []
+    },
+    {
+      "query_id": "q18",
+      "group": "rebuild",
+      "query": "Malibu custom home builder after wildfire non-combustible construction",
+      "engine": "gemini",
+      "error": null,
+      "text": "Several custom home builders in Malibu specialize in non-combustible and fire-resistant construction, especially in the aftermath of wildfires. These builders often focus on materials and design strategies that meet California's stringent Wildland Urban Interface (WUI) codes, such as Chapter 7A of the California Building Code, which is critical given Malibu's classification as a Very High Fire Hazard Severity Zone.\n\nHere are some builders and their approaches to non-combustible and fire-resistant construction in Malibu:\n\n*   **Empress Builders**\n    Empress Builders offers fire-resistant home construction and wildfire restoration services in Malibu. They handle everything from fire damage assessment and permitting to ground-up construction, utilizing techniques and materials designed for the Malibu environment.\n*   **Joy Line Homes**\n    This builder specializes in fire-smart modular homes that incorporate non-combustible fiber-cement siding, standing seam metal roofs, and dual-pane tempered glass windows. They also integrate safety features like ember-resistant attic vents, sealed soffits, and Class A roofing to meet and exceed WUI standards.\n*   **Forest Construction**\n    Forest Construction helps protect investments with fire-resistant building materials, including metal roofing, fire-rated windows, and non-combustible siding. They also design defensible spaces around properties to mitigate future fire risks and are knowledgeable about Malibu's specific building regulations.\n*   **My Villa**\n    My Villa designs and constructs custom reinforced concrete villas in Malibu, emphasizing a \"layered non-combustible system from the slab to the fence line.\" Their homes are built to satisfy the California 2026 WUI Code, the Safer from Wildfires framework, and IBHS Wildfire Prepared Home Plus certification, aiming for long-term insurability through wildfire cycles.\n*   **DWD Builders**\n    DWD Builders actively reconstructs coastal properties in Malibu, ensuring homes adhere to current Chapter 7A fire-resistant construction standards and Coastal Commission requirements.\n*   **Digz Prefab**\n    Digz Prefab offers fire-resistant prefabricated homes in Malibu, utilizing advanced construction methods engineered to meet strict California building standards for durability and safety after wildfire damage.\n*   **Addition Building & Design**\n    This company builds homes to California's wildfire standards, employing materials such as wood frame, structural steel, concrete, and insulated concrete forms, with numerous rebuild projects in Malibu.\n*   **Phoenix Rising Malibu**",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHR2Ayov9tBFyWSXDmCJL3ho_JwyxmWcRrCIUw4j6VDS35qLgmHeT1IAa8L_5MIXpO15vTuuc7zou3jDeUD0-ADF7L957C7lwA9jdsH5mtCM4RUPjJu0TIl5746KTe1IVy7KNQxbfnYFXodUY0IXKpMGo8lKdiVdr-XLz7gmTK-DkyQdvmLFkmeAE_ekLYkx_I0",
+          "title": "malibupros.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQESfc5bU2VcXdwP6JgXtoIN1rOsU0NXeWiRx2i_hfg2bu6iqNmjvjVNAxeWy_whrti-cWD32AR-By2-rw7D4L10N5syvvHk838Zfrezq1pZtzNoa9tdhl-9WDsNLCG4VpTBg8iOi1xklwNpC5i5J2xiqg==",
+          "title": "luxuryhomebuildersinc.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGF3HjJBWJIxQ7iO12KSEqBU9niC0sYI1RwtNgij9i30ekYgtYHrUxHNxPAwsCHV3ugiira4NK6pcWiv8LscFlaN4gnuERmmHq8bp7aUg12y18Ldn3d1eQornp0HdDjpWMI_hFXsa9oRwaYNj3Gw_KX_UjW6S8dzfdDRIPgL4kgLMCFV-yasfWCsJZh9beoiYQ-XWoKBiOI-cE1cPwrtgbe5swyjnKYqOHvC_xSFA==",
+          "title": "monumenthomebuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEbJdK7igZSap_AVfYV5K1o1dlXqApw1-KUZOpIqy1Xhxu7YYB2k1kLoNcOkn2gFL4Vaix0Qu-iKTJzQDxMLP6OhZbdBBBu1AfAljx7IGaqdhZWrwmgnVL9wAYH3WZQpA3yewK8cP0IgMo75WvlEivupKO67wW7NI3uP0cNr_UkKTIJwFQjPeNz1_XL7Qu7rYEnJVE29T7c_DSytnbUln-SeQ==",
+          "title": "malibumoss.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHgNQQT6cbjt1dCzoAtMzpbJR8dMN8ZzTB3pauwMVL26tuTD9-TaS_fX2l17RHKcWBAmsGyO0lv8fIIWg8CcL1Fd53iiq60Y9PHfCd8p4BjjBSREbppo2_sCCXsW6nhnztQ",
+          "title": "empressbuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF8HrkCuncS8h-6SQ2RAug1GtaXSIn0lBb87zFDiPSYN63nem3fY9s_NddrMBaSwcBt7SHahyGYkPpY2KaFAK26OcL2xj_zTOhUSVBvArKZd56Vvfxo_0V7iX090-kUBK2VeWqYqCU-TGBOy8o=",
+          "title": "joylinehomes.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHkv0a_H8i0q3HmjOrSlD-8BVyI2PhlANgYSPSOWzo23UU34y1neeMuC2Nsu3gC_N4tCgF5EyDJizDY9xakc-TXv2RFkyjakQPv9tkszC-ZcMRig7klQ3lxulW40624KYwrAKJ4T9vxTn9fNF7oWAHWFBs=",
+          "title": "forestconstruction.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHuyUwPPl0ADlq2xbXzSmWjQf37UAjvJTjVM9oNen9gEcdYdBfdBwNYoX4EOrFokpKgLiiuE5JYOzgb4cblfZ2wbJtJJqTcBHEUWz7PWDsp2xZV9ehiCKeVbM3D_08asZAEHPeygAcKFTYMLsFe",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHiVklrL2kjkw0QnrLbCgzIR5YjXF5AkqaNcRxGc5rE81vEpgLaSSeBilA3CXbSqRglnqYY_HGq5rlJH3m2Mcyg__wZQQRAQA4BfO3yxyp29-7OKSdhJR6FOm1lt4hRphe-IEZYnssvkYCRpGI=",
+          "title": "dwdbuilders.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_nq6v7i42lGKfzzwhjoc6IlGtj60dcfj-3reEIOQa7g9po0q-dHvEI8zCSBs9-9CNH8KtjX0PTZdZpDZDxDEVE0aHROIpqsJWp2OVCc0CQvrHw8ttELHLQuWdd6L8NQA=",
+          "title": "digzprefab.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGdbQDn_2zJycoylYdYmtF0g-BAmuwWF5x6_uyZRPlGR26Y_H55vV18kKSuJIiuBb5OTJZBMUWzngAeCVsmFOxhha-aSrTvE_8GBmxltmZmcQ-HXmTHTLFkhKTJrDG8lBo6B7WJAlA0EsDLAB4qOHNLB2v4_QEOC1W5QqZTRyQWjUPpMI2XnU75jw==",
+          "title": "additionbuildingdesign.com"
+        }
+      ],
+      "search_queries": [
+        "Malibu custom home builder non-combustible construction wildfire",
+        "Malibu fire-resistant home builders",
+        "Malibu post-wildfire construction non-combustible materials",
+        "fire-safe building materials Malibu custom homes"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 21,
+        "output_tokens": 558,
+        "grounded": 1
+      },
+      "cost_usd": 0.0364,
+      "latency_s": 8.7,
+      "mentioned_myvilla": true,
+      "cited_myvilla": true,
+      "myvilla_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHuyUwPPl0ADlq2xbXzSmWjQf37UAjvJTjVM9oNen9gEcdYdBfdBwNYoX4EOrFokpKgLiiuE5JYOzgb4cblfZ2wbJtJJqTcBHEUWz7PWDsp2xZV9ehiCKeVbM3D_08asZAEHPeygAcKFTYMLsFe"
+      ]
+    },
+    {
+      "query_id": "q19",
+      "group": "design",
+      "query": "biophilic luxury villa architect Los Angeles Transsolar",
+      "engine": "gemini",
+      "error": null,
+      "text": "While a direct collaboration between a specific biophilic luxury villa architect in Los Angeles and Transsolar on a villa project is not explicitly detailed in the search results, several Los Angeles-based architectural firms specialize in biophilic design for luxury residences. Transsolar, known for its climate engineering and sustainable building solutions, collaborates with various architects on projects focusing on environmental performance.\n\nArchitects in Los Angeles recognized for their work on biophilic and luxury residences include:\n\n*   **Studio OSKLO** is an architecture and design firm known for creating modern estates with a focus on integrating natural landscapes, muted palettes, and minimalist interiors. Their own Hollywood Hills home showcases biophilic principles through features like a central atrium with greenery and large retracting glass panels that blur indoor and outdoor spaces.\n*   **CarbonShack Design** incorporates nature into its designs, creating sustainable buildings that aim to benefit both people and the environment. They focus on streamlining architecture, interior design, and construction to create personalized custom homes that blend low-carbon technologies with architectural design.\n*   **Whipple Russell Architects** integrates nature, glass walls, and biophilic design for wellness in their luxury bedroom suites, aiming to create resort-style spaces with strong visual connections to the outdoors.\n*   **Lehrer Architect LA** designed a net-zero energy villa in Santa Monica Canyon that interweaves living spaces with the surrounding forest and vegetable garden. This design emphasizes natural light, ventilation, and the sun's movement to minimize the need for mechanical cooling, utilizing expansive glass walls to blur the boundaries between the house and garden.\n*   **Neumann Mendro Andrulaitis Architects**, specifically architect Mary Andrulaitis, designed a home along a salt marsh that leans on biophilic design to coexist with its natural environment.\n\n**Transsolar KlimaEngineering** is a firm of engineers focused on creating climate-responsive built environments through partnerships with leading architects. They combine climate protection, architecture, and engineering, offering services from focused support to full project service. While Transsolar has offices in New York, Stuttgart, Munich, and Paris, their work extends globally. In Los Angeles, Transsolar collaborated with Renzo Piano Building Workshop on the Academy Museum of Motion Pictures, developing concepts for thermal and visual comfort for the building's terrace. Transsolar's team includes individuals with architectural backgrounds who apply their expertise to high-comfort, low-impact, and sustainable built environments.\n\nWhile there isn't a direct documented partnership for a luxury villa, the expertise of Transsolar in climate engineering could certainly complement a Los Angeles architect specializing in biophilic luxury villas to achieve high standards of sustainability and environmental performance.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGyGdIR7TNqMttgiWg1G6FqIloSJ8BhscW3Vyxz4u_hXxh_S1M2f-yR4Wq2kaW7RIs4pC4nr3sahBBc3UTyUQzmGHDb3Q-DNS8E4PkTBjTqS1yKperAh2ThdUosQFneq-iemyQUAeOLq1WKfj5Y17kxGtrKBtU6Q2mxn66wacA2ulP4siJugmpNfKDHN5Y=",
+          "title": "homesandgardens.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF3hei9icnyPX8jl04m5IQ1jrzqpGyomFg_1PAxXLYPXluiSIFxX1R7ykbUYQ35p4Yo3AvUkghLUwTWhYLGCLMOMsGXZrpia_EH7qzXtGNVRHx6gLr2iXzRT2qvAb6CoEJ5Ngt7m2Ne4OFtEwzM",
+          "title": "carbonshack.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEgxfkQN1Q44g4Cnu53D3YhVhK_-k8RmQ7YcR5peOI6WnkKFu55s_fO7UVbtdHawX-9okot0BWUTjLHKoAX2Huzr2OR0UNqbQv4Q9o5z_wkoRdcm7DYzGG89agKPN_S5eIphmqxicfeRPf13LJTPzDj92axD1-oXyx4RkpnZvm2raDsWkw93LwRY2M2ppqhFxhGqekgCpCfDchS0mc96LZxre4wrqIiiE7ixmYR5cCvtw==",
+          "title": "whipplerussell.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF_aSeGhrx8a89K1hJNjxzmnCsmyajS6W7kf_z1ESmz4i64914ccUEZmStigfdRdL76e1_GA_yeMWJruo0rDdW_W8BY2h0kNEtzTD_-x9iy3JJRHXeEdS3JCPxm1BYnuq04pbTngpVJ-fHn5AH-ZNgWrkF5wA==",
+          "title": "lehrerarchitects.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGUV8LV7zyjZiAAArFUM4KDe1C_WJye9E2FCkm_9Pt_syhuRhlShUd7X2bdRjcVu5T_G6rkicbS3vIJew4koJ6D4R2ZNPMDbAlUD4pr5EBtlX7h40fSKZ1q-RyBtHmkY4nn7vPcgDkQIClpcS3KcfEc3lWRnQk7Vc2b6MHIb1N6H8Gmdco9HotO6D3HyL3ktziVkrtthKPOTx-wOh0kf_37hA==",
+          "title": "luxesource.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8CkOH-mXNfAn3IAcCb9Wy24cQR40BvCoV4sA8tCVM1bcP4kckdX5bev1LuVPfLZwztgc9TxIGNGR2x2TKC1p3bifqNc362rC-u5zO7g74H_eCJyZhSA1-g7BAykINaSL2ppnwWi6Ird6OtN960dg25mPbrg==",
+          "title": "thebentway.ca"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFKw1ZvqRY3lrXtFa6GQqoMhsMWlNkDPyjWKj7e_2U7Kusa4Sjd4dzPsAndxyzduC0la9vpw_IcvQSBGS0tJUr6ON1RT0z9RCKwzq3tVAlThif-",
+          "title": "transsolar.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHjYXQZT7QXrin0LdTuyq1yCN7SBr5RzEkwQaJf1DGTrbhYg7YhDPo5Fiww5v-Hq_rvN-5phVFmhthMwxYb1LNATZMiSQSVcA40QvR7xb3aeJtp2097QtOJ5XQ7OQ9B3juEbPswuKuUWYAJQaYr4A==",
+          "title": "transsolar.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHekUpu2LTg0ZKpBR9vCobBtCa0azaSDCR_KKfkfOaPuCzw8aCe0Rj7LtM9mptEcaNjqarEmTKNRRNH-XdKA-Jr0lGMNjTSnIUOSBJjJRObDIC8OlAu7FG2keGykIj-CurE3PY3i3ZgIiaKiSfZUOYOjpHMtFwyBUzLVSVesdN-pw==",
+          "title": "transsolar.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFv8TJKNHgZEEC5_IW4QqCCtQn1FxNK7t0z2sjKfyvZOjfognnJ6VEIEoKO29efkmVxodKWP3lgBypFCR6wZloCzB-nwRMlh2zA_TSYxoEbIHl18b9-hitCkaVA2g3sleutZOHHlElZWg==",
+          "title": "transsolar.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGobgcVHQjLG60qM3YuhccuuIWl9r_1s-0p-fNbBRdXSRXzaNTG2QiLIDO1q-CGHOtqfwoADYrY1a5LjdBDcurH4Ol5v2dWd4-XbtUPqECHEYkV4nL8RTqkhHLlQknNtV3kqSCTsQ==",
+          "title": "transsolar.com"
+        }
+      ],
+      "search_queries": [
+        "biophilic luxury villa architect Los Angeles Transsolar",
+        "Transsolar collaborations architects Los Angeles",
+        "Los Angeles architects biophilic design luxury villas"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 18,
+        "output_tokens": 576,
+        "grounded": 1
+      },
+      "cost_usd": 0.0364,
+      "latency_s": 8.4,
+      "mentioned_myvilla": false,
+      "cited_myvilla": false,
+      "myvilla_urls": []
+    },
+    {
+      "query_id": "q20",
+      "group": "brand",
+      "query": "who is the founder of My Villa Los Angeles Italian architect",
+      "engine": "gemini",
+      "error": null,
+      "text": "The \"My Villa Los Angeles\" practice, which specializes in designing fire-resilient luxury villas in Los Angeles, is the California branch of **IT'S Architecture**. This studio was founded in 2016 by Italian architects **Alessandro Cambi, Francesco Marinelli, and Paolo Mezzalama**. IT'S Architecture operates from offices in Rome and Paris, with its Los Angeles presence, My Villa, opening to serve the California market. The firm integrates Italian architectural heritage and design principles into its projects, reinterpreting traditional Italian villa typologies for the Southern California landscape.",
+      "urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHpCYYHUxLzDjBSICahlkjagoGi8HWsy_xaP5Zi8dz1V8hgsxTGfr3VvqVSyzDVU--bJW_0ZxgFGLr1791pHXRpsavBzbRDTy9XV6ChKkXDJR8_xdm0Tx8=",
+          "title": "myvilla.la"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6Ilkd_4Uw8a6k5CeODtgW8gf0Gd1MSOrQeBH6tEO-9eqUjydJZls_ORP1Y-0R-3yJgVca_ky23C5nSJ-bjQKlBSCeNf-sf8lWBDT9bCg=",
+          "title": "myvilla.la"
+        }
+      ],
+      "search_queries": [
+        "My Villa Los Angeles architect",
+        "who designed My Villa Los Angeles",
+        "My Villa Los Angeles founder"
+      ],
+      "model": "gemini-2.5-flash",
+      "usage": {
+        "input_tokens": 20,
+        "output_tokens": 148,
+        "grounded": 1
+      },
+      "cost_usd": 0.0354,
+      "latency_s": 3.3,
+      "mentioned_myvilla": true,
+      "cited_myvilla": true,
+      "myvilla_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHpCYYHUxLzDjBSICahlkjagoGi8HWsy_xaP5Zi8dz1V8hgsxTGfr3VvqVSyzDVU--bJW_0ZxgFGLr1791pHXRpsavBzbRDTy9XV6ChKkXDJR8_xdm0Tx8=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6Ilkd_4Uw8a6k5CeODtgW8gf0Gd1MSOrQeBH6tEO-9eqUjydJZls_ORP1Y-0R-3yJgVca_ky23C5nSJ-bjQKlBSCeNf-sf8lWBDT9bCg="
+      ]
+    }
+  ]
+}
