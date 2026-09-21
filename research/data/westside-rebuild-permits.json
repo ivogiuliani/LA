@@ -2,7 +2,7 @@
  "meta": {
   "title": "Westside Rebuild Tracker — LADBS Permits after the January 2025 Fires",
   "page": "https://myvilla.la/research/westside-rebuild-tracker.html",
-  "retrieved": "2026-09-16",
+  "retrieved": "2026-09-21",
   "source": {
    "publisher": "City of Los Angeles, Department of Building and Safety (LADBS)",
    "portal": "https://data.lacity.org",
@@ -270,7 +270,7 @@
     "median_days_submitted_to_issued": 98.0,
     "median_sqft_single_family": 3579.5,
     "median_declared_valuation_single_family_usd": 600000.0,
-    "issued_last_30_days": 67
+    "issued_last_30_days": 54
    },
    "Brentwood": {
     "permits_total": 134,
