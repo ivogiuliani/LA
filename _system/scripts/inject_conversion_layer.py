@@ -137,7 +137,8 @@ class S:
         self.landing_url = b["landing_url"]
         self.landing_path = urlparse(b["landing_url"]).path or "/private-briefing.html"
         self.thank_you_url = b["thank_you_url"]
-        self.lead_api = cfg["lead_api"]["endpoint"]
+        # lead_api.enabled: false ⇒ il form non chiama l'API (endpoint non ancora deployato: evita errori CORS in console)
+        self.lead_api = cfg["lead_api"]["endpoint"] if cfg["lead_api"].get("enabled", True) not in (False, "false", "no", 0) else ""
         self.formspree = f"https://formspree.io/f/{cfg['formspree_id']}"
         self.ga4 = cfg["ga4_measurement_id"]
         self.price = c["price"]
@@ -275,13 +276,7 @@ def mvtrack_js() -> str:
     var a = t.closest('a[href^="mailto:"]');
     if (a) send('contact_email_click', { page_type: PT, cta_id: a.id || 'mailto', link_url: a.getAttribute('href') });
   }, true);
-  var started = {};
-  document.addEventListener('focusin', function (e) {
-    var f = e.target && e.target.form; if (!f || f.tagName !== 'FORM') return;
-    var key = f.id || 'form'; if (started[key]) return; started[key] = true;
-    var fid = f.querySelector('input[name="form_id"]');
-    send('form_start', { page_type: PT, form_id: (fid && fid.value) || key });
-  }, true);
+  // form_start / form_submit arrivano già da GA4 Enhanced Measurement (Form interactions): nessun evento custom qui.
   window.mvTrack = send;
 })();
 </script>"""
@@ -338,10 +333,9 @@ FORMJS_TEMPLATE = """<script>
     var payload = {}; fd.forEach(function (v, k) { if (k !== '_gotcha') payload[k] = v; });
     if (!payload.consent_nurture) payload.consent_nurture = 'no';
     payload.submitted_at = new Date().toISOString();
-    Promise.allSettled([
-      fetch(MV.formspree, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }),
-      fetch(MV.leadApi, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-    ]).then(function (rs) {
+    var sends = [fetch(MV.formspree, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })];
+    if (MV.leadApi) sends.push(fetch(MV.leadApi, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }));
+    Promise.allSettled(sends).then(function (rs) {
       var ok = rs.some(function (r) { return r.status === 'fulfilled' && r.value && r.value.ok; });
       if (!ok) throw new Error('send-failed');
       var wrap = form.parentElement, succ = wrap && wrap.querySelector('.cta-success, .brief-success');

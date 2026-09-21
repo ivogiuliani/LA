@@ -615,7 +615,7 @@ window.addEventListener('scroll', function () {
 <!-- CONV:FORMJS:START -->
 <script>
 (function () {
-  var MV = { formspree: 'https://formspree.io/f/mgoljyjl', leadApi: 'https://content.myvilla.la/api/lead', thankYou: 'https://myvilla.la/briefing-received.html' };
+  var MV = { formspree: 'https://formspree.io/f/mgoljyjl', leadApi: '', thankYou: 'https://myvilla.la/briefing-received.html' };
   var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_id', 'utm_content', 'utm_term'];
   var CLICK = ['oppref', 'gclid'];   // oppref = ChatGPT Ads click id, gclid = Google Ads
   var TTL = 30 * 24 * 3600 * 1000;   // attribution kept in the browser for 30 days
@@ -664,10 +664,9 @@ window.addEventListener('scroll', function () {
     var payload = {}; fd.forEach(function (v, k) { if (k !== '_gotcha') payload[k] = v; });
     if (!payload.consent_nurture) payload.consent_nurture = 'no';
     payload.submitted_at = new Date().toISOString();
-    Promise.allSettled([
-      fetch(MV.formspree, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }),
-      fetch(MV.leadApi, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-    ]).then(function (rs) {
+    var sends = [fetch(MV.formspree, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })];
+    if (MV.leadApi) sends.push(fetch(MV.leadApi, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }));
+    Promise.allSettled(sends).then(function (rs) {
       var ok = rs.some(function (r) { return r.status === 'fulfilled' && r.value && r.value.ok; });
       if (!ok) throw new Error('send-failed');
       var wrap = form.parentElement, succ = wrap && wrap.querySelector('.cta-success, .brief-success');
@@ -719,13 +718,7 @@ window.addEventListener('scroll', function () {
     var a = t.closest('a[href^="mailto:"]');
     if (a) send('contact_email_click', { page_type: PT, cta_id: a.id || 'mailto', link_url: a.getAttribute('href') });
   }, true);
-  var started = {};
-  document.addEventListener('focusin', function (e) {
-    var f = e.target && e.target.form; if (!f || f.tagName !== 'FORM') return;
-    var key = f.id || 'form'; if (started[key]) return; started[key] = true;
-    var fid = f.querySelector('input[name="form_id"]');
-    send('form_start', { page_type: PT, form_id: (fid && fid.value) || key });
-  }, true);
+  // form_start / form_submit arrivano già da GA4 Enhanced Measurement (Form interactions): nessun evento custom qui.
   window.mvTrack = send;
 })();
 </script>

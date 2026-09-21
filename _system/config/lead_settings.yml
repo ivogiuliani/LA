@@ -105,6 +105,7 @@ chat:
   disclosure: "You're chatting with My Villa's AI assistant, not a person."
 
 lead_api:
+  enabled: false           # 2026-09-21: API non ancora deployata sul VPS → il form invia solo a Formspree. Rimettere true dopo il deploy.
   endpoint: https://content.myvilla.la/api/lead
   healthz: https://content.myvilla.la/api/healthz
 
