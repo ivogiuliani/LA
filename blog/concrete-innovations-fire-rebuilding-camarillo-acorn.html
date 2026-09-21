@@ -547,5 +547,29 @@ body #cookieBanner.cookie-toast .cookie-btn { padding: 8px 14px; font-size: 11px
 })();
 </script>
 <!-- CONV:COOKIE_UI:END -->
+<!-- CONV:READTRACK:START -->
+<script>
+(function () {
+  // Reading quality (no personal data): scroll depth 25/50/75/100% and visible-tab reading time 30/60/120/300 s, once per threshold
+  var PT = (document.body && document.body.getAttribute('data-page-type')) || 'page';
+  function send(ev, p) { p = p || {}; p.page_type = PT; if (window.__mvDebug) p.debug_mode = true; try { if (typeof gtag === 'function') gtag('event', ev, p); } catch (e) {} }
+  var marks = [25, 50, 75, 100], hit = {};
+  function depth() {
+    var doc = document.documentElement, h = Math.max(doc.scrollHeight, document.body ? document.body.scrollHeight : 0) - window.innerHeight;
+    if (h <= 0) return 100;
+    return Math.min(100, Math.round((window.scrollY || doc.scrollTop || 0) / h * 100));
+  }
+  function onScroll() { var d = depth(); for (var i = 0; i < marks.length; i++) { var m = marks[i]; if (!hit[m] && d >= m) { hit[m] = true; send('read_' + m, { percent: m }); } } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  setTimeout(onScroll, 1500);
+  var secs = 0, tmarks = [30, 60, 120, 300], thit = {};
+  setInterval(function () {
+    if (document.hidden) return;
+    secs += 5;
+    for (var i = 0; i < tmarks.length; i++) { var m = tmarks[i]; if (!thit[m] && secs >= m) { thit[m] = true; send('read_time_' + m + 's', { seconds: m }); } }
+  }, 5000);
+})();
+</script>
+<!-- CONV:READTRACK:END -->
 </body>
 </html>

@@ -36,6 +36,7 @@ Patch su index.html (--target)
   MVTRACK   delega click [data-ev], form_start, contact_email_click (blocco condiviso)
   COOKIE_UI (solo --shared) banner/toast + CSS per le pagine senza banner proprio
   GACONFIG  gtag('config') con debug_mode se la sessione è di test (?mv_debug=1)
+  READTRACK qualità di lettura: read_25/50/75/100 (scroll) e read_time_30s/60s/120s/300s (scheda visibile), tutte le pagine
   --sweep   allinea tutte le pagine servite prive di CONSENT/GACONFIG/banner (Journal compreso; MVTRACK escluso sugli articoli)
 
 Exit code sempre 0 (errori non fatali loggati), tranne argomenti errati.
@@ -366,6 +367,31 @@ FORMJS_TEMPLATE = """<script>
     })(forms[i]); }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>"""
+
+
+def readtrack_js() -> str:
+    return """<script>
+(function () {
+  // Reading quality (no personal data): scroll depth 25/50/75/100% and visible-tab reading time 30/60/120/300 s, once per threshold
+  var PT = (document.body && document.body.getAttribute('data-page-type')) || 'page';
+  function send(ev, p) { p = p || {}; p.page_type = PT; if (window.__mvDebug) p.debug_mode = true; try { if (typeof gtag === 'function') gtag('event', ev, p); } catch (e) {} }
+  var marks = [25, 50, 75, 100], hit = {};
+  function depth() {
+    var doc = document.documentElement, h = Math.max(doc.scrollHeight, document.body ? document.body.scrollHeight : 0) - window.innerHeight;
+    if (h <= 0) return 100;
+    return Math.min(100, Math.round((window.scrollY || doc.scrollTop || 0) / h * 100));
+  }
+  function onScroll() { var d = depth(); for (var i = 0; i < marks.length; i++) { var m = marks[i]; if (!hit[m] && d >= m) { hit[m] = true; send('read_' + m, { percent: m }); } } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  setTimeout(onScroll, 1500);
+  var secs = 0, tmarks = [30, 60, 120, 300], thit = {};
+  setInterval(function () {
+    if (document.hidden) return;
+    secs += 5;
+    for (var i = 0; i < tmarks.length; i++) { var m = tmarks[i]; if (!thit[m] && secs >= m) { thit[m] = true; send('read_time_' + m + 's', { seconds: m }); } }
+  }, 5000);
 })();
 </script>"""
 
@@ -768,6 +794,7 @@ def apply_shared(html: str, s: S, page_type: str, log: List[str], with_form: boo
         html = upsert(html, "FORMJS", formjs(s), before_body_end(), log)
     if with_track:
         html = upsert(html, "MVTRACK", mvtrack_js(), before_body_end(), log)
+    html = upsert(html, "READTRACK", readtrack_js(), before_body_end(), log)
     if with_cookie_ui:
         html = upsert(html, "COOKIE_UI", cookie_widget(), before_body_end(), log)
     return html
@@ -1003,7 +1030,8 @@ def main(argv=None) -> int:
                 continue
             if "googletagmanager.com/gtag/js" not in txt:
                 continue  # pagine senza GA4 (pannelli privati): non toccarle
-            if "CONV:CONSENT:START" in txt and "CONV:GACONFIG:START" in txt and ("cookieBanner" in txt):
+            if ("CONV:CONSENT:START" in txt and "CONV:GACONFIG:START" in txt and ("cookieBanner" in txt)
+                    and "CONV:READTRACK:START" in txt):
                 continue
             todo.append(pth)
         print(f"[sweep] {len(pages)} pagine, {len(todo)} da allineare")
