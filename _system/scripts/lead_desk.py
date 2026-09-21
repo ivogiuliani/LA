@@ -75,8 +75,8 @@ def _load_leads() -> list:
 
 
 def stats() -> dict:
-    """Conteggi SENZA PII: per stato, per tier, e lead A/B in attesa del founder >SLA."""
-    leads = _load_leads()
+    """Conteggi SENZA PII: per stato, per tier, e lead A/B in attesa del founder >SLA (test esclusi)."""
+    leads = [l for l in _load_leads() if not l.get("is_test")]
     sla = float(cfg_get("lead.sla_hours_founder", 24) or 24)
     by_state: dict = {s: 0 for s in lead_states()}
     by_tier: dict = {"A": 0, "B": 0, "C": 0, "?": 0}
@@ -164,6 +164,11 @@ def render_section(*, force: bool = False) -> str:
             f'<option value="{_esc(s)}"{" selected" if s == l.get("state") else ""}>{_esc(s)}</option>'
             for s in states)
         contact = f'{_esc(l.get("email",""))}' + (f' · {_esc(l.get("phone"))}' if l.get("phone") else "")
+        _at = l.get("attribution") or {}
+        _camp = "/".join(str(x) for x in (_at.get("utm_source"), _at.get("utm_medium"), _at.get("utm_campaign")) if x)
+        origin = (" · from " + _esc(_camp)) if _camp else ((" · ref " + _esc(str(_at.get("referrer"))[:60])) if _at.get("referrer") else "")
+        if l.get("is_test"):
+            origin += " · <strong>TEST</strong>"
         rows += f"""
 <tr data-lead-id="{_esc(l.get('lead_id'))}">
   <td><span class="lead-tier lead-tier-{_esc(tier)}">{_esc(tier)}</span><div class="lead-muted">{_esc(l.get('score') if l.get('score') is not None else '')}</div></td>
@@ -171,7 +176,7 @@ def render_section(*, force: bool = False) -> str:
   <td>{'—' if days is None else _esc(days)}{' ⚠︎' if late else ''}</td>
   <td><strong>{_esc(l.get('first_name'))} {_esc(l.get('last_name'))}</strong><div class="lead-muted">{contact}</div>
       <div class="lead-muted">{_esc(l.get('project_type'))} · {_esc(l.get('timeline'))} · {_esc(l.get('site_location') or '-')}</div>
-      <div class="lead-muted">via {_esc(l.get('source'))}{(' · found: ' + _esc(l.get('how_found'))) if l.get('how_found') else ''} · {_esc((l.get('received_at') or '')[:16])}</div>
+      <div class="lead-muted">via {_esc(l.get('source'))}{(' · found: ' + _esc(l.get('how_found'))) if l.get('how_found') else ''}{origin} · {_esc((l.get('received_at') or '')[:16])}</div>
       <div class="lead-msg">{_esc((l.get('message') or '')[:600])}</div></td>
   <td>{_esc(l.get('next_action') or '')}{'<div class="lead-muted">needs human</div>' if l.get('needs_human') else ''}</td>
   <td class="lead-actions"><select class="lead-state">{opts}</select>

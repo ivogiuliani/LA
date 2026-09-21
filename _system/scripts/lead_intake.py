@@ -69,7 +69,9 @@ _ALIASES = {
     "sourcepage": "source_page", "page": "source_page", "referrer": "referrer",
     "landingurl": "landing_url", "landing": "landing_url", "formid": "form_id",
     "utmsource": "utm_source", "utmmedium": "utm_medium", "utmcampaign": "utm_campaign",
-    "utmterm": "utm_term", "utmcontent": "utm_content",
+    "utmterm": "utm_term", "utmcontent": "utm_content", "utmid": "utm_id",
+    "oppref": "oppref", "gclid": "gclid", "pagetype": "page_type", "ctasrc": "cta_src",
+    "eventid": "event_id",
 }
 _IGNORE_KEYS = {"submittedat", "date", "time", "ip", "ipaddress", "useragent", "formspree",
                 "newsubmission", "viewsubmission", "unsubscribe", "manage", "http", "https",
@@ -189,12 +191,29 @@ def parse_notification(plain: str, html: str = "", subject: str = "") -> dict:
     return fields
 
 
+_TEST_RE = re.compile(r"(^|[^A-Za-z])TEST([^A-Za-z]|$)")
+
+
+def is_test_lead(fields: dict, lead: Optional[dict] = None) -> bool:
+    """True se l'invio è dichiaratamente un test: 'TEST' (maiuscolo) nel nome/cognome,
+    '[TEST]' nel messaggio o nell'oggetto. Un test non riceve ack né alert e finisce nel
+    registro con is_test=True e tier TEST (visibile nel desk, escluso dai conteggi)."""
+    lead = lead or {}
+    for k in ("first_name", "last_name"):
+        if _TEST_RE.search(str(lead.get(k) or fields.get(k) or "")):
+            return True
+    msg = str(lead.get("message") or fields.get("message") or "")
+    subj = str(fields.get("_subject") or "") + " " + str(fields.get("_notification_subject") or "")
+    return "[TEST]" in msg.upper() or "[TEST]" in subj.upper()
+
+
 def fields_to_lead(fields: dict, *, source: str = "formspree", form_id: str = "") -> dict:
     consent_raw = str(fields.get("consent_nurture", "")).strip().lower()
     consent = consent_raw in ("yes", "true", "on", "1", "checked", "y")
     attribution = {k: fields.get(k, "") for k in
                    ("source_page", "referrer", "landing_url", "utm_source", "utm_medium",
-                    "utm_campaign", "utm_term", "utm_content")}
+                    "utm_campaign", "utm_term", "utm_content", "utm_id", "oppref", "gclid",
+                    "page_type", "cta_src", "event_id")}
     if not attribution.get("landing_url") and fields.get("_subject"):
         attribution["source_page"] = attribution.get("source_page") or fields["_subject"]
     return {
@@ -362,12 +381,21 @@ def run(*, dry_run: bool = False, use_llm: bool = True, max_items: int = 25,
                 pass
         lead_data["gmail_message_id"] = mid
         lead_data["thread_id"] = msg.get("threadId", "")
+        test = is_test_lead(fields, lead_data)
+        if test:
+            lead_data["is_test"] = True
 
         if rebuild_from_label:
             key = (lead_data.get("email"), lead_data.get("received_at", "")[:16])
             if key in known_emails_ts or not lead_data.get("email"):
                 continue
             lead = lead_ledger.add(lead_data, dedup=False)
+            if test:
+                lead_ledger.update(lead["lead_id"], tier="TEST", score=0, next_action="test: ignore",
+                                   note="rebuilt from Gmail label (test submission)")
+                print(f"  [intake] rebuilt {lead['lead_id']} as TEST (no ack)")
+                processed += 1
+                continue
             from lead_score import score_lead
             sc = score_lead(lead, use_llm=use_llm)
             lead_ledger.update(lead["lead_id"], tier=sc["tier"], score=sc["score"],
@@ -387,6 +415,19 @@ def run(*, dry_run: bool = False, use_llm: bool = True, max_items: int = 25,
                                    needs_human=True, note="unparsed")
             if not dry_run:
                 label_message(client, mid, label_id)
+            continue
+
+        if test:
+            # Invio di test dichiarato: registro (tier TEST), label, MAI ack né alert.
+            print(f"  [intake] {mid}: TEST submission → registro come test, nessun ack/alert "
+                  f"(campaign: {lead_data.get('attribution', {}).get('utm_campaign') or '-'})")
+            if not ephemeral and not dry_run:
+                lead = lead_ledger.add(lead_data, dedup=False)
+                lead_ledger.update(lead["lead_id"], tier="TEST", score=0, next_action="test: ignore",
+                                   note="test submission (no ack/alert)")
+            if not dry_run:
+                label_message(client, mid, label_id)
+            processed += 1
             continue
 
         # CLAIM prima di processare: la label è il lock fra i rail (Mac /

@@ -66,7 +66,7 @@ _FIELDS = [
     "lead_id", "received_at", "source", "form_id", "first_name", "last_name",
     "email", "phone", "project_type", "timeline", "site_location", "message",
     "how_found", "referred_by", "attribution", "consent", "tier", "score",
-    "state", "next_action", "thread_id", "history",
+    "state", "next_action", "thread_id", "history", "is_test",
 ]
 
 
@@ -182,10 +182,10 @@ def _blank_lead() -> dict:
         "how_found": "", "referred_by": "",
         "attribution": {"source_page": "", "referrer": "", "landing_url": "",
                         "utm_source": "", "utm_medium": "", "utm_campaign": "",
-                        "utm_term": "", "utm_content": ""},
+                        "utm_term": "", "utm_content": "", "utm_id": "", "oppref": "", "gclid": ""},
         "consent": {"nurture": False, "ts": ""},
         "tier": "", "score": None, "state": "new", "next_action": "",
-        "thread_id": "", "history": [],
+        "thread_id": "", "history": [], "is_test": False,
     }
 
 

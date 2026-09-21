@@ -41,6 +41,9 @@ jobs:
       - name: Contact links on regenerated page
         run: python3 _system/scripts/inject_contact_links.py || true
 
+      - name: Consent + analytics layer on regenerated page
+        run: python3 _system/scripts/inject_conversion_layer.py --sweep || true
+
       - name: Commit research/** only
         run: |
           git config user.name  "My Villa Bot"

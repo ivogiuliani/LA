@@ -35,6 +35,8 @@ Patch su index.html (--target)
   STICKY    CTA sticky mobile fino a 900px, sopra il cookie banner
   MVTRACK   delega click [data-ev], form_start, contact_email_click (blocco condiviso)
   COOKIE_UI (solo --shared) banner/toast + CSS per le pagine senza banner proprio
+  GACONFIG  gtag('config') con debug_mode se la sessione è di test (?mv_debug=1)
+  --sweep   allinea tutte le pagine servite prive di CONSENT/GACONFIG/banner (Journal compreso; MVTRACK escluso sugli articoli)
 
 Exit code sempre 0 (errori non fatali loggati), tranne argomenti errati.
 """
@@ -75,6 +77,8 @@ PAGE_TYPES = {
     "italian-villa-california-builder.html": "pillar",
     "icf-concrete-home-builder-los-angeles.html": "pillar",
     "pacific-palisades-rebuild.html": "pillar",
+    "insurable-home-california.html": "hub",
+    "westside-rebuild-tracker.html": "research",
 }
 
 # ---------------------------------------------------------------------------
@@ -248,7 +252,9 @@ def consent_js(s: S) -> str:
     return f"""  // Consent Mode v2 — default denied in EU/EEA/UK/CH (opt-in), granted elsewhere (notice + opt-out); stored choice and GPC/DNT honoured
   gtag('consent', 'default', {{ ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: {regions} }});
   gtag('consent', 'default', {{ ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' }});
-  (function () {{ try {{ var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', {{ analytics_storage: 'granted' }}); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', {{ analytics_storage: 'denied' }}); }} catch (e) {{}} }})();"""
+  (function () {{ try {{ var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', {{ analytics_storage: 'granted' }}); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', {{ analytics_storage: 'denied' }}); }} catch (e) {{}} }})();
+  // GA4 DebugView for a whole test session: open any page with ?mv_debug=1 (never set for real visitors)
+  (function () {{ try {{ var d = /[?&]mv_debug=1(&|$)/.test(location.search); if (d) sessionStorage.setItem('mv_debug', '1'); window.__mvDebug = d || sessionStorage.getItem('mv_debug') === '1'; }} catch (e) {{ window.__mvDebug = false; }} }})();"""
 
 
 def mvtrack_js() -> str:
@@ -281,65 +287,98 @@ def mvtrack_js() -> str:
 </script>"""
 
 
-def formjs(s: S) -> str:
-    return f"""<script>
-(function () {{
-  var MV = {{ formspree: '{s.formspree}', leadApi: '{s.lead_api}', thankYou: '{s.thank_you_url}' }};
-  var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-  if (!Promise.allSettled) {{ Promise.allSettled = function (ps) {{ return Promise.all(ps.map(function (p) {{ return Promise.resolve(p).then(function (v) {{ return {{ status: 'fulfilled', value: v }}; }}, function (r) {{ return {{ status: 'rejected', reason: r }}; }}); }})); }}; }}
-  function ss(k, v) {{ try {{ if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); }} catch (e) {{ return null; }} }}
-  var q = {{}}; try {{ new URLSearchParams(location.search).forEach(function (v, k) {{ q[k] = v; }}); }} catch (e) {{}}
-  // First-touch attribution, kept for the session
-  var attrib = null; try {{ attrib = JSON.parse(ss('mv_attrib') || 'null'); }} catch (e) {{}}
-  if (!attrib || typeof attrib !== 'object') {{
-    attrib = {{ referrer: document.referrer || '', landing_url: location.href.split('#')[0] }};
-    UTM.forEach(function (k) {{ attrib[k] = q[k] || ''; }});
-    ss('mv_attrib', JSON.stringify(attrib));
-  }}
+FORMJS_TEMPLATE = """<script>
+(function () {
+  var MV = { formspree: '@FORMSPREE@', leadApi: '@LEADAPI@', thankYou: '@THANKYOU@' };
+  var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_id', 'utm_content', 'utm_term'];
+  var CLICK = ['oppref', 'gclid'];   // oppref = ChatGPT Ads click id, gclid = Google Ads
+  var TTL = 30 * 24 * 3600 * 1000;   // attribution kept in the browser for 30 days
+  if (!Promise.allSettled) { Promise.allSettled = function (ps) { return Promise.all(ps.map(function (p) { return Promise.resolve(p).then(function (v) { return { status: 'fulfilled', value: v }; }, function (r) { return { status: 'rejected', reason: r }; }); })); }; }
+  function ss(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
+  function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  function declined() { try { return localStorage.getItem('myvilla_cookie_consent') === 'declined'; } catch (e) { return false; } }
+  function parse(raw) { try { var o = JSON.parse(raw || 'null'); return (o && typeof o === 'object') ? o : null; } catch (e) { return null; } }
+  var q = {}; try { new URLSearchParams(location.search).forEach(function (v, k) { q[k] = v; }); } catch (e) {}
+  function blank() { var a = { referrer: document.referrer || '', landing_url: location.href.split('#')[0], ts: Date.now() }; UTM.concat(CLICK).forEach(function (k) { a[k] = ''; }); return a; }
+  function fromUrl() { var a = blank(), has = false; UTM.concat(CLICK).forEach(function (k) { a[k] = String(q[k] || '').slice(0, 200); if (a[k]) has = true; }); return has ? a : null; }
+  // Attribution (last tagged touch): a URL with utm_* or a click id overwrites; otherwise this session's;
+  // otherwise the one kept in the browser (30 days; not stored when analytics cookies were declined); otherwise direct.
+  var attrib = fromUrl();
+  if (attrib) { ss('mv_attrib', JSON.stringify(attrib)); if (!declined()) ls('mv_attrib', JSON.stringify(attrib)); }
+  else {
+    attrib = parse(ss('mv_attrib'));
+    if (!attrib) { var kept = parse(ls('mv_attrib')); if (kept && kept.ts && (Date.now() - kept.ts) < TTL) { attrib = kept; ss('mv_attrib', JSON.stringify(attrib)); } }
+    if (!attrib) { attrib = blank(); ss('mv_attrib', JSON.stringify(attrib)); }
+  }
   attrib.cta_src = q.src || attrib.cta_src || '';
-  function fill(form) {{
-    Object.keys(attrib).forEach(function (k) {{ var el = form.querySelector('input[name="' + k + '"]'); if (el && !el.value) el.value = attrib[k] || ''; }});
-  }}
-  function setError(form, on) {{ var el = form.querySelector('.cta-error'); if (el) el.classList.toggle('show', !!on); }}
-  function submit(form) {{
-    if (!form.checkValidity()) {{ form.reportValidity(); return; }}
+  window.mvAttribution = attrib;
+  function fill(form) {
+    Object.keys(attrib).forEach(function (k) { var el = form.querySelector('input[type="hidden"][name="' + k + '"]'); if (el) el.value = attrib[k] || ''; });
+    var sub = form.querySelector('input[name="_subject"]');
+    if (sub) {
+      var base = sub.getAttribute('data-base') || sub.value; sub.setAttribute('data-base', base);
+      var via = attrib.utm_source ? (attrib.utm_source + '/' + (attrib.utm_medium || '-') + (attrib.utm_campaign ? ' · ' + attrib.utm_campaign : '')) : '';
+      sub.value = via ? base + ' · via ' + via : base;
+    }
+  }
+  function setError(form, on) { var el = form.querySelector('.cta-error'); if (el) el.classList.toggle('show', !!on); }
+  function submit(form) {
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (form.getAttribute('data-mv-busy') === '1') return;
     fill(form); setError(form, false);
     var btn = form.querySelector('[type="submit"]'), orig = btn ? btn.textContent : '';
-    if (btn) {{ btn.textContent = 'Sending…'; btn.disabled = true; btn.style.opacity = '0.7'; }}
+    if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; btn.style.opacity = '0.7'; }
+    form.setAttribute('data-mv-busy', '1');
     var fd = new FormData(form);
     var formId = fd.get('form_id') || form.id || 'form', how = fd.get('how_found') || '';
     var dest = MV.thankYou + '?form=' + encodeURIComponent(formId) + '&via=' + encodeURIComponent(how);
-    if (fd.get('_gotcha')) {{ window.location.assign(dest); return; }}  // honeypot: silent
-    var payload = {{}}; fd.forEach(function (v, k) {{ if (k !== '_gotcha') payload[k] = v; }});
+    if (fd.get('_gotcha')) { window.location.assign(dest); return; }  // honeypot: silent
+    var eventId = 'lead_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+    fd.append('event_id', eventId);
+    var payload = {}; fd.forEach(function (v, k) { if (k !== '_gotcha') payload[k] = v; });
     if (!payload.consent_nurture) payload.consent_nurture = 'no';
     payload.submitted_at = new Date().toISOString();
     Promise.allSettled([
-      fetch(MV.formspree, {{ method: 'POST', body: fd, headers: {{ 'Accept': 'application/json' }} }}),
-      fetch(MV.leadApi, {{ method: 'POST', mode: 'cors', headers: {{ 'Content-Type': 'application/json' }}, body: JSON.stringify(payload) }})
-    ]).then(function (rs) {{
-      var ok = rs.some(function (r) {{ return r.status === 'fulfilled' && r.value && r.value.ok; }});
+      fetch(MV.formspree, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }),
+      fetch(MV.leadApi, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+    ]).then(function (rs) {
+      var ok = rs.some(function (r) { return r.status === 'fulfilled' && r.value && r.value.ok; });
       if (!ok) throw new Error('send-failed');
       var wrap = form.parentElement, succ = wrap && wrap.querySelector('.cta-success, .brief-success');
       if (succ) succ.classList.add('show');
-      var done = false; function go() {{ if (done) return; done = true; window.location.assign(dest); }}
-      try {{ gtag('event', 'generate_lead', {{ form_id: formId, how_found: how, event_category: 'briefing', event_label: formId, event_callback: go, event_timeout: 600 }}); }} catch (e) {{}}
-      setTimeout(go, 600);
-    }}).catch(function () {{
+      var done = false; function go() { if (done) return; done = true; window.location.assign(dest); }
+      // GA4 generate_lead: only after the request was accepted, once per form and session, never with personal data.
+      var guard = 'mv_lead_sent_' + formId;
+      if (ss(guard)) { go(); return; }
+      ss(guard, '1');
+      var pt = (document.body && document.body.getAttribute('data-page-type')) || 'page';
+      var params = { form_id: formId, page_type: pt, how_found: how, lead_source: attrib.utm_source || '', lead_medium: attrib.utm_medium || '', lead_campaign: attrib.utm_campaign || '', event_id: eventId, transport_type: 'beacon', event_callback: go, event_timeout: 800 };
+      if (window.__mvDebug) params.debug_mode = true;
+      try { document.dispatchEvent(new CustomEvent('mv:lead', { detail: { form_id: formId, event_id: eventId, page_type: pt } })); } catch (e) {}
+      try { if (typeof gtag === 'function') gtag('event', 'generate_lead', params); else go(); } catch (e) { go(); }
+      setTimeout(go, 800);
+    }).catch(function () {
+      form.removeAttribute('data-mv-busy');
       setError(form, true);
-      if (btn) {{ btn.textContent = orig; btn.disabled = false; btn.style.opacity = ''; }}
-    }});
-  }}
-  window.handleSubmit = function (e) {{ e.preventDefault(); submit(e.target); }};
-  function init() {{
+      if (btn) { btn.textContent = orig; btn.disabled = false; btn.style.opacity = ''; }
+    });
+  }
+  window.handleSubmit = function (e) { e.preventDefault(); submit(e.target); };
+  function init() {
     var forms = document.querySelectorAll('form[data-mv-form]');
-    for (var i = 0; i < forms.length; i++) {{ (function (f) {{
+    for (var i = 0; i < forms.length; i++) { (function (f) {
       fill(f);
-      if (!f.hasAttribute('onsubmit')) f.addEventListener('submit', function (e) {{ e.preventDefault(); submit(f); }});
-    }})(forms[i]); }}
-  }}
+      if (!f.hasAttribute('onsubmit')) f.addEventListener('submit', function (e) { e.preventDefault(); submit(f); });
+    })(forms[i]); }
+  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
-}})();
+})();
 </script>"""
+
+
+def formjs(s: S) -> str:
+    return (FORMJS_TEMPLATE.replace("@FORMSPREE@", s.formspree)
+            .replace("@LEADAPI@", s.lead_api).replace("@THANKYOU@", s.thank_you_url))
 
 
 # ---------------------------------------------------------------------------
@@ -403,6 +442,9 @@ def canonical_form(s: S, form_id: str, source_page: str, page_type: str, subject
   <input type="hidden" name="utm_campaign" value="">
   <input type="hidden" name="utm_content" value="">
   <input type="hidden" name="utm_term" value="">
+  <input type="hidden" name="utm_id" value="">
+  <input type="hidden" name="oppref" value="">
+  <input type="hidden" name="gclid" value="">
   <input type="hidden" name="cta_src" value="">
   <button type="submit" class="cta-submit">Request a Private Briefing</button>
   <div class="cta-micro"><strong>{s.promise_line}</strong></div>
@@ -720,13 +762,18 @@ def set_page_type(html: str, page_type: str, log: List[str]) -> str:
 
 
 def apply_shared(html: str, s: S, page_type: str, log: List[str], with_form: bool,
-                 with_cookie_ui: bool = False) -> str:
+                 with_cookie_ui: bool = False, with_track: bool = True) -> str:
     html = upsert(html, "CONSENT", consent_js(s),
                   after(r"function gtag\(\)\{dataLayer\.push\(arguments\);\}\n"), log, JS_C)
+    # gtag('config') con debug_mode quando la sessione è di test (?mv_debug=1) → DebugView GA4
+    html = upsert(html, "GACONFIG",
+                  f"  gtag('config', '{s.ga4}', window.__mvDebug ? {{ debug_mode: true }} : {{}});",
+                  replace(r"[ \t]*gtag\('config',\s*'" + re.escape(s.ga4) + r"'\);"), log, JS_C)
     html = set_page_type(html, page_type, log)
     if with_form:
         html = upsert(html, "FORMJS", formjs(s), before_body_end(), log)
-    html = upsert(html, "MVTRACK", mvtrack_js(), before_body_end(), log)
+    if with_track:
+        html = upsert(html, "MVTRACK", mvtrack_js(), before_body_end(), log)
     if with_cookie_ui:
         html = upsert(html, "COOKIE_UI", cookie_widget(), before_body_end(), log)
     return html
@@ -894,12 +941,20 @@ def run_file(path: Path, s: S, mode: str, dry_run: bool) -> int:
         print(f"[{path}] impossibile leggere: {exc}")
         return 0
     page_type = PAGE_TYPES.get(path.name, "page")
+    rel = str(path.resolve()).replace(str(ROOT.resolve()), "").lstrip("/")
+    journal = rel.startswith("blog/")
+    if journal:
+        page_type = "journal" if path.name == "index.html" or "/category/" in rel else "article"
+    elif rel.startswith("research/"):
+        page_type = "research"
     if mode == "index":
         new = apply_index(original, s, log)
     else:
         has_form = bool(re.search(r"<form\b", original))
         has_banner = "id = 'cookieBanner'" in original or 'id="cookieBanner"' in original
-        new = apply_shared(original, s, page_type, log, with_form=has_form, with_cookie_ui=not has_banner)
+        # Sul Journal gli articoli hanno già il proprio listener [data-ev]: niente MVTRACK (eviterebbe eventi doppi)
+        new = apply_shared(original, s, page_type, log, with_form=has_form,
+                           with_cookie_ui=not has_banner, with_track=not journal)
     print(f"[{path.relative_to(ROOT) if str(path).startswith(str(ROOT)) else path}] mode={mode} page_type={page_type}")
     print("\n".join(log))
     probs = sanity(new, s, mode == "index")
@@ -926,6 +981,8 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--target", default="index.html", help="pagina a cui applicare il set completo (default index.html)")
     ap.add_argument("--shared", nargs="*", default=None, help="pagine a cui applicare solo gli snippet condivisi")
+    ap.add_argument("--sweep", action="store_true",
+                    help="tutte le pagine servite (root, blog/**, research/**) prive di CONSENT/GACONFIG: applica gli snippet condivisi (idempotente, per la pipeline quotidiana)")
     ap.add_argument("--dry-run", action="store_true", help="mostra il diff senza scrivere")
     ap.add_argument("--print-form", metavar="FORM_ID", help="stampa il markup del form canonico con questo form_id ed esce")
     ap.add_argument("--print-form-css", action="store_true", help="stampa il CSS completo del form canonico ed esce")
@@ -940,6 +997,25 @@ def main(argv=None) -> int:
         print(FORM_BASE_CSS)
         return 0
 
+    if args.sweep:
+        pages = sorted(set(list(ROOT.glob("*.html")) + list(ROOT.glob("blog/**/*.html")) + list(ROOT.glob("research/**/*.html"))))
+        todo = []
+        for pth in pages:
+            if pth.name == "index.html" and pth.parent == ROOT:
+                continue  # la home ha il set completo (--target)
+            try:
+                txt = pth.read_text(encoding="utf-8")
+            except Exception:
+                continue
+            if "googletagmanager.com/gtag/js" not in txt:
+                continue  # pagine senza GA4 (pannelli privati): non toccarle
+            if "CONV:CONSENT:START" in txt and "CONV:GACONFIG:START" in txt and ("cookieBanner" in txt):
+                continue
+            todo.append(pth)
+        print(f"[sweep] {len(pages)} pagine, {len(todo)} da allineare")
+        for pth in todo:
+            run_file(pth, s, "shared", args.dry_run)
+        return 0
     if args.shared is not None:
         for f in args.shared:
             p = Path(f) if Path(f).is_absolute() else ROOT / f

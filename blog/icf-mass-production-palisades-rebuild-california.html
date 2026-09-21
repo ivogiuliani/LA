@@ -6,8 +6,18 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+/* CONV:CONSENT:START */
+  // Consent Mode v2 — default denied in EU/EEA/UK/CH (opt-in), granted elsewhere (notice + opt-out); stored choice and GPC/DNT honoured
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","IS","LI","NO","GB","CH"] });
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+  (function () { try { var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' }); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', { analytics_storage: 'denied' }); } catch (e) {} })();
+  // GA4 DebugView for a whole test session: open any page with ?mv_debug=1 (never set for real visitors)
+  (function () { try { var d = /[?&]mv_debug=1(&|$)/.test(location.search); if (d) sessionStorage.setItem('mv_debug', '1'); window.__mvDebug = d || sessionStorage.getItem('mv_debug') === '1'; } catch (e) { window.__mvDebug = false; } })();
+/* CONV:CONSENT:END */
   gtag('js', new Date());
-  gtag('config', 'G-D6HJX7BNZN');
+/* CONV:GACONFIG:START */
+  gtag('config', 'G-D6HJX7BNZN', window.__mvDebug ? { debug_mode: true } : {});
+/* CONV:GACONFIG:END */
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -295,7 +305,7 @@ a.source-citation::after { content: '↗'; display: inline-block; font-size: 0.7
 </style>
 <style id="mv-contact-css">.nav-contact{font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:500;color:var(--warm-sand,#C4A265);opacity:.85;text-decoration:none;transition:opacity .3s;white-space:nowrap}.nav-contact:hover{opacity:1}.nav-contact--solo{margin-left:auto;margin-right:18px}.nav-links .nav-contact{margin-right:4px}@media (max-width:760px){.nav-contact--solo{display:none}}</style>
 </head>
-<body>
+<body data-page-type="article">
 
 <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
   <a href="https://myvilla.la" class="nav-logo-wrap">
@@ -495,5 +505,61 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 (function(){document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('[data-ev]'):null;if(!a||typeof window.gtag!=='function')return;var slug=(location.pathname.split('/').pop()||'').replace(/\.html$/,'');window.gtag('event',a.getAttribute('data-ev'),{cta:a.getAttribute('data-cta')||'',slug:slug,transport_type:'beacon'});},true);})();
 </script>
 <!-- MV-CTAJS:END -->
+<!-- CONV:COOKIE_UI:START -->
+<style>
+#cookieBanner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9990; background: var(--offblack, #1a1816); border-top: 1px solid rgba(196,162,101,0.2); padding: 20px var(--side-pad, 24px); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; transform: translateY(100%); transition: transform 0.4s ease; }
+#cookieBanner.visible { transform: translateY(0); }
+.cookie-text { font-family: var(--sans, 'Montserrat', sans-serif); font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.75); flex: 1; min-width: 260px; }
+.cookie-text a { color: var(--terracotta, #C2714F); text-decoration: underline; }
+.cookie-buttons { display: flex; gap: 12px; flex-shrink: 0; }
+.cookie-btn { font-family: var(--sans, 'Montserrat', sans-serif); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 10px 24px; border: none; border-radius: 2px; cursor: pointer; transition: background 0.3s, color 0.3s; }
+.cookie-accept { background: var(--terracotta, #C2714F); color: #fff; }
+.cookie-accept:hover { background: #a8593e; }
+.cookie-decline { background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); }
+.cookie-decline:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+body #cookieBanner.cookie-toast { left: auto; right: 16px; bottom: 16px; max-width: 380px; border: 1px solid rgba(196,162,101,0.3); border-radius: 4px; padding: 14px 16px; gap: 14px; flex-wrap: nowrap; }
+body #cookieBanner.cookie-toast .cookie-text { font-size: 12.5px; min-width: 0; }
+body #cookieBanner.cookie-toast .cookie-btn { padding: 8px 14px; font-size: 11px; }
+@media (max-width: 600px) { #cookieBanner { flex-direction: column; text-align: center; padding: 20px 16px; } .cookie-buttons { width: 100%; justify-content: center; } body #cookieBanner.cookie-toast { left: 16px; max-width: none; flex-direction: row; text-align: left; } body #cookieBanner.cookie-toast .cookie-buttons { width: auto; } }
+</style>
+<script>
+// ══════════════ COOKIE CONSENT — Consent Mode v2 (opt-in in EU, notice + opt-out elsewhere) ══════════════
+(function () {
+  var KEY = 'myvilla_cookie_consent';
+  function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function store(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function consent(granted) { try { gtag('consent', 'update', { analytics_storage: granted ? 'granted' : 'denied' }); } catch (e) {} }
+  var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+  var isEU = /^Europe\//.test(tz);
+  window.mvIsEU = isEU;
+  function close() {
+    var b = document.getElementById('cookieBanner');
+    document.documentElement.style.removeProperty('--mv-banner-h');
+    if (b) { b.classList.remove('visible'); setTimeout(function () { b.remove(); }, 400); }
+  }
+  window.acceptCookies = function () { store('accepted'); consent(true); close(); };
+  window.declineCookies = function () { store('declined'); consent(false); close(); };
+  window.closeCookieBanner = close;
+  if (stored()) return;
+  var banner = document.createElement('div');
+  banner.id = 'cookieBanner';
+  banner.setAttribute('role', 'region');
+  banner.setAttribute('aria-label', 'Cookie choices');
+  if (isEU) {
+    banner.innerHTML = '<div class="cookie-text">We use analytics cookies (Google Analytics) to understand how the site is used. Nothing is stored until you choose. <a href="/privacy.html#cookies">Privacy choices</a></div>' +
+      '<div class="cookie-buttons"><button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button><button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button></div>';
+  } else {
+    banner.className = 'cookie-toast';
+    banner.innerHTML = '<div class="cookie-text">This site uses analytics cookies. <a href="/privacy.html#cookies">Privacy choices</a></div>' +
+      '<div class="cookie-buttons"><button class="cookie-btn cookie-accept" onclick="acceptCookies()" aria-label="Dismiss">OK</button></div>';
+  }
+  document.body.appendChild(banner);
+  setTimeout(function () {
+    banner.classList.add('visible');
+    document.documentElement.style.setProperty('--mv-banner-h', (banner.offsetHeight || 0) + 'px');
+  }, 800);
+})();
+</script>
+<!-- CONV:COOKIE_UI:END -->
 </body>
 </html>

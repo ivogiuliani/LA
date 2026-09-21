@@ -11,9 +11,13 @@
   gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","IS","LI","NO","GB","CH"] });
   gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
   (function () { try { var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' }); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', { analytics_storage: 'denied' }); } catch (e) {} })();
+  // GA4 DebugView for a whole test session: open any page with ?mv_debug=1 (never set for real visitors)
+  (function () { try { var d = /[?&]mv_debug=1(&|$)/.test(location.search); if (d) sessionStorage.setItem('mv_debug', '1'); window.__mvDebug = d || sessionStorage.getItem('mv_debug') === '1'; } catch (e) { window.__mvDebug = false; } })();
 /* CONV:CONSENT:END */
   gtag('js', new Date());
-  gtag('config', 'G-D6HJX7BNZN');
+/* CONV:GACONFIG:START */
+  gtag('config', 'G-D6HJX7BNZN', window.__mvDebug ? { debug_mode: true } : {});
+/* CONV:GACONFIG:END */
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">

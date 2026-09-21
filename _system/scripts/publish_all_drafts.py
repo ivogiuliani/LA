@@ -163,13 +163,14 @@ def _check_links(html_path: Path) -> tuple[bool, list[dict]]:
 
 
 def _run_update_script(script_name: str) -> bool:
-    """Shell out to one of the index/sitemap/homepage rebuilders."""
-    path = SCRIPT_DIR / script_name
+    """Shell out to one of the index/sitemap/homepage rebuilders ("script.py --flag" ammesso)."""
+    parts = script_name.split()
+    path = SCRIPT_DIR / parts[0]
     if not path.exists():
         return True  # nothing to run, treat as success
     try:
         result = subprocess.run(
-            [sys.executable, str(path)],
+            [sys.executable, str(path)] + parts[1:],
             cwd=str(SCRIPT_DIR),
             capture_output=True, text=True, timeout=60,
         )
@@ -2384,10 +2385,13 @@ def main(argv=None):
         # nuovi articoli), build_answer_page (hub assicurabilità) e
         # build_llms (llms.txt) PRIMA della sitemap, così lastmod/feed
         # vedono i file finali.
+        # 2026-09-21: inject_conversion_layer --sweep allinea consenso/banner/
+        # GACONFIG sulle pagine nuove o rigenerate (Journal compreso).
         for s in ("update_journal_index.py", "crosslink_pillars.py",
                   "update_pillar_journal.py", "fix_article_schema.py",
                   "inject_article_cta.py", "build_answer_page.py",
-                  "inject_contact_links.py", "build_llms.py", "update_sitemap.py",
+                  "inject_contact_links.py", "inject_conversion_layer.py --sweep",
+                  "build_llms.py", "update_sitemap.py",
                   "update_homepage_journal.py"):
             ok = _run_update_script(s)
             print(f"  {'✓' if ok else '✗'} {s}")

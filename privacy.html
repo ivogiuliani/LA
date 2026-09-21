@@ -11,9 +11,13 @@
   gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","IS","LI","NO","GB","CH"] });
   gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
   (function () { try { var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' }); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', { analytics_storage: 'denied' }); } catch (e) {} })();
+  // GA4 DebugView for a whole test session: open any page with ?mv_debug=1 (never set for real visitors)
+  (function () { try { var d = /[?&]mv_debug=1(&|$)/.test(location.search); if (d) sessionStorage.setItem('mv_debug', '1'); window.__mvDebug = d || sessionStorage.getItem('mv_debug') === '1'; } catch (e) { window.__mvDebug = false; } })();
 /* CONV:CONSENT:END */
   gtag('js', new Date());
-  gtag('config', 'G-D6HJX7BNZN');
+/* CONV:GACONFIG:START */
+  gtag('config', 'G-D6HJX7BNZN', window.__mvDebug ? { debug_mode: true } : {});
+/* CONV:GACONFIG:END */
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -182,7 +186,7 @@ th { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: 
   <p>For any privacy question or request, write to <a href="mailto:info@myvilla.la">info@myvilla.la</a>. We answer from that same address.</p>
 
   <h2 id="what-we-collect">2. What we collect</h2>
-  <p><strong>Briefing and contact forms.</strong> When you request a private briefing we ask for your first name, email address and three quick choices (type of project, timeline, how you found us). Optionally you may add your last name, phone number, the location of your site, who referred you, a short message, and whether you would like occasional insights from us. The form also records technical context that helps us understand where a request comes from: the page you submitted it from, the page you arrived on, the referring site and any campaign parameters in the address (utm_*). The form contains a hidden anti-spam field that real visitors never see or fill.</p>
+  <p><strong>Briefing and contact forms.</strong> When you request a private briefing we ask for your first name, email address and three quick choices (type of project, timeline, how you found us). Optionally you may add your last name, phone number, the location of your site, who referred you, a short message, and whether you would like occasional insights from us. The form also records technical context that helps us understand where a request comes from: the page you submitted it from, the page you arrived on, the referring site and any campaign parameters in the address (utm_*, and the click reference some advertising platforms add, such as ChatGPT's oppref). These parameters are kept in your browser for up to 30 days, only so that a request you send later can be attributed to the campaign that brought you here; they contain no personal data and are not kept if you decline analytics cookies. The form contains a hidden anti-spam field that real visitors never see or fill.</p>
   <p><strong>Email.</strong> If you write to us, we keep the correspondence, including your address and anything you choose to share.</p>
   <p><strong>AI assistant (when active).</strong> If the Site offers a chat assistant, it is clearly labelled as automated. What you type is used to answer you and may be reviewed by our team to improve answers and, if you ask for a briefing, to prepare it. Please do not type sensitive information into it.</p>
   <p><strong>Analytics, with your consent where required.</strong> With Google Analytics 4 we measure pages viewed, approximate location (city level), device and browser type, the referring site and interactions with buttons and forms (for example that a form was started or submitted, never what you typed into it). IP addresses are not stored by Google Analytics 4. See <a href="#cookies">section 8</a>.</p>

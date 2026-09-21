@@ -11,9 +11,13 @@
   gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","IS","LI","NO","GB","CH"] });
   gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
   (function () { try { var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' }); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', { analytics_storage: 'denied' }); } catch (e) {} })();
+  // GA4 DebugView for a whole test session: open any page with ?mv_debug=1 (never set for real visitors)
+  (function () { try { var d = /[?&]mv_debug=1(&|$)/.test(location.search); if (d) sessionStorage.setItem('mv_debug', '1'); window.__mvDebug = d || sessionStorage.getItem('mv_debug') === '1'; } catch (e) { window.__mvDebug = false; } })();
 /* CONV:CONSENT:END */
   gtag('js', new Date());
-  gtag('config', 'G-D6HJX7BNZN');
+/* CONV:GACONFIG:START */
+  gtag('config', 'G-D6HJX7BNZN', window.__mvDebug ? { debug_mode: true } : {});
+/* CONV:GACONFIG:END */
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -899,6 +903,9 @@ select.cta-input:invalid { color: rgba(255,255,255,0.75); }
   <input type="hidden" name="utm_campaign" value="">
   <input type="hidden" name="utm_content" value="">
   <input type="hidden" name="utm_term" value="">
+  <input type="hidden" name="utm_id" value="">
+  <input type="hidden" name="oppref" value="">
+  <input type="hidden" name="gclid" value="">
   <input type="hidden" name="cta_src" value="">
   <button type="submit" class="cta-submit">Request a Private Briefing</button>
   <div class="cta-micro"><strong>We reply within one business day, and a My Villa partner joins your first call to answer every question.</strong></div>
@@ -938,31 +945,51 @@ select.cta-input:invalid { color: rgba(255,255,255,0.75); }
 <script>
 (function () {
   var MV = { formspree: 'https://formspree.io/f/mgoljyjl', leadApi: 'https://content.myvilla.la/api/lead', thankYou: 'https://myvilla.la/briefing-received.html' };
-  var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_id', 'utm_content', 'utm_term'];
+  var CLICK = ['oppref', 'gclid'];   // oppref = ChatGPT Ads click id, gclid = Google Ads
+  var TTL = 30 * 24 * 3600 * 1000;   // attribution kept in the browser for 30 days
   if (!Promise.allSettled) { Promise.allSettled = function (ps) { return Promise.all(ps.map(function (p) { return Promise.resolve(p).then(function (v) { return { status: 'fulfilled', value: v }; }, function (r) { return { status: 'rejected', reason: r }; }); })); }; }
   function ss(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
+  function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  function declined() { try { return localStorage.getItem('myvilla_cookie_consent') === 'declined'; } catch (e) { return false; } }
+  function parse(raw) { try { var o = JSON.parse(raw || 'null'); return (o && typeof o === 'object') ? o : null; } catch (e) { return null; } }
   var q = {}; try { new URLSearchParams(location.search).forEach(function (v, k) { q[k] = v; }); } catch (e) {}
-  // First-touch attribution, kept for the session
-  var attrib = null; try { attrib = JSON.parse(ss('mv_attrib') || 'null'); } catch (e) {}
-  if (!attrib || typeof attrib !== 'object') {
-    attrib = { referrer: document.referrer || '', landing_url: location.href.split('#')[0] };
-    UTM.forEach(function (k) { attrib[k] = q[k] || ''; });
-    ss('mv_attrib', JSON.stringify(attrib));
+  function blank() { var a = { referrer: document.referrer || '', landing_url: location.href.split('#')[0], ts: Date.now() }; UTM.concat(CLICK).forEach(function (k) { a[k] = ''; }); return a; }
+  function fromUrl() { var a = blank(), has = false; UTM.concat(CLICK).forEach(function (k) { a[k] = String(q[k] || '').slice(0, 200); if (a[k]) has = true; }); return has ? a : null; }
+  // Attribution (last tagged touch): a URL with utm_* or a click id overwrites; otherwise this session's;
+  // otherwise the one kept in the browser (30 days; not stored when analytics cookies were declined); otherwise direct.
+  var attrib = fromUrl();
+  if (attrib) { ss('mv_attrib', JSON.stringify(attrib)); if (!declined()) ls('mv_attrib', JSON.stringify(attrib)); }
+  else {
+    attrib = parse(ss('mv_attrib'));
+    if (!attrib) { var kept = parse(ls('mv_attrib')); if (kept && kept.ts && (Date.now() - kept.ts) < TTL) { attrib = kept; ss('mv_attrib', JSON.stringify(attrib)); } }
+    if (!attrib) { attrib = blank(); ss('mv_attrib', JSON.stringify(attrib)); }
   }
   attrib.cta_src = q.src || attrib.cta_src || '';
+  window.mvAttribution = attrib;
   function fill(form) {
-    Object.keys(attrib).forEach(function (k) { var el = form.querySelector('input[name="' + k + '"]'); if (el && !el.value) el.value = attrib[k] || ''; });
+    Object.keys(attrib).forEach(function (k) { var el = form.querySelector('input[type="hidden"][name="' + k + '"]'); if (el) el.value = attrib[k] || ''; });
+    var sub = form.querySelector('input[name="_subject"]');
+    if (sub) {
+      var base = sub.getAttribute('data-base') || sub.value; sub.setAttribute('data-base', base);
+      var via = attrib.utm_source ? (attrib.utm_source + '/' + (attrib.utm_medium || '-') + (attrib.utm_campaign ? ' · ' + attrib.utm_campaign : '')) : '';
+      sub.value = via ? base + ' · via ' + via : base;
+    }
   }
   function setError(form, on) { var el = form.querySelector('.cta-error'); if (el) el.classList.toggle('show', !!on); }
   function submit(form) {
     if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (form.getAttribute('data-mv-busy') === '1') return;
     fill(form); setError(form, false);
     var btn = form.querySelector('[type="submit"]'), orig = btn ? btn.textContent : '';
     if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; btn.style.opacity = '0.7'; }
+    form.setAttribute('data-mv-busy', '1');
     var fd = new FormData(form);
     var formId = fd.get('form_id') || form.id || 'form', how = fd.get('how_found') || '';
     var dest = MV.thankYou + '?form=' + encodeURIComponent(formId) + '&via=' + encodeURIComponent(how);
     if (fd.get('_gotcha')) { window.location.assign(dest); return; }  // honeypot: silent
+    var eventId = 'lead_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+    fd.append('event_id', eventId);
     var payload = {}; fd.forEach(function (v, k) { if (k !== '_gotcha') payload[k] = v; });
     if (!payload.consent_nurture) payload.consent_nurture = 'no';
     payload.submitted_at = new Date().toISOString();
@@ -975,9 +1002,18 @@ select.cta-input:invalid { color: rgba(255,255,255,0.75); }
       var wrap = form.parentElement, succ = wrap && wrap.querySelector('.cta-success, .brief-success');
       if (succ) succ.classList.add('show');
       var done = false; function go() { if (done) return; done = true; window.location.assign(dest); }
-      try { gtag('event', 'generate_lead', { form_id: formId, how_found: how, event_category: 'briefing', event_label: formId, event_callback: go, event_timeout: 600 }); } catch (e) {}
-      setTimeout(go, 600);
+      // GA4 generate_lead: only after the request was accepted, once per form and session, never with personal data.
+      var guard = 'mv_lead_sent_' + formId;
+      if (ss(guard)) { go(); return; }
+      ss(guard, '1');
+      var pt = (document.body && document.body.getAttribute('data-page-type')) || 'page';
+      var params = { form_id: formId, page_type: pt, how_found: how, lead_source: attrib.utm_source || '', lead_medium: attrib.utm_medium || '', lead_campaign: attrib.utm_campaign || '', event_id: eventId, transport_type: 'beacon', event_callback: go, event_timeout: 800 };
+      if (window.__mvDebug) params.debug_mode = true;
+      try { document.dispatchEvent(new CustomEvent('mv:lead', { detail: { form_id: formId, event_id: eventId, page_type: pt } })); } catch (e) {}
+      try { if (typeof gtag === 'function') gtag('event', 'generate_lead', params); else go(); } catch (e) { go(); }
+      setTimeout(go, 800);
     }).catch(function () {
+      form.removeAttribute('data-mv-busy');
       setError(form, true);
       if (btn) { btn.textContent = orig; btn.disabled = false; btn.style.opacity = ''; }
     });

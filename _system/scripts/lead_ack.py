@@ -116,6 +116,22 @@ def build_alert(lead: dict, score: Optional[dict] = None) -> tuple:
         f"Timeline:      {timeline}",
         f"How found:     {how}",
         f"Source:        {lead.get('source') or '-'}",
+    ]
+    at = lead.get("attribution") or {}
+    camp = " / ".join(str(x) for x in (at.get("utm_source"), at.get("utm_medium"), at.get("utm_campaign")) if x)
+    if camp:
+        extra = (f" (campaign id {at['utm_id']})" if at.get("utm_id") else "") + \
+                (f" · ad {at['utm_content']}" if at.get("utm_content") else "")
+        lines.append(f"Campaign:      {camp}{extra}")
+    if at.get("oppref"):
+        lines.append(f"ChatGPT click: {at['oppref']}")
+    if at.get("landing_url"):
+        lines.append(f"Landing:       {at['landing_url']}")
+    if at.get("referrer"):
+        lines.append(f"Referrer:      {at['referrer']}")
+    if at.get("source_page"):
+        lines.append(f"Form page:     {at['source_page']}")
+    lines += [
         f"Received:      {lead.get('received_at') or '-'}",
         f"Ack sent:      {'yes' if lead.get('_ack_ok') else 'no / pending'}",
     ]
