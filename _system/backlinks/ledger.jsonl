@@ -170,3 +170,43 @@
 {"event": "check", "prospect_id": "entrearchitect-podcast", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-16T19:22:35+00:00"}
 {"event": "check", "prospect_id": "business-of-architecture-podcast", "http": 202, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-16T19:22:35+00:00"}
 {"event": "check", "prospect_id": "archispeak-podcast", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-16T19:22:35+00:00"}
+{"event": "check", "prospect_id": "its-vision-site", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "buromilan-journal", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "cooperative-la-perspectives", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "transsolar-projects", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "dgu-dottorgroup", "http": 0, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "error": "__error__:URLError:<urlopen error [Errno 101] Network is unreachable>", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "archilovers-profile", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "archello-profile", "http": 403, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "error": "HTTP 403", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "dezeen-submit", "http": 403, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "error": "HTTP 403", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "archdaily-unbuilt", "http": 200, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "designboom-readers", "http": 200, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "divisare-submit", "http": 200, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "metalocus-bowerbird", "http": 200, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "e-architect-submit", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "archeyes-submit", "http": 403, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "error": "HTTP 403", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "amazing-architecture-submit", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "architizer-firm-profile", "http": 200, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "the-plan-publish", "http": 403, "links_found": 0, "status_before": "todo", "status_after": "todo", "error": "HTTP 403", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "artribune", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "giornale-architettura", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "professione-architetto", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "ioarch", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "chroniques-architecture", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "iic-los-angeles", "http": 403, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "error": "HTTP 403", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "ice-los-angeles", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "usgbc-california", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "aia-la-allied", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "palibuilds-directory", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "palipost-rebuild-dashboard", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "larises-rebuild-resources", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "source-of-sources", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "featured-com", "http": 429, "links_found": 0, "status_before": "todo", "status_after": "todo", "error": "HTTP 429", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "qwoted", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "altadena-collective-homeowners", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "pacpalicc-resources", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "malibu-rebuilds-resources", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "architizer-aplus-unbuilt", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "second-studio-podcast", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "entrearchitect-podcast", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "business-of-architecture-podcast", "http": 403, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "error": "HTTP 403", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "archispeak-podcast", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
