@@ -4,7 +4,7 @@ Fixed text, no LLM. Written by Lisa Monelli in first person: the goal of the
 email is to FIX THE CALL (ask for the prospect's windows) and to ask one
 extra question based on what they already told us in the form.
 Placeholders in `{braces}`: `{first_name}`, `{context}`, `{question}`,
-`{phone_line}`, `{scheduling}`, `{booking_url}`, `{loc}` (" in <site_location>"
+`{scheduling}`, `{booking_url}`, `{loc}` (" in <site_location>"
 or empty), `{tl}` (timeline phrase or empty). The signature (`signatures.lead_ack`,
 Lisa) is appended by the policy layer. No attachments, no prices, no claims
 of delivered villas. Rule from Ivo (2026-09-21): never say "we will come
@@ -20,7 +20,7 @@ Hi {first_name},
 
 Thanks for writing. I have your request in front of me: {context}.
 
-{scheduling}{phone_line}
+{scheduling}
 
 To make the call useful, {question}
 
@@ -35,10 +35,6 @@ Let's set up the 30-minute call on Teams with one of the My Villa partners. Coul
 ## Scheduling (booking link)
 
 Let's set up the 30-minute call on Teams with one of the My Villa partners: you can pick the slot that suits you here, {booking_url}, and I will confirm right away.
-
-## Phone line
-
- If you prefer a quick call first, I can also ring you at the number you left.
 
 ## Context: new custom build
 

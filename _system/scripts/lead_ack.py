@@ -4,7 +4,7 @@ lead_ack.py — conferma al lead (kind=lead_ack) + alert interno (kind=lead_aler
 
 Testo dell'ack: FISSO, da `_system/knowledge/lead_ack_voice.md` (nessun LLM), voce di Lisa
 Monelli in prima persona: fissa la call (chiede le finestre) e una domanda extra in base
-al modulo (tipo progetto, zona, tempi, telefono). Firma: `signatures.lead_ack` (Lisa).
+al modulo (tipo progetto, zona, tempi). Firma: `signatures.lead_ack` (Lisa).
 Se `brand.booking_url` è vuoto l'ack chiede due finestre (mattine LA,
 Teams); altrimenti inserisce il link.
 
@@ -38,14 +38,14 @@ VOICE_PATH = SYSTEM_DIR / "knowledge" / "lead_ack_voice.md"
 _FALLBACK_SUBJECT = "Your briefing request, {first_name}"
 _FALLBACK_BODY = (
     "Hi {first_name},\n\nThanks for writing. I have your request in front of me: {context}.\n\n"
-    "{scheduling}{phone_line}\n\nTo make the call useful, {question}\n\nTalk soon,\n\nLisa"
+    "{scheduling}\n\nTo make the call useful, {question}\n\nTalk soon,\n\nLisa"
 )
 _FALLBACK_SCHED_NO = ("Let's set up the 30-minute call on Teams with one of the My Villa partners. "
                       "Could you send me two or three windows over the next few days that work for you? "
                       "Los Angeles mornings are usually easiest, and I will confirm right away.")
 _FALLBACK_SCHED_LINK = ("Let's set up the 30-minute call on Teams with one of the My Villa partners: "
                         "you can pick the slot that suits you here, {booking_url}, and I will confirm right away.")
-_FALLBACK_PHONE = " If you prefer a quick call first, I can also ring you at the number you left."
+_FALLBACK_PHONE = ""  # 2026-09-21: niente riga sul telefono (decisione Ivo)
 _FALLBACK_CONTEXT = {"new custom build": "a new custom build{loc}{tl}",
                      "rebuild after fire": "a rebuild after the fire{loc}, and we will treat it with the care it deserves",
                      "future site": "a future site, still to be found{loc_mind}",
@@ -140,7 +140,7 @@ def build_ack(lead: dict) -> tuple:
              "tl": v["timeline"](tkey) if tkey else ""}
     context = v["context"](pkey).format(**parts).strip()
     question = v["question"](pkey).strip()
-    phone_line = (" " + v["phone_line"].strip()) if (lead.get("phone") or "").strip() else ""
+    phone_line = ""  # riga telefono rimossa (2026-09-21)
     fields = {
         "first_name": first,
         "response_promise": cfg_get("canonical.response_promise", "within one business day"),
