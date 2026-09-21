@@ -2,8 +2,9 @@
 """
 lead_ack.py — conferma al lead (kind=lead_ack) + alert interno (kind=lead_alert).
 
-Testo dell'ack: FISSO, da `_system/knowledge/lead_ack_voice.md` (nessun LLM).
-Firma: `signatures.prospects` (applicata dal policy layer per i kind lead_*).
+Testo dell'ack: FISSO, da `_system/knowledge/lead_ack_voice.md` (nessun LLM), voce di Lisa
+Monelli in prima persona: fissa la call (chiede le finestre) e una domanda extra in base
+al modulo (tipo progetto, zona, tempi, telefono). Firma: `signatures.lead_ack` (Lisa).
 Se `brand.booking_url` è vuoto l'ack chiede due finestre (mattine LA,
 Teams); altrimenti inserisce il link.
 
@@ -34,16 +35,55 @@ from lead_settings import get as cfg_get, SYSTEM_DIR
 
 VOICE_PATH = SYSTEM_DIR / "knowledge" / "lead_ack_voice.md"
 
-_FALLBACK_SUBJECT = "Your private briefing with My Villa"
+_FALLBACK_SUBJECT = "Your briefing request, {first_name}"
 _FALLBACK_BODY = (
-    "Dear {first_name},\n\nThank you for reaching out. Your request for a private "
-    "briefing has arrived.\n\nWe will reply to you {response_promise}; a My Villa partner "
-    "will join the first call to answer every question.\n\n{scheduling}\n\nDo you already have a site "
-    "or lot in mind?\n\nWarm regards,"
+    "Hi {first_name},\n\nThanks for writing. I have your request in front of me: {context}.\n\n"
+    "{scheduling}{phone_line}\n\nTo make the call useful, {question}\n\nTalk soon,\n\nLisa"
 )
-_FALLBACK_SCHED_NO = ("To make the call easy to arrange, simply reply with two windows "
-                      "that suit you. Los Angeles mornings work best for a Teams call.")
-_FALLBACK_SCHED_LINK = "You can pick a slot directly here: {booking_url}"
+_FALLBACK_SCHED_NO = ("Let's set up the 30-minute call on Teams with one of the My Villa partners. "
+                      "Could you send me two or three windows over the next few days that work for you? "
+                      "Los Angeles mornings are usually easiest, and I will confirm right away.")
+_FALLBACK_SCHED_LINK = ("Let's set up the 30-minute call on Teams with one of the My Villa partners: "
+                        "you can pick the slot that suits you here, {booking_url}, and I will confirm right away.")
+_FALLBACK_PHONE = " If you prefer a quick call first, I can also ring you at the number you left."
+_FALLBACK_CONTEXT = {"new custom build": "a new custom build{loc}{tl}",
+                     "rebuild after fire": "a rebuild after the fire{loc}, and we will treat it with the care it deserves",
+                     "future site": "a future site, still to be found{loc_mind}",
+                     "general interest": "general interest, so I will keep the call informal",
+                     "default": "your project{loc}{tl}"}
+_FALLBACK_TIMELINE = {"ready now": ", ready to start", "6-12 months": ", starting within six to twelve months",
+                      "12-24 months": ", starting in one to two years", "exploring": ""}
+_FALLBACK_QUESTION = {"new custom build": "do you already own the lot, and do you have a survey or any early drawings we could look at first?",
+                      "rebuild after fire": "has the lot been cleared, and do you have the survey and the insurance settlement letter at hand? Either helps us come prepared.",
+                      "future site": "which neighborhoods are you looking at, and is there a lot you are already watching?",
+                      "general interest": "what would you like to understand first: the construction system, insurability, or process and timing?",
+                      "default": "what would be most useful to cover first?"}
+
+
+def _project_key(project_type: str) -> str:
+    p = (project_type or "").strip().lower()
+    if "rebuild" in p or "fire" in p:
+        return "rebuild after fire"
+    if "future" in p or "land" in p or "search" in p:
+        return "future site"
+    if "general" in p:
+        return "general interest"
+    if "new" in p or "custom" in p or "build" in p:
+        return "new custom build"
+    return "default"
+
+
+def _timeline_key(timeline: str) -> str:
+    t = (timeline or "").strip().lower()
+    if "ready" in t or "now" in t:
+        return "ready now"
+    if "6" in t and "12" in t:
+        return "6-12 months"
+    if "12" in t or "24" in t or "1-2" in t or "1–2" in t:
+        return "12-24 months"
+    if "explor" in t:
+        return "exploring"
+    return ""
 
 
 def _sections(md: str) -> dict:
@@ -70,11 +110,20 @@ def load_voice() -> dict:
         secs = _sections(VOICE_PATH.read_text(encoding="utf-8"))
     except OSError:
         secs = {}
+    def pick(prefix: str, key: str, fallback: dict) -> str:
+        v = secs.get(f"{prefix}: {key}")
+        if v is None:
+            v = fallback.get(key, fallback.get("default", ""))
+        return v
     return {
         "subject": secs.get("subject") or _FALLBACK_SUBJECT,
         "body": secs.get("body") or _FALLBACK_BODY,
         "sched_no": secs.get("scheduling (no booking link)") or _FALLBACK_SCHED_NO,
         "sched_link": secs.get("scheduling (booking link)") or _FALLBACK_SCHED_LINK,
+        "phone_line": secs.get("phone line") if secs.get("phone line") is not None else _FALLBACK_PHONE,
+        "context": lambda k: pick("context", k, _FALLBACK_CONTEXT),
+        "timeline": lambda k: pick("timeline", k, _FALLBACK_TIMELINE) if k else "",
+        "question": lambda k: pick("question", k, _FALLBACK_QUESTION),
     }
 
 
@@ -83,11 +132,21 @@ def build_ack(lead: dict) -> tuple:
     v = load_voice()
     booking = (cfg_get("brand.booking_url", "") or "").strip()
     first = (lead.get("first_name") or "").strip() or "there"
+    loc_raw = (lead.get("site_location") or "").strip()
+    loc = f" in {loc_raw}" if loc_raw else ""
+    pkey = _project_key(lead.get("project_type") or "")
+    tkey = _timeline_key(lead.get("timeline") or "")
+    parts = {"loc": loc, "loc_mind": (f", with {loc_raw} in mind" if loc_raw else ""),
+             "tl": v["timeline"](tkey) if tkey else ""}
+    context = v["context"](pkey).format(**parts).strip()
+    question = v["question"](pkey).strip()
+    phone_line = (" " + v["phone_line"].strip()) if (lead.get("phone") or "").strip() else ""
     fields = {
         "first_name": first,
         "response_promise": cfg_get("canonical.response_promise", "within one business day"),
         "booking_url": booking,
         "contact_email": cfg_get("brand.contact_email", "info@myvilla.la"),
+        "context": context, "question": question, "phone_line": phone_line,
     }
     sched = (v["sched_link"] if booking else v["sched_no"]).format(**fields)
     fields["scheduling"] = sched
@@ -157,7 +216,10 @@ def _send(kind: str, to: str, subject: str, body: str, *, dry_run: bool,
     cfg = load_config()
     if dry_run:
         cfg.dry_run = True
+    # Ack firmato da Lisa (signatures.lead_ack); alert e altri kind lead_* restano "The partners at My Villa".
+    override = (cfg_get("signatures.lead_ack", "") or "").strip() if kind == "lead_ack" else None
     res = send_raw(to=to, subject=subject, body=body, config=cfg, kind=kind,
+                   signature_override=override or None,
                    skip_signature=skip_signature, skip_rate_limit=(kind == "lead_alert"))
     return asdict(res)
 

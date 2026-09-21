@@ -32,6 +32,10 @@ signatures:
   prospects: |
     The partners at My Villa
     info@myvilla.la · myvilla.la
+  lead_ack: |               # 2026-09-21: l'ack al lead lo scrive Lisa in prima persona (mittente Gmail = Lisa Monelli)
+    Lisa Monelli
+    My Villa
+    info@myvilla.la · myvilla.la
   # Stampa: resta la firma Lisa Monelli di _system/outreach/config.yml (decisione 4: Lisa solo verso la stampa)
 
 alerts:
