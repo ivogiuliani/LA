@@ -34,6 +34,12 @@
 - I marker `<!-- DESK:{INSURANCE,FIRE_CODE,REBUILD,MARKET}:START/END -->` esistono sia nella home v1 sia nella v2 — **non rimuoverli mai**.
 - Per modifiche al design v2 in review: editare `v2/index.html` / `v2/team.html` direttamente (file hand-authored); per il Journal v2 modificare i template in `build_v2.py` e rilanciarlo senza flag.
 
+## Sito v3 — proposta "asciutta" (IN STAGING su `v3/`, NON live, 2026-09-21)
+- **Brief di Ivo**: sito più asciutto e meno emozionale; posizionamento "design studio per ville di lusso in cemento architettonico"; pricing esplicito **$1.500–3.500/sq ft chiavi in mano, arredo compreso, terreno escluso** (altissimo livello qualitativo: finiture e arredo d'autore spostano il progetto nella fascia alta); DGU citato per il cemento di Amanvari (Aman, aperto 1/8/2026); nessun partner americano nominato: "licensed local firms, accredited in Los Angeles" per permessi, engineering of record e costruzione; sezione dedicata a intermediari (agenti, wealth manager, avvocati/business manager, broker) con protocollo "you introduce, you stay in the room"; niente compensi in cifre sul sito.
+- **Pagine**: `v3/index.html` (home in 6 blocchi), `v3/for-advisors.html` (form "Introduce a client", form_id `v3_advisors`, campi extra `role`/`firm`), `v3/construction.html`, `v3/team.html` ("chi risponde"); CSS `v3/assets/v3.css`; piante/diagrammi/render estratti da `../MyItalianVilla_LA.pdf` in `v3/assets/img/`. Immagini condivise da `/img/`.
+- **Stato**: tutte le pagine `noindex,nofollow`, canonical → root, `Disallow: /v3/` in robots.txt, non linkate, fuori sitemap. Layer conversione applicato con `python3 _system/scripts/inject_conversion_layer.py --shared v3/*.html` (riapplicabile). **Promuovere a root SOLO su autorizzazione esplicita di Ivo.** Le pipeline quotidiane non toccano `v3/`.
+- Preview locale: copiare `v3/`, `img/`, `privacy.html`, `briefing-received.html` in `/tmp/myvilla-preview` e usare la config `myvilla-static` di `.claude/launch.json`.
+
 ## SEO
 - Ogni pagina pubblicata deve avere: meta description, keywords, canonical, OG, Twitter Card, Schema.org (Article + BreadcrumbList)
 - Aggiornare sempre `sitemap.xml` dopo ogni pubblicazione (include anche le 6 category hubs)

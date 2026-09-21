@@ -12,11 +12,14 @@
 #   /team/  pannello interno collaboratori (password + noindex)
 #   /v2/    STAGING del redesign "Quiet Permanence": duplica il blog,
 #           bloccato finché non diventa il sito live
+#   /v3/    PROPOSTA sito "asciutto" (2026-09-21): noindex, non linkata,
+#           bloccata finché Ivo non autorizza la promozione a root
 
 User-agent: *
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 # ── AI search / answer engines (esplicitamente ammessi, stessi limiti) ──
@@ -25,84 +28,98 @@ User-agent: GPTBot
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: OAI-SearchBot
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: ChatGPT-User
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: ClaudeBot
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: Claude-SearchBot
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: Claude-Web
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: anthropic-ai
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: PerplexityBot
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: Perplexity-User
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: Applebot-Extended
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: Google-Extended
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: Bingbot
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: CCBot
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 User-agent: cohere-ai
 Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
+Disallow: /v3/
 Allow: /
 
 # Sitemaps
