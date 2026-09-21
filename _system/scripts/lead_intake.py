@@ -43,9 +43,22 @@ from typing import Any, Optional
 from lead_settings import get as cfg_get, private_dir
 
 LABEL_NAME = "MV/Lead-Processed"
-QUERY = ('(from:formspree.io OR subject:"Private Briefing Request" OR '
-         'subject:"New submission") -label:"MV/Lead-Processed" newer_than:60d')
-QUERY_LABELED = '(from:formspree.io OR subject:"Private Briefing Request" OR subject:"New submission") label:"MV/Lead-Processed" newer_than:30d'
+# Solo le NOTIFICHE di submission: mai le mail di account Formspree (verifica email,
+# fatture, avvisi da accounts@/billing@/support@) — il 2026-09-21 una mail di
+# verifica è stata registrata come lead e ha generato un alert.
+_NOTIF = ('((from:formspree.io -from:accounts@formspree.io -from:billing@formspree.io '
+          '-from:support@formspree.io -subject:verification -subject:"your Formspree account") '
+          'OR subject:"Private Briefing Request" OR subject:"Briefing Request" OR subject:"New submission")')
+QUERY = f'{_NOTIF} -label:"MV/Lead-Processed" newer_than:60d'
+QUERY_LABELED = f'{_NOTIF} label:"MV/Lead-Processed" newer_than:30d'
+_SKIP_FROM = ("accounts@formspree.io", "billing@formspree.io", "support@formspree.io", "team@formspree.io")
+_SKIP_SUBJECT_RE = re.compile(r"verification|verify your|your formspree account|invoice|receipt|password|welcome to formspree", re.I)
+
+
+def is_account_mail(from_hdr: str, subject: str) -> bool:
+    """Mail di servizio Formspree (non una submission): da ignorare ed etichettare."""
+    f = (from_hdr or "").lower()
+    return any(a in f for a in _SKIP_FROM) or bool(_SKIP_SUBJECT_RE.search(subject or ""))
 
 # alias campo (lowercase, senza spazi/underscore) → campo canonico
 _ALIASES = {
@@ -361,6 +374,13 @@ def run(*, dry_run: bool = False, use_llm: bool = True, max_items: int = 25,
         from gmail_client import extract_header
         subject = extract_header(msg, "Subject") or ""
         date_hdr = extract_header(msg, "Date") or ""
+        from_hdr = extract_header(msg, "From") or ""
+        if is_account_mail(from_hdr, subject):
+            print(f"  [intake] {mid}: mail di servizio Formspree, non una submission → ignorata "
+                  f"(subject: {subject[:60]!r})")
+            if not dry_run:
+                label_message(client, mid, label_id)
+            continue
         plain, html = message_bodies(msg)
         fields = parse_notification(plain, html, subject)
         if fields.get("_gotcha"):
