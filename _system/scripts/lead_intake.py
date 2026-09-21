@@ -541,9 +541,21 @@ def simulate(*, use_llm: bool = False) -> int:
 def add_manual(payload: dict, *, dry_run: bool, use_llm: bool, send: bool) -> int:
     payload.setdefault("source", "mailto")
     lead_data = fields_to_lead({**payload, "email": payload.get("email", "")}, source=payload["source"])
-    for k in ("received_at", "how_found", "referred_by"):
+    for k in ("received_at", "how_found", "referred_by", "form_id"):
         if payload.get(k):
             lead_data[k] = payload[k]
+    # attribuzione anche come dict annidato (oltre ai campi piatti utm_*)
+    if isinstance(payload.get("attribution"), dict):
+        lead_data["attribution"].update({k: v for k, v in payload["attribution"].items() if v})
+    if payload.get("is_test") or is_test_lead(payload, lead_data):
+        # test dichiarato: registro con tier TEST, mai ack/alert
+        import lead_ledger
+        lead_data["is_test"] = True
+        lead = lead_ledger.add(lead_data, dedup=False)
+        lead_ledger.update(lead["lead_id"], tier="TEST", score=0, next_action="test: ignore",
+                           note="manual test submission (no ack/alert)")
+        print("  [intake] manual TEST: " + json.dumps({"lead_id": lead["lead_id"], "tier": "TEST"}))
+        return 0
     s = process_lead(lead_data, dry_run=dry_run, use_llm=use_llm, send=send)
     print("  [intake] manual: " + json.dumps(s, ensure_ascii=False))
     return 0
