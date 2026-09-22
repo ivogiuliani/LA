@@ -570,6 +570,10 @@ def conv_css(s: S) -> str:
 .nav-social a {{ display: inline-flex; color: var(--warm-sand); opacity: 0.85; transition: opacity 0.3s, color 0.3s; }}
 .nav-social a:hover {{ opacity: 1; color: #fff; }}
 .nav-social svg {{ width: 15px; height: 15px; fill: currentColor; display: block; }}
+/* Menu desktop della home tra 761 e 1280 px: le voci non entrano tutte (misurato 2026-09-22: 1074 px necessari a gap 24). Compattiamo per gradi. */
+@media (max-width: 1280px) {{ .nav-links {{ gap: 14px; }} }}
+@media (max-width: 1180px) {{ .nav-links .nav-social, .nav-links .nav-journal-stamp {{ display: none; }} }}
+@media (max-width: 1060px) {{ .nav-links {{ gap: 12px; }} .nav-links > a[data-cta-id="nav_contact"] {{ display: none; }} }}
 .mobile-social {{ display: flex; gap: 22px; padding: 18px 0 4px; }}
 .mobile-social a {{ display: inline-flex; color: var(--warm-sand); opacity: 0.9; }}
 .mobile-social svg {{ width: 22px; height: 22px; fill: currentColor; display: block; }}
