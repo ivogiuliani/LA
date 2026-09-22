@@ -566,6 +566,13 @@ def conv_css(s: S) -> str:
 .footer-contact a {{ color: #fff; opacity: 0.85; transition: color 0.3s, opacity 0.3s; }}
 .footer-contact a:hover {{ opacity: 1; color: var(--pacific-blue); }}
 .footer-contact-sep {{ opacity: 0.4; }}
+.nav-social {{ display: inline-flex; align-items: center; gap: 10px; margin: 0 4px 0 2px; }}
+.nav-social a {{ display: inline-flex; color: var(--warm-sand); opacity: 0.85; transition: opacity 0.3s, color 0.3s; }}
+.nav-social a:hover {{ opacity: 1; color: #fff; }}
+.nav-social svg {{ width: 15px; height: 15px; fill: currentColor; display: block; }}
+.mobile-social {{ display: flex; gap: 22px; padding: 18px 0 4px; }}
+.mobile-social a {{ display: inline-flex; color: var(--warm-sand); opacity: 0.9; }}
+.mobile-social svg {{ width: 22px; height: 22px; fill: currentColor; display: block; }}
 .footer-social {{ display: inline-flex; align-items: center; gap: 12px; margin-left: auto; }}
 .footer-social a {{ display: inline-flex; color: var(--warm-sand); opacity: 0.85; }}
 .footer-social a:hover {{ opacity: 1; color: #fff; }}
@@ -831,6 +838,17 @@ def apply_index(html: str, s: S, log: List[str]) -> str:
     html = upsert(html, "NAV_MOBILE_CONTACT",
                   '<a href="#contact" onclick="closeMobile()">Contact</a>',
                   before(re.escape("<!-- CONV:NAV_MOBILE:START -->")), log)
+    # SOCIAL (2026-09-22): icone Instagram + LinkedIn nell'header (desktop e menu mobile)
+    nav_social = (f'<span class="nav-social" aria-label="Social profiles">'
+                  f'<a href="{SOCIAL_IG}" target="_blank" rel="noopener" aria-label="My Villa on Instagram" title="Instagram" data-ev="social_click" data-cta-id="nav_instagram">{SVG_IG}</a>'
+                  f'<a href="{SOCIAL_LI}" target="_blank" rel="noopener" aria-label="My Villa on LinkedIn" title="LinkedIn" data-ev="social_click" data-cta-id="nav_linkedin">{SVG_LI}</a>'
+                  f'</span>')
+    html = upsert(html, "NAV_SOCIAL", nav_social, before(re.escape("<!-- CONV:NAV:START -->")), log)
+    mobile_social = (f'<div class="mobile-social" aria-label="Social profiles">'
+                     f'<a href="{SOCIAL_IG}" target="_blank" rel="noopener" aria-label="My Villa on Instagram" data-ev="social_click" data-cta-id="nav_mobile_instagram">{SVG_IG}</a>'
+                     f'<a href="{SOCIAL_LI}" target="_blank" rel="noopener" aria-label="My Villa on LinkedIn" data-ev="social_click" data-cta-id="nav_mobile_linkedin">{SVG_LI}</a>'
+                     f'</div>')
+    html = upsert(html, "NAV_MOBILE_SOCIAL", mobile_social, before(re.escape("<!-- CONV:NAV_MOBILE:START -->")), log)
     html = upsert(html, "FOOTER_LINK_CONTACT", '        <a href="research/westside-rebuild-tracker.html">Research</a>\n        <a href="#contact">Contact</a>',
                   before(r'\n      </nav>\n    </div>\n    <div class="footer-bottom">'), log)
     footer_contact = f"""    <div class="footer-contact" id="footer-contact">
