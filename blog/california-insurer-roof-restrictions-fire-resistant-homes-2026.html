@@ -13,10 +13,12 @@
   (function () { try { var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' }); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', { analytics_storage: 'denied' }); } catch (e) {} })();
   // GA4 DebugView for a whole test session: open any page with ?mv_debug=1 (never set for real visitors)
   (function () { try { var d = /[?&]mv_debug=1(&|$)/.test(location.search); if (d) sessionStorage.setItem('mv_debug', '1'); window.__mvDebug = d || sessionStorage.getItem('mv_debug') === '1'; } catch (e) { window.__mvDebug = false; } })();
+  // Automated browsers (headless renderers, crawlers that run JS) are tagged traffic_type=bot so a GA4 data filter can exclude them
+  (function () { try { var ua = navigator.userAgent || ''; window.__mvBot = navigator.webdriver === true || /headless|bot|crawl|spider|slurp|lighthouse|pingdom|gtmetrix|prerender|facebookexternalhit|adsbot|mediapartners|puppeteer|playwright|phantomjs|python-requests|curl\//i.test(ua); } catch (e) { window.__mvBot = false; } })();
 /* CONV:CONSENT:END */
   gtag('js', new Date());
 /* CONV:GACONFIG:START */
-  gtag('config', 'G-D6HJX7BNZN', window.__mvDebug ? { debug_mode: true } : {});
+  gtag('config', 'G-D6HJX7BNZN', (function () { var o = {}; if (window.__mvDebug) o.debug_mode = true; if (window.__mvBot) o.traffic_type = 'bot'; return o; })());
 /* CONV:GACONFIG:END */
 </script>
 <meta charset="UTF-8">

@@ -262,7 +262,9 @@ def consent_js(s: S) -> str:
   gtag('consent', 'default', {{ ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' }});
   (function () {{ try {{ var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', {{ analytics_storage: 'granted' }}); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', {{ analytics_storage: 'denied' }}); }} catch (e) {{}} }})();
   // GA4 DebugView for a whole test session: open any page with ?mv_debug=1 (never set for real visitors)
-  (function () {{ try {{ var d = /[?&]mv_debug=1(&|$)/.test(location.search); if (d) sessionStorage.setItem('mv_debug', '1'); window.__mvDebug = d || sessionStorage.getItem('mv_debug') === '1'; }} catch (e) {{ window.__mvDebug = false; }} }})();"""
+  (function () {{ try {{ var d = /[?&]mv_debug=1(&|$)/.test(location.search); if (d) sessionStorage.setItem('mv_debug', '1'); window.__mvDebug = d || sessionStorage.getItem('mv_debug') === '1'; }} catch (e) {{ window.__mvDebug = false; }} }})();
+  // Automated browsers (headless renderers, crawlers that run JS) are tagged traffic_type=bot so a GA4 data filter can exclude them
+  (function () {{ try {{ var ua = navigator.userAgent || ''; window.__mvBot = navigator.webdriver === true || /headless|bot\b|crawl|spider|slurp|lighthouse|pingdom|gtmetrix|prerender|facebookexternalhit|adsbot|mediapartners|puppeteer|playwright|phantomjs|python-requests|curl\//i.test(ua); }} catch (e) {{ window.__mvBot = false; }} }})();"""
 
 
 def mvtrack_js() -> str:
@@ -809,7 +811,7 @@ def apply_shared(html: str, s: S, page_type: str, log: List[str], with_form: boo
                   after(r"function gtag\(\)\{dataLayer\.push\(arguments\);\}\n"), log, JS_C)
     # gtag('config') con debug_mode quando la sessione è di test (?mv_debug=1) → DebugView GA4
     html = upsert(html, "GACONFIG",
-                  f"  gtag('config', '{s.ga4}', window.__mvDebug ? {{ debug_mode: true }} : {{}});",
+                  f"  gtag('config', '{s.ga4}', (function () {{ var o = {{}}; if (window.__mvDebug) o.debug_mode = true; if (window.__mvBot) o.traffic_type = 'bot'; return o; }})());",
                   replace(r"[ \t]*gtag\('config',\s*'" + re.escape(s.ga4) + r"'\);"), log, JS_C)
     html = set_page_type(html, page_type, log)
     if with_form:
