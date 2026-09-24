@@ -4,8 +4,10 @@
 Gira il giorno 1 del mese (systemd: myvilla-seo-report.timer). Legge GA4 +
 Search Console con la service account (GOOGLE_APPLICATION_CREDENTIALS),
 genera un PDF con l'andamento (WeasyPrint, niente browser) e lo manda via
-email — mittente Lisa/info@myvilla.la — a Ivo e Paolo con una premessa
-sintetica sui numeri del mese appena chiuso.
+email — mittente Lisa/info@myvilla.la — ai destinatari SEO_REPORT_TO / SEO_REPORT_CC
+(.env; default Ivo + Paolo) con una premessa sintetica sui numeri del mese appena chiuso.
+Dal 2026-09-24 viene anche chiamato da daily_publish.sh nei primi 3 giorni del mese
+(idempotente grazie al marker): non dipende più solo dal timer systemd.
 
 Idempotente per mese: marker in _system/history/.last_seo_report.
 
@@ -197,6 +199,11 @@ def main():
     if MARKER.exists() and MARKER.read_text().strip() == ym \
             and not args.force:
         print(f"[seo-report] {ym} già inviato — skip (--force per rifare)")
+        return 0
+    key = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS", "")
+    if not key or not Path(key).exists():
+        print("[seo-report] GOOGLE_APPLICATION_CREDENTIALS assente su questa macchina: "
+              "il rapporto gira solo dove c'è la service account (VPS). Skip.")
         return 0
 
     mese_nome = MESI[first_prev.month]
@@ -500,9 +507,12 @@ Nel PDF trovate l'andamento settimana per settimana, i canali di traffico
 mese per mese e le query su cui il sito sta comparendo."""
 
     from send_email import send_raw
+    # Destinatari: .env SEO_REPORT_TO / SEO_REPORT_CC (liste separate da virgola); default Ivo + Paolo
+    to_addr = (os.environ.get("SEO_REPORT_TO") or "ivolo@me.com").strip()
+    cc_addr = (os.environ.get("SEO_REPORT_CC") or "paolo.mezzalama@its.vision").strip()
     result = send_raw(
-        to="ivolo@me.com",
-        cc="paolo.mezzalama@its.vision",
+        to=to_addr,
+        cc=cc_addr or None,
         subject=f"My Villa — Rapporto SEO {mese_nome} {first_prev.year}",
         body=body,
         attachments=[pdf_path],

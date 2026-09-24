@@ -410,6 +410,14 @@ fi
 log "--- lead_intake.py --rebuild-from-label (riallinea i lead acked dal rail cloud) ---"
 python3 _system/scripts/lead_intake.py --rebuild-from-label --no-llm >> "$LOG_FILE" 2>&1 || log "  ⚠ lead_intake rebuild fallito (non fatale)"
 
+# ── Rapporto traffico mensile (2026-09-24): nei primi 3 giorni del mese, idempotente
+#    per mese (marker _system/history/.last_seo_report); senza service account esce
+#    da solo con skip. Destinatari da .env SEO_REPORT_TO / SEO_REPORT_CC. ──
+if [ "$(date +%-d)" -le 3 ] && [ "${DRY_RUN:-0}" != "1" ]; then
+    log "--- seo_monthly_report.py (rapporto traffico del mese scorso) ---"
+    python3 _system/scripts/seo_monthly_report.py >> "$LOG_FILE" 2>&1 || log "  ⚠ seo_monthly_report.py fallito (non fatale)"
+fi
+
 log "--- feature_pitch.py $FP_DRY ---"
 python3 _system/scripts/feature_pitch.py $FP_DRY >> "$LOG_FILE" 2>&1 || \
     log "feature_pitch.py errore non bloccante (continuo)"
