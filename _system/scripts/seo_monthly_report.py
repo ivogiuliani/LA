@@ -5,7 +5,7 @@ Gira il giorno 1 del mese (systemd: myvilla-seo-report.timer). Legge GA4 +
 Search Console con la service account (GOOGLE_APPLICATION_CREDENTIALS),
 genera un PDF con l'andamento (WeasyPrint, niente browser) e lo manda via
 email — mittente Lisa/info@myvilla.la — ai destinatari SEO_REPORT_TO / SEO_REPORT_CC
-(.env; default Ivo + Paolo) con una premessa sintetica sui numeri del mese appena chiuso.
+(.env; default Ivo + Paolo + Giana, dal 2026-09-24) con una premessa sintetica sui numeri del mese appena chiuso.
 Dal 2026-09-24 viene anche chiamato da daily_publish.sh nei primi 3 giorni del mese
 (idempotente grazie al marker): non dipende più solo dal timer systemd.
 
@@ -517,7 +517,7 @@ mese per mese e le query su cui il sito sta comparendo."""
     from send_email import send_raw
     # Destinatari: .env SEO_REPORT_TO / SEO_REPORT_CC (liste separate da virgola); default Ivo + Paolo
     to_addr = (os.environ.get("SEO_REPORT_TO") or "ivolo@me.com").strip()
-    cc_addr = (os.environ.get("SEO_REPORT_CC") or "paolo.mezzalama@its.vision").strip()
+    cc_addr = (os.environ.get("SEO_REPORT_CC") or "paolo.mezzalama@its.vision, giana.osman@its.vision").strip()
     result = send_raw(
         to=to_addr,
         cc=cc_addr or None,
