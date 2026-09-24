@@ -29,8 +29,16 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT_DIR = SCRIPT_DIR.parent.parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
-from dotenv import load_dotenv  # noqa: E402
-load_dotenv(ROOT_DIR / ".env")
+try:
+    from dotenv import load_dotenv  # noqa: E402
+    load_dotenv(ROOT_DIR / ".env")
+except ImportError:  # python-dotenv non installato (Mac): parser minimo del .env
+    _envp = ROOT_DIR / ".env"
+    if _envp.exists():
+        for _line in _envp.read_text(encoding="utf-8").splitlines():
+            if "=" in _line and not _line.strip().startswith("#"):
+                _k, _v = _line.split("=", 1)
+                os.environ.setdefault(_k.strip(), _v.strip().strip('"').strip("'"))
 
 GA4_URL = ("https://analyticsdata.googleapis.com/v1beta/"
            "properties/526743497:runReport")
