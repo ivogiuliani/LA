@@ -210,3 +210,60 @@
 {"event": "check", "prospect_id": "entrearchitect-podcast", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-21T12:15:30+00:00"}
 {"event": "check", "prospect_id": "business-of-architecture-podcast", "http": 403, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "error": "HTTP 403", "ts": "2026-09-21T12:15:30+00:00"}
 {"event": "check", "prospect_id": "archispeak-podcast", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-21T12:15:30+00:00"}
+{"event": "check", "prospect_id": "its-vision-site", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "buromilan-journal", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "cooperative-la-perspectives", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "transsolar-projects", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "dgu-dottorgroup", "http": 0, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "error": "__error__:URLError:<urlopen error [Errno 101] Network is unreachable>", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "archilovers-profile", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "archello-profile", "http": 403, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "error": "HTTP 403", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "dezeen-submit", "http": 403, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "error": "HTTP 403", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "archdaily-unbuilt", "http": 200, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "designboom-readers", "http": 200, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "divisare-submit", "http": 200, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "metalocus-bowerbird", "http": 200, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "e-architect-submit", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "archeyes-submit", "http": 403, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "error": "HTTP 403", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "amazing-architecture-submit", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "architizer-firm-profile", "http": 403, "links_found": 0, "status_before": "drafted", "status_after": "drafted", "error": "HTTP 403", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "the-plan-publish", "http": 403, "links_found": 0, "status_before": "todo", "status_after": "todo", "error": "HTTP 403", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "artribune", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "giornale-architettura", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "professione-architetto", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "ioarch", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "chroniques-architecture", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "iic-los-angeles", "http": 403, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "error": "HTTP 403", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "ice-los-angeles", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "usgbc-california", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "aia-la-allied", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "palibuilds-directory", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "palipost-rebuild-dashboard", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "larises-rebuild-resources", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "source-of-sources", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "featured-com", "http": 429, "links_found": 0, "status_before": "todo", "status_after": "todo", "error": "HTTP 429", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "qwoted", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "altadena-collective-homeowners", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "pacpalicc-resources", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "malibu-rebuilds-resources", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "architizer-aplus-unbuilt", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "second-studio-podcast", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "entrearchitect-podcast", "http": 200, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "business-of-architecture-podcast", "http": 403, "links_found": 0, "status_before": "needs_contact", "status_after": "needs_contact", "error": "HTTP 403", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "check", "prospect_id": "archispeak-podcast", "http": 200, "links_found": 0, "status_before": "todo", "status_after": "todo", "ts": "2026-09-28T13:11:33+00:00"}
+{"event": "resource_audit", "page_id": "lacounty-recovers-city-la-palisades", "broken": 5, "draft": "_drafts/backlinks/resource_outreach/lacounty-recovers-city-la-palisades.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "lacounty-recovers-malibu", "broken": 3, "draft": "_drafts/backlinks/resource_outreach/lacounty-recovers-malibu.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "lacounty-recovers-altadena", "broken": 1, "draft": "_drafts/backlinks/resource_outreach/lacounty-recovers-altadena.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "ca-gov-lafires", "broken": 1, "draft": "_drafts/backlinks/resource_outreach/ca-gov-lafires.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "dfpi-lafires", "broken": 3, "draft": "_drafts/backlinks/resource_outreach/dfpi-lafires.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "scag-fire-recovery", "broken": 2, "draft": "_drafts/backlinks/resource_outreach/scag-fire-recovery.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "sd33-wildfire-resources", "broken": 15, "draft": "_drafts/backlinks/resource_outreach/sd33-wildfire-resources.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "malibucity-firesafety", "broken": 4, "draft": "_drafts/backlinks/resource_outreach/malibucity-firesafety.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "malibucity-home-fire-safety", "broken": 1, "draft": "_drafts/backlinks/resource_outreach/malibucity-home-fire-safety.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "calosba-outsmart-disaster", "broken": 18, "draft": "_drafts/backlinks/resource_outreach/calosba-outsmart-disaster.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "ucanr-fire-network-prepare-home", "broken": 1, "draft": "_drafts/backlinks/resource_outreach/ucanr-fire-network-prepare-home.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "pacpalicc-fire-updates", "broken": 2, "draft": "_drafts/backlinks/resource_outreach/pacpalicc-fire-updates.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "maliburebuilds-community-resources", "broken": 5, "draft": "_drafts/backlinks/resource_outreach/maliburebuilds-community-resources.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "altadena-chamber-recovery", "broken": 18, "draft": "_drafts/backlinks/resource_outreach/altadena-chamber-recovery.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "eaton-fire-collab-resources", "broken": 7, "draft": "_drafts/backlinks/resource_outreach/eaton-fire-collab-resources.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "larises-rebuild", "broken": 2, "draft": "_drafts/backlinks/resource_outreach/larises-rebuild.md", "ts": "2026-09-28T13:13:10+00:00"}
+{"event": "resource_audit", "page_id": "wildfireprepared-home", "broken": 2, "draft": "_drafts/backlinks/resource_outreach/wildfireprepared-home.md", "ts": "2026-09-28T13:13:10+00:00"}

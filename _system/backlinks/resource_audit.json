@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-16T19:21:25+00:00",
+  "generated_at": "2026-09-28T13:13:10+00:00",
   "pages": 31,
-  "pages_with_broken": 20,
-  "drafts": 20,
+  "pages_with_broken": 17,
+  "drafts": 17,
   "results": [
     {
       "id": "lacounty-recovers-rebuilding",
@@ -13,7 +13,7 @@
       "external_links": 16,
       "tested": 16,
       "broken": [],
-      "checked_at": "2026-09-16T19:19:36+00:00",
+      "checked_at": "2026-09-28T13:11:37+00:00",
       "final_url": "https://recovery.lacounty.gov/rebuilding/"
     },
     {
@@ -24,16 +24,8 @@
       "http": 200,
       "external_links": 20,
       "tested": 20,
-      "broken": [
-        {
-          "href": "https://www.calassistmortgagefund.org/",
-          "anchor": "CalAssist Mortgage Relief",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        }
-      ],
-      "checked_at": "2026-09-16T19:19:36+00:00",
+      "broken": [],
+      "checked_at": "2026-09-28T13:11:37+00:00",
       "final_url": "https://recovery.lacounty.gov/disasters/palisades-fire/"
     },
     {
@@ -43,7 +35,7 @@
       "gift": "tracker",
       "http": 200,
       "external_links": 62,
-      "tested": 60,
+      "tested": 62,
       "broken": [
         {
           "href": "https://emergency.lacity.gov/palisades-fire-re-entry-information",
@@ -67,20 +59,6 @@
           "confidence": "check"
         },
         {
-          "href": "https://www.socalgas.com/billing-payment/assistance-programs/emergency-disaster-relief",
-          "anchor": "SoCalGas Emergency Disaster Relief",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://www.t-mobile.com/news/network/t-mobile-stands-prepared-as-wildfires-impact-southern-california",
-          "anchor": "https://www.t-mobile.com/news/network/t-mobile-stands-prepared-as-wildfires-impact-southern-california",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
           "href": "https://www.spectrum.com/",
           "anchor": "https://www.spectrum.com/",
           "status": 403,
@@ -93,16 +71,9 @@
           "status": 403,
           "reason": "403",
           "confidence": "check"
-        },
-        {
-          "href": "https://www.smmusd.org/",
-          "anchor": "https://www.smmusd.org/",
-          "status": 0,
-          "reason": "network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-          "confidence": "high"
         }
       ],
-      "checked_at": "2026-09-16T19:19:36+00:00",
+      "checked_at": "2026-09-28T13:11:37+00:00",
       "final_url": "https://recovery.lacounty.gov/city-of-los-angeles-palisades-fire-recovery-information-resources/"
     },
     {
@@ -122,20 +93,6 @@
           "confidence": "check"
         },
         {
-          "href": "https://www.socalgas.com/billing-payment/assistance-programs/emergency-disaster-relief",
-          "anchor": "SoCalGas Emergency Disaster Relief",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://www.t-mobile.com/news/network/t-mobile-stands-prepared-as-wildfires-impact-southern-california",
-          "anchor": "https://www.t-mobile.com/news/network/t-mobile-stands-prepared-as-wildfires-impact-southern-california",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
           "href": "https://www.spectrum.com/",
           "anchor": "https://www.spectrum.com/",
           "status": 403,
@@ -148,16 +105,9 @@
           "status": 403,
           "reason": "403",
           "confidence": "check"
-        },
-        {
-          "href": "https://www.smmusd.org/",
-          "anchor": "https://www.smmusd.org/",
-          "status": 0,
-          "reason": "network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-          "confidence": "high"
         }
       ],
-      "checked_at": "2026-09-16T19:19:36+00:00",
+      "checked_at": "2026-09-28T13:11:37+00:00",
       "final_url": "https://recovery.lacounty.gov/malibu-fire-recovery-information-resources/"
     },
     {
@@ -170,21 +120,14 @@
       "tested": 19,
       "broken": [
         {
-          "href": "https://www.calassistmortgagefund.org/",
-          "anchor": "CalAssist Mortgage Fund",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
           "href": "https://past-price.flywheelstaging.com/rebuilding/one-stop-permit-centers/",
           "anchor": "View locations",
           "status": 0,
-          "reason": "network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+          "reason": "network error: <urlopen error [Errno -2] Name or service not known>",
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-09-16T19:19:40+00:00",
+      "checked_at": "2026-09-28T13:11:39+00:00",
       "final_url": "https://recovery.lacounty.gov/altadena/"
     },
     {
@@ -195,16 +138,8 @@
       "http": 200,
       "external_links": 19,
       "tested": 19,
-      "broken": [
-        {
-          "href": "https://www.calassistmortgagefund.org/",
-          "anchor": "CalAssist Mortgage Relief",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        }
-      ],
-      "checked_at": "2026-09-16T19:19:41+00:00",
+      "broken": [],
+      "checked_at": "2026-09-28T13:11:39+00:00",
       "final_url": "https://recovery.lacounty.gov/disasters/eaton-fire/"
     },
     {
@@ -216,7 +151,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-09-16T19:19:45+00:00",
+      "checked_at": "2026-09-28T13:11:40+00:00",
       "final_url": "https://cd11.lacity.gov/palisades-recovery-updates",
       "error": "HTTP 403"
     },
@@ -237,7 +172,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-09-16T19:19:45+00:00",
+      "checked_at": "2026-09-28T13:11:40+00:00",
       "final_url": "https://www.ca.gov/LAfires/"
     },
     {
@@ -249,7 +184,7 @@
       "external_links": 1,
       "tested": 1,
       "broken": [],
-      "checked_at": "2026-09-16T19:19:45+00:00",
+      "checked_at": "2026-09-28T13:11:40+00:00",
       "final_url": "https://www.ca.gov/lafires/rebuilding-la/"
     },
     {
@@ -261,7 +196,7 @@
       "external_links": 3,
       "tested": 3,
       "broken": [],
-      "checked_at": "2026-09-16T19:19:48+00:00",
+      "checked_at": "2026-09-28T13:11:41+00:00",
       "final_url": "https://www.ca.gov/lafires/track-progress/"
     },
     {
@@ -269,13 +204,34 @@
       "url": "https://dfpi.ca.gov/lafires/",
       "org": "CA Dept. of Financial Protection & Innovation",
       "gift": "checklist",
-      "http": 403,
-      "external_links": 0,
-      "tested": 0,
-      "broken": [],
-      "checked_at": "2026-09-16T19:19:48+00:00",
-      "final_url": "https://dfpi.ca.gov/lafires/",
-      "error": "HTTP 403"
+      "http": 200,
+      "external_links": 30,
+      "tested": 30,
+      "broken": [
+        {
+          "href": "https://web.archive.org/web/20260821182727/https:/www.gov.ca.gov/2026/01/06/as-federal-aid-stalls-governor-newsom-announces-proposed-effort-to-close-insurance-gaps-for-la-fire-survivors-expands-mortgage-relief/",
+          "anchor": "more relief",
+          "status": 429,
+          "reason": "429",
+          "confidence": "check"
+        },
+        {
+          "href": "https://web.archive.org/web/20260821182727/https:/www.gov.ca.gov/2025/01/18/governor-newsom-announces-commitments-from-major-lenders-to-provide-firestorm-survivors-with-mortgage-relief/",
+          "anchor": "January 2025 agreement",
+          "status": 429,
+          "reason": "429",
+          "confidence": "check"
+        },
+        {
+          "href": "https://www.disasterassistance.gov/information/immediate-needs/emergency-shelter",
+          "anchor": "Emergency Shelter page",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        }
+      ],
+      "checked_at": "2026-09-28T13:11:41+00:00",
+      "final_url": "https://dfpi.ca.gov/lafires/"
     },
     {
       "id": "scag-fire-recovery",
@@ -301,7 +257,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-09-16T19:19:48+00:00",
+      "checked_at": "2026-09-28T13:11:42+00:00",
       "final_url": "https://scag.ca.gov/news/resources-near-and-long-term-fire-recovery"
     },
     {
@@ -311,7 +267,7 @@
       "gift": "checklist",
       "http": 200,
       "external_links": 114,
-      "tested": 60,
+      "tested": 80,
       "broken": [
         {
           "href": "https://www.fema.gov/disaster/4856",
@@ -323,13 +279,6 @@
         {
           "href": "https://www.disasterassistance.gov/",
           "anchor": "apply",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://lacountyrelieffund.com/?utm_content=&utm_medium=email&utm_name=&utm_source=govdelivery&utm_term=",
-          "anchor": "LA County Consumer & Business Affairs website",
           "status": 403,
           "reason": "403",
           "confidence": "check"
@@ -347,13 +296,6 @@
           "status": 403,
           "reason": "403",
           "confidence": "check"
-        },
-        {
-          "href": "https://news.caloes.ca.gov/storm-season-safety-sandbags/",
-          "anchor": "https://news.caloes.ca.gov/storm-season-safety-sandbags/",
-          "status": 0,
-          "reason": "network error: <urlopen error [SSL: TLSV1_ALERT_PROTOCOL_VERSION] tlsv1 alert protocol version (_ssl.c:1129)>",
-          "confidence": "high"
         },
         {
           "href": "https://disasterassistance.gov",
@@ -405,14 +347,35 @@
           "confidence": "check"
         },
         {
-          "href": "https://www.sba.gov/funding-programs/disaster-assistance/california-wildfires",
-          "anchor": "Click here",
+          "href": "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2025-1-One-Year-Moratorium-Updated-ZIP-Codes-ADA.pdf",
+          "anchor": "bulletin",
+          "status": 200,
+          "reason": "200 soft-404 (body says 'not found')",
+          "confidence": "high"
+        },
+        {
+          "href": "https://www.fema.gov/assistance/individual",
+          "anchor": "individual assistance",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
+          "href": "https://www.fema.gov/press-release/20250109/president-joseph-r-biden-jr-approves-major-disaster-declaration-california",
+          "anchor": "Major Disaster Declaration",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
+          "href": "https://www.fema.gov/press-release/20250109/fema-assistance-available-individuals-affected-wildfires-california",
+          "anchor": "Federal Emergency Management Agency (FEMA)",
           "status": 403,
           "reason": "403",
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-09-16T19:19:50+00:00",
+      "checked_at": "2026-09-28T13:11:44+00:00",
       "final_url": "https://sd33.senate.ca.gov/resource-corner/windstorm-wildfire-resources"
     },
     {
@@ -451,16 +414,9 @@
           "status": 403,
           "reason": "403",
           "confidence": "check"
-        },
-        {
-          "href": "https://www.ecode360.com/MA5043",
-          "anchor": "Municipal Code",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
         }
       ],
-      "checked_at": "2026-09-16T19:20:06+00:00",
+      "checked_at": "2026-09-28T13:11:45+00:00",
       "final_url": "https://www.malibucity.org/firesafety"
     },
     {
@@ -478,16 +434,9 @@
           "status": 403,
           "reason": "403",
           "confidence": "check"
-        },
-        {
-          "href": "https://www.ecode360.com/MA5043",
-          "anchor": "Municipal Code",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
         }
       ],
-      "checked_at": "2026-09-16T19:20:16+00:00",
+      "checked_at": "2026-09-28T13:11:51+00:00",
       "final_url": "https://www.malibucity.org/1056/Home-Fire-Safety"
     },
     {
@@ -497,18 +446,11 @@
       "gift": "tracker",
       "http": 200,
       "external_links": 89,
-      "tested": 60,
+      "tested": 80,
       "broken": [
         {
-          "href": "https://lending.sba.gov/search-disaster/?disaster=CA-20030",
-          "anchor": "MySBA Loan Portal",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://lacountyrelieffund.com/",
-          "anchor": "Los Angeles County Household Relief Grant: The Department of Consumer and Business Affairs",
+          "href": "https://restaurantscare.org/help/",
+          "anchor": "Grants for Food and Beverage Workers: Restaurants Café,",
           "status": 403,
           "reason": "403",
           "confidence": "check"
@@ -524,7 +466,7 @@
           "href": "https://ladeobusiness.com/",
           "anchor": "Wednesday, May 28, 2025",
           "status": 0,
-          "reason": "network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+          "reason": "network error: <urlopen error [Errno -3] Temporary failure in name resolution>",
           "confidence": "high"
         },
         {
@@ -542,18 +484,18 @@
           "confidence": "check"
         },
         {
+          "href": "https://www.cityofpasadena.net/eaton-fire/recovery-resources/",
+          "anchor": "Disaster Recovery Resources",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
           "href": "https://altadenatowncouncil.org/2025/01/statement-from-the-altadena-town-council-eaton-fire-statement-resources/",
           "anchor": "Eaton Fire Statement/Resources",
           "status": 404,
           "reason": "404",
           "confidence": "high"
-        },
-        {
-          "href": "https://lachamber.com/",
-          "anchor": "Los Angeles Chamber of Commerce",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
         },
         {
           "href": "https://www.fema.gov/press-release/20250109/president-joseph-r-biden-jr-approves-major-disaster-declaration-california",
@@ -563,14 +505,77 @@
           "confidence": "check"
         },
         {
-          "href": "https://www.treasurer.ca.gov/pdfs/STO-Wildfire-Recovery-Resources-Guide.pdf",
-          "anchor": "Resources for California Fire Victims",
+          "href": "https://neweconomicsforwomen.org/",
+          "anchor": "New Economics for Women",
           "status": 403,
           "reason": "403",
           "confidence": "check"
+        },
+        {
+          "href": "https://vsedc.org/wbc/",
+          "anchor": "Vermont Slauson Women’s Business Center",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
+          "href": "https://thevalley.net/disaster-relief/",
+          "anchor": "Disaster Relief – The Los Angeles Fires",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
+          "href": "https://lalegalhelp.org/",
+          "anchor": "LA Regional Small Business Owners Legal Aid Program",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
+          "href": "https://www.treasurer.ca.gov/pdfs/STO-Wildfire-Recovery-Resources-Guide.pdf",
+          "anchor": "Resources for California Fire Victims",
+          "status": 404,
+          "reason": "404",
+          "confidence": "high"
+        },
+        {
+          "href": "https://www.sce.com/sites/default/files/inline-files/EDR_Fact_Sheet.pdf",
+          "anchor": "Economic Development Rate Program from Southern California Edison",
+          "status": 404,
+          "reason": "404",
+          "confidence": "high"
+        },
+        {
+          "href": "https://www.ftb.ca.gov/about-ftb/newsroom/news-releases/2025-01-emergency-tax-relief-for-los-angeles-county-fires.html",
+          "anchor": "Emergency Tax Relief for Los Angeles County",
+          "status": 404,
+          "reason": "404",
+          "confidence": "high"
+        },
+        {
+          "href": "https://wildfirerecovery.caloes.ca.gov/general-info/tax-assistance/",
+          "anchor": "Tax Assistance After a Disaster",
+          "status": 0,
+          "reason": "network error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
+          "confidence": "high"
+        },
+        {
+          "href": "https://donations.caloes.ca.gov/CADP/s/",
+          "anchor": "California Donations Portal",
+          "status": 0,
+          "reason": "network error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
+          "confidence": "high"
+        },
+        {
+          "href": "https://ewdd.lacity.gov/index.php/employment-services/worksource-centers",
+          "anchor": "WorkSource Centers",
+          "status": 404,
+          "reason": "404",
+          "confidence": "high"
         }
       ],
-      "checked_at": "2026-09-16T19:20:18+00:00",
+      "checked_at": "2026-09-28T13:11:52+00:00",
       "final_url": "https://outsmartdisaster.calosba.ca.gov/support-and-resources-for-los-angeles-area-wildfire-recovery/"
     },
     {
@@ -582,9 +587,9 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-09-16T19:20:43+00:00",
+      "checked_at": "2026-09-28T13:12:01+00:00",
       "final_url": "https://www.sandiegocounty.gov/content/sdc/sdcfa/crr-main-menu/CommunityRiskReduction.html",
-      "error": "__error__:timeout:The read operation timed out"
+      "error": "__error__:TimeoutError:The read operation timed out"
     },
     {
       "id": "ucanr-fire-network-prepare-home",
@@ -603,7 +608,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-09-16T19:20:43+00:00",
+      "checked_at": "2026-09-28T13:12:14+00:00",
       "final_url": "https://ucanr.edu/program/uc-anr-fire-network/prepare-your-home"
     },
     {
@@ -615,7 +620,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-09-16T19:20:45+00:00",
+      "checked_at": "2026-09-28T13:12:16+00:00",
       "final_url": "https://ucanr.edu/program/uc-anr-fire-network/wildfire-preparedness",
       "error": "HTTP 403"
     },
@@ -628,7 +633,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-09-16T19:20:45+00:00",
+      "checked_at": "2026-09-28T13:12:16+00:00",
       "final_url": "https://ucanr.edu/site/ucce-central-sierra-living-fire/fire-resistant-home-construction",
       "error": "HTTP 403"
     },
@@ -641,7 +646,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-09-16T19:20:45+00:00",
+      "checked_at": "2026-09-28T13:12:16+00:00",
       "final_url": "https://ucanr.edu/county/ucce-central-sierra/central-sierra-fire-safety-resources",
       "error": "HTTP 403"
     },
@@ -654,7 +659,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-09-16T19:20:46+00:00",
+      "checked_at": "2026-09-28T13:12:16+00:00",
       "final_url": "https://celosangeles.ucanr.edu/Natural_Resources/Fire",
       "error": "HTTP 403"
     },
@@ -664,16 +669,9 @@
       "org": "Pacific Palisades Community Council",
       "gift": "tracker",
       "http": 200,
-      "external_links": 82,
-      "tested": 60,
+      "external_links": 84,
+      "tested": 80,
       "broken": [
-        {
-          "href": "https://dbs.lacity.gov/2025-los-angeles-wildfires-information",
-          "anchor": "LADBS Wildfire Rebuilding & Recovery Page",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
         {
           "href": "https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flacity.us13.list-manage.com%2Ftrack%2Fclick%3Fu%3Db7c40956d1b3e052342a14337%26id%3D003c54a459%26e%3De5f2b2e443&data=05%7C02%7C%7C868ec89116fe4c9dc08808de71875a95%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639073023324107502%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=dqrGCb6SrG5hOEeCqwdaBw6LQVnlLzjA6sBTQLHM1E8%3D&reserved=0",
           "anchor": "Public Infrastructure Restoration",
@@ -689,7 +687,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-09-16T19:20:46+00:00",
+      "checked_at": "2026-09-28T13:12:16+00:00",
       "final_url": "https://pacpalicc.org/index.php/palisades-fire-information-updates-2026/"
     },
     {
@@ -702,60 +700,11 @@
       "tested": 59,
       "broken": [
         {
-          "href": "https://www.calassistmortgagefund.org/",
-          "anchor": "CalAssist Mortgage Fund",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://maps.conservation.ca.gov/cgs/informationwarehouse/eqzapp/",
-          "anchor": "California Geological Survey Earthquake Zones of Required Investigation Maps",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://maps.conservation.ca.gov/cgs/lsi/",
-          "anchor": "California Geological Survey Landslide Inventory Maps",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
           "href": "https://wck.org/news/meal-locations-ca",
           "anchor": "wck.org/news/meal-locations-ca",
           "status": 404,
           "reason": "404",
           "confidence": "high"
-        },
-        {
-          "href": "https://dor.ca.gov/",
-          "anchor": "dor.ca.gov/",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://www.SoCalGas.com/billing-payment/assistance-programs/emergency-disaster-relief",
-          "anchor": "SoCalGas.com/emergency-disaster-relief",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://www.SoCalGas.com/fires",
-          "anchor": "SoCalGas.com/fires",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://www.SoCalGas.com/BusinessRebates",
-          "anchor": "SoCalGas.com/BusinessRebates",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
         },
         {
           "href": "https://www.spl.usace.army.mil/missions/emergency-management/los-angeles-county-wildfire-debris-removal-mission/",
@@ -772,6 +721,13 @@
           "confidence": "check"
         },
         {
+          "href": "https://restaurantscare.org/",
+          "anchor": "restaurantscare.org/",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
           "href": "https://ewdd.lacity.gov/index.php/2025-los-angeles-wild-fires-resources",
           "anchor": "EWDD Wildfire Resources",
           "status": 404,
@@ -779,7 +735,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-09-16T19:20:50+00:00",
+      "checked_at": "2026-09-28T13:12:16+00:00",
       "final_url": "https://maliburebuilds.org/community-resources/"
     },
     {
@@ -787,20 +743,13 @@
       "url": "https://www.altadenacollective.org/homeowners",
       "org": "Altadena Collective",
       "gift": "tracker",
-      "http": 200,
-      "external_links": 10,
-      "tested": 10,
-      "broken": [
-        {
-          "href": "https://altadenawiki.com/wiki/Main_Page",
-          "anchor": "Altadena Wiki",
-          "status": 0,
-          "reason": "network error: <urlopen error [SSL: TLSV1_ALERT_PROTOCOL_VERSION] tlsv1 alert protocol version (_ssl.c:1129)>",
-          "confidence": "high"
-        }
-      ],
-      "checked_at": "2026-09-16T19:20:50+00:00",
-      "final_url": "https://www.altadenacollective.org/homeowners"
+      "http": 429,
+      "external_links": 0,
+      "tested": 0,
+      "broken": [],
+      "checked_at": "2026-09-28T13:12:25+00:00",
+      "final_url": "https://www.altadenacollective.org/homeowners",
+      "error": "HTTP 429"
     },
     {
       "id": "altadena-chamber-recovery",
@@ -809,8 +758,15 @@
       "gift": "tracker",
       "http": 200,
       "external_links": 111,
-      "tested": 60,
+      "tested": 80,
       "broken": [
+        {
+          "href": "https://admin.docu.team/photogrid.php?action=association_research_report&chamber=927",
+          "anchor": "Advertising Value Report",
+          "status": 0,
+          "reason": "network error: The read operation timed out",
+          "confidence": "high"
+        },
         {
           "href": "https://wa.me/803-973-6556",
           "anchor": "",
@@ -826,8 +782,8 @@
           "confidence": "high"
         },
         {
-          "href": "https://app.brightharbor.com/grants?zipcode=91001",
-          "anchor": "Grants search through Bright Harbor",
+          "href": "https://didihirsch.org/treatment/wildfire-recovery/?utm_source=didihirsch&utm_medium=redirect&utm_campaign=wildfire",
+          "anchor": "",
           "status": 403,
           "reason": "403",
           "confidence": "check"
@@ -838,13 +794,6 @@
           "status": 404,
           "reason": "404",
           "confidence": "high"
-        },
-        {
-          "href": "https://lacountyrelieffund.com/",
-          "anchor": "LA County Household Relief Grant - up to $18k for households impacted by the Eaton & Palisades fires.",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
         },
         {
           "href": "https://www.fema.gov/press-release/20250201/houses-worship-and-other-nonprofits-may-apply-federal-public-assistance?utm_content=&utm_medium=email&utm_name=&utm_source=govdelivery&utm_term=",
@@ -875,6 +824,13 @@
           "confidence": "high"
         },
         {
+          "href": "https://restaurantscare.org/help/?utm_campaign=website&utm_medium=email&utm_source=sendgrid.com",
+          "anchor": "Grants for Food and Beverage Workers - Restaurants Care Program",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
           "href": "https://pacelabdc.org/disaster-express-loan-program/?utm_campaign=website&utm_medium=email&utm_source=sendgrid.com",
           "anchor": "PACE Disaster Express Loan Program",
           "status": 404,
@@ -901,9 +857,37 @@
           "status": 404,
           "reason": "404",
           "confidence": "high"
+        },
+        {
+          "href": "https://thevalley.net/",
+          "anchor": "The Valley Economic Alliance",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
+          "href": "https://www.makinghousinghappen.org/post/one-virtually-free-rv-for-one-person-displaced-by-eaton-wildfire",
+          "anchor": "Rent an RV for $1 a month while rebuilding.",
+          "status": 429,
+          "reason": "429",
+          "confidence": "check"
+        },
+        {
+          "href": "https://www.iqair.com/us/air-quality-map/usa/california/los-angeles?srsltid=AfmBOopID6Wg4ynke2x83TWAm3qwxwPJtKBSjdsPKDvPkrNYXnuk6PUb",
+          "anchor": "Air Quality",
+          "status": 429,
+          "reason": "429",
+          "confidence": "check"
+        },
+        {
+          "href": "https://www.fema.gov/fact-sheet/what-landlords-need-know-about-femas-rental-assistance-program?utm_content=&utm_medium=email&utm_name=&utm_source=govdelivery&utm_term=",
+          "anchor": "What Landlords need to know about FEMA's Rental Assistance Program",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
         }
       ],
-      "checked_at": "2026-09-16T19:20:55+00:00",
+      "checked_at": "2026-09-28T13:12:25+00:00",
       "final_url": "https://www.altadenachamber.org/en/wildfire-recovery"
     },
     {
@@ -916,6 +900,13 @@
       "tested": 43,
       "broken": [
         {
+          "href": "https://yhpasadena.org/",
+          "anchor": "YOUNG & HEALTHY",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
           "href": "https://pactl.org/",
           "anchor": "PACTL",
           "status": 403,
@@ -923,35 +914,42 @@
           "confidence": "check"
         },
         {
-          "href": "https://homebankla.org/",
-          "anchor": "HOME BANK LA",
+          "href": "https://www.godayone.org/",
+          "anchor": "DAY ONE",
+          "status": 429,
+          "reason": "429",
+          "confidence": "check"
+        },
+        {
+          "href": "https://doorofhope.us/",
+          "anchor": "DOOR OF HOPE",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
+          "href": "https://didihirsch.org/",
+          "anchor": "DIDI HIRSCH",
+          "status": 403,
+          "reason": "403",
+          "confidence": "check"
+        },
+        {
+          "href": "https://www.foothillfamily.org/fire-response/",
+          "anchor": "FOOTHILL FLOURISH",
           "status": 0,
-          "reason": "network error: <urlopen error [SSL: TLSV1_ALERT_PROTOCOL_VERSION] tlsv1 alert protocol version (_ssl.c:1129)>",
+          "reason": "network error: The read operation timed out",
           "confidence": "high"
-        },
-        {
-          "href": "https://uphelp.org/disaster-recovery-help/2025cawildfires/",
-          "anchor": "UNITED POLICYHOLDERS",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://disabilitydisasteraccess.org/rd-relief-fund/",
-          "anchor": "RICHARD DEVYLDER DISASTER RELIEF FUND",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
         },
         {
           "href": "https://rosebowlaquatics.org/rbac-cares-fund",
           "anchor": "ROSE BOWL AQUATIC CENTER",
-          "status": 404,
-          "reason": "404",
+          "status": 0,
+          "reason": "network error: <urlopen error timed out>",
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-09-16T19:20:58+00:00",
+      "checked_at": "2026-09-28T13:12:30+00:00",
       "final_url": "https://www.eatonfirecollaborative.org/trustedcommunityresources"
     },
     {
@@ -964,8 +962,8 @@
       "tested": 22,
       "broken": [
         {
-          "href": "https://app.calassistmortgagefund.org/navigator/#/",
-          "anchor": "The program provides grants for up to 12 months of mortgage payments, up to $100,000 CalHFA CalAssist Mortgage Fund",
+          "href": "https://amegllc.com/what-we-do/modular-home-building/",
+          "anchor": "Factory Built Factory Built --> AMEG Pre-fab housing manufacturer focused on disaster recovery. Visit Website",
           "status": 403,
           "reason": "403",
           "confidence": "check"
@@ -978,7 +976,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-09-16T19:21:09+00:00",
+      "checked_at": "2026-09-28T13:12:35+00:00",
       "final_url": "https://larises.org/rebuild/"
     },
     {
@@ -989,16 +987,8 @@
       "http": 200,
       "external_links": 4,
       "tested": 4,
-      "broken": [
-        {
-          "href": "https://secure.everyaction.com/OGBhFuzItUmqVASz4i_jHg2",
-          "anchor": "Donate Now!",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        }
-      ],
-      "checked_at": "2026-09-16T19:21:11+00:00",
+      "broken": [],
+      "checked_at": "2026-09-28T13:12:42+00:00",
       "final_url": "https://cafiresafecouncil.org/resources/map-of-fire-safe-councils/"
     },
     {
@@ -1011,35 +1001,21 @@
       "tested": 13,
       "broken": [
         {
-          "href": "https://pemco.com/",
+          "href": "https://www.statefarm.com/insurance/home-and-property/homeowners",
           "anchor": "",
-          "status": 512,
-          "reason": "512",
-          "confidence": "check"
-        },
-        {
-          "href": "https://www.ciginsurance.com/wildfire/",
-          "anchor": "",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://csaa-insurance.aaa.com/content/aaa-ie/b2c/en/homepage.html",
-          "anchor": "",
-          "status": 403,
-          "reason": "403",
+          "status": 401,
+          "reason": "401",
           "confidence": "check"
         },
         {
           "href": "https://farmers.com",
           "anchor": "",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
+          "status": 0,
+          "reason": "network error: The read operation timed out",
+          "confidence": "high"
         }
       ],
-      "checked_at": "2026-09-16T19:21:13+00:00",
+      "checked_at": "2026-09-28T13:12:45+00:00",
       "final_url": "https://wildfireprepared.org/"
     },
     {
@@ -1051,7 +1027,7 @@
       "external_links": 1,
       "tested": 1,
       "broken": [],
-      "checked_at": "2026-09-16T19:21:13+00:00",
+      "checked_at": "2026-09-28T13:12:47+00:00",
       "final_url": "https://malibulakeside.com/fire-safety/"
     }
   ]
