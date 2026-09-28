@@ -57,10 +57,39 @@
       },
       "cost_est_usd": 0.733,
       "queries": 20
+    },
+    {
+      "date": "2026-09-28",
+      "engines": {
+        "claude": {
+          "answered": 0,
+          "errors": 0,
+          "cited": 0,
+          "mentioned": 0,
+          "citation_share": null,
+          "mention_share": null,
+          "wrong_claims": 0,
+          "brand_queries_cited": 0,
+          "brand_queries": 0
+        },
+        "gemini": {
+          "answered": 20,
+          "errors": 0,
+          "cited": 8,
+          "mentioned": 7,
+          "citation_share": 0.4,
+          "mention_share": 0.35,
+          "wrong_claims": 0,
+          "brand_queries_cited": 3,
+          "brand_queries": 3
+        }
+      },
+      "cost_est_usd": 0.743,
+      "queries": 20
     }
   ],
   "latest": {
-    "date": "2026-09-21",
+    "date": "2026-09-28",
     "engines": {
       "claude": {
         "answered": 0,
@@ -76,17 +105,17 @@
       "gemini": {
         "answered": 20,
         "errors": 0,
-        "cited": 10,
-        "mentioned": 9,
-        "citation_share": 0.5,
-        "mention_share": 0.45,
+        "cited": 8,
+        "mentioned": 7,
+        "citation_share": 0.4,
+        "mention_share": 0.35,
         "wrong_claims": 0,
         "brand_queries_cited": 3,
         "brand_queries": 3
       }
     },
-    "cost_est_usd": 0.733,
+    "cost_est_usd": 0.743,
     "queries": 20
   },
-  "updated_at": "2026-09-21T13:40:32+00:00"
+  "updated_at": "2026-09-28T15:00:19+00:00"
 }
