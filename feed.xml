@@ -5,10 +5,28 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-09-16T00:00:00Z</updated>
+  <updated>2026-10-07T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Concrete Luxury Homes in California: A $6.2M Connecticut Signal</title>
+    <link href="https://myvilla.la/blog/concrete-luxury-homes-california-connecticut-pond-signal.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/concrete-luxury-homes-california-connecticut-pond-signal.html</id>
+    <published>2026-10-07T00:00:00Z</published>
+    <updated>2026-10-07T00:00:00Z</updated>
+    <summary>Does concrete belong in a luxury home? A $6.2M Connecticut estate says yes — and concrete luxury homes in California turn that same choice into a resilience dividend.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/concrete-luxury-homes-california-connecticut-pond-signal-hero.jpg"/>
+  </entry>
+  <entry>
+    <title>Concrete as Luxury Material: Zumthor's Gallery and California</title>
+    <link href="https://myvilla.la/blog/concrete-luxury-material-zumthor-beyeler-california.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/concrete-luxury-material-zumthor-beyeler-california.html</id>
+    <published>2026-10-07T00:00:00Z</published>
+    <updated>2026-10-07T00:00:00Z</updated>
+    <summary>Is concrete a luxury material? Peter Zumthor's £110m Basel gallery makes the case—and shows what rammed concrete means for luxury homes in California.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/concrete-luxury-material-zumthor-beyeler-california-hero.jpg"/>
+  </entry>
   <entry>
     <title>Luxury Home Renovation in Bel Air: A $32.5M Benchmark</title>
     <link href="https://myvilla.la/blog/luxury-home-renovation-bel-air-32-5m-benchmark.html" rel="alternate" type="text/html"/>
@@ -260,23 +278,5 @@
     <updated>2026-06-26T00:00:00Z</updated>
     <summary>Will your California home stay insured in 2026? A new CDI and CAL FIRE webinar on home insurance signals how premiums, coverage, and wildfire risk now move together.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/california-home-insurance-webinar-cdi-cal-fire-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Palisades Rebuild Pace: 15 Homes Done Against 928 Permits</title>
-    <link href="https://myvilla.la/blog/palisades-rebuild-pace-15-homes-completed-2026.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/palisades-rebuild-pace-15-homes-completed-2026.html</id>
-    <published>2026-06-22T00:00:00Z</published>
-    <updated>2026-06-22T00:00:00Z</updated>
-    <summary>How many Pacific Palisades homes have actually been rebuilt? As of mid-2026, roughly 15 finished against 928 permits — here's what the new-construction pipeline reveals.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/palisades-rebuild-pace-15-homes-completed-2026-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Italian Villa in California: Bel Air's $65M Tuscan Estate</title>
-    <link href="https://myvilla.la/blog/tuscan-estate-bel-air-65-million-italian-villa-california.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/tuscan-estate-bel-air-65-million-italian-villa-california.html</id>
-    <published>2026-06-22T00:00:00Z</published>
-    <updated>2026-06-22T00:00:00Z</updated>
-    <summary>What does a Tuscan-style Italian villa in California command at the top of the market? A 4-acre Bel Air estate with a private vineyard just listed for $65 million.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/tuscan-estate-bel-air-65-million-italian-villa-california-hero.jpg"/>
   </entry>
 </feed>

@@ -604,10 +604,40 @@ a { color: inherit; text-decoration: none; }
   </div>
   <h1 class="category-title">LA Luxury Market</h1>
   <div class="category-accent-bar"></div>
-  <div class="category-sub">27 articles &middot; Updated perspectives on this topic</div>
+  <div class="category-sub">28 articles &middot; Updated perspectives on this topic</div>
 </section>
 
 
+<div class="month-group">
+  <div class="month-header reveal">
+    <h3 class="month-label">October 2026</h3>
+    <span class="month-count">1 article</span>
+  </div>
+  <div class="article-grid">
+    
+    <article class="card reveal reveal-d1" data-year="2026" data-section="market">
+      <a href="concrete-luxury-homes-california-connecticut-pond-signal.html" style="text-decoration:none;color:inherit;">
+      <div class="card-accent accent-market"></div>
+      <div class="card-img">
+        <img src="assets/img/concrete-luxury-homes-california-connecticut-pond-signal-hero.jpg" alt="Concrete Luxury Homes in California: A $6.2M Connecticut Signal" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-market">LA Luxury Market</span>
+        <h3 class="card-title">Concrete Luxury Homes in California: A $6.2M Connecticut Signal</h3>
+        <p class="card-excerpt">Does concrete belong in a luxury home? A $6.2M Connecticut estate says yes — and concrete luxury homes in California turn that same choice into a resilience dividend.</p>
+        <div class="card-meta">October 07, 2026 &middot; 5 min read</div>
+        
+      <div class="card-source">
+        <div class="card-source-icon src-article">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M6 7h4M6 9.5h4M6 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="card-source-text">Citing <strong>Robb Report Shelter</strong></span>
+      </div>
+      </div>
+      </a>
+    </article>
+  </div>
+</div>
 <div class="month-group">
   <div class="month-header reveal">
     <h3 class="month-label">September 2026</h3>
@@ -1346,6 +1376,30 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+<!-- CONV:READTRACK:START -->
+<script>
+(function () {
+  // Reading quality (no personal data): scroll depth 25/50/75/100% and visible-tab reading time 30/60/120/300 s, once per threshold
+  var PT = (document.body && document.body.getAttribute('data-page-type')) || 'page';
+  function send(ev, p) { p = p || {}; p.page_type = PT; if (window.__mvDebug) p.debug_mode = true; try { if (typeof gtag === 'function') gtag('event', ev, p); } catch (e) {} }
+  var marks = [25, 50, 75, 100], hit = {};
+  function depth() {
+    var doc = document.documentElement, h = Math.max(doc.scrollHeight, document.body ? document.body.scrollHeight : 0) - window.innerHeight;
+    if (h <= 0) return 100;
+    return Math.min(100, Math.round((window.scrollY || doc.scrollTop || 0) / h * 100));
+  }
+  function onScroll() { var d = depth(); for (var i = 0; i < marks.length; i++) { var m = marks[i]; if (!hit[m] && d >= m) { hit[m] = true; send('read_' + m, { percent: m }); } } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  setTimeout(onScroll, 1500);
+  var secs = 0, tmarks = [30, 60, 120, 300], thit = {};
+  setInterval(function () {
+    if (document.hidden) return;
+    secs += 5;
+    for (var i = 0; i < tmarks.length; i++) { var m = tmarks[i]; if (!thit[m] && secs >= m) { thit[m] = true; send('read_time_' + m + 's', { seconds: m }); } }
+  }, 5000);
+})();
+</script>
+<!-- CONV:READTRACK:END -->
 <!-- CONV:COOKIE_UI:START -->
 <style>
 #cookieBanner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9990; background: var(--offblack, #1a1816); border-top: 1px solid rgba(196,162,101,0.2); padding: 20px var(--side-pad, 24px); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; transform: translateY(100%); transition: transform 0.4s ease; }
@@ -1402,29 +1456,5 @@ body #cookieBanner.cookie-toast .cookie-btn { padding: 8px 14px; font-size: 11px
 })();
 </script>
 <!-- CONV:COOKIE_UI:END -->
-<!-- CONV:READTRACK:START -->
-<script>
-(function () {
-  // Reading quality (no personal data): scroll depth 25/50/75/100% and visible-tab reading time 30/60/120/300 s, once per threshold
-  var PT = (document.body && document.body.getAttribute('data-page-type')) || 'page';
-  function send(ev, p) { p = p || {}; p.page_type = PT; if (window.__mvDebug) p.debug_mode = true; try { if (typeof gtag === 'function') gtag('event', ev, p); } catch (e) {} }
-  var marks = [25, 50, 75, 100], hit = {};
-  function depth() {
-    var doc = document.documentElement, h = Math.max(doc.scrollHeight, document.body ? document.body.scrollHeight : 0) - window.innerHeight;
-    if (h <= 0) return 100;
-    return Math.min(100, Math.round((window.scrollY || doc.scrollTop || 0) / h * 100));
-  }
-  function onScroll() { var d = depth(); for (var i = 0; i < marks.length; i++) { var m = marks[i]; if (!hit[m] && d >= m) { hit[m] = true; send('read_' + m, { percent: m }); } } }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  setTimeout(onScroll, 1500);
-  var secs = 0, tmarks = [30, 60, 120, 300], thit = {};
-  setInterval(function () {
-    if (document.hidden) return;
-    secs += 5;
-    for (var i = 0; i < tmarks.length; i++) { var m = tmarks[i]; if (!thit[m] && secs >= m) { thit[m] = true; send('read_time_' + m + 's', { seconds: m }); } }
-  }, 5000);
-})();
-</script>
-<!-- CONV:READTRACK:END -->
 </body>
 </html>

@@ -6238,6 +6238,26 @@
       "action_type": "user_dismissed",
       "url": "https://www.latimes.com/california/story/2026-09-11/at-nicolas-cage-sinkhole-in-malibu-el-nino-fears-alter-good-vibes",
       "note": "auto-sent pitch to fedor.zarkhin@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-10-07",
+      "source": "user_dismissed",
+      "title": "'If it's too slick, it looks like a fashion mag': Peter Zumthor on his £110m rammed concrete gallery",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.theguardian.com/artanddesign/2026/oct/05/peter-zumthor-beyeler-foundation-concrete-gallery-basel",
+      "note": "auto-published journal: concrete-luxury-material-zumthor-beyeler-california"
+    },
+    {
+      "date_first_reported": "2026-10-07",
+      "source": "user_dismissed",
+      "title": "This $6.2 Million Connecticut Home Comes With an Olympic-Size Concrete Pond",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/leuthold-house-connecticut-new-canaan-1238730288/",
+      "note": "auto-published journal: concrete-luxury-homes-california-connecticut-pond-signal"
     }
   ],
   "reported": [
