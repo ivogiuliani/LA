@@ -1,30 +1,26 @@
 name: Daily Publish Pipeline
 
 # Pipeline giornaliera: radar → radar_report → journal → publish + digest
-# → feature pitch. Rail CLOUD (fallback del launchd locale): 4 trigger
-# cron mattutini (04:47/06:17/08:17/10:17 UTC) — basta che uno parta.
+# → feature pitch. Rail CLOUD con il token dell'abbonamento (secret
+# CLAUDE_CODE_OAUTH_TOKEN): trigger notturni, vedi sotto. Basta che uno parta.
 # Non richiede il Mac acceso: gira su un runner GitHub Ubuntu.
 #
 # Manual trigger: dalla tab Actions del repo, click "Run workflow" sul
 # workflow "Daily Publish Pipeline". Utile per test e debugging.
 on:
   schedule:
-    # MULTIPLI trigger mattutini (UTC). Il cron free-tier di GitHub
-    # ritarda/salta spesso (osservato: 2.5-6h di ritardo, a volte un
-    # giorno saltato). Con un solo trigger, un Mac spento + un cron
-    # saltato = nessuna attività (è successo il 2 giugno). Con più
-    # trigger, basta che UNO parta. La guard cross-rail (.last_digest_date)
-    # + la concorrenza serializzata garantiscono che SOLO il primo che
-    # gira faccia il lavoro; gli altri vedono il marker e skippano.
-    # CEST = UTC+2 (estate). Il Mac (launchd) è il rail PRIMARIO e gira alle
-    # ~08:00 CEST: questi trigger partono DOPO la sua finestra, così il cloud
-    # è un vero FALLBACK (se il Mac ha girato, vede il marker e skippa; se il
-    # Mac era spento, copre lui). Niente più trigger PRIMA delle 08:00 CEST
-    # (preempivano il Mac). Più trigger perché il cron free di GitHub
-    # ritarda/salta spesso: basta che UNO parta.
-    - cron: "17 6 * * *"    # 06:17 UTC ~ 08:17 CEST (subito dopo il Mac)
-    - cron: "17 8 * * *"    # 08:17 UTC ~ 10:17 CEST
-    - cron: "17 10 * * *"   # 10:17 UTC ~ 12:17 CEST (rete di sicurezza)
+    # Trigger NOTTURNI (decisione Ivo 2026-10-13): la produzione consuma il piano
+    # Claude (finestre di 5 ore) e deve girare di notte, ora italiana, per non
+    # togliere margine al lavoro di giorno. Il cron free di GitHub parte con ore
+    # di ritardo (ottobre 2026: 4-9 h), quindi più trigger a cavallo della
+    # mezzanotte UTC. Ogni run controlla il marker del proprio giorno UTC: chi
+    # parte prima delle 00:00 UTC trova il giorno precedente già fatto e chiude
+    # in pochi secondi (zero token); il primo dopo le 00:00 UTC (02:00 CEST,
+    # 01:00 CET) fa il lavoro; gli altri vedono il marker e saltano.
+    - cron: "17 21 * * *"   # 21:17 UTC: col ritardo tipico parte nella notte successiva
+    - cron: "17 23 * * *"   # 23:17 UTC
+    - cron: "17 1 * * *"    # 01:17 UTC = 03:17 CEST / 02:17 CET
+    - cron: "17 3 * * *"    # 03:17 UTC = 05:17 CEST / 04:17 CET
     # (minuti "spaiati" per evitare i picchi di contesa del top-of-hour)
   workflow_dispatch:       # trigger manuale dalla UI di GitHub
     inputs:

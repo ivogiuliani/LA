@@ -11,7 +11,7 @@ name: GEO Monitor (AI citation share)
 
 on:
   schedule:
-    - cron: "0 7 * * 1"   # lunedì 07:00 UTC
+    - cron: "0 22 * * 0"  # domenica 22:00 UTC = lunedì 00:00 CEST (di notte: usa il piano Claude, decisione 2026-10-13)
   workflow_dispatch:
     inputs:
       engine:

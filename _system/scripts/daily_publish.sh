@@ -47,7 +47,7 @@ cd "$PROJECT_ROOT" || exit 1
 # Ora-target: la pipeline gira solo a partire da questa ora locale.
 # Pattern poll-based (come io.giuliani.fallingknife): robusto allo
 # sleep del Mac — launchd esegue l'intervallo perso appena sveglio.
-TARGET_HOUR=8
+TARGET_HOUR="${TARGET_HOUR:-5}"   # 05:00 locali (2026-10-13: di notte per non consumare il piano Claude di giorno)
 
 # Tetto di tempo per il radar. Una singola API lenta (es. x.ai/Grok che
 # manda dati col contagocce oltre il read-timeout per-richiesta, o rete
