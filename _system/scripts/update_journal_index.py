@@ -9,6 +9,7 @@ Usage:
 """
 
 import re
+import json
 import argparse
 import html as html_module
 from datetime import datetime
@@ -38,6 +39,10 @@ def extract_metadata(filepath):
         title = m.group(1)
     if not title:
         title = meta("og:title").replace(" — My Villa Journal", "")
+    if not title:
+        # Audit 2026-10-13: <title> may carry no brand suffix (seo_title_tag)
+        m = re.search(r'<title>(.+?)</title>', content, re.S)
+        title = m.group(1).strip() if m else ""
     # The raw HTML already contains escaped entities (e.g. &#x27;); decode
     # here so esc() can re-escape exactly once when rendering the index.
     title = html_module.unescape(title)
@@ -285,19 +290,57 @@ SECTIONS = {
 
 
 def find_hero_image(slug, blog_dir=None):
-    """Return the relative path to the hero image for this slug, or None.
+    """Return the root-absolute URL path of the hero image for this slug, or None.
 
-    Looks for `<blog>/assets/img/<slug>-hero.{jpg,jpeg,png,webp}` in that
-    order. Returns a URL-relative path suitable for <img src="..."> inside
-    `blog/index.html`.
+    Looks for `<blog>/assets/img/<slug>-hero.{webp,jpg,jpeg,png}` in that
+    order (WebP first: seo-audit 2026-10-13 converts every live hero to WebP
+    next to the original). Returns a ROOT-ABSOLUTE path (`/blog/assets/...`)
+    so the same card markup works from `blog/index.html` AND from
+    `blog/category/*.html` (relative paths produced 404s from the category
+    pages: 130 broken links found by the 2026-10-13 audit).
     """
     base = blog_dir or BLOG_DIR
     img_dir = base / "assets" / "img"
-    for ext in ("jpg", "jpeg", "png", "webp"):
+    for ext in ("webp", "jpg", "jpeg", "png"):
         candidate = img_dir / f"{slug}-hero.{ext}"
         if candidate.exists():
-            return f"assets/img/{slug}-hero.{ext}"
+            return f"/blog/assets/img/{slug}-hero.{ext}"
     return None
+
+
+_HERO_DIMS_CACHE = {}
+
+
+def hero_image_dims(hero_path):
+    """Return (width, height) of a hero image given its root-absolute path.
+
+    Read once per file via Pillow so cards can carry width/height attributes
+    (CLS hint). Returns (None, None) when Pillow or the file is unavailable.
+    """
+    if not hero_path:
+        return (None, None)
+    if hero_path in _HERO_DIMS_CACHE:
+        return _HERO_DIMS_CACHE[hero_path]
+    dims = (None, None)
+    try:
+        from PIL import Image  # lazy: the pipeline must never fail on this
+        fs_path = BLOG_DIR.parent / hero_path.lstrip("/")
+        with Image.open(fs_path) as im:
+            dims = im.size
+    except Exception:
+        dims = (None, None)
+    _HERO_DIMS_CACHE[hero_path] = dims
+    return dims
+
+
+def hero_dims_attr(hero_path):
+    w, h = hero_image_dims(hero_path)
+    return f' width="{w}" height="{h}"' if w and h else ""
+
+
+def article_href(article):
+    """Root-absolute link to an article (valid from index AND category pages)."""
+    return f"/blog/{article['filename']}"
 
 
 def render_article_card(article, delay_idx=0):
@@ -306,7 +349,7 @@ def render_article_card(article, delay_idx=0):
     delay_class = f" reveal-d{delay_idx + 1}" if delay_idx < 4 else ""
     hero = find_hero_image(article.get("slug", ""))
     img_block = (
-        f'<img src="{esc(hero)}" alt="{esc(article["title"])}" loading="lazy" '
+        f'<img src="{esc(hero)}" alt="{esc(article["title"])}" loading="lazy" decoding="async"{hero_dims_attr(hero)} '
         f'style="width:100%;height:100%;object-fit:cover;display:block;">'
         if hero else
         f'<div class="card-img-placeholder" style="background:{sec["gradient"]};">'
@@ -334,7 +377,7 @@ def render_article_card(article, delay_idx=0):
     article_year = (article.get("date", "") or "")[:4]
     return f"""
     <article class="card reveal{delay_class}" data-year="{article_year}" data-section="{esc(article['section'])}">
-      <a href="{esc(article['filename'])}" style="text-decoration:none;color:inherit;">
+      <a href="{esc(article_href(article))}" style="text-decoration:none;color:inherit;">
       <div class="card-accent {sec['accent_class']}"></div>
       <div class="card-img">
         {img_block}
@@ -355,7 +398,7 @@ def render_featured(article):
     sec = SECTIONS.get(article["section"], SECTIONS["materials"])
     hero = find_hero_image(article.get("slug", ""))
     featured_img_block = (
-        f'<img src="{esc(hero)}" alt="{esc(article["title"])}" loading="eager" '
+        f'<img src="{esc(hero)}" alt="{esc(article["title"])}" loading="eager" fetchpriority="high" decoding="async"{hero_dims_attr(hero)} '
         f'style="width:100%;height:100%;object-fit:cover;display:block;">'
         if hero else
         f'<div class="featured-img-placeholder" style="background:{sec["gradient"]};">'
@@ -378,7 +421,7 @@ def render_featured(article):
 
     return f"""
   <div class="featured-label reveal">Featured</div>
-  <a href="{esc(article['filename'])}" style="text-decoration:none;color:inherit;">
+  <a href="{esc(article_href(article))}" style="text-decoration:none;color:inherit;">
   <div class="featured-card reveal reveal-d1">
     <div class="featured-img">
       {featured_img_block}
@@ -411,10 +454,15 @@ def render_section_block(section_id, articles, preview_only=True, heading_anchor
     cards = "\n".join(render_article_card(a, i) for i, a in enumerate(display_arts))
 
     see_all_html = ""
-    if preview_only and total > PREVIEW_LIMIT:
+    # Audit 2026-10-13: link the category hub whenever it exists (every
+    # section above CATEGORY_PAGE_THRESHOLD gets one), not only when the
+    # section overflows the preview — otherwise small hubs (Climate, Permits)
+    # sit in the sitemap with no inbound link.
+    if preview_only and total > CATEGORY_PAGE_THRESHOLD:
+        label = f"See all {total} articles" if total > PREVIEW_LIMIT else f"Open the {esc(sec['name'])} hub"
         see_all_html = (
-            f'<a href="category/{section_id}.html" class="see-all-link">'
-            f'See all {total} articles '
+            f'<a href="/blog/category/{section_id}.html" class="see-all-link">'
+            f'{label} '
             f'<svg width="12" height="12" viewBox="0 0 16 16" fill="none" style="vertical-align:middle">'
             f'<path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
             f'</svg></a>'
@@ -456,7 +504,7 @@ def render_latest_card(article):
 
     article_year = (article.get("date", "") or "")[:4]
     return f"""
-    <a href="{esc(article['filename'])}" class="latest-card" data-section="{article['section']}" data-year="{article_year}">
+    <a href="{esc(article_href(article))}" class="latest-card" data-section="{article['section']}" data-year="{article_year}">
       <div class="latest-card-accent" style="background:{sec['accent']};"></div>
       <div class="latest-card-body">
         <span class="latest-card-tag {sec['tag_class']}">{esc(article.get('tag_label', sec['name']))}</span>
@@ -665,6 +713,30 @@ def render_index_html(articles):
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="https://myvilla.la/blog/">
 <link rel="alternate" type="application/atom+xml" title="My Villa Journal" href="https://myvilla.la/feed.xml">
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@graph": [
+    {{
+      "@type": "CollectionPage",
+      "@id": "https://myvilla.la/blog/#collection",
+      "url": "https://myvilla.la/blog/",
+      "name": "My Villa Journal",
+      "description": "Perspectives on building in Los Angeles. Insurance, materials, regulation, and resilience — grounded in data, informed by daily monitoring.",
+      "inLanguage": "en-US",
+      "isPartOf": {{"@id": "https://myvilla.la/#website"}},
+      "publisher": {{"@id": "https://myvilla.la/#organization"}}
+    }},
+    {{
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://myvilla.la/"}},
+        {{"@type": "ListItem", "position": 2, "name": "Journal", "item": "https://myvilla.la/blog/"}}
+      ]
+    }}
+  ]
+}}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -955,10 +1027,35 @@ def render_category_page(section_id, articles, style_block):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>{esc(sec['name'])} — My Villa Journal</title>
-<meta name="description" content="{esc(sec['name'])} articles from the My Villa Journal. Perspectives on building reinforced concrete villas in Los Angeles.">
+<meta name="description" content="{esc(sec['name'])}: {total} Journal notes on building reinforced concrete villas in Los Angeles, with sources and My Villa's perspective.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="https://myvilla.la/blog/category/{section_id}.html">
 <link rel="alternate" type="application/atom+xml" title="My Villa Journal" href="https://myvilla.la/feed.xml">
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@graph": [
+    {{
+      "@type": "CollectionPage",
+      "@id": "https://myvilla.la/blog/category/{section_id}.html#collection",
+      "url": "https://myvilla.la/blog/category/{section_id}.html",
+      "name": {json.dumps(sec['name'] + " — My Villa Journal")},
+      "description": {json.dumps(f"{sec['name']}: {total} Journal notes on building reinforced concrete villas in Los Angeles.")},
+      "inLanguage": "en-US",
+      "isPartOf": {{"@id": "https://myvilla.la/#website"}},
+      "publisher": {{"@id": "https://myvilla.la/#organization"}}
+    }},
+    {{
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://myvilla.la/"}},
+        {{"@type": "ListItem", "position": 2, "name": "Journal", "item": "https://myvilla.la/blog/"}},
+        {{"@type": "ListItem", "position": 3, "name": {json.dumps(sec['name'])}, "item": "https://myvilla.la/blog/category/{section_id}.html"}}
+      ]
+    }}
+  ]
+}}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -992,7 +1089,7 @@ def render_category_page(section_id, articles, style_block):
     <a href="https://myvilla.la/#collection">Collection</a>
     <a href="https://myvilla.la/#ethical">Approach</a>
     <a href="https://myvilla.la/#resilience">Resilience</a>
-    <a href="../index.html" class="active">Journal</a>
+    <a href="/blog/" class="active">Journal</a>
     <a href="https://myvilla.la/#contact" class="nav-cta">Request Briefing</a>
   </div>
   <div class="nav-burger" id="burger" aria-label="Menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
@@ -1004,13 +1101,13 @@ def render_category_page(section_id, articles, style_block):
   <a href="https://myvilla.la/#collection" onclick="closeMobile()">Collection</a>
   <a href="https://myvilla.la/#ethical" onclick="closeMobile()">Approach</a>
   <a href="https://myvilla.la/#resilience" onclick="closeMobile()">Resilience</a>
-  <a href="../index.html" onclick="closeMobile()">Journal</a>
+  <a href="/blog/" onclick="closeMobile()">Journal</a>
   <a href="https://myvilla.la/#contact" onclick="closeMobile()">Request Briefing</a>
 </div>
 
 <section class="category-hero">
   <div class="category-breadcrumb">
-    <a href="https://myvilla.la">Home</a> &rsaquo; <a href="../index.html">Journal</a> &rsaquo; {esc(sec['name'])}
+    <a href="https://myvilla.la">Home</a> &rsaquo; <a href="/blog/">Journal</a> &rsaquo; {esc(sec['name'])}
   </div>
   <h1 class="category-title">{esc(sec['name'])}</h1>
   <div class="category-accent-bar"></div>
@@ -1019,7 +1116,7 @@ def render_category_page(section_id, articles, style_block):
 
 {months_html}
 
-<a href="../index.html" class="back-link">
+<a href="/blog/" class="back-link">
   <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
   Back to Journal
 </a>
@@ -1132,14 +1229,26 @@ def main():
 
     # Extract metadata
     articles = []
+    skipped_noindex = 0
     for f in html_files:
         try:
+            # POTATURA SEO (2026-08-26) + audit 2026-10-13: articles in
+            # noindex (canonical → cluster survivor) stay on disk as citation
+            # targets for the answer page, but must NOT be listed in the
+            # Journal index / category hubs (listing them sends users and
+            # crawl budget to pages Google is told to drop).
+            if re.search(r'name="robots"\s+content="noindex', f.read_text(encoding="utf-8", errors="ignore")):
+                skipped_noindex += 1
+                continue
             meta = extract_metadata(f)
             if meta["title"]:
                 articles.append(meta)
                 print(f"  [{meta['section']}] {meta['title'][:50]}")
         except Exception as e:
             print(f"  Error reading {f.name}: {e}")
+
+    if skipped_noindex:
+        print(f"Skipped {skipped_noindex} noindex article(s) (SEO prune)")
 
     # Sort by date descending
     articles.sort(key=lambda a: a.get("date", ""), reverse=True)

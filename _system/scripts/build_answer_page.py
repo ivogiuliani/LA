@@ -53,7 +53,7 @@ SETTINGS_PATH = ROOT_DIR / "_system" / "config" / "lead_settings.yml"
 
 BASE_URL = "https://myvilla.la"
 PAGE_URL = f"{BASE_URL}/insurable-home-california.html"
-PAGE_TITLE = "Insurable Home in California: What the Data Says (2026)"
+PAGE_TITLE = "Insurable Home in California: What the 2026 Data Says"
 BRIEFING_URL = f"{BASE_URL}/private-briefing.html"
 TRACKER_URL = f"{BASE_URL}/research/westside-rebuild-tracker.html"
 GA4_ID = "G-D6HJX7BNZN"
@@ -254,10 +254,10 @@ def render(arts: List[dict], F: Dict[str, dict], tracker: Optional[dict], settin
     faq = build_faq(F, settings)
     n_articles = len(arts)
 
+    # Audit 2026-10-13: keep the description under 160 chars (Google snippet).
     description = (
-        f"What insurers actually price in California in 2026: {len(key_facts)} sourced facts on FAIR Plan rates, State Farm, "
-        "Safer from Wildfires, IBHS Wildfire Prepared Home discounts and construction cost, with an illustrative savings estimator "
-        f"and {n_articles} Journal notes."
+        f"What insurers price in California in 2026: {len(key_facts)} sourced facts on FAIR Plan rates, State Farm, "
+        "Safer from Wildfires and IBHS discounts, plus a savings estimator."
     )
 
     # Stat strip: 4 facts
@@ -444,7 +444,7 @@ def render(arts: List[dict], F: Dict[str, dict], tracker: Optional[dict], settin
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <!-- Primary SEO -->
-<title>{escape(PAGE_TITLE)} | My Villa</title>
+<title>{escape(PAGE_TITLE)}</title>
 <meta name="description" content="{escape(description)}">
 <meta name="keywords" content="insurable home California, California home insurance 2026, wildfire insurance discount, IBHS Wildfire Prepared Home, Safer from Wildfires, California FAIR Plan rate increase 2026, State Farm California, fire-resistant home insurance, reinforced concrete home insurance, Zone 0 California">
 <meta name="author" content="My Villa Research">

@@ -354,8 +354,10 @@ def collect(blog_dir: Path) -> tuple[list[dict], list[dict], list[dict]]:
         print(f"  + {a['loc']}  (pub {a['published']}, mod {a['lastmod']})")
 
     blog_index_lastmod = max((a["lastmod"] for a in articles), default=date.today().isoformat())
+    # Audit 2026-10-13: the Journal index declares canonical /blog/ — list the
+    # canonical form in the sitemap too (sitemap vs canonical mismatch).
     blog_index_entry = {
-        "loc": f"{BASE_URL}/blog/index.html",
+        "loc": f"{BASE_URL}/blog/",
         "lastmod": blog_index_lastmod,
         "changefreq": "weekly",
         "priority": "0.8",

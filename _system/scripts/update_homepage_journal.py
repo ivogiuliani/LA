@@ -37,7 +37,7 @@ from pathlib import Path
 # homepage and the /blog/ index read the same metadata the same way.
 SCRIPT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPT_DIR))
-from update_journal_index import extract_metadata, find_hero_image  # noqa: E402
+from update_journal_index import extract_metadata, find_hero_image, hero_image_dims  # noqa: E402
 
 SYSTEM_DIR = SCRIPT_DIR.parent
 PROJECT_ROOT = SYSTEM_DIR.parent
@@ -117,6 +117,10 @@ def collect_articles() -> list[dict]:
     for f in BLOG_DIR.glob("*.html"):
         if f.stem in CATEGORY_STEMS:
             continue
+        # SEO prune (2026-08-26) / audit 2026-10-13: never surface noindex
+        # articles on the homepage desks.
+        if re.search(r'name="robots"\s+content="noindex', f.read_text(encoding="utf-8", errors="ignore")):
+            continue
         try:
             meta = extract_metadata(f)
         except Exception as e:
@@ -145,12 +149,15 @@ def pick_best_for_topic(topic: dict, articles: list[dict]) -> dict | None:
 
 
 def hero_path_for_homepage(slug: str) -> str | None:
-    """find_hero_image returns a path relative to blog/. Prepend 'blog/' so
-    it works from the homepage at the project root."""
+    """find_hero_image returns a ROOT-ABSOLUTE path (/blog/assets/img/...,
+    seo-audit 2026-10-13) that works from the homepage as-is; the older
+    relative form (assets/img/...) is still handled for safety."""
     rel = find_hero_image(slug)
     if not rel:
         return None
-    return f"blog/{rel}"
+    if rel.startswith("/"):
+        return rel
+    return f"/blog/{rel}"
 
 
 def clip_excerpt(text: str, limit: int = 280) -> str:
@@ -179,9 +186,13 @@ def render_topical_card(article: dict | None) -> str:
     meta_line = " · ".join(meta_parts)
 
     hero = hero_path_for_homepage(article.get("slug", ""))
+    # alt = article title (image SEO); the <a aria-label> already carries the
+    # accessible name, so screen readers do not read it twice.
+    w, h = hero_image_dims(hero)
+    dims = f'width="{w}" height="{h}"' if w and h else 'width="800" height="500"'
     img_block = (
         f'          <img class="journal-card-hero" src="{esc(hero)}" '
-        f'alt="" loading="lazy" width="800" height="500">\n'
+        f'alt="{esc(title)}" loading="lazy" decoding="async" {dims}>\n'
         if hero else ""
     )
 

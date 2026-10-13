@@ -75,7 +75,7 @@ HTML_PATH = RESEARCH_DIR / "westside-rebuild-tracker.html"
 
 BASE_URL = "https://myvilla.la"
 PAGE_URL = f"{BASE_URL}/research/westside-rebuild-tracker.html"
-PAGE_TITLE = "Westside Rebuild Tracker — LADBS Permits after the January 2025 Fires"
+PAGE_TITLE = "Westside Rebuild Tracker — LADBS Permits Since the 2025 Fires"
 BRIEFING_URL = f"{BASE_URL}/private-briefing.html"
 GA4_ID = "G-D6HJX7BNZN"
 
@@ -508,10 +508,10 @@ def render_html(agg: dict, meta: dict, history: list) -> str:
 
     _t = datetime.strptime(today, "%Y-%m-%d")
     months_since = (_t.year - 2025) * 12 + _t.month - 1 - (1 if _t.day < 7 else 0)
+    # Audit 2026-10-13: keep the description under 160 chars (Google snippet).
     description = (
-        f"Weekly tracker of {tot:,} new-home building permits filed with LADBS in Pacific Palisades, Brentwood, "
-        f"Bel Air/Beverly Crest and Encino/Tarzana since the January 2025 fires: status, month, area and declared "
-        f"construction type (wood-frame vs non-combustible). Open data, CSV/JSON download. Updated {today}."
+        f"Weekly tracker of {tot:,} new-home permits filed with LADBS on the Westside since the January 2025 "
+        f"fires: status, area and construction type. Updated {today}."
     )
 
     # Tables
@@ -633,7 +633,7 @@ def render_html(agg: dict, meta: dict, history: list) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <!-- Primary SEO -->
-<title>Westside Rebuild Tracker — LADBS Permits after the January 2025 Fires | My Villa Research</title>
+<title>{escape(PAGE_TITLE)}</title>
 <meta name="description" content="{escape(description)}">
 <meta name="keywords" content="Pacific Palisades rebuild tracker, Palisades rebuild permits, LADBS building permits 2025, wildfire rebuild Los Angeles data, Brentwood new construction permits, Bel Air building permits, Encino Tarzana hillside permits, Type V wood frame vs non-combustible, rebuild progress Pacific Palisades 2026">
 <meta name="author" content="My Villa Research">

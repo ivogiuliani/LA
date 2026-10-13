@@ -1269,6 +1269,92 @@ def _strip_inline_perspective(body_html):
     return cleaned
 
 
+# ── SEO helpers (audit 2026-10-13) ──────────────────────────────────────
+TITLE_SUFFIX = " — My Villa Journal"
+TITLE_MAX = 60          # Google truncates ~60 chars / 600px on desktop
+META_DESC_MAX = 160     # keep the whole description visible in the snippet
+
+
+def seo_title_tag(seo_title: str) -> str:
+    """`<title>` text: brand suffix only while it fits in ~60 chars.
+
+    The brand is already carried by og:site_name, the publisher schema and
+    the breadcrumb, so dropping the suffix on long titles loses nothing.
+    """
+    base = (seo_title or "").strip()
+    if len(base) + len(TITLE_SUFFIX) <= TITLE_MAX:
+        return base + TITLE_SUFFIX
+    return base
+
+
+def clip_meta_description(text: str, limit: int = META_DESC_MAX) -> str:
+    """Trim a meta description to `limit` chars at a sentence/clause boundary.
+
+    Never cuts mid-word; prefers the last sentence end, then the last
+    clause break (; : — ,), then the last space. Google rewrites anything
+    longer anyway, so a clean cut keeps the snippet under our control.
+    """
+    text = " ".join((text or "").split())
+    if len(text) <= limit:
+        return text
+    clip = text[:limit]
+    sent = max(clip.rfind(s) for s in (". ", "! ", "? "))
+    clause = max(clip.rfind(s) for s in ("; ", ": ", " — ", ", "))
+    if sent >= 110:                    # whole sentence(s), still substantial
+        return clip[:sent + 1]
+    if clause >= 110:                  # long clause beats a short sentence
+        return clip[:clause].rstrip(" ,;:—") + "…"
+    word = clip.rfind(" ")             # last whole word
+    if word >= 110:                    # keep the answer half, trimmed with …
+        return clip[:word].rstrip(" ,;:—") + "…"
+    if sent >= 70:                     # short but complete sentence
+        return clip[:sent + 1]
+    return (clip[:word] if word > 0 else clip).rstrip(" ,;:—") + "…"
+
+
+def _publisher_name_for_url(url: str, sources) -> str:
+    """Name of the cited source whose URL matches `url`, else its domain."""
+    import re as _re
+    from urllib.parse import urlparse
+    if not url:
+        return ""
+    for s in sources or []:
+        try:
+            if (s.get("url") or "").split("#")[0].rstrip("/") == url.split("#")[0].rstrip("/") and s.get("name"):
+                return s["name"]
+        except AttributeError:
+            continue
+    host = urlparse(url).netloc.lower()
+    host = _re.sub(r"^(www|m|amp)\.", "", host)
+    return host
+
+
+def _hero_dims_and_webp(web_path: str):
+    """(` width="W" height="H"`, webp_relative_path_or_None) for a hero image.
+
+    `web_path` is relative to blog/ (assets/img/<slug>-hero.jpg). Dimensions
+    are read with Pillow; failures return ("", None) so rendering never
+    breaks on a missing or odd file.
+    """
+    if not web_path:
+        return "", None
+    fs_path = BLOG_DIR / web_path
+    dims_attr = ""
+    try:
+        from PIL import Image
+        with Image.open(fs_path) as im:
+            w, h = im.size
+        dims_attr = f' width="{w}" height="{h}"'
+    except Exception:
+        pass
+    webp_rel = None
+    if not web_path.lower().endswith(".webp"):
+        candidate = fs_path.with_suffix(".webp")
+        if candidate.exists():
+            webp_rel = str(Path(web_path).with_suffix(".webp"))
+    return dims_attr, webp_rel
+
+
 def render_article_html(article, date_str):
     """Render a full standalone HTML article page."""
     slug = article.get("slug", "untitled")
@@ -1279,7 +1365,7 @@ def render_article_html(article, date_str):
     subtitle = article.get("subtitle", "")
     section = article.get("section", "materials")
     tag_label = article.get("tag_label", "Journal")
-    meta_desc = article.get("meta_description", "")
+    meta_desc = clip_meta_description(article.get("meta_description", ""))
     meta_kw = article.get("meta_keywords", "")
     sources = article.get("sources", [])
     body_html = article.get("body_html", "<p>Article content pending.</p>")
@@ -1305,7 +1391,16 @@ def render_article_html(article, date_str):
     hero_image_html = ""
     if hero_image and hero_image.get("web_path"):
         alt = esc(hero_image.get("alt_description") or title)
-        author_name = esc(hero_image.get("author_name") or "Unknown")
+        # Audit 2026-10-13: image_picker sometimes leaves the literal
+        # placeholder "Publication" as author_name for cited-source photos.
+        # Resolve it to the cited source's name (same URL) or its domain.
+        raw_author = hero_image.get("author_name") or ""
+        if raw_author.strip().lower() in ("", "publication", "unknown") and \
+                (hero_image.get("source") == "cited_source" or hero_image.get("origin") == "source"):
+            raw_author = _publisher_name_for_url(
+                hero_image.get("unsplash_url") or hero_image.get("author_url") or "", sources
+            ) or raw_author
+        author_name = esc(raw_author or "Unknown")
         author_url = esc(hero_image.get("author_url") or "")
         article_url = esc(hero_image.get("unsplash_url") or "")
         web_path = esc(hero_image.get("web_path"))
@@ -1346,10 +1441,23 @@ def render_article_html(article, date_str):
         figcaption_html = (
             f'<figcaption class="hero-credit">{credit}</figcaption>' if credit else ''
         )
+        # Audit 2026-10-13: intrinsic width/height (CLS), fetchpriority=high
+        # (it is the LCP element) and a WebP variant served through <picture>
+        # when `<name>.webp` exists next to the original (og:image / schema
+        # keep the JPG/PNG for social-crawler compatibility).
+        dims_attr, webp_rel = _hero_dims_and_webp(hero_image.get("web_path"))
+        img_tag = (
+            f'<img src="{web_path}" alt="{alt}" loading="eager" fetchpriority="high" '
+            f'decoding="async" referrerpolicy="no-referrer"{dims_attr}>'
+        )
+        if webp_rel:
+            img_tag = (
+                f'<picture><source type="image/webp" srcset="{esc(webp_rel)}">{img_tag}</picture>'
+            )
         hero_image_html = (
             '<div class="hero-image-wrap">'
             '<figure class="hero-image">'
-            f'<img src="{web_path}" alt="{alt}" loading="eager" decoding="async" referrerpolicy="no-referrer">'
+            f'{img_tag}'
             f'{figcaption_html}'
             '</figure>'
             '</div>'
@@ -1415,7 +1523,7 @@ def render_article_html(article, date_str):
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>{esc(seo_title)} — My Villa Journal</title>
+<title>{esc(seo_title_tag(seo_title))}</title>
 <meta name="description" content="{esc(meta_desc)}">
 <meta name="keywords" content="{esc(meta_kw)}">
 <meta name="author" content="My Villa">
