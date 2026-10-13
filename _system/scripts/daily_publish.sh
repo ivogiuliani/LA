@@ -269,6 +269,30 @@ if [ "$REMOTE_MARKER" = "$TODAY" ] || [ "$LOCAL_MARKER" = "$TODAY" ]; then
     exit 0
 fi
 
+# ── Rail senza Claude: lascia la giornata a chi ce l'ha (2026-10-13) ──
+# Incidente 16/09→13/10: il VPS gira per primo (~08:05) ma senza token
+# dell'abbonamento; saltava la generazione degli articoli e poi "prenotava"
+# comunque la giornata (marker + digest), così GitHub Actions, che ha il token
+# come secret, trovava il marker e saltava: zero articoli per 4 settimane.
+# Ora un rail senza Claude NON prenota la giornata fino a LLM_DEFER_UNTIL_HOUR
+# (default 23, ora locale): esce con una riga END non canonica, i poll
+# successivi riprovano e, se nel frattempo un rail con Claude ha pubblicato,
+# vedono il marker e chiudono. Dopo l'ora limite gira lo stesso (digest senza
+# articoli) come ultima rete. Un rail con Claude non è toccato da questo blocco.
+# Disponibile = CLI presente E (login attivo O token dell'abbonamento nel .env).
+case "$LLM_STATUS" in
+    ""|*"non leggibile"*|*"cli=ASSENTE"*)              LLM_OK=0;;
+    *"loggedIn=True"*|*"oauth_token_env=True"*)        LLM_OK=1;;
+    *)                                                 LLM_OK=0;;
+esac
+DEFER_UNTIL="${LLM_DEFER_UNTIL_HOUR:-23}"
+if [ "$LLM_OK" = "0" ] && [ "$CURRENT_HOUR" -lt "$DEFER_UNTIL" ] && [ "${DRY_RUN:-0}" != "1" ]; then
+    log "⚠ Claude non disponibile su questo rail: qui niente articoli né pitch."
+    log "  Lascio la giornata a un rail con Claude (GitHub Actions) fino alle ${DEFER_UNTIL}:00; poi ultima rete."
+    log "=== daily_publish END (deferred: no LLM) ==="
+    exit 0
+fi
+
 # Step 1: radar di oggi. Se manca lo lanciamo noi (auto-sufficiente),
 # con tetto di tempo. Se non lo produce (timeout/rete) NON usciamo:
 # proseguiamo saltando solo gli step che dipendono dal radar — la
