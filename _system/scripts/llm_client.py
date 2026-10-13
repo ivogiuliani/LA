@@ -158,6 +158,14 @@ def _child_env() -> Dict[str, str]:
     for k in ("ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN", "ANTHROPIC_BASE_URL"):
         env.pop(k, None)
     env.setdefault("CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC", "1")
+    # Il token dell'abbonamento copiato da un terminale va spesso a capo: un ritorno
+    # a capo o uno spazio nel valore rende invalido l'header HTTP della CLI
+    # ("Header has invalid value", visto il 2026-10-13 su GitHub Actions). Lo ripuliamo.
+    tok = env.get("CLAUDE_CODE_OAUTH_TOKEN")
+    if tok:
+        clean = "".join(tok.split())
+        if clean != tok:
+            env["CLAUDE_CODE_OAUTH_TOKEN"] = clean
     return env
 
 
