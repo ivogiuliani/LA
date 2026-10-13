@@ -183,7 +183,10 @@ def _li_proposal(d: dict, url: str) -> str:
         num = (k.get("number") or "").strip()
         lab = " ".join((k.get("label") or "").split())
         if num and lab:
-            key_line = f"One figure to hold: {num} ({lab[:1].lower()}{lab[1:]})."
+            _w = lab.split(" ", 1)[0]
+            # minuscola solo se la prima parola è comune (non sigla né nome proprio): "Age of…" → "age of…"
+            _lab = (lab[:1].lower() + lab[1:]) if (_w[:1].isupper() and _w[1:].islower() and _w.lower() in {"age", "year", "years", "price", "number", "share", "rate", "cost", "months", "days", "homes", "permits", "material", "architectural", "all-cash", "asking", "auction"}) else lab
+            key_line = f"One figure to hold: {num} ({_lab})."
 
     fixed = len(title) + len(hashtags) + 4  # separatori \n\n
     room = LI_MAX_CHARS - fixed

@@ -1,39 +1,111 @@
 {
- "posted": {
-  "custom-home-design-california-sound-as-site-asset": {
-   "posted_at": "manual 2026-09-01",
-   "post_id": "",
-   "date": ""
-  },
-  "luxury-home-malibu-stripped-concrete-shell": {
-   "posted_at": "manual 2026-09-01",
-   "post_id": "",
-   "date": ""
-  },
-  "custom-home-design-los-angeles-narrow-lot": {
-   "posted_at": "manual 2026-09-01",
-   "post_id": "",
-   "date": ""
-  },
-  "mediterranean-villa-design-los-angeles-what-endures": {
-   "posted_at": "manual 2026-09-09",
-   "post_id": "",
-   "date": ""
-  },
-  "insurable-luxury-homes-california-beyond-the-listing": {
-   "posted_at": "scheduled 2026-09-10 18:00 CEST",
-   "post_id": "",
-   "date": ""
-  },
-  "reinforced-concrete-los-angeles-lucas-museum-2026": {
-   "posted_at": "scheduled 2026-09-11 18:00 CEST",
-   "post_id": "",
-   "date": ""
-  },
-  "fire-resistant-home-insurance-california-47-percent-rise": {
-   "posted_at": "scheduled 2026-09-12 18:00 CEST",
-   "post_id": "",
-   "date": ""
+  "posted": {
+    "custom-home-design-california-sound-as-site-asset": {
+      "posted_at": "manual 2026-09-01",
+      "post_id": "",
+      "date": ""
+    },
+    "luxury-home-malibu-stripped-concrete-shell": {
+      "posted_at": "manual 2026-09-01",
+      "post_id": "",
+      "date": ""
+    },
+    "custom-home-design-los-angeles-narrow-lot": {
+      "posted_at": "manual 2026-09-01",
+      "post_id": "",
+      "date": ""
+    },
+    "mediterranean-villa-design-los-angeles-what-endures": {
+      "posted_at": "manual 2026-09-09",
+      "post_id": "",
+      "date": ""
+    },
+    "insurable-luxury-homes-california-beyond-the-listing": {
+      "posted_at": "scheduled 2026-09-10 18:00 CEST",
+      "post_id": "",
+      "date": ""
+    },
+    "reinforced-concrete-los-angeles-lucas-museum-2026": {
+      "posted_at": "scheduled 2026-09-11 18:00 CEST",
+      "post_id": "",
+      "date": ""
+    },
+    "fire-resistant-home-insurance-california-47-percent-rise": {
+      "posted_at": "scheduled 2026-09-12 18:00 CEST",
+      "post_id": "",
+      "date": ""
+    },
+    "insurable-home-california-state-farm-allstate-reopen-2026": {
+      "posted_at": "scheduled 2026-10-13 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-13",
+      "via": "chrome-scheduler"
+    },
+    "luxury-new-construction-malibu-anacapa-auction": {
+      "posted_at": "scheduled 2026-10-14 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-14",
+      "via": "chrome-scheduler"
+    },
+    "beverly-hills-luxury-home-karloff-1941-estate-6-5m": {
+      "posted_at": "scheduled 2026-10-15 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-15",
+      "via": "chrome-scheduler"
+    },
+    "insurable-home-california-fair-plan-low-risk-zip-codes-2026": {
+      "posted_at": "scheduled 2026-10-16 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-16",
+      "via": "chrome-scheduler"
+    },
+    "luxury-concrete-homes-malibu-200m-ando-imitation-problem": {
+      "posted_at": "scheduled 2026-10-17 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-17",
+      "via": "chrome-scheduler"
+    },
+    "custom-home-design-california-berkeley-midcentury-treehouse": {
+      "posted_at": "scheduled 2026-10-18 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-18",
+      "via": "chrome-scheduler"
+    },
+    "curved-concrete-villa-design-california-custom-homes": {
+      "posted_at": "scheduled 2026-10-19 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-19",
+      "via": "chrome-scheduler"
+    },
+    "luxury-home-architecture-california-2026-residential-design-awards": {
+      "posted_at": "scheduled 2026-10-20 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-20",
+      "via": "chrome-scheduler"
+    },
+    "italian-villa-design-california-genoa-garden-bougainvillea": {
+      "posted_at": "scheduled 2026-10-21 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-21",
+      "via": "chrome-scheduler"
+    },
+    "luxury-custom-home-design-california-double-hexagon-plan": {
+      "posted_at": "scheduled 2026-10-22 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-22",
+      "via": "chrome-scheduler"
+    },
+    "luxury-custom-home-design-los-angeles-hillside-spine-plan": {
+      "posted_at": "scheduled 2026-10-23 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-23",
+      "via": "chrome-scheduler"
+    },
+    "frank-lloyd-wright-concrete-usonian-custom-home-design-california": {
+      "posted_at": "scheduled 2026-10-24 18:00 CEST",
+      "post_id": "",
+      "date": "2026-10-24",
+      "via": "chrome-scheduler"
+    }
   }
- }
 }
