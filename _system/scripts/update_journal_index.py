@@ -824,6 +824,7 @@ def render_index_html(articles):
   <span class="footer-copy">&copy; 2026 My Villa. All rights reserved.</span>
   <div class="footer-links">
     <a href="https://myvilla.la/team.html">Studio</a>
+    <a href="https://myvilla.la/editorial-standards.html">Editorial standards</a>
     <a href="https://myvilla.la/privacy.html">Privacy</a>
   </div>
 </footer>
@@ -1142,6 +1143,7 @@ def render_category_page(section_id, articles, style_block):
   <span class="footer-copy">&copy; 2026 My Villa. All rights reserved.</span>
   <div class="footer-links">
     <a href="https://myvilla.la/team.html">Studio</a>
+    <a href="https://myvilla.la/editorial-standards.html">Editorial standards</a>
     <a href="https://myvilla.la/privacy.html">Privacy</a>
   </div>
 </footer>

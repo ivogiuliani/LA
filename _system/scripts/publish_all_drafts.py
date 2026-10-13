@@ -2387,7 +2387,9 @@ def main(argv=None):
         # vedono i file finali.
         # 2026-09-21: inject_conversion_layer --sweep allinea consenso/banner/
         # GACONFIG sulle pagine nuove o rigenerate (Journal compreso).
-        for s in ("update_journal_index.py", "crosslink_pillars.py",
+        # 2026-10-13: seo_audit_fixes --webp = hero WebP + width/height +
+        # editorial-standards link on every published article (idempotent).
+        for s in ("seo_audit_fixes.py --webp", "update_journal_index.py", "crosslink_pillars.py",
                   "update_pillar_journal.py", "fix_article_schema.py",
                   "inject_article_cta.py", "build_answer_page.py",
                   "inject_contact_links.py", "inject_conversion_layer.py --sweep",

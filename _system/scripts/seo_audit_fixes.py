@@ -16,6 +16,8 @@ What it does on every blog/<slug>.html (index + category pages excluded):
   4. Hero credit placeholder "Photo: Publication — via original article":
      "Publication" replaced by the cited source's name (match on URL) or
      the source domain.
+  5. Editorial standards: a sourcing/corrections policy line under the
+     Sources list and a footer link to /editorial-standards.html.
 
 With --webp it first converts every hero referenced by an article to WebP
 (quality 82, max 1600 px wide) next to the original; originals are kept.
@@ -164,6 +166,32 @@ def patch_article(path: Path, dry_run: bool) -> dict:
             html = html.replace(seg, new_seg, 1)
             changes.append(f"credit→{name}")
 
+    # 5. Editorial standards link (sources policy line + footer) ------------
+    if "sources-policy" not in html:
+        anchor = re.search(r'(<div class="sources-title">Sources &amp; References</div>\s*<ul class="sources-list">.*?</ul>)',
+                           html, re.S)
+        if anchor:
+            html = html.replace(anchor.group(1), anchor.group(1) + '\n      <p class="sources-policy">How we choose sources, date and correct our notes: '
+                                '<a href="https://myvilla.la/editorial-standards.html">Editorial standards</a>.</p>', 1)
+        # footer: insert before the Privacy link inside .footer-links (the
+        # contact-links layer may have appended markers after it)
+        html = re.sub(r'(<div class="footer-links">\s*<a href="https://myvilla.la/team.html">Studio</a>\s*)(<a href="https://myvilla.la/privacy.html">Privacy</a>)',
+                      r'\1<a href="https://myvilla.la/editorial-standards.html">Editorial standards</a>\n    \2', html, count=1)
+    footer = re.search(r'<div class="footer-links">.*?</div>', html, re.S)
+    if footer and "editorial-standards.html" not in footer.group(0):
+        html = re.sub(r'(<div class="footer-links">\s*<a href="https://myvilla.la/team.html">Studio</a>\s*)(<a href="https://myvilla.la/privacy.html">Privacy</a>)',
+                      r'\1<a href="https://myvilla.la/editorial-standards.html">Editorial standards</a>\n    \2', html, count=1)
+    if "sources-policy" in html and ".sources-policy {" not in html:
+        css_anchor = re.search(r"\.sources-title \{[^}]*\}", html)
+        if css_anchor:
+            html = html.replace(css_anchor.group(0), css_anchor.group(0) +
+                                "\n.sources-policy { font-family: var(--sans); font-size: 12px; color: var(--stone-grey); margin-top: 18px; }"
+                                "\n.sources-policy a { color: var(--terracotta); text-decoration: none; }", 1)
+    if "editorial-standards.html" in html and "editorial-standards.html" not in orig:
+        changes.append("standards")
+    elif html.count("editorial-standards.html") > orig.count("editorial-standards.html"):
+        changes.append("standards")
+
     if html != orig and not dry_run:
         path.write_text(html, encoding="utf-8")
     return {"file": path.name, "changes": changes}
@@ -191,7 +219,7 @@ def main() -> int:
                     made += 1
         print(f"WebP: {made} created, {kept} already present")
 
-    stats = {"hero": 0, "title": 0, "description": 0, "credit": 0, "files": 0}
+    stats = {"hero": 0, "title": 0, "description": 0, "credit": 0, "standards": 0, "files": 0}
     for p in files:
         r = patch_article(p, args.dry_run)
         if r["changes"]:
@@ -200,7 +228,7 @@ def main() -> int:
                 stats[c.split()[0].split("→")[0]] += 1
             print(f"  {'[dry] ' if args.dry_run else ''}{p.name}: {', '.join(r['changes'])}")
     print(f"\n{stats['files']} files touched — hero {stats['hero']}, title {stats['title']}, "
-          f"description {stats['description']}, credit {stats['credit']}")
+          f"description {stats['description']}, credit {stats['credit']}, standards {stats['standards']}")
     return 0
 
 

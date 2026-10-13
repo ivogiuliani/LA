@@ -64,6 +64,8 @@ STATIC_ENTRIES = [
     # Fase 2 (2026-09-16): answer page + linkable data asset
     {"loc": f"{BASE_URL}/insurable-home-california.html", "file": "insurable-home-california.html", "lastmod": None, "changefreq": "weekly", "priority": "0.9"},
     {"loc": f"{BASE_URL}/research/westside-rebuild-tracker.html", "file": "research/westside-rebuild-tracker.html", "lastmod": None, "changefreq": "weekly", "priority": "0.8"},
+    # Audit 2026-10-13: editorial standards (sourcing / corrections policy)
+    {"loc": f"{BASE_URL}/editorial-standards.html", "file": "editorial-standards.html", "lastmod": None, "changefreq": "yearly", "priority": "0.4"},
     {"loc": f"{BASE_URL}/privacy.html", "file": "privacy.html", "lastmod": None, "changefreq": "yearly", "priority": "0.3"},
 ]
 

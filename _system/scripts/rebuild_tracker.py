@@ -75,7 +75,7 @@ HTML_PATH = RESEARCH_DIR / "westside-rebuild-tracker.html"
 
 BASE_URL = "https://myvilla.la"
 PAGE_URL = f"{BASE_URL}/research/westside-rebuild-tracker.html"
-PAGE_TITLE = "Westside Rebuild Tracker — LADBS Permits Since the 2025 Fires"
+PAGE_TITLE = "Westside Rebuild Tracker: LADBS Permits Since the 2025 Fires"
 BRIEFING_URL = f"{BASE_URL}/private-briefing.html"
 GA4_ID = "G-D6HJX7BNZN"
 

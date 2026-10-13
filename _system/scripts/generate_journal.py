@@ -727,12 +727,29 @@ source citation. Do NOT shorten it to a root domain. Do NOT replace it.
 ## ARTICLE STRUCTURE
 Write a 600-900 word article following this format:
 
+0. QUICK ANSWER (field `quick_answer`, 40-60 words, plain text): answer the
+   question the title poses in one self-contained paragraph that makes sense
+   with no other context, with the single most important number and its
+   source named in the sentence (e.g. "…according to IBHS"). This is the
+   passage an AI assistant will quote. Do not repeat it verbatim in the body.
+
 1. OPENING (100-150 words): State the news/development factually.
    Cite the source publication explicitly with a link.
 
 2. DATA & CONTEXT (200-300 words): Provide the relevant data points.
    Use inline source citations for every claim.
    Include a KEY DATA block with 2-3 headline numbers if applicable.
+   When the piece has 3+ comparable figures (prices, rates, dates, ratings,
+   before/after), ALSO put them in ONE `<table class="key-table">` with a
+   `<caption>`, a header row (e.g. Metric | Value | Source) and 3-6 rows —
+   tables are what AI answers and comparison queries extract.
+
+HEADINGS: use 2-3 `<h2 class="reveal">` in the body, each phrased as the
+question a reader would type ("How much does a FAIR Plan policy cost in
+Malibu in 2026?", "Why does concrete change the premium?"). Put the direct
+answer in the first 40-60 words under each heading, then the evidence.
+PARAGRAPHS: 2-4 sentences, never more than ~90 words; use a `<ul>` for
+3+ parallel items.
 
 3. ANALYSIS (150-200 words): What this means for the LA market.
    This is where editorial voice enters — authoritative, informed, specific.
@@ -788,6 +805,11 @@ Return a JSON object (no markdown fences):
   "tag_label": "{section_name}",
   "meta_description": "SEO meta description (150-160 chars)",
   "meta_keywords": "comma,separated,keywords",
+  "quick_answer": "40-60 word self-contained answer to the question the title poses, with the key number and its source (see ARTICLE STRUCTURE 0)",
+  "faq": [
+    {{"q": "A question a buyer, agent or architect would actually ask about this topic", "a": "2-3 sentence answer, specific, with the number if there is one"}},
+    {{"q": "Second question", "a": "Second answer"}}
+  ],
   "sources": [
     {{
       "name": "Publication Name",
@@ -801,7 +823,7 @@ Return a JSON object (no markdown fences):
     {{"number": "33%", "label": "Projected loss reduction\\nwith IBHS standards"}}
   ],
   "our_perspective": "Text for the Our Perspective block",
-  "body_html": "Full article body in HTML using these CSS classes: p.reveal, h2.reveal, .source-citation, .key-data, .pullquote. IMPORTANT: do NOT include the Our Perspective block inside body_html — it is rendered separately from the our_perspective field above. NEVER output <div class=\"perspective\"> or <h2>Our Perspective</h2> inside body_html.",
+  "body_html": "Full article body in HTML using these CSS classes: p.reveal, h2.reveal (question-form headings), .source-citation, .key-data, .pullquote, table.key-table (optional, see ARTICLE STRUCTURE 2). IMPORTANT: do NOT include the Our Perspective block inside body_html — it is rendered separately from the our_perspective field above. NEVER output <div class=\"perspective\"> or <h2>Our Perspective</h2> inside body_html.",
   "excerpt": "2-3 sentence excerpt for the Journal index card",
   "image_prompt": "Prompt for AI image generation — architectural photography style, muted warm tones",
   "topic_tags": ["tag-1", "tag-2"],
@@ -1475,6 +1497,17 @@ def render_article_html(article, date_str):
     share_url_enc = _urlquote(canonical, safe='')
     share_title_enc = _urlquote(title, safe='')
 
+    # GEO (audit 2026-10-13): a self-contained 40-60 word answer block at the
+    # top of the body — the passage AI assistants quote. Rendered only when
+    # the sidecar carries `quick_answer`.
+    quick_answer = " ".join((article.get("quick_answer") or "").split())
+    quick_answer_html = (
+        '<div class="quick-answer">'
+        '<div class="quick-answer-label">In short</div>'
+        f'<p class="quick-answer-text">{esc(quick_answer)}</p>'
+        '</div>'
+    ) if quick_answer else ""
+
     # FAQPage JSON-LD block — emitted ONLY when article carries a `faq` list of {q,a}.
     # Google eligibility: FAQ rich results are shown for authoritative content with
     # genuine Q&A. Keeping this optional (absent → empty string → no empty schema).
@@ -1689,6 +1722,19 @@ a.source-citation::after {{ content: '↗'; display: inline-block; font-size: 0.
 .key-data-grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--light-linen); border: 1px solid var(--light-linen); border-radius: 6px; overflow: hidden; margin: 40px 0; }}
 .key-data-item {{ background: var(--white); padding: 28px 20px; text-align: center; font-size: 12px; font-weight: 500; letter-spacing: 0.04em; color: var(--stone-grey); line-height: 1.45; }}
 .key-data-item > span {{ display: block; font-family: var(--serif); font-size: clamp(26px, 3.5vw, 34px); font-weight: 400; color: var(--terracotta); line-height: 1.1; margin-bottom: 10px; }}
+/* Quick answer (GEO): self-contained answer block above the body */
+.quick-answer {{ background: var(--white); border: 1px solid var(--light-linen); border-left: 3px solid var(--tuscan-gold); border-radius: 0 6px 6px 0; padding: 22px 26px; margin: 0 0 36px; }}
+.quick-answer-label {{ font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone-grey); margin-bottom: 10px; }}
+.quick-answer-text {{ font-family: var(--serif); font-size: 20px; line-height: 1.5; color: var(--espresso); margin: 0; }}
+/* Key table (GEO): comparable figures in one scannable table */
+.key-table {{ width: 100%; border-collapse: collapse; margin: 32px 0; font-family: var(--sans); font-size: 13px; color: var(--espresso); background: var(--white); border: 1px solid var(--light-linen); }}
+.key-table caption {{ caption-side: top; text-align: left; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone-grey); padding: 0 0 10px; }}
+.key-table th, .key-table td {{ padding: 12px 14px; border-bottom: 1px solid var(--light-linen); text-align: left; vertical-align: top; line-height: 1.45; }}
+.key-table th {{ font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone-grey); background: var(--cream); }}
+.key-table tr:last-child td {{ border-bottom: none; }}
+.key-table td:nth-child(2) {{ font-family: var(--serif); font-size: 17px; color: var(--terracotta); white-space: nowrap; }}
+.key-table a {{ color: inherit; border-bottom: 1px solid var(--light-linen); text-decoration: none; }}
+@media (max-width: 600px) {{ .key-table {{ display: block; overflow-x: auto; }} .quick-answer-text {{ font-size: 18px; }} }}
 /* Fallback: single key-data div (not inside a grid) */
 .key-data {{ display: flex; align-items: baseline; gap: 16px; background: var(--white); border: 1px solid var(--light-linen); border-left: 3px solid var(--terracotta); border-radius: 0 6px 6px 0; padding: 20px 24px; margin: 24px 0; font-size: 13px; color: var(--stone-grey); line-height: 1.5; }}
 .key-data > span {{ font-family: var(--serif); font-size: clamp(24px, 3vw, 30px); font-weight: 400; color: var(--terracotta); line-height: 1; white-space: nowrap; }}
@@ -1703,6 +1749,8 @@ a.source-citation::after {{ content: '↗'; display: inline-block; font-size: 0.
 .article-footer-inner {{ max-width: 720px; margin: 0 auto; }}
 .sources-section {{ padding: 32px 0; border-top: 1px solid var(--light-linen); }}
 .sources-title {{ font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone-grey); margin-bottom: 16px; }}
+.sources-policy {{ font-family: var(--sans); font-size: 12px; color: var(--stone-grey); margin-top: 18px; }}
+.sources-policy a {{ color: var(--terracotta); text-decoration: none; }}
 .sources-list {{ list-style: none; padding: 0; }}
 .sources-list li {{ font-size: 13px; line-height: 1.6; color: var(--charcoal); opacity: 0.7; margin-bottom: 8px; padding-left: 16px; position: relative; }}
 .sources-list li::before {{ content: ''; position: absolute; left: 0; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: var(--stone-grey); }}
@@ -1863,6 +1911,7 @@ a.source-citation::after {{ content: '↗'; display: inline-block; font-size: 0.
 
 <section class="article-body">
   <article class="article-content">
+    {quick_answer_html}
     {body_html}
 
     <div class="perspective">
@@ -1900,6 +1949,7 @@ a.source-citation::after {{ content: '↗'; display: inline-block; font-size: 0.
       <ul class="sources-list">
         {render_sources_list(sources)}
       </ul>
+      <p class="sources-policy">How we choose sources, date and correct our notes: <a href="https://myvilla.la/editorial-standards.html">Editorial standards</a>.</p>
     </div>
     {render_faq_block(faq)}
     {render_related_block(related)}
@@ -1934,6 +1984,7 @@ a.source-citation::after {{ content: '↗'; display: inline-block; font-size: 0.
   <span class="footer-copy">&copy; 2026 My Villa. All rights reserved.</span>
   <div class="footer-links">
     <a href="https://myvilla.la/team.html">Studio</a>
+    <a href="https://myvilla.la/editorial-standards.html">Editorial standards</a>
     <a href="https://myvilla.la/privacy.html">Privacy</a>
   </div>
 </footer>
