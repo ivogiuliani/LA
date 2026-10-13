@@ -20,6 +20,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 # ── AI search / answer engines (esplicitamente ammessi, stessi limiti) ──
@@ -29,6 +30,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: OAI-SearchBot
@@ -36,6 +38,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: ChatGPT-User
@@ -43,6 +46,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: ClaudeBot
@@ -50,6 +54,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: Claude-SearchBot
@@ -57,6 +62,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: Claude-Web
@@ -64,6 +70,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: anthropic-ai
@@ -71,6 +78,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: PerplexityBot
@@ -78,6 +86,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: Perplexity-User
@@ -85,6 +94,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: Applebot-Extended
@@ -92,6 +102,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: Google-Extended
@@ -99,6 +110,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: Bingbot
@@ -106,6 +118,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: CCBot
@@ -113,6 +126,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 User-agent: cohere-ai
@@ -120,6 +134,7 @@ Disallow: /old/
 Disallow: /team/
 Disallow: /v2/
 Disallow: /v3/
+Disallow: /homepage2.html
 Allow: /
 
 # Sitemaps

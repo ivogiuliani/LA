@@ -187,6 +187,8 @@ def targets() -> list[Path]:
             p = Path(f)
             if p.name == "index.html" and p.parent == ROOT:
                 continue  # la home ha i marker CONV:* dell'injector principale
+            if p.name.startswith("homepage2"):
+                continue  # anteprima della home (2026-10-13): resta ferma finché non viene approvata
             out.append(p)
     return out
 

@@ -1064,6 +1064,8 @@ def main(argv=None) -> int:
         for pth in pages:
             if pth.name == "index.html" and pth.parent == ROOT:
                 continue  # la home ha il set completo (--target)
+            if pth.name.startswith("homepage2"):
+                continue  # anteprima della home: non toccarla
             try:
                 txt = pth.read_text(encoding="utf-8")
             except Exception:
