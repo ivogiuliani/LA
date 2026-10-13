@@ -1,0 +1,102 @@
+start Tue Oct 13 09:58:35 CEST 2026
+/Users/ivogiuliani/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+============================================================
+  My Villa Engagement Radar — 2026-10-13
+  Lookback: 28 days | Model: claude-sonnet-5
+============================================================
+
+API health check:
+  ✓  anthropic    ok       claude_code, max, models=sonnet
+  ✓  xai_grok     ok       14 models available
+  ✓  gemini       ok       50 models
+  ✗  google_cse   fail     HTTP 403
+  ✓  brave        ok       1 results, monthly quota remaining: 49, 0
+  ✓  apify        ok       plan=FREE
+
+Strategy config: 15 geos, 9 clusters, boosts={1: 3, 2: 1, 3: 0}
+Dedup index: 550 URLs, 601 titles
+
+1. Google Custom Search...
+  [CSE] Error 'luxury home builder Malibu': HTTPError (HTTP 403)
+  [CSE] Error 'custom home Beverly Hills': HTTPError (HTTP 403)
+  [CSE] Error 'fire-resistant luxury home California': HTTPError (HTTP 403)
+  [CSE] 3 errori consecutivi — abort (key/quota KO)
+  [CSE] 0 results from 3 queries
+1b. Brave Search...
+  [Brave] Query cap reached (30), stopping
+  [Brave] 134 results from 30 queries
+2. Reddit — canale dismesso (2026-07-06)
+3. RSS feeds...
+  [RSS] Error https://la.curbed.com/rss/index.xml: SSLError
+  [RSS] 30 entries found
+4b/4c. Instagram — canale dismesso (2026-07-07)
+4. Grok/X — produzione social dismessa (2026-08-05)
+5. Gemini Search Grounding...
+  [Gemini] 'insurance_regulation': sintesi senza articoli reali — scartata
+  [Gemini] 'luxury_real_estate_LA': sintesi senza articoli reali — scartata
+  [Gemini] 'materials_construction': sintesi senza articoli reali — scartata
+  [Gemini] Error 'italian_mediterranean_villa': ReadTimeout (HTTP ?)
+  [Gemini] 'concrete_architecture': sintesi senza articoli reali — scartata
+  [Gemini] 'rebuild_direct': sintesi senza articoli reali — scartata
+  [Gemini] 0 results (grounding)
+
+Total raw results: 164
+
+Deduplicating...
+  [Dedup] 12 duplicates removed, 152 unique
+Pre-scoring (heuristic)...
+
+AI scoring 84 candidates (model: claude-sonnet-5)...
+  [AI Score] Batch 1: 20 items scored
+  [AI Score] Batch 2: 20 items scored
+  [AI Score] Batch 3: 20 items scored
+  [AI Score] Batch 4: 20 items scored
+  [AI Score] Batch 5: 4 items scored
+
+Extracting bylines (32 articles)...
+  [byline] Elena Dallorso — architecturaldigest.com
+  [byline] (none) — https://www.newsbeep.com/au/923515/
+  [byline] Paige St. John — latimes.com
+  [byline] SPF:architects — prweb.com
+  [byline] (none) — https://www.designboom.com/architecture/cantilevered-roof-fr
+  [byline] (none) — https://www.hoog.design/en/look-inside/organic-villa-curved-
+  [byline] Paige St. John — latimes.com
+  [byline] (none) — https://www.insurance.ca.gov/0400-news/0102-alerts/2026/Majo
+  [byline] (none) — https://residentialdesignmagazine.com/the-winners-of-the-202
+  [byline] Mr. Malibu — mrmalibu.substack.com
+  [byline] Awais Manzoor — havenlifestyles.com
+  [byline] (none) — https://natlawreview.com/press-releases/newly-built-contempo
+  [byline] Morgan Goldberg — Architectural Digest
+  [byline] Regielyn Santiago — insurancebusinessmag.com
+  [byline] dspacestudio — dspacestudio.com
+  [byline] TOI Real Estate Desk — timesofindia.indiatimes.com
+  [byline] Angela Linders — liveinsurancenews.com
+  [byline] (none) — https://www.bizjournals.com/sanfrancisco/news/2026/09/28/fai
+  [byline] (none) — https://www.weahomes.com/homes-for-sale-details/2460-BEVERLE
+  [byline] Wendy Bowman — Robb Report Shelter | Luxury R
+  [byline] TOI Entertainment Desk — timesofindia.indiatimes.com
+  [byline] (none) — https://www.globenewswire.com/news-release/2026/09/21/336539
+  [byline] Ryan Ochoa — truckeefire.org
+  [byline] Arquitectura Viva — arquitecturaviva.com
+  [byline] TOI World Desk — timesofindia.indiatimes.com
+  [byline] DreBoam — topmost10.com
+  [byline] Sam H. — twoclassychics.com
+  [byline] Abby Montanez — Robb Report Shelter | Luxury R
+  [byline] Christian Richter — oldharbor.com
+  [byline] kevmaster — avantecture.com
+  [byline] Jeff Quackenbush — pressdemocrat.com
+  [byline] Awais Manzoor — havenlifestyles.com
+
+============================================================
+  RESULTS: 152 unique
+  Qualified (≥15): 19
+  Watchlist (12-14): 13
+  Viral opportunities: 0
+  Early signals: 0
+============================================================
+
+Saved: /Users/ivogiuliani/Code/myvilla-la/_system/radar/reports/radar_2026-10-13.json
+exit=0 Tue Oct 13 10:04:38 CEST 2026
+-rw-r--r--@ 1 ivogiuliani  staff  47278 Oct 13 10:04 _system/radar/reports/radar_2026-10-13.json

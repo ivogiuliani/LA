@@ -1,0 +1,210 @@
+start Tue Oct 13 10:04:53 CEST 2026
+
+My Villa — Journal Generator
+==================================================
+  [KB] Loaded perspective KB (40168 chars) from /Users/ivogiuliani/Code/myvilla-la/_system/knowledge
+  [Strategy] Loaded content strategy (9171 chars)
+Date: 2026-10-13 | Model: tier=writer (Claude Code)
+
+Filtering candidates...
+  [Filter] Keyword sature (cap raggiunto, niente nuovi articoli): fair plan, ibhs, insurable home, state farm, wildfire
+  [Filter] Skipped (keyword satura 'wildfire'): From Watts to L.A. wildfires: The rise of California's 
+  [Filter] Skipped (keyword satura 'wildfire'): California doubles post-wildfire insurance cancellation
+  [Filter] Skipped (keyword satura 'wildfire'): Designing Wildfire-Resistant Homes
+  [Filter] Skipped (keyword satura 'fair plan'): Bay Area homeowners brace for steep FAIR Plan fire insu
+  [Filter] 14 candidates passed (min_score=14, max=14) — sezioni: concrete_arch:7, insurance:3, materials:2, market:2
+
+Generating article 1/14: At This Historic Italian Villa, the Garden Takes C...
+  Cluster: italian_mediterranean_villa → Section: Concrete Architecture
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: italian-villa-design-california-genoa-garden-bougainvillea
+  [Image] Searching 1 cited sources...
+  [image/source] Architectural Digest: og=yes body=0 → 1 candidates
+  [Image] Found 1 source candidates, downloading best...
+  [image/source] Saved: italian-villa-design-california-genoa-garden-bougainvillea-hero.jpg (334.9 KB)
+  [Image] ✓ Source image: assets/img/italian-villa-design-california-genoa-garden-bougainvillea-hero.jpg
+  Links: 23/23 OK
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/italian-villa-design-california-genoa-garden-bougainvillea.html
+  Size: 41.0 KB
+  JSON:  italian-villa-design-california-genoa-garden-bougainvillea.json
+
+Generating article 2/14: California's property insurance deserts are spread...
+  Cluster: insurance_regulation → Section: Insurance & Insurability
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: insurable-home-california-fair-plan-low-risk-zip-codes-2026
+  [Image] Searching 1 cited sources...
+  [image/source] Los Angeles Times: og=yes body=3 → 4 candidates
+  [Image] Found 4 source candidates, downloading best...
+  [image/source] Saved: insurable-home-california-fair-plan-low-risk-zip-codes-2026-hero.jpg (90.2 KB)
+  [Image] ✓ Source image: assets/img/insurable-home-california-fair-plan-low-risk-zip-codes-2026-hero.jpg
+  Links: 23/23 OK
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/insurable-home-california-fair-plan-low-risk-zip-codes-2026.html
+  Size: 41.5 KB
+  JSON:  insurable-home-california-fair-plan-low-risk-zip-codes-2026.json
+
+Generating article 3/14: The $200M Malibu Concrete Trap: How ☆Status-Mimicr...
+  Cluster: materials_construction → Section: Materials & Construction
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: luxury-concrete-homes-malibu-200m-ando-imitation-problem
+  [Image] Searching 1 cited sources...
+  [image/source] https://mrmalibu.substack.com/p/the-200m: og=yes body=0 → 1 candidates
+  [Image] Found 1 source candidates, downloading best...
+  [image/source] Saved: luxury-concrete-homes-malibu-200m-ando-imitation-problem-hero.jpg (174.4 KB)
+  [Image] ✓ Source image: assets/img/luxury-concrete-homes-malibu-200m-ando-imitation-problem-hero.jpg
+  Links: 23/23 OK
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/luxury-concrete-homes-malibu-200m-ando-imitation-problem.html
+  Size: 41.0 KB
+  JSON:  luxury-concrete-homes-malibu-200m-ando-imitation-problem.json
+
+Generating article 4/14: Newly Built Contemporary Malibu Estate with Panora...
+  Cluster: luxury_real_estate → Section: LA Luxury Market
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: luxury-new-construction-malibu-anacapa-auction
+  [Image] Searching 1 cited sources...
+  [image/source] The National Law Review: og=no body=0 → 0 candidates
+  [Image] Trying Unsplash: 'Architectural photography of a generic contemporar...'
+  [image] Matched 'Architectural photography of a generic contemporary low-slung residence on a grassy coastal knoll above the Pacific at late-afternoon golden hour; deep roof overhangs casting long shadows, recessed glazing, warm limestone and weathered timber surfaces, a sheltered inner terrace visible in partial shade; muted warm tones, soft haze over the ocean, no people, no signage, no recognizable real property, editorial magazine style, 35mm, natural light' → 10 results, picking top
+  [image] Saved: luxury-new-construction-malibu-anacapa-auction-hero.jpg (111.3 KB)
+  [Image] ✓ Unsplash image: assets/img/luxury-new-construction-malibu-anacapa-auction-hero.jpg
+  Links: 25/25 OK
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/luxury-new-construction-malibu-anacapa-auction.html
+  Size: 41.3 KB
+  JSON:  luxury-new-construction-malibu-anacapa-auction.json
+
+Generating article 5/14: NOTA unveils new designs by Tadao Ando and Herzog ...
+  Cluster: concrete_architecture → Section: Concrete Architecture
+  [Generate] Error: Remote end closed connection without response
+  Failed — skipping
+
+Generating article 6/14: SPF:architects Named to Forbes' 2026 America's Top...
+  Cluster: avantgarde_design → Section: Concrete Architecture
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: luxury-custom-home-design-los-angeles-hillside-spine-plan
+  [Image] Searching 1 cited sources...
+  [image/source] https://www.prweb.com/releases/spfarchit: og=yes body=0 → 1 candidates
+  [Image] Found 1 source candidates, downloading best...
+  [image/source] Saved: luxury-custom-home-design-los-angeles-hillside-spine-plan-hero.jpg (3306.6 KB)
+  [Image] ✓ Source image: assets/img/luxury-custom-home-design-los-angeles-hillside-spine-plan-hero.jpg
+  Links: 23/23 OK
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/luxury-custom-home-design-los-angeles-hillside-spine-plan.html
+  Size: 41.8 KB
+  JSON:  luxury-custom-home-design-los-angeles-hillside-spine-plan.json
+
+Generating article 7/14: frank lloyd wright’s concrete usonian house with c...
+  Cluster: concrete_architecture → Section: Concrete Architecture
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: frank-lloyd-wright-concrete-usonian-custom-home-design-california
+  [Image] Searching 1 cited sources...
+  [image/source] designboom | architecture & design magazine: og=yes body=0 → 1 candidates
+  [Image] Found 1 source candidates, downloading best...
+  [image/source] Saved: frank-lloyd-wright-concrete-usonian-custom-home-design-california-hero.jpg (186.8 KB)
+  [Image] ✓ Source image: assets/img/frank-lloyd-wright-concrete-usonian-custom-home-design-california-hero.jpg
+  Links: 23/23 OK
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/frank-lloyd-wright-concrete-usonian-custom-home-design-california.html
+  Size: 42.6 KB
+  JSON:  frank-lloyd-wright-concrete-usonian-custom-home-design-california.json
+
+Generating article 8/14: Organic villa with curved facades and concrete con...
+  Cluster: concrete_architecture → Section: Concrete Architecture
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: curved-concrete-villa-design-california-custom-homes
+  [Image] Searching 1 cited sources...
+  [image/source] HOOG.design - Exclusive living inspiration: og=yes body=0 → 1 candidates
+  [Image] Found 1 source candidates, downloading best...
+  [image/source] Saved: curved-concrete-villa-design-california-custom-homes-hero.jpg (137.0 KB)
+  [Image] ✓ Source image: assets/img/curved-concrete-villa-design-california-custom-homes-hero.jpg
+  Links: 23/23 OK
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/curved-concrete-villa-design-california-custom-homes.html
+  Size: 41.3 KB
+  JSON:  curved-concrete-villa-design-california-custom-homes.json
+
+Generating article 9/14: Major California home insurers move to reopen for ...
+  Cluster: insurance_regulation → Section: Insurance & Insurability
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: insurable-home-california-state-farm-allstate-reopen-2026
+  [Image] Searching 1 cited sources...
+  [image/source] https://www.insurance.ca.gov/0400-news/0: og=no body=6 → 6 candidates
+  [Image] Found 6 source candidates, downloading best...
+  [image/source] Saved: insurable-home-california-state-farm-allstate-reopen-2026-hero.png (1.8 KB)
+  [Image] ✓ Source image: assets/img/insurable-home-california-state-farm-allstate-reopen-2026-hero.png
+  Links: 23/23 OK
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/insurable-home-california-state-farm-allstate-reopen-2026.html
+  Size: 41.5 KB
+  JSON:  insurable-home-california-state-farm-allstate-reopen-2026.json
+
+Generating article 10/14: The Winners of the 2026 Residential Design Archite...
+  Cluster: avantgarde_design → Section: Concrete Architecture
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: luxury-home-architecture-california-2026-residential-design-awards
+  [Image] Searching 1 cited sources...
+  [image/source] fetch failed for https://residentialdesignmagazine.com/the-winners-of-the-202: HTTP Error 403: Forbidden
+  [Image] Trying Unsplash: 'Architectural photography of a contemporary reside...'
+  [image] No results for query: Architectural photography of a contemporary residential courtyard at late afternoon, low raking light across smooth mineral walls, a single olive tree, deep portico shadow, plan-like geometric clarity, muted warm tones of sand and terracotta, Southern California hillside softly visible beyond, no people, editorial magazine style, 35mm
+  [image] Matched 'Luxury Home Architecture in California: Reading the 2026 Awards' → 10 results, picking top
+  [image] Saved: luxury-home-architecture-california-2026-residential-design-awards-hero.jpg (270.5 KB)
+  [Image] ✓ Unsplash image: assets/img/luxury-home-architecture-california-2026-residential-design-awards-hero.jpg
+  Links: 24/25 OK — auto-stripped 1 broken:
+    ✗ 403  https://residentialdesignmagazine.com/the-winners-of-the-2026-residential-design-architecture-awards/
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/luxury-home-architecture-california-2026-residential-design-awards.html
+  Size: 40.3 KB
+  JSON:  luxury-home-architecture-california-2026-residential-design-awards.json
+
+Generating article 11/14: 5 Architectural Showpieces from Camarillo to Malib...
+  Cluster: materials_construction → Section: Materials & Construction
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: luxury-custom-home-design-california-double-hexagon-plan
+  [Image] Searching 1 cited sources...
+  [image/source] Haven Lifestyles: og=yes body=0 → 1 candidates
+  [Image] Found 1 source candidates, downloading best...
+  [image/source] Saved: luxury-custom-home-design-california-double-hexagon-plan-hero.jpg (322.3 KB)
+  [Image] ✓ Source image: assets/img/luxury-custom-home-design-california-double-hexagon-plan-hero.jpg
+  Links: 23/23 OK
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/luxury-custom-home-design-california-double-hexagon-plan.html
+  Size: 42.1 KB
+  JSON:  luxury-custom-home-design-california-double-hexagon-plan.json
+
+Generating article 12/14: This Midcentury "Treehouse" Is Tailored for Its Te...
+  Cluster: architecture_blogs → Section: Concrete Architecture
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: custom-home-design-california-berkeley-midcentury-treehouse
+  [Image] Searching 1 cited sources...
+  [image/source] Architectural Digest: og=yes body=0 → 1 candidates
+  [Image] Found 1 source candidates, downloading best...
+  [image/source] Saved: custom-home-design-california-berkeley-midcentury-treehouse-hero.jpg (208.3 KB)
+  [Image] ✓ Source image: assets/img/custom-home-design-california-berkeley-midcentury-treehouse-hero.jpg
+  Links: 23/23 OK
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/custom-home-design-california-berkeley-midcentury-treehouse.html
+  Size: 41.7 KB
+  JSON:  custom-home-design-california-berkeley-midcentury-treehouse.json
+
+Generating article 13/14: In 1941, a Beverly Hills home was built for Boris ...
+  Cluster: luxury_real_estate → Section: LA Luxury Market
+  [Verify] All 1 source/body URL(s) resolved OK
+  [Generate] Created: beverly-hills-luxury-home-karloff-1941-estate-6-5m
+  [Image] Searching 1 cited sources...
+  [image/source] https://timesofindia.indiatimes.com/real: og=yes body=0 → 1 candidates
+  [Image] Found 1 source candidates, downloading best...
+  [image/source] Saved: beverly-hills-luxury-home-karloff-1941-estate-6-5m-hero.jpg (1489.6 KB)
+  [Image] ✓ Source image: assets/img/beverly-hills-luxury-home-karloff-1941-estate-6-5m-hero.jpg
+  Links: 23/23 OK
+  Saved: /Users/ivogiuliani/Code/myvilla-la/_drafts/journal/beverly-hills-luxury-home-karloff-1941-estate-6-5m.html
+  Size: 42.4 KB
+  JSON:  beverly-hills-luxury-home-karloff-1941-estate-6-5m.json
+
+Ledger updated: /Users/ivogiuliani/Code/myvilla-la/_system/history/journal_ledger.json
+
+==================================================
+Generated 12 article(s)
+exit=0 Tue Oct 13 10:20:57 CEST 2026
+_drafts/journal/beverly-hills-luxury-home-karloff-1941-estate-6-5m.html
+_drafts/journal/curved-concrete-villa-design-california-custom-homes.html
+_drafts/journal/custom-home-design-california-berkeley-midcentury-treehouse.html
+_drafts/journal/frank-lloyd-wright-concrete-usonian-custom-home-design-california.html
+_drafts/journal/insurable-home-california-fair-plan-low-risk-zip-codes-2026.html
+_drafts/journal/insurable-home-california-state-farm-allstate-reopen-2026.html
+_drafts/journal/italian-villa-design-california-genoa-garden-bougainvillea.html
+_drafts/journal/luxury-concrete-homes-malibu-200m-ando-imitation-problem.html
+_drafts/journal/luxury-custom-home-design-california-double-hexagon-plan.html
+_drafts/journal/luxury-custom-home-design-los-angeles-hillside-spine-plan.html
+_drafts/journal/luxury-home-architecture-california-2026-residential-design-awards.html
+_drafts/journal/luxury-new-construction-malibu-anacapa-auction.html
