@@ -524,6 +524,21 @@ def download_source_image(
         print(f"  [image/source] Download failed: {e}")
         return None
 
+    # Scarta immagini troppo piccole o a striscia (loghi, banner): il 13/10/2026
+    # due articoli hanno avuto come copertina un logo di 285x16 px preso dalla fonte.
+    try:
+        import io as _io
+        from PIL import Image as _Image
+        with _Image.open(_io.BytesIO(img_bytes)) as _im:
+            _w, _h = _im.size
+        if _w < 600 or _h < 300 or (_w / max(_h, 1)) > 3.2:
+            print(f"  [image/source] Scartata: {_w}x{_h} (troppo piccola o a striscia)")
+            return None
+    except Exception:
+        if len(img_bytes) < 15_000:
+            print(f"  [image/source] Scartata: file di {len(img_bytes)} byte, probabilmente un logo")
+            return None
+
     # Detect extension from URL or default to .jpg
     ext = ".jpg"
     lower = image_url.lower().split("?")[0]

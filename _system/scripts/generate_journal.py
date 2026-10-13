@@ -2124,10 +2124,12 @@ def auto_fetch_hero_image(article, slug, img_dir):
                 candidates = fetch_source_images(source_list, max_sources=4, per_source=6)
                 if candidates:
                     print(f"  [Image] Found {len(candidates)} source candidates, downloading best...")
-                    result = download_source_image(candidates[0], slug, img_dir)
-                    if result:
-                        print(f"  [Image] ✓ Source image: {result['web_path']}")
-                        return result
+                    # prova i primi candidati: download_source_image scarta loghi e strisce
+                    for cand in candidates[:5]:
+                        result = download_source_image(cand, slug, img_dir)
+                        if result:
+                            print(f"  [Image] ✓ Source image: {result['web_path']}")
+                            return result
             except Exception as e:
                 print(f"  [Image] Source fetch error: {e}")
 
