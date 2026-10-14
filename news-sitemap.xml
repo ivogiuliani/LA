@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
+    <loc>https://myvilla.la/blog/reinforced-concrete-villa-design-big-sagishima-lesson-la.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>My Villa Journal</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-10-14</news:publication_date>
+      <news:title>Reinforced Concrete Villa Design: What BIG's Sagishima Teaches LA</news:title>
+    </news:news>
+  </url>
+  <url>
     <loc>https://myvilla.la/blog/custom-home-design-california-berkeley-midcentury-treehouse.html</loc>
     <news:news>
       <news:publication>
@@ -9,17 +20,6 @@
       </news:publication>
       <news:publication_date>2026-10-12</news:publication_date>
       <news:title>Custom Home Design in California: A Berkeley Midcentury Treehouse</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://myvilla.la/blog/beverly-hills-luxury-home-karloff-1941-estate-6-5m.html</loc>
-    <news:news>
-      <news:publication>
-        <news:name>My Villa Journal</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-10-11</news:publication_date>
-      <news:title>Beverly Hills Luxury Home: Karloff's 1941 Estate Returns at $6.5M</news:title>
     </news:news>
   </url>
 </urlset>

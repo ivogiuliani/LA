@@ -18,7 +18,7 @@
     }
   },
   "wallpaper.com": {
-    "cached_at": 1789193356.7682972,
+    "cached_at": 1791937967.6602204,
     "result": null
   },
   "prnewswire.com": {
@@ -30,7 +30,7 @@
     "result": null
   },
   "dezeen.com": {
-    "cached_at": 1789106927.2408574,
+    "cached_at": 1791937939.0185785,
     "result": null
   },
   "archdaily.com": {
@@ -58,7 +58,7 @@
     "result": null
   },
   "substack.com": {
-    "cached_at": 1779686613.765901,
+    "cached_at": 1791937970.5684717,
     "result": null
   },
   "robbreport.com": {
@@ -102,7 +102,7 @@
     "result": null
   },
   "insurancebusinessmag.com": {
-    "cached_at": 1788934121.7358747,
+    "cached_at": 1791938310.9548373,
     "result": null
   },
   "propertyinsurancecoveragelaw.com": {
@@ -222,11 +222,11 @@
     }
   },
   "insurancejournal.com": {
-    "cached_at": 1787897408.8040874,
+    "cached_at": 1791938308.493813,
     "result": {
       "email": "newsdesk@insurancejournal.com",
       "source": "article_scraped",
-      "path": "/news/west/2026/08/26/882860.htm",
+      "path": "/news/national/2026/10/08/888357.htm",
       "score": 7,
       "in_mailto": true
     }
@@ -338,7 +338,7 @@
     "result": null
   },
   "newsweek.com": {
-    "cached_at": 1789279643.1245,
+    "cached_at": 1791938164.3380103,
     "result": {
       "email": "newsroom@newsweek.com",
       "source": "contact_page",
@@ -466,7 +466,7 @@
     "result": null
   },
   "yahoo.com": {
-    "cached_at": 1788934088.6198454,
+    "cached_at": 1791938157.9113612,
     "result": null
   },
   "oakviewins.com": {
@@ -810,21 +810,15 @@
     "result": null
   },
   "mansionglobal.com": {
-    "cached_at": 1786173552.5758874,
-    "result": {
-      "email": "info@mansionglobal.com",
-      "source": "article_scraped",
-      "path": "/amp/articles/a-modern-villa-soaks-in-sicilys-southwest-coast-9fc996a9",
-      "score": 11,
-      "in_mailto": true
-    }
+    "cached_at": 1791937977.826351,
+    "result": null
   },
   "admiddleeast.com": {
     "cached_at": 1783577693.9426093,
     "result": null
   },
   "interiordesign.net": {
-    "cached_at": 1783577699.6613815,
+    "cached_at": 1791937938.433359,
     "result": {
       "email": "halloffame@interiordesign.net",
       "source": "contact_page",
@@ -1068,9 +1062,9 @@
     }
   },
   "contemporist.com": {
-    "cached_at": 1784182577.0060482,
+    "cached_at": 1791937969.6966846,
     "result": {
-      "email": "erin@contemporist.com",
+      "email": "dave@contemporist.com",
       "source": "contact_page",
       "path": "/contact",
       "score": 2,
@@ -1226,11 +1220,11 @@
     }
   },
   "thecooldown.com": {
-    "cached_at": 1785910503.9943683,
+    "cached_at": 1791938311.8615358,
     "result": {
       "email": "hello@thecooldown.com",
       "source": "article_scraped",
-      "path": "/green-home/california-homeowners-insurance-non-renewals-bill/",
+      "path": "/green-home/los-angeles-wildfire-safety-campaign-standing-homes/",
       "score": 14,
       "in_mailto": true
     }
@@ -1830,7 +1824,7 @@
     }
   },
   "pressdemocrat.com": {
-    "cached_at": 1788415777.4593692,
+    "cached_at": 1791938309.5718565,
     "result": {
       "email": "news@pressdemocrat.com",
       "source": "contact_page",
@@ -2029,6 +2023,44 @@
   },
   "abayaarab.com": {
     "cached_at": 1789538935.3954654,
+    "result": null
+  },
+  "weahomes.com": {
+    "cached_at": 1791937993.3167162,
+    "result": null
+  },
+  "topconsumerreviews.com": {
+    "cached_at": 1791938006.9465032,
+    "result": null
+  },
+  "topmost10.com": {
+    "cached_at": 1791938015.2857618,
+    "result": null
+  },
+  "myartsonline.com": {
+    "cached_at": 1791938030.6064389,
+    "result": null
+  },
+  "enjyu-japan.travel": {
+    "cached_at": 1791938155.739919,
+    "result": null
+  },
+  "rubyhome.com": {
+    "cached_at": 1791938175.8753839,
+    "result": {
+      "email": "tony@rubyhome.com",
+      "source": "article_scraped",
+      "path": "/idx/6337-via-colinita-rancho-palos-verdes-ca-90275/418847114_spid/",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "flaunt.com": {
+    "cached_at": 1791938177.8969805,
+    "result": null
+  },
+  "usnews.com": {
+    "cached_at": 1791938298.6239812,
     "result": null
   }
 }

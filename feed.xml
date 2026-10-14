@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-10-12T00:00:00Z</updated>
+  <updated>2026-10-14T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Reinforced Concrete Villa Design: What BIG's Sagishima Teaches LA</title>
+    <link href="https://myvilla.la/blog/reinforced-concrete-villa-design-big-sagishima-lesson-la.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/reinforced-concrete-villa-design-big-sagishima-lesson-la.html</id>
+    <published>2026-10-14T00:00:00Z</published>
+    <updated>2026-10-14T00:00:00Z</updated>
+    <summary>What does serious reinforced concrete villa design look like? BIG's new Sagishima complex pairs concrete with site-excavated rammed earth—a lesson for Los Angeles.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/reinforced-concrete-villa-design-big-sagishima-lesson-la-hero.jpg"/>
+  </entry>
   <entry>
     <title>Custom Home Design in California: A Berkeley Midcentury Treehouse</title>
     <link href="https://myvilla.la/blog/custom-home-design-california-berkeley-midcentury-treehouse.html" rel="alternate" type="text/html"/>
@@ -88,7 +97,7 @@
     <published>2026-10-04T00:00:00Z</published>
     <updated>2026-10-04T00:00:00Z</updated>
     <summary>Can you still buy an insurable home in California? State Farm and Allstate filed to write new policies again in 2026. What underwriters will price first.</summary>
-    <link rel="enclosure" type="image/png" href="https://myvilla.la/blog/assets/img/insurable-home-california-state-farm-allstate-reopen-2026-hero.jpg"/>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/insurable-home-california-state-farm-allstate-reopen-2026-hero.jpg"/>
   </entry>
   <entry>
     <title>Luxury Concrete Homes in Malibu: The $200M Ando Imitation Problem</title>
@@ -269,14 +278,5 @@
     <updated>2026-08-07T00:00:00Z</updated>
     <summary>Do reinforced concrete homes in California hold value after a disaster? A Bahamas house that withstood 185 mph Category 5 winds is now listed near $2 million.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/reinforced-concrete-homes-california-dorian-lesson-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Luxury Home Design in Malibu: The $13M Single-Level Case</title>
-    <link href="https://myvilla.la/blog/luxury-home-design-malibu-13m-single-level.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/luxury-home-design-malibu-13m-single-level.html</id>
-    <published>2026-08-05T00:00:00Z</published>
-    <updated>2026-08-05T00:00:00Z</updated>
-    <summary>How much house does $13M buy on a Malibu acre? Luxury home design in Malibu is shifting toward single-level plans — four bedrooms, six baths, three neighbors.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/luxury-home-design-malibu-13m-single-level-hero.jpg"/>
   </entry>
 </feed>

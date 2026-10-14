@@ -935,3 +935,4 @@
 {"domain": "bhcourier.com", "outlet": "Beverly Hills Courier", "status": "no_email", "logged_at": "2026-09-16T06:13:58+00:00"}
 {"domain": "toacorn.com", "outlet": "The Acorn", "status": "no_email", "logged_at": "2026-09-16T06:14:04+00:00"}
 {"domain": "montecitojournal.net", "outlet": "Montecito Journal", "status": "no_email", "logged_at": "2026-09-16T06:14:04+00:00"}
+{"domain": "palipost.com", "outlet": "Palisadian-Post", "to": "mypost@palipost.com", "status": "queued_review", "subject": "A feature idea for Palisadian-Post: European-built resilience, Italian living", "logged_at": "2026-10-14T00:41:31+00:00"}
