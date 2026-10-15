@@ -165,7 +165,7 @@
     "result": null
   },
   "therealdeal.com": {
-    "cached_at": 1789538930.2404168,
+    "cached_at": 1792028654.4747837,
     "result": null
   },
   "uphelp.org": {
@@ -236,7 +236,7 @@
     "result": null
   },
   "latimes.com": {
-    "cached_at": 1788847630.950781,
+    "cached_at": 1792028688.4806798,
     "result": {
       "email": "tips@latimes.com",
       "source": "article_scraped",
@@ -1118,7 +1118,7 @@
     }
   },
   "indiatimes.com": {
-    "cached_at": 1789193382.4755666,
+    "cached_at": 1792028727.9512587,
     "result": null
   },
   "domusweb.it": {
@@ -1670,7 +1670,7 @@
     "result": null
   },
   "vogue.com": {
-    "cached_at": 1787897422.9155142,
+    "cached_at": 1792028652.8365211,
     "result": null
   },
   "globaldesignnews.com": {
@@ -1738,7 +1738,7 @@
     }
   },
   "flickr.com": {
-    "cached_at": 1788242914.5454707,
+    "cached_at": 1792028661.0934901,
     "result": null
   },
   "spokesman.com": {
@@ -1974,7 +1974,7 @@
     }
   },
   "headtopics.com": {
-    "cached_at": 1789279638.868103,
+    "cached_at": 1792028717.7547038,
     "result": {
       "email": "editor@headtopics.com",
       "source": "contact_page",
@@ -2061,6 +2061,62 @@
   },
   "usnews.com": {
     "cached_at": 1791938298.6239812,
+    "result": null
+  },
+  "rollingstone.com": {
+    "cached_at": 1792028645.9132662,
+    "result": {
+      "email": "tips@rollingstone.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 20,
+      "in_mailto": true
+    }
+  },
+  "financialcontent.com": {
+    "cached_at": 1792028664.691075,
+    "result": null
+  },
+  "toolboxguru.com": {
+    "cached_at": 1792028683.5828018,
+    "result": {
+      "email": "contact@toolboxguru.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 14,
+      "in_mailto": true
+    }
+  },
+  "grist.org": {
+    "cached_at": 1792028709.8249028,
+    "result": null
+  },
+  "trellis.net": {
+    "cached_at": 1792028713.1676745,
+    "result": {
+      "email": "editor@trellis.net",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 18,
+      "in_mailto": true
+    }
+  },
+  "traveljapan-together.com": {
+    "cached_at": 1792028744.6046958,
+    "result": null
+  },
+  "brasssmile.life": {
+    "cached_at": 1792028752.96157,
+    "result": {
+      "email": "contact@brasssmile.life",
+      "source": "article_scraped",
+      "path": "/modern-luxury-living-trends-2026/",
+      "score": 9,
+      "in_mailto": false
+    }
+  },
+  "gensler.com": {
+    "cached_at": 1792028757.2271023,
     "result": null
   }
 }
