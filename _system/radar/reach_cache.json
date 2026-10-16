@@ -163,6 +163,7 @@
   "jamesedition.com": 2.5,
   "jetsetmag.com": 0.15,
   "joycerey.com": 0.05,
+  "jrreport.wordandbrown.com": 0.05,
   "justwestadams.com": 0.03,
   "jvmlending.com": 0.15,
   "kqed.org": 6.0,
@@ -192,8 +193,10 @@
   "matthewekahn.substack.com": 0.05,
   "maverickframe.com": 0.1,
   "meganmicco.com": 0.05,
+  "meltflexai.com": 0.05,
   "mendovoice.com": 0.15,
   "mercurynews.com": 25.0,
+  "missionlocal.org": 0.4,
   "moomoo.com": 15.0,
   "movoto.com": 8.0,
   "mv-voice.com": 0.25,
@@ -208,6 +211,7 @@
   "newsweek.com": 100.0,
   "nickiandkaren.com": 0.1,
   "noncombustiblesllc.com": 0.05,
+  "note.com": 80.0,
   "oakviewins.com": 0.05,
   "ocregister.com": 8.0,
   "oftmw.com": 0.1,
@@ -245,6 +249,7 @@
   "rubyhome.com": 0.8,
   "ruthelia.com": 0.05,
   "rwcpulse.com": 0.05,
+  "sagesure.com": 0.15,
   "santabarbaralifeandstyle.com": 0.03,
   "santacruzsentinel.com": 2.5,
   "sciencedaily.com": 12.0,
@@ -331,5 +336,6 @@
   "youngdouglasinsurance.com": 0.05,
   "yubanet.com": 0.3,
   "yvonneyanghomes.com": 0.01,
-  "ziddu.com": 0.15
+  "ziddu.com": 0.15,
+  "zoomtventertainment.com": 0.2
 }

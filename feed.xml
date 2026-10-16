@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-10-14T00:00:00Z</updated>
+  <updated>2026-10-16T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Luxury LA Home Design: An Ode to the City's Iconic Architecture</title>
+    <link href="https://myvilla.la/blog/luxury-la-home-design-ode-iconic-architecture.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/luxury-la-home-design-ode-iconic-architecture.html</id>
+    <published>2026-10-16T00:00:00Z</published>
+    <updated>2026-10-16T00:00:00Z</updated>
+    <summary>What makes a luxury LA home design feel rooted in the city? Designer Dean Levin turned a no-style house into an ode to LA's iconic architecture — here's how.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/luxury-la-home-design-ode-iconic-architecture-hero.jpg"/>
+  </entry>
   <entry>
     <title>Reinforced Concrete Villa Design: What BIG's Sagishima Teaches LA</title>
     <link href="https://myvilla.la/blog/reinforced-concrete-villa-design-big-sagishima-lesson-la.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-08-10T00:00:00Z</updated>
     <summary>How do you plan a guesthouse that earns its footprint? Luxury guesthouse design in Los Angeles now packs four programs into one room — inside an AD100 case.</summary>
     <link rel="enclosure" type="image/png" href="https://myvilla.la/blog/assets/img/luxury-guesthouse-design-los-angeles-second-volume-hero.png"/>
-  </entry>
-  <entry>
-    <title>Reinforced Concrete Homes in California: The Dorian Lesson</title>
-    <link href="https://myvilla.la/blog/reinforced-concrete-homes-california-dorian-lesson.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/reinforced-concrete-homes-california-dorian-lesson.html</id>
-    <published>2026-08-07T00:00:00Z</published>
-    <updated>2026-08-07T00:00:00Z</updated>
-    <summary>Do reinforced concrete homes in California hold value after a disaster? A Bahamas house that withstood 185 mph Category 5 winds is now listed near $2 million.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/reinforced-concrete-homes-california-dorian-lesson-hero.jpg"/>
   </entry>
 </feed>
