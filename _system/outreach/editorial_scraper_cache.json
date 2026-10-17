@@ -38,7 +38,7 @@
     "result": null
   },
   "malibutimes.com": {
-    "cached_at": 1789020829.4950557,
+    "cached_at": 1792200803.4495635,
     "result": null
   },
   "christiesresocal.com": {
@@ -62,7 +62,7 @@
     "result": null
   },
   "robbreport.com": {
-    "cached_at": 1789452577.4576719,
+    "cached_at": 1792200674.9982805,
     "result": {
       "email": "editorial@robbreport.com",
       "source": "contact_page",
@@ -161,7 +161,7 @@
     "result": null
   },
   "hoodline.com": {
-    "cached_at": 1778044799.330097,
+    "cached_at": 1792200679.440074,
     "result": null
   },
   "therealdeal.com": {
@@ -177,7 +177,7 @@
     "result": null
   },
   "cbsnews.com": {
-    "cached_at": 1786601445.8648582,
+    "cached_at": 1792200695.0624168,
     "result": null
   },
   "airbnb.com": {
@@ -544,24 +544,30 @@
     "result": null
   },
   "luxesource.com": {
-    "cached_at": 1789020776.6510167,
+    "cached_at": 1792200757.1600296,
     "result": null
   },
   "modernluxury.com": {
-    "cached_at": 1789020777.3521833,
+    "cached_at": 1792200765.9392538,
     "result": null
   },
   "laconfidentialmag.com": {
-    "cached_at": 1789020784.552736,
+    "cached_at": 1792200778.1785493,
     "result": null
   },
   "hauteresidence.com": {
-    "cached_at": 1789020800.2245119,
+    "cached_at": 1792200785.0733376,
     "result": null
   },
   "lamag.com": {
-    "cached_at": 1789020801.0046034,
-    "result": null
+    "cached_at": 1792200791.0198855,
+    "result": {
+      "email": "letters@lamag.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 10,
+      "in_mailto": false
+    }
   },
   "variety.com": {
     "cached_at": 1780392143.083466,
@@ -613,7 +619,7 @@
     "result": null
   },
   "bhcourier.com": {
-    "cached_at": 1789020843.9968917,
+    "cached_at": 1792200805.5080452,
     "result": null
   },
   "palipost.com": {
@@ -637,11 +643,11 @@
     }
   },
   "toacorn.com": {
-    "cached_at": 1789020875.1373305,
+    "cached_at": 1792200816.9099872,
     "result": null
   },
   "montecitojournal.net": {
-    "cached_at": 1789020875.8350122,
+    "cached_at": 1792200817.893952,
     "result": null
   },
   "consumerwatchdog.org": {
@@ -1012,7 +1018,7 @@
     "result": null
   },
   "architecturalrecord.com": {
-    "cached_at": 1784096126.79859,
+    "cached_at": 1792200686.1435392,
     "result": null
   },
   "hindustantimes.com": {
@@ -2141,6 +2147,24 @@
   },
   "missionlocal.org": {
     "cached_at": 1792114739.6864922,
+    "result": null
+  },
+  "standinsurance.com": {
+    "cached_at": 1792200687.0921106,
+    "result": {
+      "email": "press@standinsurance.com",
+      "source": "article_scraped",
+      "path": "/press",
+      "score": 17,
+      "in_mailto": true
+    }
+  },
+  "apnews.com": {
+    "cached_at": 1792200695.8409317,
+    "result": null
+  },
+  "csg.org": {
+    "cached_at": 1792200696.8534796,
     "result": null
   }
 }
