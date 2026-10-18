@@ -870,11 +870,11 @@
     "result": null
   },
   "helencummins.com": {
-    "cached_at": 1787465397.300521,
+    "cached_at": 1792286448.006191,
     "result": {
       "email": "office@helencummins.com",
       "source": "article_scraped",
-      "path": "/property-for-sale-mallorca-calvia-villa-guest-house",
+      "path": "/property-for-sale-mallorca-bendinat-townhouse-pool",
       "score": 2,
       "in_mailto": false
     }
@@ -1014,7 +1014,7 @@
     "result": null
   },
   "co.uk": {
-    "cached_at": 1785737828.207446,
+    "cached_at": 1792286429.1710818,
     "result": null
   },
   "architecturalrecord.com": {
@@ -2165,6 +2165,24 @@
   },
   "csg.org": {
     "cached_at": 1792200696.8534796,
+    "result": null
+  },
+  "housebeautiful.com": {
+    "cached_at": 1792286432.5094466,
+    "result": {
+      "email": "editor@housebeautiful.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 18,
+      "in_mailto": true
+    }
+  },
+  "compuserve.com": {
+    "cached_at": 1792286450.9630046,
+    "result": null
+  },
+  "pasadenastarnews.com": {
+    "cached_at": 1792286460.2201679,
     "result": null
   }
 }

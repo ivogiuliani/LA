@@ -6688,6 +6688,26 @@
       "action_type": "user_dismissed",
       "url": "https://therealdeal.com/la/2026/10/14/hollywood-hills-mansion-sees-21-percent-price-cut/",
       "note": "auto-sent pitch to la-news@therealdeal.com"
+    },
+    {
+      "date_first_reported": "2026-10-18",
+      "source": "user_dismissed",
+      "title": "These Are the 6 Most Expensive Celebrity Homes of All Time",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.housebeautiful.com/lifestyle/entertainment/a74067976/most-expensive-celebrity-homes-ever-2026/",
+      "note": "auto-sent pitch to queued:alyssa.khan@housebeautiful.com"
+    },
+    {
+      "date_first_reported": "2026-10-18",
+      "source": "user_dismissed",
+      "title": "California orders lenders to report on their handling of insurance payouts to LA",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.pasadenastarnews.com/2026/10/15/la-fires-insurance-payouts-report/",
+      "note": "auto-sent pitch to contact@archdigest.com"
     }
   ],
   "reported": [
