@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
-    <loc>https://myvilla.la/blog/luxury-la-home-design-ode-iconic-architecture.html</loc>
+    <loc>https://myvilla.la/blog/raw-concrete-interiors-california-luxury-homes.html</loc>
     <news:news>
       <news:publication>
         <news:name>My Villa Journal</news:name>
         <news:language>en</news:language>
       </news:publication>
-      <news:publication_date>2026-10-16</news:publication_date>
-      <news:title>Luxury LA Home Design: An Ode to the City's Iconic Architecture</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://myvilla.la/blog/reinforced-concrete-villa-design-big-sagishima-lesson-la.html</loc>
-    <news:news>
-      <news:publication>
-        <news:name>My Villa Journal</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-10-14</news:publication_date>
-      <news:title>Reinforced Concrete Villa Design: What BIG's Sagishima Teaches LA</news:title>
+      <news:publication_date>2026-10-19</news:publication_date>
+      <news:title>Raw Concrete Interiors: A Lesson for California Luxury Homes</news:title>
     </news:news>
   </url>
 </urlset>

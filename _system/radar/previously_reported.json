@@ -6708,6 +6708,26 @@
       "action_type": "user_dismissed",
       "url": "https://www.pasadenastarnews.com/2026/10/15/la-fires-insurance-payouts-report/",
       "note": "auto-sent pitch to contact@archdigest.com"
+    },
+    {
+      "date_first_reported": "2026-10-19",
+      "source": "user_dismissed",
+      "title": "This 1970s Belgian Villa Combines Raw Concrete With Leather, Velvet and Smoked Glass",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.admiddleeast.com/story/1970s-belgian-villa",
+      "note": "auto-published journal: raw-concrete-interiors-california-luxury-homes"
+    },
+    {
+      "date_first_reported": "2026-10-19",
+      "source": "user_dismissed",
+      "title": "Famous Buildings in Los Angeles: Icons of LA Architecture",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://illustrarch.com/famous-buildings/94242-famous-buildings-in-los-angeles.html",
+      "note": "auto-sent pitch to contact@illustrarch.com"
     }
   ],
   "reported": [

@@ -820,7 +820,7 @@
     "result": null
   },
   "admiddleeast.com": {
-    "cached_at": 1783577693.9426093,
+    "cached_at": 1792373542.0223339,
     "result": null
   },
   "interiordesign.net": {
@@ -2183,6 +2183,20 @@
   },
   "pasadenastarnews.com": {
     "cached_at": 1792286460.2201679,
+    "result": null
+  },
+  "illustrarch.com": {
+    "cached_at": 1792373565.7283916,
+    "result": {
+      "email": "contact@illustrarch.com",
+      "source": "article_scraped",
+      "path": "/famous-buildings/94242-famous-buildings-in-los-angeles.html",
+      "score": 9,
+      "in_mailto": false
+    }
+  },
+  "jkconcretepolishing.com": {
+    "cached_at": 1792373596.5926213,
     "result": null
   }
 }

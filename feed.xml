@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-10-16T00:00:00Z</updated>
+  <updated>2026-10-19T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Raw Concrete Interiors: A Lesson for California Luxury Homes</title>
+    <link href="https://myvilla.la/blog/raw-concrete-interiors-california-luxury-homes.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/raw-concrete-interiors-california-luxury-homes.html</id>
+    <published>2026-10-19T00:00:00Z</published>
+    <updated>2026-10-19T00:00:00Z</updated>
+    <summary>Can raw concrete interiors feel warm? A 1970s Belgian villa pairs béton brut with leather and velvet — a design lesson for California luxury homes.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/raw-concrete-interiors-california-luxury-homes-hero.jpg"/>
+  </entry>
   <entry>
     <title>Luxury LA Home Design: An Ode to the City's Iconic Architecture</title>
     <link href="https://myvilla.la/blog/luxury-la-home-design-ode-iconic-architecture.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-08-12T00:00:00Z</updated>
     <summary>What actually makes a house defensible? Fire-resistant home design in California starts on the ground — 100 ft of clearance, a 5 ft Zone 0, and stored water.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/fire-resistant-home-design-california-water-reserve-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Luxury Guesthouse Design in Los Angeles: The Second Volume</title>
-    <link href="https://myvilla.la/blog/luxury-guesthouse-design-los-angeles-second-volume.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/luxury-guesthouse-design-los-angeles-second-volume.html</id>
-    <published>2026-08-10T00:00:00Z</published>
-    <updated>2026-08-10T00:00:00Z</updated>
-    <summary>How do you plan a guesthouse that earns its footprint? Luxury guesthouse design in Los Angeles now packs four programs into one room — inside an AD100 case.</summary>
-    <link rel="enclosure" type="image/png" href="https://myvilla.la/blog/assets/img/luxury-guesthouse-design-los-angeles-second-volume-hero.png"/>
   </entry>
 </feed>
