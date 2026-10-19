@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-12T14:42:03+00:00",
+  "updated_at": "2026-10-19T12:26:54+00:00",
   "mentions": {
     "https://villahomedecor.com/": {
       "first_seen": "2026-09-16",
@@ -67,6 +67,18 @@
       "via": "brave",
       "query": "\"myvilla.la\" -site:myvilla.la",
       "last_checked": "2026-10-12T14:42:03+00:00",
+      "http": 200,
+      "about_us": false,
+      "linked": false,
+      "rel": null,
+      "anchor": null
+    },
+    "https://www.kaskavilla.com/kiralik-villa/my-villa": {
+      "first_seen": "2026-10-19",
+      "title": "My Villa, Doğa Manzaralı, Deniz Manzaralı, Muhafazakar Kiralık Tatil Villası",
+      "via": "brave",
+      "query": "\"My Villa\" Mezzalama",
+      "last_checked": "2026-10-19T12:26:54+00:00",
       "http": 200,
       "about_us": false,
       "linked": false,
