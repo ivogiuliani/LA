@@ -6728,6 +6728,46 @@
       "action_type": "user_dismissed",
       "url": "https://illustrarch.com/famous-buildings/94242-famous-buildings-in-los-angeles.html",
       "note": "auto-sent pitch to contact@illustrarch.com"
+    },
+    {
+      "date_first_reported": "2026-10-20",
+      "source": "user_dismissed",
+      "title": "Thin concrete plane defines minimalist villa in Ibiza by Fran Silvestre Arquitec",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dezeen.com/2026/10/18/bellavista-11-villa-fran-silvestre-arquitectos/",
+      "note": "auto-sent pitch to queued:jon.astbury@dezeen.com"
+    },
+    {
+      "date_first_reported": "2026-10-20",
+      "source": "user_dismissed",
+      "title": "Nicolas Cage battles sinkhole that threatened his Malibu home",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2026-10-19/nicolas-cage-battles-sinkhole-that-threatened-his-malibu-home",
+      "note": "auto-sent pitch to jack.flemming@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-10-20",
+      "source": "user_dismissed",
+      "title": "$5.4 Million Contemporary Mediterranean Villa in Los Angeles' Brentwood | Pricey",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.priceypads.com/5-4-million-contemporary-mediterranean-villa-in-los-angeles-brentwood/",
+      "note": "auto-sent pitch to shelton@sheltonwilder.com"
+    },
+    {
+      "date_first_reported": "2026-10-20",
+      "source": "user_dismissed",
+      "title": "California enacts sweeping insurance reforms to speed disaster recovery - United",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://uphelp.org/california-enacts-sweeping-insurance-reforms-to-speed-disaster-recovery/",
+      "note": "auto-sent pitch to media@uphelp.org"
     }
   ],
   "reported": [
