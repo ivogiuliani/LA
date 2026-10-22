@@ -6818,6 +6818,66 @@
       "action_type": "user_dismissed",
       "url": "https://www.canyon-news.com/the-insurance-quote-that-kills-southern-california-home-sales/",
       "note": "auto-sent pitch to hello@canyon-news.com"
+    },
+    {
+      "date_first_reported": "2026-10-22",
+      "source": "user_dismissed",
+      "title": "Companion Villa / AsNow Design & Construct | ArchDaily",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.archdaily.com/1186814/companion-villa-asnow-design-and-construct",
+      "note": "auto-sent pitch to queued:pratik.mour@archdaily.com"
+    },
+    {
+      "date_first_reported": "2026-10-22",
+      "source": "user_dismissed",
+      "title": "Thin concrete plane defines minimalist villa in Ibiza by Fran Silvestre Arquitec",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dezeen.com/2026/10/18/minimalist-villa-ibiza-fran-silvestre-arquitectos/",
+      "note": "auto-sent pitch to queued:jon.astbury@dezeen.com"
+    },
+    {
+      "date_first_reported": "2026-10-22",
+      "source": "user_dismissed",
+      "title": "Halle Berry Lists Longtime Los Angeles Villa for $12 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/halle-berry-lists-longtime-los-angeles-villa",
+      "note": "auto-sent pitch to queued:katie.schultz@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-10-22",
+      "source": "user_dismissed",
+      "title": "Wildfire-resilient design for wildland-urban interface zones | The American Inst",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.aia.org/article/wildfire-resilient-design-wildland-urban-interface-zones",
+      "note": "auto-sent pitch to daniellesteger@aia.org"
+    },
+    {
+      "date_first_reported": "2026-10-22",
+      "source": "user_dismissed",
+      "title": "SageSure expands California offering with $20m TIV Olympus Capacity - Reinsuranc",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.reinsurancene.ws/sagesure-expands-california-offering-with-20m-tiv-olympus-capacity/",
+      "note": "auto-sent pitch to queued:beth.musselwhite@reinsurancene.ws"
+    },
+    {
+      "date_first_reported": "2026-10-22",
+      "source": "user_dismissed",
+      "title": "California Wildfire Preparedness Week 2026: A Signal for Luxury Construction — M",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://myvilla.la/blog/wildfire-preparedness-week-2026-california-luxury-construction.html",
+      "note": "auto-sent pitch to info@myvilla.la"
     }
   ],
   "reported": [
