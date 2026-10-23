@@ -6878,6 +6878,46 @@
       "action_type": "user_dismissed",
       "url": "https://myvilla.la/blog/wildfire-preparedness-week-2026-california-luxury-construction.html",
       "note": "auto-sent pitch to info@myvilla.la"
+    },
+    {
+      "date_first_reported": "2026-10-23",
+      "source": "user_dismissed",
+      "title": "A Lakeside Italian Villa Restored to Its Original Splendor",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.nytimes.com/2026/10/16/t-magazine/lake-como-italy-villa.html",
+      "note": "auto-published journal: italian-villa-design-california-lake-como"
+    },
+    {
+      "date_first_reported": "2026-10-23",
+      "source": "user_dismissed",
+      "title": "L.A. faced its first fire weather since the Palisades fire. How'd it do? - Los A",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/environment/newsletter/2026-10-22/los-angeles-first-big-test-since-palisades-fire",
+      "note": "auto-sent pitch to noah.haggerty@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-10-23",
+      "source": "user_dismissed",
+      "title": "$12M Sonoma estate turns a wildfire rebuild into a 14-acre Wine Country showpiec",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.fancypantshomes.com/luxury/sonoma-estate-turns-a-wildfire-rebuild-into-a-wine-country-showpiece/",
+      "note": "auto-sent pitch to queued:georgie.mihaila@fancypantshomes.com"
+    },
+    {
+      "date_first_reported": "2026-10-23",
+      "source": "user_dismissed",
+      "title": "The Surprisingly Exciting Race to Be California’s Next Insurance Commissioner - ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://heatmap.news/politics/california-insurance-commissioner-race",
+      "note": "auto-sent pitch to queued:matthew.zeitlin@heatmap.news"
     }
   ],
   "reported": [

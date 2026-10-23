@@ -102,7 +102,7 @@
     "result": null
   },
   "insurancebusinessmag.com": {
-    "cached_at": 1791938310.9548373,
+    "cached_at": 1792714249.0164256,
     "result": null
   },
   "propertyinsurancecoveragelaw.com": {
@@ -981,11 +981,11 @@
     }
   },
   "dwell.com": {
-    "cached_at": 1786601409.3819065,
+    "cached_at": 1792714243.6193316,
     "result": {
       "email": "feedback@dwell.com",
       "source": "article_scraped",
-      "path": "/article/htpio-fireproofing-high-risk-home-19e11e71",
+      "path": "/article/narrow-house-lorenzo-guzzini-architecture-tavernerio-como-italy-real-estate-442123e4",
       "score": 8,
       "in_mailto": false
     }
@@ -1125,7 +1125,7 @@
     }
   },
   "indiatimes.com": {
-    "cached_at": 1792028727.9512587,
+    "cached_at": 1792714290.3594615,
     "result": null
   },
   "domusweb.it": {
@@ -1807,7 +1807,7 @@
     }
   },
   "nytimes.com": {
-    "cached_at": 1789538985.8994977,
+    "cached_at": 1792714188.6353016,
     "result": null
   },
   "wwd.com": {
@@ -1971,7 +1971,7 @@
     }
   },
   "fancypantshomes.com": {
-    "cached_at": 1789193366.767162,
+    "cached_at": 1792714247.0533361,
     "result": {
       "email": "hello@fancypantshomes.com",
       "source": "contact_page",
@@ -2242,6 +2242,16 @@
       "email": "press@reinsurancene.ws",
       "source": "contact_page",
       "path": "/contact",
+      "score": 12,
+      "in_mailto": false
+    }
+  },
+  "heatmap.news": {
+    "cached_at": 1792714266.084993,
+    "result": {
+      "email": "press@heatmap.news",
+      "source": "about_page",
+      "path": "/about-us",
       "score": 12,
       "in_mailto": false
     }

@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-10-21T00:00:00Z</updated>
+  <updated>2026-10-23T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Italian Villa Design in California: A Lake Como Masterclass</title>
+    <link href="https://myvilla.la/blog/italian-villa-design-california-lake-como.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/italian-villa-design-california-lake-como.html</id>
+    <published>2026-10-23T00:00:00Z</published>
+    <updated>2026-10-23T00:00:00Z</updated>
+    <summary>What makes Italian villa design endure in California? A restored 1920s Lake Como villa shows how proportion, thermal mass and masonry outlast every trend.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/italian-villa-design-california-lake-como-hero.jpg"/>
+  </entry>
   <entry>
     <title>Tadao Ando's Reinforced Concrete Malibu House: A $200K Lesson</title>
     <link href="https://myvilla.la/blog/tadao-ando-malibu-concrete-house-200k-penalty.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-08-17T00:00:00Z</updated>
     <summary>Is preserving a landmark estate smarter than demolishing it? A $47M luxury home addition in Bel Air adds 12,000 sq ft — and rewrites the proportion math.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/luxury-home-addition-bel-air-47m-preservation-case-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Reinforced Concrete Custom Homes in LA: As-Cast Finish</title>
-    <link href="https://myvilla.la/blog/reinforced-concrete-custom-homes-los-angeles-as-cast-finish.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/reinforced-concrete-custom-homes-los-angeles-as-cast-finish.html</id>
-    <published>2026-08-14T00:00:00Z</published>
-    <updated>2026-08-14T00:00:00Z</updated>
-    <summary>How do reinforced concrete custom homes in Los Angeles stay maintenance-free? A new Paraná headquarters shows why formwork, not cladding, sets the finish.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/reinforced-concrete-custom-homes-los-angeles-as-cast-finish-hero.jpg"/>
   </entry>
 </feed>
