@@ -6918,6 +6918,46 @@
       "action_type": "user_dismissed",
       "url": "https://heatmap.news/politics/california-insurance-commissioner-race",
       "note": "auto-sent pitch to queued:matthew.zeitlin@heatmap.news"
+    },
+    {
+      "date_first_reported": "2026-10-24",
+      "source": "user_dismissed",
+      "title": "Inside Ben Affleck’s $30 Million Property Portfolio",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/lists/ben-affleck-property-portfolio-1238778968/",
+      "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-10-24",
+      "source": "user_dismissed",
+      "title": "What Is Minimalist Architecture? Principles, Origins, and Iconic Buildings",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://illustrarch.com/architectural-styles/97478-minimalist-architecture.html",
+      "note": "auto-sent pitch to contact@illustrarch.com"
+    },
+    {
+      "date_first_reported": "2026-10-24",
+      "source": "user_dismissed",
+      "title": "A developer bought a 0.59-acre Bel Air lot for $3.25 million in 2017 and spent n",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://pressnewsagency.org/a-developer-bought-a-0-59-acre-bel-air-lot-for-3-25-million-in-2017-and-spent-nine-years-building-a-10950-sq-ft-brutalist-mansion-from-4500-tons-of-reinforced-concrete-it-is-now-listed-for-36-5-m/",
+      "note": "auto-sent pitch to contact@pressnewsagency.org"
+    },
+    {
+      "date_first_reported": "2026-10-24",
+      "source": "user_dismissed",
+      "title": "Viewpoint: What a FAIR Plan Quote Does to a California Home Sale",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/news/west/2026/10/23/889745.htm",
+      "note": "auto-sent pitch to newsdesk@insurancejournal.com"
     }
   ],
   "reported": [

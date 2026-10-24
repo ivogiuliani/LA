@@ -1049,7 +1049,7 @@
     }
   },
   "elledecor.com": {
-    "cached_at": 1787033385.7200797,
+    "cached_at": 1792806647.7928693,
     "result": {
       "email": "staff@elledecor.com",
       "source": "contact_page",
@@ -2131,7 +2131,7 @@
     "result": null
   },
   "zoomtventertainment.com": {
-    "cached_at": 1792114665.3124497,
+    "cached_at": 1792806684.4727123,
     "result": null
   },
   "sagesure.com": {
@@ -2255,5 +2255,23 @@
       "score": 12,
       "in_mailto": false
     }
+  },
+  "pressnewsagency.org": {
+    "cached_at": 1792806677.6249418,
+    "result": {
+      "email": "contact@pressnewsagency.org",
+      "source": "article_scraped",
+      "path": "/a-developer-bought-a-0-59-acre-bel-air-lot-for-3-25-million-in-2017-and-spent-nine-years-building-a-10950-sq-ft-brutalist-mansion-from-4500-tons-of-reinforced-concrete-it-is-now-listed-for-36-5-m/",
+      "score": 9,
+      "in_mailto": false
+    }
+  },
+  "houseah.com": {
+    "cached_at": 1792806694.6183891,
+    "result": null
+  },
+  "ballotpedia.org": {
+    "cached_at": 1792806696.054349,
+    "result": null
   }
 }
