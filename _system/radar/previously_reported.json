@@ -6958,6 +6958,46 @@
       "action_type": "user_dismissed",
       "url": "https://www.insurancejournal.com/news/west/2026/10/23/889745.htm",
       "note": "auto-sent pitch to newsdesk@insurancejournal.com"
+    },
+    {
+      "date_first_reported": "2026-10-25",
+      "source": "user_dismissed",
+      "title": "Row House by Tadao Ando (Azuma House): Light, Space & Concrete | ArchEyes",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://archeyes.com/row-house-by-tadao-ando-azuma-house-light-space-concrete/",
+      "note": "auto-sent pitch to hello@archeyes.com"
+    },
+    {
+      "date_first_reported": "2026-10-25",
+      "source": "user_dismissed",
+      "title": "A developer bought a Bel Air lot for $3.1 million in 2017 and spent nine years b",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.cronista.com/en/today/a-developer-bought-a-bel-air-lot-for-31-million-in-2017-and-spent-nine-years-building-a-brutalist-mansion-it-is-now-listed-for-365-million/",
+      "note": "auto-sent pitch to atencionalcliente@cronista.com"
+    },
+    {
+      "date_first_reported": "2026-10-25",
+      "source": "user_dismissed",
+      "title": "Floating Concrete Terraces Define This Contemporary Home",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.contemporist.com/floating-concrete-terraces-define-this-contemporary-home/",
+      "note": "auto-sent pitch to dave@contemporist.com"
+    },
+    {
+      "date_first_reported": "2026-10-25",
+      "source": "user_dismissed",
+      "title": "Inside Dodger Stadium’s Fascinating History—Including 5 Facts You Probably Didn’",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/inside-dodger-stadium-fascinating-history",
+      "note": "auto-sent pitch to queued:michael.gioia@architecturaldigest.com"
     }
   ],
   "reported": [

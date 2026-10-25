@@ -94,7 +94,7 @@
     }
   },
   "architecturaldigest.com": {
-    "cached_at": 1792114645.6349828,
+    "cached_at": 1792891547.0980809,
     "result": null
   },
   "dig-in.com": {
@@ -2272,6 +2272,30 @@
   },
   "ballotpedia.org": {
     "cached_at": 1792806696.054349,
+    "result": null
+  },
+  "archeyes.com": {
+    "cached_at": 1792891523.2517893,
+    "result": {
+      "email": "hello@archeyes.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 14,
+      "in_mailto": true
+    }
+  },
+  "cronista.com": {
+    "cached_at": 1792891537.3712506,
+    "result": {
+      "email": "atencionalcliente@cronista.com",
+      "source": "article_scraped",
+      "path": "/en/today/a-developer-bought-a-bel-air-lot-for-31-million-in-2017-and-spent-nine-years-building-a-brutalist-mansion-it-is-now-listed-for-365-million/",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "riskandinsurance.com": {
+    "cached_at": 1792891553.0234895,
     "result": null
   }
 }
