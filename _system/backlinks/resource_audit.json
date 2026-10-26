@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-12T14:43:49+00:00",
+  "generated_at": "2026-10-26T12:28:07+00:00",
   "pages": 31,
-  "pages_with_broken": 19,
-  "drafts": 19,
+  "pages_with_broken": 18,
+  "drafts": 18,
   "results": [
     {
       "id": "lacounty-recovers-rebuilding",
@@ -13,7 +13,7 @@
       "external_links": 17,
       "tested": 17,
       "broken": [],
-      "checked_at": "2026-10-12T14:42:03+00:00",
+      "checked_at": "2026-10-26T12:26:34+00:00",
       "final_url": "https://recovery.lacounty.gov/rebuilding/"
     },
     {
@@ -25,7 +25,7 @@
       "external_links": 21,
       "tested": 21,
       "broken": [],
-      "checked_at": "2026-10-12T14:42:03+00:00",
+      "checked_at": "2026-10-26T12:26:34+00:00",
       "final_url": "https://recovery.lacounty.gov/disasters/palisades-fire/"
     },
     {
@@ -66,7 +66,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:42:03+00:00",
+      "checked_at": "2026-10-26T12:26:34+00:00",
       "final_url": "https://recovery.lacounty.gov/city-of-los-angeles-palisades-fire-recovery-information-resources/"
     },
     {
@@ -93,7 +93,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:42:03+00:00",
+      "checked_at": "2026-10-26T12:26:34+00:00",
       "final_url": "https://recovery.lacounty.gov/malibu-fire-recovery-information-resources/"
     },
     {
@@ -113,7 +113,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-12T14:42:05+00:00",
+      "checked_at": "2026-10-26T12:26:36+00:00",
       "final_url": "https://recovery.lacounty.gov/altadena/"
     },
     {
@@ -125,7 +125,7 @@
       "external_links": 20,
       "tested": 20,
       "broken": [],
-      "checked_at": "2026-10-12T14:42:06+00:00",
+      "checked_at": "2026-10-26T12:26:37+00:00",
       "final_url": "https://recovery.lacounty.gov/disasters/eaton-fire/"
     },
     {
@@ -137,7 +137,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-10-12T14:42:07+00:00",
+      "checked_at": "2026-10-26T12:26:38+00:00",
       "final_url": "https://cd11.lacity.gov/palisades-recovery-updates",
       "error": "HTTP 403"
     },
@@ -158,7 +158,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:42:07+00:00",
+      "checked_at": "2026-10-26T12:26:38+00:00",
       "final_url": "https://www.ca.gov/LAfires/"
     },
     {
@@ -170,7 +170,7 @@
       "external_links": 1,
       "tested": 1,
       "broken": [],
-      "checked_at": "2026-10-12T14:42:07+00:00",
+      "checked_at": "2026-10-26T12:26:38+00:00",
       "final_url": "https://www.ca.gov/lafires/rebuilding-la/"
     },
     {
@@ -182,7 +182,7 @@
       "external_links": 3,
       "tested": 3,
       "broken": [],
-      "checked_at": "2026-10-12T14:42:08+00:00",
+      "checked_at": "2026-10-26T12:26:39+00:00",
       "final_url": "https://www.ca.gov/lafires/track-progress/"
     },
     {
@@ -244,7 +244,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:42:09+00:00",
+      "checked_at": "2026-10-26T12:26:40+00:00",
       "final_url": "https://dfpi.ca.gov/lafires/"
     },
     {
@@ -271,7 +271,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:42:10+00:00",
+      "checked_at": "2026-10-26T12:26:41+00:00",
       "final_url": "https://scag.ca.gov/news/resources-near-and-long-term-fire-recovery"
     },
     {
@@ -333,13 +333,6 @@
           "confidence": "check"
         },
         {
-          "href": "http://insurance.ca.gov/?fbclid=IwZXh0bgNhZW0CMTAAAR2mOtgJcqqOipZ1Uj9LXa-taAD9tbFz8YL7qaUrO8Msf2hgYlsdyU3mCIs_aem_kB0VqW66rmzsKuqcqsr_Sw",
-          "anchor": "insurance.ca.gov",
-          "status": 0,
-          "reason": "network error: <urlopen error timed out>",
-          "confidence": "high"
-        },
-        {
           "href": "http://emergency.lacity.gov/palisades-fire-re-entry-information",
           "anchor": "LACity.gov",
           "status": 403,
@@ -370,8 +363,8 @@
         {
           "href": "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2025-1-One-Year-Moratorium-Updated-ZIP-Codes-ADA.pdf",
           "anchor": "bulletin",
-          "status": 0,
-          "reason": "network error: <urlopen error timed out>",
+          "status": 200,
+          "reason": "200 soft-404 (body says 'not found')",
           "confidence": "high"
         },
         {
@@ -380,20 +373,6 @@
           "status": 403,
           "reason": "403",
           "confidence": "check"
-        },
-        {
-          "href": "https://www.insurance.ca.gov/0400-news/0102-alerts/2025/Commissioner-Ricardo-Lara-Insurance-Supp.cfm",
-          "anchor": "Santa Monica",
-          "status": 0,
-          "reason": "network error: <urlopen error timed out>",
-          "confidence": "high"
-        },
-        {
-          "href": "https://www.insurance.ca.gov/0400-news/0102-alerts/2025/Pasadena-Commissioner-Ricardo-Lara-Ins.cfm",
-          "anchor": "Pasadena",
-          "status": 0,
-          "reason": "network error: <urlopen error timed out>",
-          "confidence": "high"
         },
         {
           "href": "https://www.fema.gov/press-release/20250109/president-joseph-r-biden-jr-approves-major-disaster-declaration-california",
@@ -410,8 +389,8 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:42:12+00:00",
-      "final_url": "https://sd33.senate.ca.gov/index.php/resource-corner/windstorm-wildfire-resources"
+      "checked_at": "2026-10-26T12:26:44+00:00",
+      "final_url": "https://sd33.senate.ca.gov/resource-corner/windstorm-wildfire-resources"
     },
     {
       "id": "malibucity-firesafety",
@@ -437,13 +416,6 @@
           "confidence": "high"
         },
         {
-          "href": "https://www.insurance.ca.gov/01-consumers/200-wrr/Safer-from-Wildfires.cfm",
-          "anchor": "https://www.insurance.ca.gov/01-consumers/200-wrr/Safer-from-Wildfires.cfm",
-          "status": 0,
-          "reason": "network error: <urlopen error timed out>",
-          "confidence": "high"
-        },
-        {
           "href": "https://www.readyforwildfire.org/prepare-for-wildfire/firewise-communities/",
           "anchor": "https://www.readyforwildfire.org/prepare-for-wildfire/firewise-communities/",
           "status": 403,
@@ -458,7 +430,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:42:13+00:00",
+      "checked_at": "2026-10-26T12:26:57+00:00",
       "final_url": "https://www.malibucity.org/firesafety"
     },
     {
@@ -478,7 +450,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:42:30+00:00",
+      "checked_at": "2026-10-26T12:27:00+00:00",
       "final_url": "https://www.malibucity.org/1056/Home-Fire-Safety"
     },
     {
@@ -490,13 +462,6 @@
       "external_links": 89,
       "tested": 80,
       "broken": [
-        {
-          "href": "https://restaurantscare.org/help/",
-          "anchor": "Grants for Food and Beverage Workers: Restaurants Café,",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
         {
           "href": "https://www.fema.gov/business-industry/doing-business",
           "anchor": "Doing Business with FEMA",
@@ -519,20 +484,6 @@
           "confidence": "high"
         },
         {
-          "href": "https://www.insurance.ca.gov/01-consumers/140-catastrophes/WildfireResources.cfm",
-          "anchor": "Wildfire Resources",
-          "status": 0,
-          "reason": "network error: <urlopen error timed out>",
-          "confidence": "high"
-        },
-        {
-          "href": "https://www.insurance.ca.gov/01-consumers/180-climate-change/Sustainable-Insurance-Strategy.cfm",
-          "anchor": "Sustainable Insurance Strategy",
-          "status": 0,
-          "reason": "network error: <urlopen error timed out>",
-          "confidence": "high"
-        },
-        {
           "href": "https://ewdd.lacity.gov/index.php/local-business/business-response-unit",
           "anchor": "Business Response Unit",
           "status": 404,
@@ -542,13 +493,6 @@
         {
           "href": "https://www.glendaleca.gov/",
           "anchor": "City of Glendale",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://www.cityofpasadena.net/eaton-fire/recovery-resources/",
-          "anchor": "Disaster Recovery Resources",
           "status": 403,
           "reason": "403",
           "confidence": "check"
@@ -570,29 +514,8 @@
         {
           "href": "https://neweconomicsforwomen.org/",
           "anchor": "New Economics for Women",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://vsedc.org/wbc/",
-          "anchor": "Vermont Slauson Women’s Business Center",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://thevalley.net/disaster-relief/",
-          "anchor": "Disaster Relief – The Los Angeles Fires",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://lalegalhelp.org/",
-          "anchor": "LA Regional Small Business Owners Legal Aid Program",
-          "status": 403,
-          "reason": "403",
+          "status": 520,
+          "reason": "520",
           "confidence": "check"
         },
         {
@@ -645,7 +568,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-12T14:42:38+00:00",
+      "checked_at": "2026-10-26T12:27:01+00:00",
       "final_url": "https://outsmartdisaster.calosba.ca.gov/support-and-resources-for-los-angeles-area-wildfire-recovery/"
     },
     {
@@ -657,7 +580,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-10-12T14:42:40+00:00",
+      "checked_at": "2026-10-26T12:27:02+00:00",
       "final_url": "https://www.sandiegocounty.gov/content/sdc/sdcfa/crr-main-menu/CommunityRiskReduction.html",
       "error": "__error__:TimeoutError:The read operation timed out"
     },
@@ -678,7 +601,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-12T14:42:54+00:00",
+      "checked_at": "2026-10-26T12:27:13+00:00",
       "final_url": "https://ucanr.edu/program/uc-anr-fire-network/prepare-your-home"
     },
     {
@@ -690,7 +613,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-10-12T14:42:55+00:00",
+      "checked_at": "2026-10-26T12:27:15+00:00",
       "final_url": "https://ucanr.edu/program/uc-anr-fire-network/wildfire-preparedness",
       "error": "HTTP 403"
     },
@@ -699,41 +622,13 @@
       "url": "https://ucanr.edu/site/ucce-central-sierra-living-fire/fire-resistant-home-construction",
       "org": "UCCE Central Sierra",
       "gift": "checklist",
-      "http": 200,
-      "external_links": 7,
-      "tested": 7,
-      "broken": [
-        {
-          "href": "https://www.amadorgov.org/departments/office-of-emergency-services/are-you-ready-preparedness-information/before-during-and-after-a-wildfire",
-          "anchor": "Amador County Before, During and After a Wildfire",
-          "status": 404,
-          "reason": "404",
-          "confidence": "high"
-        },
-        {
-          "href": "https://www.edcgov.us/Government/CAO/VegetationManagement",
-          "anchor": "El Dorado County Vegetation Management",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://www.tuolumnecounty.ca.gov/1162/Wildfire-Preparedness",
-          "anchor": "Tuolumne County Wildfire Preparedness Plan",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://bsky.app/profile/did:plc:afzcvofyfbzhlu77wsmy7r3w",
-          "anchor": "",
-          "status": 404,
-          "reason": "404",
-          "confidence": "high"
-        }
-      ],
-      "checked_at": "2026-10-12T14:42:55+00:00",
-      "final_url": "https://ucanr.edu/site/ucce-central-sierra-living-fire/fire-resistant-home-construction"
+      "http": 403,
+      "external_links": 0,
+      "tested": 0,
+      "broken": [],
+      "checked_at": "2026-10-26T12:27:15+00:00",
+      "final_url": "https://ucanr.edu/site/ucce-central-sierra-living-fire/fire-resistant-home-construction",
+      "error": "HTTP 403"
     },
     {
       "id": "ucanr-central-sierra-resources",
@@ -744,7 +639,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-10-12T14:42:56+00:00",
+      "checked_at": "2026-10-26T12:27:15+00:00",
       "final_url": "https://ucanr.edu/county/ucce-central-sierra/central-sierra-fire-safety-resources",
       "error": "HTTP 403"
     },
@@ -757,7 +652,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-10-12T14:42:56+00:00",
+      "checked_at": "2026-10-26T12:27:15+00:00",
       "final_url": "https://celosangeles.ucanr.edu/Natural_Resources/Fire",
       "error": "HTTP 403"
     },
@@ -767,7 +662,7 @@
       "org": "Pacific Palisades Community Council",
       "gift": "tracker",
       "http": 200,
-      "external_links": 87,
+      "external_links": 91,
       "tested": 80,
       "broken": [
         {
@@ -792,7 +687,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:42:57+00:00",
+      "checked_at": "2026-10-26T12:27:15+00:00",
       "final_url": "https://pacpalicc.org/index.php/palisades-fire-information-updates-2026/"
     },
     {
@@ -826,13 +721,6 @@
           "confidence": "check"
         },
         {
-          "href": "https://restaurantscare.org/",
-          "anchor": "restaurantscare.org/",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
           "href": "https://ewdd.lacity.gov/index.php/2025-los-angeles-wild-fires-resources",
           "anchor": "EWDD Wildfire Resources",
           "status": 404,
@@ -840,7 +728,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-12T14:42:58+00:00",
+      "checked_at": "2026-10-26T12:27:17+00:00",
       "final_url": "https://maliburebuilds.org/community-resources/"
     },
     {
@@ -860,7 +748,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:43:05+00:00",
+      "checked_at": "2026-10-26T12:27:30+00:00",
       "final_url": "https://www.altadenacollective.org/homeowners"
     },
     {
@@ -876,7 +764,14 @@
           "href": "https://admin.docu.team/photogrid.php?action=association_research_report&chamber=927",
           "anchor": "Advertising Value Report",
           "status": 0,
-          "reason": "network error: The read operation timed out",
+          "reason": "network error: <urlopen error [Errno 104] Connection reset by peer>",
+          "confidence": "high"
+        },
+        {
+          "href": "https://admin.docu.team/welcome.php?association=927",
+          "anchor": "Chamber’s Welcome Center",
+          "status": 0,
+          "reason": "network error: <urlopen error [Errno 104] Connection reset by peer>",
           "confidence": "high"
         },
         {
@@ -896,8 +791,8 @@
         {
           "href": "https://didihirsch.org/treatment/wildfire-recovery/?utm_source=didihirsch&utm_medium=redirect&utm_campaign=wildfire",
           "anchor": "",
-          "status": 403,
-          "reason": "403",
+          "status": 520,
+          "reason": "520",
           "confidence": "check"
         },
         {
@@ -936,13 +831,6 @@
           "confidence": "high"
         },
         {
-          "href": "https://restaurantscare.org/help/?utm_campaign=website&utm_medium=email&utm_source=sendgrid.com",
-          "anchor": "Grants for Food and Beverage Workers - Restaurants Care Program",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
           "href": "https://pacelabdc.org/disaster-express-loan-program/?utm_campaign=website&utm_medium=email&utm_source=sendgrid.com",
           "anchor": "PACE Disaster Express Loan Program",
           "status": 404,
@@ -971,20 +859,6 @@
           "confidence": "high"
         },
         {
-          "href": "https://thevalley.net/",
-          "anchor": "The Valley Economic Alliance",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
-          "href": "https://www.makinghousinghappen.org/post/one-virtually-free-rv-for-one-person-displaced-by-eaton-wildfire",
-          "anchor": "Rent an RV for $1 a month while rebuilding.",
-          "status": 429,
-          "reason": "429",
-          "confidence": "check"
-        },
-        {
           "href": "https://www.iqair.com/us/air-quality-map/usa/california/los-angeles?srsltid=AfmBOopID6Wg4ynke2x83TWAm3qwxwPJtKBSjdsPKDvPkrNYXnuk6PUb",
           "anchor": "Air Quality",
           "status": 429,
@@ -999,7 +873,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:43:09+00:00",
+      "checked_at": "2026-10-26T12:27:33+00:00",
       "final_url": "https://www.altadenachamber.org/en/wildfire-recovery"
     },
     {
@@ -1012,13 +886,6 @@
       "tested": 43,
       "broken": [
         {
-          "href": "https://yhpasadena.org/",
-          "anchor": "YOUNG & HEALTHY",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
-        },
-        {
           "href": "https://pactl.org/",
           "anchor": "PACTL",
           "status": 403,
@@ -1026,17 +893,17 @@
           "confidence": "check"
         },
         {
-          "href": "https://doorofhope.us/",
-          "anchor": "DOOR OF HOPE",
-          "status": 403,
-          "reason": "403",
-          "confidence": "check"
+          "href": "https://www.hcrn.info/la-fire-assistance/",
+          "anchor": "EATON FIRE 2025 CLEAN-UP & REPAIR ASSISTANCE",
+          "status": 0,
+          "reason": "network error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.hcrn.info'. (_ssl.c:1016)>",
+          "confidence": "high"
         },
         {
           "href": "https://didihirsch.org/",
           "anchor": "DIDI HIRSCH",
-          "status": 403,
-          "reason": "403",
+          "status": 520,
+          "reason": "520",
           "confidence": "check"
         },
         {
@@ -1047,7 +914,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-12T14:43:10+00:00",
+      "checked_at": "2026-10-26T12:27:37+00:00",
       "final_url": "https://www.eatonfirecollaborative.org/trustedcommunityresources"
     },
     {
@@ -1056,14 +923,14 @@
       "org": "LA Rises",
       "gift": "tracker",
       "http": 200,
-      "external_links": 22,
-      "tested": 22,
+      "external_links": 59,
+      "tested": 59,
       "broken": [
         {
           "href": "https://amegllc.com/what-we-do/modular-home-building/",
           "anchor": "Factory Built Factory Built --> AMEG Pre-fab housing manufacturer focused on disaster recovery. Visit Website",
-          "status": 403,
-          "reason": "403",
+          "status": 520,
+          "reason": "520",
           "confidence": "check"
         },
         {
@@ -1074,7 +941,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-12T14:43:18+00:00",
+      "checked_at": "2026-10-26T12:27:39+00:00",
       "final_url": "https://larises.org/rebuild/"
     },
     {
@@ -1086,7 +953,7 @@
       "external_links": 4,
       "tested": 4,
       "broken": [],
-      "checked_at": "2026-10-12T14:43:24+00:00",
+      "checked_at": "2026-10-26T12:27:40+00:00",
       "final_url": "https://cafiresafecouncil.org/resources/map-of-fire-safe-councils/"
     },
     {
@@ -1113,7 +980,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-12T14:43:24+00:00",
+      "checked_at": "2026-10-26T12:27:42+00:00",
       "final_url": "https://wildfireprepared.org/"
     },
     {
@@ -1125,7 +992,7 @@
       "external_links": 1,
       "tested": 1,
       "broken": [],
-      "checked_at": "2026-10-12T14:43:27+00:00",
+      "checked_at": "2026-10-26T12:27:53+00:00",
       "final_url": "https://malibulakeside.com/fire-safety/"
     }
   ]

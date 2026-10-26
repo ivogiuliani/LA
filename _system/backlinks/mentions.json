@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T12:26:54+00:00",
+  "updated_at": "2026-10-26T12:26:34+00:00",
   "mentions": {
     "https://villahomedecor.com/": {
       "first_seen": "2026-09-16",
@@ -79,6 +79,18 @@
       "via": "brave",
       "query": "\"My Villa\" Mezzalama",
       "last_checked": "2026-10-19T12:26:54+00:00",
+      "http": 200,
+      "about_us": false,
+      "linked": false,
+      "rel": null,
+      "anchor": null
+    },
+    "https://www.dasvilla.com/my-villa": {
+      "first_seen": "2026-10-26",
+      "title": "My Villa, | En iyi fiyat | Das Villa",
+      "via": "brave",
+      "query": "\"My Villa\" Mezzalama",
+      "last_checked": "2026-10-26T12:26:34+00:00",
       "http": 200,
       "about_us": false,
       "linked": false,
