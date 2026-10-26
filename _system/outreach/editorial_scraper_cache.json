@@ -58,7 +58,7 @@
     "result": null
   },
   "substack.com": {
-    "cached_at": 1791937970.5684717,
+    "cached_at": 1792978026.6581964,
     "result": null
   },
   "robbreport.com": {
@@ -596,7 +596,7 @@
     }
   },
   "e-a-a.com": {
-    "cached_at": 1792114655.0010853,
+    "cached_at": 1792978045.613265,
     "result": null
   },
   "calmatters.org": {
@@ -1681,7 +1681,7 @@
     "result": null
   },
   "globaldesignnews.com": {
-    "cached_at": 1787983663.415681,
+    "cached_at": 1792978042.064067,
     "result": {
       "email": "contact@globaldesignnews.com",
       "source": "contact_page",
@@ -2296,6 +2296,10 @@
   },
   "riskandinsurance.com": {
     "cached_at": 1792891553.0234895,
+    "result": null
+  },
+  "theaarchnews.com": {
+    "cached_at": 1792978025.8618705,
     "result": null
   }
 }

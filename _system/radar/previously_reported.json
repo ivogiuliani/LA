@@ -6998,6 +6998,26 @@
       "action_type": "user_dismissed",
       "url": "https://www.architecturaldigest.com/story/inside-dodger-stadium-fascinating-history",
       "note": "auto-sent pitch to queued:michael.gioia@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-10-26",
+      "source": "user_dismissed",
+      "title": "Modern California Mansion Wrapped in Two Layers of Fireproofing Lists in Sonoma Wine Country for $12 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.mansionglobal.com/articles/modern-california-mansion-wrapped-in-two-layers-of-fireproofing-lists-in-sonoma-wine-country-for-12-million-8aee5da0",
+      "note": "auto-published journal: fire-resistant-luxury-homes-california-sonoma-12m-mansion"
+    },
+    {
+      "date_first_reported": "2026-10-26",
+      "source": "user_dismissed",
+      "title": "Concrete in Motion: A House Shaped by Structure, Space, and Landscape by MCL Stu",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://globaldesignnews.com/concrete-in-motion-a-house-shaped-by-structure-space-and-landscape-by-mcl-studio/",
+      "note": "auto-sent pitch to contact@globaldesignnews.com"
     }
   ],
   "reported": [

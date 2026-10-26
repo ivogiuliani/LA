@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-10-23T00:00:00Z</updated>
+  <updated>2026-10-26T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Fire-Resistant Luxury Homes in California: The $12M New Build</title>
+    <link href="https://myvilla.la/blog/fire-resistant-luxury-homes-california-sonoma-12m-mansion.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/fire-resistant-luxury-homes-california-sonoma-12m-mansion.html</id>
+    <published>2026-10-26T00:00:00Z</published>
+    <updated>2026-10-26T00:00:00Z</updated>
+    <summary>Can fire-resistant luxury homes in California still be beautiful? A $12M Sonoma mansion wrapped in two layers of stone shows how design and insurability meet.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/fire-resistant-luxury-homes-california-sonoma-12m-mansion-hero.jpg"/>
+  </entry>
   <entry>
     <title>Italian Villa Design in California: A Lake Como Masterclass</title>
     <link href="https://myvilla.la/blog/italian-villa-design-california-lake-como.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-08-25T00:00:00Z</updated>
     <summary>Wondering what makes a creekside lot worth building on? Custom home design in California now starts with sound and water — plus the §1602 permit few expect.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/custom-home-design-california-sound-as-site-asset-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Luxury Home Addition in Bel Air: The $47M Preservation Case</title>
-    <link href="https://myvilla.la/blog/luxury-home-addition-bel-air-47m-preservation-case.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/luxury-home-addition-bel-air-47m-preservation-case.html</id>
-    <published>2026-08-17T00:00:00Z</published>
-    <updated>2026-08-17T00:00:00Z</updated>
-    <summary>Is preserving a landmark estate smarter than demolishing it? A $47M luxury home addition in Bel Air adds 12,000 sq ft — and rewrites the proportion math.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/luxury-home-addition-bel-air-47m-preservation-case-hero.jpg"/>
   </entry>
 </feed>
