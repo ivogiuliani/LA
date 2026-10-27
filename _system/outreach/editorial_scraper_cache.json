@@ -238,8 +238,14 @@
     }
   },
   "movoto.com": {
-    "cached_at": 1778563571.964842,
-    "result": null
+    "cached_at": 1793061685.290368,
+    "result": {
+      "email": "press@movoto.com",
+      "source": "about_page",
+      "path": "/about",
+      "score": 17,
+      "in_mailto": true
+    }
   },
   "latimes.com": {
     "cached_at": 1792028688.4806798,
@@ -409,12 +415,13 @@
     "result": null
   },
   "oldharbor.com": {
-    "cached_at": 1779514211.375365,
+    "cached_at": 1793061701.0854082,
     "result": {
       "email": "info@oldharbor.com",
       "source": "contact_page",
       "path": "/contact",
-      "score": 11
+      "score": 11,
+      "in_mailto": true
     }
   },
   "fox21online.com": {
@@ -773,14 +780,8 @@
     }
   },
   "com.au": {
-    "cached_at": 1789538936.9431884,
-    "result": {
-      "email": "news@theage.com.au",
-      "source": "contact_page",
-      "path": "/contact-us",
-      "score": 19,
-      "in_mailto": true
-    }
+    "cached_at": 1793061682.0756295,
+    "result": null
   },
   "einnews.com": {
     "cached_at": 1781249128.117274,
@@ -1241,7 +1242,7 @@
     "result": null
   },
   "enr.com": {
-    "cached_at": 1785996558.4493053,
+    "cached_at": 1793061689.8462548,
     "result": null
   },
   "archello.com": {
@@ -1705,11 +1706,11 @@
     "result": null
   },
   "rogerperry.com": {
-    "cached_at": 1787983745.3581884,
+    "cached_at": 1793061669.9983904,
     "result": {
       "email": "rperry@rogerperry.com",
       "source": "article_scraped",
-      "path": "/west-hollywood-luxury-real-estate-for-wildfire-wary-buyers/",
+      "path": "/westside-los-angeles-real-estate-after-the-fires-risk-checklist/",
       "score": 2,
       "in_mailto": false
     }
@@ -2300,6 +2301,14 @@
   },
   "theaarchnews.com": {
     "cached_at": 1792978025.8618705,
+    "result": null
+  },
+  "monograph.com": {
+    "cached_at": 1793061674.1161325,
+    "result": null
+  },
+  "palisadesnews.com": {
+    "cached_at": 1793061712.7031794,
     "result": null
   }
 }
