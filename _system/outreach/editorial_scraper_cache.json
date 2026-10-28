@@ -191,8 +191,14 @@
     "result": null
   },
   "liveinsurancenews.com": {
-    "cached_at": 1789538976.48512,
-    "result": null
+    "cached_at": 1793148110.3601143,
+    "result": {
+      "email": "webservice@liveinsurancenews.com",
+      "source": "article_scraped",
+      "path": "/exit-ramp-californias-fair-plan/8577319/",
+      "score": 2,
+      "in_mailto": false
+    }
   },
   "forbes.com": {
     "cached_at": 1786342073.0991473,
@@ -1238,7 +1244,7 @@
     }
   },
   "e-architect.com": {
-    "cached_at": 1792114658.1454425,
+    "cached_at": 1793148087.278639,
     "result": null
   },
   "enr.com": {
@@ -1746,7 +1752,7 @@
     }
   },
   "flickr.com": {
-    "cached_at": 1792028661.0934901,
+    "cached_at": 1793148093.78202,
     "result": null
   },
   "spokesman.com": {
@@ -2309,6 +2315,10 @@
   },
   "palisadesnews.com": {
     "cached_at": 1793061712.7031794,
+    "result": null
+  },
+  "ijpr.org": {
+    "cached_at": 1793148096.9046817,
     "result": null
   }
 }

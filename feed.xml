@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-10-26T00:00:00Z</updated>
+  <updated>2026-10-28T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Reinforced Concrete Homes in Bel Air: A Brutalist Benchmark</title>
+    <link href="https://myvilla.la/blog/reinforced-concrete-homes-bel-air-brutalist-36-5m.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/reinforced-concrete-homes-bel-air-brutalist-36-5m.html</id>
+    <published>2026-10-28T00:00:00Z</published>
+    <updated>2026-10-28T00:00:00Z</updated>
+    <summary>What do reinforced concrete homes in Bel Air deliver? A $36.5M Brutalist mansion rests on 10 million pounds of concrete—here's what the material actually buys.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/reinforced-concrete-homes-bel-air-brutalist-36-5m-hero.jpg"/>
+  </entry>
   <entry>
     <title>Fire-Resistant Luxury Homes in California: The $12M New Build</title>
     <link href="https://myvilla.la/blog/fire-resistant-luxury-homes-california-sonoma-12m-mansion.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-08-26T00:00:00Z</updated>
     <summary>What survives a full gut renovation? A luxury home in Malibu was stripped to its concrete structure — and still sold. What the shell-vs-finishes split means.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/luxury-home-malibu-stripped-concrete-shell-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Custom Home Design in California: Sound as a Site Asset</title>
-    <link href="https://myvilla.la/blog/custom-home-design-california-sound-as-site-asset.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/custom-home-design-california-sound-as-site-asset.html</id>
-    <published>2026-08-25T00:00:00Z</published>
-    <updated>2026-08-25T00:00:00Z</updated>
-    <summary>Wondering what makes a creekside lot worth building on? Custom home design in California now starts with sound and water — plus the §1602 permit few expect.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/custom-home-design-california-sound-as-site-asset-hero.jpg"/>
   </entry>
 </feed>

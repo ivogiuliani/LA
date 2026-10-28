@@ -7068,6 +7068,36 @@
       "action_type": "user_dismissed",
       "url": "https://palisadesnews.com/mercury-insurance-wildfire-discount-headlining-alphabest-meeting/",
       "note": "auto-sent pitch to queued:sarah.lin@palisadesnews.com"
+    },
+    {
+      "date_first_reported": "2026-10-28",
+      "source": "user_dismissed",
+      "title": "This $36.5 Million Brutalist Mansion in Bel Air Has Two Swimming Pools and Ocean Views",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/1331-linda-flora-drive-bel-air-ca-lists-1238785916/",
+      "note": "auto-published journal: reinforced-concrete-homes-bel-air-brutalist-36-5m"
+    },
+    {
+      "date_first_reported": "2026-10-28",
+      "source": "user_dismissed",
+      "title": "Minecraft creator asks $70 million for Beverly Hills mansion with 15 bathrooms, ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2026-10-27/minecraft-creator-beverly-hills-mansion-for-sale-70-million",
+      "note": "auto-sent pitch to jack.flemming@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-10-28",
+      "source": "user_dismissed",
+      "title": "The Exit Ramp That Doesn’t Exist: Inside California’s FAIR Plan Trap » Live Insu",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.liveinsurancenews.com/exit-ramp-californias-fair-plan/8577319/",
+      "note": "auto-sent pitch to webservice@liveinsurancenews.com"
     }
   ],
   "reported": [
