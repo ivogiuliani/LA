@@ -207,6 +207,16 @@
       ],
       "last_bounced_at": "2026-09-08T06:08:45+00:00",
       "reason": "550 5.1.1 The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For mo"
+    },
+    "pressreleasewebservice@gmail.com": {
+      "first_bounced_at": "2026-10-28T00:44:17+00:00",
+      "bounce_count": 1,
+      "source_threads": [
+        "1a17ff6586fb85ea"
+      ],
+      "last_bounced_at": "2026-10-28T00:44:17+00:00",
+      "reason": "550-5.7.25 [64.91.241.154] The IP address sending this message does not have a",
+      "also_sent_to": "webservice@liveinsurancenews.com"
     }
   }
 }
