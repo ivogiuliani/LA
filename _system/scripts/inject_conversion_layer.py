@@ -263,8 +263,8 @@ def consent_js(s: S) -> str:
   (function () {{ try {{ var c = localStorage.getItem('myvilla_cookie_consent'); if (c === 'accepted') gtag('consent', 'update', {{ analytics_storage: 'granted' }}); else if (c === 'declined' || navigator.globalPrivacyControl || navigator.doNotTrack === '1') gtag('consent', 'update', {{ analytics_storage: 'denied' }}); }} catch (e) {{}} }})();
   // GA4 DebugView for a whole test session: open any page with ?mv_debug=1 (never set for real visitors)
   (function () {{ try {{ var d = /[?&]mv_debug=1(&|$)/.test(location.search); if (d) sessionStorage.setItem('mv_debug', '1'); window.__mvDebug = d || sessionStorage.getItem('mv_debug') === '1'; }} catch (e) {{ window.__mvDebug = false; }} }})();
-  // Automated browsers (headless renderers, crawlers that run JS) are tagged traffic_type=bot so a GA4 data filter can exclude them
-  (function () {{ try {{ var ua = navigator.userAgent || ''; window.__mvBot = navigator.webdriver === true || /headless|bot\b|crawl|spider|slurp|lighthouse|pingdom|gtmetrix|prerender|facebookexternalhit|adsbot|mediapartners|puppeteer|playwright|phantomjs|python-requests|curl\//i.test(ua); }} catch (e) {{ window.__mvBot = false; }} }})();"""
+  // Automated browsers (headless renderers, crawlers that run JS) are tagged traffic_type=bot so a GA4 data filter can exclude them; also cloud scrapers with virtual 1280x1200 / square screens (Singapore crawler, Oct 2026)
+  (function () {{ try {{ var ua = navigator.userAgent || ''; var sw = (window.screen && screen.width) || 0, sh = (window.screen && screen.height) || 0; window.__mvBot = navigator.webdriver === true || /headless|bot\\b|crawl|spider|slurp|lighthouse|pingdom|gtmetrix|prerender|facebookexternalhit|adsbot|mediapartners|puppeteer|playwright|phantomjs|python-requests|curl\\//i.test(ua) || (sw === 1280 && sh === 1200) || (sw >= 1000 && sw === sh) || (!!navigator.languages && navigator.languages.length === 0); }} catch (e) {{ window.__mvBot = false; }} }})();"""
 
 
 def mvtrack_js() -> str:
