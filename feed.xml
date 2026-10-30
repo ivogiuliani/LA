@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-10-28T00:00:00Z</updated>
+  <updated>2026-10-30T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Beverly Hills Luxury Homes in 2026: Inside the Trousdale Market</title>
+    <link href="https://myvilla.la/blog/beverly-hills-luxury-homes-2026-trousdale-market.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/beverly-hills-luxury-homes-2026-trousdale-market.html</id>
+    <published>2026-10-30T00:00:00Z</published>
+    <updated>2026-10-30T00:00:00Z</updated>
+    <summary>Tracking Beverly Hills luxury homes in 2026? A 22,300 sq ft Trousdale estate, once owned by Minecraft's creator, just listed — here's what it signals for buyers.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/beverly-hills-luxury-homes-2026-trousdale-market-hero.jpg"/>
+  </entry>
   <entry>
     <title>Reinforced Concrete Homes in Bel Air: A Brutalist Benchmark</title>
     <link href="https://myvilla.la/blog/reinforced-concrete-homes-bel-air-brutalist-36-5m.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-08-28T00:00:00Z</updated>
     <summary>Is a narrow lot worth building on? Custom home design in Los Angeles turns on geometry: a 20-ft-wide plan carries 34% more exterior wall — and far better light.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/custom-home-design-los-angeles-narrow-lot-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Luxury Home in Malibu: The Value of a Stripped Concrete Shell</title>
-    <link href="https://myvilla.la/blog/luxury-home-malibu-stripped-concrete-shell.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/luxury-home-malibu-stripped-concrete-shell.html</id>
-    <published>2026-08-26T00:00:00Z</published>
-    <updated>2026-08-26T00:00:00Z</updated>
-    <summary>What survives a full gut renovation? A luxury home in Malibu was stripped to its concrete structure — and still sold. What the shell-vs-finishes split means.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/luxury-home-malibu-stripped-concrete-shell-hero.jpg"/>
   </entry>
 </feed>

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
+    <loc>https://myvilla.la/blog/beverly-hills-luxury-homes-2026-trousdale-market.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>My Villa Journal</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-10-30</news:publication_date>
+      <news:title>Beverly Hills Luxury Homes in 2026: Inside the Trousdale Market</news:title>
+    </news:news>
+  </url>
+  <url>
     <loc>https://myvilla.la/blog/reinforced-concrete-homes-bel-air-brutalist-36-5m.html</loc>
     <news:news>
       <news:publication>
@@ -9,17 +20,6 @@
       </news:publication>
       <news:publication_date>2026-10-28</news:publication_date>
       <news:title>Reinforced Concrete Homes in Bel Air: A Brutalist Benchmark</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://myvilla.la/blog/fire-resistant-luxury-homes-california-sonoma-12m-mansion.html</loc>
-    <news:news>
-      <news:publication>
-        <news:name>My Villa Journal</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-10-26</news:publication_date>
-      <news:title>Fire-Resistant Luxury Homes in California: The $12M New Build</news:title>
     </news:news>
   </url>
 </urlset>

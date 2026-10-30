@@ -7098,6 +7098,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.liveinsurancenews.com/exit-ramp-californias-fair-plan/8577319/",
       "note": "auto-sent pitch to webservice@liveinsurancenews.com"
+    },
+    {
+      "date_first_reported": "2026-10-30",
+      "source": "user_dismissed",
+      "title": "Minecraft Creator, Markus Persson, Lists Beverly Hills Mansion",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.canyon-news.com/minecraft-creator-lists-beverly-hills-mansion-for-sale/",
+      "note": "auto-published journal: beverly-hills-luxury-homes-2026-trousdale-market"
     }
   ],
   "reported": [
