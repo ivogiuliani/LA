@@ -7108,6 +7108,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.canyon-news.com/minecraft-creator-lists-beverly-hills-mansion-for-sale/",
       "note": "auto-published journal: beverly-hills-luxury-homes-2026-trousdale-market"
+    },
+    {
+      "date_first_reported": "2026-10-31",
+      "source": "user_dismissed",
+      "title": "Christian Yelich’s Malibu Retreat Is on the Market for $30 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/christian-yelichs-malibu-retreat-is-on-the-market",
+      "note": "auto-sent pitch to queued:katie.schultz@architecturaldigest.com"
     }
   ],
   "reported": [
