@@ -1560,7 +1560,7 @@
     "result": null
   },
   "bloomberg.com": {
-    "cached_at": 1787810936.8833163,
+    "cached_at": 1793519241.5490105,
     "result": null
   },
   "sueddeutsche.de": {
@@ -2365,6 +2365,48 @@
       "path": "/property-search/detail/10/SB26146747/841-via-somonte-palos-verdes-estates-ca-90274/",
       "score": 2,
       "in_mailto": false
+    }
+  },
+  "thearchitectsdiary.com": {
+    "cached_at": 1793519257.576888,
+    "result": {
+      "email": "yamini@thearchitectsdiary.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 7,
+      "in_mailto": true
+    }
+  },
+  "statefarm.com": {
+    "cached_at": 1793519263.6178286,
+    "result": null
+  },
+  "azcentral.com": {
+    "cached_at": 1793519264.130021,
+    "result": null
+  },
+  "gvwire.com": {
+    "cached_at": 1793519265.4593751,
+    "result": null
+  },
+  "kalw.org": {
+    "cached_at": 1793519266.257494,
+    "result": {
+      "email": "news@kalw.org",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 19,
+      "in_mailto": true
+    }
+  },
+  "offthemrkt.com": {
+    "cached_at": 1793519268.7939825,
+    "result": {
+      "email": "jeremy@offthemrkt.com",
+      "source": "article_scraped",
+      "path": "/lifestyle/built-to-last-the-details-that-make-a-homes-exterior-timeless",
+      "score": 7,
+      "in_mailto": true
     }
   }
 }
