@@ -94,7 +94,7 @@
     }
   },
   "architecturaldigest.com": {
-    "cached_at": 1792891547.0980809,
+    "cached_at": 1793500167.13313,
     "result": null
   },
   "dig-in.com": {
@@ -165,7 +165,7 @@
     "result": null
   },
   "therealdeal.com": {
-    "cached_at": 1792028654.4747837,
+    "cached_at": 1793500324.7695541,
     "result": null
   },
   "uphelp.org": {
@@ -201,7 +201,7 @@
     }
   },
   "forbes.com": {
-    "cached_at": 1786342073.0991473,
+    "cached_at": 1793500174.011186,
     "result": {
       "email": "feedback@forbes.com",
       "source": "article_scraped",
@@ -461,7 +461,7 @@
     }
   },
   "briefglance.com": {
-    "cached_at": 1779686573.084807,
+    "cached_at": 1793500311.7270753,
     "result": null
   },
   "clearsurance.com": {
@@ -486,7 +486,7 @@
     "result": null
   },
   "yahoo.com": {
-    "cached_at": 1792547545.539022,
+    "cached_at": 1793500246.4303346,
     "result": null
   },
   "oakviewins.com": {
@@ -1002,7 +1002,7 @@
     "result": null
   },
   "homesandgardens.com": {
-    "cached_at": 1787033350.5595446,
+    "cached_at": 1793500208.9025545,
     "result": null
   },
   "travelbinger.com": {
@@ -1036,7 +1036,7 @@
     "result": null
   },
   "hindustantimes.com": {
-    "cached_at": 1788674841.756459,
+    "cached_at": 1793500248.7789912,
     "result": {
       "email": "editorial@hindustantimes.com",
       "source": "contact_page",
@@ -1132,7 +1132,7 @@
     }
   },
   "indiatimes.com": {
-    "cached_at": 1792714290.3594615,
+    "cached_at": 1793500241.8540127,
     "result": null
   },
   "domusweb.it": {
@@ -1942,7 +1942,7 @@
     "result": null
   },
   "freeyork.org": {
-    "cached_at": 1789020598.0115705,
+    "cached_at": 1793500286.353608,
     "result": null
   },
   "starwestinsurance.com": {
@@ -2320,5 +2320,51 @@
   "ijpr.org": {
     "cached_at": 1793148096.9046817,
     "result": null
+  },
+  "archinect.com": {
+    "cached_at": 1793500176.0705848,
+    "result": null
+  },
+  "francisyork.com": {
+    "cached_at": 1793500253.4664893,
+    "result": {
+      "email": "press@francisyork.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 12,
+      "in_mailto": false
+    }
+  },
+  "diningandcooking.com": {
+    "cached_at": 1793500280.6584594,
+    "result": null
+  },
+  "silverfoxstudios.design": {
+    "cached_at": 1793500289.9388325,
+    "result": null
+  },
+  "elizabethstreet.com": {
+    "cached_at": 1793500308.7276518,
+    "result": null
+  },
+  "lindamay.com": {
+    "cached_at": 1793500323.9939523,
+    "result": {
+      "email": "linda@lindamay.com",
+      "source": "article_scraped",
+      "path": "/casa-di-pace-a-hollywood-hills-estate-with-a-storied-past/",
+      "score": 7,
+      "in_mailto": true
+    }
+  },
+  "lionheartpride.com": {
+    "cached_at": 1793500337.016994,
+    "result": {
+      "email": "sabrina@lionheartpride.com",
+      "source": "article_scraped",
+      "path": "/property-search/detail/10/SB26146747/841-via-somonte-palos-verdes-estates-ca-90274/",
+      "score": 2,
+      "in_mailto": false
+    }
   }
 }
