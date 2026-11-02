@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-10-30T00:00:00Z</updated>
+  <updated>2026-11-02T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Mediterranean Villa Design: A Sculptural Model for California</title>
+    <link href="https://myvilla.la/blog/mediterranean-villa-design-sculptural-model-california.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/mediterranean-villa-design-sculptural-model-california.html</id>
+    <published>2026-11-02T00:00:00Z</published>
+    <updated>2026-11-02T00:00:00Z</updated>
+    <summary>What separates a Mediterranean villa from stucco pastiche? A shell-shaped white villa in Architectural Digest shows how mass, light, and concrete do the work.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/mediterranean-villa-design-sculptural-model-california-hero.jpg"/>
+  </entry>
   <entry>
     <title>Beverly Hills Luxury Homes in 2026: Inside the Trousdale Market</title>
     <link href="https://myvilla.la/blog/beverly-hills-luxury-homes-2026-trousdale-market.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-09-02T00:00:00Z</updated>
     <summary>Why do great L.A. houses get demolished? Mediterranean villa design in Los Angeles endures when structure outlives taste — inside a decade-long campaign.</summary>
     <link rel="enclosure" type="image/webp" href="https://myvilla.la/blog/assets/img/mediterranean-villa-design-los-angeles-what-endures-hero.webp"/>
-  </entry>
-  <entry>
-    <title>Custom Home Design in Los Angeles: The Narrow-Lot Advantage</title>
-    <link href="https://myvilla.la/blog/custom-home-design-los-angeles-narrow-lot.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/custom-home-design-los-angeles-narrow-lot.html</id>
-    <published>2026-08-28T00:00:00Z</published>
-    <updated>2026-08-28T00:00:00Z</updated>
-    <summary>Is a narrow lot worth building on? Custom home design in Los Angeles turns on geometry: a 20-ft-wide plan carries 34% more exterior wall — and far better light.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/custom-home-design-los-angeles-narrow-lot-hero.jpg"/>
   </entry>
 </feed>

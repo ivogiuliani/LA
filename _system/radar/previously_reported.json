@@ -7198,6 +7198,56 @@
       "action_type": "user_dismissed",
       "url": "https://www.lionheartpride.com/property-search/detail/10/SB26146747/841-via-somonte-palos-verdes-estates-ca-90274/",
       "note": "auto-sent pitch to sabrina@lionheartpride.com"
+    },
+    {
+      "date_first_reported": "2026-11-02",
+      "source": "user_dismissed",
+      "title": "This Shell-Shaped Villa Has Mediterranean Views and a Windswept Feel",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/shell-shaped-mediterranean-villa",
+      "note": "auto-published journal: mediterranean-villa-design-sculptural-model-california"
+    },
+    {
+      "date_first_reported": "2026-11-02",
+      "source": "user_dismissed",
+      "title": "Susman House in Photos",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/gallery/susman-house-photos-1238785919/",
+      "note": "auto-sent pitch to queued:tori.latham@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-11-02",
+      "source": "user_dismissed",
+      "title": "Built to Last: The Details That Make a Home's Exterior Timeless",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.offthemrkt.com/lifestyle/built-to-last-the-details-that-make-a-homes-exterior-timeless",
+      "note": "auto-sent pitch to jeremy@offthemrkt.com"
+    },
+    {
+      "date_first_reported": "2026-11-02",
+      "source": "user_dismissed",
+      "title": "Minecraft Creator Lists Beverly Hills Home for $70 Million",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2026/10/29/minecraft-creator-lists-beverly-hills-home-for-70-million/",
+      "note": "auto-sent pitch to la-news@therealdeal.com"
+    },
+    {
+      "date_first_reported": "2026-11-02",
+      "source": "user_dismissed",
+      "title": "They exchanged a 5-bedroom house for a Craftsman bungalow in L.A. - Los Angeles ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/lifestyle/story/2026-10-28/they-sold-their-house-in-suburbs-bought-craftsman-bungalow-with-adu-in-la",
+      "note": "auto-sent pitch to lisa.boone@latimes.com"
     }
   ],
   "reported": [
