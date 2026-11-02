@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T12:26:34+00:00",
+  "updated_at": "2026-11-02T15:00:19+00:00",
   "mentions": {
     "https://villahomedecor.com/": {
       "first_seen": "2026-09-16",
@@ -92,6 +92,18 @@
       "query": "\"My Villa\" Mezzalama",
       "last_checked": "2026-10-26T12:26:34+00:00",
       "http": 200,
+      "about_us": false,
+      "linked": false,
+      "rel": null,
+      "anchor": null
+    },
+    "https://www.planetminecraft.com/project/my-villa-189778": {
+      "first_seen": "2026-11-02",
+      "title": "My villa Minecraft Map",
+      "via": "brave",
+      "query": "\"My Villa\" Mezzalama",
+      "last_checked": "2026-11-02T15:00:19+00:00",
+      "http": 403,
       "about_us": false,
       "linked": false,
       "rel": null,
