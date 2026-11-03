@@ -211,7 +211,7 @@
     }
   },
   "emberprousa.com": {
-    "cached_at": 1778563535.946039,
+    "cached_at": 1793675399.6434247,
     "result": null
   },
   "dailynews.com": {
@@ -830,7 +830,7 @@
     "result": null
   },
   "mansionglobal.com": {
-    "cached_at": 1792547542.9645677,
+    "cached_at": 1793675292.0370104,
     "result": null
   },
   "admiddleeast.com": {
@@ -880,8 +880,14 @@
     }
   },
   "dailymail.com": {
-    "cached_at": 1792114692.5505598,
-    "result": null
+    "cached_at": 1793675293.2824035,
+    "result": {
+      "email": "tips@dailymail.com",
+      "source": "article_scraped",
+      "path": "/tvshowbiz/article-16260529/nicolas-cage-homeless-sinkhole-malibu-mansion.html",
+      "score": 20,
+      "in_mailto": true
+    }
   },
   "helencummins.com": {
     "cached_at": 1792286448.006191,
@@ -2310,7 +2316,7 @@
     "result": null
   },
   "monograph.com": {
-    "cached_at": 1793061674.1161325,
+    "cached_at": 1793675340.199252,
     "result": null
   },
   "palisadesnews.com": {
@@ -2411,6 +2417,36 @@
   },
   "newstribune.com": {
     "cached_at": 1793581198.0910773,
+    "result": null
+  },
+  "justjared.com": {
+    "cached_at": 1793675299.2437236,
+    "result": null
+  },
+  "aspiremetro.com": {
+    "cached_at": 1793675334.2580152,
+    "result": null
+  },
+  "sust.edu": {
+    "cached_at": 1793675376.0354407,
+    "result": null
+  },
+  "meaww.com": {
+    "cached_at": 1793675385.4629297,
+    "result": null
+  },
+  "balitecture.com": {
+    "cached_at": 1793675385.685384,
+    "result": {
+      "email": "hello@balitecture.com",
+      "source": "article_scraped",
+      "path": "/services/architecture",
+      "score": 14,
+      "in_mailto": true
+    }
+  },
+  "upr.org": {
+    "cached_at": 1793675403.503431,
     "result": null
   }
 }

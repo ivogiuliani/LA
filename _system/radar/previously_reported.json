@@ -7248,6 +7248,36 @@
       "action_type": "user_dismissed",
       "url": "https://www.latimes.com/lifestyle/story/2026-10-28/they-sold-their-house-in-suburbs-bought-craftsman-bungalow-with-adu-in-la",
       "note": "auto-sent pitch to lisa.boone@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-11-03",
+      "source": "user_dismissed",
+      "title": "Viewpoint: Pricing Wildfire Risk Is Not the Same as Reducing It",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/news/national/2026/11/02/891133.htm",
+      "note": "auto-sent pitch to newsdesk@insurancejournal.com"
+    },
+    {
+      "date_first_reported": "2026-11-03",
+      "source": "user_dismissed",
+      "title": "Nicolas Cage says he's 'currently a little bit homeless' after sinkhole damaged ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.dailymail.com/tvshowbiz/article-16260529/nicolas-cage-homeless-sinkhole-malibu-mansion.html?ns_mchannel=rss&ns_campaign=1490&ito=1490",
+      "note": "auto-sent pitch to queued:adam.levy@dailymail.com"
+    },
+    {
+      "date_first_reported": "2026-11-03",
+      "source": "user_dismissed",
+      "title": "Bali Architects - Award-Winning Architecture & Villa Design | Balitecture",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.balitecture.com/services/architecture",
+      "note": "auto-sent pitch to hello@balitecture.com"
     }
   ],
   "reported": [
