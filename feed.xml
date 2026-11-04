@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-11-02T00:00:00Z</updated>
+  <updated>2026-11-04T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>The Stahl House: What LA's Unsold Luxury Icon Signals in 2026</title>
+    <link href="https://myvilla.la/blog/stahl-house-la-unsold-luxury-icon-2026.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/stahl-house-la-unsold-luxury-icon-2026.html</id>
+    <published>2026-11-04T00:00:00Z</published>
+    <updated>2026-11-04T00:00:00Z</updated>
+    <summary>Why hasn't LA's Stahl House sold? Koenig's 1960 glass-and-steel icon is still listed in 2026 — proof that permanence, not style, defines a luxury home.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/stahl-house-la-unsold-luxury-icon-2026-hero.jpg"/>
+  </entry>
   <entry>
     <title>Mediterranean Villa Design: A Sculptural Model for California</title>
     <link href="https://myvilla.la/blog/mediterranean-villa-design-sculptural-model-california.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-09-04T00:00:00Z</updated>
     <summary>Buying in a fire zone? Insurable luxury homes in California hinge on envelope specs no listing shows — and on the 12 state measures carriers must discount.</summary>
     <link rel="enclosure" type="image/png" href="https://myvilla.la/blog/assets/img/insurable-luxury-homes-california-beyond-the-listing-hero.png"/>
-  </entry>
-  <entry>
-    <title>Mediterranean Villa Design in Los Angeles: What Endures</title>
-    <link href="https://myvilla.la/blog/mediterranean-villa-design-los-angeles-what-endures.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/mediterranean-villa-design-los-angeles-what-endures.html</id>
-    <published>2026-09-02T00:00:00Z</published>
-    <updated>2026-09-02T00:00:00Z</updated>
-    <summary>Why do great L.A. houses get demolished? Mediterranean villa design in Los Angeles endures when structure outlives taste — inside a decade-long campaign.</summary>
-    <link rel="enclosure" type="image/webp" href="https://myvilla.la/blog/assets/img/mediterranean-villa-design-los-angeles-what-endures-hero.webp"/>
   </entry>
 </feed>

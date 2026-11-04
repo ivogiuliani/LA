@@ -18,7 +18,7 @@
     }
   },
   "wallpaper.com": {
-    "cached_at": 1792547535.6605356,
+    "cached_at": 1793756395.817609,
     "result": null
   },
   "prnewswire.com": {
@@ -613,11 +613,11 @@
     "result": null
   },
   "calmatters.org": {
-    "cached_at": 1786169314.4518044,
+    "cached_at": 1793756430.6883235,
     "result": {
       "email": "info@calmatters.org",
       "source": "article_scraped",
-      "path": "/economy/2026/08/insurance-california-rental-market/",
+      "path": "/politics/2026/11/california-election-2026-insurance-commissioner/",
       "score": 11,
       "in_mailto": true
     }
@@ -980,7 +980,7 @@
     "result": null
   },
   "getty.edu": {
-    "cached_at": 1792628003.5031204,
+    "cached_at": 1793756444.1757276,
     "result": null
   },
   "edhat.com": {
@@ -1096,7 +1096,7 @@
     "result": null
   },
   "sfstandard.com": {
-    "cached_at": 1789020616.0924344,
+    "cached_at": 1793756449.048799,
     "result": {
       "email": "media@sfstandard.com",
       "source": "contact_page",
@@ -2448,5 +2448,47 @@
   "upr.org": {
     "cached_at": 1793675403.503431,
     "result": null
+  },
+  "artforum.com": {
+    "cached_at": 1793756396.9048874,
+    "result": {
+      "email": "letters@artforum.com",
+      "source": "contact_page",
+      "path": "/contact-us",
+      "score": 15,
+      "in_mailto": true
+    }
+  },
+  "joshramirez.com": {
+    "cached_at": 1793756399.902176,
+    "result": {
+      "email": "josh@joshramirez.com",
+      "source": "article_scraped",
+      "path": "/post/inside-montecito-s-75-million-saladino-estate-the-story-behind-a-record-breaking-sale",
+      "score": 7,
+      "in_mailto": true
+    }
+  },
+  "bizjournals.com": {
+    "cached_at": 1793756400.5593193,
+    "result": null
+  },
+  "connectcre.com": {
+    "cached_at": 1793756413.9126294,
+    "result": null
+  },
+  "alojapan.com": {
+    "cached_at": 1793756430.4621122,
+    "result": null
+  },
+  "fortune.com": {
+    "cached_at": 1793756439.9591513,
+    "result": {
+      "email": "nadine.ghosn@fortune.com",
+      "source": "about_page",
+      "path": "/about-us",
+      "score": 5,
+      "in_mailto": true
+    }
   }
 }
