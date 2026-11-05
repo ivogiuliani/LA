@@ -34,7 +34,7 @@
     "result": null
   },
   "archdaily.com": {
-    "cached_at": 1792627976.2272286,
+    "cached_at": 1793842819.9600992,
     "result": null
   },
   "malibutimes.com": {
@@ -179,7 +179,7 @@
     }
   },
   "sfchronicle.com": {
-    "cached_at": 1792547569.762555,
+    "cached_at": 1793842830.6558185,
     "result": null
   },
   "cbsnews.com": {
@@ -1628,7 +1628,7 @@
     "result": null
   },
   "10news.com": {
-    "cached_at": 1787292674.7626417,
+    "cached_at": 1793842840.1211393,
     "result": null
   },
   "lux-mag.com": {
@@ -2487,6 +2487,20 @@
       "email": "nadine.ghosn@fortune.com",
       "source": "about_page",
       "path": "/about-us",
+      "score": 5,
+      "in_mailto": true
+    }
+  },
+  "com.br": {
+    "cached_at": 1793842828.0371325,
+    "result": null
+  },
+  "sonomamag.com": {
+    "cached_at": 1793842837.2605448,
+    "result": {
+      "email": "steve.childs@sonomamag.com",
+      "source": "about_page",
+      "path": "/about",
       "score": 5,
       "in_mailto": true
     }
