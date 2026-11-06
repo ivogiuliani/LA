@@ -609,7 +609,7 @@
     }
   },
   "e-a-a.com": {
-    "cached_at": 1792978045.613265,
+    "cached_at": 1793929517.5297186,
     "result": null
   },
   "calmatters.org": {
@@ -2504,5 +2504,27 @@
       "score": 5,
       "in_mailto": true
     }
+  },
+  "travelandleisure.com": {
+    "cached_at": 1793929494.8356502,
+    "result": null
+  },
+  "latination.com": {
+    "cached_at": 1793929505.5102391,
+    "result": null
+  },
+  "insurify.com": {
+    "cached_at": 1793929506.2161844,
+    "result": {
+      "email": "press@insurify.com",
+      "source": "article_scraped",
+      "path": "/homeowners-insurance/california/san-francisco/",
+      "score": 12,
+      "in_mailto": false
+    }
+  },
+  "japanesetaste.com": {
+    "cached_at": 1793929512.5420957,
+    "result": null
   }
 }
