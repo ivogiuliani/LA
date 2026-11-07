@@ -1,0 +1,33 @@
+{
+  "thread_id": "1a1ae8bae3f982f7",
+  "outreach_message_id": "1a1ae8bae3f982f7",
+  "outreach_subject": "A European angle on your Best Home Insurance Companies in San Francisco, California ( piece",
+  "outreach_to": "add@email.com",
+  "outreach_sent_at": "2026-11-06T01:49:12+00:00",
+  "replies": [
+    {
+      "thread_id": "1a1ae8bae3f982f7",
+      "gmail_message_id": "1a1ae8bba50cde15",
+      "rfc822_message_id": "<6aed321b.e9abef05.2bf505.19dd.GMR@mx.google.com>",
+      "from_address": "mailer-daemon@googlemail.com",
+      "from_name": "Mail Delivery Subsystem",
+      "subject": "Delivery Status Notification (Failure)",
+      "body": "** Indirizzo non trovato **\r\n\r\nIl tuo messaggio non è stato recapitato a add@email.com perché l'indirizzo risulta inesistente o non può ricevere email.\r\n\r\nUlteriori informazioni: https://postmaster.mail.com/en/case?c=r1601&i=ip&v=209.85.214.170&r=1Myf3r-1wZNSw0a5N-013Yt9\r\n(attenzione: questo link indirizza a un sito di terze parti)\r\n\r\nLa risposta del server remoto è:\r\n550 Requested action not taken: mailbox unavailable For explanation visit https://postmaster.mail.com/en/case?c=r1601&i=ip&v=209.85.214.170&r=1Myf3r-1wZNSw0a5N-013Yt9",
+      "snippet": "Indirizzo non trovato Il tuo messaggio non è stato recapitato a add@email.com perché l&#39;indirizzo risulta inesistente o non può ricevere email. ULTERIORI INFORMAZIONI Questo link ti indirizzerà a un",
+      "received_at": "2026-11-06T01:49:15+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "UNREAD",
+        "IMPORTANT",
+        "CATEGORY_UPDATES",
+        "INBOX"
+      ],
+      "outreach_message_id": "1a1ae8bae3f982f7",
+      "outreach_subject": "A European angle on your Best Home Insurance Companies in San Francisco, California ( piece",
+      "outreach_to": "add@email.com",
+      "outreach_sent_at": "2026-11-06T01:49:12+00:00"
+    }
+  ],
+  "last_checked_at": "2026-11-07T01:07:27+00:00"
+}

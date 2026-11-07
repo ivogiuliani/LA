@@ -217,6 +217,15 @@
       "last_bounced_at": "2026-10-28T00:44:17+00:00",
       "reason": "550-5.7.25 [64.91.241.154] The IP address sending this message does not have a",
       "also_sent_to": "webservice@liveinsurancenews.com"
+    },
+    "add@email.com": {
+      "first_bounced_at": "2026-11-06T01:49:15+00:00",
+      "bounce_count": 1,
+      "source_threads": [
+        "1a1ae8bae3f982f7"
+      ],
+      "last_bounced_at": "2026-11-06T01:49:15+00:00",
+      "reason": "550 Requested action not taken: mailbox unavailable For explanation visit https://postmaster.mail.com/en/case?c=r1601&i=ip&v=209.85.214.170&r=1Myf3r-1wZNSw0a5N-013Y"
     }
   }
 }
