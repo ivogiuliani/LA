@@ -30,7 +30,7 @@
     "result": null
   },
   "dezeen.com": {
-    "cached_at": 1792627999.6387985,
+    "cached_at": 1794099128.500322,
     "result": null
   },
   "archdaily.com": {
@@ -1030,7 +1030,7 @@
     "result": null
   },
   "vanityfair.com": {
-    "cached_at": 1784009661.9248657,
+    "cached_at": 1794099147.2216756,
     "result": null
   },
   "co.uk": {
@@ -2526,5 +2526,43 @@
   "japanesetaste.com": {
     "cached_at": 1793929512.5420957,
     "result": null
+  },
+  "thehypemagazine.com": {
+    "cached_at": 1794099140.9520361,
+    "result": {
+      "email": "contact@thehypemagazine.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 14,
+      "in_mailto": true
+    }
+  },
+  "celebritynetworth.com": {
+    "cached_at": 1794099150.554508,
+    "result": null
+  },
+  "financedevil.com": {
+    "cached_at": 1794099161.1263433,
+    "result": {
+      "email": "contact@financedevil.com",
+      "source": "about_page",
+      "path": "/about",
+      "score": 14,
+      "in_mailto": true
+    }
+  },
+  "edwardgeorgelondon.com": {
+    "cached_at": 1794099169.963017,
+    "result": null
+  },
+  "europesays.com": {
+    "cached_at": 1794099188.5891461,
+    "result": {
+      "email": "webinfo@europesays.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 2,
+      "in_mailto": false
+    }
   }
 }

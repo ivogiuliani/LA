@@ -210,11 +210,12 @@
     },
     "pressreleasewebservice@gmail.com": {
       "first_bounced_at": "2026-10-28T00:44:17+00:00",
-      "bounce_count": 1,
+      "bounce_count": 2,
       "source_threads": [
-        "1a17ff6586fb85ea"
+        "1a17ff6586fb85ea",
+        "1a1b38c7edb004db"
       ],
-      "last_bounced_at": "2026-10-28T00:44:17+00:00",
+      "last_bounced_at": "2026-11-07T01:08:54+00:00",
       "reason": "550-5.7.25 [64.91.241.154] The IP address sending this message does not have a",
       "also_sent_to": "webservice@liveinsurancenews.com"
     },

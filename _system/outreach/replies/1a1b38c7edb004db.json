@@ -1,0 +1,32 @@
+{
+  "thread_id": "1a1b38c7edb004db",
+  "outreach_message_id": "1a1b38c7edb004db",
+  "outreach_subject": "A European angle on your Prop 37 insurance piece",
+  "outreach_to": "webservice@liveinsurancenews.com",
+  "outreach_sent_at": "2026-11-07T01:08:11+00:00",
+  "replies": [
+    {
+      "thread_id": "1a1b38c7edb004db",
+      "gmail_message_id": "1a1b38d2afc070cf",
+      "rfc822_message_id": "<E1xPUvO-0000000B1a7-3aAm@harmless-steel.metalseed.io>",
+      "from_address": "Mailer-Daemon@harmless-steel.metalseed.io",
+      "from_name": "Mail Delivery System",
+      "subject": "Mail delivery failed: returning message to sender",
+      "body": "This message was created automatically by mail delivery software.\r\n\r\nA message that you sent could not be delivered to one or more of its\r\nrecipients. This is a permanent error. The following address(es) failed:\r\n\r\n  pressreleasewebservice@gmail.com\r\n    (ultimately generated from webservice@liveinsurancenews.com)\r\n    host gmail-smtp-in.l.google.com [142.251.111.27]\r\n    SMTP error from remote mail server after end of data:\r\n    550-5.7.25 [64.91.241.154] The IP address sending this message does not have a\r\n    550-5.7.25 PTR record setup, or the corresponding forward DNS entry does not\r\n    550-5.7.25 match the sending IP. As a policy, Gmail does not accept messages\r\n    550-5.7.25 from IPs with missing PTR records. For more information, go to\r\n    550-5.7.25  https://support.google.com/a?p=sender-guidelines-ip\r\n    550-5.7.25 To learn more about Gmail requirements for bulk senders, visit\r\n    550 5.7.25  https://support.google.com/a?p=sender-guidelines. af79cd13be357-945f5c84898si306777785a.278 - gsmtp\r\n  thelordangroup@gmail.com\r\n    (ultimately generated from webservice@liveinsurancenews.com)\r\n    host gmail-smtp-in.l.google.com [142.251.179.27]\r\n    SMTP error from remote mail server after end of data:\r\n    550-5.7.25 [64.91.241.154] The IP address sending this message does not have a\r\n    550-5.7.25 PTR record setup, or the corresponding forward DNS entry does not\r\n    550-5.7.25 match the sending IP. As a policy, Gmail does not accept messages\r\n    550-5.7.25 from IPs with missing PTR records. For more information, go to\r\n    550-5.7.25  https://support.google.com/a?p=sender-guidelines-ip\r\n    550-5.7.25 To learn more about Gmail requirements for bulk senders, visit\r\n    550 5.7.25  https://support.google.com/a?p=sender-guidelines. 6a1803df08f44-91ea6a3cdc3si49370266d6.461 - gsmtp",
+      "snippet": "This message was created automatically by mail delivery software. A message that you sent could not be delivered to one or more of its recipients. This is a permanent error. The following address(es)",
+      "received_at": "2026-11-07T01:08:54+00:00",
+      "kind": "bounce",
+      "kind_reason": "Sender local part 'mailer-daemon' matches bounce pattern",
+      "label_ids": [
+        "UNREAD",
+        "CATEGORY_PERSONAL",
+        "SPAM"
+      ],
+      "outreach_message_id": "1a1b38c7edb004db",
+      "outreach_subject": "A European angle on your Prop 37 insurance piece",
+      "outreach_to": "webservice@liveinsurancenews.com",
+      "outreach_sent_at": "2026-11-07T01:08:11+00:00"
+    }
+  ],
+  "last_checked_at": "2026-11-08T00:53:17+00:00"
+}
