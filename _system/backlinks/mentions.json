@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T15:00:19+00:00",
+  "updated_at": "2026-11-09T15:29:00+00:00",
   "mentions": {
     "https://villahomedecor.com/": {
       "first_seen": "2026-09-16",
@@ -104,6 +104,66 @@
       "query": "\"My Villa\" Mezzalama",
       "last_checked": "2026-11-02T15:00:19+00:00",
       "http": 403,
+      "about_us": false,
+      "linked": false,
+      "rel": null,
+      "anchor": null
+    },
+    "https://www.agoda.com/myvilla-langkawi-hotel_2/hotel/langkawi-my.html": {
+      "first_seen": "2026-11-09",
+      "title": "MyVilla Langkawi Hotel - Agoda.com",
+      "via": "brave",
+      "query": "\"myvilla.la\"",
+      "last_checked": "2026-11-09T15:28:59+00:00",
+      "http": 200,
+      "about_us": false,
+      "linked": false,
+      "rel": null,
+      "anchor": null
+    },
+    "https://almashria.com/en/portfolio-item/my-villa/": {
+      "first_seen": "2026-11-09",
+      "title": "MY VILLA - First Projects",
+      "via": "brave",
+      "query": "\"My Villa\" Mezzalama",
+      "last_checked": "2026-11-09T15:29:00+00:00",
+      "http": 200,
+      "about_us": false,
+      "linked": false,
+      "rel": null,
+      "anchor": null
+    },
+    "https://herhappyhabitat.com/villa-names/": {
+      "first_seen": "2026-11-09",
+      "title": "100 Unique Villa Names for Your Vacation Home or Rental - Her Happy Habitat",
+      "via": "brave",
+      "query": "\"My Villa\" Mezzalama",
+      "last_checked": "2026-11-09T15:29:00+00:00",
+      "http": 200,
+      "about_us": false,
+      "linked": false,
+      "rel": null,
+      "anchor": null
+    },
+    "https://nightfallgroup.com/villas/los-angeles/": {
+      "first_seen": "2026-11-09",
+      "title": "Luxury Villa Rentals in Los Angeles | The Nightfall Group",
+      "via": "brave",
+      "query": "\"My Villa\" \"Los Angeles\" Italian villa concrete",
+      "last_checked": "2026-11-09T15:29:00+00:00",
+      "http": 403,
+      "about_us": false,
+      "linked": false,
+      "rel": null,
+      "anchor": null
+    },
+    "https://www.ministryofvillas.com/living-art-10-avant-garde-villas-that-redefine/": {
+      "first_seen": "2026-11-09",
+      "title": "Living Art: 10 Avant-Garde Villas That Redefine Luxury | Ministry of Villas",
+      "via": "brave",
+      "query": "\"My Villa\" \"IT'S Architecture\"",
+      "last_checked": "2026-11-09T15:29:00+00:00",
+      "http": 200,
       "about_us": false,
       "linked": false,
       "rel": null,

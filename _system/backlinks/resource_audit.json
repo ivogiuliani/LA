@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T12:28:07+00:00",
+  "generated_at": "2026-11-09T15:30:46+00:00",
   "pages": 31,
   "pages_with_broken": 18,
   "drafts": 18,
@@ -13,7 +13,7 @@
       "external_links": 17,
       "tested": 17,
       "broken": [],
-      "checked_at": "2026-10-26T12:26:34+00:00",
+      "checked_at": "2026-11-09T15:29:01+00:00",
       "final_url": "https://recovery.lacounty.gov/rebuilding/"
     },
     {
@@ -25,7 +25,7 @@
       "external_links": 21,
       "tested": 21,
       "broken": [],
-      "checked_at": "2026-10-26T12:26:34+00:00",
+      "checked_at": "2026-11-09T15:29:01+00:00",
       "final_url": "https://recovery.lacounty.gov/disasters/palisades-fire/"
     },
     {
@@ -66,7 +66,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-26T12:26:34+00:00",
+      "checked_at": "2026-11-09T15:29:01+00:00",
       "final_url": "https://recovery.lacounty.gov/city-of-los-angeles-palisades-fire-recovery-information-resources/"
     },
     {
@@ -93,7 +93,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-26T12:26:34+00:00",
+      "checked_at": "2026-11-09T15:29:01+00:00",
       "final_url": "https://recovery.lacounty.gov/malibu-fire-recovery-information-resources/"
     },
     {
@@ -113,7 +113,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-26T12:26:36+00:00",
+      "checked_at": "2026-11-09T15:29:03+00:00",
       "final_url": "https://recovery.lacounty.gov/altadena/"
     },
     {
@@ -125,7 +125,7 @@
       "external_links": 20,
       "tested": 20,
       "broken": [],
-      "checked_at": "2026-10-26T12:26:37+00:00",
+      "checked_at": "2026-11-09T15:29:05+00:00",
       "final_url": "https://recovery.lacounty.gov/disasters/eaton-fire/"
     },
     {
@@ -137,7 +137,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-10-26T12:26:38+00:00",
+      "checked_at": "2026-11-09T15:29:05+00:00",
       "final_url": "https://cd11.lacity.gov/palisades-recovery-updates",
       "error": "HTTP 403"
     },
@@ -158,7 +158,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-26T12:26:38+00:00",
+      "checked_at": "2026-11-09T15:29:05+00:00",
       "final_url": "https://www.ca.gov/LAfires/"
     },
     {
@@ -170,7 +170,7 @@
       "external_links": 1,
       "tested": 1,
       "broken": [],
-      "checked_at": "2026-10-26T12:26:38+00:00",
+      "checked_at": "2026-11-09T15:29:06+00:00",
       "final_url": "https://www.ca.gov/lafires/rebuilding-la/"
     },
     {
@@ -182,7 +182,7 @@
       "external_links": 3,
       "tested": 3,
       "broken": [],
-      "checked_at": "2026-10-26T12:26:39+00:00",
+      "checked_at": "2026-11-09T15:29:07+00:00",
       "final_url": "https://www.ca.gov/lafires/track-progress/"
     },
     {
@@ -244,7 +244,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-26T12:26:40+00:00",
+      "checked_at": "2026-11-09T15:29:07+00:00",
       "final_url": "https://dfpi.ca.gov/lafires/"
     },
     {
@@ -271,7 +271,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-26T12:26:41+00:00",
+      "checked_at": "2026-11-09T15:29:08+00:00",
       "final_url": "https://scag.ca.gov/news/resources-near-and-long-term-fire-recovery"
     },
     {
@@ -333,6 +333,13 @@
           "confidence": "check"
         },
         {
+          "href": "https://oia.lacounty.gov/publiccharge/",
+          "anchor": "Office of Immigrant Affairs (OIA) - Public Charge Rule",
+          "status": 404,
+          "reason": "404",
+          "confidence": "high"
+        },
+        {
           "href": "http://emergency.lacity.gov/palisades-fire-re-entry-information",
           "anchor": "LACity.gov",
           "status": 403,
@@ -361,13 +368,6 @@
           "confidence": "check"
         },
         {
-          "href": "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2025-1-One-Year-Moratorium-Updated-ZIP-Codes-ADA.pdf",
-          "anchor": "bulletin",
-          "status": 200,
-          "reason": "200 soft-404 (body says 'not found')",
-          "confidence": "high"
-        },
-        {
           "href": "https://www.fema.gov/assistance/individual",
           "anchor": "individual assistance",
           "status": 403,
@@ -389,7 +389,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-26T12:26:44+00:00",
+      "checked_at": "2026-11-09T15:29:09+00:00",
       "final_url": "https://sd33.senate.ca.gov/resource-corner/windstorm-wildfire-resources"
     },
     {
@@ -430,7 +430,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-26T12:26:57+00:00",
+      "checked_at": "2026-11-09T15:29:11+00:00",
       "final_url": "https://www.malibucity.org/firesafety"
     },
     {
@@ -450,7 +450,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-26T12:27:00+00:00",
+      "checked_at": "2026-11-09T15:29:15+00:00",
       "final_url": "https://www.malibucity.org/1056/Home-Fire-Safety"
     },
     {
@@ -462,6 +462,13 @@
       "external_links": 89,
       "tested": 80,
       "broken": [
+        {
+          "href": "https://restaurantscare.org/help/",
+          "anchor": "Grants for Food and Beverage Workers: Restaurants Café,",
+          "status": 502,
+          "reason": "502",
+          "confidence": "check"
+        },
         {
           "href": "https://www.fema.gov/business-industry/doing-business",
           "anchor": "Doing Business with FEMA",
@@ -498,6 +505,13 @@
           "confidence": "check"
         },
         {
+          "href": "https://www.cityofpasadena.net/eaton-fire/recovery-resources/",
+          "anchor": "Disaster Recovery Resources",
+          "status": 0,
+          "reason": "network",
+          "confidence": "check"
+        },
+        {
           "href": "https://altadenatowncouncil.org/2025/01/statement-from-the-altadena-town-council-eaton-fire-statement-resources/",
           "anchor": "Eaton Fire Statement/Resources",
           "status": 404,
@@ -516,6 +530,27 @@
           "anchor": "New Economics for Women",
           "status": 520,
           "reason": "520",
+          "confidence": "check"
+        },
+        {
+          "href": "https://vsedc.org/wbc/",
+          "anchor": "Vermont Slauson Women’s Business Center",
+          "status": 0,
+          "reason": "network",
+          "confidence": "check"
+        },
+        {
+          "href": "https://thevalley.net/disaster-relief/",
+          "anchor": "Disaster Relief – The Los Angeles Fires",
+          "status": 0,
+          "reason": "network",
+          "confidence": "check"
+        },
+        {
+          "href": "https://lalegalhelp.org/",
+          "anchor": "LA Regional Small Business Owners Legal Aid Program",
+          "status": 0,
+          "reason": "network",
           "confidence": "check"
         },
         {
@@ -543,14 +578,7 @@
           "href": "https://wildfirerecovery.caloes.ca.gov/general-info/tax-assistance/",
           "anchor": "Tax Assistance After a Disaster",
           "status": 0,
-          "reason": "network error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
-          "confidence": "high"
-        },
-        {
-          "href": "https://donations.caloes.ca.gov/CADP/s/",
-          "anchor": "California Donations Portal",
-          "status": 0,
-          "reason": "network error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
+          "reason": "network error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)>",
           "confidence": "high"
         },
         {
@@ -568,7 +596,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-26T12:27:01+00:00",
+      "checked_at": "2026-11-09T15:29:16+00:00",
       "final_url": "https://outsmartdisaster.calosba.ca.gov/support-and-resources-for-los-angeles-area-wildfire-recovery/"
     },
     {
@@ -580,7 +608,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-10-26T12:27:02+00:00",
+      "checked_at": "2026-11-09T15:29:26+00:00",
       "final_url": "https://www.sandiegocounty.gov/content/sdc/sdcfa/crr-main-menu/CommunityRiskReduction.html",
       "error": "__error__:TimeoutError:The read operation timed out"
     },
@@ -601,7 +629,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-26T12:27:13+00:00",
+      "checked_at": "2026-11-09T15:29:41+00:00",
       "final_url": "https://ucanr.edu/program/uc-anr-fire-network/prepare-your-home"
     },
     {
@@ -613,7 +641,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-10-26T12:27:15+00:00",
+      "checked_at": "2026-11-09T15:29:42+00:00",
       "final_url": "https://ucanr.edu/program/uc-anr-fire-network/wildfire-preparedness",
       "error": "HTTP 403"
     },
@@ -626,7 +654,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-10-26T12:27:15+00:00",
+      "checked_at": "2026-11-09T15:29:42+00:00",
       "final_url": "https://ucanr.edu/site/ucce-central-sierra-living-fire/fire-resistant-home-construction",
       "error": "HTTP 403"
     },
@@ -639,7 +667,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-10-26T12:27:15+00:00",
+      "checked_at": "2026-11-09T15:29:42+00:00",
       "final_url": "https://ucanr.edu/county/ucce-central-sierra/central-sierra-fire-safety-resources",
       "error": "HTTP 403"
     },
@@ -652,7 +680,7 @@
       "external_links": 0,
       "tested": 0,
       "broken": [],
-      "checked_at": "2026-10-26T12:27:15+00:00",
+      "checked_at": "2026-11-09T15:29:42+00:00",
       "final_url": "https://celosangeles.ucanr.edu/Natural_Resources/Fire",
       "error": "HTTP 403"
     },
@@ -662,7 +690,7 @@
       "org": "Pacific Palisades Community Council",
       "gift": "tracker",
       "http": 200,
-      "external_links": 91,
+      "external_links": 95,
       "tested": 80,
       "broken": [
         {
@@ -685,9 +713,471 @@
           "status": 500,
           "reason": "500",
           "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529919",
+          "anchor": "2026 Awards Gala Invitation",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529917",
+          "anchor": "Disaster Recovery District & Other News",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529855",
+          "anchor": "2026 PPCC Awards Announcement",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529875",
+          "anchor": "Disaster Recovery District Updates / Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529832",
+          "anchor": "10/15/26 Mtg Recap / Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529822?fbclid=IwY2xjawU_LIxleHRuA2FlbQIxMQBwZG9mAXNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR5z8dWylGW5FnA3vHrcs0qKvsXslcLWVg-Wx69KfIHU4RKSBVonYDwB_mNN1Q_aem_stdcIlZERKWsdL-9--Ms-Q",
+          "anchor": "PPCC Mtg / Alerts & Updates",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529809",
+          "anchor": "October 15, 2026, Agenda / News & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529807?fbclid=IwY2xjawU4peRleHRuA2FlbQIxMQBwZG9mAXNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR6Dpv2cxgqm6Bbnkmgx5Zj0wvvRb2HcPmi3bjT2d9XyQ7sKEladq3gQrF6eQw_aem_yMTFuhEIQNJI_W7rcghrFQ",
+          "anchor": "LADWP Notice re Water Main Rupture",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529806?fbclid=IwY2xjawVB58FleHRuA2FlbQIxMQBwZG9mAXNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR4fGDa3GAieFiIJdLRokEXKbm8xlTiP1C2UXFHUbRtGc6xLY8-nb3JIF11Bkg_aem_VLcJ2MZqTRDOPiHvZvg07g",
+          "anchor": "10/08/26 Mtg Recap / News & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529785",
+          "anchor": "October 8, 2026, Agenda / News & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529772",
+          "anchor": "Survey Closing in 2 Days / More News",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529759",
+          "anchor": "9/24/26 Mtg Recap / News & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529732",
+          "anchor": "September 24, 2026 Agenda / News & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529687",
+          "anchor": "3 Days for Alternates to Apply / More",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529678?fbclid=IwY2xjawUTwRVwZG9mAWV4dG4DYWVtAjExAHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR6EKrVUDI2jou4VmrpK4GNKMwFyfCTH7JFuWni-2JClaVYzkwcu6XBU5y1u9w_aem_14JC1JT70hSsdYbRvS0Tuw",
+          "anchor": "9/10/26 Mtg Recap / News & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529672?fbclid=IwY2xjawUP-EVwZG9mAWV4dG4DYWVtAjExAHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR6WtfeH2AztLMbB7sDikIX457SgAGcuxcHxlcxBPyOnJbmQc_CiDAM-gr6z1Q_aem_6Untf92xMT8XF6OpnwZGQA",
+          "anchor": "PPCC Mtg Tonight/Revised Agenda",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529651",
+          "anchor": "Sept. 10, 2026 Agenda / News & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529646?fbclid=IwY2xjawUHyWhwZG9mAWV4dG4DYWVtAjExAHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR6iACGyFJYRmaqRFC0HuGiVuhwnvmx4cDZFaDWPaX2b_bY0lWc9mLn2fMrEPQ_aem_plRUaVaD0Cin0XAzS98Fsg",
+          "anchor": "Last Day to Vote Today 9/4! / More",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529614",
+          "anchor": "Survey Live / Vote / Apply / More!",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529597?fbclid=IwY2xjawT5q6lwZG9mAWV4dG4DYWVtAjExAHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR7fKtjWvcqq00vEy2_oTsM8HCP2to9O5EDjJ0RlmW-jLgDI7dgXoeqSnCFwJg_aem_z5AY8LjJKz8hrXlTSmw8Kg",
+          "anchor": "PPCC: Call to Action & More!",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529553?fbclid=IwY2xjawT0OTNwZG9mAWV4dG4DYWVtAjExAHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR4PHXcdqBz3Eg1hbzBLrgvJ2lS5PxEDRk9po5hTdoLFT0yhzGY-8RkHqJ-_mQ_aem_kMBrwb1Kwa_qt8DxFOx0AA",
+          "anchor": "PPCC: Alternates, Voting, Survey / More!",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529542?fbclid=IwY2xjawTt2llwZG9mAWV4dG4DYWVtAjExAHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR5usSCbdnrUmInWYQKGELTKZxDxoiGzZmJN3Fep69oP4FKgjLB54lVLS-wvoQ_aem_tXIat-adse19FIZnK_P3vw",
+          "anchor": "8/13/26 Mtg Recap / News",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529530?fbclid=IwY2xjawTqsqhwZG9mAWV4dG4DYWVtAjExAHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR7jdkvIGkjBmGQ3ty3vpjbCdbhx-sFL4JFRPIDT0c6gXhm2c0Vkzb2sHF29vA_aem_31SFUbmYqYvTYjxgIV_7SA",
+          "anchor": "Reminder: 8/13 Candidates Forum; News",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529511?fbclid=IwY2xjawTm3c1wZG9mAWV4dG4DYWVtAjExAHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR4erRXGRwobu-E4urQb8CRXhUuw1rrg5iAteP-ZKSt45oDdEU3KrNkZxIm97w_aem_wFJZDH0-uvmLy3P1nVMEcg",
+          "anchor": "August 13, 2026, Agenda; News/Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529503",
+          "anchor": "PPCC-NORC Survey News",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529470?fbclid=IwY2xjawTgL2hleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeP_6gpJ1JmYnqQH_K0r8whUfkgi_uffDcaszdXGstIO_VRK_83xBgzyF0OQU_aem_qdJUAsS3ILyZzMHE29c1-A",
+          "anchor": "Uplifters Update / Sen. Allen",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529462",
+          "anchor": "July 29, 2026 Special Mtg Recap/News",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529432",
+          "anchor": "July 29, 2026, Agenda; Event Today",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529421",
+          "anchor": "July 23, 2026, Agenda; News/Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529416",
+          "anchor": "News: Bridge, Brush, BBQ/More",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529398",
+          "anchor": "News: Park Board & Bridge Mtgs/Elections/More",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529344",
+          "anchor": "News: July 4th, SBA, Election",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529322",
+          "anchor": "6/25/26 Mtg Recap / News & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529293",
+          "anchor": "June 25, 2026, Agenda; News/Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529289",
+          "anchor": "Reminders: SBA, LTRP, LADWP & More",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529281",
+          "anchor": "LTRP, LADWP, 4th of July!",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529259",
+          "anchor": "6/11 Mtg Recap / News & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529212",
+          "anchor": "June 11, 2026 Agenda; News/Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529188",
+          "anchor": "News & Events Week of June 1",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529187",
+          "anchor": "5/28 Mtg Recap / News & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529186",
+          "anchor": "",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529176",
+          "anchor": "Reminders: Mtg Tonight 5/28 & Upcoming",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529168",
+          "anchor": "May 28, 2026, Agenda; News/Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529158",
+          "anchor": "Reminder: Special Mtgs. Tonight!",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529142?fbclid=IwY2xjawR10wVleHRuA2FlbQIxMQBicmlkETF3QkRwa0tRVDF3aXRLYmdLc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHlI9QxUMzly62FEjDwBCODYfgIyp1dhbmqN1AhXdQTZshk2HGP5wLnu7ZQxI_aem_IHo90phnbuoyr1YpT-GIhA",
+          "anchor": "5/14/26 Mtg Recap; More News/Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529131?fbclid=IwY2xjawRxhuNleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEek3ikoldIG7EuGVxQqb8QPmvU6zbpYG72OTNeiycayXKtNaWTiB_ln8jSriM_aem_TKypDAEFBg5_T0NFrC7ZFw",
+          "anchor": "NEW: Imp. Mtgs / Other Upcoming Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529118?fbclid=IwY2xjawRu4v1leHRuA2FlbQIxMQBicmlkETFwQUx6TUJQbjduWUJOampCc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHiP1JgdDMaysNQqQ18Ztd6KlYcNxJed7_234mDnJPSFAFXHN17HcGSxqwclW_aem_4e1MSiAsA-ytwFpf-hOyVA",
+          "anchor": "May 14, 2026, Agenda; News/Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529119?fbclid=IwY2xjawRuBWdleHRuA2FlbQIxMQBicmlkETFyTjJMeTRDSjJYZE9aelJQc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHpKJoKCow6qnFOWOIqwnnNc9_O5ARQpBseu9uIKw5aQGs6a23fWxgqcA0pKI_aem_ETfhIBMBgokK1eFbkVH2Tw",
+          "anchor": "Mother’s Day & Dog Park!",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529104?fbclid=IwY2xjawRpcaJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeYut7RevgWigOiso0NmqsHEJ5MQ0TDmJ4NGQcGEg6C-jovVZo5a-4ymD37Ko_aem_WjKjSrFYsejjolcGB9NE4g",
+          "anchor": "New FAQ; More News",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529085?fbclid=IwY2xjawRi0UxleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEef4U1J4bmnAc9NraAR7ZeVTYHYi7e027QIePm5xPAW2RZzH5tqzdN4AzrXkg_aem_wDl_DkOp3guvNhCQT1EdZg",
+          "anchor": "Message, News & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529060?fbclid=IwY2xjawRaNcFleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEe1HuPFeNoo46heA9uatszDKEjvnDO9pXeOyqdE1182PcVAyO3UvApqjhTGHw_aem_YJQ4TG4xKcjtEuAf4EOVgA",
+          "anchor": "4/23/26 Mtg Recap; Weekend Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529018?fbclid=IwY2xjawRTSe1leHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEe0uvLnHYDuci3MHQy7_hd5SC-NDfMUPRRsAv1hcsbcnLz_Sgt6ZIQCszI81o_aem_ZY2GS2OMci48PbWX5TFCuA",
+          "anchor": "April 23, 2026, Agenda; News/Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5529004?fbclid=IwY2xjawRMlPBleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeu_58rE3ol_e8HtSfxPuCCkDH0wPdNpkwctRSJhmgI_nYSkJlIKIIiWBuV_Q_aem_75V6HKdP_OZ84T2KnHOdwA",
+          "anchor": "Additional News/Events!",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528987?fbclid=IwY2xjawRLs3JleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEegGYvdbs7Rxr10o1jezQaCyTVIp6xf1BFshLMwBkEsveKTWpeBA9uqniwCTQ_aem_PMF6GULEh5ZwFVmsoU23cg",
+          "anchor": "4/9/26 PPCC Mtg Recap; More News/Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528962?fbclid=IwY2xjawRKmG1leHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEebWZ8QHTuLNcA9gsN1wA0oO8z5fwFLOvSsFM3QiBhQvRCW0weNKrlCixuyc8_aem_KpgQkz9I8KP1tEa2vkt0nA",
+          "anchor": "April 9, 2026, Agenda; More News",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528939?fbclid=IwY2xjawQ6Z-pleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeK99VqCASOQ9dCbQL4cqNMvvtZSXg2AUwCnMpo2rzdXzA9G6Ps37DJW-O7Yk_aem_PLcpL4tWTnFtbWD_nd3PAw",
+          "anchor": "3/26/26 Mtg Recap; More News/Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528904?fbclid=IwY2xjawQuQCdleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeLptdP9NqDEscynMLAi58lmQSitptn01j_7AVLZ4k7-huVMgaqn_dHIooO5Q_aem_zMUQURzaj0221tvtcaO-Jw",
+          "anchor": "March 26, 2026, Agenda; More News",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528900?fbclid=IwY2xjawQr7pBleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeuRzzm0Dw70NcgSXbsq0F5QG7Dz4NC6D26UvXn5bu61zdUeJ8Ev2WrWmSYAg_aem_wrxFHJ4PXRayzdsawk6ISw",
+          "anchor": "Recovery and Celebration",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528878?fbclid=IwY2xjawQoBVxleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEe8wsF8D8kDLKDKoLAw2HPHMi4b2e0GdHlFnenC83nuUtuBFc6klz3O84abzA_aem_RN3b-PJ-aNa3gSt0TqB5dQ",
+          "anchor": "Community Celebration Sunday, and More!",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528827?fbclid=IwY2xjawQcQUxleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeEoSSHwtHRTvtJKoA2h_7Yg5MWxapMCNSCo1pxu7ulu0tlmaXUpcI3H_Tu6Y_aem_zHdLxp8GF59_yMnByIt1MA",
+          "anchor": "PPCC Meeting Update & More Info",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528799?fbclid=IwY2xjawQTDLBleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeLiSTg9kilYgeUl5D8XqZhU6Wyu8p8CLOlBiZbOKRywjyGWj6oliQBkF_4b8_aem_a86jMuWk9TZNVBKH-mloww",
+          "anchor": "SPECIAL March 5, 2026 Agenda; NORC Survey Discussion",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528756?fbclid=IwY2xjawQJqexleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeT-RAOUyeWO-9N1CLjluFfNRbwJFrMQobBz290ZYrj2yYpi-43uZYm8X5sd8_aem_4JXIopTP4yojqgT3qUjX7A",
+          "anchor": "February 26, 2026, Agenda; More News",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528800?fbclid=IwY2xjawQQVYRleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEec4jXRSoR8OiljmmLE_TilCcajGRp_By_0PI1t-nWSUlT6YmG3h96kSTCzfI_aem_760E4XR4jhcfVFPjPD3YJA",
+          "anchor": "2/26/26 Mtg Recap; CD 11 Candidate Forum 3/1/26",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528752?fbclid=IwY2xjawQIiIlleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEelFBf3u4hGvQeokqp_PMvWWbSZhlGThXarNeBcIMXSITfzHzwsejQ8vPoZ4c_aem_CrbEqZNyVOMkv_e-e10Bmg",
+          "anchor": "More Feb.-March Info. & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528714?fbclid=IwY2xjawP_N8JleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeRRDF7SOzZse6zl0D3reJbkv3i7kvRDXAWDAfv96qWRvtAj7QwgK-13Rvoyk_aem_YIDW9df-xhoua5EdVsYnuw",
+          "anchor": "PPCC News/Info & Events",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/pacpalicc.org/t5l2odsle0-5528712?fbclid=IwY2xjawP9aJ9leHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeE4b6alBfC5WQGjmGK_KAq9zs7ki1gbogghoH0OCGeP-2ffnPG-YoQsZ1szU_aem_7pE_jf2IhtbVwMYElPZD-Q",
+          "anchor": "2/12/26 PPCC Mtg Recap",
+          "status": 503,
+          "reason": "503",
+          "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-26T12:27:15+00:00",
+      "checked_at": "2026-11-09T15:29:51+00:00",
       "final_url": "https://pacpalicc.org/index.php/palisades-fire-information-updates-2026/"
     },
     {
@@ -721,6 +1211,13 @@
           "confidence": "check"
         },
         {
+          "href": "https://restaurantscare.org/",
+          "anchor": "restaurantscare.org/",
+          "status": 502,
+          "reason": "502",
+          "confidence": "check"
+        },
+        {
           "href": "https://ewdd.lacity.gov/index.php/2025-los-angeles-wild-fires-resources",
           "anchor": "EWDD Wildfire Resources",
           "status": 404,
@@ -728,7 +1225,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-26T12:27:17+00:00",
+      "checked_at": "2026-11-09T15:29:52+00:00",
       "final_url": "https://maliburebuilds.org/community-resources/"
     },
     {
@@ -741,14 +1238,28 @@
       "tested": 10,
       "broken": [
         {
+          "href": "https://forms.monday.com/forms/60d9c7d67d12b36a18449bd28e60dee1?r=use1",
+          "anchor": "Request Architectural Proposal",
+          "status": 0,
+          "reason": "network error: The read operation timed out",
+          "confidence": "high"
+        },
+        {
           "href": "https://altadenawiki.com/wiki/Main_Page",
           "anchor": "Altadena Wiki",
           "status": 403,
           "reason": "403",
           "confidence": "check"
+        },
+        {
+          "href": "https://wkf.ms/45P4fpQ",
+          "anchor": "Add yourself to the map",
+          "status": 0,
+          "reason": "network error: The read operation timed out",
+          "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-26T12:27:30+00:00",
+      "checked_at": "2026-11-09T15:29:54+00:00",
       "final_url": "https://www.altadenacollective.org/homeowners"
     },
     {
@@ -764,14 +1275,7 @@
           "href": "https://admin.docu.team/photogrid.php?action=association_research_report&chamber=927",
           "anchor": "Advertising Value Report",
           "status": 0,
-          "reason": "network error: <urlopen error [Errno 104] Connection reset by peer>",
-          "confidence": "high"
-        },
-        {
-          "href": "https://admin.docu.team/welcome.php?association=927",
-          "anchor": "Chamber’s Welcome Center",
-          "status": 0,
-          "reason": "network error: <urlopen error [Errno 104] Connection reset by peer>",
+          "reason": "network error: The read operation timed out",
           "confidence": "high"
         },
         {
@@ -831,6 +1335,13 @@
           "confidence": "high"
         },
         {
+          "href": "https://restaurantscare.org/help/?utm_campaign=website&utm_medium=email&utm_source=sendgrid.com",
+          "anchor": "Grants for Food and Beverage Workers - Restaurants Care Program",
+          "status": 502,
+          "reason": "502",
+          "confidence": "check"
+        },
+        {
           "href": "https://pacelabdc.org/disaster-express-loan-program/?utm_campaign=website&utm_medium=email&utm_source=sendgrid.com",
           "anchor": "PACE Disaster Express Loan Program",
           "status": 404,
@@ -842,6 +1353,13 @@
           "anchor": "Loans for members of First City Credit Union",
           "status": 403,
           "reason": "403",
+          "confidence": "check"
+        },
+        {
+          "href": "https://mailchi.mp/a35d0fe6c6f9/january2025?e=1e2daee669",
+          "anchor": "Links to help affected communities (compiled by theatre dybbuk)",
+          "status": 503,
+          "reason": "503",
           "confidence": "check"
         },
         {
@@ -859,6 +1377,13 @@
           "confidence": "high"
         },
         {
+          "href": "https://thevalley.net/",
+          "anchor": "The Valley Economic Alliance",
+          "status": 0,
+          "reason": "network",
+          "confidence": "check"
+        },
+        {
           "href": "https://www.iqair.com/us/air-quality-map/usa/california/los-angeles?srsltid=AfmBOopID6Wg4ynke2x83TWAm3qwxwPJtKBSjdsPKDvPkrNYXnuk6PUb",
           "anchor": "Air Quality",
           "status": 429,
@@ -873,7 +1398,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-26T12:27:33+00:00",
+      "checked_at": "2026-11-09T15:29:57+00:00",
       "final_url": "https://www.altadenachamber.org/en/wildfire-recovery"
     },
     {
@@ -886,6 +1411,13 @@
       "tested": 43,
       "broken": [
         {
+          "href": "https://yhpasadena.org/",
+          "anchor": "YOUNG & HEALTHY",
+          "status": 0,
+          "reason": "network",
+          "confidence": "check"
+        },
+        {
           "href": "https://pactl.org/",
           "anchor": "PACTL",
           "status": 403,
@@ -893,11 +1425,18 @@
           "confidence": "check"
         },
         {
-          "href": "https://www.hcrn.info/la-fire-assistance/",
-          "anchor": "EATON FIRE 2025 CLEAN-UP & REPAIR ASSISTANCE",
-          "status": 0,
-          "reason": "network error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.hcrn.info'. (_ssl.c:1016)>",
-          "confidence": "high"
+          "href": "https://www.ymcafoothills.org/foothillsstrong",
+          "anchor": "YMCA OF THE FOOTHILLS",
+          "status": 429,
+          "reason": "429",
+          "confidence": "check"
+        },
+        {
+          "href": "https://doorofhope.us/",
+          "anchor": "DOOR OF HOPE",
+          "status": 502,
+          "reason": "502",
+          "confidence": "check"
         },
         {
           "href": "https://didihirsch.org/",
@@ -914,7 +1453,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-26T12:27:37+00:00",
+      "checked_at": "2026-11-09T15:30:07+00:00",
       "final_url": "https://www.eatonfirecollaborative.org/trustedcommunityresources"
     },
     {
@@ -923,8 +1462,8 @@
       "org": "LA Rises",
       "gift": "tracker",
       "http": 200,
-      "external_links": 59,
-      "tested": 59,
+      "external_links": 58,
+      "tested": 58,
       "broken": [
         {
           "href": "https://amegllc.com/what-we-do/modular-home-building/",
@@ -941,7 +1480,7 @@
           "confidence": "check"
         }
       ],
-      "checked_at": "2026-10-26T12:27:39+00:00",
+      "checked_at": "2026-11-09T15:30:16+00:00",
       "final_url": "https://larises.org/rebuild/"
     },
     {
@@ -953,7 +1492,7 @@
       "external_links": 4,
       "tested": 4,
       "broken": [],
-      "checked_at": "2026-10-26T12:27:40+00:00",
+      "checked_at": "2026-11-09T15:30:19+00:00",
       "final_url": "https://cafiresafecouncil.org/resources/map-of-fire-safe-councils/"
     },
     {
@@ -980,7 +1519,7 @@
           "confidence": "high"
         }
       ],
-      "checked_at": "2026-10-26T12:27:42+00:00",
+      "checked_at": "2026-11-09T15:30:21+00:00",
       "final_url": "https://wildfireprepared.org/"
     },
     {
@@ -992,7 +1531,7 @@
       "external_links": 1,
       "tested": 1,
       "broken": [],
-      "checked_at": "2026-10-26T12:27:53+00:00",
+      "checked_at": "2026-11-09T15:30:22+00:00",
       "final_url": "https://malibulakeside.com/fire-safety/"
     }
   ]
