@@ -1,0 +1,151 @@
+{
+  "date": "2026-11-09",
+  "generated_at": "2026-11-09T01:21:03+00:00",
+  "engines": [
+    "gemini"
+  ],
+  "query_count": 20,
+  "cost_est_usd": 0.0,
+  "results": [
+    {
+      "query_id": "q01",
+      "group": "category",
+      "query": "who builds fire-resistant luxury homes in Malibu",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q02",
+      "group": "category",
+      "query": "concrete home builder Los Angeles insurable",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q03",
+      "group": "design",
+      "query": "Italian villa architect Los Angeles",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q04",
+      "group": "cost",
+      "query": "how much does it cost to build a fire resistant house in Malibu 2026",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q05",
+      "group": "insurance",
+      "query": "alternatives to California FAIR Plan for a new luxury home",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q06",
+      "group": "brand",
+      "query": "My Villa Los Angeles architecture",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q07",
+      "group": "brand",
+      "query": "myvilla.la reinforced concrete villas review",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q08",
+      "group": "category",
+      "query": "best architects for a fireproof custom home in Beverly Hills",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q09",
+      "group": "category",
+      "query": "reinforced concrete luxury home builders Southern California",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q10",
+      "group": "insurance",
+      "query": "how to build a new home in California that insurers will actually cover in 2026",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q11",
+      "group": "insurance",
+      "query": "IBHS Wildfire Prepared Home luxury new construction Los Angeles architect",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q12",
+      "group": "rebuild",
+      "query": "Pacific Palisades rebuild architect fire resistant concrete",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q13",
+      "group": "design",
+      "query": "modern Italian courtyard villa design California hillside",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q14",
+      "group": "cost",
+      "query": "cost per square foot concrete luxury home Beverly Hills 2026",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q15",
+      "group": "design",
+      "query": "fair-faced concrete house architect Los Angeles museum quality finish",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q16",
+      "group": "category",
+      "query": "European architects designing wildfire resilient homes in California",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q17",
+      "group": "insurance",
+      "query": "does a concrete house lower wildfire insurance premiums in California",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q18",
+      "group": "rebuild",
+      "query": "Malibu custom home builder after wildfire non-combustible construction",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q19",
+      "group": "design",
+      "query": "biophilic luxury villa architect Los Angeles Transsolar",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    },
+    {
+      "query_id": "q20",
+      "group": "brand",
+      "query": "who is the founder of My Villa Los Angeles Italian architect",
+      "engine": "gemini",
+      "error": "RuntimeError: gemini-2.0-flash: HTTP 402 {\n  \"error\": {\n    \"code\": 402,\n    \"message\": \"Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing"
+    }
+  ]
+}

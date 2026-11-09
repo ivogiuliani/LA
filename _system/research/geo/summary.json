@@ -231,36 +231,65 @@
       },
       "cost_est_usd": 0.732,
       "queries": 20
+    },
+    {
+      "date": "2026-11-09",
+      "engines": {
+        "claude": {
+          "answered": 0,
+          "errors": 0,
+          "cited": 0,
+          "mentioned": 0,
+          "citation_share": null,
+          "mention_share": null,
+          "wrong_claims": 0,
+          "brand_queries_cited": 0,
+          "brand_queries": 0
+        },
+        "gemini": {
+          "answered": 0,
+          "errors": 20,
+          "cited": 0,
+          "mentioned": 0,
+          "citation_share": null,
+          "mention_share": null,
+          "wrong_claims": 0,
+          "brand_queries_cited": 0,
+          "brand_queries": 0
+        }
+      },
+      "cost_est_usd": 0.0,
+      "queries": 20
     }
   ],
   "latest": {
-    "date": "2026-11-02",
+    "date": "2026-11-09",
     "engines": {
       "claude": {
-        "answered": 20,
+        "answered": 0,
         "errors": 0,
-        "cited": 9,
-        "mentioned": 9,
-        "citation_share": 0.45,
-        "mention_share": 0.45,
-        "wrong_claims": 8,
-        "brand_queries_cited": 3,
-        "brand_queries": 3
+        "cited": 0,
+        "mentioned": 0,
+        "citation_share": null,
+        "mention_share": null,
+        "wrong_claims": 0,
+        "brand_queries_cited": 0,
+        "brand_queries": 0
       },
       "gemini": {
-        "answered": 20,
-        "errors": 0,
-        "cited": 10,
-        "mentioned": 9,
-        "citation_share": 0.5,
-        "mention_share": 0.45,
-        "wrong_claims": 8,
-        "brand_queries_cited": 3,
-        "brand_queries": 3
+        "answered": 0,
+        "errors": 20,
+        "cited": 0,
+        "mentioned": 0,
+        "citation_share": null,
+        "mention_share": null,
+        "wrong_claims": 0,
+        "brand_queries_cited": 0,
+        "brand_queries": 0
       }
     },
-    "cost_est_usd": 0.732,
+    "cost_est_usd": 0.0,
     "queries": 20
   },
-  "updated_at": "2026-11-02T01:30:49+00:00"
+  "updated_at": "2026-11-09T01:21:03+00:00"
 }
