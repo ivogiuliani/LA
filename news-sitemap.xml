@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
-    <loc>https://myvilla.la/blog/luxury-home-design-los-angeles-ancient-materials.html</loc>
+    <loc>https://myvilla.la/blog/italian-villa-design-california-built-to-last.html</loc>
     <news:news>
       <news:publication>
         <news:name>My Villa Journal</news:name>
         <news:language>en</news:language>
       </news:publication>
-      <news:publication_date>2026-11-06</news:publication_date>
-      <news:title>Luxury Home Design in Los Angeles: The Return of Ancient Materials</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://myvilla.la/blog/stahl-house-la-unsold-luxury-icon-2026.html</loc>
-    <news:news>
-      <news:publication>
-        <news:name>My Villa Journal</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-04</news:publication_date>
-      <news:title>The Stahl House: What LA's Unsold Luxury Icon Signals in 2026</news:title>
+      <news:publication_date>2026-11-09</news:publication_date>
+      <news:title>Italian Villa Design in California: Built to Last Centuries</news:title>
     </news:news>
   </url>
 </urlset>

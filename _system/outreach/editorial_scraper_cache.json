@@ -38,7 +38,7 @@
     "result": null
   },
   "malibutimes.com": {
-    "cached_at": 1792200803.4495635,
+    "cached_at": 1794186301.5232024,
     "result": null
   },
   "christiesresocal.com": {
@@ -58,7 +58,7 @@
     "result": null
   },
   "substack.com": {
-    "cached_at": 1792978026.6581964,
+    "cached_at": 1794186299.4342082,
     "result": null
   },
   "robbreport.com": {
@@ -486,7 +486,7 @@
     "result": null
   },
   "yahoo.com": {
-    "cached_at": 1793500246.4303346,
+    "cached_at": 1794186303.4322052,
     "result": null
   },
   "oakviewins.com": {
@@ -503,12 +503,13 @@
     "result": null
   },
   "cowboystatedaily.com": {
-    "cached_at": 1780306217.347254,
+    "cached_at": 1794186303.6077838,
     "result": {
       "email": "news@cowboystatedaily.com",
       "source": "article_scraped",
-      "path": "/2026/05/25/wyoming-company-uses-high-tech-ai-sprinklers-to-save-homes-from-wildfire/",
-      "score": 14
+      "path": "/2026/11/07/meet-the-montana-man-who-builds-luxury-doomsday-hideaways-in-the-rocky-mountains/",
+      "score": 14,
+      "in_mailto": false
     }
   },
   "earth911.com": {
@@ -1948,7 +1949,7 @@
     "result": null
   },
   "freeyork.org": {
-    "cached_at": 1793500286.353608,
+    "cached_at": 1794186296.8252034,
     "result": null
   },
   "starwestinsurance.com": {
@@ -2562,6 +2563,30 @@
       "source": "contact_page",
       "path": "/contact",
       "score": 2,
+      "in_mailto": false
+    }
+  },
+  "maverickframe.com": {
+    "cached_at": 1794186298.898737,
+    "result": {
+      "email": "hello@maverickframe.com",
+      "source": "article_scraped",
+      "path": "/blog/mediterranean-revival-architecture/",
+      "score": 9,
+      "in_mailto": false
+    }
+  },
+  "archyde.com": {
+    "cached_at": 1794186300.1164443,
+    "result": null
+  },
+  "moneywise.com": {
+    "cached_at": 1794186304.1608393,
+    "result": {
+      "email": "tips@moneywise.com",
+      "source": "article_scraped",
+      "path": "/news/real-estate-news/beverly-hills-one-condo-founder-bonds-cain-international",
+      "score": 15,
       "in_mailto": false
     }
   }

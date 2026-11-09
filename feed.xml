@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-11-06T00:00:00Z</updated>
+  <updated>2026-11-09T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Italian Villa Design in California: Built to Last Centuries</title>
+    <link href="https://myvilla.la/blog/italian-villa-design-california-built-to-last.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/italian-villa-design-california-built-to-last.html</id>
+    <published>2026-11-09T00:00:00Z</published>
+    <updated>2026-11-09T00:00:00Z</updated>
+    <summary>Can Italian villa design in California last for centuries? A 19th-century estate with three villas and a chapel shows why mass outlasts lightweight framing.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/italian-villa-design-california-built-to-last-hero.jpg"/>
+  </entry>
   <entry>
     <title>Luxury Home Design in Los Angeles: The Return of Ancient Materials</title>
     <link href="https://myvilla.la/blog/luxury-home-design-los-angeles-ancient-materials.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-09-09T00:00:00Z</updated>
     <summary>Premium up again with no claim? Rates rose 47% nationwide — and fire-resistant home insurance in California now turns on the assembly, not the ZIP code.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/fire-resistant-home-insurance-california-47-percent-rise-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Reinforced Concrete in Los Angeles: The Lucas Museum in 2026</title>
-    <link href="https://myvilla.la/blog/reinforced-concrete-los-angeles-lucas-museum-2026.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/reinforced-concrete-los-angeles-lucas-museum-2026.html</id>
-    <published>2026-09-07T00:00:00Z</published>
-    <updated>2026-09-07T00:00:00Z</updated>
-    <summary>What does reinforced concrete in Los Angeles look like at museum scale? MAD's Lucas Museum opens in 2026: 300,000 sq ft lifted over 11 acres of new park.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/reinforced-concrete-los-angeles-lucas-museum-2026-hero.jpg"/>
   </entry>
 </feed>

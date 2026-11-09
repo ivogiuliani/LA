@@ -7668,6 +7668,66 @@
       "action_type": "user_dismissed",
       "url": "https://www.europesays.com/europe/175191/",
       "note": "auto-sent pitch to webinfo@europesays.com"
+    },
+    {
+      "date_first_reported": "2026-11-09",
+      "source": "user_dismissed",
+      "title": "Inside a 19th-Century Italian Estate With Three Villas and a Church",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.mansionglobal.com/articles/inside-a-19th-century-italian-estate-with-three-villas-and-a-church-e96c8855",
+      "note": "auto-published journal: italian-villa-design-california-built-to-last"
+    },
+    {
+      "date_first_reported": "2026-11-09",
+      "source": "user_dismissed",
+      "title": "Mediterranean Revival Architecture: A Field Guide",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://maverickframe.com/blog/mediterranean-revival-architecture/",
+      "note": "auto-sent pitch to sale@maverickframe.com"
+    },
+    {
+      "date_first_reported": "2026-11-09",
+      "source": "user_dismissed",
+      "title": "Insurance commissioner may be California's most important and least talked-about",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/newsletter/2026-11-02/california-insurance-commissioner-most-important-least-talked-about-elected-office",
+      "note": "auto-sent pitch to andrew.campa@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-11-09",
+      "source": "user_dismissed",
+      "title": "Meet The Montana Man Who Builds Luxury Doomsday Bunkers Across The Rockies | Cow",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://cowboystatedaily.com/2026/11/07/meet-the-montana-man-who-builds-luxury-doomsday-hideaways-in-the-rocky-mountains/",
+      "note": "auto-sent pitch to kolby@cowboystatedaily.com"
+    },
+    {
+      "date_first_reported": "2026-11-09",
+      "source": "user_dismissed",
+      "title": "$10B Beverly Hills condo project asks future residents to lend it cash — a low-r",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://moneywise.com/news/real-estate-news/beverly-hills-one-condo-founder-bonds-cain-international",
+      "note": "auto-sent pitch to queued:peace.longe@moneywise.com"
+    },
+    {
+      "date_first_reported": "2026-11-09",
+      "source": "user_dismissed",
+      "title": "Custom home offering elegant upgrades and vast space",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/listing/custom-home-offering-elegant-upgrades-and-vast-space/",
+      "note": "auto-sent pitch to monicaa@johnlscott.com"
     }
   ],
   "reported": [
