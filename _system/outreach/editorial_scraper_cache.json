@@ -161,7 +161,7 @@
     "result": null
   },
   "hoodline.com": {
-    "cached_at": 1793530072.6519182,
+    "cached_at": 1794282468.0567613,
     "result": null
   },
   "therealdeal.com": {
@@ -1009,7 +1009,7 @@
     "result": null
   },
   "homesandgardens.com": {
-    "cached_at": 1793500208.9025545,
+    "cached_at": 1794282429.469231,
     "result": null
   },
   "travelbinger.com": {
@@ -1107,7 +1107,7 @@
     }
   },
   "architectmagazine.com": {
-    "cached_at": 1785564847.216582,
+    "cached_at": 1794282415.8381352,
     "result": null
   },
   "upscalelivingmag.com": {
@@ -1215,7 +1215,7 @@
     "result": null
   },
   "timeout.com": {
-    "cached_at": 1785824017.3691077,
+    "cached_at": 1794282441.2496767,
     "result": null
   },
   "houzz.com": {
@@ -1759,7 +1759,7 @@
     }
   },
   "flickr.com": {
-    "cached_at": 1793148093.78202,
+    "cached_at": 1794282474.9178686,
     "result": null
   },
   "spokesman.com": {
@@ -2039,7 +2039,7 @@
     "result": null
   },
   "archpaper.com": {
-    "cached_at": 1789452574.4393935,
+    "cached_at": 1794282442.1333966,
     "result": null
   },
   "abayaarab.com": {
@@ -2589,5 +2589,17 @@
       "score": 15,
       "in_mailto": false
     }
+  },
+  "instyle.com": {
+    "cached_at": 1794282442.9022827,
+    "result": null
+  },
+  "nbclosangeles.com": {
+    "cached_at": 1794282462.9966364,
+    "result": null
+  },
+  "ocula.com": {
+    "cached_at": 1794282463.839981,
+    "result": null
   }
 }
