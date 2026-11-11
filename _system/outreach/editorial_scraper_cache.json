@@ -370,7 +370,7 @@
     "result": null
   },
   "insurancenewsnet.com": {
-    "cached_at": 1787119813.4322603,
+    "cached_at": 1794360432.935887,
     "result": null
   },
   "newhousebuilder.com": {
@@ -435,7 +435,7 @@
     "result": null
   },
   "mercurynews.com": {
-    "cached_at": 1787983717.4406188,
+    "cached_at": 1794360405.9315515,
     "result": null
   },
   "eenews.net": {
@@ -725,7 +725,7 @@
     "result": null
   },
   "havenlifestyles.com": {
-    "cached_at": 1789106955.9004805,
+    "cached_at": 1794360427.5837717,
     "result": null
   },
   "bbc.com": {
@@ -1139,7 +1139,7 @@
     }
   },
   "indiatimes.com": {
-    "cached_at": 1793500241.8540127,
+    "cached_at": 1794360395.3781533,
     "result": null
   },
   "domusweb.it": {
@@ -1739,7 +1739,7 @@
     }
   },
   "design-milk.com": {
-    "cached_at": 1788069864.9572496,
+    "cached_at": 1794360369.267801,
     "result": {
       "email": "info@design-milk.com",
       "source": "contact_page",
@@ -2601,5 +2601,19 @@
   "ocula.com": {
     "cached_at": 1794282463.839981,
     "result": null
+  },
+  "futurepositive.org": {
+    "cached_at": 1794360415.7940795,
+    "result": null
+  },
+  "almanacnews.com": {
+    "cached_at": 1794360431.7346425,
+    "result": {
+      "email": "editor@almanacnews.com",
+      "source": "about_page",
+      "path": "/about-us",
+      "score": 18,
+      "in_mailto": true
+    }
   }
 }

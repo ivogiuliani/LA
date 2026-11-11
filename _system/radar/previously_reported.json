@@ -7818,6 +7818,56 @@
       "action_type": "user_dismissed",
       "url": "https://www.dailymail.com/real-estate/article-16262269/kim-kardashian-kris-humphries-beverly-hills-home.html",
       "note": "auto-sent pitch to queued:sadie.whitelocks@dailymail.com"
+    },
+    {
+      "date_first_reported": "2026-11-11",
+      "source": "user_dismissed",
+      "title": "A Private World above the Pacific. Natural beauty, timeless luxury.",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/listing/a-private-world-above-the-pacific-natural-beauty-timeless-luxury/",
+      "note": "auto-published journal: malibu-blufftop-luxury-homes-point-dume-coastal-design"
+    },
+    {
+      "date_first_reported": "2026-11-11",
+      "source": "user_dismissed",
+      "title": "Exquisite mid-century modern oasis in serene surroundings",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/listing/exquisite-mid-century-modern-oasis-in-serene-surroundings/",
+      "note": "auto-sent pitch to james@villagesite.com"
+    },
+    {
+      "date_first_reported": "2026-11-11",
+      "source": "user_dismissed",
+      "title": "LA Design Week 2026: Inside the City’s Creative Scene",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://design-milk.com/la-design-week-2026/",
+      "note": "auto-sent pitch to queued:tj.girard@design-milk.com"
+    },
+    {
+      "date_first_reported": "2026-11-11",
+      "source": "user_dismissed",
+      "title": "California chooses next insurance commissioner: Jane Kim or Ben Allen - The Alma",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.almanacnews.com/calmatters/2026/11/03/california-chooses-next-insurance-commissioner-jane-kim-or-ben-allen/",
+      "note": "auto-sent pitch to editor@almanacnews.com"
+    },
+    {
+      "date_first_reported": "2026-11-11",
+      "source": "user_dismissed",
+      "title": "Jane Kim wants California to cover wildfire losses. Even consumer advocates have",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://insurancenewsnet.com/oarticle/jane-kim-wants-california-to-cover-wildfire-losses-even-consumer-advocates-have-doubts",
+      "note": "auto-sent pitch to editor@insurancenewsnet.com"
     }
   ],
   "reported": [
