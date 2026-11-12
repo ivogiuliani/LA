@@ -94,7 +94,7 @@
     }
   },
   "architecturaldigest.com": {
-    "cached_at": 1793500167.13313,
+    "cached_at": 1794450426.4115827,
     "result": null
   },
   "dig-in.com": {
@@ -165,7 +165,7 @@
     "result": null
   },
   "therealdeal.com": {
-    "cached_at": 1793500324.7695541,
+    "cached_at": 1794450432.901311,
     "result": null
   },
   "uphelp.org": {
@@ -179,7 +179,7 @@
     }
   },
   "sfchronicle.com": {
-    "cached_at": 1793842830.6558185,
+    "cached_at": 1794450434.7001576,
     "result": null
   },
   "cbsnews.com": {
@@ -2613,6 +2613,38 @@
       "source": "about_page",
       "path": "/about-us",
       "score": 18,
+      "in_mailto": true
+    }
+  },
+  "newyorker.com": {
+    "cached_at": 1794450431.8793082,
+    "result": {
+      "email": "tips@newyorker.com",
+      "source": "article_scraped",
+      "path": "/tips",
+      "score": 20,
+      "in_mailto": true
+    }
+  },
+  "usatoday.com": {
+    "cached_at": 1794450432.4656637,
+    "result": null
+  },
+  "hsjchronicle.com": {
+    "cached_at": 1794450442.5220299,
+    "result": null
+  },
+  "kymkemp.com": {
+    "cached_at": 1794450453.26102,
+    "result": null
+  },
+  "actionnewsnow.com": {
+    "cached_at": 1794450453.547235,
+    "result": {
+      "email": "news@actionnewsnow.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 19,
       "in_mailto": true
     }
   }
