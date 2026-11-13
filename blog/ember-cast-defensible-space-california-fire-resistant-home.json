@@ -6,6 +6,17 @@
   "tag_label": "Insurance & Insurability",
   "meta_description": "Why do most California homes burn in wildfires? Embers, not flames. A fire-resistant home in California now starts at the vent, the eave, and the envelope.",
   "meta_keywords": "fire-resistant home California, insurable home California, ember-resistant construction, defensible space California, luxury home builder Malibu, WUI Code 2026",
+  "quick_answer": "Wind-driven embers, not direct flame contact, cause the majority of home ignitions in wildland-urban interface fires and often travel miles ahead of the fire front, according to a PR Newswire release. That moves the primary line of defense from vegetation clearance to the building envelope and the five-foot perimeter immediately around the home.",
+  "faq": [
+    {
+      "q": "What would California's Zone 0 rule require around a home in a fire-hazard zone?",
+      "a": "As of May 2026, the pending Zone 0 ember-resistant zone regulation, developed under the California Board of Forestry and Fire Protection, would require a non-combustible five-foot perimeter immediately adjacent to homes in designated fire-hazard zones. That band is where landed embers tend to accumulate most densely and where ignition is most likely to bridge from landscape to building."
+    },
+    {
+      "q": "Which design features affect wildfire insurability for a luxury home in Los Angeles?",
+      "a": "Underwriters modeling wildfire loss increasingly focus on ember-entry pathways such as attic vents, soffit gaps and deck-to-wall junctions, which recur in post-fire investigations. A Class A roof, ember-resistant vents and non-combustible cladding read differently in an underwriting model than a wood-shake roof with unscreened vents, even with mature defensible space."
+    }
+  ],
   "sources": [
     {
       "name": "PR Newswire",

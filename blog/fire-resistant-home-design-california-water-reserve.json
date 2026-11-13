@@ -6,6 +6,17 @@
   "tag_label": "Climate & Resilience",
   "meta_description": "What actually makes a house defensible? Fire-resistant home design in California starts on the ground — 100 ft of clearance, a 5 ft Zone 0, and stored water.",
   "meta_keywords": "fire resistant home California, insurable home California, defensible space Zone 0, on-site water storage wildfire, passive design California house, architect luxury home Malibu, how to build fire-resistant luxury home California, custom home Beverly Hills",
+  "quick_answer": "A water reserve on the parcel is one of the most consequential fire-resilience measures: Wallpaper* reports that a Jensen Architects house in Mendocino County pairs cleared brush and sprinkler systems with a second water tank for firefighting capacity. Far from hydrant grid, that reserve lets sprinklers run long enough to matter and gives defending crews a supply on arrival.",
+  "faq": [
+    {
+      "q": "How much defensible space does California law require around a house in a fire zone?",
+      "a": "California Public Resources Code § 4291 requires 100 feet of defensible space around structures on State Responsibility Area and very high fire hazard severity zone land. CAL FIRE divides that distance into a 0–5 foot ember-resistant Zone 0, a 5–30 foot lean, clean and green zone, and a 30–100 foot reduced-fuel zone."
+    },
+    {
+      "q": "What if my Los Angeles lot is too small for the full defensible space clearance?",
+      "a": "The protective measures move inward onto the building and the parcel. On Malibu bluffs or Westside canyon lots, the 100-foot radius required by PRC § 4291 often crosses a property line. Design then relies on a non-combustible envelope, a Zone 0 of stone, gravel and paving instead of plants, and water and power stored on site."
+    }
+  ],
   "sources": [
     {
       "name": "Wallpaper*",

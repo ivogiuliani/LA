@@ -6,6 +6,17 @@
   "tag_label": "Materials & Construction",
   "meta_description": "How does concrete masonry perform as a rebuild material? An Altadena resilient construction case study shows non-combustible walls, concrete roof, steel studs.",
   "meta_keywords": "concrete masonry home, non-combustible construction, Altadena rebuild, fire-resistant home California, steel stud interior walls, resilient construction",
+  "quick_answer": "A completed Altadena home documented on X by the concrete-industry account @cncacement shows that a fully non-combustible house can be delivered after the January 2025 fires, using concrete masonry walls, a concrete roof and steel-stud partitions, with no combustible elements in the primary structure. It gives owners and underwriters a built precedent rather than a manufacturer datasheet.",
+  "faq": [
+    {
+      "q": "How fire-resistant are concrete masonry walls compared with a typical wood-frame rebuild?",
+      "a": "Concrete masonry walls carry a typical fire rating of 4+ hr, and the National Concrete Masonry Association's TEK 07-01D reference ties ratings to equivalent thickness, with standard assemblies reaching multi-hour ratings without added fireproofing. The default Southern California rebuild instead layers ignition-resistant detailing, such as a Class A roof and ember-resistant vents, onto a combustible wood frame."
+    },
+    {
+      "q": "Is building a concrete masonry home in Los Angeles more expensive than wood-frame construction?",
+      "a": "Usually, yes: masonry construction generally carries a higher hard cost per square foot than light-frame construction. The @cncacement post on X, however, describes the Altadena home as built affordably and quickly, which suggests the assembly can be competitive when the contractor and supply chain are organized around it. Whether this scales beyond one lot remains an open question."
+    }
+  ],
   "sources": [
     {
       "name": "X / @cncacement",

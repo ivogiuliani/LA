@@ -6,6 +6,17 @@
   "tag_label": "Insurance & Insurability",
   "meta_description": "How do you measure the financial return of a certified resilient home? A new academic field-experiment design proposes to quantify insurer discounts and neighbor spillovers in California.",
   "meta_keywords": "fire resistant home California, insurable home California, IBHS Fortified, certified resilient real estate, luxury home insurance California, wildfire mitigation ROI, Mediterranean villa California",
+  "quick_answer": "As of May 2026, the return on certified disaster-resilient real estate in California lacks a rigorous evidence base, and economist Matthew Kahn has proposed a randomized field experiment to measure it. His sketch on Substack identifies five distinct ROI channels, including insurer discounts conditional on certification and increasing returns when neighbors also certify.",
+  "faq": [
+    {
+      "q": "Can an IBHS wildfire certification lower my home insurance premium in California?",
+      "a": "It can with admitted carriers. California's Safer from Wildfires framework recognizes the IBHS Wildfire Prepared Home designation as the aggregate qualifying standard for discounts, according to CDI. The IBHS program launched in California in 2022 and has two tiers, Home and Home Plus. The framework recognizes three mitigation layers: structure, parcel and community."
+    },
+    {
+      "q": "Does it matter whether my neighbors' homes are also certified fire-resilient?",
+      "a": "It may, according to one proposed research design. On his Substack, economist Matthew Kahn describes local increasing returns, meaning a certified home is worth more if its neighbors also certify, because aggregate wildfire risk on the block declines. By that logic, certified homes in certified clusters would outperform isolated ones, which favors developments and neighborhoods that adopt resilience at scale over one-off upgrades."
+    }
+  ],
   "sources": [
     {
       "name": "Matthew E. Kahn (Substack)",

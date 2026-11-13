@@ -6,6 +6,17 @@
   "tag_label": "Insurance & Insurability",
   "meta_description": "AAA and Travelers are seeking new rate hikes in California. What the latest filings mean for luxury home insurance — and the construction choices that hold premiums down.",
   "meta_keywords": "California fire insurance solution home, insurable home California, luxury home insurance California, AAA rate hike California, Travelers California rate filing, fire-resistant home California, reinforced concrete home California",
+  "quick_answer": "As of May 2026, two of California's largest home insurers, the AAA-affiliated Interinsurance Exchange of the Automobile Club and Travelers, have filed new rate-hike requests with the California Department of Insurance, according to the San Francisco Chronicle. For high-value Los Angeles homes, admitted-market premiums are increasingly priced against documented wildfire mitigation rather than address.",
+  "faq": [
+    {
+      "q": "Can wildfire mitigation lower my premium on a luxury home in Los Angeles?",
+      "a": "Yes. Under the California Department of Insurance's Safer from Wildfires regulation, admitted carriers must recognize verified mitigation across three layers: structure, parcel, and community. Recognized measures include a Class A roof, ember-resistant vents, enclosed eaves, defensible space, and upgraded glazing. California carriers most often cite the IBHS Wildfire Prepared Home designation when they extend wildfire discounts on high-value risks."
+    },
+    {
+      "q": "Does the new California WUI Code affect insurance for a home built in 2026?",
+      "a": "Indirectly. 2026 is the first full year under the California WUI Code (Title 24, Part 7), which sets the structural floor for new construction in Fire Hazard Severity Zones but does not itself deliver carrier discounts. Those come from Safer from Wildfires and IBHS, so what is specified at the foundation stage can largely set a new home's premium curve."
+    }
+  ],
   "sources": [
     {
       "name": "San Francisco Chronicle",

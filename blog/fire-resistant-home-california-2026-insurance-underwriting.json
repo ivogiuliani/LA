@@ -6,6 +6,17 @@
   "tag_label": "Insurance & Insurability",
   "meta_description": "How do California carriers price wildfire risk in 2026? A fire-resistant home in California now hinges on vegetation, slope, and construction details — line by line.",
   "meta_keywords": "fire resistant home California, insurable home California, California fire insurance solution home, FAIR Plan alternative luxury home, wildfire preparedness California, luxury home builder Malibu",
+  "quick_answer": "As of May 2026, California carriers score each home individually on six wildfire risk factors, including vegetation proximity, slope, rebuild value, occupancy type, prior claims and overall fire exposure, according to the Santa Barbara Independent. Verifiable details such as Class A roofing, ember-resistant vents and non-combustible siding can therefore earn homes on the same street different underwriting outcomes.",
+  "faq": [
+    {
+      "q": "Which wildfire mitigation measures must California admitted insurers recognize when pricing my home?",
+      "a": "The California Department of Insurance's Safer from Wildfires regulation requires every admitted insurer to recognize 12 specific mitigation measures. They range from Class A roofing and ember-resistant vents to a five-foot non-combustible Zone 0 around the structure and community-level Firewise certification. Because they are structural and landscape decisions rather than annual subscriptions, they stay in place through future underwriting cycles."
+    },
+    {
+      "q": "What does the IBHS Wildfire Prepared Home Plus designation require for a new house?",
+      "a": "The Plus tier from the Insurance Institute for Business & Home Safety requires non-combustible siding and a six-foot non-combustible perimeter. These conditions are difficult to retrofit onto a conventional wood-framed home but native to a reinforced concrete envelope, and several major California carriers reference IBHS designations directly in underwriting."
+    }
+  ],
   "sources": [
     {
       "name": "Santa Barbara Independent",

@@ -6,6 +6,17 @@
   "tag_label": "Materials & Construction",
   "meta_description": "Which roofs will California insurers still cover in 2026? A new dataset of the 20 largest carriers shows why Class A non-combustible assemblies now define an insurable home.",
   "meta_keywords": "fire-resistant home California, insurable home California, Class A roof California, California fire insurance, luxury home builder Malibu, concrete home builder Los Angeles, IBHS Wildfire Prepared Home",
+  "quick_answer": "As of May 2026, a Class A fire-rated roof is the practical baseline for new construction and reroofs in wildfire-exposed California zones, with wood shake and wood shingle the roofs most consistently refused. The San Francisco Chronicle compiled these rules from the 20 largest insurers, which collected roughly 90% of 2024 California home insurance premiums.",
+  "faq": [
+    {
+      "q": "Do California insurers give discounts for wildfire mitigation on a new home?",
+      "a": "Yes, admitted insurers in California must offer discounts for 12 specific mitigation measures under the California Department of Insurance's Safer from Wildfires regulation. A Class A roof and ember-resistant vents are among the most heavily weighted. Mercury, USAA, Travelers and others also reference IBHS's Wildfire Prepared Home designation in their California rating plans."
+    },
+    {
+      "q": "Besides roof material, what other design choices affect whether a luxury home is insurable?",
+      "a": "Eave geometry, soffit material, vent specification and the wall assembly the roof terminates into now count as insurability decisions, not just aesthetic ones. IBHS's Wildfire Prepared Home standard treats a Class A roof and ember-resistant assemblies as prerequisites, and the same underwriting logic now reaches older composition shingles past a stated age threshold and roofs without enclosed eaves."
+    }
+  ],
   "sources": [
     {
       "name": "San Francisco Chronicle (via Yahoo Finance)",

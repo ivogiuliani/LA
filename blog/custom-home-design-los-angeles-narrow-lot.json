@@ -6,6 +6,17 @@
   "tag_label": "Concrete Architecture",
   "meta_description": "Is a narrow lot worth building on? Custom home design in Los Angeles turns on geometry: a 20-ft-wide plan carries 34% more exterior wall — and far better light.",
   "meta_keywords": "custom home design Los Angeles, narrow lot house design California, concrete home builder Los Angeles, luxury home builder Los Angeles, fire-resistant home California, reinforced concrete villa California, hillside custom home, Lehrer Architects Loma Verde",
+  "quick_answer": "A narrow lot trades extra envelope for daylight and cross-ventilation: a 20-ft-wide plan has about 34% more exterior wall than a square plan of equal area, yet no interior point sits more than 10 ft from daylight. Dezeen reported in August 2026 on Lehrer Architects' Loma Verde, a supportive housing project on an extremely narrow Los Angeles site.",
+  "faq": [
+    {
+      "q": "Does a house on a narrow lot cost more to build per square foot?",
+      "a": "Usually yes, because the envelope grows. For 2,000 square feet of floor area, a square plan carries about 179 linear feet of exterior wall, while a 20-foot-wide plan carries 240 feet. Each added foot means more foundation, insulation, flashing and sill. The return is daylight and cross-ventilation, not a lower construction cost."
+    },
+    {
+      "q": "How does seismic design affect a house on a narrow Los Angeles lot?",
+      "a": "It drives the structural system. A long, thin building has little wall in its short direction, so the few cross-walls must resist a disproportionate share of seismic force, favoring stiff, continuous, well-anchored elements over perforated open-plan glass boxes. A 20-foot-wide house calls for continuous mass in the short direction and a rigorous rhythm of openings on the long elevations."
+    }
+  ],
   "sources": [
     {
       "name": "Dezeen",

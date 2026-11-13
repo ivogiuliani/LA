@@ -6,6 +6,17 @@
   "tag_label": "Insurance & Insurability",
   "meta_description": "Premium up again with no claim? Rates rose 47% nationwide — and fire-resistant home insurance in California now turns on the assembly, not the ZIP code.",
   "meta_keywords": "fire resistant home California, insurable home California, home insurance rates California, concrete home builder Los Angeles, luxury home builder Malibu, custom home Beverly Hills, California fire insurance solution home, ICF home builder California",
+  "quick_answer": "Yahoo Finance reports that average home insurance rates are up 47% nationwide, outpacing inflation and wages, and that neither California nor Florida ranked among the ten states with the steepest increases. The driver is a national repricing tied to replacement costs, reinsurance and higher severity assumptions, which leaves the building itself as the only premium variable an owner sets.",
+  "faq": [
+    {
+      "q": "What does the IBHS Wildfire Prepared Home standard look at when assessing a house?",
+      "a": "It is a research-based designation built on full-scale ember and radiant-heat testing and organized around roof material, whether vents admit embers, what sits in the first five feet and how the exterior wall handles radiant heat. It has two tiers, and the higher one presumes a non-combustible exterior rather than a treated one."
+    },
+    {
+      "q": "Will a concrete home in Los Angeles be priced differently by insurers than stucco over wood?",
+      "a": "The distinction starts to matter as carriers standardize around tested criteria rather than narrative descriptions of fire-safe finishes, at which point it begins appearing on the declarations page. A stucco-clad wood frame is a combustible structure with a protective coating, while a reinforced-concrete wall has no fuel in it, even if the two look nearly identical in a listing photograph."
+    }
+  ],
   "sources": [
     {
       "name": "Yahoo Finance",

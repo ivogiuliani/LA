@@ -6,6 +6,17 @@
   "tag_label": "LA Luxury Market",
   "meta_description": "Can a small build prove a fire-resistant home model for Los Angeles? A new ICF ADU built to Type I standards offers a tested blueprint — here's what it signals.",
   "meta_keywords": "fire resistant home California, ICF home builder California, concrete home builder Los Angeles, Type I fire-resistance, insurable home California, accessory dwelling unit Los Angeles",
+  "quick_answer": "According to Davis Vanguard, as of June 2026 Builtech Construction has completed what may be the first accessory dwelling unit in Los Angeles built with insulated concrete forms to Type I fire-resistance standards. Type I is a class usually reserved for institutional and high-rise buildings, and it means the structural materials themselves are non-combustible, not just the exterior cladding.",
+  "faq": [
+    {
+      "q": "Is Type I construction different from meeting California's Chapter 7A wildfire requirements?",
+      "a": "Yes. Chapter 7A of the California Building Code governs exterior wildfire exposure in Fire Hazard Severity Zones, met through measures like Class A roofing, ignition-resistant cladding and ember-resistant vents on an otherwise combustible building. Type I concerns the structural materials themselves, and insulated concrete forms provide a non-combustible reinforced-concrete core rather than a protected frame."
+    },
+    {
+      "q": "Can a non-combustible concrete structure help with home insurance in California?",
+      "a": "It can address the structure layer of California's Safer from Wildfires framework, administered by the California Department of Insurance, which requires insurers to recognize mitigation across three layers, structure, parcel and community, and to offer discounts for measures adopted. A non-combustible envelope meets that layer at its source rather than through add-ons that age, weather or get removed."
+    }
+  ],
   "sources": [
     {
       "name": "Davis Vanguard",

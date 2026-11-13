@@ -6,6 +6,17 @@
   "tag_label": "Permits & Policy",
   "meta_description": "Only 34 homes rebuilt in Pacific Palisades and Altadena 15 months after the LA fires, per POLITICO. What the permit data reveals about the recovery gap.",
   "meta_keywords": "LA fire rebuild, Pacific Palisades permits, Altadena reconstruction, California wildfire recovery, Newsom rebuild, LA Mayor Bass, permit backlog, fire rebuild timeline, reinforced concrete homes",
+  "quick_answer": "Los Angeles fire recovery is running behind the record-time rebuild promised by Governor Newsom and Mayor Bass. According to POLITICO / E&E News, only 34 homes had been completed in Pacific Palisades and Altadena combined 15 months after the Palisades and Eaton fires destroyed roughly 9,900 homes across Los Angeles County.",
+  "faq": [
+    {
+      "q": "How many fire-destroyed lots in the Palisades and Altadena have actually filed for permits?",
+      "a": "Fewer than half of the roughly 9,900 lots destroyed across the two burn zones had a permit application on file, according to POLITICO / E&E News. Executive orders, fee waivers and expedited review lanes have been announced, but POLITICO reports the conversion to issued permits has lagged the 2017 Tubbs fire and 2018 Camp fire benchmarks."
+    },
+    {
+      "q": "Why does construction material matter so much when rebuilding in the Palisades or Altadena?",
+      "a": "If the window from lot clearance to keys-in-hand is measured in years, re-entering the permit queue after another fire could cost years of lost occupancy. Insurability is also a precondition: homes that cannot demonstrate hardened construction face carriers that non-renew or price premiums that break household math. As of April 2026, the 2026 California WUI Code is in force."
+    }
+  ],
   "sources": [
     {
       "name": "POLITICO / E&E News",

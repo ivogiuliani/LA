@@ -6,6 +6,17 @@
   "tag_label": "Permits & Policy",
   "meta_description": "Wondering how California wildfire rebuild permits and costs are tracking in 2026? A new tracker consolidates permit counts, code changes, and insurance data in one place.",
   "meta_keywords": "California wildfire rebuild tracker, fire-resistant home California, 2026 WUI Code, Palisades rebuild permits, Altadena rebuild cost, insurable home California, custom home Los Angeles",
+  "quick_answer": "Western Wildfire Defense's California Wildfire Building Code & Insurance Tracker consolidates reporting on rebuild progress, permit counts and cost trends across three fire zones: Pacific Palisades, Altadena and Malibu. It cross-references that data with insurance developments and compliance with the 2026 California WUI Code, which governs new builds in designated fire zones.",
+  "faq": [
+    {
+      "q": "If my new home meets the 2026 WUI Code, will it automatically be insurable?",
+      "a": "No. A rebuild can satisfy the 2026 California WUI Code on paper yet vary widely in how it does so, and that variation shows up later in insurability rather than in the permit file. Two homes can clear the same permit on the same street and still reach opposite insurability outcomes."
+    },
+    {
+      "q": "What do rebuild permit counts and cost trends tell me about my own project?",
+      "a": "They are lagging indicators of decisions made far upstream, at the design stage. The compliance pathway chosen there determines whether a finished home reads to an underwriter as a routine or an exceptional risk. The Western Wildfire Defense tracker can show market averages across Pacific Palisades, Altadena and Malibu, but not the right choice for an individual home."
+    }
+  ],
   "sources": [
     {
       "name": "Western Wildfire Defense",

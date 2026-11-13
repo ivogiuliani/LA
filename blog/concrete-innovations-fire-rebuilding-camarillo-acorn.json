@@ -6,6 +6,17 @@
   "tag_label": "Materials & Construction",
   "meta_description": "The Camarillo Acorn reports on concrete innovations reshaping fire rebuilding across Southern California. What it means for LA's material standards.",
   "meta_keywords": "concrete construction Los Angeles, fire rebuilding California, ICF homes LA, wildfire rebuild materials, non-combustible construction, WUI code 2026, insulated concrete forms, Palisades rebuild, Altadena reconstruction",
+  "quick_answer": "Concrete is moving from niche choice toward the center of the LA rebuild conversation, with regional outlets such as The Camarillo Acorn treating insulated concrete forms, precast panels and hybrid concrete assemblies as practical rebuilding options. The January 2025 Palisades and Eaton fires destroyed more than 16,000 structures combined, according to CAL FIRE's 2025 incident archive.",
+  "faq": [
+    {
+      "q": "Does the California WUI Code affect a new home I build in a fire hazard zone?",
+      "a": "Yes. The California Wildland-Urban Interface Code (Title 24, Part 7) became mandatory for all new construction in Fire Hazard Severity Zones on January 1, 2026. It requires non-combustible exterior walls, Class A roofs and ember-resistant vents. Those requirements are substantially easier and cheaper to meet with a concrete structural system than by retrofitting compliance onto a wood frame."
+    },
+    {
+      "q": "How fire-resistant are reinforced concrete walls for a home in a wildfire zone?",
+      "a": "Reinforced concrete walls achieve a fire rating of 4+ hours, and the same assembly can natively satisfy all 12 measures of California's Safer from Wildfires framework. Research from the Insurance Institute for Business & Home Safety identifies ember intrusion and combustible cladding ignition as dominant WUI failure modes. A concrete envelope removes the cladding pathway entirely."
+    }
+  ],
   "sources": [
     {
       "name": "The Camarillo Acorn",

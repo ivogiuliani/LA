@@ -6,6 +6,17 @@
   "tag_label": "Materials & Construction",
   "meta_description": "Why is fire-resilient home demand surging in California? A Malibu entrepreneur's post-Woolsey venture shows the market shift — and what underwriters now reward.",
   "meta_keywords": "fire-resilient home California, resilient construction Malibu, Woolsey fire rebuild, non-combustible home California, fire-resistant home demand, insurable home California, custom home Malibu",
+  "quick_answer": "Demand for fire-resilient homes in California grew out of wildfire losses rather than insurance premiums: the 2018 Woolsey fire destroyed roughly 1,200 homes near Malibu, according to the BBC. Malibu entrepreneur Holden Forrest conceived his resilient-housing venture in 2019, before the insurance pressure that followed.",
+  "faq": [
+    {
+      "q": "What actually causes most homes to ignite in a wildland-urban interface fire?",
+      "a": "Ember intrusion, not direct flame contact, is the dominant ignition pathway in wildland-urban interface fires, according to federal guidance in FEMA P-737. Embers travel ahead of the fire front and find vents, gaps and combustible surfaces, igniting a home from points the owner never sees as vulnerable."
+    },
+    {
+      "q": "Does building with non-combustible materials make a Los Angeles home easier to insure?",
+      "a": "It can: a home built to a non-combustible standard is easier to underwrite, and therefore easier to own. The IBHS Wildfire Prepared Home designation, recognized by California admitted carriers, is structured almost entirely around envelope and parcel performance. FEMA and IBHS evidence points toward the materials and assemblies themselves, not a resilient label applied to conventional construction."
+    }
+  ],
   "sources": [
     {
       "name": "British Broadcasting Corporation",

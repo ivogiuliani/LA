@@ -6,6 +6,17 @@
   "tag_label": "Materials & Construction",
   "meta_description": "Should reinforced concrete be the default for California home construction? The seismic, fire, and insurance engineering case for concrete as the new California baseline.",
   "meta_keywords": "reinforced concrete home California, concrete home builder Los Angeles, fire-resistant home California, seismic concrete construction, ICF home builder California, custom home Beverly Hills",
+  "quick_answer": "Reinforced concrete is gaining ground in California because it addresses the state's two largest residential hazards, fire and earthquake: brick, block, stone and concrete have 0% combustibility, and seismic detailing is governed by ACI 318, the American Concrete Institute's building code. In the Los Angeles luxury market, insurability and long-term value retention are increasingly shaping that choice.",
+  "faq": [
+    {
+      "q": "Will a concrete house meet California's 2026 wildfire code requirements?",
+      "a": "Yes, a reinforced concrete envelope satisfies WUI surface requirements natively. The 2026 California Wildland-Urban Interface Code, Title 24, Part 7, regulates surfaces and openings rather than structural systems, so a wood-framed house with the right exterior cladding, vents and roof can also comply. The code defines a floor, not a ceiling."
+    },
+    {
+      "q": "Is a reinforced concrete house actually safe in a California earthquake?",
+      "a": "When properly detailed, reinforced concrete shear-wall systems are among the most thoroughly studied structural typologies in earthquake engineering, with extensive performance data published by the Pacific Earthquake Engineering Research Center at UC Berkeley. Concrete's reputation for collapse stems largely from mid-century non-ductile frames in countries with limited code enforcement."
+    }
+  ],
   "sources": [
     {
       "name": "X / @wavetossed",

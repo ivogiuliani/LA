@@ -6,6 +6,17 @@
   "tag_label": "Materials & Construction",
   "meta_description": "How much does fire-resistant home cost in California in 2026? County burn probability decides whether $1,100 ember vents or a $15K Class A roof pays back faster.",
   "meta_keywords": "fire resistant home California, fire resistant home cost, California insurance reform 2026, burn probability, ember vents, Class A roof, WUI Code, insurable home California",
+  "quick_answer": "According to Smart Tech Invest, the payback on wildfire upgrades such as roughly $1,100 of ember-resistant vents or a $15,000 Class A roof depends largely on a county's modeled burn probability under the 2026 California insurance reforms. Because premium credits scale with assessed risk, the same upgrade can have a payback period that differs by years across county lines.",
+  "faq": [
+    {
+      "q": "Do California insurers have to recognize wildfire mitigation on my home?",
+      "a": "Yes. California's Safer from Wildfires regulation requires insurers to recognize mitigation across three layers: the structure itself, the immediate parcel, and the surrounding community. Vents and roofing belong to the structure layer, which carries the most weight because federal post-fire studies identify ember intrusion as the main way homes ignite in the wildland-urban interface."
+    },
+    {
+      "q": "Is a Class A roof retrofit on an existing wood-framed house worth the money?",
+      "a": "Returns from piecemeal retrofitting on an existing wood-framed home can be uneven and sometimes disappointing, because the building's underlying combustibility caps how much credit any single upgrade can unlock. A Class A roof, at an indicative $15,000 according to Smart Tech Invest, improves one exposure while combustible walls, eaves and framing remain, and underwriters assess the whole envelope."
+    }
+  ],
   "sources": [
     {
       "name": "Smart Tech Invest",
