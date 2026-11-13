@@ -59,6 +59,8 @@ STATIC_ENTRIES = [
     {"loc": f"{BASE_URL}/icf-concrete-home-builder-los-angeles.html", "file": "icf-concrete-home-builder-los-angeles.html", "lastmod": None, "changefreq": "monthly", "priority": "0.9"},
     {"loc": f"{BASE_URL}/beverly-hills-custom-home.html", "file": "beverly-hills-custom-home.html", "lastmod": None, "changefreq": "monthly", "priority": "0.9"},
     {"loc": f"{BASE_URL}/pacific-palisades-rebuild.html", "file": "pacific-palisades-rebuild.html", "lastmod": None, "changefreq": "monthly", "priority": "0.9"},
+    # 2026-11-13: pillar sul cemento a vista (fair-faced / architectural concrete)
+    {"loc": f"{BASE_URL}/fair-faced-concrete-homes-los-angeles.html", "file": "fair-faced-concrete-homes-los-angeles.html", "lastmod": None, "changefreq": "monthly", "priority": "0.9"},
     # Fase 2 (2026-09-16): landing unica del briefing (thank-you resta fuori: noindex)
     {"loc": f"{BASE_URL}/private-briefing.html", "file": "private-briefing.html", "lastmod": None, "changefreq": "monthly", "priority": "0.9"},
     # Fase 2 (2026-09-16): answer page + linkable data asset

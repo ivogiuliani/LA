@@ -39,7 +39,7 @@ si alza di `--mv-banner-h` quando il banner è visibile) · FORMJS · MVTRACK.
 - 4 landing (`beverly-hills…`, `italian-villa…`, `icf-concrete…`, `pacific-palisades…`) — form esistente esteso:
   `data-mv-form`, select obbligatorie con placeholder, `how_found` + `referred_by`, consenso nurture, hidden di attribuzione,
   riga privacy, errore inline; vecchio IIFE Formspree rimosso (submit unificato in FORMJS). `form_id`:
-  `beverly_pillar`, `italian_villa_pillar`, `concrete_pillar`, `palisades_pillar`.
+  `beverly_pillar`, `italian_villa_pillar`, `concrete_pillar`, `palisades_pillar`, `fair_faced_pillar`.
 - `team.html` — blocco `#paolo-mezzalama` (titolo = `canonical.founder_title`, link profilo its.vision), bottoni
   "Request a Private Briefing" → landing `?src=team_page|team_cta`, Person schema con @id coerente con index.html.
 - `privacy.html` — riscritta (12 sezioni con id: `#controller #what-we-collect #purposes #processors #transfers #retention

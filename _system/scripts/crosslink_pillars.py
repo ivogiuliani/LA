@@ -43,6 +43,13 @@ PILLARS = {
         "blurb": "reinforced concrete &amp; ICF custom villas: approach, "
                  "materials, process.",
     },
+    # 2026-11-13: pillar sul cemento a vista
+    "fairfaced": {
+        "url": f"{BASE}/fair-faced-concrete-homes-los-angeles.html",
+        "title": "Fair-Faced Concrete Homes in Los Angeles",
+        "blurb": "exposed architectural concrete, designed by a European "
+                 "studio: finish, tones, fire rating.",
+    },
 }
 
 START = "<!-- PILLAR-XLINK:START -->"
@@ -53,6 +60,12 @@ ANCHOR = '<a href="https://myvilla.la/blog/" class="back-link">'
 
 def pick_pillar(slug, section):
     s = slug.lower()
+    # Slug che parlano di cemento a vista → pillar fair-faced, prima di tutto
+    if any(t in s for t in ("fair-faced", "exposed-concrete", "raw-concrete",
+                            "architectural-concrete", "beton-brut",
+                            "brutalis", "tadao-ando", "as-cast",
+                            "board-formed")):
+        return "fairfaced"
     if "malibu" in s:
         return "malibu"
     if any(t in s for t in ("italian", "mediterranean", "tuscan", "palazzo",
@@ -63,6 +76,8 @@ def pick_pillar(slug, section):
         return "beverly"
     if section == "market":
         return "beverly"
+    if section in ("concrete_arch", "concrete_architecture"):
+        return "fairfaced"
     return "icf"
 
 

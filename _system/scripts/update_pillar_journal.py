@@ -46,6 +46,15 @@ PILLARS = [
             "structure")) or sec in ("materials", "concrete_arch",
                                      "concrete_architecture", "fire_code"),
     },
+    {   # 2026-11-13: pillar sul cemento a vista
+        "file": "fair-faced-concrete-homes-los-angeles.html",
+        "key": "FAIRFACED",
+        "match": lambda s, sec: any(t in s for t in (
+            "fair-faced", "exposed-concrete", "raw-concrete",
+            "architectural-concrete", "beton-brut", "brutalis", "tadao-ando",
+            "as-cast", "board-formed")) or sec in (
+                "concrete_arch", "concrete_architecture"),
+    },
 ]
 
 

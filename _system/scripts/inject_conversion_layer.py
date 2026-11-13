@@ -84,6 +84,7 @@ PAGE_TYPES = {
     "italian-villa-california-builder.html": "pillar",
     "icf-concrete-home-builder-los-angeles.html": "pillar",
     "pacific-palisades-rebuild.html": "pillar",
+    "fair-faced-concrete-homes-los-angeles.html": "pillar",
     "insurable-home-california.html": "hub",
     "westside-rebuild-tracker.html": "research",
 }

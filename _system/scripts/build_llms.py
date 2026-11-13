@@ -46,6 +46,7 @@ LANDINGS = [
     "pacific-palisades-rebuild.html",
     "italian-villa-california-builder.html",
     "icf-concrete-home-builder-los-angeles.html",
+    "fair-faced-concrete-homes-los-angeles.html",
 ]
 CATEGORY_NAMES = {
     "insurance": "Insurance & Insurability",
