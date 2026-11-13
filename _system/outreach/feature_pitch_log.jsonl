@@ -945,3 +945,4 @@
 {"domain": "bhcourier.com", "outlet": "Beverly Hills Courier", "status": "paused", "reason": "no_email", "logged_at": "2026-10-17T01:33:25+00:00"}
 {"domain": "toacorn.com", "outlet": "The Acorn", "status": "paused", "reason": "no_email", "logged_at": "2026-10-17T01:33:36+00:00"}
 {"domain": "montecitojournal.net", "outlet": "Montecito Journal", "status": "paused", "reason": "no_email", "logged_at": "2026-10-17T01:33:37+00:00"}
+{"domain": "palipost.com", "outlet": "Palisadian-Post", "to": "mypost@palipost.com", "status": "queued_review", "subject": "A feature idea on rebuilding the Palisades in concrete", "logged_at": "2026-11-13T02:07:45+00:00"}

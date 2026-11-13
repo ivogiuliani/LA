@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
+    <loc>https://myvilla.la/blog/mid-century-luxury-homes-beverly-hills-trousdale.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>My Villa Journal</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-13</news:publication_date>
+      <news:title>Mid-Century Luxury Homes in Beverly Hills: The Trousdale Rule</news:title>
+    </news:news>
+  </url>
+  <url>
     <loc>https://myvilla.la/blog/malibu-blufftop-luxury-homes-point-dume-coastal-design.html</loc>
     <news:news>
       <news:publication>
@@ -9,17 +20,6 @@
       </news:publication>
       <news:publication_date>2026-11-11</news:publication_date>
       <news:title>Malibu Blufftop Luxury Homes: Point Dume's Coastal Design</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://myvilla.la/blog/italian-villa-design-california-built-to-last.html</loc>
-    <news:news>
-      <news:publication>
-        <news:name>My Villa Journal</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-09</news:publication_date>
-      <news:title>Italian Villa Design in California: Built to Last Centuries</news:title>
     </news:news>
   </url>
 </urlset>

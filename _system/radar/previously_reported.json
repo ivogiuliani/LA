@@ -7978,6 +7978,76 @@
       "action_type": "user_dismissed",
       "url": "https://www.actionnewsnow.com/news/covering-california/commissioner-lara-preserves-insurance-coverage-for-50-000-policyholders/article_ec1837e7-e602-4830-9402-20402def882c.html",
       "note": "auto-sent pitch to wanderson@actionnewsnow.com"
+    },
+    {
+      "date_first_reported": "2026-11-13",
+      "source": "user_dismissed",
+      "title": "Experience iconic Mid-Century Modern luxury living",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/listing/experience-iconic-mid-century-modern-luxury-living-2/",
+      "note": "auto-published journal: mid-century-luxury-homes-beverly-hills-trousdale"
+    },
+    {
+      "date_first_reported": "2026-11-13",
+      "source": "user_dismissed",
+      "title": "2027 Interior Design Trends: Why Function Is the New Luxury - Los Angeles Times",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/hotproperty/build-renovation/story/2027-interior-design-trends-functional-luxury-homes",
+      "note": "auto-sent pitch to alex.mikaelian@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-11-13",
+      "source": "user_dismissed",
+      "title": "California’s coast is eroding, but beachfront homes are still worth millions. Wi",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/california/story/2026-11-12/californias-coast-is-eroding-but-beachfront-homes-are-still-worth-millions-will-el-nino-change-that",
+      "note": "auto-sent pitch to jack.flemming@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-11-13",
+      "source": "user_dismissed",
+      "title": "From Tokyo to Beirut, Nadim Karam is thinking outside the box",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.newarab.com/features/tokyo-beirut-nadim-karam-thinking-outside-box",
+      "note": "auto-sent pitch to queued:zainab.mehdi@newarab.com"
+    },
+    {
+      "date_first_reported": "2026-11-13",
+      "source": "user_dismissed",
+      "title": "After 5,000 Hours of Testing, These Home Improvement Upgrades Will Make a Differ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.goodhousekeeping.com/what-to-buy/home-products/a74335590/home-reno-awards-2027/",
+      "note": "auto-sent pitch to feedback@goodhousekeeping.com"
+    },
+    {
+      "date_first_reported": "2026-11-13",
+      "source": "user_dismissed",
+      "title": "Commissioner Lara protects 50,000 Californians across three counties from non-re",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurance.ca.gov/0400-news/0100-press-releases/2026/release041-2026.cfm",
+      "note": "auto-sent pitch to webassist@insurance.ca.gov"
+    },
+    {
+      "date_first_reported": "2026-11-13",
+      "source": "user_dismissed",
+      "title": "California's Kim Says Insurance Should Fund Wildfire Safety, Not Super Bowl Ads ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.carriermanagement.com/news/2026/11/12/294089.htm",
+      "note": "auto-sent pitch to newsdesk@carriermanagement.com"
     }
   ],
   "reported": [

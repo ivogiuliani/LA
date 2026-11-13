@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-11-11T00:00:00Z</updated>
+  <updated>2026-11-13T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Mid-Century Luxury Homes in Beverly Hills: The Trousdale Rule</title>
+    <link href="https://myvilla.la/blog/mid-century-luxury-homes-beverly-hills-trousdale.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/mid-century-luxury-homes-beverly-hills-trousdale.html</id>
+    <published>2026-11-13T00:00:00Z</published>
+    <updated>2026-11-13T00:00:00Z</updated>
+    <summary>Looking at Mid-Century luxury homes in Beverly Hills? Trousdale Estates defines the type — single-level, glass-walled, view-first. Why 570 Evelyn Place nails it.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/mid-century-luxury-homes-beverly-hills-trousdale-hero.jpg"/>
+  </entry>
   <entry>
     <title>Malibu Blufftop Luxury Homes: Point Dume's Coastal Design</title>
     <link href="https://myvilla.la/blog/malibu-blufftop-luxury-homes-point-dume-coastal-design.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-09-14T00:00:00Z</updated>
     <summary>Can exposed concrete feel warm in a home? Reinforced concrete homes in California can borrow from Ando's Benesse House — one material doing three jobs at once.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/reinforced-concrete-homes-california-ando-benesse-house-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Italian Villa Design in California: The Palazzo Litta Lesson</title>
-    <link href="https://myvilla.la/blog/italian-villa-design-california-palazzo-litta.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/italian-villa-design-california-palazzo-litta.html</id>
-    <published>2026-09-11T00:00:00Z</published>
-    <updated>2026-09-11T00:00:00Z</updated>
-    <summary>What makes Italian villa design in California worth keeping for centuries? AMDL Circle's Palazzo Litta plan shows why structure, not program, decides.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/italian-villa-design-california-palazzo-litta-hero.jpg"/>
   </entry>
 </feed>
