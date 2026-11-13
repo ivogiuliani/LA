@@ -67,6 +67,9 @@ FACT_PICKS: List[Dict[str, str]] = [
     {"id": "state_farm_losses", "slug": "state-farm-investigation-california-insurance-carrier-risk-2026", "number": "$7.6B", "source": "calmatters.org"},
     {"id": "state_farm_paused", "slug": "state-farm-california-status-2026-high-value-home-insurance", "number": "2026", "source": "latentinsure.com"},
     {"id": "fair_plan_limit", "slug": "fair-plan-expansion-luxury-new-construction-california-2026", "number": "$20M", "source": "release028-2025"},
+    # 2026-11-13: il CDI ha annunciato il 18/09/2026 le richieste di riapertura di State Farm e Allstate
+    {"id": "reopen_2", "slug": "insurable-home-california-state-farm-allstate-reopen-2026", "number": "2", "source": "insurance.ca.gov"},
+    {"id": "fair_low_risk", "slug": "insurable-home-california-fair-plan-low-risk-zip-codes-2026", "number": "9 in 10", "source": "latimes.com"},
     # NB: le pagine consumer CDI "Safer from Wildfires" (01-consumers/...cfm) sono 404 dal restyling
     # del sito CDI (verificato 2026-09-16): si usano le fonti alternative già presenti nei sidecar.
     {"id": "sfw_12", "slug": "california-insurer-must-renew-fire-safe-homes-bill-2026", "number": "12", "source": "insurancejournal.com"},
@@ -212,7 +215,7 @@ def build_faq(F: Dict[str, dict], settings: dict) -> List[dict]:
         })
     if "cost_premium_3" in F:
         faq.append({
-            "q": "Does building to the Wildfire Prepared Home Plus standard cost much more?",
+            "q": "How much more does it cost to build a fire-resistant home in California?",
             "a": (f"Headwaters Economics and IBHS estimate a construction-cost premium of about {F['cost_premium_3']['number'].replace('~', '')} "
                   "for a home built to the Wildfire Prepared Home Plus level compared with a conventional build."),
         })
@@ -226,8 +229,42 @@ def build_faq(F: Dict[str, dict], settings: dict) -> List[dict]:
     if "state_farm_paused" in F and "state_farm_17" in F:
         faq.append({
             "q": "Is State Farm writing new home policies in California?",
-            "a": (f"As of 2026, State Farm, the state's largest home insurer, has kept new homeowner business paused, after an emergency "
-                  f"{F['state_farm_17']['number']} rate increase approved by the Department of Insurance in June 2025."),
+            "a": ((f"State Farm, the state's largest home insurer, closed to new homeowner business and received an emergency "
+                   f"{F['state_farm_17']['number']} rate increase from the Department of Insurance in June 2025. On September 18, 2026 the Department "
+                   f"announced that {F['reopen_2']['number']} major carriers, State Farm and Allstate, have filed plans to begin writing new residential "
+                   "policies again. Until those filings take effect, availability depends on the carrier, the territory and the home.")
+                  if "reopen_2" in F else
+                  (f"As of 2026, State Farm, the state's largest home insurer, has kept new homeowner business paused, after an emergency "
+                   f"{F['state_farm_17']['number']} rate increase approved by the Department of Insurance in June 2025.")),
+        })
+    if "sfw_12" in F and "ibhs_50" in F and "fair_stack_164" in F:
+        faq.append({
+            "q": "Does a concrete house lower wildfire insurance premiums in California?",
+            "a": (f"Not by the material alone. Insurers price mitigation they can verify: the {F['sfw_12']['number']} Safer from Wildfires measures "
+                  f"recognised by the Department of Insurance and the IBHS Wildfire Prepared Home designation, which admitted carriers have rewarded "
+                  f"with discounts of {F['ibhs_50']['number'].lower()}; on the FAIR Plan the discount stack reaches {F['fair_stack_164']['number']}. "
+                  "A non-combustible reinforced concrete envelope addresses the structure-level measures by construction, but the discount is granted "
+                  "on the documented compliance of the whole parcel, Zone 0 included, and it varies by carrier."),
+        })
+    if "sfw_3_layers" in F and "ibhs_2_tiers" in F and "zone0_5ft" in F:
+        faq.append({
+            "q": "How do you build a new home in California that insurers will cover?",
+            "a": (f"Design the underwriting file together with the house. The Department of Insurance framework weighs "
+                  f"{F['sfw_3_layers']['number']}: the structure, the parcel and the community. In practice that means a Class A roof, ember-resistant "
+                  f"vents and enclosed eaves; a {F['zone0_5ft']['number']} non-combustible Zone 0 around the building; and, for the "
+                  f"largest discounts, one of the {F['ibhs_2_tiers']['number']} of the IBHS Wildfire Prepared Home designation, documented before the "
+                  "first submission to a carrier."),
+        })
+    if "fair_plan_limit" in F and "fair_plan_hike" in F and "reopen_2" in F and "fair_low_risk" in F:
+        faq.append({
+            "q": "What are the alternatives to the FAIR Plan for a new luxury home?",
+            "a": (f"The first alternative is the admitted market: on September 18, 2026 the Department of Insurance announced that "
+                  f"{F['reopen_2']['number']} major carriers, State Farm and Allstate, have filed to write new residential policies again, and admitted "
+                  "carriers are the ones required to credit wildfire mitigation in their rates. The FAIR Plan remains the fallback, with a "
+                  f"{F['fair_plan_limit']['number']} limit per building and a {F['fair_plan_hike']['number']} rate increase in October 2026; "
+                  f"{F['fair_low_risk']['number']} new FAIR Plan policies in 396 ZIP codes were rated low-risk by the plan itself, which shows how many "
+                  "owners land there for lack of an offer rather than because of the home. A new house that documents its mitigation from the drawings "
+                  "is the one an admitted carrier can say yes to."),
         })
     if "zone0_5ft" in F:
         faq.append({
@@ -240,8 +277,8 @@ def build_faq(F: Dict[str, dict], settings: dict) -> List[dict]:
     if price:
         faq.append({
             "q": "How does My Villa approach an insurable home?",
-            "a": (f"We design reinforced concrete villas for the Los Angeles hills and coast, engineered to meet the Safer from Wildfires measures natively rather than as retrofits, "
-                  f"with pricing {price}. The projects shown on our site are concept designs and renders; a private briefing is the first step."),
+            "a": (f"We design reinforced concrete villas for the Los Angeles hills and coast, engineered to meet the Safer from Wildfires measures natively rather than as retrofits. "
+                  f"Pricing: {price}. The projects shown on our site are concept designs and renders; a private briefing is the first step."),
         })
     return faq
 
@@ -307,6 +344,10 @@ def render(arts: List[dict], F: Dict[str, dict], tracker: Optional[dict], settin
             f"{escape(F['state_farm_paused']['number'])}, has kept new homeowner business paused. Capacity, not only price, is the constraint: a "
             "documented, certifiable home is the submission an underwriter can say yes to. "
             f"{cite(F['state_farm_paused'])}</p>"
+            + ((f"<p>On September 18, 2026 the California Department of Insurance announced that {escape(F['reopen_2']['number'])} major carriers, "
+                "State Farm and Allstate, have filed plans to begin writing new residential policies again. A filing is an intention submitted to the "
+                "regulator, not an open door: eligibility, inspections and how mitigation is credited are set in the filings themselves. "
+                f"{cite(F['reopen_2'])}</p>") if "reopen_2" in F else "")
         )
     if tracker:
         insurers.append(

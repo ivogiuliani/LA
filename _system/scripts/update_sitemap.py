@@ -66,7 +66,7 @@ STATIC_ENTRIES = [
     {"loc": f"{BASE_URL}/research/westside-rebuild-tracker.html", "file": "research/westside-rebuild-tracker.html", "lastmod": None, "changefreq": "weekly", "priority": "0.8"},
     # Audit 2026-10-13: editorial standards (sourcing / corrections policy)
     {"loc": f"{BASE_URL}/editorial-standards.html", "file": "editorial-standards.html", "lastmod": None, "changefreq": "yearly", "priority": "0.4"},
-    {"loc": f"{BASE_URL}/privacy.html", "file": "privacy.html", "lastmod": None, "changefreq": "yearly", "priority": "0.3"},
+    # privacy.html è noindex: fuori dalla sitemap (audit 2026-11-13)
 ]
 
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}")

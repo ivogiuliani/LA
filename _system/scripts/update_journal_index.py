@@ -289,6 +289,59 @@ SECTIONS = {
 }
 
 
+# Hub intros (audit SEO/GEO 2026-11-13): each category page opens with a short
+# descriptive paragraph and carries its own meta description instead of a
+# generic "N notes" line. Voice: My Villa, first person plural; no new facts.
+SECTION_INTROS = {
+    "insurance": "How California's home insurance market shapes what can be built in Los Angeles: the FAIR Plan, carrier filings, IBHS Wildfire Prepared Home and the Safer from Wildfires discounts. Each note reads a primary source and closes with what it means for a new reinforced concrete home.",
+    "materials": "Reinforced concrete, non-combustible assemblies, fire ratings and construction cost: what the materials of a house decide about its resilience, its upkeep and its insurance premium in California.",
+    "concrete_arch": "Concrete houses worth studying, from Tadao Ando and Peter Zumthor to new work in California, and what fair-faced concrete does for light, proportion and permanence in a luxury home.",
+    "permits": "Building codes, the California WUI code, rebuild permits and local policy in Los Angeles County: what changes, when, and what it means for anyone planning a new home.",
+    "market": "Sales, listings and price signals in Malibu, Beverly Hills, Bel Air and the Los Angeles Westside, read through one question: what the luxury buyer is paying for now.",
+    "climate": "Wildfire, heat and long-term risk in Southern California, and the design answers to them: thermal mass, bioclimatic design and homes built to remain.",
+}
+SECTION_META = {
+    "insurance": "FAIR Plan, carrier filings, IBHS and wildfire discounts: how California's insurance market shapes what can be built and insured in Los Angeles.",
+    "materials": "Reinforced concrete, non-combustible assemblies, fire ratings and cost: how a home's materials decide its resilience and its premium in California.",
+    "concrete_arch": "Concrete houses worth studying, from Tadao Ando and Zumthor to new California work: what fair-faced concrete does for light and permanence.",
+    "permits": "Building codes, the California WUI code, rebuild permits and Los Angeles County policy: what changes and what it means for a new home.",
+    "market": "Sales, listings and price signals in Malibu, Beverly Hills, Bel Air and the LA Westside: what the luxury buyer is paying for now.",
+    "climate": "Wildfire, heat and long-term risk in Southern California, and the design answers: thermal mass, bioclimatic design, homes built to remain.",
+}
+OG_IMAGE = "https://myvilla.la/img/hero-og.jpg"
+
+
+def social_meta(title, description, url):
+    """Open Graph + Twitter Card tags for the Journal index and category hubs."""
+    return (
+        '<meta property="og:type" content="website">\n'
+        f'<meta property="og:url" content="{url}">\n'
+        f'<meta property="og:title" content="{esc(title)}">\n'
+        f'<meta property="og:description" content="{esc(description)}">\n'
+        '<meta property="og:site_name" content="My Villa">\n'
+        f'<meta property="og:image" content="{OG_IMAGE}">\n'
+        '<meta property="og:image:width" content="1200">\n'
+        '<meta property="og:image:height" content="630">\n'
+        '<meta property="og:locale" content="en_US">\n'
+        '<meta name="twitter:card" content="summary_large_image">\n'
+        f'<meta name="twitter:title" content="{esc(title)}">\n'
+        f'<meta name="twitter:description" content="{esc(description)}">\n'
+        f'<meta name="twitter:image" content="{OG_IMAGE}">'
+    )
+
+
+def item_list_json(articles, limit=30):
+    """schema.org ItemList of the given articles (newest first as passed in)."""
+    return json.dumps({
+        "@type": "ItemList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i + 1,
+             "url": f"https://myvilla.la/blog/{a['slug']}.html", "name": a["title"]}
+            for i, a in enumerate(articles[:limit]) if a.get("slug")
+        ],
+    }, ensure_ascii=False).replace("</", "<\\/")
+
+
 def find_hero_image(slug, blog_dir=None):
     """Return the root-absolute URL path of the hero image for this slug, or None.
 
@@ -713,6 +766,7 @@ def render_index_html(articles):
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="https://myvilla.la/blog/">
 <link rel="alternate" type="application/atom+xml" title="My Villa Journal" href="https://myvilla.la/feed.xml">
+{social_meta("My Villa Journal — Building in Los Angeles", "Perspectives on building in Los Angeles. Insurance, materials, regulation, and resilience — grounded in data, informed by daily monitoring.", "https://myvilla.la/blog/")}
 <script type="application/ld+json">
 {{
   "@context": "https://schema.org",
@@ -725,6 +779,15 @@ def render_index_html(articles):
       "description": "Perspectives on building in Los Angeles. Insurance, materials, regulation, and resilience — grounded in data, informed by daily monitoring.",
       "inLanguage": "en-US",
       "isPartOf": {{"@id": "https://myvilla.la/#website"}},
+      "publisher": {{"@id": "https://myvilla.la/#organization"}},
+      "mainEntity": {item_list_json(articles)}
+    }},
+    {{
+      "@type": "Blog",
+      "@id": "https://myvilla.la/blog/#blog",
+      "url": "https://myvilla.la/blog/",
+      "name": "My Villa Journal",
+      "inLanguage": "en-US",
       "publisher": {{"@id": "https://myvilla.la/#organization"}}
     }},
     {{
@@ -994,6 +1057,11 @@ def render_category_page(section_id, articles, style_block):
     """Render a dedicated category page with articles grouped by month."""
     sec = SECTIONS.get(section_id, SECTIONS["materials"])
     total = len(articles)
+    intro = SECTION_INTROS.get(section_id, "")
+    cat_desc = (SECTION_META.get(section_id) or intro or f"{sec['name']}: Journal notes on building reinforced concrete villas in Los Angeles, with sources and My Villa's perspective.")
+    if len(cat_desc) > 158:
+        cat_desc = cat_desc[:156].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+    cat_url = f"https://myvilla.la/blog/category/{section_id}.html"
 
     # Group by month
     month_groups = group_by_month(articles)
@@ -1028,10 +1096,11 @@ def render_category_page(section_id, articles, style_block):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>{esc(sec['name'])} — My Villa Journal</title>
-<meta name="description" content="{esc(sec['name'])}: {total} Journal notes on building reinforced concrete villas in Los Angeles, with sources and My Villa's perspective.">
+<meta name="description" content="{esc(cat_desc)}">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
-<link rel="canonical" href="https://myvilla.la/blog/category/{section_id}.html">
+<link rel="canonical" href="{cat_url}">
 <link rel="alternate" type="application/atom+xml" title="My Villa Journal" href="https://myvilla.la/feed.xml">
+{social_meta(sec['name'] + " — My Villa Journal", cat_desc, cat_url)}
 <script type="application/ld+json">
 {{
   "@context": "https://schema.org",
@@ -1041,10 +1110,11 @@ def render_category_page(section_id, articles, style_block):
       "@id": "https://myvilla.la/blog/category/{section_id}.html#collection",
       "url": "https://myvilla.la/blog/category/{section_id}.html",
       "name": {json.dumps(sec['name'] + " — My Villa Journal")},
-      "description": {json.dumps(f"{sec['name']}: {total} Journal notes on building reinforced concrete villas in Los Angeles.")},
+      "description": {json.dumps(intro or f"{sec['name']}: Journal notes on building reinforced concrete villas in Los Angeles.", ensure_ascii=False)},
       "inLanguage": "en-US",
       "isPartOf": {{"@id": "https://myvilla.la/#website"}},
-      "publisher": {{"@id": "https://myvilla.la/#organization"}}
+      "publisher": {{"@id": "https://myvilla.la/#organization"}},
+      "mainEntity": {item_list_json(articles, limit=50)}
     }},
     {{
       "@type": "BreadcrumbList",
@@ -1068,6 +1138,7 @@ def render_category_page(section_id, articles, style_block):
 .category-breadcrumb a:hover {{ color: var(--terracotta); }}
 .category-title {{ font-family: var(--serif); font-size: clamp(44px, 6vw, 68px); font-weight: 300; color: var(--offblack); margin-bottom: 16px; letter-spacing: -0.01em; }}
 .category-sub {{ font-family: var(--sans); font-size: 14px; color: var(--stone-grey); letter-spacing: 0.04em; }}
+.category-intro {{ font-family: var(--serif); font-size: 20px; line-height: 1.55; color: var(--charcoal); max-width: 680px; margin: 0 auto 22px; }}
 .category-accent-bar {{ width: 60px; height: 3px; background: {sec['accent']}; margin: 28px auto; }}
 .month-group {{ max-width: 1280px; margin: 0 auto 60px; padding: 0 40px; }}
 .month-header {{ display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid rgba(192, 180, 165, 0.3); margin-bottom: 28px; }}
@@ -1112,6 +1183,7 @@ def render_category_page(section_id, articles, style_block):
   </div>
   <h1 class="category-title">{esc(sec['name'])}</h1>
   <div class="category-accent-bar"></div>
+  {('<p class="category-intro">' + esc(intro) + '</p>') if intro else ''}
   <div class="category-sub">{total} article{'s' if total != 1 else ''} &middot; Updated perspectives on this topic</div>
 </section>
 

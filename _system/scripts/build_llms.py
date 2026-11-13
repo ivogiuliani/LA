@@ -100,6 +100,17 @@ def latest_articles(limit: int) -> List[Dict]:
 
 
 def home_meta_description() -> str:
+    # 2026-11-13: la meta description della homepage LIVE viene prima del file
+    # di knowledge, che conservava una versione vecchia ("My Villa builds…
+    # Rebuilding luxury homes in…") in contrasto con i "Facts to get right".
+    try:
+        live = (ROOT_DIR / "index.html").read_text(encoding="utf-8")
+        m = re.search(r'<meta name="description" content="([^"]+)"', live)
+        if m:
+            import html as _html
+            return _html.unescape(m.group(1)).strip()
+    except Exception:
+        pass
     try:
         txt = SITE_CONTENT.read_text(encoding="utf-8")
         m = re.search(r"\[META description\]:\s*(.+)", txt)
@@ -137,6 +148,8 @@ def build(limit: int = 20) -> str:
         a(f"- Official summary: {md}")
     a(f"- Founder: {can['founder_name']} — {can['founder_title']}.")
     a(f"- {can['architect_of_record_note']}")
+    a("- Role: My Villa is an architecture and design practice, not a general contractor. "
+      "The projects shown on the site are concept designs and renders.")
     a("- Studio network: IT'S Architecture (Rome · Paris · LA opening soon). "
       "Engineering partners: Transsolar KlimaEngineering (bioclimatic design), "
       "BURO MILAN (structure), DGU (architectural concrete — the contractor behind "

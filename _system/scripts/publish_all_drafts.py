@@ -2389,8 +2389,12 @@ def main(argv=None):
         # GACONFIG sulle pagine nuove o rigenerate (Journal compreso).
         # 2026-10-13: seo_audit_fixes --webp = hero WebP + width/height +
         # editorial-standards link on every published article (idempotent).
+        # 2026-11-13: seo_enrich_articles = "Continue reading" (link tra
+        # articoli), breadcrumb/categoria, <time>, JSON-LD senza entità HTML
+        # + citation/articleSection/wordCount (idempotente, senza LLM).
         for s in ("seo_audit_fixes.py --webp", "update_journal_index.py", "crosslink_pillars.py",
                   "update_pillar_journal.py", "fix_article_schema.py",
+                  "seo_enrich_articles.py",
                   "inject_article_cta.py", "build_answer_page.py",
                   "inject_contact_links.py", "inject_conversion_layer.py --sweep",
                   "build_llms.py", "update_sitemap.py",
