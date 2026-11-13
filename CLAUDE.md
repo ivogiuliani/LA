@@ -40,6 +40,12 @@
 - **Stato**: tutte le pagine `noindex,nofollow`, canonical → root, `Disallow: /v3/` in robots.txt, non linkate, fuori sitemap. Layer conversione applicato con `python3 _system/scripts/inject_conversion_layer.py --shared v3/*.html` (riapplicabile). **Promuovere a root SOLO su autorizzazione esplicita di Ivo.** Le pipeline quotidiane non toccano `v3/`.
 - Preview locale: copiare `v3/`, `img/`, `privacy.html`, `briefing-received.html` in `/tmp/myvilla-preview` e usare la config `myvilla-static` di `.claude/launch.json`.
 
+## Posizionamento: studio, non costruttore (2026-11-13)
+- My Villa è uno **studio di architettura e design**, non un general contractor, e non ha ancora consegnato una villa (i progetti mostrati sono concept e render).
+- Nei titoli, negli H1, nello schema e nel testo che descrive My Villa **non usare "builder", "builds", "we build", "delivers"**: usare "designs", "architects", "design". La costruzione è di "licensed local builders/contractors under our design direction"; l'architecture of record è di un architetto con licenza californiana.
+- Gli URL storici con "builder" (`malibu-custom-home-builder.html`, `italian-villa-california-builder.html`, `icf-concrete-home-builder-los-angeles.html`) **restano invariati**: cambiarli farebbe perdere i link acquisiti.
+- "builder" resta ammesso come termine generico (es. "your builder's choice of structural system") e nella FAQ "Is My Villa a home builder or an architecture studio?" presente su ogni pillar.
+
 ## SEO
 - Ogni pagina pubblicata deve avere: meta description, keywords, canonical, OG, Twitter Card, Schema.org (Article + BreadcrumbList)
 - Aggiornare sempre `sitemap.xml` dopo ogni pubblicazione (include anche le 6 category hubs)

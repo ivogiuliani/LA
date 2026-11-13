@@ -22,24 +22,24 @@ BASE = "https://myvilla.la"
 PILLARS = {
     "malibu": {
         "url": f"{BASE}/malibu-custom-home-builder.html",
-        "title": "Luxury Home Builder in Malibu",
+        "title": "Luxury Home Architects in Malibu",
         "blurb": "fire-resilient Italian villas on the coast — our approach "
                  "and process.",
     },
     "italian": {
         "url": f"{BASE}/italian-villa-california-builder.html",
-        "title": "Italian Villa Builder in California",
+        "title": "Italian Villa Architects in California",
         "blurb": "Mediterranean villas engineered to European standards.",
     },
     "beverly": {
         "url": f"{BASE}/beverly-hills-custom-home.html",
-        "title": "Custom Home Builder in Beverly Hills &amp; Bel Air",
+        "title": "Custom Home Architects in Beverly Hills &amp; Bel Air",
         "blurb": "reinforced-concrete luxury homes for LA&#x27;s estate "
                  "districts.",
     },
     "icf": {
         "url": f"{BASE}/icf-concrete-home-builder-los-angeles.html",
-        "title": "Concrete Home Builder in Los Angeles",
+        "title": "Concrete Home Design in Los Angeles",
         "blurb": "reinforced concrete &amp; ICF custom villas: approach, "
                  "materials, process.",
     },

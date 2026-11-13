@@ -663,7 +663,7 @@ th.num {{ font-family: var(--sans); font-size: 10.5px; color: var(--stone-grey);
 
 <footer class="footer">
   <div class="footer-copy">© {date_modified[:4]} My Villa · <a href="index.html">Home</a> · <a href="team.html">Team</a> · <a href="blog/">Journal</a> · <a href="research/westside-rebuild-tracker.html">Rebuild Tracker</a> · <a href="privacy.html">Privacy Policy</a></div>
-  <div>Luxury home builder · Malibu · Beverly Hills · Bel Air · Brentwood · Hidden Hills · Calabasas · Westside Los Angeles</div>
+  <div>Luxury home design · Malibu · Beverly Hills · Bel Air · Brentwood · Hidden Hills · Calabasas · Westside Los Angeles</div>
 </footer>
 
 </body>
