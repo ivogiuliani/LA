@@ -8048,6 +8048,66 @@
       "action_type": "user_dismissed",
       "url": "https://www.carriermanagement.com/news/2026/11/12/294089.htm",
       "note": "auto-sent pitch to newsdesk@carriermanagement.com"
+    },
+    {
+      "date_first_reported": "2026-11-14",
+      "source": "user_dismissed",
+      "title": "Una villa minimalista, sulle colline di Hollywood, dove le pareti di vetro incor",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.ad-italia.it/article/villa-minimalista-los-angeles-hollywood-hills-arte-design/",
+      "note": "auto-sent pitch to queued:sonia.braga@ad-italia.it"
+    },
+    {
+      "date_first_reported": "2026-11-14",
+      "source": "user_dismissed",
+      "title": "Home for sale: 73 Beverly Park Lane, Beverly Hills, CA 90210 - Los Angeles Times",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.latimes.com/hotproperty/home-tours/story/73-beverly-park-lane-beverly-hills-ca-90210",
+      "note": "auto-sent pitch to studios@latimes.com"
+    },
+    {
+      "date_first_reported": "2026-11-14",
+      "source": "user_dismissed",
+      "title": "California Orders Insurance Nonrenewal Moratorium for 50,000 Following Dove Fire",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.insurancejournal.com/news/west/2026/11/13/892491.htm",
+      "note": "auto-sent pitch to newsdesk@insurancejournal.com"
+    },
+    {
+      "date_first_reported": "2026-11-14",
+      "source": "user_dismissed",
+      "title": "Julia Roberts planned a recycled-materials Malibu home in 2007; in 2025, it rema",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.hindustantimes.com/world-news/us-news/julia-roberts-planned-a-recycled-materials-malibu-home-in-2007-in-2025-it-remained-her-familys-primary-residence-101794386265095.html",
+      "note": "auto-sent pitch to abhishek.prasad@partner.htdigital.in"
+    },
+    {
+      "date_first_reported": "2026-11-14",
+      "source": "user_dismissed",
+      "title": "Kim Kardashian’s former Beverly Hills mansion comes to market",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://therealdeal.com/la/2026/11/13/former-beverly-hills-home-of-kim-kardashian-listed/",
+      "note": "auto-sent pitch to la-news@therealdeal.com"
+    },
+    {
+      "date_first_reported": "2026-11-14",
+      "source": "user_dismissed",
+      "title": "Could California take over wildfire insurance? Jane Kim wants to try as new insu",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://insurancenewsnet.com/oarticle/could-california-take-over-wildfire-insurance-jane-kim-wants-to-try-as-new-insurance-commissioner",
+      "note": "auto-sent pitch to editor@insurancenewsnet.com"
     }
   ],
   "reported": [

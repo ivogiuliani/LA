@@ -234,11 +234,11 @@
     }
   },
   "insurancejournal.com": {
-    "cached_at": 1791938308.493813,
+    "cached_at": 1794620231.6794317,
     "result": {
       "email": "newsdesk@insurancejournal.com",
       "source": "article_scraped",
-      "path": "/news/national/2026/10/08/888357.htm",
+      "path": "/news/west/2026/11/13/892491.htm",
       "score": 7,
       "in_mailto": true
     }
@@ -1663,7 +1663,7 @@
     "result": null
   },
   "johnhartrealestate.com": {
-    "cached_at": 1788415756.392802,
+    "cached_at": 1794620223.8555362,
     "result": null
   },
   "labusinessjournal.com": {
@@ -2095,7 +2095,7 @@
     }
   },
   "financialcontent.com": {
-    "cached_at": 1792028664.691075,
+    "cached_at": 1794620249.3408241,
     "result": null
   },
   "toolboxguru.com": {
@@ -2684,6 +2684,14 @@
   },
   "brushwoodmedianetwork.com": {
     "cached_at": 1794535429.6967456,
+    "result": null
+  },
+  "ad-italia.it": {
+    "cached_at": 1794620219.632618,
+    "result": null
+  },
+  "propertycasualty360.com": {
+    "cached_at": 1794620247.2906678,
     "result": null
   }
 }
