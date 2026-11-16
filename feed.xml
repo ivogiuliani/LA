@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-11-13T00:00:00Z</updated>
+  <updated>2026-11-16T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>French Mediterranean Villa in California: Design That Endures</title>
+    <link href="https://myvilla.la/blog/mediterranean-villa-california-design-that-endures.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/mediterranean-villa-california-design-that-endures.html</id>
+    <published>2026-11-16T00:00:00Z</published>
+    <updated>2026-11-16T00:00:00Z</updated>
+    <summary>What makes a Mediterranean villa in California feel timeless, not dated? Inside a 6,527 sq ft French Mediterranean estate and the design logic that lasts.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/mediterranean-villa-california-design-that-endures-hero.jpg"/>
+  </entry>
   <entry>
     <title>Mid-Century Luxury Homes in Beverly Hills: The Trousdale Rule</title>
     <link href="https://myvilla.la/blog/mid-century-luxury-homes-beverly-hills-trousdale.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-09-16T00:00:00Z</updated>
     <summary>What does a luxury home renovation in Bel Air really cost? A 98-year-old Spanish-style estate lists at $32.5M after a yearslong reno — an architect's read.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/luxury-home-renovation-bel-air-32-5m-benchmark-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Reinforced Concrete Homes in California: The Ando Lesson</title>
-    <link href="https://myvilla.la/blog/reinforced-concrete-homes-california-ando-benesse-house.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/reinforced-concrete-homes-california-ando-benesse-house.html</id>
-    <published>2026-09-14T00:00:00Z</published>
-    <updated>2026-09-14T00:00:00Z</updated>
-    <summary>Can exposed concrete feel warm in a home? Reinforced concrete homes in California can borrow from Ando's Benesse House — one material doing three jobs at once.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/reinforced-concrete-homes-california-ando-benesse-house-hero.jpg"/>
   </entry>
 </feed>

@@ -18,7 +18,7 @@
     }
   },
   "wallpaper.com": {
-    "cached_at": 1793756395.817609,
+    "cached_at": 1794791660.9781609,
     "result": null
   },
   "prnewswire.com": {
@@ -254,7 +254,7 @@
     }
   },
   "latimes.com": {
-    "cached_at": 1792028688.4806798,
+    "cached_at": 1794791646.7823253,
     "result": {
       "email": "tips@latimes.com",
       "source": "article_scraped",
@@ -486,7 +486,7 @@
     "result": null
   },
   "yahoo.com": {
-    "cached_at": 1794186303.4322052,
+    "cached_at": 1794791718.2293751,
     "result": null
   },
   "oakviewins.com": {
@@ -835,7 +835,7 @@
     "result": null
   },
   "admiddleeast.com": {
-    "cached_at": 1792373542.0223339,
+    "cached_at": 1794791676.8139265,
     "result": null
   },
   "interiordesign.net": {
@@ -1005,7 +1005,7 @@
     }
   },
   "yankodesign.com": {
-    "cached_at": 1786082947.136482,
+    "cached_at": 1794791682.583024,
     "result": null
   },
   "homesandgardens.com": {
@@ -2145,7 +2145,7 @@
     "result": null
   },
   "zoomtventertainment.com": {
-    "cached_at": 1792806684.4727123,
+    "cached_at": 1794791667.0675268,
     "result": null
   },
   "sagesure.com": {
@@ -2724,6 +2724,14 @@
   },
   "suretyfirst.com": {
     "cached_at": 1794711409.0100362,
+    "result": null
+  },
+  "dilei.it": {
+    "cached_at": 1794791692.6496756,
+    "result": null
+  },
+  "chroniques-architecture.com": {
+    "cached_at": 1794791715.3376043,
     "result": null
   }
 }

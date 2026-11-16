@@ -227,6 +227,15 @@
       ],
       "last_bounced_at": "2026-11-06T01:49:15+00:00",
       "reason": "550 Requested action not taken: mailbox unavailable For explanation visit https://postmaster.mail.com/en/case?c=r1601&i=ip&v=209.85.214.170&r=1Myf3r-1wZNSw0a5N-013Y"
+    },
+    "my@email.com": {
+      "first_bounced_at": "2026-11-15T02:57:28+00:00",
+      "bounce_count": 1,
+      "source_threads": [
+        "1a1dd236496dafec"
+      ],
+      "last_bounced_at": "2026-11-15T02:57:28+00:00",
+      "reason": "550 Requested action not taken: mailbox unavailable For explanation visit https://postmaster.mail.com/en/case?c=r1601&i=ip&v=209.85.216.50&r=1MkmvZ-1wjl5j1CIh-00qYM"
     }
   }
 }
