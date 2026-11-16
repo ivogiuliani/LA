@@ -260,10 +260,39 @@
       },
       "cost_est_usd": 0.0,
       "queries": 20
+    },
+    {
+      "date": "2026-11-16",
+      "engines": {
+        "claude": {
+          "answered": 0,
+          "errors": 0,
+          "cited": 0,
+          "mentioned": 0,
+          "citation_share": null,
+          "mention_share": null,
+          "wrong_claims": 0,
+          "brand_queries_cited": 0,
+          "brand_queries": 0
+        },
+        "gemini": {
+          "answered": 0,
+          "errors": 20,
+          "cited": 0,
+          "mentioned": 0,
+          "citation_share": null,
+          "mention_share": null,
+          "wrong_claims": 0,
+          "brand_queries_cited": 0,
+          "brand_queries": 0
+        }
+      },
+      "cost_est_usd": 0.0,
+      "queries": 20
     }
   ],
   "latest": {
-    "date": "2026-11-09",
+    "date": "2026-11-16",
     "engines": {
       "claude": {
         "answered": 0,
@@ -291,5 +320,5 @@
     "cost_est_usd": 0.0,
     "queries": 20
   },
-  "updated_at": "2026-11-09T01:21:03+00:00"
+  "updated_at": "2026-11-16T01:30:12+00:00"
 }
