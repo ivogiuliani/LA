@@ -8,11 +8,11 @@
     "result": null
   },
   "beinsure.com": {
-    "cached_at": 1786514994.8624122,
+    "cached_at": 1794888553.319838,
     "result": {
       "email": "go@beinsure.com",
       "source": "article_scraped",
-      "path": "/news/california-wildfire-insurance-reform-should-focus-on-risk-reduction/",
+      "path": "/news/californias-new-insurance-commissioner-jane-kim-proposes-state-wildfire-insurance-coverage/",
       "score": 2,
       "in_mailto": false
     }
@@ -38,7 +38,7 @@
     "result": null
   },
   "malibutimes.com": {
-    "cached_at": 1794186301.5232024,
+    "cached_at": 1794888691.6369054,
     "result": null
   },
   "christiesresocal.com": {
@@ -58,11 +58,11 @@
     "result": null
   },
   "substack.com": {
-    "cached_at": 1794186299.4342082,
+    "cached_at": 1794888494.491214,
     "result": null
   },
   "robbreport.com": {
-    "cached_at": 1792200674.9982805,
+    "cached_at": 1794888463.2403889,
     "result": {
       "email": "editorial@robbreport.com",
       "source": "contact_page",
@@ -161,7 +161,7 @@
     "result": null
   },
   "hoodline.com": {
-    "cached_at": 1794282468.0567613,
+    "cached_at": 1794888486.0190656,
     "result": null
   },
   "therealdeal.com": {
@@ -565,19 +565,19 @@
     "result": null
   },
   "luxesource.com": {
-    "cached_at": 1792200757.1600296,
+    "cached_at": 1794888656.7655926,
     "result": null
   },
   "modernluxury.com": {
-    "cached_at": 1792200765.9392538,
+    "cached_at": 1794888666.2227097,
     "result": null
   },
   "laconfidentialmag.com": {
-    "cached_at": 1792200778.1785493,
+    "cached_at": 1794888679.948087,
     "result": null
   },
   "hauteresidence.com": {
-    "cached_at": 1792200785.0733376,
+    "cached_at": 1794888686.8420281,
     "result": null
   },
   "lamag.com": {
@@ -640,7 +640,7 @@
     "result": null
   },
   "bhcourier.com": {
-    "cached_at": 1792200805.5080452,
+    "cached_at": 1794888693.5628555,
     "result": null
   },
   "palipost.com": {
@@ -664,11 +664,11 @@
     }
   },
   "toacorn.com": {
-    "cached_at": 1792200816.9099872,
+    "cached_at": 1794888705.3418071,
     "result": null
   },
   "montecitojournal.net": {
-    "cached_at": 1792200817.893952,
+    "cached_at": 1794888706.492373,
     "result": null
   },
   "consumerwatchdog.org": {
@@ -1471,7 +1471,7 @@
     }
   },
   "designboom.com": {
-    "cached_at": 1794013502.6393824,
+    "cached_at": 1794888473.5227494,
     "result": null
   },
   "archidust.com": {
@@ -2733,5 +2733,51 @@
   "chroniques-architecture.com": {
     "cached_at": 1794791715.3376043,
     "result": null
+  },
+  "google.com": {
+    "cached_at": 1794888480.8308465,
+    "result": null
+  },
+  "odysseytraveller.com": {
+    "cached_at": 1794888493.6740026,
+    "result": {
+      "email": "info@odysseytraveller.com",
+      "source": "contact_page",
+      "path": "/contact",
+      "score": 11,
+      "in_mailto": true
+    }
+  },
+  "cottagesgardens.com": {
+    "cached_at": 1794888505.5626073,
+    "result": null
+  },
+  "designdestinations.org": {
+    "cached_at": 1794888514.8450792,
+    "result": null
+  },
+  "sleepermagazine.com": {
+    "cached_at": 1794888535.6096628,
+    "result": null
+  },
+  "thepinnacleslist.com": {
+    "cached_at": 1794888544.4745908,
+    "result": {
+      "email": "alexander@thepinnacleslist.com",
+      "source": "article_scraped",
+      "path": "/types-of-villas/",
+      "score": 2,
+      "in_mailto": false
+    }
+  },
+  "edinburgpost.com": {
+    "cached_at": 1794888554.0512676,
+    "result": {
+      "email": "info@edinburgpost.com",
+      "source": "article_scraped",
+      "path": "/the-new-state-insurance-commissioner-has-a-plan-to-overhaul-the-troubled-home-insurance-market-will-it-work/",
+      "score": 11,
+      "in_mailto": true
+    }
   }
 }

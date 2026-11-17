@@ -8218,6 +8218,86 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/listing/1111-somera-rd/",
       "note": "auto-sent pitch to mkays@carolwoodre.com"
+    },
+    {
+      "date_first_reported": "2026-11-17",
+      "source": "user_dismissed",
+      "title": "Mortgage Mogul Anthony Hsieh Lists His Orange County Mansion at a Record-Breakin",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/anthony-hsieh-house-orange-county-newport-coast-1238841546/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-11-17",
+      "source": "user_dismissed",
+      "title": "This $4.3M Home in Tuscany Comes With a Small Sangiovese Vineyard",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/tuscany-chianti-villa-with-sangiovese-vineyard-1238836778/",
+      "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-11-17",
+      "source": "user_dismissed",
+      "title": "Famous Buildings in Tokyo: 12 Landmarks Architects Study | illustrarch",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://illustrarch.com/famous-buildings/120806-famous-tokyo-buildings.html",
+      "note": "auto-sent pitch to contact@illustrarch.com"
+    },
+    {
+      "date_first_reported": "2026-11-17",
+      "source": "user_dismissed",
+      "title": "Shirley MacLaine at Home: 10 Photos of the Golden Age Great’s Life Behind the Sc",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/shirley-maclaine-at-home-images-of-the-golden-age-greats-life-behind-the-scenes",
+      "note": "auto-sent pitch to queued:eleni.gage@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-11-17",
+      "source": "user_dismissed",
+      "title": "21_21 Design Sight, Roppongi: A Guide | Odyssey Traveller",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.odysseytraveller.com/articles/21-21-design-sight-roppongi/",
+      "note": "auto-sent pitch to queued:marco.s@odysseytraveller.com"
+    },
+    {
+      "date_first_reported": "2026-11-17",
+      "source": "user_dismissed",
+      "title": "Omotesando and Harajuku: Tokyo Architecture and Street Culture",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.odysseytraveller.com/articles/omotesando-harajuku-tokyo/",
+      "note": "auto-sent pitch to queued:marco.s@odysseytraveller.com"
+    },
+    {
+      "date_first_reported": "2026-11-17",
+      "source": "user_dismissed",
+      "title": "Types of Villas: 12 Styles, Features & USA Prices (2026 Guide)",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://thepinnacleslist.com/types-of-villas/",
+      "note": "auto-sent pitch to alexander@thepinnacleslist.com"
+    },
+    {
+      "date_first_reported": "2026-11-17",
+      "source": "user_dismissed",
+      "title": "The new state insurance commissioner has a plan to overhaul the troubled home in",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.edinburgpost.com/the-new-state-insurance-commissioner-has-a-plan-to-overhaul-the-troubled-home-insurance-market-will-it-work/",
+      "note": "auto-sent pitch to queued:edinburg.report@edinburgpost.com"
     }
   ],
   "reported": [
