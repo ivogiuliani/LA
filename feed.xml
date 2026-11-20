@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-11-16T00:00:00Z</updated>
+  <updated>2026-11-20T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>Malibu Luxury Real Estate 2026: What $71M in Listings Signals</title>
+    <link href="https://myvilla.la/blog/malibu-luxury-real-estate-2026-schmidt-brin-listings.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/malibu-luxury-real-estate-2026-schmidt-brin-listings.html</id>
+    <published>2026-11-20T00:00:00Z</published>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <summary>Wondering where Malibu luxury real estate is heading in 2026? Two Google founders just listed $71M in beachfront and Point Dume homes — here's what it signals.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/malibu-luxury-real-estate-2026-schmidt-brin-listings-hero.jpg"/>
+  </entry>
   <entry>
     <title>French Mediterranean Villa in California: Design That Endures</title>
     <link href="https://myvilla.la/blog/mediterranean-villa-california-design-that-endures.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-09-18T00:00:00Z</updated>
     <summary>Planning custom home design in California? Wright's 1953 Usonian in Michigan, now with Sotheby's, shows how a cantilevered roof and cast block make a system.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/frank-lloyd-wright-concrete-usonian-custom-home-design-california-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Luxury Home Renovation in Bel Air: A $32.5M Benchmark</title>
-    <link href="https://myvilla.la/blog/luxury-home-renovation-bel-air-32-5m-benchmark.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/luxury-home-renovation-bel-air-32-5m-benchmark.html</id>
-    <published>2026-09-16T00:00:00Z</published>
-    <updated>2026-09-16T00:00:00Z</updated>
-    <summary>What does a luxury home renovation in Bel Air really cost? A 98-year-old Spanish-style estate lists at $32.5M after a yearslong reno — an architect's read.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/luxury-home-renovation-bel-air-32-5m-benchmark-hero.jpg"/>
   </entry>
 </feed>

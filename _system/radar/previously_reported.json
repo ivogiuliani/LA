@@ -8298,6 +8298,16 @@
       "action_type": "user_dismissed",
       "url": "https://www.edinburgpost.com/the-new-state-insurance-commissioner-has-a-plan-to-overhaul-the-troubled-home-insurance-market-will-it-work/",
       "note": "auto-sent pitch to queued:edinburg.report@edinburgpost.com"
+    },
+    {
+      "date_first_reported": "2026-11-20",
+      "source": "user_dismissed",
+      "title": "Former Google Co-Founder And CEO List Malibu Properties",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.canyon-news.com/former-google-founder-and-ceo-list-malibu-properties/",
+      "note": "auto-published journal: malibu-luxury-real-estate-2026-schmidt-brin-listings"
     }
   ],
   "reported": [
