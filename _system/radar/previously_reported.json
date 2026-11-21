@@ -8308,6 +8308,36 @@
       "action_type": "user_dismissed",
       "url": "https://www.canyon-news.com/former-google-founder-and-ceo-list-malibu-properties/",
       "note": "auto-published journal: malibu-luxury-real-estate-2026-schmidt-brin-listings"
+    },
+    {
+      "date_first_reported": "2026-11-21",
+      "source": "user_dismissed",
+      "title": "40 AD-Approved Interior Photographers on the West Coast to Book for Your Next Pr",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/interior-photographers-on-the-west-coast",
+      "note": "auto-sent pitch to queued:catherine.dipersico@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-11-21",
+      "source": "user_dismissed",
+      "title": "45 AD-Approved International Interior Photographers to Know for Your Next Projec",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.architecturaldigest.com/story/40-ad-approved-international-interior-photographers",
+      "note": "auto-sent pitch to queued:architectural.digest@architecturaldigest.com"
+    },
+    {
+      "date_first_reported": "2026-11-21",
+      "source": "user_dismissed",
+      "title": "Experts Tell Palisades Homeowners How to Increase Insurability",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://palipost.com/experts-tell-palisades-homeowners-how-to-increase-insurability/",
+      "note": "auto-sent pitch to mypost@palipost.com"
     }
   ],
   "reported": [
