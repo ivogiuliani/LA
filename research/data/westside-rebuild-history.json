@@ -588,5 +588,64 @@
     }
    }
   }
+ },
+ {
+  "retrieved": "2026-11-23",
+  "totals": {
+   "permits_total": 2899,
+   "single_family_dwellings": 1979,
+   "wildfire_rebuild_flagged": 1894,
+   "status": {
+    "In plan check": 966,
+    "Issued (under construction)": 1821,
+    "Completed (CofO / finaled)": 107,
+    "Withdrawn / inactive": 5
+   },
+   "construction_class": {
+    "Type V (wood-frame)": 2678,
+    "Type I/II (non-combustible)": 12,
+    "Type III/IV (mixed / heavy timber)": 4,
+    "Other": 0,
+    "Not stated": 205
+   }
+  },
+  "by_area": {
+   "Pacific Palisades": {
+    "permits_total": 2354,
+    "status": {
+     "In plan check": 669,
+     "Issued (under construction)": 1591,
+     "Completed (CofO / finaled)": 89,
+     "Withdrawn / inactive": 5
+    }
+   },
+   "Brentwood": {
+    "permits_total": 146,
+    "status": {
+     "In plan check": 71,
+     "Issued (under construction)": 70,
+     "Completed (CofO / finaled)": 5,
+     "Withdrawn / inactive": 0
+    }
+   },
+   "Bel Air / Beverly Crest": {
+    "permits_total": 117,
+    "status": {
+     "In plan check": 92,
+     "Issued (under construction)": 23,
+     "Completed (CofO / finaled)": 2,
+     "Withdrawn / inactive": 0
+    }
+   },
+   "Encino / Tarzana": {
+    "permits_total": 282,
+    "status": {
+     "In plan check": 134,
+     "Issued (under construction)": 137,
+     "Completed (CofO / finaled)": 11,
+     "Withdrawn / inactive": 0
+    }
+   }
+  }
  }
 ]
