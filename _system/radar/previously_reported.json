@@ -8338,6 +8338,16 @@
       "action_type": "user_dismissed",
       "url": "https://palipost.com/experts-tell-palisades-homeowners-how-to-increase-insurability/",
       "note": "auto-sent pitch to mypost@palipost.com"
+    },
+    {
+      "date_first_reported": "2026-11-24",
+      "source": "user_dismissed",
+      "title": "This $15 Million Beverly Hills Home Was Once Owned by Warren Beatty and Annette ",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/beatty-bening-former-house-beverly-hills-1238850803/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
     }
   ],
   "reported": [
