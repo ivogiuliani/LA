@@ -5,10 +5,19 @@
   <link href="https://myvilla.la/blog/" rel="alternate" type="text/html"/>
   <link href="https://myvilla.la/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://myvilla.la/blog/</id>
-  <updated>2026-11-20T00:00:00Z</updated>
+  <updated>2026-11-25T00:00:00Z</updated>
   <author><name>My Villa</name><uri>https://myvilla.la</uri></author>
   <icon>https://myvilla.la/img/logos/apple-touch-icon.png</icon>
   <rights>© My Villa</rights>
+  <entry>
+    <title>A $24M Beverly Hills Luxury Estate with a Parisian Soul</title>
+    <link href="https://myvilla.la/blog/beverly-hills-luxury-estate-parisian-design-24m.html" rel="alternate" type="text/html"/>
+    <id>https://myvilla.la/blog/beverly-hills-luxury-estate-parisian-design-24m.html</id>
+    <published>2026-11-25T00:00:00Z</published>
+    <updated>2026-11-25T00:00:00Z</updated>
+    <summary>Curious what a $24M Beverly Hills luxury estate buys in 2026? Inside Jae Omar's La Rêve — a Paris-inspired home of antiques, custom craft, and quiet proportion.</summary>
+    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/beverly-hills-luxury-estate-parisian-design-24m-hero.jpg"/>
+  </entry>
   <entry>
     <title>Malibu Luxury Real Estate 2026: What $71M in Listings Signals</title>
     <link href="https://myvilla.la/blog/malibu-luxury-real-estate-2026-schmidt-brin-listings.html" rel="alternate" type="text/html"/>
@@ -269,14 +278,5 @@
     <updated>2026-09-21T00:00:00Z</updated>
     <summary>Can an insurable home in California still mean a low-risk address? In 396 ZIP codes, 9 in 10 new FAIR Plan policies were rated low-risk by the plan itself.</summary>
     <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/insurable-home-california-fair-plan-low-risk-zip-codes-2026-hero.jpg"/>
-  </entry>
-  <entry>
-    <title>Custom Home Design in California: Wright's 1953 Concrete Usonian</title>
-    <link href="https://myvilla.la/blog/frank-lloyd-wright-concrete-usonian-custom-home-design-california.html" rel="alternate" type="text/html"/>
-    <id>https://myvilla.la/blog/frank-lloyd-wright-concrete-usonian-custom-home-design-california.html</id>
-    <published>2026-09-18T00:00:00Z</published>
-    <updated>2026-09-18T00:00:00Z</updated>
-    <summary>Planning custom home design in California? Wright's 1953 Usonian in Michigan, now with Sotheby's, shows how a cantilevered roof and cast block make a system.</summary>
-    <link rel="enclosure" type="image/jpeg" href="https://myvilla.la/blog/assets/img/frank-lloyd-wright-concrete-usonian-custom-home-design-california-hero.jpg"/>
   </entry>
 </feed>

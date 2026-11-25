@@ -8348,6 +8348,36 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/celebrity-homes/beatty-bening-former-house-beverly-hills-1238850803/",
       "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-11-25",
+      "source": "user_dismissed",
+      "title": "Inside a $24 Million Beverly Hills Estate Inspired by Designer Jae Omar's Time in Paris",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/homes-for-sale/la-reve-jae-omar-beverly-hills-estate-1238858451/",
+      "note": "auto-published journal: beverly-hills-luxury-estate-parisian-design-24m"
+    },
+    {
+      "date_first_reported": "2026-11-25",
+      "source": "user_dismissed",
+      "title": "A 52-Acre Piece of Actor Fred MacMurray’s Former NorCal Ranch Lists for $22 Mill",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/flax-vineyard-estate-northern-california-1238858669/",
+      "note": "auto-sent pitch to queued:wendy.bowman@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-11-25",
+      "source": "user_dismissed",
+      "title": "Residential Safety, Resiliency, Preparedness Permitting Initiative Launches",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://www.canyon-news.com/residential-safety-resiliency-preparedness-permitting-initiative-launches/",
+      "note": "auto-sent pitch to queued:danny.jones@canyon-news.com"
     }
   ],
   "reported": [
