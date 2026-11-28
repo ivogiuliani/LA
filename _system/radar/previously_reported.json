@@ -8418,6 +8418,16 @@
       "action_type": "user_dismissed",
       "url": "https://robbreport.com/shelter/homes-for-sale/fisher-island-penthouse-florida-1238863135/",
       "note": "auto-sent pitch to queued:tori.latham@robbreport.com"
+    },
+    {
+      "date_first_reported": "2026-11-28",
+      "source": "user_dismissed",
+      "title": "Inside Paris Hilton’s $73 Million Property Portfolio",
+      "score": null,
+      "cluster": null,
+      "action_type": "user_dismissed",
+      "url": "https://robbreport.com/shelter/celebrity-homes/lists/paris-hilton-property-portfolio-1238846702/",
+      "note": "auto-sent pitch to queued:abby.montanez@robbreport.com"
     }
   ],
   "reported": [
